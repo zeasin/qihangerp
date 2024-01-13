@@ -9,13 +9,15 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="内部店铺ID" prop="shopId">
-        <el-input
-          v-model="queryParams.shopId"
-          placeholder="请输入内部店铺ID"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
+      <el-form-item label="店铺" prop="shopId">
+        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
+         <el-option
+            v-for="item in shopList"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="售后原因" prop="afterSaleReason">
         <el-input
@@ -25,46 +27,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="订单成团时间" prop="confirmTime">
-        <el-input
-          v-model="queryParams.confirmTime"
-          placeholder="请输入订单成团时间"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="时间" prop="createdTime">
-        <el-input
-          v-model="queryParams.createdTime"
-          placeholder="请输入时间"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="订单折扣金额" prop="discountAmount">
-        <el-input
-          v-model="queryParams.discountAmount"
-          placeholder="请输入订单折扣金额"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="订单金额" prop="orderAmount">
-        <el-input
-          v-model="queryParams.orderAmount"
-          placeholder="请输入订单金额"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="退款金额" prop="refundAmount">
-        <el-input
-          v-model="queryParams.refundAmount"
-          placeholder="请输入退款金额"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+      
       <el-form-item label="拼多多商品id" prop="goodsId">
         <el-input
           v-model="queryParams.goodsId"
@@ -73,22 +36,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="拼多多商品skuid" prop="skuId">
-        <el-input
-          v-model="queryParams.skuId"
-          placeholder="请输入拼多多商品skuid"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="商品名称" prop="goodsName">
-        <el-input
-          v-model="queryParams.goodsName"
-          placeholder="请输入商品名称"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+      
       <el-form-item label="商品编码" prop="goodsNumber">
         <el-input
           v-model="queryParams.goodsNumber"
@@ -97,46 +45,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="商品编码" prop="skuNumber">
-        <el-input
-          v-model="queryParams.skuNumber"
-          placeholder="请输入商品编码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="商品规格" prop="skuInfo">
-        <el-input
-          v-model="queryParams.skuInfo"
-          placeholder="请输入商品规格"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="数量" prop="quantity">
-        <el-input
-          v-model="queryParams.quantity"
-          placeholder="请输入数量"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="商品价格，单位：元" prop="goodsPrice">
-        <el-input
-          v-model="queryParams.goodsPrice"
-          placeholder="请输入商品价格，单位：元"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="更新时间" prop="updatedTime">
-        <el-input
-          v-model="queryParams.updatedTime"
-          placeholder="请输入更新时间"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+     
       <el-form-item label="快递单号" prop="trackingNumber">
         <el-input
           v-model="queryParams.trackingNumber"
@@ -145,54 +54,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="快递公司" prop="trackingCompany">
-        <el-input
-          v-model="queryParams.trackingCompany"
-          placeholder="请输入快递公司"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="审核时间" prop="auditTime">
-        <el-date-picker clearable
-          v-model="queryParams.auditTime"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择审核时间">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="备注" prop="describe">
-        <el-input
-          v-model="queryParams.describe"
-          placeholder="请输入备注"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="erp退货单号" prop="erpOrderReturnNum">
-        <el-input
-          v-model="queryParams.erpOrderReturnNum"
-          placeholder="请输入erp退货单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="erp退货单id" prop="erpOrderReturnId">
-        <el-input
-          v-model="queryParams.erpOrderReturnId"
-          placeholder="请输入erp退货单id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="标记" prop="sign">
-        <el-input
-          v-model="queryParams.sign"
-          placeholder="请输入标记"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+      
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -200,14 +62,14 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
+      <!-- <el-col :span="1.5">
         <el-button
           type="primary"
           plain
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['pdd:orderRefund:add']"
+          v-hasPermi="['pdd:pddRefund:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -218,7 +80,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['pdd:orderRefund:edit']"
+          v-hasPermi="['pdd:pddRefund:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -229,7 +91,7 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['pdd:orderRefund:remove']"
+          v-hasPermi="['pdd:pddRefund:remove']"
         >删除</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -239,23 +101,40 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['pdd:orderRefund:export']"
+          v-hasPermi="['pdd:pddRefund:export']"
         >导出</el-button>
-      </el-col>
+      </el-col> -->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="orderRefundList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
+    <el-table v-loading="loading" :data="pddRefundList" @selection-change="handleSelectionChange">
+      <!-- <el-table-column type="selection" width="55" align="center" /> -->
       <el-table-column label="售后编号" align="center" prop="id" />
       <el-table-column label="订单编号" align="center" prop="orderSn" />
-      <el-table-column label="内部店铺ID" align="center" prop="shopId" />
-      <el-table-column label="必填，售后类型2：仅退款 3：退货退款 4：换货 5：缺货补寄 9:拦截退货" align="center" prop="afterSalesType" />
-      <el-table-column label="必填，售后状态 1：全部 2：买家申请退款，待商家处理 3：退货退款，待商家处理 4：商家同意退款，退款中 5：平台同意退款，退款中 6：驳回退款， 待买家处理 7：已同意退货退款,待用户发货 8：平台处理中 9：平台拒 绝退款，退款关闭 10：退款成功 11：买家撤销 12：买家逾期未处 理，退款失败 13：买家逾期，超过有效期 14 : 换货补寄待商家处理 15:换货补寄待用户处理 16:换货补寄成功 17:换货补寄失败 18:换货补寄待用户确认完成 31：商家同意拒收退款，待用户拒收;32: 待商家补寄发货" align="center" prop="afterSalesStatus" />
+      <el-table-column label="店铺" align="center" prop="shopId" >
+        <template slot-scope="scope">
+          <span v-if="scope.row.shopId==5">梦小妮潮流女装</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="售后类型" align="center" prop="afterSalesType" >
+        <template slot-scope="scope">
+          <el-tag size="small" v-if="scope.row.afterSalesType === 2"> 仅退款</el-tag>
+          <el-tag size="small" v-if="scope.row.afterSalesType === 3"> 退货退款</el-tag>
+          <el-tag size="small" v-if="scope.row.afterSalesType === 4"> 换货</el-tag>
+          <el-tag size="small" v-if="scope.row.afterSalesType === 5"> 缺货补寄</el-tag>
+          <el-tag size="small" v-if="scope.row.afterSalesType === 9"> 拦截退货</el-tag>
+          </template>
+        </el-table-column>
+      <!-- <el-table-column label="售后状态" align="center" prop="afterSalesStatus" /> -->
+      <!-- 1：全部 2：买家申请退款，待商家处理 3：退货退款，待商家处理 4：商家同意退款，退款中 5：平台同意退款，退款中 6：驳回退款， 待买家处理 7：已同意退货退款,待用户发货 8：平台处理中 9：平台拒 绝退款，退款关闭 10：退款成功 11：买家撤销 12：买家逾期未处 理，退款失败 13：买家逾期，超过有效期 14 : 换货补寄待商家处理 15:换货补寄待用户处理 16:换货补寄成功 17:换货补寄失败 18:换货补寄待用户确认完成 31：商家同意拒收退款，待用户拒收;32: 待商家补寄发货 -->
       <el-table-column label="售后原因" align="center" prop="afterSaleReason" />
-      <el-table-column label="订单成团时间" align="center" prop="confirmTime" />
-      <el-table-column label="时间" align="center" prop="createdTime" />
-      <el-table-column label="订单折扣金额" align="center" prop="discountAmount" />
+      <!-- <el-table-column label="订单成团时间" align="center" prop="confirmTime" /> -->
+      <el-table-column label="创建时间" align="center" prop="createdTime" >
+        <template slot-scope="scope">
+          {{dateToString(scope.row.createdTime)}}
+        </template>
+        </el-table-column>
+      <!-- <el-table-column label="订单折扣金额" align="center" prop="discountAmount" /> -->
       <el-table-column label="订单金额" align="center" prop="orderAmount" />
       <el-table-column label="退款金额" align="center" prop="refundAmount" />
       <el-table-column label="商品图片" align="center" prop="goodsImage" width="100">
@@ -263,48 +142,60 @@
           <image-preview :src="scope.row.goodsImage" :width="50" :height="50"/>
         </template>
       </el-table-column>
-      <el-table-column label="拼多多商品id" align="center" prop="goodsId" />
-      <el-table-column label="拼多多商品skuid" align="center" prop="skuId" />
+      <!-- <el-table-column label="拼多多商品id" align="center" prop="goodsId" /> -->
+      <!-- <el-table-column label="拼多多商品skuid" align="center" prop="skuId" /> -->
       <el-table-column label="商品名称" align="center" prop="goodsName" />
-      <el-table-column label="商品编码" align="center" prop="goodsNumber" />
-      <el-table-column label="商品编码" align="center" prop="skuNumber" />
+      <!-- <el-table-column label="商品编码" align="center" prop="goodsNumber" /> -->
+      <!-- <el-table-column label="商品编码" align="center" prop="skuNumber" /> -->
       <el-table-column label="商品规格" align="center" prop="skuInfo" />
       <el-table-column label="数量" align="center" prop="quantity" />
-      <el-table-column label="商品价格，单位：元" align="center" prop="goodsPrice" />
-      <el-table-column label="更新时间" align="center" prop="updatedTime" />
+      <!-- <el-table-column label="商品价格，单位：元" align="center" prop="goodsPrice" /> -->
+      <!-- <el-table-column label="更新时间" align="center" prop="updatedTime" /> -->
       <el-table-column label="快递单号" align="center" prop="trackingNumber" />
-      <el-table-column label="快递公司" align="center" prop="trackingCompany" />
-      <el-table-column label="审核状态2已签收9供应商已退款" align="center" prop="auditStatus" />
-      <el-table-column label="审核时间" align="center" prop="auditTime" width="180">
+      <!-- <el-table-column label="快递公司" align="center" prop="trackingCompany" /> -->
+      <el-table-column label="审核状态" align="center" prop="auditStatus" >
+        <template slot-scope="scope">
+          <el-tag size="small" v-if="scope.row.auditStatus === 0"> 未处理</el-tag>
+          <el-tag size="small" v-if="scope.row.auditStatus === 2"> 已签收</el-tag>
+          <el-tag size="small" v-if="scope.row.auditStatus === 9"> 供应商已退款</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="订单发货状态" align="center" prop="shippingStatus" >
+        <template slot-scope="scope">
+          <el-tag size="small" v-if="scope.row.shippingStatus === 0"> 未发货</el-tag>
+          <el-tag size="small" v-if="scope.row.shippingStatus === 1"> 已发货</el-tag>
+        </template>
+      </el-table-column>
+      <!-- <el-table-column label="0-未勾选 1-消费者选择的收货状态为未收到货 2-消费者选择的收货状态为已收到货" align="center" prop="userShippingStatus" /> -->
+      <!-- <el-table-column label="审核时间" align="center" prop="auditTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.auditTime, '{y}-{m}-{d}') }}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column label="备注" align="center" prop="describe" />
       <el-table-column label="退货说明" align="center" prop="remark" />
-      <el-table-column label="订单发货状态 0:未发货， 1:已发货" align="center" prop="shippingStatus" />
-      <el-table-column label="0-未勾选 1-消费者选择的收货状态为未收到货 2-消费者选择的收货状态为已收到货" align="center" prop="userShippingStatus" />
-      <el-table-column label="erp退货单号" align="center" prop="erpOrderReturnNum" />
-      <el-table-column label="erp退货单id" align="center" prop="erpOrderReturnId" />
+      
+      <!-- <el-table-column label="erp退货单号" align="center" prop="erpOrderReturnNum" /> -->
+      <!-- <el-table-column label="erp退货单id" align="center" prop="erpOrderReturnId" /> -->
       <el-table-column label="标记" align="center" prop="sign" />
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <!-- <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button
+           <el-button
             size="mini"
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['pdd:orderRefund:edit']"
+            v-hasPermi="['pdd:pddRefund:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['pdd:orderRefund:remove']"
+            v-hasPermi="['pdd:pddRefund:remove']"
           >删除</el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
     
     <pagination
@@ -411,12 +302,13 @@
 </template>
 
 <script>
-import { listOrderRefund, getOrderRefund, delOrderRefund, addOrderRefund, updateOrderRefund } from "@/api/pdd/orderRefund";
-
+import { listPddRefund, getPddRefund, delPddRefund, addPddRefund, updatePddRefund } from "@/api/pdd/pddRefund";
+import { listShop } from "@/api/shop/shop";
 export default {
-  name: "OrderRefund",
+  name: "PddRefund",
   data() {
     return {
+      shopList:[],
       // 遮罩层
       loading: true,
       // 选中数组
@@ -430,7 +322,7 @@ export default {
       // 总条数
       total: 0,
       // 拼多多订单退款表格数据
-      orderRefundList: [],
+      pddRefundList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -517,14 +409,21 @@ export default {
     };
   },
   created() {
+    listShop({type:5}).then(response => {
+        this.shopList = response.rows;
+      });
     this.getList();
   },
   methods: {
+    dateToString(timespan){
+            var date = new Date(timespan * 1000);
+            return date.toLocaleString();
+        },
     /** 查询拼多多订单退款列表 */
     getList() {
       this.loading = true;
-      listOrderRefund(this.queryParams).then(response => {
-        this.orderRefundList = response.rows;
+      listPddRefund(this.queryParams).then(response => {
+        this.pddRefundList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
@@ -598,7 +497,7 @@ export default {
     handleUpdate(row) {
       this.reset();
       const id = row.id || this.ids
-      getOrderRefund(id).then(response => {
+      getPddRefund(id).then(response => {
         this.form = response.data;
         this.open = true;
         this.title = "修改拼多多订单退款";
@@ -609,13 +508,13 @@ export default {
       this.$refs["form"].validate(valid => {
         if (valid) {
           if (this.form.id != null) {
-            updateOrderRefund(this.form).then(response => {
+            updatePddRefund(this.form).then(response => {
               this.$modal.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addOrderRefund(this.form).then(response => {
+            addPddRefund(this.form).then(response => {
               this.$modal.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -628,7 +527,7 @@ export default {
     handleDelete(row) {
       const ids = row.id || this.ids;
       this.$modal.confirm('是否确认删除拼多多订单退款编号为"' + ids + '"的数据项？').then(function() {
-        return delOrderRefund(ids);
+        return delPddRefund(ids);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
@@ -636,9 +535,9 @@ export default {
     },
     /** 导出按钮操作 */
     handleExport() {
-      this.download('pdd/orderRefund/export', {
+      this.download('pdd/pddRefund/export', {
         ...this.queryParams
-      }, `orderRefund_${new Date().getTime()}.xlsx`)
+      }, `pddRefund_${new Date().getTime()}.xlsx`)
     }
   }
 };
