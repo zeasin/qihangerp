@@ -18,7 +18,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 // @ComponentScan("com.zhijian")
 @Log
+<<<<<<< HEAD
 @NacosPropertySource(dataId = "ecerp-dev.yaml", autoRefreshed = true)
+=======
+//@NacosPropertySource(dataId = "ecerp-dev.yaml", autoRefreshed = true)
+>>>>>>> a81aae6531d59a949f3e95cf609f4805fe1bb2cf
 //@EnableTransactionManagement
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 public class ApiApplication  {
