@@ -7,10 +7,9 @@
 
 可支持所有电商平台接口，已对接平台有：淘宝、拼多多、抖店，后续计划对接：小红书、快手、京东等。
 
-![预览](preview.png)
+![预览](docs/preview.png)
 
-<<<<<<< HEAD
-=======
+
 ## 项目介绍
 **启航电商ERP可以说是我这五年以来的工作经验成果。**
 
@@ -37,7 +36,6 @@ A[早上7点开播] -->B(10点结束直播-一般是500单左右)
 ```
 
 
->>>>>>> a81aae6531d59a949f3e95cf609f4805fe1bb2cf
 ## 一、功能模块
 ### 供应链管理
 + 供应商管理：管理供应商信息
@@ -182,9 +180,9 @@ A[录入退款退货] -->B(仅退款)
 ## 三、如何使用？
 ### 3.1、开发环境配置
 + MySQL数据库创建
-  + 运行MySQL脚本`db\sql\qihang-erp.sql`导入数据到主库`qihang-erp`
+  + 运行MySQL脚本`docs\sql\qihang-erp.sql`导入数据到主库`qihang-erp`
 
-  + 运行MySQL脚本`db\sql\nacos.sql`导入数据到nacos库`nacos`
+  + 运行MySQL脚本`docs\sql\nacos.sql`导入数据到nacos库`nacos`
 
 + 启动nacos
   + 修改Nacos数据库配置 `nacos\conf\application.properties`
@@ -193,19 +191,16 @@ A[录入退款退货] -->B(仅退款)
   db.user.0=root
   db.password.0=Andy_123
   ```
-  + 启动Nacos（这里可以使用db文件夹下的nacos压缩包，其他都配置好了，数据库连接重新配置一下，双击`bin\startup.cmd`就可以运行了）
+  + 启动Nacos
   
-+ 启动Redis（这里可以使用db文件夹下的redis压缩包，直接双击`start.bat`就可以启动了）
++ 启动Redis
 
-  
-+ 启动minio（以db文件夹下的minio压缩包为例）
-  + 进入项目minio文件夹`db\minio`
-  + 启动：CMD运行`minio.exe server data`
++ 启动minio
   
 ### 3.2、启动后端`ecerp-api`
 + 进入Nacos进行Mysql数据库连接配置`http://127.0.0.1:8848/nacos` 
-  + 新建配置`ecerp-dev.yaml`
-  + 添加配置内容（从db\ecerp-dev.yaml复制修改）
+  + 新建配置`ecerp-dev`
+  + 添加配置内容（从docs\ecerp-dev.yaml复制修改）
   + 发布配置
   
 + IDEA启动项目
@@ -219,10 +214,7 @@ A[录入退款退货] -->B(仅退款)
   + 登录名：`admin`
   + 登录密码：`admin123`
 
-<<<<<<< HEAD
-## 商业&交流
-商业、交流请联系：
-=======
+
 ## 支持
 
 作者为兼职做开源,平时还需要工作，如果有一定的收入，作者更有动力把项目做好,如果项目对您有帮助，请多多支持
@@ -233,28 +225,22 @@ A[录入退款退货] -->B(仅退款)
 
 作者微信公众号：qihangerp168
 
->>>>>>> a81aae6531d59a949f3e95cf609f4805fe1bb2cf
 
-<img src="公众号.jpg" width="300px" />
-
-
-<<<<<<< HEAD
-💖 如果觉得有用记得点 Star⭐
+<img src="docs/公众号.jpg" width="300px" />
 
 
 欢迎一起交流！ 
 
 
-## 捐献作者
-=======
+
 
 ### 捐献作者
->>>>>>> a81aae6531d59a949f3e95cf609f4805fe1bb2cf
+
 作者为兼职做开源,平时还需要工作,如果帮到了您可以请作者吃个盒饭
  
 
-<img src="./db/weixinzhifu.jpg" width="300px" />
-<img src="./db/zhifubao.jpg" width="300px" />
+<img src="docs/weixinzhifu.jpg" width="300px" />
+<img src="docs/zhifubao.jpg" width="300px" />
 
 
 
