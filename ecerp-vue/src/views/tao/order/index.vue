@@ -388,6 +388,35 @@
       </div>
     </el-dialog>
 
+    <!-- 导入淘宝订单 -->
+    <el-dialog title="导入淘宝主订单" :visible.sync="importOrderOpen" width="400px" append-to-body>
+      <el-upload
+        class="upload-demo"
+        :headers="headers"
+        drag
+        action="/dev-api/tao/order/order_import"
+        accept="xlsx"
+        multiple >
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload>
+    </el-dialog>
+    <!-- 导入淘宝子订单 -->
+    <el-dialog title="导入淘宝子订单" :visible.sync="importOrderItemOpen" width="400px" append-to-body>
+      <el-upload
+        class="upload-demo"
+        :headers="headers"
+        drag
+        action="/dev-api/tao/order/order_item_import"
+        accept="xlsx"
+        multiple >
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+      </el-upload>
+    </el-dialog>
+
     <!-- 订单详情对话框 -->
     <el-dialog :title="detailTitle" :visible.sync="detailOpen" width="1100px" append-to-body>
 
@@ -597,11 +626,16 @@ import {
 } from "element-china-area-data";
 import {MessageBox} from "element-ui";
 import {isRelogin} from "../../../utils/request";
+import {getToken} from "@/utils/auth";
 
 export default {
   name: "Order",
   data() {
     return {
+      headers: { 'Authorization': 'Bearer ' + getToken() },
+      // headers: {
+      //   "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjYyM2E0NDE3LWYxYjgtNGZkZi05NjIyLWExMTQxNDMzYjIwMiJ9.kAQDBzkdBEV6byqcufxm9hWvrAMXUJZm_lWiS6r_z5GnuRZrOMz_PnLQgObjQ3Ysem593JW3c38mVK5RnE4upA"
+      // },
       // 遮罩层
       loading: true,
       // 选中数组
@@ -631,6 +665,8 @@ export default {
       open: false,
       detailTitle:'订单详情',
       detailOpen:false,
+      importOrderOpen:false,
+      importOrderItemOpen:false,
       saleAfterOpen:false,
       // 查询参数
       queryParams: {
@@ -850,15 +886,16 @@ export default {
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
-      this.reset();
-      const id = row.id || this.ids
-      getOrder(id).then(response => {
-        this.form = response.data;
-        this.goodsList = response.data.taoOrderItemList;
-        this.detailOpen = true;
-        this.detailTitle = "确认订单";
-      });
-      this.isAudit = true
+      this.importOrderOpen = true
+      // this.reset();
+      // const id = row.id || this.ids
+      // getOrder(id).then(response => {
+      //   this.form = response.data;
+      //   this.goodsList = response.data.taoOrderItemList;
+      //   this.detailOpen = true;
+      //   this.detailTitle = "确认订单";
+      // });
+      // this.isAudit = true
     },
     /** 提交按钮 */
     submitForm() {
