@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.qihang.erp.api.common.EnumResultVo;
 import com.qihang.erp.api.common.ResultVo;
+import com.qihang.erp.api.controller.tao.OrderImportItem;
 import com.qihang.erp.api.domain.*;
 import com.qihang.erp.api.mapper.*;
 import com.zhijian.common.utils.DateUtils;
@@ -13,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.zhijian.common.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
 import com.qihang.erp.api.service.ITaoOrderService;
@@ -461,6 +465,105 @@ public class TaoOrderServiceImpl implements ITaoOrderService
 //        }
         return new ResultVo<>(EnumResultVo.SUCCESS, "SUCCESS");
 //        return new ResultVo<>(EnumResultVo.SUCCESS, "SUCCESS");
+    }
+
+    /**
+     * Excel 导入 子订单列表
+     * @param orderItemList
+     * @return
+     */
+    @Transactional
+    @Override
+    public ResultVo<Integer> excelImportForSubOrder(List<OrderImportItem> orderItemList) {
+        // 分组
+        Map<String, List<OrderImportItem>> map = orderItemList.stream().collect(Collectors.groupingBy(t -> t.getOrderNum()));
+        for (Map.Entry<String, List<OrderImportItem>> m : map.entrySet()) {
+            // 判断订单是否存在
+            TaoOrder taoOrder = taoOrderMapper.selectTaoOrderById(m.getKey());
+            if(taoOrder == null){
+                // 不存在，添加order
+                List<TaoOrderItem> taoOrderItemList = new ArrayList<>();
+                TaoOrder insert = new TaoOrder();
+                insert.setId(m.getKey());
+                List<OrderImportItem> items = m.getValue();
+                insert.setShopId(items.get(0).getShopId().longValue());
+                BigDecimal totalAmount = BigDecimal.ZERO;
+                BigDecimal payAmount = BigDecimal.ZERO;
+                for (OrderImportItem item:items) {
+                    totalAmount.add(item.getAmount());
+                    payAmount.add(item.getPayAmount());
+                    // 添加子订单
+                    TaoOrderItem orderItem = new TaoOrderItem();
+                    orderItem.setOrderId(m.getKey());
+                    orderItem.setSubItemId(item.getSubOrderNum());
+                    orderItem.setItemAmount(item.getAmount());
+                    orderItem.setGoodsTitle(item.getGoodsTitle());
+                    orderItem.setGoodsNumber(item.getGoodsNumber());
+                    orderItem.setProductId(Long.parseLong(item.getNumIid()));
+                    orderItem.setSkuId(0L);
+                    orderItem.setSkuInfo(item.getSkuInfo());
+                    orderItem.setPrice(item.getPrice());
+                    orderItem.setQuantity(item.getQuantity());
+                    orderItem.setStatusStr(items.get(0).getStatus());
+                    if("买家已付款，等待卖家发货".equals(items.get(0).getStatus())){
+                        orderItem.setStatus("2");
+                    }else if("等待买家确认收货".equals(items.get(0).getStatus())){
+                        orderItem.setStatus("3");
+                    }else{
+                        orderItem.setStatus("0");
+                    }
+                    orderItem.setRefundStatusStr(items.get(0).getRefundStatus());
+                    orderItem.setRefundStatus(0L);
+//                    try {
+//                        if(!StringUtils.isEmpty(items.get(0).getRefundAmount()) && !"无退款申请".equals(items.get(0).getRefundAmount())){
+//                            orderItem.setRefundAmount(new BigDecimal(items.get(0).getRefundAmount()));
+//                        }
+//                    }catch (Exception e){}
+                    orderItem.setIsGift(0);
+                    orderItem.setIsSwap(0);
+                    orderItem.setNewSpecId(0L);
+
+                    taoOrderItemList.add(orderItem);
+                }
+                insert.setTotalAmount(totalAmount);
+                insert.setPayAmount(payAmount);
+                insert.setOrderCreateTime(DateUtils.dateTime("yyyy-MM-dd HH:mm:ss",items.get(0).getOrderCreated()));
+                insert.setPayTime(DateUtils.dateTime("yyyy-MM-dd HH:mm:ss",items.get(0).getOrderPayTime()));
+                insert.setSellerMemo(items.get(0).getSellerMemo());
+                insert.setBuyerFeedback(items.get(0).getBuyerMemo());
+                insert.setStatusStr(items.get(0).getStatus());
+                if("买家已付款，等待卖家发货".equals(items.get(0).getStatus())){
+                    insert.setStatus(2L);
+                }else if("等待买家确认收货".equals(items.get(0).getStatus())){
+                    insert.setStatus(3L);
+                }else{
+                    insert.setStatus(0L);
+                }
+                insert.setLogisticsCode(items.get(0).getLogisticsCode());
+                insert.setLogisticsCompany(items.get(0).getLogisticsCom());
+                try {
+                    if (!StringUtils.isEmpty(items.get(0).getSendTime())) {
+                        insert.setDeliveredTime(DateUtils.dateTime("yyyy-MM-dd HH:mm:ss", items.get(0).getSendTime()));
+                    }
+                    insert.setRefundStatus(items.get(0).getRefundStatus());
+                    if(!StringUtils.isEmpty(items.get(0).getRefundAmount()) && !"无退款申请".equals(items.get(0).getRefundAmount())){
+                        insert.setRefundAmount(new BigDecimal(items.get(0).getRefundAmount()));
+                    }
+                }catch (Exception e){}
+                insert.setAuditStatus(0L);
+                insert.setSendStatus(0L);
+                insert.setIsComment(0);
+                taoOrderMapper.insertTaoOrder(insert);
+                if (taoOrderItemList.size() > 0)
+                {
+                    taoOrderMapper.batchTaoOrderItem(taoOrderItemList);
+                }
+            }
+//            System.out.println("key:" + m.getKey() + " value:" + m.getValue());
+        }
+
+
+        return new ResultVo<>(EnumResultVo.SUCCESS);
     }
 
     /**

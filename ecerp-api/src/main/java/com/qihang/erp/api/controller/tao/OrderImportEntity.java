@@ -39,6 +39,7 @@ public class OrderImportEntity {
 
     private List<OrderImportItem> items = new ArrayList<>();//子订单;//订单明细list
 
+
     
     public String getLogisticsCompany() {
         return logisticsCompany;

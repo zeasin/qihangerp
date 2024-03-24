@@ -416,7 +416,7 @@
         class="upload-demo"
         :headers="headers"
         drag
-        action="/dev-api/tao/order/order_item_import"
+        :action="importOrderUrl"
         accept="xlsx"
         multiple >
         <i class="el-icon-upload"></i>
@@ -675,6 +675,7 @@ export default {
       detailOpen:false,
       importOrderOpen:false,
       importOrderItemOpen:false,
+      importOrderUrl:'',
       saleAfterOpen:false,
       // 查询参数
       queryParams: {
@@ -894,8 +895,14 @@ export default {
     },
     /** 修改按钮操作 */
     handleImportExcel(row) {
+      if(this.queryParams.shopId){
+        this.importOrderUrl = '/dev-api/tao/order/order_item_import?shopId='+this.queryParams.shopId
+        this.importOrderItemOpen = true
+      }else{
+        this.$modal.msgSuccess("请选择店铺");
+      }
       // this.importOrderOpen = true
-      this.importOrderItemOpen = true
+
       // this.reset();
       // const id = row.id || this.ids
       // getOrder(id).then(response => {

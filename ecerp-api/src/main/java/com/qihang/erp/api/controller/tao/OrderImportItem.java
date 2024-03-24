@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * @date 2019-10-23 09:13
  */
 public class OrderImportItem {
-
+    private Integer shopId;
     private String orderNum;
     private String subOrderNum;
     private String goodsTitle;//宝贝名称
@@ -21,11 +21,126 @@ public class OrderImportItem {
     private String skuInfo;//商品规格属性信息
     private String color;
     private String size;
+    private String status;
     private BigDecimal price;//单价
+    private BigDecimal amount;//应付金额
     private BigDecimal payAmount;//实际支付金额
+    private String refundStatus;//退款状态
+    private String refundAmount;//退款金额
+    private String orderCreated;//订单创建时间
+    private String orderPayTime;//订单付款时间
+    private String numIid;//商品id
+    private String sellerMemo;//商家备注
+    private String buyerMemo;// 买家留言
+    private String sendTime;//发货时间
+    private String logisticsCode;//物流单号
+    private String logisticsCom;//物流公司
     private Long quantity;//数量
 
-    
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
+    public String getRefundStatus() {
+        return refundStatus;
+    }
+
+    public void setRefundStatus(String refundStatus) {
+        this.refundStatus = refundStatus;
+    }
+
+    public String getRefundAmount() {
+        return refundAmount;
+    }
+
+    public void setRefundAmount(String refundAmount) {
+        this.refundAmount = refundAmount;
+    }
+
+    public String getOrderCreated() {
+        return orderCreated;
+    }
+
+    public void setOrderCreated(String orderCreated) {
+        this.orderCreated = orderCreated;
+    }
+
+    public String getOrderPayTime() {
+        return orderPayTime;
+    }
+
+    public void setOrderPayTime(String orderPayTime) {
+        this.orderPayTime = orderPayTime;
+    }
+
+    public String getNumIid() {
+        return numIid;
+    }
+
+    public void setNumIid(String numIid) {
+        this.numIid = numIid;
+    }
+
+    public String getSellerMemo() {
+        return sellerMemo;
+    }
+
+    public void setSellerMemo(String sellerMemo) {
+        this.sellerMemo = sellerMemo;
+    }
+
+    public String getBuyerMemo() {
+        return buyerMemo;
+    }
+
+    public void setBuyerMemo(String buyerMemo) {
+        this.buyerMemo = buyerMemo;
+    }
+
+    public String getSendTime() {
+        return sendTime;
+    }
+
+    public void setSendTime(String sendTime) {
+        this.sendTime = sendTime;
+    }
+
+    public String getLogisticsCode() {
+        return logisticsCode;
+    }
+
+    public void setLogisticsCode(String logisticsCode) {
+        this.logisticsCode = logisticsCode;
+    }
+
+    public String getLogisticsCom() {
+        return logisticsCom;
+    }
+
+    public void setLogisticsCom(String logisticsCom) {
+        this.logisticsCom = logisticsCom;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getOrderNum() {
         return orderNum;
     }
