@@ -77,10 +77,8 @@
           plain
           icon="el-icon-upload"
           size="mini"
-
-          @click="handleUpdate"
-          v-hasPermi="['tao:order:edit']"
-        >Execl导入</el-button>
+          @click="handleImportExcel"
+        >Execl导入淘宝子订单</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -404,7 +402,7 @@
         class="upload-demo"
         :headers="headers"
         drag
-        action="/dev-api/tao/order/order_import"
+        action="/dev-api/tao/order/order_item_import"
         accept="xlsx"
         multiple >
         <i class="el-icon-upload"></i>
@@ -895,8 +893,9 @@ export default {
       // this.$modal.msgSuccess("请先配置API");
     },
     /** 修改按钮操作 */
-    handleUpdate(row) {
-      this.importOrderOpen = true
+    handleImportExcel(row) {
+      // this.importOrderOpen = true
+      this.importOrderItemOpen = true
       // this.reset();
       // const id = row.id || this.ids
       // getOrder(id).then(response => {
