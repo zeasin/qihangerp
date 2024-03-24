@@ -21,7 +21,7 @@ import OrderDou  from "@/views/dou/order/index";
 import OrderPdd  from "@/views/pdd/order/index";
 export default {
   name: "Order",
-  components:{OrderTao,OrderJd,OrderDou,OrderPdd},
+  components:{OrderTao,OrderDou,OrderPdd},
   data() {
     return {
       activeName: 'taoOrder'
