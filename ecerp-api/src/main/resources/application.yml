@@ -64,28 +64,28 @@ spring:
 
 
 
-    url: jdbc:h2:file:./db/qihang-ecerp
-    driver-class-name: org.h2.Driver
-    username: qihang
-    password: Andy_123
-  h2:
-    console:
-      enabled: true
-
+#    url: jdbc:h2:file:./db/qihang-ecerp
+#    driver-class-name: org.h2.Driver
+#    username: qihang
+#    password: Andy_123
+#  h2:
+#    console:
+#      enabled: true
+#
 
 #nacos:
 #  config:
 #    server-addr: 127.0.0.1:8848
 
-#nacos:
-#  config:
-#    type: yaml
-#    server-addr: 127.0.0.1:8848
-#    context-path: nacos
-#    data-id: ecerp-dev
-#    auto-refresh: true
-#    bootstrap:
-#      enable: true
+nacos:
+  config:
+    type: yaml
+    server-addr: 127.0.0.1:8848
+    context-path: nacos
+    data-id: ecerp-dev
+    auto-refresh: true
+    bootstrap:
+      enable: true
 
 ## 项目相关配置
 #zhijian:
