@@ -431,7 +431,6 @@ CREATE TABLE `erp_goods_inventory`  (
 -- ----------------------------
 -- Records of erp_goods_inventory
 -- ----------------------------
-INSERT INTO `erp_goods_inventory` VALUES (6, 9, 'HN8026', 32, '2720210080260105', 8, 0, 0, '2024-01-16 14:51:50', 'admin', '2024-01-16 15:05:44', 'admin');
 
 -- ----------------------------
 -- Table structure for erp_goods_inventory_detail
@@ -458,8 +457,6 @@ CREATE TABLE `erp_goods_inventory_detail`  (
 -- ----------------------------
 -- Records of erp_goods_inventory_detail
 -- ----------------------------
-INSERT INTO `erp_goods_inventory_detail` VALUES (7, 6, 10, 0, 8, NULL, 8, 4, NULL, 32, 9, 20, '2024-01-16 14:51:50', 'admin');
-
 -- ----------------------------
 -- Table structure for erp_goods_spec
 -- ----------------------------
@@ -9093,18 +9090,18 @@ CREATE TABLE `sys_menu`  (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES (1, '系统管理', 0, 99, 'system', '', '', 1, 0, 'M', '0', '0', '', 'system', 'admin', '2023-12-27 15:00:27', 'admin', '2024-02-20 19:40:08', '系统管理目录');
-INSERT INTO `sys_menu` VALUES (2, '系统监控', 0, 100, 'monitor', '', '', 1, 0, 'M', '1', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-02-20 14:48:54', '系统监控目录');
-INSERT INTO `sys_menu` VALUES (3, '系统工具', 0, 101, 'tool', '', '', 1, 0, 'M', '1', '0', '', 'tool', 'admin', '2023-12-27 15:00:27', 'admin', '2024-01-16 10:45:25', '系统工具目录');
-INSERT INTO `sys_menu` VALUES (4, '采购管理', 0, 6, 'scm', '', '', 1, 0, 'M', '0', '0', '', 'server', 'admin', '2023-12-27 15:00:27', 'admin', '2024-02-21 09:46:19', '至简官网地址');
+INSERT INTO `sys_menu` VALUES (1, '系统管理', 0, 99, 'system', '', '', 1, 0, 'M', '0', '0', '', 'system', 'admin', '2023-12-27 15:00:27', 'admin', '2023-12-29 09:07:42.856856', '系统管理目录');
+INSERT INTO `sys_menu` VALUES (2, '系统监控', 0, 100, 'monitor', '', '', 1, 0, 'M', '1', '0', '', 'monitor', 'admin', '2023-12-27 15:00:27', 'admin', '2024-03-24 21:09:18', '系统监控目录');
+INSERT INTO `sys_menu` VALUES (3, '系统工具', 0, 101, 'tool', '', '', 1, 0, 'M', '1', '0', '', 'tool', 'admin', '2023-12-27 15:00:27', 'admin', '2024-03-24 21:09:13', '系统工具目录');
+INSERT INTO `sys_menu` VALUES (4, '采购管理', 0, 1, 'scm', '', '', 1, 0, 'M', '0', '0', '', 'server', 'admin', '2023-12-27 15:00:27', 'admin', '2024-03-24 19:30:46', '至简官网地址');
 INSERT INTO `sys_menu` VALUES (100, '用户管理', 1, 1, 'user', 'system/user/index', '', 1, 0, 'C', '0', '0', 'system:user:list', 'user', 'admin', '2023-12-27 15:00:27', '', '', '用户管理菜单');
 INSERT INTO `sys_menu` VALUES (101, '角色管理', 1, 2, 'role', 'system/role/index', '', 1, 0, 'C', '0', '0', 'system:role:list', 'peoples', 'admin', '2023-12-27 15:00:27', '', '', '角色管理菜单');
-INSERT INTO `sys_menu` VALUES (102, '菜单管理', 1, 3, 'menu', 'system/menu/index', '', 1, 0, 'C', '1', '0', 'system:menu:list', 'tree-table', 'admin', '2023-12-27 15:00:27', 'admin', '2024-02-20 19:40:18', '菜单管理菜单');
+INSERT INTO `sys_menu` VALUES (102, '菜单管理', 1, 3, 'menu', 'system/menu/index', '', 1, 0, 'C', '0', '0', 'system:menu:list', 'tree-table', 'admin', '2023-12-27 15:00:27', '', '', '菜单管理菜单');
 INSERT INTO `sys_menu` VALUES (103, '部门管理', 1, 4, 'dept', 'system/dept/index', '', 1, 0, 'C', '0', '0', 'system:dept:list', 'tree', 'admin', '2023-12-27 15:00:27', '', '', '部门管理菜单');
 INSERT INTO `sys_menu` VALUES (104, '岗位管理', 1, 5, 'post', 'system/post/index', '', 1, 0, 'C', '0', '0', 'system:post:list', 'post', 'admin', '2023-12-27 15:00:27', '', '', '岗位管理菜单');
-INSERT INTO `sys_menu` VALUES (105, '字典管理', 1, 6, 'dict', 'system/dict/index', '', 1, 0, 'C', '1', '0', 'system:dict:list', 'dict', 'admin', '2023-12-27 15:00:27', 'admin', '2024-02-21 09:50:23', '字典管理菜单');
-INSERT INTO `sys_menu` VALUES (106, '参数设置', 1, 7, 'config', 'system/config/index', '', 1, 0, 'C', '1', '0', 'system:config:list', 'edit', 'admin', '2023-12-27 15:00:27', 'admin', '2024-02-21 09:50:36', '参数设置菜单');
-INSERT INTO `sys_menu` VALUES (107, '通知公告', 1, 8, 'notice', 'system/notice/index', '', 1, 0, 'C', '1', '0', 'system:notice:list', 'message', 'admin', '2023-12-27 15:00:27', 'admin', '2024-02-21 09:50:29', '通知公告菜单');
+INSERT INTO `sys_menu` VALUES (105, '字典管理', 1, 6, 'dict', 'system/dict/index', '', 1, 0, 'C', '0', '0', 'system:dict:list', 'dict', 'admin', '2023-12-27 15:00:27', '', '', '字典管理菜单');
+INSERT INTO `sys_menu` VALUES (106, '参数设置', 1, 7, 'config', 'system/config/index', '', 1, 0, 'C', '0', '0', 'system:config:list', 'edit', 'admin', '2023-12-27 15:00:27', '', '', '参数设置菜单');
+INSERT INTO `sys_menu` VALUES (107, '通知公告', 1, 8, 'notice', 'system/notice/index', '', 1, 0, 'C', '0', '0', 'system:notice:list', 'message', 'admin', '2023-12-27 15:00:27', '', '', '通知公告菜单');
 INSERT INTO `sys_menu` VALUES (108, '日志管理', 1, 9, 'log', '', '', 1, 0, 'M', '0', '0', '', 'log', 'admin', '2023-12-27 15:00:27', '', '', '日志管理菜单');
 INSERT INTO `sys_menu` VALUES (109, '在线用户', 2, 1, 'online', 'monitor/online/index', '', 1, 0, 'C', '0', '0', 'monitor:online:list', 'online', 'admin', '2023-12-27 15:00:27', '', '', '在线用户菜单');
 INSERT INTO `sys_menu` VALUES (110, '定时任务', 2, 2, 'job', 'monitor/job/index', '', 1, 0, 'C', '0', '0', 'monitor:job:list', 'job', 'admin', '2023-12-27 15:00:27', '', '', '定时任务菜单');
@@ -9192,69 +9189,146 @@ INSERT INTO `sys_menu` VALUES (2010, '采购订单管理', 4, 1, 'purchase/order
 INSERT INTO `sys_menu` VALUES (2011, '采购合同管理', 4, 2, 'purchase/contract', 'scm/purchase/contract', '', 1, 0, 'C', '0', '1', 'scm:purchase:contract', 'clipboard', 'admin', '2023-12-29 16:39:43', 'admin', '2023-12-30 18:07:58.363465', '');
 INSERT INTO `sys_menu` VALUES (2012, '采购物流管理', 4, 3, 'purchase/ship', 'scm/purchase/ship', '', 1, 0, 'C', '0', '0', 'scm:purchase:ship', 'component', 'admin', '2023-12-29 16:45:42', 'admin', '2023-12-30 20:48:47.282509', '');
 INSERT INTO `sys_menu` VALUES (2013, '采购费用管理', 4, 4, 'purchase/cost', 'scm/purchase/cost', '', 1, 0, 'C', '0', '1', 'scm:purchase:cost', 'checkbox', 'admin', '2023-12-29 16:47:07', 'admin', '2024-01-13 18:32:21', '');
-INSERT INTO `sys_menu` VALUES (2014, '订单管理', 0, 2, 'sale', '', '', 1, 0, 'M', '0', '0', '', 'shopping', 'admin', '2023-12-29 16:53:03', 'admin', '2024-02-20 14:27:09', '');
-INSERT INTO `sys_menu` VALUES (2015, '店铺设置', 2084, 10, 'shop', 'shop/index', '', 1, 0, 'C', '0', '0', 'shop:list', 'example', 'admin', '2023-12-29 16:54:02', 'admin', '2024-02-20 14:45:26', '');
-INSERT INTO `sys_menu` VALUES (2016, '淘宝商品', 2087, 1, 'tao_goods', 'shop/goods', '{\"shopType\":4}', 1, 0, 'C', '0', '0', 'shop:goods', 'color', 'admin', '2023-12-29 17:02:42', 'admin', '2024-02-20 17:49:39', '');
-INSERT INTO `sys_menu` VALUES (2017, '店铺数据统计', 2084, 8, 'data', 'shop/data', '', 1, 0, 'C', '0', '1', 'shop:data', 'chart', 'admin', '2023-12-29 17:04:08', 'admin', '2024-02-20 14:46:11', '');
-INSERT INTO `sys_menu` VALUES (2018, '财务管理', 0, 7, 'fms', '', '', 1, 0, 'M', '0', '0', '', 'money', 'admin', '2023-12-29 17:07:23', 'admin', '2024-02-20 14:43:30', '');
+INSERT INTO `sys_menu` VALUES (2014, '订单管理', 0, 2, 'sale', '', '', 1, 0, 'M', '0', '0', '', 'shopping', 'admin', '2023-12-29 16:53:03', 'admin', '2024-03-24 19:31:53', '');
+INSERT INTO `sys_menu` VALUES (2015, '店铺管理', 2014, 10, 'shop', 'shop/index', '', 1, 0, 'C', '0', '0', 'shop:list', 'example', 'admin', '2023-12-29 16:54:02', 'admin', '2024-01-04 14:39:08', '');
+INSERT INTO `sys_menu` VALUES (2016, '店铺商品管理', 2014, 9, 'shop/goods', 'shop/goods', '', 1, 0, 'C', '0', '1', 'shop:goods', 'color', 'admin', '2023-12-29 17:02:42', 'admin', '2024-01-14 14:04:20', '');
+INSERT INTO `sys_menu` VALUES (2017, '店铺数据统计', 2014, 8, 'data', 'shop/data', '', 1, 0, 'C', '0', '1', 'shop:data', 'chart', 'admin', '2023-12-29 17:04:08', 'admin', '2023-12-31 19:04:58.785609', '');
+INSERT INTO `sys_menu` VALUES (2018, '财务管理', 0, 6, 'fms', '', '', 1, 0, 'M', '0', '1', '', 'money', 'admin', '2023-12-29 17:07:23', 'admin', '2024-03-24 21:08:38', '');
 INSERT INTO `sys_menu` VALUES (2019, '采购账单管理', 2018, 1, 'purchase', 'scm/purchase/cost', '', 1, 0, 'C', '0', '1', '', 'shopping', 'admin', '2023-12-29 17:09:32', 'admin', '2024-01-28 11:22:15', '');
 INSERT INTO `sys_menu` VALUES (2021, '创建采购订单', 4, 0, 'purchase/order/create', 'scm/purchase/order/create', '', 1, 0, 'C', '1', '0', '', 'edit', 'admin', '2023-12-29 21:23:45', 'admin', '2024-01-06 23:56:06', '');
 INSERT INTO `sys_menu` VALUES (2025, '采购订单详情', 4, 1, 'purchase/order/detail', 'scm/purchase/order/detail', '', 1, 0, 'C', '1', '0', '', 'button', 'admin', '2023-12-30 17:08:01', 'admin', '2023-12-30 17:09:38.154348', '');
-INSERT INTO `sys_menu` VALUES (2026, '库存管理', 0, 8, 'wms', '', '', 1, 0, 'M', '0', '0', '', 'stock1', 'admin', '2023-12-31 12:14:33', 'admin', '2024-02-20 14:43:55', '');
+INSERT INTO `sys_menu` VALUES (2026, '库存管理', 0, 5, 'wms', '', '', 1, 0, 'M', '0', '0', '', 'stock1', 'admin', '2023-12-31 12:14:33', 'admin', '2024-01-14 15:10:51', '');
 INSERT INTO `sys_menu` VALUES (2027, '入库管理', 2026, 0, 'stock_in_entry/list', 'wms/stockInEntry', '', 1, 0, 'C', '0', '0', 'wms:stock_in_entry:list', 'stockin', 'admin', '2023-12-31 12:27:37', 'admin', '2024-01-14 15:12:48', '');
 INSERT INTO `sys_menu` VALUES (2028, '生成采购入库单', 4, 3, 'purchase/ship/create_stock_in_entry', 'scm/purchase/ship/create_stock_in_entry', '', 1, 0, 'C', '1', '0', '', 'button', 'admin', '2023-12-31 12:31:32', 'admin', '2023-12-31 12:37:39.956753', '');
-INSERT INTO `sys_menu` VALUES (2029, '店铺售后管理', 2053, 1, 'refund', '', '', 1, 0, 'M', '0', '1', '', 'clipboard', 'admin', '2023-12-31 17:29:03', 'admin', '2024-02-20 14:35:12', '');
-INSERT INTO `sys_menu` VALUES (2030, '手动创建订单', 2014, 1, 'order/create', 'sale/order/create', '', 1, 0, 'C', '1', '0', '', 'documentation', 'admin', '2023-12-31 20:01:22', 'admin', '2024-02-20 14:31:43', '');
+INSERT INTO `sys_menu` VALUES (2029, '店铺售后导入', 2053, 2, 'shop_refund', 'shop/refund/index', '', 1, 0, 'C', '0', '0', '', 'clipboard', 'admin', '2023-12-31 17:29:03', 'admin', '2024-03-24 20:29:07', '');
+INSERT INTO `sys_menu` VALUES (2030, '手动创建订单', 2014, 1, 'order/create', 'sale/order/create', '', 1, 0, 'C', '1', '0', '', 'documentation', 'admin', '2023-12-31 20:01:22', 'admin', '2024-03-24 19:32:32', '');
 INSERT INTO `sys_menu` VALUES (2032, 'API拉取订单', 2014, 3, 'order/pull', 'shop/order/pull', '', 1, 0, 'M', '0', '1', '', 'upload', 'admin', '2023-12-31 20:04:12', 'admin', '2024-01-01 14:34:22.157829', '');
-INSERT INTO `sys_menu` VALUES (2033, '订单查询', 2014, 0, 'order/list', 'sale/order/index', '', 1, 0, 'C', '0', '0', '', 'list', 'admin', '2023-12-31 20:05:05', 'admin', '2024-02-20 14:28:06', '');
+INSERT INTO `sys_menu` VALUES (2033, '订单查询', 2014, 1, 'order/list', 'sale/order/index', '', 1, 0, 'C', '0', '0', '', 'list', 'admin', '2023-12-31 20:05:05', 'admin', '2024-03-24 19:32:00', '');
 INSERT INTO `sys_menu` VALUES (2034, '发货管理', 0, 3, 'ship', '', '', 1, 0, 'M', '0', '0', '', 'excel', 'admin', '2024-01-01 14:08:04', 'admin', '2024-01-03 14:07:29', '');
-INSERT INTO `sys_menu` VALUES (2035, '拼多多售后', 2053, 2, 'pdd', 'pdd/refund', '', 1, 0, 'C', '0', '0', '', 'cascader', 'admin', '2024-01-01 14:13:47', 'admin', '2024-02-20 14:35:56', '');
-INSERT INTO `sys_menu` VALUES (2036, '店铺订单管理', 2014, 2, 'order', '', '', 1, 0, 'M', '0', '1', '', 'excel', 'admin', '2024-01-01 14:14:42', 'admin', '2024-02-20 14:30:33', '');
-INSERT INTO `sys_menu` VALUES (2037, '拼多多订单管理', 2014, 5, 'pdd', 'pdd/order', '', 1, 0, 'C', '0', '0', '', 'button', 'admin', '2024-01-01 14:15:28', 'admin', '2024-02-20 19:39:21', '');
+INSERT INTO `sys_menu` VALUES (2035, '多多售后', 2029, 2, 'pdd', 'pdd/refund', '', 1, 0, 'C', '0', '0', '', 'cascader', 'admin', '2024-01-01 14:13:47', 'admin', '2024-01-13 10:28:36', '');
+INSERT INTO `sys_menu` VALUES (2036, '网店订单导入', 2014, 2, 'shop_order', 'shop/order/index', '', 1, 0, 'C', '0', '0', '', 'excel', 'admin', '2024-01-01 14:14:42', 'admin', '2024-03-24 20:35:32', '');
+INSERT INTO `sys_menu` VALUES (2037, '多多订单', 2036, 2, 'pdd', 'pdd/order', '', 1, 0, 'C', '0', '0', '', 'button', 'admin', '2024-01-01 14:15:28', 'admin', '2024-01-05 18:45:37', '');
 INSERT INTO `sys_menu` VALUES (2038, '拼多多订单拉取', 2032, 0, 'pdd', '', '', 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-01 14:20:19', '', '', '');
-INSERT INTO `sys_menu` VALUES (2039, '抖店订单管理', 2014, 6, 'dou', 'dou/order', '', 1, 0, 'C', '0', '0', '', 'cascader', 'admin', '2024-01-01 14:35:27', 'admin', '2024-02-20 14:29:35', '');
-INSERT INTO `sys_menu` VALUES (2040, '淘宝订单管理', 2014, 4, 'tao', 'tao/order', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-02 13:54:15', 'admin', '2024-02-20 19:39:13', '');
-INSERT INTO `sys_menu` VALUES (2041, '抖店售后', 2053, 3, 'dou', 'dou/refund', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-02 14:11:34', 'admin', '2024-02-20 14:35:03', '');
-INSERT INTO `sys_menu` VALUES (2042, '淘宝售后', 2053, 1, 'tao', 'tao/refund', NULL, 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2024-01-02 14:11:56', 'admin', '2024-02-20 14:34:44', '');
+INSERT INTO `sys_menu` VALUES (2039, '抖店订单', 2036, 3, 'dou', 'dou/order', '', 1, 0, 'C', '0', '0', '', 'cascader', 'admin', '2024-01-01 14:35:27', 'admin', '2024-01-05 18:45:29', '');
+INSERT INTO `sys_menu` VALUES (2040, '淘宝订单', 2036, 1, 'tao', 'tao/order', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-02 13:54:15', 'admin', '2024-01-05 17:43:20', '');
+INSERT INTO `sys_menu` VALUES (2041, '抖店售后', 2029, 3, 'dou', 'dou/refund', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-02 14:11:34', 'admin', '2024-01-13 10:28:26', '');
+INSERT INTO `sys_menu` VALUES (2042, '淘宝售后', 2029, 1, 'tao', 'tao/refund', NULL, 1, 0, 'C', '0', '0', '', 'edit', 'admin', '2024-01-02 14:11:56', 'admin', '2024-01-13 10:18:57', '');
 INSERT INTO `sys_menu` VALUES (2043, '小红书', 2036, 4, 'xhs', 'xhs/order', NULL, 1, 0, 'C', '0', '1', '', 'color', 'admin', '2024-01-02 18:53:14', 'admin', '2024-01-13 10:27:50', '');
 INSERT INTO `sys_menu` VALUES (2044, '小红书', 2029, 4, 'xhs', 'xhs/refund', NULL, 1, 0, 'C', '0', '1', '', 'cascader', 'admin', '2024-01-03 09:18:53', 'admin', '2024-01-13 10:31:52', '');
 INSERT INTO `sys_menu` VALUES (2046, '出库管理', 2026, 5, 'stockOut', 'wms/stockOutEntry', NULL, 1, 0, 'C', '0', '0', '', 'link', 'admin', '2024-01-03 11:00:53', 'admin', '2024-01-12 15:52:19', '');
 INSERT INTO `sys_menu` VALUES (2047, '库存查询', 2026, 6, 'goodsInventory', 'goods/goodsInventory', NULL, 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2024-01-03 11:01:14', 'admin', '2024-01-09 17:55:33', '');
 INSERT INTO `sys_menu` VALUES (2048, '库存盘点', 2026, 9, 'pan', NULL, NULL, 1, 0, 'C', '0', '1', '', 'bug', 'admin', '2024-01-03 11:01:43', 'admin', '2024-01-09 19:57:08', '');
-INSERT INTO `sys_menu` VALUES (2049, '打包发货', 2088, 3, 'shipping', 'wms/orderShipping/shipping', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-03 14:09:18', 'admin', '2024-02-21 09:42:11', '');
+INSERT INTO `sys_menu` VALUES (2049, '打包发货', 2034, 3, 'shipping', 'wms/orderShipping/shipping', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-03 14:09:18', 'admin', '2024-01-10 09:21:26', '');
 INSERT INTO `sys_menu` VALUES (2051, '物流跟踪', 2034, 4, 'logistics', 'wms/orderShipping/logistics', NULL, 1, 0, 'C', '0', '0', '', 'email', 'admin', '2024-01-03 14:13:12', 'admin', '2024-01-12 17:03:49', '');
 INSERT INTO `sys_menu` VALUES (2052, '发货统计', 2034, 9, 'statistics', NULL, NULL, 1, 0, 'C', '0', '1', '', '404', 'admin', '2024-01-03 14:14:09', 'admin', '2024-01-12 08:59:52', '');
 INSERT INTO `sys_menu` VALUES (2053, '售后管理', 0, 4, 'saleafter', NULL, NULL, 1, 0, 'M', '0', '0', '', 'clipboard', 'admin', '2024-01-03 14:23:55', 'admin', '2024-01-12 19:47:33', '');
-INSERT INTO `sys_menu` VALUES (2054, '退换货处理', 2053, 3, 'returned', 'sale/returned', NULL, 1, 0, 'C', '0', '0', '', 'size', 'admin', '2024-01-03 14:24:36', 'admin', '2024-01-13 12:21:54', '');
+INSERT INTO `sys_menu` VALUES (2054, '售后管理', 2053, 1, 'refund_list', 'sale/returned', NULL, 1, 0, 'C', '0', '0', '', 'size', 'admin', '2024-01-03 14:24:36', 'admin', '2024-03-24 20:28:24', '');
 INSERT INTO `sys_menu` VALUES (2055, '客户管理', 0, 7, 'kefu', NULL, NULL, 1, 0, 'M', '0', '1', '', 'button', 'admin', '2024-01-03 14:27:59', 'admin', '2024-01-12 09:00:43', '');
 INSERT INTO `sys_menu` VALUES (2056, '客户管理', 2055, 0, '0', NULL, NULL, 1, 0, 'C', '0', '0', NULL, '404', 'admin', '2024-01-03 14:28:42', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2057, '代发管理', 2089, 5, 'agentShipping', 'scm/agentShipping', NULL, 1, 0, 'C', '0', '0', '', 'clipboard', 'admin', '2024-01-06 23:57:14', 'admin', '2024-02-21 09:47:30', '');
+INSERT INTO `sys_menu` VALUES (2057, '供应商代发管理', 2034, 99, 'supplier/agentShipping', 'scm/agentShipping', NULL, 1, 0, 'C', '0', '0', '', 'clipboard', 'admin', '2024-01-06 23:57:14', 'admin', '2024-03-24 20:30:29', '');
 INSERT INTO `sys_menu` VALUES (2058, '代发结算', 4, 6, 'daifajiesuan', NULL, NULL, 1, 0, 'C', '0', '1', '', 'documentation', 'admin', '2024-01-06 23:59:17', 'admin', '2024-01-12 08:58:52', '');
-INSERT INTO `sys_menu` VALUES (2059, '备货清单', 2088, 1, 'stocking', 'wms/orderShipping/stocking', '{\"status\":0}', 1, 0, 'C', '0', '0', '', 'component', 'admin', '2024-01-09 11:51:52', 'admin', '2024-02-21 09:41:33', '');
-INSERT INTO `sys_menu` VALUES (2060, '拣货出库', 2088, 2, 'stockout', 'wms/orderShipping/stockOut', NULL, 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-09 13:39:00', 'admin', '2024-02-21 09:42:01', '');
+INSERT INTO `sys_menu` VALUES (2059, '备货清单', 2034, 1, 'stocking', 'wms/orderShipping/stocking', '{\"status\":0}', 1, 0, 'C', '0', '0', '', 'component', 'admin', '2024-01-09 11:51:52', 'admin', '2024-01-11 19:59:40', '');
+INSERT INTO `sys_menu` VALUES (2060, '拣货出库', 2034, 2, 'stockout', 'wms/orderShipping/stockOut', NULL, 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-09 13:39:00', 'admin', '2024-01-12 15:51:56', '');
 INSERT INTO `sys_menu` VALUES (2061, '库位管理', 2026, 99, 'stock_location', 'wms/location', NULL, 1, 0, 'C', '0', '0', '', 'education', 'admin', '2024-01-09 13:54:30', 'admin', '2024-01-09 14:50:33', '');
-INSERT INTO `sys_menu` VALUES (2062, '代发账单', 2072, 3, 'agentShip', 'fms/payable/agentShip', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-12 18:35:02', 'admin', '2024-01-28 20:57:13', '');
-INSERT INTO `sys_menu` VALUES (2063, '物流费用', 2072, 3, 'shipFee', 'fms/payable/shipFee', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-12 18:35:31', 'admin', '2024-01-28 15:16:13', '');
+INSERT INTO `sys_menu` VALUES (2062, '代发账单', 4, 3, 'agentShip', 'fms/payable/agentShip', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-12 18:35:02', 'admin', '2024-03-24 21:07:38', '');
+INSERT INTO `sys_menu` VALUES (2063, '物流费用', 2034, 3, 'shipFee', 'fms/payable/shipFee', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-12 18:35:31', 'admin', '2024-03-24 21:07:53', '');
 INSERT INTO `sys_menu` VALUES (2064, '店铺账单管理', 2018, 4, 's', NULL, NULL, 1, 0, 'M', '0', '1', '', 'example', 'admin', '2024-01-12 18:35:55', 'admin', '2024-01-16 15:28:47', '');
-INSERT INTO `sys_menu` VALUES (2066, '添加商品', 2006, 2, 'create', 'goods/create', NULL, 1, 0, 'C', '1', '0', '', 'component', 'admin', '2024-01-14 19:42:11', 'admin', '2024-02-20 20:00:25', '');
+INSERT INTO `sys_menu` VALUES (2066, '添加商品', 2006, 2, 'create', 'goods/create', NULL, 1, 0, 'C', '0', '0', NULL, 'component', 'admin', '2024-01-14 19:42:11', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2067, '商品规格查询', 2006, 3, 'spec_list', 'goods/spec', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-16 14:17:39', 'admin', '2024-01-16 14:18:10', '');
 INSERT INTO `sys_menu` VALUES (2068, '应收管理', 2018, 1, 'receivable', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'example', 'admin', '2024-01-28 11:23:36', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2069, '订单收入', 2068, 1, 'order', 'fms/receivable/order', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-28 11:24:35', 'admin', '2024-01-28 14:48:11', '');
 INSERT INTO `sys_menu` VALUES (2070, '退款款项', 2068, 2, 'refund', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'bug', 'admin', '2024-01-28 11:26:55', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2071, '平台服务费', 2068, 3, 'service_fee', NULL, NULL, 1, 0, 'M', '0', '1', '', 'cascader', 'admin', '2024-01-28 11:28:03', 'admin', '2024-01-28 19:35:31', '');
 INSERT INTO `sys_menu` VALUES (2072, '应付管理', 2018, 2, 'payable', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'clipboard', 'admin', '2024-01-28 11:29:21', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2073, '采购应付', 2072, 1, 'purchase', 'fms/payable/purchase', NULL, 1, 0, 'C', '0', '0', '', 'component', 'admin', '2024-01-28 11:30:49', 'admin', '2024-01-28 11:55:53', '');
+INSERT INTO `sys_menu` VALUES (2073, '采购应付', 4, 1, 'purchase', 'fms/payable/purchase', NULL, 1, 0, 'C', '0', '0', '', 'component', 'admin', '2024-01-28 11:30:49', 'admin', '2024-03-24 21:07:23', '');
 INSERT INTO `sys_menu` VALUES (2074, '采购退货', 2072, 2, 'return', NULL, NULL, 1, 0, 'C', '0', '0', NULL, 'cascader', 'admin', '2024-01-28 11:32:21', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2075, '营销费用', 2072, 5, 'market_fee', NULL, NULL, 1, 0, 'C', '0', '0', NULL, 'cascader', 'admin', '2024-01-28 11:33:36', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2076, '其他费用', 2072, 6, 'other_fee', NULL, NULL, 1, 0, 'C', '0', '1', '', 'clipboard', 'admin', '2024-01-28 11:34:01', 'admin', '2024-01-28 19:49:00', '');
 INSERT INTO `sys_menu` VALUES (2077, '存货报表', 2018, 3, 'inventory_report', 'fms/inventoryReport', NULL, 1, 0, 'C', '0', '0', '', 'druid', 'admin', '2024-01-28 11:36:05', 'admin', '2024-01-28 14:49:01', '');
-INSERT INTO `sys_menu` VALUES (2078, '记账凭证管理', 2018, 9, 'voucher', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'edit', 'admin', '2024-02-02 15:33:36', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2079, '凭证查询', 2078, 1, 'list', NULL, NULL, 1, 0, 'C', '0', '0', NULL, 'edit', 'admin', '2024-02-02 15:34:21', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2080, '科目设置', 2078, 3, 'AccountSubject', NULL, NULL, 1, 0, 'C', '0', '0', NULL, 'color', 'admin', '2024-02-02 15:36:15', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2084, '店铺管理', 0, 5, 'shop', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'international', 'admin', '2024-02-20 14:41:21', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2085, '多多商品', 2087, 2, 'duoduo_goods', 'shop/goods', '{\"shopType\":5}', 1, 0, 'C', '0', '0', '', 'clipboard', 'admin', '2024-02-20 14:46:40', 'admin', '2024-02-20 18:00:14', '');
-INSERT INTO `sys_menu` VALUES (2086, '抖店商品', 2087, 3, 'doudian_goods', 'shop/goods', '{\"shopType\":6}', 1, 0, 'C', '0', '0', '', 'button', 'admin', '2024-02-20 14:47:24', 'admin', '2024-02-20 18:00:38', '');
-INSERT INTO `sys_menu` VALUES (2087, '店铺商品管理', 2084, 1, 'goods', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'job', 'admin', '2024-02-20 17:47:24', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2088, '仓库发货', 2034, 1, 'ck', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'clipboard', 'admin', '2024-02-21 09:41:18', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2089, '供应商代发', 2034, 2, 'df', NULL, NULL, 1, 0, 'M', '0', '0', '', 'bug', 'admin', '2024-02-21 09:43:55', 'admin', '2024-02-21 09:45:30', '');
->>>>>>> a81aae6531d59a949f3e95cf609f4805fe1bb2cf
+
+
+DROP TABLE IF EXISTS `fms_payable_purchase`;
+CREATE TABLE `fms_payable_purchase`  (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `supplier_id` int NOT NULL COMMENT '供应商id',
+  `supplier_name` varchar(255)    NOT NULL COMMENT '供应商名称',
+  `amount` decimal(10, 2) NOT NULL COMMENT '应付金额',
+  `date` date NOT NULL COMMENT '应付日期',
+  `invoice_no` varchar(50)    NULL DEFAULT NULL COMMENT '发票号码',
+  `purchase_order_no` varchar(50)    NULL DEFAULT NULL COMMENT '采购单号',
+  `purchase_desc` varchar(500)    NULL DEFAULT NULL COMMENT '采购说明',
+  `remark` varchar(255)    NULL DEFAULT NULL COMMENT '备注',
+  `status` int NOT NULL COMMENT '状态（0已生成1已结算)',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
+  `create_by` varchar(25)    NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25)    NULL DEFAULT NULL COMMENT '更新人',
+  PRIMARY KEY (`id`) 
+) 
+DROP TABLE IF EXISTS `fms_payable_agent_ship`;
+CREATE TABLE `fms_payable_agent_ship`  (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `order_num` varchar(50)    NOT NULL COMMENT '订单号',
+  `shop_id` int NOT NULL COMMENT '店铺id',
+  `supplier_id` int NOT NULL COMMENT '供应商id',
+  `supplier_name` varchar(50)    NULL DEFAULT NULL COMMENT '供应商名称',
+  `date` date NOT NULL COMMENT '日期',
+  `ship_company` varchar(50)    NOT NULL COMMENT '物流公司',
+  `ship_no` varchar(50)    NOT NULL COMMENT '物流单号',
+  `amount` decimal(10, 2) NOT NULL COMMENT '应付总金额',
+  `ship_amount` decimal(5, 2) NOT NULL COMMENT '物流费用',
+  `goods_amount` decimal(10, 2) NOT NULL COMMENT '商品金额',
+  `remark` varchar(255)    NULL DEFAULT NULL COMMENT '备注',
+  `status` int NOT NULL COMMENT '状态（0已生成1已结算)',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
+  `create_by` varchar(25)   NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25)   NULL DEFAULT NULL COMMENT '更新人',
+  PRIMARY KEY (`id`) 
+) 
+
+DROP TABLE IF EXISTS `fms_payable_ship_fee`;
+CREATE TABLE `fms_payable_ship_fee`  (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `logistics_company` varchar(50)   NOT NULL COMMENT '物流公司',
+  `logistics_company_id` varchar(10)   NULL DEFAULT NULL COMMENT '物流公司id',
+  `logistics_num` varchar(50)   NOT NULL COMMENT '物流单号',
+  `order_num` varchar(50)   NULL DEFAULT NULL COMMENT '订单号',
+  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
+  `amount` decimal(10, 2) NOT NULL COMMENT '应付金额',
+  `date` date NOT NULL COMMENT '应付日期',
+  `remark` varchar(255)   NULL DEFAULT NULL COMMENT '备注',
+  `status` int NOT NULL COMMENT '状态（0已生成1已结算)',
+  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
+  `create_by` varchar(25)   NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25)   NULL DEFAULT NULL COMMENT '更新人',
+  `length` float NULL DEFAULT 0 COMMENT '长',
+  `width` float NULL DEFAULT 0 COMMENT '宽',
+  `height` float NULL DEFAULT 0 COMMENT '高',
+  `weight` float NULL DEFAULT NULL COMMENT '重量',
+  `receiver_name` varchar(20)    NULL DEFAULT NULL COMMENT '收件人姓名',
+  `receiver_phone` varchar(20)    NULL DEFAULT NULL COMMENT '收件人手机号',
+  `province` varchar(50)    NULL DEFAULT NULL COMMENT '省',
+  `city` varchar(50)    NULL DEFAULT NULL COMMENT '市',
+  `town` varchar(50)    NULL DEFAULT NULL COMMENT '区',
+  PRIMARY KEY (`id`)
+) 
+
+DROP TABLE IF EXISTS `erp_goods_inventory`;
+CREATE TABLE `erp_goods_inventory`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `goodsId` int NOT NULL COMMENT '商品id',
+  `goodsNumber` varchar(20)    NULL DEFAULT NULL COMMENT '商品编码',
+  `specId` int NOT NULL COMMENT '商品规格id',
+  `specNumber` varchar(25)    NOT NULL DEFAULT '' COMMENT '规格编码（唯一）',
+  `currentQty` bigint NOT NULL DEFAULT 0 COMMENT '当前库存',
+  `lockedQty` bigint NOT NULL DEFAULT 0 COMMENT '锁定库存',
+  `isDelete` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0正常  1删除',
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `createBy` varchar(25)    NULL DEFAULT NULL COMMENT '创建人',
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updateBy` varchar(25)    NULL DEFAULT NULL COMMENT '更新人',
+  PRIMARY KEY (`id`) ,
+  INDEX `specIdIndex`(`specId`) 
+) 

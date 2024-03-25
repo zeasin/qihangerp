@@ -1,0 +1,27 @@
+# Nacos Config 配置
+spring:
+  application:
+    name: qihang-ecom-api
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
+  config:
+    import:
+      - nacos:qihangec-erp.yaml?refresh=true
+
+dubbo:
+  application:
+    name: qihang-ecom-api
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-registry
+    address: nacos://127.0.0.1:8848
+  config-center:
+    address: nacos://127.0.0.1:8848
+  metadata-report:
+    address: nacos://127.0.0.1:8848

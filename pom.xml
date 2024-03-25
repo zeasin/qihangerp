@@ -35,6 +35,10 @@
     <modules>
         <module>framework</module>
         <module>ecerp-api</module>
+        <module>api</module>
+        <module>interfaces</module>
+        <module>service</module>
+<!--        <module>service/sys-service</module>-->
     </modules>
     <packaging>pom</packaging>
 

@@ -85,6 +85,7 @@ public class ScmPurchaseOrderServiceImpl implements IScmPurchaseOrderService
         scmPurchaseOrder.setOrderTime(System.currentTimeMillis()/1000);
         scmPurchaseOrder.setCreateBy(addBo.getCreateBy());
         scmPurchaseOrder.setStatus(0);
+        scmPurchaseOrder.setShipAmount(BigDecimal.ZERO);
         scmPurchaseOrderMapper.insertScmPurchaseOrder(scmPurchaseOrder);
 
         // 添加子表

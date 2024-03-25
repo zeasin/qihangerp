@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectErpGoodsCategoryAttributeValueVo">
-        select id, category_attribute_id, value, sku_code, orderNum, isDelete from erp_goods_category_attribute_value
+        select id, category_attribute_id, `value`, sku_code, orderNum, isDelete from erp_goods_category_attribute_value
     </sql>
 
     <select id="selectErpGoodsCategoryAttributeValueList" parameterType="ErpGoodsCategoryAttributeValue" resultMap="ErpGoodsCategoryAttributeValueResult">
