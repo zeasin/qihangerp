@@ -896,7 +896,7 @@ export default {
     /** 修改按钮操作 */
     handleImportExcel(row) {
       if(this.queryParams.shopId){
-        this.importOrderUrl = '/dev-api/tao/order/order_item_import?shopId='+this.queryParams.shopId
+        this.importOrderUrl = process.env.VUE_APP_BASE_API+'/tao/order/order_item_import?shopId='+this.queryParams.shopId
         this.importOrderItemOpen = true
       }else{
         this.$modal.msgSuccess("请选择店铺");

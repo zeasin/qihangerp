@@ -10,7 +10,7 @@ import com.zhijian.common.core.domain.BaseEntity;
 
 /**
  * 商品管理对象 erp_goods
- * 
+ *
  * @author qihang
  * @date 2023-12-29
  */
@@ -193,277 +193,277 @@ public class Goods extends BaseEntity
         this.id = id;
     }
 
-    public Long getId() 
+    public Long getId()
     {
         return id;
     }
-    public void setName(String name) 
+    public void setName(String name)
     {
         this.name = name;
     }
 
-    public String getName() 
+    public String getName()
     {
         return name;
     }
-    public void setImage(String image) 
+    public void setImage(String image)
     {
         this.image = image;
     }
 
-    public String getImage() 
+    public String getImage()
     {
         return image;
     }
-    public void setNumber(String number) 
+    public void setNumber(String number)
     {
         this.number = number;
     }
 
-    public String getNumber() 
+    public String getNumber()
     {
         return number;
     }
-    public void setUnitName(String unitName) 
+    public void setUnitName(String unitName)
     {
         this.unitName = unitName;
     }
 
-    public String getUnitName() 
+    public String getUnitName()
     {
         return unitName;
     }
-    public void setCategoryId(Long categoryId) 
+    public void setCategoryId(Long categoryId)
     {
         this.categoryId = categoryId;
     }
 
-    public Long getCategoryId() 
+    public Long getCategoryId()
     {
         return categoryId;
     }
-    public void setBarCode(String barCode) 
+    public void setBarCode(String barCode)
     {
         this.barCode = barCode;
     }
 
-    public String getBarCode() 
+    public String getBarCode()
     {
         return barCode;
     }
-    public void setStatus(Integer status) 
+    public void setStatus(Integer status)
     {
         this.status = status;
     }
 
-    public Integer getStatus() 
+    public Integer getStatus()
     {
         return status;
     }
-    public void setLength(Long length) 
+    public void setLength(Long length)
     {
         this.length = length;
     }
 
-    public Long getLength() 
+    public Long getLength()
     {
         return length;
     }
-    public void setHeight(Long height) 
+    public void setHeight(Long height)
     {
         this.height = height;
     }
 
-    public Long getHeight() 
+    public Long getHeight()
     {
         return height;
     }
-    public void setWidth(Long width) 
+    public void setWidth(Long width)
     {
         this.width = width;
     }
 
-    public Long getWidth() 
+    public Long getWidth()
     {
         return width;
     }
-    public void setWidth1(Long width1) 
+    public void setWidth1(Long width1)
     {
         this.width1 = width1;
     }
 
-    public Long getWidth1() 
+    public Long getWidth1()
     {
         return width1;
     }
-    public void setWidth2(Long width2) 
+    public void setWidth2(Long width2)
     {
         this.width2 = width2;
     }
 
-    public Long getWidth2() 
+    public Long getWidth2()
     {
         return width2;
     }
-    public void setWidth3(Long width3) 
+    public void setWidth3(Long width3)
     {
         this.width3 = width3;
     }
 
-    public Long getWidth3() 
+    public Long getWidth3()
     {
         return width3;
     }
-    public void setWeight(Long weight) 
+    public void setWeight(Long weight)
     {
         this.weight = weight;
     }
 
-    public Long getWeight() 
+    public Long getWeight()
     {
         return weight;
     }
-    public void setDisable(Integer disable) 
+    public void setDisable(Integer disable)
     {
         this.disable = disable;
     }
 
-    public Integer getDisable() 
+    public Integer getDisable()
     {
         return disable;
     }
-    public void setPeriod(String period) 
+    public void setPeriod(String period)
     {
         this.period = period;
     }
 
-    public String getPeriod() 
+    public String getPeriod()
     {
         return period;
     }
-    public void setPurPrice(BigDecimal purPrice) 
+    public void setPurPrice(BigDecimal purPrice)
     {
         this.purPrice = purPrice;
     }
 
-    public BigDecimal getPurPrice() 
+    public BigDecimal getPurPrice()
     {
         return purPrice;
     }
-    public void setWholePrice(BigDecimal wholePrice) 
+    public void setWholePrice(BigDecimal wholePrice)
     {
         this.wholePrice = wholePrice;
     }
 
-    public BigDecimal getWholePrice() 
+    public BigDecimal getWholePrice()
     {
         return wholePrice;
     }
-    public void setRetailPrice(BigDecimal retailPrice) 
+    public void setRetailPrice(BigDecimal retailPrice)
     {
         this.retailPrice = retailPrice;
     }
 
-    public BigDecimal getRetailPrice() 
+    public BigDecimal getRetailPrice()
     {
         return retailPrice;
     }
-    public void setUnitCost(BigDecimal unitCost) 
+    public void setUnitCost(BigDecimal unitCost)
     {
         this.unitCost = unitCost;
     }
 
-    public BigDecimal getUnitCost() 
+    public BigDecimal getUnitCost()
     {
         return unitCost;
     }
-    public void setSupplierId(Long supplierId) 
+    public void setSupplierId(Long supplierId)
     {
         this.supplierId = supplierId;
     }
 
-    public Long getSupplierId() 
+    public Long getSupplierId()
     {
         return supplierId;
     }
-    public void setBrandId(Long brandId) 
+    public void setBrandId(Long brandId)
     {
         this.brandId = brandId;
     }
 
-    public Long getBrandId() 
+    public Long getBrandId()
     {
         return brandId;
     }
-    public void setAttr1(String attr1) 
+    public void setAttr1(String attr1)
     {
         this.attr1 = attr1;
     }
 
-    public String getAttr1() 
+    public String getAttr1()
     {
         return attr1;
     }
-    public void setAttr2(String attr2) 
+    public void setAttr2(String attr2)
     {
         this.attr2 = attr2;
     }
 
-    public String getAttr2() 
+    public String getAttr2()
     {
         return attr2;
     }
-    public void setAttr3(String attr3) 
+    public void setAttr3(String attr3)
     {
         this.attr3 = attr3;
     }
 
-    public String getAttr3() 
+    public String getAttr3()
     {
         return attr3;
     }
-    public void setAttr4(String attr4) 
+    public void setAttr4(String attr4)
     {
         this.attr4 = attr4;
     }
 
-    public String getAttr4() 
+    public String getAttr4()
     {
         return attr4;
     }
-    public void setAttr5(String attr5) 
+    public void setAttr5(String attr5)
     {
         this.attr5 = attr5;
     }
 
-    public String getAttr5() 
+    public String getAttr5()
     {
         return attr5;
     }
-    public void setLinkUrl(String linkUrl) 
+    public void setLinkUrl(String linkUrl)
     {
         this.linkUrl = linkUrl;
     }
 
-    public String getLinkUrl() 
+    public String getLinkUrl()
     {
         return linkUrl;
     }
-    public void setLowQty(Long lowQty) 
+    public void setLowQty(Long lowQty)
     {
         this.lowQty = lowQty;
     }
 
-    public Long getLowQty() 
+    public Long getLowQty()
     {
         return lowQty;
     }
-    public void setHighQty(Long highQty) 
+    public void setHighQty(Long highQty)
     {
         this.highQty = highQty;
     }
 
-    public Long getHighQty() 
+    public Long getHighQty()
     {
         return highQty;
     }

@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+  config:
+    import:
+      - nacos:qihangec-erp.yaml?refresh=true
+  application:
+    name: goods-service
+  main:
+    web-application-type: none
+server:
+  port: -1
+
+# dubbo的配置
+dubbo:
+  application:
+    name: goods-service	#配置应用名是为了加以区分不同的服务提供者
+  protocol:
+    name: dubbo
+    port: -1 # 端口设置为-1 是让dubbo自动在[20880, 65535]之间找一个可用的端口
+  registry:
+    id: nacos-registry
+    address: nacos://127.0.0.1:8848	# 在此配置nacos服务的IP地址及端口
+
+#mybatis-plus:
+#  mapper-locations: classpath*:mapper/**/*Mapper.xml
+#  type-aliases-package: com.qihang.service.goods.domain;com.qihang.security.entity;
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志

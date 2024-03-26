@@ -5,7 +5,7 @@ import com.zhijian.common.core.domain.BaseEntity;
 
 /**
  * 商品属性对象 erp_goods_attribute
- * 
+ *
  * @author qihang
  * @date 2023-12-29
  */
@@ -32,48 +32,48 @@ public class GoodsAttribute extends BaseEntity
     @Excel(name = "属性值")
     private String value;
 
-    public void setId(Long id) 
+    public void setId(Long id)
     {
         this.id = id;
     }
 
-    public Long getId() 
+    public Long getId()
     {
         return id;
     }
-    public void setGoodsId(Long goodsId) 
+    public void setGoodsId(Long goodsId)
     {
         this.goodsId = goodsId;
     }
 
-    public Long getGoodsId() 
+    public Long getGoodsId()
     {
         return goodsId;
     }
-    public void setAttributeId(Long attributeId) 
+    public void setAttributeId(Long attributeId)
     {
         this.attributeId = attributeId;
     }
 
-    public Long getAttributeId() 
+    public Long getAttributeId()
     {
         return attributeId;
     }
-    public void setName(String name) 
+    public void setName(String name)
     {
         this.name = name;
     }
 
-    public String getName() 
+    public String getName()
     {
         return name;
     }
-    public void setValue(String value) 
+    public void setValue(String value)
     {
         this.value = value;
     }
 
-    public String getValue() 
+    public String getValue()
     {
         return value;
     }
