@@ -149,20 +149,38 @@ A[录入退款退货] -->B(仅退款)
 商品信息、分类信息、属性信息等管理。
 
 
-## 二、技术栈
-### 1、技术栈
-+ vue2 + elementUI
-+ SpringBoot2.x
-+ Java 17
+## 二、项目说明
 
-### 2、存储栈
+**项目正在升级中，升级前采用了若依作为快速开发底层，升级后采用了Dubbo微服务架构。以下仅对新架构进行说明：**
+
+### 2.1 技术栈
+#### 2.1.1 技术栈
++ 后端：`Java17、Mybatis-Plus、SpringBoot 3.0.13、Dubbo 3.2.11`
++ 前端：`vue2 + elementUI`
+
+#### 2.1.2 存储栈
 + MySQL8数据库
 + minio文件存储
 
-### 3、中间件
-+ Redis（缓存：在线用户、字典、系统配置）
-+ Nacos配置中心
+#### 2.1.3 中间件
++ Redis（缓存）
++ Nacos配置中心、注册中心
 
+### 2.2 项目结构
+#### 2.2.1 api
+后端接口服务，端口8080，采用dubbo调用其他微服务。
+
+#### 2.2.2 interfaces
+微服务接口类库（包括domain、service-interface）
+
+#### 2.2.3 service
+微服务实现层，service-impl
+
+#### 2.2.4 common
+公共类库
+
+#### 2.2.5 ecerp-vue
+Vue前端项目
 
 ## 三、如何使用？
 ### 3.1、开发环境配置
@@ -181,7 +199,9 @@ A[录入退款退货] -->B(仅退款)
   ```
 
   + 启动Nacos
-  
+  + 添加Nacos配置
+    + 旧版项目配置名`ecerp-dev`（配置内容从docs\ecerp-dev.yaml复制即可）
+    + 新版项目配置名`qihangec-erp.yaml`（配置内容从docs\ecerp-dev.yaml复制即可）
 + 启动Redis
 
   
@@ -189,18 +209,19 @@ A[录入退款退货] -->B(仅退款)
 
 
   
-### 3.2、启动后端`ecerp-api`
-+ 进入Nacos进行Mysql数据库连接配置`http://127.0.0.1:8848/nacos` 
-  + 新建配置`ecerp-dev`
-  + 添加配置内容（从docs\ecerp-dev.yaml复制修改）
-  + 发布配置
-  
-+ IDEA启动项目
+### 3.2、启动后端
+
+#### 旧版本
++ 启动`ecerp-api`项目
+
+#### 新版本（Dubbo微服务版）
++ 启动`service`下面的所有微服务
++ 启动`api`项目
 
 ### 3.3、启动前端 `ecerp-vue`
 + `npm install`
 + `npm run dev`
-+ `npm run build:prod`
++ 打包`npm run build:prod`
 + 访问web
   + 访问地址：`http://localhost`
   + 登录名：`admin`
