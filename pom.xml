@@ -35,14 +35,14 @@
     <modules>
         <module>framework</module>
         <module>ecerp-api</module>
-        <module>api</module>
-        <module>interfaces</module>
-        <module>service</module>
-        <module>interfaces/goods</module>
-        <module>service/goods-service</module>
         <module>common</module>
-        <module>interfaces/purchase</module>
-        <module>service/purchase-service</module>
+<!--        <module>service</module>-->
+<!--&lt;!&ndash;        <module>interfaces/goods</module>&ndash;&gt;-->
+<!--        <module>service/goods-service</module>-->
+<!--        <module>common</module>-->
+<!--&lt;!&ndash;        <module>interfaces/purchase</module>&ndash;&gt;-->
+<!--        <module>service/purchase-service</module>-->
+        <module>dubbo</module>
         <!--        <module>service/sys-service</module>-->
     </modules>
     <packaging>pom</packaging>
