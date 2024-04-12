@@ -203,7 +203,6 @@
 
 <script>
 import { listShop, getShop, delShop, addShop, updateShop } from "@/api/shop/shop";
-
 export default {
   name: "Shop",
   data() {

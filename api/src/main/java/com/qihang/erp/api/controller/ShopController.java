@@ -2,6 +2,9 @@ package com.qihang.erp.api.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
+import com.qihang.erp.api.domain.ShopSetting;
+import com.qihang.erp.api.service.IShopSettingService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +36,8 @@ public class ShopController extends BaseController
 {
     @Autowired
     private IShopService shopService;
+    @Autowired
+    private IShopSettingService shopSettingService;
 
     /**
      * 查询店铺列表
@@ -101,5 +106,25 @@ public class ShopController extends BaseController
     public AjaxResult remove(@PathVariable Long[] ids)
     {
         return toAjax(shopService.deleteShopByIds(ids));
+    }
+
+
+    @GetMapping("/platformList")
+    public TableDataInfo platformList( ShopSetting bo)
+    {
+        List<ShopSetting> list = shopSettingService.selectShopSettingList(bo);
+        return getDataTable(list);
+    }
+
+    @GetMapping(value = "/platform/{id}")
+    public AjaxResult getPlatform(@PathVariable("id") Long id)
+    {
+        return success(shopSettingService.selectShopSettingById(id));
+    }
+
+    @PutMapping("/platform")
+    public AjaxResult edit(@RequestBody ShopSetting bo)
+    {
+        return toAjax(shopSettingService.updateShopSetting(bo));
     }
 }

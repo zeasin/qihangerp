@@ -42,3 +42,29 @@ export function delShop(id) {
     method: 'delete'
   })
 }
+
+// 查询店铺平台列表
+export function listPlatform(query) {
+  return request({
+    url: '/shop/shop/platformList',
+    method: 'get',
+    params: query
+  })
+}
+
+// 查询店铺详细
+export function getPlatform(id) {
+  return request({
+    url: '/shop/shop/platform/' + id,
+    method: 'get'
+  })
+}
+
+// 修改店铺
+export function updatePlatform(data) {
+  return request({
+    url: '/shop/shop/platform',
+    method: 'put',
+    data: data
+  })
+}
