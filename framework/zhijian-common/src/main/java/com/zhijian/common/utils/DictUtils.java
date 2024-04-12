@@ -4,8 +4,9 @@ import java.util.Collection;
 import java.util.List;
 import com.alibaba.fastjson2.JSONArray;
 import com.zhijian.common.constant.CacheConstants;
+import com.zhijian.common.core.CaffeineUtil;
 import com.zhijian.common.core.domain.entity.SysDictData;
-import com.zhijian.common.core.redis.RedisCache;
+//import com.zhijian.common.core.redis.RedisCache;
 import com.zhijian.common.utils.spring.SpringUtils;
 
 /**
@@ -28,7 +29,8 @@ public class DictUtils
      */
     public static void setDictCache(String key, List<SysDictData> dictDatas)
     {
-        SpringUtils.getBean(RedisCache.class).setCacheObject(getCacheKey(key), dictDatas);
+//        SpringUtils.getBean(RedisCache.class).setCacheObject(getCacheKey(key), dictDatas);
+        CaffeineUtil.put(getCacheKey(key), dictDatas);
     }
 
     /**
@@ -39,7 +41,8 @@ public class DictUtils
      */
     public static List<SysDictData> getDictCache(String key)
     {
-        JSONArray arrayCache = SpringUtils.getBean(RedisCache.class).getCacheObject(getCacheKey(key));
+//        JSONArray arrayCache = SpringUtils.getBean(RedisCache.class).getCacheObject(getCacheKey(key));
+        JSONArray arrayCache = (JSONArray)CaffeineUtil.get(getCacheKey(key));
         if (StringUtils.isNotNull(arrayCache))
         {
             return arrayCache.toList(SysDictData.class);
@@ -161,7 +164,8 @@ public class DictUtils
      */
     public static void removeDictCache(String key)
     {
-        SpringUtils.getBean(RedisCache.class).deleteObject(getCacheKey(key));
+//        SpringUtils.getBean(RedisCache.class).deleteObject(getCacheKey(key));
+        CaffeineUtil.remove(getCacheKey(key));
     }
 
     /**
@@ -169,8 +173,9 @@ public class DictUtils
      */
     public static void clearDictCache()
     {
-        Collection<String> keys = SpringUtils.getBean(RedisCache.class).keys(CacheConstants.SYS_DICT_KEY + "*");
-        SpringUtils.getBean(RedisCache.class).deleteObject(keys);
+//        Collection<String> keys = SpringUtils.getBean(RedisCache.class).keys(CacheConstants.SYS_DICT_KEY + "*");
+//
+//        SpringUtils.getBean(RedisCache.class).deleteObject(keys);
     }
 
     /**

@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpServletRequest;
+
+import com.zhijian.common.core.CaffeineUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import com.alibaba.fastjson2.JSON;
 import com.zhijian.common.annotation.RepeatSubmit;
 import com.zhijian.common.constant.CacheConstants;
-import com.zhijian.common.core.redis.RedisCache;
+//import com.zhijian.common.core.redis.RedisCache;
 import com.zhijian.common.filter.RepeatedlyRequestWrapper;
 import com.zhijian.common.utils.StringUtils;
 import com.zhijian.common.utils.http.HttpHelper;
@@ -33,8 +35,8 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
     @Value("${token.header}")
     private String header;
 
-    @Autowired
-    private RedisCache redisCache;
+//    @Autowired
+//    private RedisCache redisCache;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -65,7 +67,9 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
         // 唯一标识（指定key + url + 消息头）
         String cacheRepeatKey = CacheConstants.REPEAT_SUBMIT_KEY + url + submitKey;
 
-        Object sessionObj = redisCache.getCacheObject(cacheRepeatKey);
+//        Object sessionObj = redisCache.getCacheObject(cacheRepeatKey);
+        Object sessionObj = CaffeineUtil.get(cacheRepeatKey);
+
         if (sessionObj != null)
         {
             Map<String, Object> sessionMap = (Map<String, Object>) sessionObj;
@@ -80,7 +84,8 @@ public class SameUrlDataInterceptor extends RepeatSubmitInterceptor
         }
         Map<String, Object> cacheMap = new HashMap<String, Object>();
         cacheMap.put(url, nowDataMap);
-        redisCache.setCacheObject(cacheRepeatKey, cacheMap, annotation.interval(), TimeUnit.MILLISECONDS);
+//        redisCache.setCacheObject(cacheRepeatKey, cacheMap, annotation.interval(), TimeUnit.MILLISECONDS);
+        CaffeineUtil.put(cacheRepeatKey, cacheMap);
         return false;
     }
 

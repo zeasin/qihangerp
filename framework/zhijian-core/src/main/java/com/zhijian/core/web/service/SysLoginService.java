@@ -1,6 +1,8 @@
 package com.zhijian.core.web.service;
 
 import javax.annotation.Resource;
+
+import com.zhijian.common.core.CaffeineUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -12,7 +14,7 @@ import com.zhijian.common.constant.Constants;
 import com.zhijian.common.constant.UserConstants;
 import com.zhijian.common.core.domain.entity.SysUser;
 import com.zhijian.common.core.domain.model.LoginUser;
-import com.zhijian.common.core.redis.RedisCache;
+//import com.zhijian.common.core.redis.RedisCache;
 import com.zhijian.common.exception.ServiceException;
 import com.zhijian.common.exception.user.BlackListException;
 import com.zhijian.common.exception.user.CaptchaException;
@@ -43,8 +45,8 @@ public class SysLoginService
     @Resource
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private RedisCache redisCache;
+//    @Autowired
+//    private RedisCache redisCache;
     
     @Autowired
     private ISysUserService userService;
@@ -115,8 +117,11 @@ public class SysLoginService
         if (captchaEnabled)
         {
             String verifyKey = CacheConstants.CAPTCHA_CODE_KEY + StringUtils.nvl(uuid, "");
-            String captcha = redisCache.getCacheObject(verifyKey);
-            redisCache.deleteObject(verifyKey);
+//            String captcha = redisCache.getCacheObject(verifyKey);
+            String captcha = (String) CaffeineUtil.get(verifyKey);
+
+//            redisCache.deleteObject(verifyKey);
+            CaffeineUtil.remove(verifyKey);
             if (captcha == null)
             {
                 AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.expire")));

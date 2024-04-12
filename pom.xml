@@ -36,14 +36,6 @@
         <module>framework</module>
         <module>api</module>
         <module>common</module>
-<!--        <module>service</module>-->
-<!--&lt;!&ndash;        <module>interfaces/goods</module>&ndash;&gt;-->
-<!--        <module>service/goods-service</module>-->
-<!--        <module>common</module>-->
-<!--&lt;!&ndash;        <module>interfaces/purchase</module>&ndash;&gt;-->
-<!--        <module>service/purchase-service</module>-->
-        <module>dubbo</module>
-        <!--        <module>service/sys-service</module>-->
     </modules>
     <packaging>pom</packaging>
 

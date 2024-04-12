@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpServletRequest;
+
+import com.zhijian.common.core.CaffeineUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import com.zhijian.common.constant.CacheConstants;
 import com.zhijian.common.constant.Constants;
 import com.zhijian.common.core.domain.model.LoginUser;
-import com.zhijian.common.core.redis.RedisCache;
+//import com.zhijian.common.core.redis.RedisCache;
 import com.zhijian.common.utils.ServletUtils;
 import com.zhijian.common.utils.StringUtils;
 import com.zhijian.common.utils.ip.AddressUtils;
@@ -47,8 +49,8 @@ public class TokenService
 
     private static final Long MILLIS_MINUTE_TEN = 20 * 60 * 1000L;
 
-    @Autowired
-    private RedisCache redisCache;
+//    @Autowired
+//    private RedisCache redisCache;
 
     /**
      * 获取用户身份信息
@@ -67,7 +69,9 @@ public class TokenService
                 // 解析对应的权限以及用户信息
                 String uuid = (String) claims.get(Constants.LOGIN_USER_KEY);
                 String userKey = getTokenKey(uuid);
-                LoginUser user = redisCache.getCacheObject(userKey);
+//                LoginUser user = redisCache.getCacheObject(userKey);
+                LoginUser user = (LoginUser)CaffeineUtil.get(userKey);
+
                 return user;
             }
             catch (Exception e)
@@ -96,7 +100,8 @@ public class TokenService
         if (StringUtils.isNotEmpty(token))
         {
             String userKey = getTokenKey(token);
-            redisCache.deleteObject(userKey);
+//            redisCache.deleteObject(userKey);
+            CaffeineUtil.remove(userKey);
         }
     }
 
@@ -145,7 +150,8 @@ public class TokenService
         loginUser.setExpireTime(loginUser.getLoginTime() + expireTime * MILLIS_MINUTE);
         // 根据uuid将loginUser缓存
         String userKey = getTokenKey(loginUser.getToken());
-        redisCache.setCacheObject(userKey, loginUser, expireTime, TimeUnit.MINUTES);
+//        redisCache.setCacheObject(userKey, loginUser, expireTime, TimeUnit.MINUTES);
+        CaffeineUtil.put(userKey, loginUser);
     }
 
     /**

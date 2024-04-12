@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
+
+import com.zhijian.common.core.CaffeineUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FastByteArrayOutputStream;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,7 @@ import com.zhijian.common.config.ZhiJianConfig;
 import com.zhijian.common.constant.CacheConstants;
 import com.zhijian.common.constant.Constants;
 import com.zhijian.common.core.domain.AjaxResult;
-import com.zhijian.common.core.redis.RedisCache;
+//import com.zhijian.common.core.redis.RedisCache;
 import com.zhijian.common.utils.sign.Base64;
 import com.zhijian.common.utils.uuid.IdUtils;
 import com.zhijian.system.service.ISysConfigService;
@@ -34,8 +36,8 @@ public class CaptchaController
     @Resource(name = "captchaProducerMath")
     private Producer captchaProducerMath;
 
-    @Autowired
-    private RedisCache redisCache;
+//    @Autowired
+//    private RedisCache redisCache;
     
     @Autowired
     private ISysConfigService configService;
@@ -75,7 +77,8 @@ public class CaptchaController
             image = captchaProducer.createImage(capStr);
         }
 
-        redisCache.setCacheObject(verifyKey, code, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
+//        redisCache.setCacheObject(verifyKey, code, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
+        CaffeineUtil.put(verifyKey, code);
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
         try
