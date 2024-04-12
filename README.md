@@ -151,71 +151,27 @@ A[录入退款退货] -->B(仅退款)
 
 ## 二、项目说明
 
-**项目正在升级中，升级前采用了若依作为快速开发底层，升级后采用了Dubbo微服务架构。**
+**项目采用SpringBoot+vue2开发。具体使用方法如下**
 
-### 2.1 老版本
-**老版本采用SpringBoot+vue2开发，使用MySQL或H2数据库都可以，具体使用方法如下：**
-#### 2.1.1 H2版本
-+ 修改`ecerp-api`项目中的配置文件`application.yml`开启`H2`数据库相关配置。
-+ 启动Redis(配置文件同上)
-+ 启动minio（可选）
-+ 启动后端项目`ecerp-api`
-+ 启动前端项目`ecerp-vue`
-  + `npm run dev`
 
-#### 2.1.1 MySQL版本
-##### 启动环境及后端项目
+
+#### 2.1 配置启动MySQL
+
 + 创建数据库`qihang-erp`并导入sql脚本`docs\sql\qihang-erp.sql`
-+ 修改`ecerp-api`项目中的配置文件`application.yml`开启`MySQL`数据库相关配置。
-+ 启动Redis(配置文件同上)
-+ 启动minio（可选）
-+ 启动后端项目`ecerp-api`
-
-##### 启动前端 `ecerp-vue`
-+ `npm install`
-+ `npm run dev`
-+ 打包`npm run build:prod`
-+ 访问web
-  + 访问地址：`http://localhost`
-  + 登录名：`admin`
-  + 登录密码：`admin123`
 
 
-### 2.2 Dubbo版本
-#### 2.2.1 组件及技术
-+ 后端：`Java17、Mybatis-Plus、SpringBoot 3.0.13、Dubbo 3.2.11`
-+ 前端：`vue2 + elementUI`
-+ MySQL8数据库
-+ minio文件存储
+#### 2.2 启动Redis
+
 + Redis（缓存）
-+ Nacos配置中心、注册中心
 
-#### 2.2.2 dubbo项目结构
-**dubbo相关项目包含中dubbo父项目下**
-+ `api`:后端接口服务，端口8080，采用dubbo调用其他微服务。
+#### 2.3 启动minio（可选）
++ minio文件存储
 
-+ `interfaces`:微服务接口类库（包括domain、service-interface）
-
-+ `service`:微服务实现层，service-impl
-
-#### 2.2.3 dubbo项目使用
-##### 环境配置
-+ MySQL数据库创建并运行MySQL脚本`docs\sql\qihang-erp.sql`导入数据到主库`qihang-erp`
-
-+ 启动nacos
-  
-+ 添加Nacos配置`qihangec-erp.yaml`（配置内容从docs\ecerp-dev.yaml复制即可）
-
-+ 启动Redis
-
-+ 启动minio（可选）
+#### 2.4 启动后端api
++ 修改`ecerp-api`项目中的配置文件`application.yml`配置`MySQL`数据库相关。
 
 
-##### 启动Dubbo微服务
-+ 启动`service`下面的所有微服务
-+ 启动`api`项目
-
-##### 启动前端 `ecerp-vue`
+#### 2.5 启动前端 `ecerp-vue`
 + `npm install`
 + `npm run dev`
 + 打包`npm run build:prod`
@@ -223,6 +179,8 @@ A[录入退款退货] -->B(仅退款)
   + 访问地址：`http://localhost`
   + 登录名：`admin`
   + 登录密码：`admin123`
+
+
 
 ## 三、支持作者
 
@@ -233,8 +191,8 @@ A[录入退款退货] -->B(仅退款)
 ### 3.1 捐助支持
 作者为兼职做开源,平时还需要工作,如果帮到了您可以请作者吃个盒饭
 
-<img src="weixinzhifu.jpg" width="300px" />
-<img src="zhifubao.jpg" width="300px" />
+<img src="docs/weixinzhifu.jpg" width="300px" />
+<img src="docs/zhifubao.jpg" width="300px" />
 
 ### 3.2 有偿服务
 + 提供部署服务
@@ -247,7 +205,7 @@ A[录入退款退货] -->B(仅退款)
 
 作者微信公众号：qihangerp168
 
-<img src="qihangerp168.jpg" width="300px" />
+<img src="docs/公众号.jpg" width="300px" />
 
 
 💖 欢迎一起交流！ 
