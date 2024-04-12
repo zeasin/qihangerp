@@ -160,18 +160,15 @@ A[录入退款退货] -->B(仅退款)
 + 创建数据库`qihang-erp`并导入sql脚本`docs\sql\qihang-erp.sql`
 
 
-#### 2.2 启动Redis
 
-+ Redis（缓存）
-
-#### 2.3 启动minio（可选）
+#### 2.2 启动minio（可选）
 + minio文件存储
 
-#### 2.4 启动后端api
+#### 2.3 启动后端api
 + 修改`ecerp-api`项目中的配置文件`application.yml`配置`MySQL`数据库相关。
 
 
-#### 2.5 启动前端 `ecerp-vue`
+#### 2.4 启动前端 `ecerp-vue`
 + `npm install`
 + `npm run dev`
 + 打包`npm run build:prod`
