@@ -40,13 +40,15 @@ public class DictUtils
      */
     public static List<SysDictData> getDictCache(String key)
     {
+        var dicts = (List<SysDictData>)CaffeineUtil.get(getCacheKey(key));
+        return dicts;
 //        JSONArray arrayCache = SpringUtils.getBean(RedisCache.class).getCacheObject(getCacheKey(key));
-        JSONArray arrayCache = (JSONArray)CaffeineUtil.get(getCacheKey(key));
-        if (StringUtils.isNotNull(arrayCache))
-        {
-            return arrayCache.toList(SysDictData.class);
-        }
-        return null;
+//        JSONArray arrayCache = (JSONArray)CaffeineUtil.get(getCacheKey(key));
+//        if (StringUtils.isNotNull(arrayCache))
+//        {
+//            return arrayCache.toList(SysDictData.class);
+//        }
+//        return null;
     }
 
     /**
