@@ -11,7 +11,7 @@
  Target Server Version : 80200
  File Encoding         : 65001
 
- Date: 14/04/2024 18:33:22
+ Date: 14/04/2024 18:54:05
 */
 
 SET NAMES utf8mb4;
@@ -9026,6 +9026,7 @@ CREATE TABLE `sys_logininfor`  (
 -- ----------------------------
 -- Records of sys_logininfor
 -- ----------------------------
+INSERT INTO `sys_logininfor` VALUES (1, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-14 18:50:08');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -9146,7 +9147,7 @@ INSERT INTO `sys_menu` VALUES (2005, '供应商管理', 4, 9, 'supplier/list', '
 INSERT INTO `sys_menu` VALUES (2006, '商品管理', 0, 9, 'goods', '', '', 1, 0, 'M', '0', '0', '', 'theme', 'admin', '2023-12-29 13:29:44', '', '', '');
 INSERT INTO `sys_menu` VALUES (2007, '商品管理', 2006, 1, 'goods_list', 'goods/index', '', 1, 0, 'C', '0', '0', 'goods:list', 'theme', 'admin', '2023-12-29 13:31:01', 'admin', '2023-12-29 15:02:40.869685', '');
 INSERT INTO `sys_menu` VALUES (2008, '商品分类', 2006, 88, 'goods_category', 'goods/category/index', '', 1, 0, 'C', '0', '0', 'goods:category', 'tree-table', 'admin', '2023-12-29 13:32:41', 'admin', '2023-12-29 15:02:22.220534', '');
-INSERT INTO `sys_menu` VALUES (2009, '品牌管理', 2006, 99, 'goods/brand', 'goods/brand/index', '', 1, 0, 'C', '0', '0', 'goods:brand', 'clipboard', 'admin', '2023-12-29 13:34:49', 'admin', '2023-12-29 13:58:43.724029', '');
+INSERT INTO `sys_menu` VALUES (2009, '品牌管理', 2006, 99, 'goods/brand', 'goods/brand/index', '', 1, 0, 'C', '0', '1', 'goods:brand', 'clipboard', 'admin', '2023-12-29 13:34:49', 'admin', '2024-04-14 18:51:23', '');
 INSERT INTO `sys_menu` VALUES (2010, '采购订单管理', 4, 1, 'purchase/order', 'scm/purchase/order', '', 1, 0, 'C', '0', '0', 'scm:purchase:order', 'button', 'admin', '2023-12-29 16:35:55', 'admin', '2023-12-29 16:36:57.653118', '');
 INSERT INTO `sys_menu` VALUES (2011, '采购合同管理', 4, 2, 'purchase/contract', 'scm/purchase/contract', '', 1, 0, 'C', '0', '1', 'scm:purchase:contract', 'clipboard', 'admin', '2023-12-29 16:39:43', 'admin', '2023-12-30 18:07:58.363465', '');
 INSERT INTO `sys_menu` VALUES (2012, '采购物流管理', 4, 3, 'purchase/ship', 'scm/purchase/ship', '', 1, 0, 'C', '0', '0', 'scm:purchase:ship', 'component', 'admin', '2023-12-29 16:45:42', 'admin', '2023-12-30 20:48:47.282509', '');
@@ -9193,8 +9194,8 @@ INSERT INTO `sys_menu` VALUES (2061, '库位管理', 2026, 99, 'stock_location',
 INSERT INTO `sys_menu` VALUES (2062, '代发账单', 4, 3, 'agentShip', 'fms/payable/agentShip', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-12 18:35:02', 'admin', '2024-03-24 21:07:38', '');
 INSERT INTO `sys_menu` VALUES (2063, '物流费用', 2034, 3, 'shipFee', 'fms/payable/shipFee', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-12 18:35:31', 'admin', '2024-03-24 21:07:53', '');
 INSERT INTO `sys_menu` VALUES (2064, '店铺账单管理', 2018, 4, 's', NULL, NULL, 1, 0, 'M', '0', '1', '', 'example', 'admin', '2024-01-12 18:35:55', 'admin', '2024-01-16 15:28:47', '');
-INSERT INTO `sys_menu` VALUES (2066, '添加商品', 2006, 2, 'create', 'goods/create', NULL, 1, 0, 'C', '0', '0', NULL, 'component', 'admin', '2024-01-14 19:42:11', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2067, '商品规格查询', 2006, 3, 'spec_list', 'goods/spec', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-16 14:17:39', 'admin', '2024-01-16 14:18:10', '');
+INSERT INTO `sys_menu` VALUES (2066, '添加商品', 2006, 2, 'create', 'goods/create', NULL, 1, 0, 'C', '1', '0', '', 'component', 'admin', '2024-01-14 19:42:11', 'admin', '2024-04-14 18:50:36', '');
+INSERT INTO `sys_menu` VALUES (2067, '商品SKU管理', 2006, 3, 'spec_list', 'goods/spec', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-16 14:17:39', 'admin', '2024-04-14 18:51:13', '');
 INSERT INTO `sys_menu` VALUES (2068, '应收管理', 2018, 1, 'receivable', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'example', 'admin', '2024-01-28 11:23:36', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2069, '订单收入', 2068, 1, 'order', 'fms/receivable/order', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-28 11:24:35', 'admin', '2024-01-28 14:48:11', '');
 INSERT INTO `sys_menu` VALUES (2070, '退款款项', 2068, 2, 'refund', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'bug', 'admin', '2024-01-28 11:26:55', '', NULL, '');
@@ -9265,6 +9266,9 @@ CREATE TABLE `sys_oper_log`  (
 -- ----------------------------
 INSERT INTO `sys_oper_log` VALUES (1, '操作日志', 9, 'com.qihang.web.controller.monitor.SysOperlogController.clean()', 'DELETE', 1, 'admin', NULL, '/monitor/operlog/clean', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-14 18:32:29', 41);
 INSERT INTO `sys_oper_log` VALUES (2, '登录日志', 9, 'com.qihang.web.controller.monitor.SysLogininforController.clean()', 'DELETE', 1, 'admin', NULL, '/monitor/logininfor/clean', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-14 18:32:59', 47);
+INSERT INTO `sys_oper_log` VALUES (3, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"goods/create\",\"createTime\":\"2024-01-14 19:42:11\",\"icon\":\"component\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2066,\"menuName\":\"添加商品\",\"menuType\":\"C\",\"orderNum\":2,\"params\":{},\"parentId\":2006,\"path\":\"create\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-14 18:50:36', 34);
+INSERT INTO `sys_oper_log` VALUES (4, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"goods/spec\",\"createTime\":\"2024-01-16 14:17:39\",\"icon\":\"theme\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2067,\"menuName\":\"商品SKU管理\",\"menuType\":\"C\",\"orderNum\":3,\"params\":{},\"parentId\":2006,\"path\":\"spec_list\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-14 18:51:13', 9);
+INSERT INTO `sys_oper_log` VALUES (5, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"goods/brand/index\",\"createTime\":\"2023-12-29 13:34:49\",\"icon\":\"clipboard\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2009,\"menuName\":\"品牌管理\",\"menuType\":\"C\",\"orderNum\":99,\"params\":{},\"parentId\":2006,\"path\":\"goods/brand\",\"perms\":\"goods:brand\",\"query\":\"\",\"status\":\"1\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-14 18:51:23', 9);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -9541,7 +9545,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-14 18:27:18', 'admin', '2023-08-07 19:31:37', '', '2024-04-14 18:27:18', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-14 18:50:09', 'admin', '2023-08-07 19:31:37', '', '2024-04-14 18:50:08', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 
 -- ----------------------------
