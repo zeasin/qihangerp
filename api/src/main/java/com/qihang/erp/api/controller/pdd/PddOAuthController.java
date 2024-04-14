@@ -3,10 +3,8 @@ package com.qihang.erp.api.controller.pdd;
 
 import com.pdd.pop.sdk.http.PopAccessTokenClient;
 import com.pdd.pop.sdk.http.token.AccessTokenResponse;
-import com.qihang.erp.api.common.ApiResult;
-import com.qihang.erp.api.common.EnumResultVo;
 import com.qihang.erp.api.service.IShopService;
-import com.zhijian.core.config.ServerConfig;
+import com.qihang.core.config.ServerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

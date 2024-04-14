@@ -10,7 +10,7 @@ import com.qihang.erp.api.domain.WmsStockOutEntry;
 import com.qihang.erp.api.domain.WmsStockOutEntryItem;
 import com.qihang.erp.api.domain.bo.StockingAddVo;
 import com.qihang.erp.api.mapper.WmsStockOutEntryMapper;
-import com.zhijian.common.utils.DateUtils;
+import com.qihang.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qihang.erp.api.mapper.WmsOrderShippingMapper;

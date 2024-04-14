@@ -8,6 +8,7 @@
     </parent>
 
     <artifactId>api</artifactId>
+    <version>0.1.0</version>
     <packaging>jar</packaging>
 
     <name>ecerp-api</name>
@@ -68,11 +69,11 @@
         </dependency>
 
         <!--nacos配置中心-->
-        <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>nacos-config-spring-boot-starter</artifactId>
-            <version>0.2.12</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.boot</groupId>-->
+<!--            <artifactId>nacos-config-spring-boot-starter</artifactId>-->
+<!--            <version>0.2.12</version>-->
+<!--        </dependency>-->
 
 
 
@@ -89,9 +90,9 @@
 
         <!-- 引入框架 -->
         <dependency>
-            <groupId>com.zhijian</groupId>
-            <artifactId>zhijian-framework</artifactId>
-            <version>${zhijian.version}</version>
+            <groupId>com.qihang</groupId>
+            <artifactId>system</artifactId>
+            <version>0.2.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/us.codecraft/webmagic-core -->
@@ -100,27 +101,34 @@
             <artifactId>webmagic-core</artifactId>
             <version>0.10.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-core</artifactId>
-            <version>3.5.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.3.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus-core</artifactId>-->
+<!--            <version>3.5.3.1</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
+<!--            <version>3.5.3.1</version>-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>com.baomidou</groupId>-->
 <!--            <artifactId>mybatis-plus-extension</artifactId>-->
 <!--            <version>3.5.3.1</version>-->
 <!--        </dependency>-->
 
-
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.3.1</version>
         </dependency>
+
+
+
+<!--        <dependency>-->
+<!--            <groupId>com.h2database</groupId>-->
+<!--            <artifactId>h2</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>taobao</groupId>
             <artifactId>taobao-sdk</artifactId>

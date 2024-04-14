@@ -1,7 +1,5 @@
 package com.qihang.erp.api.domain.bo;
 
-import com.zhijian.common.annotation.Excel;
-
 public class StockOutBo {
     /** entry_item 主键ID */
     private Long entryItemId;

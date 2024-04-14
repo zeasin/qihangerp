@@ -8,17 +8,16 @@
     <artifactId>ecerp</artifactId>
     <version>0.2.0</version>
 
-    <name>qihang-ecerp</name>
+    <name>ecerp</name>
     <url>http://8.huayiyungou.com</url>
     <description>启航电商ERP系统</description>
-    
     <properties>
         <zhijian.version>0.1.0</zhijian.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-        <druid.version>1.2.16</druid.version>
+<!--        <druid.version>1.2.16</druid.version>-->
         <bitwalker.version>1.21</bitwalker.version>
         <swagger.version>3.0.0</swagger.version>
         <kaptcha.version>2.3.3</kaptcha.version>
@@ -33,9 +32,10 @@
         <spring-boot.version>2.7.3</spring-boot.version>
     </properties>
     <modules>
-        <module>framework</module>
+        <module>system</module>
         <module>api</module>
-        <module>common</module>
+        <module>commons</module>
+<!--        <module>core</module>-->
     </modules>
     <packaging>pom</packaging>
 

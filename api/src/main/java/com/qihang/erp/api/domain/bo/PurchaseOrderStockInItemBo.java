@@ -1,8 +1,6 @@
 package com.qihang.erp.api.domain.bo;
 
-import com.zhijian.common.core.domain.BaseEntity;
-
-import java.util.List;
+import com.qihang.core.domain.BaseEntity;
 
 /**
  * 采购订单对象 scm_purchase_order

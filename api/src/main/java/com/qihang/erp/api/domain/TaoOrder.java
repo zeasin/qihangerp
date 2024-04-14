@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zhijian.common.annotation.Excel;
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.common.annotation.Excel;
+import com.qihang.core.domain.BaseEntity;
 
 /**
  * 淘宝订单对象 s_tao_order

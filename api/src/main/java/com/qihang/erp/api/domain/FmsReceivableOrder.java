@@ -3,8 +3,8 @@ package com.qihang.erp.api.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zhijian.common.annotation.Excel;
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.common.annotation.Excel;
+import com.qihang.core.domain.BaseEntity;
 
 /**
  * 财务管理-应收款-订单收入对象 fms_receivable_order

@@ -8,15 +8,14 @@ import com.qihang.erp.api.domain.bo.GoodsSpecAddBo;
 import com.qihang.erp.api.domain.vo.GoodsSpecListVo;
 import com.qihang.erp.api.mapper.GoodsSpecAttrMapper;
 import com.qihang.erp.api.mapper.GoodsSpecMapper;
-import com.zhijian.common.utils.DateUtils;
-import com.zhijian.common.utils.StringUtils;
+import com.qihang.common.utils.DateUtils;
+import com.qihang.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qihang.erp.api.mapper.GoodsMapper;
 import com.qihang.erp.api.domain.Goods;
 import com.qihang.erp.api.service.IGoodsService;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 /**
  * 商品管理Service业务层处理

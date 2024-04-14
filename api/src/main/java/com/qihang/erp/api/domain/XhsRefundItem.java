@@ -1,7 +1,7 @@
 package com.qihang.erp.api.domain;
 
-import com.zhijian.common.annotation.Excel;
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.common.annotation.Excel;
+import com.qihang.core.domain.BaseEntity;
 
 /**
  * 小红书订单退款明细对象 s_xhs_refund_item

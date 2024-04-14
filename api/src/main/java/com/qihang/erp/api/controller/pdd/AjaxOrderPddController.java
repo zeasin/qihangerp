@@ -1,7 +1,5 @@
 package com.qihang.erp.api.controller.pdd;
 
-import com.alibaba.fastjson.JSONObject;
-
 import com.pdd.pop.sdk.common.util.JsonUtil;
 import com.pdd.pop.sdk.http.PopClient;
 import com.pdd.pop.sdk.http.PopHttpClient;
@@ -13,26 +11,19 @@ import com.qihang.erp.api.controller.dou.DouRequest;
 import com.qihang.erp.api.controller.dou.ErpSalesPullCountResp;
 import com.qihang.erp.api.controller.tao.ShopApiParams;
 import com.qihang.erp.api.domain.PddOrder;
-import com.qihang.erp.api.domain.PddOrderItem;
 import com.qihang.erp.api.service.IPddOrderService;
 import com.qihang.erp.api.service.IShopService;
 import com.qihang.erp.api.utils.DateUtil;
-import com.zhijian.core.config.ServerConfig;
+import com.qihang.core.config.ServerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Callable;
 
 
 @RequestMapping("/pdd_api")

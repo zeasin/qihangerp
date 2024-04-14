@@ -2,8 +2,8 @@ package com.qihang.erp.api.domain;
 
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zhijian.common.annotation.Excel;
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.common.annotation.Excel;
+import com.qihang.core.domain.BaseEntity;
 
 /**
  * 【请填写功能名称】对象 scm_supplier

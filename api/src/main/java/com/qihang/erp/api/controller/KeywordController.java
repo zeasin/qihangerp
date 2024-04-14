@@ -5,16 +5,10 @@ import com.qihang.erp.api.common.ApiResult;
 import com.qihang.erp.api.domain.Keyword;
 import com.qihang.erp.api.req.KeyWordListReq;
 import com.qihang.erp.api.service.IKeywordService;
-import com.zhijian.common.annotation.Log;
-import com.zhijian.common.annotation.RepeatSubmit;
-import com.zhijian.common.core.domain.AjaxResult;
-import com.zhijian.common.core.domain.entity.SysDictData;
-import com.zhijian.common.enums.BusinessType;
-import com.zhijian.common.utils.StringUtils;
-import org.springframework.validation.annotation.Validated;
+import com.qihang.common.annotation.Log;
+import com.qihang.common.annotation.RepeatSubmit;
+import com.qihang.common.enums.BusinessType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/keyword")

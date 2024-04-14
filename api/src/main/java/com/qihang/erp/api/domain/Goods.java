@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.qihang.erp.api.domain.bo.GoodsSpecAddBo;
-import com.zhijian.common.annotation.Excel;
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.common.annotation.Excel;
+import com.qihang.core.domain.BaseEntity;
 
 /**
  * 商品管理对象 erp_goods

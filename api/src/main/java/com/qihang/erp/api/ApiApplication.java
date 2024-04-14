@@ -1,7 +1,7 @@
 package com.qihang.erp.api;
 
 
-import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
+//import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -20,7 +21,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Log
 //@NacosPropertySource(dataId = "ecerp-dev.yaml", autoRefreshed = true)
 //@EnableTransactionManagement
-@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
+//@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
+@ComponentScan("com.qihang")
+@SpringBootApplication
 public class ApiApplication  {
     public static void main(String[] args) {
         // System.setProperty("spring.devtools.restart.enabled", "false");

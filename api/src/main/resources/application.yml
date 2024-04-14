@@ -39,7 +39,6 @@ spring:
         # #连接池最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1ms
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
     # Mysql数据库
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/qihang-erp?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
@@ -138,7 +137,7 @@ token:
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
-  type-aliases-package: com.zhijian.**.domain;com.qihang.erp.api.domain
+  type-aliases-package: com.qihang.domain;com.qihang.core.domain;com.qihang.erp.api.domain
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
 #  config-location: classpath:mybatis/mybatis-config.xml

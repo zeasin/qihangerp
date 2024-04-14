@@ -1,8 +1,6 @@
 package com.qihang.erp.api.domain.bo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zhijian.common.annotation.Excel;
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.core.domain.BaseEntity;
 
 import java.math.BigDecimal;
 import java.util.Date;

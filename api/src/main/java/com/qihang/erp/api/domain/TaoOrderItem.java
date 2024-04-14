@@ -1,8 +1,8 @@
 package com.qihang.erp.api.domain;
 
 import java.math.BigDecimal;
-import com.zhijian.common.annotation.Excel;
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.common.annotation.Excel;
+import com.qihang.core.domain.BaseEntity;
 
 /**
  * 淘宝订单明细对象 s_tao_order_item

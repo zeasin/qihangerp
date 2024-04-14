@@ -1,7 +1,7 @@
 package com.qihang.erp.api.domain;
 
-import com.zhijian.common.annotation.Excel;
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.common.annotation.Excel;
+import com.qihang.core.domain.BaseEntity;
 
 /**
  * 商品分类属性对象 erp_goods_category_attribute

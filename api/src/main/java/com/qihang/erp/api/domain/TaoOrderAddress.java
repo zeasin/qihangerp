@@ -1,7 +1,7 @@
 package com.qihang.erp.api.domain;
 
-import com.zhijian.common.annotation.Excel;
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.common.annotation.Excel;
+import com.qihang.core.domain.BaseEntity;
 
 /**
  * 淘宝订单地址对象 s_tao_order_address

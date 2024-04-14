@@ -1,20 +1,17 @@
 package com.qihang.erp.api.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qihang.erp.api.domain.Keyword;
 import com.qihang.erp.api.mapper.KeywordMapper;
 import com.qihang.erp.api.req.KeyWordListReq;
 import com.qihang.erp.api.service.IKeywordService;
-import com.zhijian.common.core.page.PageDomain;
-import com.zhijian.common.utils.StringUtils;
+import com.qihang.common.utils.StringUtils;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 
 @Log
 @Service

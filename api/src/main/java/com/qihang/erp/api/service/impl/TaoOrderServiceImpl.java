@@ -9,18 +9,16 @@ import com.qihang.erp.api.common.ResultVo;
 import com.qihang.erp.api.controller.tao.OrderImportItem;
 import com.qihang.erp.api.domain.*;
 import com.qihang.erp.api.mapper.*;
-import com.zhijian.common.utils.DateUtils;
+import com.qihang.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.zhijian.common.utils.StringUtils;
+import com.qihang.common.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
 import com.qihang.erp.api.service.ITaoOrderService;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 /**
  * 淘宝订单Service业务层处理

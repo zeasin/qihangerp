@@ -1,9 +1,7 @@
 package com.qihang.erp.api.domain.bo;
 
-import com.zhijian.common.core.domain.BaseEntity;
+import com.qihang.core.domain.BaseEntity;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 /**

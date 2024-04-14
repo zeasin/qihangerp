@@ -8,7 +8,7 @@ import com.qihang.erp.api.domain.FmsPayableAgentShip;
 import com.qihang.erp.api.domain.ScmSupplier;
 import com.qihang.erp.api.mapper.FmsPayableAgentShipMapper;
 import com.qihang.erp.api.mapper.ScmSupplierMapper;
-import com.zhijian.common.utils.DateUtils;
+import com.qihang.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qihang.erp.api.mapper.ScmSupplierAgentShippingMapper;

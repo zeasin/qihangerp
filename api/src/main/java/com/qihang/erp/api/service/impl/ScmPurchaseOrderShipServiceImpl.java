@@ -10,7 +10,7 @@ import com.qihang.erp.api.domain.WmsStockInEntryItem;
 import com.qihang.erp.api.domain.bo.PurchaseOrderStockInBo;
 import com.qihang.erp.api.mapper.ScmPurchaseOrderMapper;
 import com.qihang.erp.api.mapper.WmsStockInEntryMapper;
-import com.zhijian.common.utils.DateUtils;
+import com.qihang.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qihang.erp.api.mapper.ScmPurchaseOrderShipMapper;
