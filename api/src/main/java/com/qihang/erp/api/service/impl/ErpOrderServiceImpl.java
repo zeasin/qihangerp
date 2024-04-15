@@ -7,7 +7,6 @@ import java.util.List;
 import com.qihang.erp.api.domain.*;
 import com.qihang.erp.api.mapper.FmsPayableShipFeeMapper;
 import com.qihang.erp.api.mapper.FmsReceivableOrderMapper;
-import com.qihang.erp.api.mapper.WmsOrderShippingMapper;
 import com.qihang.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +27,6 @@ public class ErpOrderServiceImpl implements IErpOrderService
 {
     @Autowired
     private ErpOrderMapper erpOrderMapper;
-
-    @Autowired
-    private WmsOrderShippingMapper wmsOrderShippingMapper;
     @Autowired
     private FmsReceivableOrderMapper fmsReceivableOrderMapper;
     @Autowired
@@ -138,19 +134,19 @@ public class ErpOrderServiceImpl implements IErpOrderService
         erpOrderMapper.updateErpOrder(update);
 
         // 更新 wms_order_shipping
-        WmsOrderShipping select = new WmsOrderShipping();
-        select.setErpOrderId(order.getId());
-        List<WmsOrderShipping> shipList = wmsOrderShippingMapper.selectWmsOrderShippingList(select);
-        if(shipList!=null){
-            for (WmsOrderShipping ship:shipList) {
-                WmsOrderShipping up = new WmsOrderShipping();
-                up.setId(ship.getId());
-                up.setStatus(3L);
-                up.setUpdateTime(new Date());
-                up.setUpdateBy(erpOrder.getUpdateBy());
-                wmsOrderShippingMapper.updateWmsOrderShipping(up);
-            }
-        }
+//        WmsOrderShipping select = new WmsOrderShipping();
+//        select.setErpOrderId(order.getId());
+//        List<WmsOrderShipping> shipList = wmsOrderShippingMapper.selectWmsOrderShippingList(select);
+//        if(shipList!=null){
+//            for (WmsOrderShipping ship:shipList) {
+//                WmsOrderShipping up = new WmsOrderShipping();
+//                up.setId(ship.getId());
+//                up.setStatus(3L);
+//                up.setUpdateTime(new Date());
+//                up.setUpdateBy(erpOrder.getUpdateBy());
+//                wmsOrderShippingMapper.updateWmsOrderShipping(up);
+//            }
+//        }
 
         // 生成订单收入fms_receivable_order
         List<ErpOrderItem> erpOrderItems = erpOrderMapper.selectOrderItemByOrderId(erpOrder.getId());

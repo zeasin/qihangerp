@@ -130,7 +130,7 @@ public class TaoOrderRefundServiceImpl implements ITaoOrderRefundService
         // 查询erp_order_item
         ErpOrderItem select = new ErpOrderItem();
         select.setOrderItemNum(refund.getOid().toString());
-        select.setShopId(refund.getShopId().intValue());
+//        select.setShopId(refund.getShopId().intValue());
         ErpOrderItem erpOrderItem = erpOrderMapper.selectOrderItemByOrderItemNum(select);
         if(erpOrderItem == null) return -21;
 

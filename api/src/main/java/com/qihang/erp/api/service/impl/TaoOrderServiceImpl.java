@@ -40,11 +40,6 @@ public class TaoOrderServiceImpl implements ITaoOrderService
     private GoodsMapper goodsMapper;
     @Autowired
     private GoodsSpecMapper goodsSpecMapper;
-    @Autowired
-    private ScmSupplierAgentShippingMapper agentShippingMapper;
-
-    @Autowired
-    private WmsOrderShippingMapper orderShippingMapper;
 
     /**
      * 查询淘宝订单
@@ -184,6 +179,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
 
             ErpOrderItem item = new ErpOrderItem();
             item.setOrderId(so.getId());
+            item.setOrderNum(original.getId());
             item.setOrderItemNum(i.getSubItemId());
             item.setSupplierId(goods.getSupplierId().intValue());
             item.setGoodsId(spec.getGoodsId());
@@ -193,9 +189,9 @@ public class TaoOrderServiceImpl implements ITaoOrderService
             item.setGoodsNum(i.getGoodsNumber());
             item.setSpecNum(i.getSpecNumber());
             item.setGoodsSpec(i.getSkuInfo());
-            item.setGoodsPrice(i.getPrice());
-            item.setGoodsPurPrice(spec.getPurPrice());
-            item.setItemAmount(i.getItemAmount());
+            item.setGoodsPrice(i.getPrice().doubleValue());
+//            item.setGoodsPurPrice(spec.getPurPrice());
+            item.setItemAmount(i.getItemAmount().doubleValue());
             item.setQuantity(i.getQuantity().intValue());
             item.setIsGift(i.getIsGift().intValue());
             item.setRefundCount(0);
@@ -215,6 +211,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
 
                 ErpOrderItem item = new ErpOrderItem();
                 item.setOrderId(so.getId());
+                item.setOrderNum(original.getId());
                 item.setOrderItemNum(original.getId()+"_");
                 item.setSupplierId(goods.getSupplierId().intValue());
                 item.setGoodsId(spec.getGoodsId());
@@ -224,9 +221,9 @@ public class TaoOrderServiceImpl implements ITaoOrderService
                 item.setGoodsNum(g.getGoodsNumber());
                 item.setSpecNum(g.getSpecNumber());
                 item.setGoodsSpec(g.getSkuInfo());
-                item.setGoodsPrice(g.getPrice());
-                item.setGoodsPurPrice(spec.getPurPrice());
-                item.setItemAmount(g.getItemAmount());
+                item.setGoodsPrice(g.getPrice().doubleValue());
+//                item.setGoodsPurPrice(spec.getPurPrice());
+                item.setItemAmount(g.getItemAmount().doubleValue());
                 item.setQuantity(g.getQuantity().intValue());
                 item.setIsGift(1);
                 item.setRefundCount(0);
@@ -238,61 +235,6 @@ public class TaoOrderServiceImpl implements ITaoOrderService
         }
 //        erpOrderMapper.batchErpOrderItem(items);
 
-        // 新增代发表
-        if(taoOrder.getShipType() == 1){
-            for (ErpOrderItem it: items) {
-                // 添加Erp_order_item
-                erpOrderMapper.insertErpOrderItem(it);
-                ScmSupplierAgentShipping agentShipping = new ScmSupplierAgentShipping();
-                agentShipping.setShopId(original.getShopId());
-                agentShipping.setShopType(4L);
-                agentShipping.setSupplierId(it.getSupplierId().longValue());
-                agentShipping.setOrderNum(original.getId());
-                agentShipping.setErpOrderId(so.getId());
-                agentShipping.setErpOrderItemId(it.getId());
-                agentShipping.setOrderDate(original.getOrderCreateTime());
-                agentShipping.setGoodsId(it.getGoodsId());
-                agentShipping.setSpecId(it.getSpecId());
-                agentShipping.setGoodsTitle(it.getGoodsTitle());
-                agentShipping.setGoodsImg(it.getGoodsImg());
-                agentShipping.setGoodsNum(it.getGoodsNum());
-                agentShipping.setGoodsSpec(it.getGoodsSpec());
-                agentShipping.setSpecNum(it.getSpecNum());
-                agentShipping.setGoodsPrice(it.getGoodsPurPrice());
-                agentShipping.setQuantity(it.getQuantity().longValue());
-                agentShipping.setItemAmount(it.getItemAmount());
-                agentShipping.setStatus(0L);
-                agentShipping.setCreateTime(new Date());
-                agentShipping.setCreateBy(taoOrder.getUpdateBy());
-
-                agentShippingMapper.insertScmSupplierAgentShipping(agentShipping);
-            }
-        }else {
-            // 仓库发货
-            for (ErpOrderItem it: items) {
-                erpOrderMapper.insertErpOrderItem(it);
-
-                WmsOrderShipping shipping = new WmsOrderShipping();
-                shipping.setShopId(original.getShopId());
-                shipping.setShopType(4L);
-                shipping.setOrderNum(original.getId());
-                shipping.setErpOrderId(so.getId());
-                shipping.setErpOrderItemId(it.getId());
-                shipping.setOrderDate(original.getOrderCreateTime());
-                shipping.setGoodsId(it.getGoodsId());
-                shipping.setSpecId(it.getSpecId());
-                shipping.setGoodsTitle(it.getGoodsTitle());
-                shipping.setGoodsImg(it.getGoodsImg());
-                shipping.setGoodsNum(it.getGoodsNum());
-                shipping.setGoodsSpec(it.getGoodsSpec());
-                shipping.setSpecNum(it.getSpecNum());
-                shipping.setQuantity(it.getQuantity().longValue());
-                shipping.setStatus(0L);
-                shipping.setCreateTime(new Date());
-                shipping.setCreateBy(taoOrder.getUpdateBy());
-                orderShippingMapper.insertWmsOrderShipping(shipping);
-            }
-        }
         //更新自己
         TaoOrder update = new TaoOrder();
         update.setId(original.getId());

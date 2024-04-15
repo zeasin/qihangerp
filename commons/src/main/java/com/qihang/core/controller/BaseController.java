@@ -4,6 +4,7 @@ import java.beans.PropertyEditorSupport;
 import java.util.Date;
 import java.util.List;
 
+import com.qihang.common.PageResult;
 import com.qihang.common.utils.DateUtils;
 import com.qihang.common.utils.PageUtils;
 import com.qihang.common.utils.SecurityUtils;
@@ -93,6 +94,16 @@ public class BaseController
         rspData.setMsg("查询成功");
         rspData.setRows(list);
         rspData.setTotal(new PageInfo(list).getTotal());
+        return rspData;
+    }
+    protected TableDataInfo getDataTable(PageResult<?> pageResult)
+    {
+        TableDataInfo rspData = new TableDataInfo();
+        rspData.setCode(HttpStatus.SUCCESS);
+        rspData.setMsg("查询成功");
+        rspData.setRows(pageResult.getRecords());
+//        rspData.setTotal(new PageInfo(list).getTotal());
+        rspData.setTotal(pageResult.getTotal());
         return rspData;
     }
 

@@ -2,8 +2,10 @@ package com.qihang.erp.api.service.impl;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
 
+import com.qihang.erp.api.common.EnumShopType;
 import com.qihang.erp.api.domain.*;
 import com.qihang.erp.api.mapper.*;
 import com.qihang.common.utils.DateUtils;
@@ -31,11 +33,6 @@ public class DouOrderServiceImpl implements IDouOrderService
     private GoodsMapper goodsMapper;
     @Autowired
     private GoodsSpecMapper goodsSpecMapper;
-    @Autowired
-    private ScmSupplierAgentShippingMapper agentShippingMapper;
-
-    @Autowired
-    private WmsOrderShippingMapper orderShippingMapper;
     /**
      * 查询抖店订单
      * 
@@ -123,7 +120,7 @@ public class DouOrderServiceImpl implements IDouOrderService
         ErpOrder so = new ErpOrder();
         so.setOrderNum(original.getOrderId());
         so.setShopId(original.getShopId().intValue());
-        so.setShopType(6);
+        so.setShopType(EnumShopType.DouYin.getIndex());
         so.setShipType(bo.getShipType());
         so.setRemark(original.getSellerWords());
         so.setBuyerMemo(original.getBuyerWords());
@@ -162,6 +159,7 @@ public class DouOrderServiceImpl implements IDouOrderService
 
             ErpOrderItem item = new ErpOrderItem();
             item.setOrderId(so.getId());
+            item.setOrderNum(i.getOrderId());
             item.setOrderItemNum(i.getId()+"");
             item.setSupplierId(goods.getSupplierId().intValue());
             item.setGoodsId(spec.getGoodsId());
@@ -171,9 +169,9 @@ public class DouOrderServiceImpl implements IDouOrderService
             item.setGoodsNum(i.getGoodsNum());
             item.setSpecNum(i.getSpecNum());
             item.setGoodsSpec(i.getGoodsSpec());
-            item.setGoodsPrice(i.getPrice());
-            item.setGoodsPurPrice(spec.getPurPrice());
-            item.setItemAmount(i.getTotalAmount());
+            item.setGoodsPrice(i.getPrice().doubleValue());
+//            item.setGoodsPurPrice(spec.getPurPrice());
+            item.setItemAmount(i.getTotalAmount().doubleValue());
             item.setQuantity(i.getComboNum().intValue());
             item.setIsGift(i.getIsGift().intValue());
             item.setRefundCount(0);
@@ -193,6 +191,7 @@ public class DouOrderServiceImpl implements IDouOrderService
 
                 ErpOrderItem item = new ErpOrderItem();
                 item.setOrderId(so.getId());
+                item.setOrderNum(i.getOrderId());
                 item.setOrderItemNum(original.getOrderId()+"_");
                 item.setSupplierId(goods.getSupplierId().intValue());
                 item.setGoodsId(spec.getGoodsId());
@@ -202,9 +201,9 @@ public class DouOrderServiceImpl implements IDouOrderService
                 item.setGoodsNum(i.getGoodsNum());
                 item.setSpecNum(i.getSpecNum());
                 item.setGoodsSpec(i.getGoodsSpec());
-                item.setGoodsPrice(i.getPrice());
-                item.setGoodsPurPrice(spec.getPurPrice());
-                item.setItemAmount(i.getTotalAmount());
+                item.setGoodsPrice(i.getPrice().doubleValue());
+//                item.setGoodsPurPrice(spec.getPurPrice());
+                item.setItemAmount(i.getTotalAmount().doubleValue());
                 item.setQuantity(i.getComboNum().intValue());
                 item.setIsGift(1);
                 item.setRefundCount(0);
@@ -215,69 +214,6 @@ public class DouOrderServiceImpl implements IDouOrderService
             }
         }
 //        erpOrderMapper.batchErpOrderItem(items);
-        // 新增代发表
-        if(bo.getShipType() == 1){
-            for (ErpOrderItem it: items) {
-                // 添加Erp_order_item
-                erpOrderMapper.insertErpOrderItem(it);
-                ScmSupplierAgentShipping agentShipping = new ScmSupplierAgentShipping();
-                agentShipping.setShopId(original.getShopId());
-                agentShipping.setShopType(6L);
-                agentShipping.setSupplierId(it.getSupplierId().longValue());
-                agentShipping.setOrderNum(original.getOrderId());
-                agentShipping.setErpOrderId(so.getId());
-                agentShipping.setErpOrderItemId(it.getId());
-//                agentShipping.setOrderItemId(it.getId().toString());
-                try {
-                    agentShipping.setOrderDate(original.getOrderCreateTime());
-                }catch (Exception e){}
-
-                agentShipping.setGoodsId(it.getGoodsId());
-                agentShipping.setSpecId(it.getSpecId());
-                agentShipping.setGoodsTitle(it.getGoodsTitle());
-                agentShipping.setGoodsImg(it.getGoodsImg());
-                agentShipping.setGoodsNum(it.getGoodsNum());
-                agentShipping.setGoodsSpec(it.getGoodsSpec());
-                agentShipping.setSpecNum(it.getSpecNum());
-                agentShipping.setGoodsPrice(it.getGoodsPurPrice());
-                agentShipping.setQuantity(it.getQuantity().longValue());
-                agentShipping.setItemAmount(it.getItemAmount());
-                agentShipping.setStatus(0L);
-                agentShipping.setCreateTime(new Date());
-                agentShipping.setCreateBy(bo.getUpdateBy());
-
-                agentShippingMapper.insertScmSupplierAgentShipping(agentShipping);
-            }
-        }else {
-            // 仓库发货
-            for (ErpOrderItem it: items) {
-                erpOrderMapper.insertErpOrderItem(it);
-
-                WmsOrderShipping shipping = new WmsOrderShipping();
-                shipping.setShopId(original.getShopId());
-                shipping.setShopType(6L);
-                shipping.setOrderNum(original.getOrderId());
-                shipping.setErpOrderId(so.getId());
-                shipping.setErpOrderItemId(it.getId());
-//                shipping.setOrderItemId(it.getId().toString());
-                try {
-                    shipping.setOrderDate(original.getOrderCreateTime());
-                }catch (Exception e){}
-                shipping.setGoodsId(it.getGoodsId());
-                shipping.setSpecId(it.getSpecId());
-                shipping.setGoodsTitle(it.getGoodsTitle());
-                shipping.setGoodsImg(it.getGoodsImg());
-                shipping.setGoodsNum(it.getGoodsNum());
-                shipping.setGoodsSpec(it.getGoodsSpec());
-                shipping.setSpecNum(it.getSpecNum());
-                shipping.setQuantity(it.getQuantity().longValue());
-                shipping.setStatus(0L);
-                shipping.setCreateTime(new Date());
-                shipping.setCreateBy(bo.getUpdateBy());
-                orderShippingMapper.insertWmsOrderShipping(shipping);
-            }
-        }
-        //更新自己
 
         //更新自己
         DouOrder up =new DouOrder();

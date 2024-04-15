@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询仓库订单发货列表
 export function listShipping(query) {
   return request({
-    url: '/wms/shipping/list',
+    url: '/shipping/stock_ship_list',
     method: 'get',
     params: query
   })
@@ -40,5 +40,14 @@ export function delShipping(id) {
   return request({
     url: '/wms/shipping/' + id,
     method: 'delete'
+  })
+}
+
+// 查询供应商订单发货列表
+export function listShippingSupplier(query) {
+  return request({
+    url: '/shipping/supplier_ship_list',
+    method: 'get',
+    params: query
   })
 }

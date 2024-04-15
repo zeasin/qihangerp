@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import com.qihang.erp.api.common.EnumShopType;
 import com.qihang.erp.api.domain.*;
 import com.qihang.erp.api.mapper.*;
 import com.qihang.common.utils.DateUtils;
@@ -35,11 +36,6 @@ public class PddOrderServiceImpl implements IPddOrderService
     private GoodsMapper goodsMapper;
     @Autowired
     private GoodsSpecMapper goodsSpecMapper;
-    @Autowired
-    private ScmSupplierAgentShippingMapper agentShippingMapper;
-
-    @Autowired
-    private WmsOrderShippingMapper orderShippingMapper;
     /**
      * 查询拼多多订单
      * 
@@ -150,7 +146,7 @@ public class PddOrderServiceImpl implements IPddOrderService
         ErpOrder so = new ErpOrder();
         so.setOrderNum(original.getOrderSn());
         so.setShopId(original.getShopId().intValue());
-        so.setShopType(5);
+        so.setShopType(EnumShopType.Pdd.getIndex());
         so.setShipType(pddOrder.getShipType());
         so.setRemark(original.getRemark());
         so.setBuyerMemo(original.getBuyerMemo());
@@ -191,6 +187,7 @@ public class PddOrderServiceImpl implements IPddOrderService
 
             ErpOrderItem item = new ErpOrderItem();
             item.setOrderId(so.getId());
+            item.setOrderNum(original.getOrderSn());
             item.setOrderItemNum(i.getId()+"");
             item.setSupplierId(goods.getSupplierId().intValue());
             item.setGoodsId(spec.getGoodsId());
@@ -200,9 +197,9 @@ public class PddOrderServiceImpl implements IPddOrderService
             item.setGoodsNum(i.getGoodsNum());
             item.setSpecNum(i.getSpecNum());
             item.setGoodsSpec(i.getGoodsSpec());
-            item.setGoodsPrice(BigDecimal.valueOf(i.getGoodsPrice()));
-            item.setGoodsPurPrice(spec.getPurPrice());
-            item.setItemAmount(BigDecimal.valueOf(i.getItemAmount()));
+            item.setGoodsPrice(i.getGoodsPrice());
+//            item.setGoodsPurPrice(spec.getPurPrice());
+            item.setItemAmount(i.getItemAmount());
             item.setQuantity(i.getQuantity().intValue());
             item.setIsGift(i.getIsGift().intValue());
             item.setRefundCount(0);
@@ -221,6 +218,7 @@ public class PddOrderServiceImpl implements IPddOrderService
                 if(goods == null) return -12;
 
                 ErpOrderItem item = new ErpOrderItem();
+                item.setOrderNum(original.getOrderSn());
                 item.setOrderId(so.getId());
                 item.setOrderItemNum(pddOrder.getId()+"_");
                 item.setSupplierId(goods.getSupplierId().intValue());
@@ -231,9 +229,9 @@ public class PddOrderServiceImpl implements IPddOrderService
                 item.setGoodsNum(i.getGoodsNum());
                 item.setSpecNum(i.getSpecNum());
                 item.setGoodsSpec(i.getGoodsSpec());
-                item.setGoodsPrice(BigDecimal.valueOf(i.getGoodsPrice()));
-                item.setGoodsPurPrice(spec.getPurPrice());
-                item.setItemAmount(BigDecimal.valueOf(i.getItemAmount()));
+                item.setGoodsPrice(i.getGoodsPrice());
+//                item.setGoodsPurPrice(spec.getPurPrice());
+                item.setItemAmount(i.getItemAmount());
                 item.setQuantity(i.getQuantity().intValue());
                 item.setIsGift(1);
                 item.setRefundCount(0);
@@ -244,67 +242,6 @@ public class PddOrderServiceImpl implements IPddOrderService
             }
         }
 //        erpOrderMapper.batchErpOrderItem(items);
-        // 新增代发表scm_supplier_agent_shipping
-        if(pddOrder.getShipType() == 1){
-            for (ErpOrderItem it: items) {
-                // 添加Erp_order_item
-                erpOrderMapper.insertErpOrderItem(it);
-                ScmSupplierAgentShipping agentShipping = new ScmSupplierAgentShipping();
-                agentShipping.setShopId(original.getShopId());
-                agentShipping.setShopType(5L);
-                agentShipping.setSupplierId(it.getSupplierId().longValue());
-                agentShipping.setOrderNum(original.getOrderSn());
-                agentShipping.setErpOrderId(so.getId());
-                agentShipping.setErpOrderItemId(it.getId());
-                try {
-                    agentShipping.setOrderDate(original.getCreatedTime());
-                }catch (Exception e){}
-
-                agentShipping.setGoodsId(it.getGoodsId());
-                agentShipping.setSpecId(it.getSpecId());
-                agentShipping.setGoodsTitle(it.getGoodsTitle());
-                agentShipping.setGoodsImg(it.getGoodsImg());
-                agentShipping.setGoodsNum(it.getGoodsNum());
-                agentShipping.setGoodsSpec(it.getGoodsSpec());
-                agentShipping.setSpecNum(it.getSpecNum());
-                agentShipping.setGoodsPrice(it.getGoodsPurPrice());
-                agentShipping.setQuantity(it.getQuantity().longValue());
-                agentShipping.setItemAmount(it.getItemAmount());
-                agentShipping.setStatus(0L);
-                agentShipping.setCreateTime(new Date());
-                agentShipping.setCreateBy(pddOrder.getUpdateBy());
-
-                agentShippingMapper.insertScmSupplierAgentShipping(agentShipping);
-            }
-        }else {
-            // 仓库发货
-            for (ErpOrderItem it: items) {
-                erpOrderMapper.insertErpOrderItem(it);
-
-                WmsOrderShipping shipping = new WmsOrderShipping();
-                shipping.setShopId(original.getShopId());
-                shipping.setShopType(5L);
-                shipping.setOrderNum(original.getOrderSn());
-                shipping.setErpOrderId(so.getId());
-                shipping.setErpOrderItemId(it.getId());
-                try {
-                    shipping.setOrderDate(original.getCreatedTime());
-                }catch (Exception e){}
-                shipping.setGoodsId(it.getGoodsId());
-                shipping.setSpecId(it.getSpecId());
-                shipping.setGoodsTitle(it.getGoodsTitle());
-                shipping.setGoodsImg(it.getGoodsImg());
-                shipping.setGoodsNum(it.getGoodsNum());
-                shipping.setGoodsSpec(it.getGoodsSpec());
-                shipping.setSpecNum(it.getSpecNum());
-                shipping.setQuantity(it.getQuantity().longValue());
-                shipping.setStatus(0L);
-                shipping.setCreateTime(new Date());
-                shipping.setCreateBy(pddOrder.getUpdateBy());
-                orderShippingMapper.insertWmsOrderShipping(shipping);
-            }
-        }
-        //更新自己
 
         //更新自己
         PddOrder po =new PddOrder();

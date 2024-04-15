@@ -54,11 +54,11 @@ public class FmsReceivableOrder extends BaseEntity
 
     /** 单价 */
     @Excel(name = "单价")
-    private BigDecimal price;
+    private Double price;
 
     /** 应收金额 */
     @Excel(name = "应收金额")
-    private BigDecimal amount;
+    private Double amount;
 
     /** 数量 */
     @Excel(name = "数量")
@@ -157,21 +157,21 @@ public class FmsReceivableOrder extends BaseEntity
     {
         return specName;
     }
-    public void setPrice(BigDecimal price) 
+    public void setPrice(Double price)
     {
         this.price = price;
     }
 
-    public BigDecimal getPrice() 
+    public Double getPrice()
     {
         return price;
     }
-    public void setAmount(BigDecimal amount) 
+    public void setAmount(Double amount)
     {
         this.amount = amount;
     }
 
-    public BigDecimal getAmount() 
+    public Double getAmount()
     {
         return amount;
     }

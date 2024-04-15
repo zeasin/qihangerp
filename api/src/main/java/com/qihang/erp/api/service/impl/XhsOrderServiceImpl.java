@@ -33,11 +33,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
     private GoodsMapper goodsMapper;
     @Autowired
     private GoodsSpecMapper goodsSpecMapper;
-    @Autowired
-    private ScmSupplierAgentShippingMapper agentShippingMapper;
 
-    @Autowired
-    private WmsOrderShippingMapper orderShippingMapper;
     /**
      * 查询小红书订单
      * 
@@ -190,6 +186,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
 
             ErpOrderItem item = new ErpOrderItem();
             item.setOrderId(so.getId());
+            item.setOrderNum(original.getOrderId());
             item.setOrderItemNum(i.getId()+"");
             item.setSupplierId(goods.getSupplierId().intValue());
             item.setGoodsId(spec.getGoodsId());
@@ -199,9 +196,9 @@ public class XhsOrderServiceImpl implements IXhsOrderService
             item.setGoodsNum(i.getErpCode());
             item.setSpecNum(i.getItemSpecCode());
             item.setGoodsSpec(i.getItemSpec());
-            item.setGoodsPrice(i.getPrice());
-            item.setGoodsPurPrice(spec.getPurPrice());
-            item.setItemAmount(BigDecimal.valueOf(i.getTotalPaidAmount()));
+            item.setGoodsPrice(i.getPrice().doubleValue());
+//            item.setGoodsPurPrice(spec.getPurPrice());
+            item.setItemAmount(i.getTotalPaidAmount().doubleValue() / 100);
             item.setQuantity(i.getQuantity().intValue());
             item.setIsGift(i.getItemTag().intValue());
             item.setRefundCount(0);
@@ -221,6 +218,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
 
                 ErpOrderItem item = new ErpOrderItem();
                 item.setOrderId(so.getId());
+                item.setOrderNum(original.getOrderId());
                 item.setOrderItemNum(original.getOrderId()+"_");
                 item.setSupplierId(goods.getSupplierId().intValue());
                 item.setGoodsId(spec.getGoodsId());
@@ -230,9 +228,9 @@ public class XhsOrderServiceImpl implements IXhsOrderService
                 item.setGoodsNum(i.getErpCode());
                 item.setSpecNum(i.getItemSpecCode());
                 item.setGoodsSpec(i.getItemSpec());
-                item.setGoodsPrice(i.getPrice());
-                item.setGoodsPurPrice(spec.getPurPrice());
-                item.setItemAmount(BigDecimal.valueOf(i.getItemAmount()));
+                item.setGoodsPrice(i.getPrice().doubleValue());
+//                item.setGoodsPurPrice(spec.getPurPrice());
+                item.setItemAmount(i.getItemAmount().doubleValue() / 100);
                 item.setQuantity(i.getQuantity().intValue());
                 item.setIsGift(1);
                 item.setRefundCount(0);
@@ -243,68 +241,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
             }
         }
 //        erpOrderMapper.batchErpOrderItem(items);
-        // 新增代发表
-        if(bo.getShipType() == 1){
-            for (ErpOrderItem it: items) {
-                // 添加Erp_order_item
-                erpOrderMapper.insertErpOrderItem(it);
-                ScmSupplierAgentShipping agentShipping = new ScmSupplierAgentShipping();
-                agentShipping.setShopId(original.getShopId());
-                agentShipping.setShopType(6L);
-                agentShipping.setSupplierId(it.getSupplierId().longValue());
-                agentShipping.setOrderNum(original.getOrderId());
-//                agentShipping.setOrderItemId(it.getId().toString());
-                agentShipping.setErpOrderId(so.getId());
-                agentShipping.setErpOrderItemId(it.getId());
-                try {
-                    agentShipping.setOrderDate(new Date(original.getOrderCreatedTime()));
-                }catch (Exception e){}
 
-                agentShipping.setGoodsId(it.getGoodsId());
-                agentShipping.setSpecId(it.getSpecId());
-                agentShipping.setGoodsTitle(it.getGoodsTitle());
-                agentShipping.setGoodsImg(it.getGoodsImg());
-                agentShipping.setGoodsNum(it.getGoodsNum());
-                agentShipping.setGoodsSpec(it.getGoodsSpec());
-                agentShipping.setSpecNum(it.getSpecNum());
-                agentShipping.setGoodsPrice(it.getGoodsPurPrice());
-                agentShipping.setQuantity(it.getQuantity().longValue());
-                agentShipping.setItemAmount(it.getItemAmount());
-                agentShipping.setStatus(0L);
-                agentShipping.setCreateTime(new Date());
-                agentShipping.setCreateBy(bo.getUpdateBy());
-
-                agentShippingMapper.insertScmSupplierAgentShipping(agentShipping);
-            }
-        }else {
-            // 仓库发货
-            for (ErpOrderItem it: items) {
-                erpOrderMapper.insertErpOrderItem(it);
-
-                WmsOrderShipping shipping = new WmsOrderShipping();
-                shipping.setShopId(original.getShopId());
-                shipping.setShopType(6L);
-                shipping.setOrderNum(original.getOrderId());
-                shipping.setErpOrderId(so.getId());
-                shipping.setErpOrderItemId(it.getId());
-//                shipping.setOrderItemId(it.getId().toString());
-                try {
-                    shipping.setOrderDate(new Date(original.getOrderCreatedTime()));
-                }catch (Exception e){}
-                shipping.setGoodsId(it.getGoodsId());
-                shipping.setSpecId(it.getSpecId());
-                shipping.setGoodsTitle(it.getGoodsTitle());
-                shipping.setGoodsImg(it.getGoodsImg());
-                shipping.setGoodsNum(it.getGoodsNum());
-                shipping.setGoodsSpec(it.getGoodsSpec());
-                shipping.setSpecNum(it.getSpecNum());
-                shipping.setQuantity(it.getQuantity().longValue());
-                shipping.setStatus(0L);
-                shipping.setCreateTime(new Date());
-                shipping.setCreateBy(bo.getUpdateBy());
-                orderShippingMapper.insertWmsOrderShipping(shipping);
-            }
-        }
         //更新自己
         XhsOrder up =new XhsOrder();
         up.setId(original.getId());
