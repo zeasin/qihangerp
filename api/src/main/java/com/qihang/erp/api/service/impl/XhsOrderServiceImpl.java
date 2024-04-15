@@ -153,9 +153,9 @@ public class XhsOrderServiceImpl implements IXhsOrderService
         so.setOrderStatus(1);
         BigDecimal shipFee = BigDecimal.valueOf(original.getTotalShippingFree()).divide(BigDecimal.valueOf(100));
         BigDecimal payAmount = BigDecimal.valueOf(original.getTotalPayAmount()).divide(BigDecimal.valueOf(100));
-        so.setGoodsAmount(payAmount.subtract(shipFee));
+        so.setGoodsAmount(payAmount.subtract(shipFee).doubleValue());
         so.setDiscountAmount(BigDecimal.ZERO);
-        so.setAmount(payAmount);
+        so.setAmount(payAmount.doubleValue());
         so.setPostage(shipFee);
         try {
             so.setPayTime(new Date(original.getOrderPaidTime()));

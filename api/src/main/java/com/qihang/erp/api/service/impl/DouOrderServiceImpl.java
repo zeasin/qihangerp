@@ -127,9 +127,9 @@ public class DouOrderServiceImpl implements IDouOrderService
         so.setTag("");
         so.setRefundStatus(1);
         so.setOrderStatus(1);
-        so.setGoodsAmount(original.getOrderTotalAmount().subtract(original.getShopCouponAmount()).subtract(original.getCouponAmount()));
+        so.setGoodsAmount(original.getOrderTotalAmount().subtract(original.getShopCouponAmount()).subtract(original.getCouponAmount()).doubleValue());
         so.setDiscountAmount(original.getShopCouponAmount().add(original.getCouponAmount()));
-        so.setAmount(original.getOrderTotalAmount().add(original.getPostAmount()));
+        so.setAmount(original.getOrderTotalAmount().add(original.getPostAmount()).doubleValue());
         so.setPostage(original.getPostAmount());
         try {
             so.setPayTime(original.getPayTime());

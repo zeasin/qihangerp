@@ -153,9 +153,9 @@ public class PddOrderServiceImpl implements IPddOrderService
         so.setTag(original.getTag());
         so.setRefundStatus(1);
         so.setOrderStatus(1);
-        so.setGoodsAmount(BigDecimal.valueOf(original.getGoodsAmount()));
+        so.setGoodsAmount(original.getGoodsAmount());
         so.setDiscountAmount(BigDecimal.valueOf(original.getDiscountAmount()));
-        so.setAmount(BigDecimal.valueOf(original.getPayAmount()));
+        so.setAmount(original.getPayAmount());
         so.setPostage(BigDecimal.valueOf(original.getPostage()));
         try {
             //2022-07-17 17:10:57

@@ -63,7 +63,7 @@ public class TaoOrderPullController {
 
         if (shop == null) return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), "参数错误，没有找到店铺");
 
-        if (shop.getType().intValue() != EnumShopType.Tmall.getIndex())
+        if (shop.getType().intValue() != EnumShopType.TAO.getIndex())
             return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), "参数错误，店铺不是淘系店铺");
 
         if(!StringUtils.hasText(shop.getAppkey())) return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), "第三方平台配置错误，没有找到AppKey");

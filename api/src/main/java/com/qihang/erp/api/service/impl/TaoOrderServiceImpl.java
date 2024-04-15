@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.qihang.erp.api.common.EnumResultVo;
+import com.qihang.erp.api.common.EnumShopType;
 import com.qihang.erp.api.common.ResultVo;
 import com.qihang.erp.api.controller.tao.OrderImportItem;
 import com.qihang.erp.api.domain.*;
@@ -139,7 +140,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
         ErpOrder so = new ErpOrder();
         so.setOrderNum(original.getId());
         so.setShopId(original.getShopId().intValue());
-        so.setShopType(4);
+        so.setShopType(EnumShopType.TAO.getIndex());
         so.setRemark(original.getRemark());
         so.setBuyerMemo(original.getBuyerFeedback());
         so.setTag(original.getTag());
@@ -147,9 +148,9 @@ public class TaoOrderServiceImpl implements ITaoOrderService
         so.setOrderStatus(1);
         so.setShipType(taoOrder.getShipType());
 
-        so.setGoodsAmount(original.getTotalAmount().subtract(original.getShippingFee()));
+        so.setGoodsAmount(original.getTotalAmount().subtract(original.getShippingFee()).doubleValue());
         so.setDiscountAmount(original.getDiscountAmount());
-        so.setAmount(original.getTotalAmount());
+        so.setAmount(original.getTotalAmount().doubleValue());
         so.setPostage(original.getShippingFee());
 
         so.setPayTime(original.getPayTime());
@@ -403,7 +404,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
 //                return new ResultVo<>(EnumResultVo.SystemException, "系统异常：" + e.getMessage());
 //            }
 //        }
-        return new ResultVo<>(EnumResultVo.SUCCESS, "SUCCESS");
+        return ResultVo.success();
 //        return new ResultVo<>(EnumResultVo.SUCCESS, "SUCCESS");
     }
 
@@ -503,7 +504,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
         }
 
 
-        return new ResultVo<>(EnumResultVo.SUCCESS);
+        return ResultVo.success();
     }
 
     /**

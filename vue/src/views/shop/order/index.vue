@@ -4,11 +4,17 @@
       <el-tab-pane label="淘宝天猫" name="taoOrder">
         <order-tao></order-tao>
       </el-tab-pane>
-      <el-tab-pane label="抖店" name="douOrder" lazy>
-        <order-dou></order-dou>
+      <el-tab-pane label="京东" name="jdOrder" lazy>
+        <order-jd></order-jd>
       </el-tab-pane>
       <el-tab-pane label="拼多多" name="pddOrder" lazy>
         <order-pdd></order-pdd>
+      </el-tab-pane>
+      <el-tab-pane label="抖店" name="douOrder" lazy>
+        <order-dou></order-dou>
+      </el-tab-pane>
+      <el-tab-pane label="视频号" name="weiOrder" lazy>
+        <order-wei></order-wei>
       </el-tab-pane>
     </el-tabs>
 
@@ -19,9 +25,11 @@
 import OrderTao  from "@/views/tao/order/index";
 import OrderDou  from "@/views/dou/order/index";
 import OrderPdd  from "@/views/pdd/order/index";
+import OrderJd  from "@/views/jd/order/index";
+import OrderWei  from "@/views/wei/order/index";
 export default {
   name: "Order",
-  components:{OrderTao,OrderDou,OrderPdd},
+  components:{OrderTao,OrderDou,OrderPdd,OrderJd,OrderWei},
   data() {
     return {
       activeName: 'taoOrder'

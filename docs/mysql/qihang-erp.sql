@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 15/04/2024 14:53:33
+ Date: 15/04/2024 18:00:55
 */
 
 SET NAMES utf8mb4;
@@ -2873,6 +2873,7 @@ CREATE TABLE `erp_order`  (
   `province` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '省',
   `city` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '市',
   `town` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '区',
+  `order_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
   `pay_time` datetime(0) DEFAULT NULL COMMENT '支付时间',
   `confirm_time` datetime(0) DEFAULT NULL COMMENT '订单确认时间',
   `ship_type` int(0) NOT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
@@ -2897,9 +2898,9 @@ CREATE TABLE `erp_order`  (
 -- ----------------------------
 -- Records of erp_order
 -- ----------------------------
-INSERT INTO `erp_order` VALUES (15, '1631273557325601885', 4, 6, NULL, NULL, NULL, 1, 2, 28.9, 0, 0, 28.9, '王淑芳', '18704389133', '吉林吉林省松原市扶余市 三井子镇 里', '中国', '吉林', '', '', '2022-07-31 18:14:00', '2024-01-16 13:44:26', 0, NULL, NULL, NULL, NULL, NULL, '2024-01-16 13:44:26', 'admin', '2024-01-16 14:52:43', 'admin', 0, 0, 0, NULL);
-INSERT INTO `erp_order` VALUES (16, '1642473483353670599', 4, 6, NULL, NULL, NULL, 1, 3, 29.92, 0, 0, 29.92, '戴志兰', '17321293202', '上海上海 上海市 徐汇区 天平路街道 建国西路382号三楼4室 ', '中国', '上海', '', '', '2022-08-13 19:09:13', '2024-01-16 15:04:52', 0, '2024-01-16 15:42:53', 'CN2210003552', '菜鸟速递', '启航', 3.00, '2024-01-16 15:04:52', 'admin', '2024-01-16 15:42:53', 'admin', 20, 56, 19, 409);
-INSERT INTO `erp_order` VALUES (17, '1635222253871665598', 4, 6, NULL, NULL, NULL, 1, 1, 29.92, 0, 0, 29.92, '小红', '15635244122', '上海上海 上海市 徐汇区 华泾镇 华发路368弄 馨宁公寓馨宁公寓368弄23号楼1501', '中国', '上海', '', '', '2022-08-05 18:48:51', '2024-01-28 19:55:37', 1, NULL, NULL, NULL, NULL, NULL, '2024-01-28 19:55:37', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_order` VALUES (15, '1631273557325601885', 4, 6, NULL, NULL, NULL, 1, 2, 28.9, 0, 0, 28.9, '王淑芳', '18704389133', '吉林吉林省松原市扶余市 三井子镇 里', '中国', '吉林', '', '', NULL, '2022-07-31 18:14:00', '2024-01-16 13:44:26', 0, NULL, NULL, NULL, NULL, NULL, '2024-01-16 13:44:26', 'admin', '2024-01-16 14:52:43', 'admin', 0, 0, 0, NULL);
+INSERT INTO `erp_order` VALUES (16, '1642473483353670599', 4, 6, NULL, NULL, NULL, 1, 3, 29.92, 0, 0, 29.92, '戴志兰', '17321293202', '上海上海 上海市 徐汇区 天平路街道 建国西路382号三楼4室 ', '中国', '上海', '', '', NULL, '2022-08-13 19:09:13', '2024-01-16 15:04:52', 0, '2024-01-16 15:42:53', 'CN2210003552', '菜鸟速递', '启航', 3.00, '2024-01-16 15:04:52', 'admin', '2024-01-16 15:42:53', 'admin', 20, 56, 19, 409);
+INSERT INTO `erp_order` VALUES (17, '1635222253871665598', 4, 6, NULL, NULL, NULL, 1, 1, 29.92, 0, 0, 29.92, '小红', '15635244122', '上海上海 上海市 徐汇区 华泾镇 华发路368弄 馨宁公寓馨宁公寓368弄23号楼1501', '中国', '上海', '', '', NULL, '2022-08-05 18:48:51', '2024-01-28 19:55:37', 1, NULL, NULL, NULL, NULL, NULL, '2024-01-28 19:55:37', 'admin', NULL, NULL, 0, 0, 0, NULL);
 
 -- ----------------------------
 -- Table structure for erp_order_item
@@ -4572,6 +4573,8 @@ CREATE TABLE `s_shop`  (
 -- Records of s_shop
 -- ----------------------------
 INSERT INTO `s_shop` VALUES (1, '其他渠道', NULL, NULL, NULL, 99, NULL, 9, 0, 0, 1704416716, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `s_shop` VALUES (2, '视频号店铺-测试', '拼多多-梦小妮', 'wei', '煜梦服饰', 2, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `s_shop` VALUES (3, '测试京东', '拼多多-梦小妮', 'jd', '煜梦服饰', 3, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `s_shop` VALUES (5, '梦小妮潮流女装', '拼多多-梦小妮', 'pdd', '煜梦服饰', 5, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `s_shop` VALUES (6, '梦小妮牛仔裤', '淘宝-梦小妮', 'taobao', '煜梦服饰', 4, '', 98, 0, 1, 0, '', 2200787809358, '0', '610140071d1070a37cecea89f1c1f3d6e5d19bf4b58dd942200787809358', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', NULL, NULL, NULL, NULL, 'http://gw.api.taobao.com/router/rest');
 INSERT INTO `s_shop` VALUES (13, '梦小妮牛仔裤-快手', '快手小店', 'kuaishou', '华衣云商', 13, NULL, 9, 1, 0, 0, NULL, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -7044,7 +7047,7 @@ CREATE TABLE `s_shop_setting`  (
 -- Records of s_shop_setting
 -- ----------------------------
 INSERT INTO `s_shop_setting` VALUES (1, '1688', '9380846', 'MJC3doohMxCG', '1dc697c1955f4b75a96fe309b8d7bba8e6c98843', 86392, 1620181504, '445767c1a15e469c922d81734e132caa10af7626', 0, 1620181504, '1688开放平台', NULL, NULL);
-INSERT INTO `s_shop_setting` VALUES (2, '有赞', '', '', NULL, NULL, NULL, NULL, NULL, 1573610045, NULL, NULL, NULL);
+INSERT INTO `s_shop_setting` VALUES (2, '视频号', ' ', ' ', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
 INSERT INTO `s_shop_setting` VALUES (3, '京东', '', '', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
 INSERT INTO `s_shop_setting` VALUES (4, '淘系', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', '6100b26a3d196c826e10f06b9e1eb74dcf1256fd4618dc82206529834322', NULL, NULL, NULL, NULL, 1573610045, '淘宝开放平台', 'http://gw.api.taobao.com/router/rest', NULL);
 INSERT INTO `s_shop_setting` VALUES (5, '拼多多', 'dc953bcf16d24b27abf3e64a59e1ecd1', 'de296599e194a08cbfbb2b3b340e11fec7a1bacc', '58647a23b96640e3b29596fb621e57ecbe4d80cc', 86394, 1625123356, '97f019f9be134bb49d3a8e53b9ac496ff18f4bcd', 0, 1625123356, '拼多多开放平台', NULL, '593374804');
@@ -8764,6 +8767,9 @@ INSERT INTO `sys_logininfor` VALUES (65, 'admin', '127.0.0.1', '内网IP', 'Chro
 INSERT INTO `sys_logininfor` VALUES (66, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 14:21:53');
 INSERT INTO `sys_logininfor` VALUES (67, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 14:42:49');
 INSERT INTO `sys_logininfor` VALUES (68, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 14:50:04');
+INSERT INTO `sys_logininfor` VALUES (69, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 16:03:39');
+INSERT INTO `sys_logininfor` VALUES (70, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 16:16:24');
+INSERT INTO `sys_logininfor` VALUES (71, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 17:52:21');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -8868,11 +8874,7 @@ INSERT INTO `sys_menu` VALUES (2030, '手动创建订单', 5, 1, 'order/create',
 INSERT INTO `sys_menu` VALUES (2032, 'API拉取订单', 5, 3, 'order/pull', 'shop/order/pull', '', 1, 0, 'M', '0', '1', '', 'upload', 'admin', '2023-12-31 20:04:12', 'admin', '2024-01-01 14:34:22.157829', '');
 INSERT INTO `sys_menu` VALUES (2033, '订单查询', 5, 1, 'order/list', 'sale/order/index', '', 1, 0, 'C', '0', '0', '', 'list', 'admin', '2023-12-31 20:05:05', 'admin', '2024-03-24 19:32:00', '');
 INSERT INTO `sys_menu` VALUES (2036, '网店订单导入', 5, 2, 'shop_order', 'shop/order/index', '', 1, 0, 'C', '0', '0', '', 'excel', 'admin', '2024-01-01 14:14:42', 'admin', '2024-03-24 20:35:32', '');
-INSERT INTO `sys_menu` VALUES (2037, '多多订单', 2036, 2, 'pdd', 'pdd/order', '', 1, 0, 'C', '0', '0', '', 'button', 'admin', '2024-01-01 14:15:28', 'admin', '2024-01-05 18:45:37', '');
 INSERT INTO `sys_menu` VALUES (2038, '拼多多订单拉取', 2032, 0, 'pdd', '', '', 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-01 14:20:19', '', '', '');
-INSERT INTO `sys_menu` VALUES (2039, '抖店订单', 2036, 3, 'dou', 'dou/order', '', 1, 0, 'C', '0', '0', '', 'cascader', 'admin', '2024-01-01 14:35:27', 'admin', '2024-01-05 18:45:29', '');
-INSERT INTO `sys_menu` VALUES (2040, '淘宝订单', 2036, 1, 'tao', 'tao/order', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-02 13:54:15', 'admin', '2024-01-05 17:43:20', '');
-INSERT INTO `sys_menu` VALUES (2043, '小红书', 2036, 4, 'xhs', 'xhs/order', NULL, 1, 0, 'C', '0', '1', '', 'color', 'admin', '2024-01-02 18:53:14', 'admin', '2024-01-13 10:27:50', '');
 INSERT INTO `sys_menu` VALUES (2046, '出库管理', 9, 5, 'stockOut', 'wms/stockOutEntry', NULL, 1, 0, 'C', '0', '0', '', 'link', 'admin', '2024-01-03 11:00:53', 'admin', '2024-01-12 15:52:19', '');
 INSERT INTO `sys_menu` VALUES (2047, '库存查询', 9, 6, 'goodsInventory', 'goods/goodsInventory', NULL, 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2024-01-03 11:01:14', 'admin', '2024-01-09 17:55:33', '');
 INSERT INTO `sys_menu` VALUES (2048, '库存盘点', 9, 9, 'pan', NULL, NULL, 1, 0, 'C', '0', '1', '', 'bug', 'admin', '2024-01-03 11:01:43', 'admin', '2024-01-09 19:57:08', '');
@@ -9028,6 +9030,10 @@ INSERT INTO `sys_oper_log` VALUES (263, '菜单管理', 1, 'com.qihang.erp.api.c
 INSERT INTO `sys_oper_log` VALUES (264, '菜单管理', 1, 'com.qihang.erp.api.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"afterSale/shipAgain\",\"createBy\":\"admin\",\"icon\":\"checkbox\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"订单补发管理\",\"menuType\":\"C\",\"orderNum\":6,\"params\":{},\"parentId\":7,\"path\":\"order_ship_again\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 14:26:30', 8);
 INSERT INTO `sys_oper_log` VALUES (265, '菜单管理', 1, 'com.qihang.erp.api.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shop/index\",\"createBy\":\"admin\",\"icon\":\"shopping\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"店铺商品管理\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":8,\"path\":\"goods_list\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 14:52:16', 106);
 INSERT INTO `sys_oper_log` VALUES (266, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shop/goods/\",\"createTime\":\"2024-04-15 14:52:16\",\"icon\":\"shopping\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2084,\"menuName\":\"店铺商品管理\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":8,\"path\":\"goods_list\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 14:52:27', 24);
+INSERT INTO `sys_oper_log` VALUES (267, '菜单管理', 3, 'com.qihang.erp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2043', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 16:04:48', 23);
+INSERT INTO `sys_oper_log` VALUES (268, '菜单管理', 3, 'com.qihang.erp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2039', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 16:04:52', 16);
+INSERT INTO `sys_oper_log` VALUES (269, '菜单管理', 3, 'com.qihang.erp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2037', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 16:04:56', 7);
+INSERT INTO `sys_oper_log` VALUES (270, '菜单管理', 3, 'com.qihang.erp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2040', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 16:05:00', 9);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -9215,7 +9221,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-15 14:50:05', 'admin', '2023-08-07 19:31:37', '', '2024-04-15 14:50:04', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-15 17:52:22', 'admin', '2023-08-07 19:31:37', '', '2024-04-15 17:52:21', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 
 -- ----------------------------
@@ -9249,6 +9255,227 @@ CREATE TABLE `sys_user_role`  (
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES (1, 1);
 INSERT INTO `sys_user_role` VALUES (2, 2);
+
+-- ----------------------------
+-- Table structure for wei_goods
+-- ----------------------------
+DROP TABLE IF EXISTS `wei_goods`;
+CREATE TABLE `wei_goods`  (
+  `id` bigint(0) NOT NULL,
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '平台商品id',
+  `out_product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商家编码id',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品标题',
+  `sub_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `head_imgs` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '主图集合',
+  `head_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '第一张主图',
+  `desc_info` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品详情字符串',
+  `attrs` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性字符串',
+  `status` int(0) DEFAULT NULL COMMENT '状态',
+  `edit_status` int(0) DEFAULT NULL COMMENT '编辑状态',
+  `min_price` int(0) DEFAULT NULL COMMENT '商品 SKU 最小价格（单位：分）',
+  `spu_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品编码',
+  `product_type` int(0) DEFAULT NULL COMMENT '商品类型。1: 小店普通自营商品；2: 福袋抽奖商品；3: 直播间闪电购商品。注意: 福袋抽奖、直播间闪电购类型的商品为只读数据，不支持编辑、上架操作，不支持用data_type=2的参数获取。',
+  `edit_time` int(0) DEFAULT NULL COMMENT '商品草稿最近一次修改时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wei_goods
+-- ----------------------------
+INSERT INTO `wei_goods` VALUES (1773592665390514178, 6, NULL, NULL, '2024春季农家燕麦麸皮 高纤高蛋白营养 500g/罐', NULL, '[\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HARN-Ewu9KkyLbQ-i1dzG59Ipxaw0KClDQNn3hhHkA\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HNTp4qhlDC5kLroYp101uOiUKRsRT80lqEgjTh9CTg\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HNgPr5tM10t4f0CYz_N2Rnm0uIqlA29Cn3jv9Sb6Bw\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HHOtQob6n82y6ijcRwWQCvjaAKNu8ZolouugfAKNTg\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HLKaJe2eR_YipU8DX4LRyzyNm60j2T2APKqvvYamoA\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HBFvYUZTgdpcakf6aeSqe-cd-rJOHvN_MUD92oO1rA\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HP84p2a6MjxCbuEdefZWkUpbZKBA8co8_6B_w5LOjQ\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HD4wfyh4AFwMJkwsV3zgzVtOZnD50fhW3ixMzUaN_w\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HGrC9ZiOuk9MKbnJBowwWNVBZ9uUjg_STZzXNzy8PQ\"]', 'https://mmecimage.cn/p/wx2b826d52663c3ac5/HARN-Ewu9KkyLbQ-i1dzG59Ipxaw0KClDQNn3hhHkA', '{\"imgs\":[\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HIGYaktEgmvz24ajkAAJhH6uDC-osnqovWosa9-gWQ\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HNEZI4nbU-Qg9_XXRyBMl1cFbpND5wyrivAE0W9pvg\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HLaoM9JsWEDaLK42wKhlM15ku7ETEh0-eiqCtiOFUA\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HDOIzQv4eyOCdJfqieclsx6KFEQcIxEawnNA5aUIkg\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HGGR-iLCrzMW6SDIwvjqXrKtslGvRqM0k-89VekSgw\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HDsg1cgCeLjvTQ4RmcTrMuO7_Bykmeq1rRL8kPvADw\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HIEQxLpTnn0YZIPkwZ_jAhxECgkhM95APxAfLyfeyw\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HMRpnoTmc64dZpoJSIDSNidgYL5yX_B6s0zofo2dhA\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HERmb7JpfCsBcIk1EKo8pg_wX9FbQny-0MsVBPGBgQ\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HEf7XxCWlxOPXxUtH0GhT4EVbCrDXu-6nzJheY_v2w\"],\"desc\":\"\"}', '[{\"attr_key\":\"品牌\",\"attr_value\":\"麦趣丰\"},{\"attr_key\":\"生产企业名称\",\"attr_value\":\"山东维美食品有限公司\"},{\"attr_key\":\"配料表\",\"attr_value\":\"燕麦\"},{\"attr_key\":\"保质期\",\"attr_value\":\"240 天\"},{\"attr_key\":\"净含量\",\"attr_value\":\"500 g\"}]', 5, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `wei_goods` VALUES (1773592726853844994, 6, NULL, NULL, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓茶330g*罐', NULL, '[\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HOHUsPL5lXYMi6uiTIqNoTN7aVVLFstOylGkv2Rupg\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HCgV2IEsYtkzBdKOSWF5UChZ6lzW8n4o-jvtK7jrGQ\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HCsvjx2CqjmYumW4sW335BuS5FZtwC6ctueDYc9J9A\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HFn92-3enHPQ_DFgNDPDqlg9gUxHt14JavVGhMx_Jg\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HMP2oduzl5c8wFyoZDHTMguBi2vMrxRX3kucG1IENQ\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HHbxEwPTrADwThr_5f3BUuthfqOPZdjHR3NDUA7pFA\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HPhYUEDpnVO1jiGSHHmagyQOIdPYpau2oyjXZz7eyg\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HEavquNbjGtBOK9pSfKiN7_IRQQZIXBuQqp5-NqnOA\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HDmtDkNUi_aTtPbCeRPuECHm4d8u5IGw8i6-wRXnMQ\"]', 'https://mmecimage.cn/p/wx2b826d52663c3ac5/HOHUsPL5lXYMi6uiTIqNoTN7aVVLFstOylGkv2Rupg', '{\"imgs\":[\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HCHck7lcuqJ-0jBEa4uLrpE4bpuR3276H5mG6r8YVA\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HBCUz-BSyK8uE8kjyVFUN_E3Y1rYVS5sQ4gZpNud3g\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HLDZzs9U0mZ1o90Ao3_fbVx92Be6qmDx4_0hOmLNKg\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HN8FBEj5-OB9ikg2_BGssLp0o2FOfQmFCIyLOj-q-Q\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HCzULR3SSfXACWAffBG77GQYx4lDkzqBkm2fcPOuqg\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HCjS8dONFVTAukX0-_q5-cozvhQzbYUwp3iBieGvrw\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HDLWNouDSg64CY_SmSVHH92_B9FVNk82Mdh0UujfaQ\",\"https://mmecimage.cn/p/wx2b826d52663c3ac5/HJZ9uhZ-R90QOp9nD7oIl_Ru61tDzm-SgdtbSvl2kw\"],\"desc\":\"\"}', '[{\"attr_key\":\"品牌\",\"attr_value\":\"泷御堂\"},{\"attr_key\":\"生产企业名称\",\"attr_value\":\"安徽意茗堂生物科技有限公司\"},{\"attr_key\":\"配料表\",\"attr_value\":\"赤小豆、慧米、芡实、茯苓\"},{\"attr_key\":\"保质期\",\"attr_value\":\"12 月\"},{\"attr_key\":\"净含量\",\"attr_value\":\"330 g\"}]', 5, NULL, NULL, NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for wei_goods_sku
+-- ----------------------------
+DROP TABLE IF EXISTS `wei_goods_sku`;
+CREATE TABLE `wei_goods_sku`  (
+  `id` bigint(0) NOT NULL,
+  `wei_goods_id` bigint(0) DEFAULT NULL COMMENT '外键id',
+  `sku_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'skuID',
+  `out_sku_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商家自定义skuID。如果添加时没录入，回包可能不包含该字段',
+  `thumb_img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku小图',
+  `sale_price` int(0) DEFAULT NULL COMMENT '售卖价格，以分为单位',
+  `stock_num` int(0) DEFAULT NULL COMMENT 'sku库存',
+  `sku_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku编码',
+  `status` int(0) DEFAULT NULL COMMENT 'sku状态',
+  `sku_attrs` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku_attrs',
+  `sku_deliver_info` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku_deliver_info',
+  `erp_goods_id` bigint(0) DEFAULT NULL COMMENT 'erp系统商品id',
+  `erp_goods_sku_id` bigint(0) DEFAULT NULL COMMENT 'erp系统商品skuid',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wei_goods_sku
+-- ----------------------------
+INSERT INTO `wei_goods_sku` VALUES (1773592677457526786, 1773592665390514178, NULL, NULL, NULL, NULL, NULL, NULL, 5, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4斤\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', '{\"stock_type\":0,\"full_payment_presale_delivery_type\":0,\"presale_begin_time\":0,\"presale_end_time\":0,\"full_payment_presale_delivery_time\":0}', NULL, NULL);
+INSERT INTO `wei_goods_sku` VALUES (1773592726975479809, 1773592726853844994, NULL, NULL, NULL, NULL, NULL, NULL, 5, '[{\"attr_key\":\"净含量\",\"attr_value\":\"4罐99.9【平均24.9/罐】(97%人选择)1个周期\"}]', '{\"stock_type\":0,\"full_payment_presale_delivery_type\":0,\"presale_begin_time\":0,\"presale_end_time\":0,\"full_payment_presale_delivery_time\":0}', NULL, NULL);
+INSERT INTO `wei_goods_sku` VALUES (1773592727050977281, 1773592726853844994, NULL, NULL, NULL, NULL, NULL, NULL, 5, '[{\"attr_key\":\"净含量\",\"attr_value\":\"3罐89.9【平均29/罐】(50%人选择)\"}]', '{\"stock_type\":0,\"full_payment_presale_delivery_type\":0,\"presale_begin_time\":0,\"presale_end_time\":0,\"full_payment_presale_delivery_time\":0}', NULL, NULL);
+INSERT INTO `wei_goods_sku` VALUES (1773592727147446274, 1773592726853844994, NULL, NULL, NULL, NULL, NULL, NULL, 5, '[{\"attr_key\":\"净含量\",\"attr_value\":\"2罐69.9【平均34.5/罐】(35%人选择)\"}]', '{\"stock_type\":0,\"full_payment_presale_delivery_type\":0,\"presale_begin_time\":0,\"presale_end_time\":0,\"full_payment_presale_delivery_time\":0}', NULL, NULL);
+INSERT INTO `wei_goods_sku` VALUES (1773592727227138049, 1773592726853844994, NULL, NULL, NULL, NULL, NULL, NULL, 5, '[{\"attr_key\":\"净含量\",\"attr_value\":\"1罐体验装【贵在运费】(5%人选择)\"}]', '{\"stock_type\":0,\"full_payment_presale_delivery_type\":0,\"presale_begin_time\":0,\"presale_end_time\":0,\"full_payment_presale_delivery_time\":0}', NULL, NULL);
+
+-- ----------------------------
+-- Table structure for wei_order
+-- ----------------------------
+DROP TABLE IF EXISTS `wei_order`;
+CREATE TABLE `wei_order`  (
+  `id` bigint(0) NOT NULL,
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单号',
+  `openid` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家身份标识',
+  `create_time` int(0) DEFAULT NULL COMMENT '秒级时间戳',
+  `update_time` int(0) DEFAULT NULL COMMENT '秒级时间戳',
+  `unionid` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` int(0) DEFAULT NULL COMMENT '状态10	待付款；20	待发货；21	部分发货；30	待收货；100	完成；200	全部商品售后之后，订单取消；250	未付款用户主动取消或超时未付款订单自动取消；',
+  `aftersale_detail` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '售后信息json',
+  `pay_info` varchar(5500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '支付信息json',
+  `product_price` int(0) DEFAULT NULL COMMENT '商品总价，单位为分',
+  `order_price` int(0) DEFAULT NULL COMMENT '订单金额，单位为分，order_price=original_order_price-discounted_price-deduction_price-change_down_price',
+  `freight` int(0) DEFAULT NULL COMMENT '运费，单位为分',
+  `discounted_price` int(0) DEFAULT NULL COMMENT '优惠券优惠金额，单位为分',
+  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收货人姓名',
+  `postal_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '邮编',
+  `province_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '省份',
+  `city_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '城市',
+  `county_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '区',
+  `detail_info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '详细地址',
+  `tel_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '联系方式\r\n',
+  `house_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '门牌号码',
+  `virtual_order_tel_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '虚拟发货订单联系方式(deliver_method=1时返回)',
+  `tel_number_ext_info` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '额外的联系方式信息（虚拟号码相关）',
+  `use_tel_number` int(0) DEFAULT NULL COMMENT '0：不使用虚拟号码，1：使用虚拟号码',
+  `hash_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '标识当前店铺下一个唯一的用户收货地址',
+  `delivery_product_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '发货物流信息JSON',
+  `ship_done_time` int(0) DEFAULT NULL COMMENT '发货完成时间，秒级时间戳',
+  `ewaybill_order_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '电子面单代发时的订单密文\r\n',
+  `settle_info` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '结算信息json',
+  `confirm_status` int(0) DEFAULT 0 COMMENT '订单确认状态（0未确认1已确认）',
+  `confirm_time` datetime(0) DEFAULT NULL COMMENT '确认时间',
+  `erp_send_status` int(0) DEFAULT NULL COMMENT 'erp发货状态',
+  `erp_send_time` datetime(0) DEFAULT NULL COMMENT 'ERP发货时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wei_order
+-- ----------------------------
+INSERT INTO `wei_order` VALUES (1773651199826300930, 2, '3718590468852683008', 'oAv1969ctu4B_MrW17zk7JChQrBA', 1710907087, 1711280945, NULL, 100, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20115809263560bdc3bda251ae3eee0000\",\"prepay_time\":1710907089,\"pay_time\":1710907097,\"transaction_id\":\"4332301095202403202057439992\"}', 9990, 9990, 0, NULL, '张**', '156400', '黑龙江省', '佳木斯市', '同江市', '****', '139****1755', '', '', 'null', 0, '60e36c9691eef079a45fb629c78b88ef', '[{\"waybill_id\":\"312317650762748\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710921324,\"deliver_type\":1}]', 1710921324, 'ofeIxD4qpxEIdkUmusYuJAvWi-H4cgngomdmkZ5Dt41LPpun-Yf2ROm0cO8Adz5_jsw4DNRn5D_w', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651201164283905, 2, '3718590165614464000', 'oAv196-Xw4whjGQr4GF2D1lUS0vw', 1710905931, 1711510929, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx201138523358325a5c59a03b72a8900000\",\"prepay_time\":1710905932,\"pay_time\":1710905946,\"transaction_id\":\"4348501112202403200062879930\"}', 9990, 9990, 0, NULL, '风**', '541004', '广西壮族自治区', '桂林市', '七星区', '****', '189****5671', '', '', 'null', 0, 'd1d18fd116ecbfb5a084db703652bbf2', '[{\"waybill_id\":\"312317507518865\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710906129,\"deliver_type\":1}]', 1710906129, 'ofBnDflYHmXX3vPIhJblDq6wq4O4z3OggOGTJljLlnEM4YzvNVPTX7AR3q2zz48dbs46F9oNaN0w', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651202531627010, 2, '3718589880635884800', 'oAv196_dDA-D0ZAJYtZxZ5Tsq-pw', 1710904844, 1711510862, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20112045176075a813e14d5103ac360000\",\"prepay_time\":1710904845,\"pay_time\":1710904852,\"transaction_id\":\"4337401091202403206248549568\"}', 9990, 9990, 0, NULL, '周**', '516400', '广东省', '汕尾市', '海丰县', '****', '139****2585', '', '', 'null', 0, 'da3bf96aca5d34d9e3ec017711621933', '[{\"waybill_id\":\"73610448785703\",\"delivery_id\":\"ZTO\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"中通快递\",\"delivery_time\":1710906061,\"deliver_type\":1}]', 1710906061, 'of0P-Z4yhGNWPrBNEo7_lsU1SmlDdPtKsnOLMhXG4APpvl-4yPjGXI4THGYDUF5Jr6e9tF4Jmc_Q', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651203651506177, 2, '3718589605759552512', 'oAv1963oP6e80PmR0O3WFwVsMjgI', 1710903795, 1711510789, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20110316854964035140248b3568880000\",\"prepay_time\":1710903797,\"pay_time\":1710903805,\"transaction_id\":\"4323001101202403206838631886\"}', 9990, 9990, 0, NULL, '杨**', '523000', '广东省', '东莞市', '南城街道', '****', '131****9856', '', '', 'null', 0, 'd840df43d3db15177add62845ef6f4d9', '[{\"waybill_id\":\"312317506583169\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofkbBWSIJgWEGlEETB2I9eyh57RBtnEfsgSR8mezOEF4mS7XdSOVT-IsKy5N5D6qUAMSAR0TKkJA', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651204742025218, 2, '3718589592043128064', 'oAv196_qiMGLFlRYUrVporaKPzLo', 1710903743, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx201102245184580c3862e9bad7827c0000\",\"prepay_time\":1710903744,\"pay_time\":1710903759,\"transaction_id\":\"4302201086202403208840994399\"}', 9990, 9990, 0, NULL, '李', '200135', '上海市', '上海市', '浦东新区', '****', '151****0907', '', '', 'null', 0, '8f7bbb970f4b8135917c7ab8ad604f09', '[{\"waybill_id\":\"312317506512381\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'of4-1Cwj9aGErR9HppkMCnNgRPGDuMXKVe6Z-gm5_ccKqVhIdVeETP5aUPvneZGeUQyn1Jk9SH8g', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651205966761986, 2, '3718589309525299200', 'oAv1969jKGQpCmYc1SSbPMuWLXUc', 1710902665, 1711510789, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20104426595065d78a9492c283f27a0000\",\"prepay_time\":1710902666,\"pay_time\":1710902672,\"transaction_id\":\"4347100965202403202814722381\"}', 9990, 9990, 0, NULL, '王*', '201900', '上海市', '上海市', '宝山区', '****', '139****3668', '', '', 'null', 0, '4570669245c3fe8bd0e0b173d2bf4810', '[{\"waybill_id\":\"312317506523860\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofJ8FkFDNTi0o-2Kza85q3-jQ6A_Kl_QJk7XYZja1tgNFz2Vl3cEhVNiDo4-5DouC1K-eunIllMA', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651207095029762, 2, '3718589294961886464', 'oAv196y7xzoB4jtnMbZ_8_m2jeOY', 1710902609, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20104331088708d417c64b1b0184960000\",\"prepay_time\":1710902611,\"pay_time\":1710902620,\"transaction_id\":\"4346701109202403209988609214\"}', 9990, 9990, 0, NULL, '李**', '200050', '上海市', '上海市', '长宁区', '****', '181****9671', '', '', 'null', 0, 'a2615ec5565c3e3d407e45d1ea7f5f2a', '[{\"waybill_id\":\"312317506578945\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'of0ByBqSq6e3Ye3a1bma4KP4uiKBfRZ_n_lhkvLJDpslARp1Vx3oXm9cOLmrQ94ZZCvSkM0qZ8Dg', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651208210714625, 2, '3718589016159424768', 'oAv19634S2V5xCQ1zC9CK3OfyfiQ', 1710901546, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20102547465198d959aca9d05bf4d90000\",\"prepay_time\":1710901547,\"pay_time\":1710901554,\"transaction_id\":\"4342301109202403207545671962\"}', 9990, 9990, 0, NULL, '卢**', '530012', '广西壮族自治区', '南宁市', '兴宁区', '****', '138****5202', '', '13877165202', 'null', 0, '9a9334f61deee413c7579cc7797dfe76', '[{\"waybill_id\":\"312317506455252\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofZdjluGp7LFmJA9HxxGsqcgcHySzhWQ1yw76nuvkZcS4NZeQKds94thoZQ0C1oOoJMwkQNAb0xw', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651209330593793, 2, '3718588644526002432', 'oAv196_7aFUZPJalgmLxL_iWw804', 1710900128, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20100209893206a12375aa409b48bb0000\",\"prepay_time\":1710900130,\"pay_time\":1710900140,\"transaction_id\":\"4341200952202403200383974611\"}', 9990, 9990, 0, NULL, '马**', '101100', '北京市', '北京市', '通州区', '****', '183****6247', '', '', 'null', 0, '1b704e24c12cf7062ee5736e7551429a', '[{\"waybill_id\":\"312317506509480\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofLFnCZuN2by9AcKov46K5tJm1_mG0bBQbXQ-_cUpATAtdYqQOtzeRBYQ04D_HDZy2hxy0QD5PzA', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651210421112833, 2, '3718588590994097408', 'oAv196zhzMf97Ba2R8xdQ0QZxnKs', 1710899924, 1710900826, NULL, 250, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"prepay_id\":\"up_wx20095845672477c9ce9c4315ec892c0000\",\"prepay_time\":1710899925}', 9990, 9990, 0, NULL, '幸*', '543200', '广西壮族自治区', '梧州市', '岑溪市', '****', '182****6206', '', '', 'null', 0, 'd839bebe74d2c0f69bb659ed50726e11', '[]', 0, 'ofRpFXMXe91gV1dn-cpRjsVM35DtD8SKNaIGhmSGSi-GtHwBkt6aIV87SGxa-3CEfaVc1JKUTevA', '{\"predict_commission_fee\":0}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651211620683777, 2, '3718588208610936064', 'oAv196xSiMAiXvclFVbm3uQtFiMk', 1710898465, 1711510861, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx200934271410802829cd13e6d377c20000\",\"prepay_time\":1710898467,\"pay_time\":1710898475,\"transaction_id\":\"4305500964202403207977225252\"}', 9990, 9990, 0, NULL, '王**', '361001', '福建省', '厦门市', '思明区', '****', '137****5379', '', '', 'null', 0, '5391edd5cb004407c49340082782bdfa', '[{\"waybill_id\":\"73610448785566\",\"delivery_id\":\"ZTO\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"中通快递\",\"delivery_time\":1710906061,\"deliver_type\":1}]', 1710906061, 'of9UExPPPXndZlepNABvZdWT2c8mlrxKRiYI22tfavxYnl_FlimXLP4T7mBcNYEeixdBBISBdGJA', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651212686036993, 2, '3718588207135065344', 'oAv1965NJAgLllnVsL1sqtLu_eYc', 1710898460, 1710899360, NULL, 250, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"prepay_id\":\"up_wx20093421419085b90d7f5497a5e3170000\",\"prepay_time\":1710898461}', 9990, 9990, 0, NULL, '冯**', '563000', '贵州省', '遵义市', '红花岗区', '****', '156****2268', '', '15608522268', 'null', 0, 'b89011e707f7538071a8f39c5364f380', '[]', 0, 'ofwqKwLKOxvcPzpqCQ0Bt00U8Z8fiSQk-G6KM2AO7ml5VFXvDhNsb52AWxYQ_h0WDwhpzPsJG9Og', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651213822693377, 2, '3718587822346996736', 'oAv196wFsnkezeypRf0egcDMGiWM', 1710896992, 1710898600, NULL, 200, '{\"aftersale_order_list\":[{\"aftersale_order_id\":\"2000000376158056\",\"status\":13}],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20090953417027afb2603f0b09c7fb0000\",\"prepay_time\":1710896993,\"pay_time\":1710897001,\"transaction_id\":\"4331701107202403200001411174\"}', 9990, 9990, 0, NULL, '赵**', '100010', '北京市', '北京市', '东城区', '****', '134****1877', '', '', 'null', 0, '05bae94246e4ad5e05f1cfb5cfcdabd6', '[]', 0, 'ofIj04A4BImnu3akL1Jq5Web4yULuKS6G3O91u5HVEj62aCmbPEpFgwhM0JWXapPCi-jgV9-49ng', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651214942572545, 2, '3718587815659965440', 'oAv196291g5xNrw1spVQpjXhoXg0', 1710896966, 1710897868, NULL, 250, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"prepay_id\":\"up_wx20090927863922d6ba03e28352d80e0000\",\"prepay_time\":1710896968}', 9990, 9990, 0, NULL, '崔*', '445300', '湖北省', '恩施土家族苗族自治州', '建始县', '****', '133****5865', '', '', 'null', 0, '43d9d5270bc81462f94547083e6f1ecd', '[]', 0, 'of_9-SntfOwUc_ivgA-GyQxaNuCyBtJSWOEwvNsWZSdxOnC58AZV7y9mVgCoK8eEJKepOGwg5ciQ', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651216016314369, 2, '3718587814527504384', 'oAv1965374koR_XZBopbQIgbwvYg', 1710896962, 1711161629, NULL, 100, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20090923692523ec3d6e1ed350c68a0000\",\"prepay_time\":1710896963,\"pay_time\":1710896972,\"transaction_id\":\"4317200957202403206956316633\"}', 9990, 9990, 0, NULL, '王**', '100020', '北京市', '北京市', '朝阳区', '****', '136****6620', '', '', 'null', 0, 'abed73df538b1b73d8e60a3bd15836c8', '[{\"waybill_id\":\"312317506527084\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'of31XR_nQ-ipiULDnExMHqt2Nm3TWsinqzjDYw60zSAnM361_3JAI6V_i6wFGe0T2GfbyDES4h8A', '{\"predict_commission_fee\":99}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651217362685954, 2, '3718587810203962368', 'oAv196z-7_wGiRBgD8b1Ob3LTuSQ', 1710896946, 1711510789, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx200909072119543b9b208278195da40000\",\"prepay_time\":1710896947,\"pay_time\":1710896954,\"transaction_id\":\"4313501099202403202886208440\"}', 9990, 9990, 0, NULL, '忻*', '550001', '贵州省', '贵阳市', '云岩区', '****', '139****5732', '', '', 'null', 0, '1e90e5b3739a2e46587e0de50ed28879', '[{\"waybill_id\":\"312317506456736\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofbNlHM1Uwy9tTtGAuieftzGiYjpBfQGsnHGNYyTMfcPSQ0oJvdf5-iqL2-4iK_-xoxbWgc8UqOA', '{\"predict_commission_fee\":99}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651218482565122, 2, '3718587809541260800', 'oAv1960PTbIGg1azMM97-Yb1BILM', 1710896943, 1711692550, NULL, 200, '{\"aftersale_order_list\":[{\"aftersale_order_id\":\"2000000387777830\",\"status\":14}],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx200909048136598e32c836acdd7fce0000\",\"prepay_time\":1710896945,\"pay_time\":1710896952,\"transaction_id\":\"4326500957202403203893580121\"}', 9990, 9990, 0, NULL, '耿*', '100071', '北京市', '北京市', '丰台区', '****', '136****6190', '', '', 'null', 0, '72ef646c988a5284a2790d3aa2477dad', '[{\"waybill_id\":\"312317506638952\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofFXYhtxh8BiP2LmchmbuhbYisvOgAgOUryV0F15xG8o0SIp1NITD4vbSATpaoRhYp_trkhgrUaA', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651219539529730, 2, '3718587542502772992', 'oAv196_y-DtYDOLcAI27-wOQyI4M', 1710895924, 1711591705, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20085206263250579fa283be7dc8e20000\",\"prepay_time\":1710895926,\"pay_time\":1710896086,\"transaction_id\":\"4311100949202403208635067416\"}', 990, 990, 0, NULL, '吴*', '215000', '江苏省', '苏州市', '姑苏区', '****', '131****1805', '', '', 'null', 0, '5a32b39d6fe49c2cbbeaa498788c154f', '[{\"waybill_id\":\"318890755728720\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000104315300\",\"sku_id\":\"2086367126\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710986905,\"deliver_type\":1}]', 1710986905, 'ofK-HQreW8UkLCXw-zFmtdIMY8QpqFqK9i923uHIa7txGXok4EeLDgFNn96yGLh8eU2LIIjwikPA', '{\"predict_commission_fee\":9}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651220789432322, 2, '3718587018572858624', 'oAv1962vGm4-XWRG9ma4_S_yCVA4', 1710893926, 1710916555, NULL, 200, '{\"aftersale_order_list\":[{\"aftersale_order_id\":\"2000000376505279\",\"status\":13}],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20081903030176f28c94820f0507750000\",\"prepay_time\":1710893943,\"pay_time\":1710893948,\"transaction_id\":\"4336600964202403204980463253\"}', 109890, 100, 0, NULL, '阿*', '657000', '云南省', '昭通市', '昭阳区', '****', '139****6961', '', '13512120557', 'null', 0, 'd25a0ad0da52d5f279aad62152a4ba53', '[]', 0, 'ofGKBzBVIOKCbWhuAzmzE2XxfAF-E9wkCgc8JxviQzRb4gezkLahY55ckCgjhKu9FMHQRUYMkcIw', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651221888339969, 2, '3718586568279724288', 'oAv1966osuFsbYH6YSExD6uKr3WY', 1710892208, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20075009764726ff1a9fc3b58ae4400000\",\"prepay_time\":1710892209,\"pay_time\":1710892227,\"transaction_id\":\"4335800950202403200637254989\"}', 9990, 9990, 0, NULL, '王**', '475000', '河南省', '开封市', '禹王台区', '****', '152****2706', '', '', 'null', 0, '4f1ffa0a6c31d9bebc1c30440544d7b2', '[{\"waybill_id\":\"312317506457252\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofmS5hUKMgVF7Htd3qfQ3G_wXgz3x-C2R6n6BUinYFVeKjBZ2guWU1YHcAVbKnzinff0FerdU79Q', '{\"predict_commission_fee\":99}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651223045967873, 2, '3718586550340945408', 'oAv1964cOETzaRR_Swm2LXxmBypY', 1710892139, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx2007490139983219e20e83520865070000\",\"prepay_time\":1710892141,\"pay_time\":1710892148,\"transaction_id\":\"4307200968202403207539523408\"}', 9990, 9990, 0, NULL, '张*', '231500', '安徽省', '合肥市', '庐江县', '****', '153****8788', '', '', 'null', 0, '934fd91e344f6a1bf99e1c3105dd6344', '[{\"waybill_id\":\"312317506455345\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'of1oLHaoKiJqqNvZ2oAdPPFO_ABYUwSB-yoigQlISLILJx6x_DXmqhSCux2OTZ_-frSVwyHgfqoQ', '{\"predict_commission_fee\":99}', 1, '2024-04-12 14:41:11', NULL, NULL);
+
+-- ----------------------------
+-- Table structure for wei_order_item
+-- ----------------------------
+DROP TABLE IF EXISTS `wei_order_item`;
+CREATE TABLE `wei_order_item`  (
+  `id` bigint(0) NOT NULL,
+  `wei_order_id` bigint(0) DEFAULT NULL COMMENT '外键id',
+  `product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品spuid',
+  `sku_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品skuid\r\n',
+  `thumb_img` varchar(550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku小图',
+  `sku_cnt` int(0) DEFAULT NULL COMMENT 'sku数量',
+  `sale_price` int(0) DEFAULT NULL COMMENT '售卖单价（单位：分）',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品标题',
+  `on_aftersale_sku_cnt` int(0) DEFAULT NULL COMMENT '正在售后/退款流程中的 sku 数量',
+  `finish_aftersale_sku_cnt` int(0) DEFAULT NULL COMMENT '完成售后/退款的 sku 数量',
+  `sku_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品编码',
+  `market_price` int(0) DEFAULT NULL COMMENT '市场单价（单位：分）',
+  `sku_attrs` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku属性JSON',
+  `real_price` int(0) DEFAULT NULL COMMENT 'sku实付总价，取estimate_price和change_price中较小值',
+  `out_product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品外部spuid',
+  `out_sku_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品外部skuid',
+  `is_discounted` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '是否有优惠金额，非必填，默认为false',
+  `estimate_price` int(0) DEFAULT NULL COMMENT '优惠后sku总价，非必填，is_discounted为true时有值',
+  `is_change_price` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '是否修改过价格，非必填，默认为false',
+  `change_price` int(0) DEFAULT NULL COMMENT '改价后sku总价，非必填，is_change_price为true时有值',
+  `out_warehouse_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '区域库存id',
+  `sku_deliver_info` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品发货信息JSON',
+  `extra_service` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品额外服务信息JSON',
+  `use_deduction` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '是否使用了会员积分抵扣\r\n',
+  `deduction_price` int(0) DEFAULT NULL COMMENT '会员积分抵扣金额，单位为分',
+  `order_product_coupon_info_list` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品优惠券信息，逐步替换 order.order_detail.coupon_info',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wei_order_item
+-- ----------------------------
+INSERT INTO `wei_order_item` VALUES (1773651199977295874, 1773651199826300930, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651201202032641, 1773651201164283905, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651202577764353, 1773651202531627010, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651203689254913, 1773651203651506177, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651204817522690, 1773651204742025218, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651206088396801, 1773651205966761986, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651207124389889, 1773651207095029762, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651208265240577, 1773651208210714625, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651209368342530, 1773651209330593793, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651210479833090, 1773651210421112833, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651211645849602, 1773651211620683777, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651212711202818, 1773651212686036993, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651213856247809, 1773651213822693377, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 1, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651214967738370, 1773651214942572545, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651216045674498, 1773651216016314369, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651217396240385, 1773651217362685954, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651218511925250, 1773651218482565122, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 1, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651219568889858, 1773651219539529730, '10000104315300', '2086367126', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f292760001000d22cbd8f9727c0d15000000a000004f50', 1, 990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓茶330g*罐', 0, 0, '', 990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"1罐体验装【贵在运费】(5%人选择)\"}]', 990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651220827181058, 1773651220789432322, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 11, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 11, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 100, NULL, NULL, 'null', NULL, 'true', 100, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651221921894401, 1773651221888339969, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+INSERT INTO `wei_order_item` VALUES (1773651223083716609, 1773651223045967873, '10000103058379', '2069165392', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', 1, 9990, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 0, 0, '', 9990, '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', 9990, NULL, NULL, 'null', NULL, 'null', NULL, '', '{\"stock_type\":0}', '{\"seven_day_return\":1,\"freight_insurance\":1}', 'null', NULL, '[]');
+
+-- ----------------------------
+-- Table structure for wei_refund
+-- ----------------------------
+DROP TABLE IF EXISTS `wei_refund`;
+CREATE TABLE `wei_refund`  (
+  `id` bigint(0) NOT NULL,
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `after_sale_order_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '售后单号',
+  `status` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '售后单当前状态，参考：AfterSaleStatus',
+  `openid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家身份标识',
+  `unionid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家在开放平台的唯一标识符，若当前视频号小店已绑定到微信开放平台账号下会返回',
+  `product_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品spuid',
+  `sku_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品skuid',
+  `count` int(0) DEFAULT NULL COMMENT '售后数量',
+  `fast_refund` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '是否极速退款RefundInfo',
+  `refund_reason` int(0) DEFAULT NULL COMMENT '标明售后单退款直接原因, 枚举值参考 RefundReason',
+  `refund_amount` int(0) DEFAULT NULL COMMENT '退款金额（分）',
+  `return_waybill_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递单号',
+  `return_delivery_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司id',
+  `return_delivery_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司名称',
+  `merchant_upload_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '售后相关商品信息JSON',
+  `create_time` int(0) DEFAULT NULL COMMENT '售后单创建时间戳',
+  `update_time` int(0) DEFAULT NULL COMMENT '售后单更新时间戳',
+  `reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退款原因',
+  `reason_text` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退款原因解释',
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '售后类型。REFUND:退款；RETURN:退货退款。',
+  `order_id` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单号，该字段可用于获取订单',
+  `details` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT 'detail json',
+  `complaint_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '纠纷id，该字段可用于获取纠纷信息',
+  `refund_resp` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '微信支付退款的响应',
+  `confirm_status` int(0) DEFAULT NULL COMMENT '确认状态9退货已签收8已拦截',
+  `confirm_time` datetime(0) DEFAULT NULL COMMENT '确认时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '视频号小店退款' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_goods_bad_stock

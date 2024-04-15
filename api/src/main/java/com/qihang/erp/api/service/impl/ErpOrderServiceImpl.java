@@ -92,7 +92,7 @@ public class ErpOrderServiceImpl implements IErpOrderService
         if(erpOrder.getDiscountAmount() == null) erpOrder.setDiscountAmount(BigDecimal.ZERO);
 
         // 实际金额 = 商品金额 - 折扣金额 + 运费
-        erpOrder.setAmount(erpOrder.getGoodsAmount().subtract(erpOrder.getDiscountAmount()).add(erpOrder.getPostage()));
+        erpOrder.setAmount(BigDecimal.valueOf( erpOrder.getGoodsAmount()).subtract(erpOrder.getDiscountAmount()).add(erpOrder.getPostage()).doubleValue());
 
 //        if(erpOrder.getPayAmount() == null)shopOrder.setPayAmount(0L);
 //        if(erpOrder.getAuditStatus() == null) shopOrder.setAuditStatus(1L);

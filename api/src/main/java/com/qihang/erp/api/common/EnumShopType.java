@@ -9,19 +9,14 @@ package com.qihang.erp.api.common;
  */
 public enum EnumShopType {
     Ali("阿里1688", 1),
-    YouZan("有赞", 2),
-    TaoBao("淘宝", 3),
-    Tmall("淘系", 4),
+    WEI("视频号", 2),
+    JD("京东", 3),
+    TAO("淘系", 4),
     Pdd("拼多多", 5),
     DouYin("抖音", 6),
-    KuaiShou("快手", 7),
-    ERP("ERP系统", 8),
-    YunGou("华衣云购", 9),
-    QiTa("其他", 10),
-    ZhiBo("直播机构", 11),
-    MoGuJie("蘑菇街", 12),
-    Kwai("快手", 13),
-    Sys("内部系统", 99);
+    XHS("小红书", 7),
+    KWAI("快手", 8),
+    ERP("ERP系统", 99);
 
     private String name;
     private int index;

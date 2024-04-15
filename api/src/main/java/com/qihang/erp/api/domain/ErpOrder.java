@@ -50,7 +50,7 @@ public class ErpOrder extends BaseEntity
 
     /** 商品金额 */
     @Excel(name = "商品金额")
-    private BigDecimal goodsAmount;
+    private Double goodsAmount;
 
     /** 折扣金额 */
     @Excel(name = "折扣金额")
@@ -62,7 +62,7 @@ public class ErpOrder extends BaseEntity
 
     /** 支付金额，单位：元，支付金额=商品金额-折扣金额+邮费 */
     @Excel(name = "支付金额，单位：元，支付金额=商品金额-折扣金额+邮费")
-    private BigDecimal amount;
+    private Double amount;
 
     /** 收件人姓名 */
     @Excel(name = "收件人姓名")
@@ -96,6 +96,7 @@ public class ErpOrder extends BaseEntity
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "支付时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date payTime;
+    private Date orderTime;
 
     /** 订单确认时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -263,12 +264,12 @@ public class ErpOrder extends BaseEntity
     {
         return orderStatus;
     }
-    public void setGoodsAmount(BigDecimal goodsAmount) 
+    public void setGoodsAmount(Double goodsAmount)
     {
         this.goodsAmount = goodsAmount;
     }
 
-    public BigDecimal getGoodsAmount() 
+    public Double getGoodsAmount()
     {
         return goodsAmount;
     }
@@ -290,12 +291,12 @@ public class ErpOrder extends BaseEntity
     {
         return postage;
     }
-    public void setAmount(BigDecimal amount) 
+    public void setAmount(Double amount)
     {
         this.amount = amount;
     }
 
-    public BigDecimal getAmount() 
+    public Double getAmount()
     {
         return amount;
     }
@@ -418,4 +419,11 @@ public class ErpOrder extends BaseEntity
         this.itemList = itemList;
     }
 
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
 }
