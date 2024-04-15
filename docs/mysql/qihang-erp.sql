@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 15/04/2024 14:47:27
+ Date: 15/04/2024 14:53:33
 */
 
 SET NAMES utf8mb4;
@@ -8763,6 +8763,7 @@ INSERT INTO `sys_logininfor` VALUES (64, 'admin', '127.0.0.1', '内网IP', 'Chro
 INSERT INTO `sys_logininfor` VALUES (65, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 14:21:06');
 INSERT INTO `sys_logininfor` VALUES (66, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 14:21:53');
 INSERT INTO `sys_logininfor` VALUES (67, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 14:42:49');
+INSERT INTO `sys_logininfor` VALUES (68, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 14:50:04');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -8892,6 +8893,7 @@ INSERT INTO `sys_menu` VALUES (2080, '订单拦截管理', 7, 3, 'order_intercep
 INSERT INTO `sys_menu` VALUES (2081, '订单退货管理', 7, 4, 'order_returned', 'afterSale/returned', NULL, 1, 0, 'C', '0', '0', NULL, 'select', 'admin', '2024-04-15 14:24:38', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2082, '订单换货管理', 7, 5, 'order_exchange', 'afterSale/exchange', NULL, 1, 0, 'C', '0', '0', NULL, 'example', 'admin', '2024-04-15 14:25:37', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (2083, '订单补发管理', 7, 6, 'order_ship_again', 'afterSale/shipAgain', NULL, 1, 0, 'C', '0', '0', NULL, 'checkbox', 'admin', '2024-04-15 14:26:30', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (2084, '店铺商品管理', 8, 1, 'goods_list', 'shop/goods/', NULL, 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2024-04-15 14:52:16', 'admin', '2024-04-15 14:52:27', '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -9024,6 +9026,8 @@ INSERT INTO `sys_oper_log` VALUES (261, '菜单管理', 1, 'com.qihang.erp.api.c
 INSERT INTO `sys_oper_log` VALUES (262, '菜单管理', 1, 'com.qihang.erp.api.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"afterSale/returned\",\"createBy\":\"admin\",\"icon\":\"select\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"订单退货管理\",\"menuType\":\"C\",\"orderNum\":4,\"params\":{},\"parentId\":7,\"path\":\"order_returned\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 14:24:38', 15);
 INSERT INTO `sys_oper_log` VALUES (263, '菜单管理', 1, 'com.qihang.erp.api.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"afterSale/exchange\",\"createBy\":\"admin\",\"icon\":\"example\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"订单换货管理\",\"menuType\":\"C\",\"orderNum\":5,\"params\":{},\"parentId\":7,\"path\":\"order_exchange\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 14:25:37', 9);
 INSERT INTO `sys_oper_log` VALUES (264, '菜单管理', 1, 'com.qihang.erp.api.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"afterSale/shipAgain\",\"createBy\":\"admin\",\"icon\":\"checkbox\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"订单补发管理\",\"menuType\":\"C\",\"orderNum\":6,\"params\":{},\"parentId\":7,\"path\":\"order_ship_again\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 14:26:30', 8);
+INSERT INTO `sys_oper_log` VALUES (265, '菜单管理', 1, 'com.qihang.erp.api.controller.system.SysMenuController.add()', 'POST', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shop/index\",\"createBy\":\"admin\",\"icon\":\"shopping\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"店铺商品管理\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":8,\"path\":\"goods_list\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 14:52:16', 106);
+INSERT INTO `sys_oper_log` VALUES (266, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shop/goods/\",\"createTime\":\"2024-04-15 14:52:16\",\"icon\":\"shopping\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2084,\"menuName\":\"店铺商品管理\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":8,\"path\":\"goods_list\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 14:52:27', 24);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -9211,7 +9215,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-15 14:42:49', 'admin', '2023-08-07 19:31:37', '', '2024-04-15 14:42:49', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-15 14:50:05', 'admin', '2023-08-07 19:31:37', '', '2024-04-15 14:50:04', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 
 -- ----------------------------
