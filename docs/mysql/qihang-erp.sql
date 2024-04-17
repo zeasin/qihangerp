@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 15/04/2024 19:09:58
+ Date: 17/04/2024 14:14:46
 */
 
 SET NAMES utf8mb4;
@@ -127,7 +127,7 @@ CREATE TABLE `erp_goods`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `number`(`number`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品库存管理' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 74 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品库存管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods
@@ -488,7 +488,7 @@ CREATE TABLE `erp_goods_inventory`  (
   `updateBy` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `specIdIndex`(`specId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_inventory
@@ -515,7 +515,7 @@ CREATE TABLE `erp_goods_inventory_detail`  (
   `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `createBy` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '创建人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存明细表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_inventory_detail
@@ -1889,7 +1889,7 @@ CREATE TABLE `erp_goods_spec_attr`  (
   `v` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `img` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 603 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 602 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_spec_attr
@@ -2695,7 +2695,7 @@ CREATE TABLE `fms_payable_agent_ship`  (
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应付款-代发账单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应付款-代发账单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fms_payable_agent_ship
@@ -2722,7 +2722,7 @@ CREATE TABLE `fms_payable_purchase`  (
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应付款-采购货款' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应付款-采购货款' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fms_payable_purchase
@@ -8048,7 +8048,7 @@ CREATE TABLE `scm_purchase_order_cost`  (
 -- ----------------------------
 -- Records of scm_purchase_order_cost
 -- ----------------------------
-INSERT INTO `scm_purchase_order_cost` VALUES (466, 190.00, '2024-01-16', 'PUR20240116144408', 1, 1, 10, 190.00, 0.00, '启航', '2024-01-16 14:44:30', 'admin', 0.00, NULL, 0, NULL, 0, NULL, NULL);
+INSERT INTO `scm_purchase_order_cost` VALUES (466, 190.00, '2024-01-16', 'PUR20240116144408', 1, 1, 10, 190.00, 0.00, '启航', '2024-01-16 00:00:00', 'admin', 190.00, NULL, 0, NULL, 0, 'admin', '2024-04-17 14:02:43');
 
 -- ----------------------------
 -- Table structure for scm_purchase_order_item
@@ -8086,7 +8086,7 @@ CREATE TABLE `scm_purchase_order_item`  (
   INDEX `transType`(`transType`) USING BTREE,
   INDEX `iid`(`order_id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1964 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购订单明细' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1963 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购订单明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_purchase_order_item
@@ -8164,13 +8164,10 @@ CREATE TABLE `scm_supplier`  (
 INSERT INTO `scm_supplier` VALUES (1, '自营仓库', 'A0001', 0, 0, 0, 0, NULL, '', '', NULL, '15000000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:02');
 INSERT INTO `scm_supplier` VALUES (13, '可可家一号店', '6972501884875', 0, 0, 0, 0, NULL, '', '', NULL, '15815252000', NULL, NULL, NULL, NULL, '', 1, 1, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (14, '衫人家', '6972501884876', 0, 0, 0, 0, NULL, '', '', NULL, '15815252000', NULL, NULL, NULL, NULL, '', 1, 1, NULL, '2023-12-29 11:01:03');
-INSERT INTO `scm_supplier` VALUES (15, '依依', 'ZB001', 0, 0, 0, 0, NULL, '', '', NULL, '13000000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (16, '念念', 'ZB002', 0, 0, 0, 0, NULL, '', '', NULL, '13000000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (17, '华衣服饰', 'ZB003', 0, 0, 0, 0, NULL, '', '', NULL, '13000000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (18, '小颖家', 'ZB004', 0, 0, 0, 0, NULL, '', '', NULL, '13000000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (19, '森庄农品旗舰店', 'TM-SZNPQJD', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 1, 1, NULL, '2023-12-29 11:01:03');
-INSERT INTO `scm_supplier` VALUES (20, '小仙', 'XFZ001', 0, 0, 0, 0, NULL, '', '', NULL, '18516258530', '上海', '上海市', '松江区', '上海市松江区中山街道松江万达广场一号楼417', '', 0, 0, NULL, '2023-12-29 11:01:03');
-INSERT INTO `scm_supplier` VALUES (21, '岳鑫', '', 0, 0, 0, 0, NULL, '', '', NULL, '15081033273', '河北省', '邯郸市', '黄粱梦镇', '河北省 邯郸市 丛台区 黄粱梦镇黄粱梦村', '', 0, 0, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (22, '三夫食品专营店', 'SFSP', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 1, 1, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (23, '安琪酵母旗舰店', 'ANQIJM', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 1, 1, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (24, '慈溪市观海卫滕洋电器厂', '1688', 0, 0, 0, 0, NULL, '', '', NULL, '13000001111', NULL, NULL, NULL, NULL, '', 1, 1, NULL, '2023-12-29 11:01:03');
@@ -8179,10 +8176,8 @@ INSERT INTO `scm_supplier` VALUES (26, '韩牛服饰', 'HN', 0, 0, 0, 0, NULL, '
 INSERT INTO `scm_supplier` VALUES (27, '深圳市罗湖区晨蝶衣服装厂', 'CDYFZC', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 1, 1, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (28, '广州衣菲妮服装厂', 'YIFEINI', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 1, 1, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (29, '中山欧熙妮服饰有限公司', 'ZSOXNFS', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:03');
-INSERT INTO `scm_supplier` VALUES (30, '零零伊', NULL, 0, 0, 0, 0, NULL, '', '抖音', NULL, 'fsd1027', NULL, NULL, NULL, '', '', 0, 0, NULL, '2023-12-29 11:01:03');
 INSERT INTO `scm_supplier` VALUES (31, '中山市金客隆服饰有限公司', 'JKL', 0, 0, 0, 0, NULL, '', '', NULL, '13600000000', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:04');
-INSERT INTO `scm_supplier` VALUES (32, '广州柚柚子服饰商行', 'GZYYZ', 0, 0, 0, 0, NULL, '', '', NULL, '18557527708', NULL, NULL, NULL, NULL, '', 0, 0, NULL, '2023-12-29 11:01:04');
-INSERT INTO `scm_supplier` VALUES (33, '中山裤豪', 'ZSKH', 0, 0, 0, 0, NULL, '档口微信18928102400陈小姐工厂微信18022115438何超贤 ', '', NULL, '18928102400', NULL, NULL, NULL, '中山市沙溪镇水牛城三区二楼35-38卡', '', 0, 0, NULL, '2023-12-29 11:01:04');
+INSERT INTO `scm_supplier` VALUES (33, '中山裤豪', 'ZSKH', 0, 0, 0, 0, NULL, '', '', NULL, '', NULL, NULL, NULL, '中山市沙溪镇水牛城三区二楼35-38卡', '', 0, 0, NULL, '2023-12-29 11:01:04');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -8354,7 +8349,7 @@ CREATE TABLE `sys_job`  (
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '备注信息',
   PRIMARY KEY (`job_id`, `job_name`, `job_group`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_job
@@ -8378,7 +8373,7 @@ CREATE TABLE `sys_job_log`  (
   `exception_info` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '异常信息',
   `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_job_log
@@ -8408,7 +8403,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status`) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 61 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -8426,6 +8421,9 @@ INSERT INTO `sys_logininfor` VALUES (68, 'admin', '127.0.0.1', '内网IP', 'Chro
 INSERT INTO `sys_logininfor` VALUES (69, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 16:03:39');
 INSERT INTO `sys_logininfor` VALUES (70, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 16:16:24');
 INSERT INTO `sys_logininfor` VALUES (71, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 17:52:21');
+INSERT INTO `sys_logininfor` VALUES (72, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-15 20:18:39');
+INSERT INTO `sys_logininfor` VALUES (73, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-17 13:28:03');
+INSERT INTO `sys_logininfor` VALUES (74, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-17 13:41:36');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -8452,7 +8450,7 @@ CREATE TABLE `sys_menu`  (
   `update_time` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2080 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2085 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -8515,14 +8513,14 @@ INSERT INTO `sys_menu` VALUES (2005, '供应商管理', 4, 9, 'supplier/list', '
 INSERT INTO `sys_menu` VALUES (2007, '商品管理', 2, 1, 'goods_list', 'goods/index', '', 1, 0, 'C', '0', '0', 'goods:list', 'theme', 'admin', '2023-12-29 13:31:01', 'admin', '2023-12-29 15:02:40.869685', '');
 INSERT INTO `sys_menu` VALUES (2008, '商品分类', 2, 88, 'goods_category', 'goods/category/index', '', 1, 0, 'C', '0', '0', 'goods:category', 'tree-table', 'admin', '2023-12-29 13:32:41', 'admin', '2023-12-29 15:02:22.220534', '');
 INSERT INTO `sys_menu` VALUES (2009, '品牌管理', 2, 99, 'goods/brand', 'goods/brand/index', '', 1, 0, 'C', '0', '1', 'goods:brand', 'clipboard', 'admin', '2023-12-29 13:34:49', 'admin', '2024-04-14 18:51:23', '');
-INSERT INTO `sys_menu` VALUES (2010, '采购订单管理', 4, 1, 'purchase/order', 'scm/purchase/order', '', 1, 0, 'C', '0', '0', 'scm:purchase:order', 'button', 'admin', '2023-12-29 16:35:55', 'admin', '2023-12-29 16:36:57.653118', '');
+INSERT INTO `sys_menu` VALUES (2010, '采购单管理', 4, 1, 'purchase/order', 'scm/purchase/order', '', 1, 0, 'C', '0', '0', 'scm:purchase:order', 'button', 'admin', '2023-12-29 16:35:55', 'admin', '2024-04-17 14:04:21', '');
 INSERT INTO `sys_menu` VALUES (2012, '采购物流管理', 4, 2, 'purchase/ship', 'scm/purchase/ship', '', 1, 0, 'C', '0', '0', 'scm:purchase:ship', 'component', 'admin', '2023-12-29 16:45:42', 'admin', '2024-04-15 10:33:46', '');
 INSERT INTO `sys_menu` VALUES (2015, '店铺管理', 8, 10, 'shop', 'shop/index', '', 1, 0, 'C', '0', '0', 'shop:list', 'example', 'admin', '2023-12-29 16:54:02', 'admin', '2024-04-12 16:46:33', '');
 INSERT INTO `sys_menu` VALUES (2016, '店铺商品管理', 5, 9, 'shop/goods', 'shop/goods', '', 1, 0, 'C', '0', '1', 'shop:goods', 'color', 'admin', '2023-12-29 17:02:42', 'admin', '2024-01-14 14:04:20', '');
 INSERT INTO `sys_menu` VALUES (2017, '店铺数据统计', 5, 8, 'data', 'shop/data', '', 1, 0, 'C', '0', '1', 'shop:data', 'chart', 'admin', '2023-12-29 17:04:08', 'admin', '2023-12-31 19:04:58.785609', '');
-INSERT INTO `sys_menu` VALUES (2019, '采购账单管理', 4, 2, 'purchase', 'scm/purchase/cost', '', 1, 0, 'C', '0', '0', '', 'shopping', 'admin', '2023-12-29 17:09:32', 'admin', '2024-04-15 10:34:51', '');
-INSERT INTO `sys_menu` VALUES (2021, '创建采购订单', 4, 0, 'purchase/order/create', 'scm/purchase/order/create', '', 1, 0, 'C', '1', '0', '', 'edit', 'admin', '2023-12-29 21:23:45', 'admin', '2024-01-06 23:56:06', '');
-INSERT INTO `sys_menu` VALUES (2025, '采购订单详情', 4, 1, 'purchase/order/detail', 'scm/purchase/order/detail', '', 1, 0, 'C', '1', '0', '', 'button', 'admin', '2023-12-30 17:08:01', 'admin', '2023-12-30 17:09:38.154348', '');
+INSERT INTO `sys_menu` VALUES (2019, '采购账单管理', 4, 2, 'purchase', 'scm/purchase/cost', '', 1, 0, 'C', '0', '0', '', 'money', 'admin', '2023-12-29 17:09:32', 'admin', '2024-04-17 14:03:51', '');
+INSERT INTO `sys_menu` VALUES (2021, '创建采购单', 4, 0, 'purchase/order/create', 'scm/purchase/order/create', '', 1, 0, 'C', '1', '0', '', 'edit', 'admin', '2023-12-29 21:23:45', 'admin', '2024-04-17 14:04:15', '');
+INSERT INTO `sys_menu` VALUES (2025, '采购单详情', 4, 1, 'purchase/order/detail', 'scm/purchase/order/detail', '', 1, 0, 'C', '1', '0', '', 'button', 'admin', '2023-12-30 17:08:01', 'admin', '2024-04-17 14:04:28', '');
 INSERT INTO `sys_menu` VALUES (2027, '入库管理', 9, 0, 'stock_in_entry/list', 'wms/stockInEntry', '', 1, 0, 'C', '0', '0', 'wms:stock_in_entry:list', 'stockin', 'admin', '2023-12-31 12:27:37', 'admin', '2024-01-14 15:12:48', '');
 INSERT INTO `sys_menu` VALUES (2028, '生成采购入库单', 4, 3, 'purchase/ship/create_stock_in_entry', 'scm/purchase/ship/create_stock_in_entry', '', 1, 0, 'C', '1', '0', '', 'button', 'admin', '2023-12-31 12:31:32', 'admin', '2023-12-31 12:37:39.956753', '');
 INSERT INTO `sys_menu` VALUES (2029, '店铺售后导入', 7, 2, 'shop_refund', 'shop/refund/index', '', 1, 0, 'C', '0', '0', '', 'clipboard', 'admin', '2023-12-31 17:29:03', 'admin', '2024-03-24 20:29:07', '');
@@ -8537,13 +8535,12 @@ INSERT INTO `sys_menu` VALUES (2048, '库存盘点', 9, 9, 'pan', NULL, NULL, 1,
 INSERT INTO `sys_menu` VALUES (2049, '打包发货', 6, 3, 'shipping', 'wms/orderShipping/shipping', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-03 14:09:18', 'admin', '2024-01-10 09:21:26', '');
 INSERT INTO `sys_menu` VALUES (2051, '物流跟踪', 6, 4, 'logistics', 'wms/orderShipping/logistics', NULL, 1, 0, 'C', '0', '0', '', 'email', 'admin', '2024-01-03 14:13:12', 'admin', '2024-01-12 17:03:49', '');
 INSERT INTO `sys_menu` VALUES (2052, '发货统计', 6, 9, 'statistics', NULL, NULL, 1, 0, 'C', '0', '1', '', '404', 'admin', '2024-01-03 14:14:09', 'admin', '2024-01-12 08:59:52', '');
-INSERT INTO `sys_menu` VALUES (2054, '售后管理', 7, 1, 'refund_list', 'sale/returned', NULL, 1, 0, 'C', '0', '0', '', 'size', 'admin', '2024-01-03 14:24:36', 'admin', '2024-03-24 20:28:24', '');
-INSERT INTO `sys_menu` VALUES (2057, '供应商代发管理', 6, 99, 'supplier/agentShipping', 'scm/agentShipping', NULL, 1, 0, 'C', '0', '0', '', 'clipboard', 'admin', '2024-01-06 23:57:14', 'admin', '2024-03-24 20:30:29', '');
+INSERT INTO `sys_menu` VALUES (2054, '售后处理', 7, 1, 'refund_list', 'sale/returned', NULL, 1, 0, 'C', '0', '0', '', 'size', 'admin', '2024-01-03 14:24:36', 'admin', '2024-04-17 14:14:00', '');
 INSERT INTO `sys_menu` VALUES (2059, '备货清单', 6, 1, 'stocking', 'shipping/stocking/', '', 1, 0, 'C', '0', '0', '', 'component', 'admin', '2024-01-09 11:51:52', 'admin', '2024-04-15 11:40:42', '');
 INSERT INTO `sys_menu` VALUES (2060, '拣货出库', 6, 2, 'stockout', 'wms/orderShipping/stockOut', NULL, 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-09 13:39:00', 'admin', '2024-01-12 15:51:56', '');
 INSERT INTO `sys_menu` VALUES (2061, '库位管理', 9, 99, 'stock_location', 'wms/location', NULL, 1, 0, 'C', '0', '0', '', 'education', 'admin', '2024-01-09 13:54:30', 'admin', '2024-01-09 14:50:33', '');
-INSERT INTO `sys_menu` VALUES (2062, '代发账单', 6, 3, 'agentShip', 'fms/payable/agentShip', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-12 18:35:02', 'admin', '2024-04-15 10:35:27', '');
-INSERT INTO `sys_menu` VALUES (2063, '物流费用', 6, 3, 'shipFee', 'fms/payable/shipFee', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-12 18:35:31', 'admin', '2024-03-24 21:07:53', '');
+INSERT INTO `sys_menu` VALUES (2062, '代发账单', 6, 6, 'agentShip', 'fms/payable/agentShip', NULL, 1, 0, 'C', '0', '0', '', 'money', 'admin', '2024-01-12 18:35:02', 'admin', '2024-04-17 14:13:03', '');
+INSERT INTO `sys_menu` VALUES (2063, '物流费用', 6, 5, 'shipFee', 'fms/payable/shipFee', NULL, 1, 0, 'C', '0', '0', '', 'money', 'admin', '2024-01-12 18:35:31', 'admin', '2024-04-17 14:12:53', '');
 INSERT INTO `sys_menu` VALUES (2066, '添加商品', 2, 2, 'create', 'goods/create', NULL, 1, 0, 'C', '1', '0', '', 'component', 'admin', '2024-01-14 19:42:11', 'admin', '2024-04-14 18:50:36', '');
 INSERT INTO `sys_menu` VALUES (2067, '商品SKU管理', 2, 3, 'spec_list', 'goods/spec', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-16 14:17:39', 'admin', '2024-04-14 18:51:13', '');
 INSERT INTO `sys_menu` VALUES (2079, '平台设置', 8, 20, 'platform', 'shop/platform', NULL, 1, 0, 'C', '0', '0', NULL, 'date-range', 'admin', '2024-04-12 16:58:07', '', NULL, '');
@@ -8603,7 +8600,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type`) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status`) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 255 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 278 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -8690,6 +8687,26 @@ INSERT INTO `sys_oper_log` VALUES (267, '菜单管理', 3, 'com.qihang.erp.api.c
 INSERT INTO `sys_oper_log` VALUES (268, '菜单管理', 3, 'com.qihang.erp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2039', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 16:04:52', 16);
 INSERT INTO `sys_oper_log` VALUES (269, '菜单管理', 3, 'com.qihang.erp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2037', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 16:04:56', 7);
 INSERT INTO `sys_oper_log` VALUES (270, '菜单管理', 3, 'com.qihang.erp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2040', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-15 16:05:00', 9);
+INSERT INTO `sys_oper_log` VALUES (271, '【请填写功能名称】', 3, 'com.qihang.erp.api.controller.ScmSupplierController.remove()', 'DELETE', 1, 'admin', NULL, '/scm/supplier/30', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 13:52:01', 30);
+INSERT INTO `sys_oper_log` VALUES (272, '【请填写功能名称】', 3, 'com.qihang.erp.api.controller.ScmSupplierController.remove()', 'DELETE', 1, 'admin', NULL, '/scm/supplier/15', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 13:52:23', 8);
+INSERT INTO `sys_oper_log` VALUES (273, '【请填写功能名称】', 3, 'com.qihang.erp.api.controller.ScmSupplierController.remove()', 'DELETE', 1, 'admin', NULL, '/scm/supplier/20', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 13:54:30', 45);
+INSERT INTO `sys_oper_log` VALUES (274, '【请填写功能名称】', 3, 'com.qihang.erp.api.controller.ScmSupplierController.remove()', 'DELETE', 1, 'admin', NULL, '/scm/supplier/21', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 13:54:33', 7);
+INSERT INTO `sys_oper_log` VALUES (275, '【请填写功能名称】', 2, 'com.qihang.erp.api.controller.ScmSupplierController.edit()', 'PUT', 1, 'admin', NULL, '/scm/supplier', '127.0.0.1', '内网IP', '{\"address\":\"中山市沙溪镇水牛城三区二楼35-38卡\",\"amount\":0,\"contact\":\"18928102400\",\"createTime\":\"2023-12-29 11:01:04\",\"difMoney\":0,\"disable\":0,\"id\":33,\"isDelete\":0,\"name\":\"中山裤豪\",\"number\":\"ZSKH\",\"params\":{},\"periodMoney\":0,\"pinYin\":\"\",\"place\":\"\",\"remark\":\"\",\"taxRate\":0}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 13:54:53', 45);
+INSERT INTO `sys_oper_log` VALUES (276, '【请填写功能名称】', 2, 'com.qihang.erp.api.controller.ScmSupplierController.edit()', 'PUT', 1, 'admin', NULL, '/scm/supplier', '127.0.0.1', '内网IP', '{\"address\":\"中山市沙溪镇水牛城三区二楼35-38卡\",\"amount\":0,\"contact\":\"\",\"createTime\":\"2023-12-29 11:01:04\",\"difMoney\":0,\"disable\":0,\"id\":33,\"isDelete\":0,\"name\":\"中山裤豪\",\"number\":\"ZSKH\",\"params\":{},\"periodMoney\":0,\"pinYin\":\"\",\"place\":\"\",\"remark\":\"\",\"taxRate\":0}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 13:54:59', 27);
+INSERT INTO `sys_oper_log` VALUES (277, '【请填写功能名称】', 3, 'com.qihang.erp.api.controller.ScmSupplierController.remove()', 'DELETE', 1, 'admin', NULL, '/scm/supplier/32', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 13:55:27', 7);
+INSERT INTO `sys_oper_log` VALUES (278, '采购订单费用确认', 2, 'com.qihang.erp.api.controller.ScmPurchaseOrderCostController.edit()', 'PUT', 1, 'admin', NULL, '/purchase/purchaseOrderCost', '127.0.0.1', '内网IP', '{\"actualAmount\":190,\"confirmTime\":\"2024-01-16\",\"confirmUser\":\"启航\",\"createBy\":\"admin\",\"freight\":0,\"id\":466,\"orderAmount\":190,\"orderDate\":\"2024-01-16\",\"orderGoodsUnit\":1,\"orderNo\":\"PUR20240116144408\",\"orderSpecUnit\":1,\"orderSpecUnitTotal\":10,\"params\":{},\"payAmount\":0,\"payCount\":0,\"status\":0,\"updateBy\":\"admin\",\"updateTime\":\"2024-04-17 14:00:08\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:00:08', 22);
+INSERT INTO `sys_oper_log` VALUES (279, '采购订单费用确认', 2, 'com.qihang.erp.api.controller.ScmPurchaseOrderCostController.edit()', 'PUT', 1, 'admin', NULL, '/purchase/purchaseOrderCost', '127.0.0.1', '内网IP', '{\"actualAmount\":190,\"confirmTime\":\"2024-01-16\",\"confirmUser\":\"启航\",\"createBy\":\"admin\",\"freight\":0,\"id\":466,\"orderAmount\":190,\"orderDate\":\"2024-01-16\",\"orderGoodsUnit\":1,\"orderNo\":\"PUR20240116144408\",\"orderSpecUnit\":1,\"orderSpecUnitTotal\":10,\"params\":{},\"payAmount\":10,\"payCount\":0,\"status\":0,\"updateBy\":\"admin\",\"updateTime\":\"2024-04-17 14:02:31\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:02:31', 10);
+INSERT INTO `sys_oper_log` VALUES (280, '采购订单费用确认', 2, 'com.qihang.erp.api.controller.ScmPurchaseOrderCostController.edit()', 'PUT', 1, 'admin', NULL, '/purchase/purchaseOrderCost', '127.0.0.1', '内网IP', '{\"actualAmount\":190,\"confirmTime\":\"2024-01-16\",\"confirmUser\":\"启航\",\"createBy\":\"admin\",\"freight\":0,\"id\":466,\"orderAmount\":190,\"orderDate\":\"2024-01-16\",\"orderGoodsUnit\":1,\"orderNo\":\"PUR20240116144408\",\"orderSpecUnit\":1,\"orderSpecUnitTotal\":10,\"params\":{},\"payAmount\":190,\"payCount\":0,\"status\":0,\"updateBy\":\"admin\",\"updateTime\":\"2024-04-17 14:02:42\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:02:42', 7);
+INSERT INTO `sys_oper_log` VALUES (281, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"scm/purchase/cost\",\"createTime\":\"2023-12-29 17:09:32\",\"icon\":\"money\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2019,\"menuName\":\"采购账单管理\",\"menuType\":\"C\",\"orderNum\":2,\"params\":{},\"parentId\":4,\"path\":\"purchase\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:03:51', 26);
+INSERT INTO `sys_oper_log` VALUES (282, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"scm/purchase/order/create\",\"createTime\":\"2023-12-29 21:23:45\",\"icon\":\"edit\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2021,\"menuName\":\"创建采购单\",\"menuType\":\"C\",\"orderNum\":0,\"params\":{},\"parentId\":4,\"path\":\"purchase/order/create\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:04:15', 9);
+INSERT INTO `sys_oper_log` VALUES (283, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"scm/purchase/order\",\"createTime\":\"2023-12-29 16:35:55\",\"icon\":\"button\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2010,\"menuName\":\"采购单管理\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":4,\"path\":\"purchase/order\",\"perms\":\"scm:purchase:order\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:04:21', 9);
+INSERT INTO `sys_oper_log` VALUES (284, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"scm/purchase/order/detail\",\"createTime\":\"2023-12-30 17:08:01\",\"icon\":\"button\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2025,\"menuName\":\"采购单详情\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":4,\"path\":\"purchase/order/detail\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"1\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:04:28', 7);
+INSERT INTO `sys_oper_log` VALUES (285, '菜单管理', 3, 'com.qihang.erp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2057', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:10:26', 29);
+INSERT INTO `sys_oper_log` VALUES (286, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"fms/payable/shipFee\",\"createTime\":\"2024-01-12 18:35:31\",\"icon\":\"guide\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2063,\"menuName\":\"物流费用\",\"menuType\":\"C\",\"orderNum\":5,\"params\":{},\"parentId\":6,\"path\":\"shipFee\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:11:14', 15);
+INSERT INTO `sys_oper_log` VALUES (287, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"fms/payable/agentShip\",\"createTime\":\"2024-01-12 18:35:02\",\"icon\":\"theme\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2062,\"menuName\":\"代发账单\",\"menuType\":\"C\",\"orderNum\":6,\"params\":{},\"parentId\":6,\"path\":\"agentShip\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:11:21', 13);
+INSERT INTO `sys_oper_log` VALUES (288, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"fms/payable/shipFee\",\"createTime\":\"2024-01-12 18:35:31\",\"icon\":\"money\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2063,\"menuName\":\"物流费用\",\"menuType\":\"C\",\"orderNum\":5,\"params\":{},\"parentId\":6,\"path\":\"shipFee\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:12:53', 9);
+INSERT INTO `sys_oper_log` VALUES (289, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"fms/payable/agentShip\",\"createTime\":\"2024-01-12 18:35:02\",\"icon\":\"money\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2062,\"menuName\":\"代发账单\",\"menuType\":\"C\",\"orderNum\":6,\"params\":{},\"parentId\":6,\"path\":\"agentShip\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:13:03', 8);
+INSERT INTO `sys_oper_log` VALUES (290, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"sale/returned\",\"createTime\":\"2024-01-03 14:24:36\",\"icon\":\"size\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2054,\"menuName\":\"售后处理\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":7,\"path\":\"refund_list\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:14:00', 7);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -8711,7 +8728,7 @@ CREATE TABLE `sys_oss`  (
   `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '更新者',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`oss_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oss
@@ -8877,7 +8894,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-15 17:52:22', 'admin', '2023-08-07 19:31:37', '', '2024-04-15 17:52:21', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-17 13:41:36', 'admin', '2023-08-07 19:31:37', '', '2024-04-17 13:41:36', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 
 -- ----------------------------
@@ -9154,7 +9171,7 @@ CREATE TABLE `wms_stock_in_entry`  (
   `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '入库单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '入库单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_in_entry
@@ -9192,7 +9209,7 @@ CREATE TABLE `wms_stock_in_entry_item`  (
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `specIndex`(`spec_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '入库单明细' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '入库单明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_in_entry_item
@@ -9272,7 +9289,7 @@ CREATE TABLE `wms_stock_out_entry`  (
   `specUnit` int(0) NOT NULL COMMENT '商品规格数',
   `specUnitTotal` int(0) NOT NULL COMMENT '总件数',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_out_entry
@@ -9300,7 +9317,7 @@ CREATE TABLE `wms_stock_out_entry_item`  (
   `status` int(0) NOT NULL DEFAULT 0 COMMENT '状态：0待出库1部分出库2全部出库',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `specIndex`(`specId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单明细' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_out_entry_item
@@ -9325,7 +9342,7 @@ CREATE TABLE `wms_stock_out_entry_item_detail`  (
   `stockOutTime` datetime(0) DEFAULT NULL COMMENT '出库时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `goods_stock_info_item_id_index`(`goodsInventoryDetailId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库明细详情' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库明细详情' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_out_entry_item_detail

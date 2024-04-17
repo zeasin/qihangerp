@@ -1,16 +1,16 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="108px">
-      
-      <el-form-item label="采购订单编号" prop="orderNo">
+
+      <el-form-item label="采购单编号" prop="orderNo">
         <el-input
           v-model="queryParams.orderNo"
-          placeholder="请输入采购订单编号"
+          placeholder="请输入采购单编号"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      
+
       <el-form-item label="确认时间" prop="confirmTime">
         <el-date-picker clearable
           v-model="queryParams.confirmTime"
@@ -19,7 +19,7 @@
           placeholder="请选择确认时间">
         </el-date-picker>
       </el-form-item>
-      
+
       <el-form-item label="支付时间" prop="payTime">
         <el-date-picker clearable
           v-model="queryParams.payTime"
@@ -28,7 +28,7 @@
           placeholder="请选择支付时间">
         </el-date-picker>
       </el-form-item>
-     
+
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -51,17 +51,18 @@
 
     <el-table v-loading="loading" :data="PurchaseOrderCostList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="采购单ID" align="center" prop="id" />
-      <el-table-column label="采购单金额" align="center" prop="orderAmount" />
-      <el-table-column label="采购订单日期" align="center" prop="orderDate" width="180">
+<!--      <el-table-column label="采购单ID" align="center" prop="id" />-->
+      <el-table-column label="采购单号" align="center" prop="orderNo" />
+      <el-table-column label="采购金额" align="center" prop="orderAmount" />
+      <el-table-column label="采购日期" align="center" prop="orderDate" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.orderDate, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="采购订单编号" align="center" prop="orderNo" />
-      <el-table-column label="采购订单商品规格数" align="center" prop="orderSpecUnit" />
-      <el-table-column label="采购订单商品数" align="center" prop="orderGoodsUnit" />
-      <el-table-column label="采购订单总件数" align="center" prop="orderSpecUnitTotal" />
+
+      <el-table-column label="采购商品规格数" align="center" prop="orderSpecUnit" />
+      <el-table-column label="采购商品数" align="center" prop="orderGoodsUnit" />
+      <el-table-column label="采购总件数" align="center" prop="orderSpecUnitTotal" />
       <el-table-column label="实际金额" align="center" prop="actualAmount" />
       <el-table-column label="运费" align="center" prop="freight" />
       <el-table-column label="确认人" align="center" prop="confirmUser" />
@@ -78,7 +79,12 @@
       </el-table-column>
       <el-table-column label="支付次数" align="center" prop="payCount" />
       <el-table-column label="说明" align="center" prop="remark" />
-      <el-table-column label="状态" align="center" prop="status" />
+      <el-table-column label="状态" align="center" prop="status" >
+        <template slot-scope="scope">
+          <el-tag size="small" v-if="scope.row.status === 0"> 未结算</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 1"> 已结算</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -92,7 +98,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -104,47 +110,28 @@
     <!-- 添加或修改采购订单费用对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="采购单金额" prop="orderAmount">
-          <el-input v-model="form.orderAmount" placeholder="请输入采购单金额" />
+        <el-form-item label="采购金额" prop="orderAmount">
+          <el-input v-model="form.orderAmount" placeholder="请输入采购单金额" disabled />
         </el-form-item>
-        <el-form-item label="采购订单日期" prop="orderDate">
-          <el-date-picker clearable
+        <el-form-item label="采购日期" prop="orderDate">
+          <el-date-picker clearable disabled
             v-model="form.orderDate"
             type="date"
             value-format="yyyy-MM-dd"
-            placeholder="请选择采购订单日期">
+            placeholder="请选择采购日期">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="采购订单编号" prop="orderNo">
-          <el-input v-model="form.orderNo" placeholder="请输入采购订单编号" />
-        </el-form-item>
-        <el-form-item label="采购订单商品规格数" prop="orderSpecUnit">
-          <el-input v-model="form.orderSpecUnit" placeholder="请输入采购订单商品规格数" />
-        </el-form-item>
-        <el-form-item label="采购订单商品数" prop="orderGoodsUnit">
-          <el-input v-model="form.orderGoodsUnit" placeholder="请输入采购订单商品数" />
-        </el-form-item>
-        <el-form-item label="采购订单总件数" prop="orderSpecUnitTotal">
-          <el-input v-model="form.orderSpecUnitTotal" placeholder="请输入采购订单总件数" />
+        <el-form-item label="采购单号" prop="orderNo">
+          <el-input v-model="form.orderNo" placeholder="请输入采购订单编号" disabled />
         </el-form-item>
         <el-form-item label="实际金额" prop="actualAmount">
-          <el-input v-model="form.actualAmount" placeholder="请输入实际金额" />
+          <el-input v-model="form.actualAmount" placeholder="请输入实际金额"  disabled/>
         </el-form-item>
         <el-form-item label="运费" prop="freight">
-          <el-input v-model="form.freight" placeholder="请输入运费" />
+          <el-input v-model="form.freight" placeholder="请输入运费" disabled />
         </el-form-item>
-        <el-form-item label="确认人" prop="confirmUser">
-          <el-input v-model="form.confirmUser" placeholder="请输入确认人" />
-        </el-form-item>
-        <el-form-item label="确认时间" prop="confirmTime">
-          <el-date-picker clearable
-            v-model="form.confirmTime"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择确认时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="已支付金额" prop="payAmount">
+
+        <el-form-item label="付款金额" prop="payAmount">
           <el-input v-model="form.payAmount" placeholder="请输入已支付金额" />
         </el-form-item>
         <el-form-item label="支付时间" prop="payTime">
@@ -155,9 +142,7 @@
             placeholder="请选择支付时间">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="支付次数" prop="payCount">
-          <el-input v-model="form.payCount" placeholder="请输入支付次数" />
-        </el-form-item>
+
         <el-form-item label="说明" prop="remark">
           <el-input v-model="form.remark" placeholder="请输入说明" />
         </el-form-item>
@@ -287,7 +272,7 @@ export default {
       getPurchaseOrderCost(id).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改采购订单费用";
+        this.title = "付款";
       });
     },
     /** 提交按钮 */

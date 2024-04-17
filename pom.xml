@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	
     <groupId>com.qihang</groupId>
-    <artifactId>ecerp</artifactId>
-    <version>0.2.0</version>
+    <artifactId>qihangec-erp</artifactId>
+    <version>1.4.17</version>
 
-    <name>ecerp</name>
+    <name>qihangec-erp</name>
     <url>http://8.huayiyungou.com</url>
     <description>启航电商ERP系统</description>
     <properties>

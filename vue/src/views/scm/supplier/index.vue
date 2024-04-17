@@ -18,14 +18,6 @@
         />
       </el-form-item>
 
-      <el-form-item label="余额日期" prop="beginDate">
-        <el-date-picker clearable
-          v-model="queryParams.beginDate"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择余额日期">
-        </el-date-picker>
-      </el-form-item>
       <el-form-item label="联系人" prop="linkMan">
         <el-input
           v-model="queryParams.linkMan"
@@ -34,47 +26,14 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="联系方式" prop="contact">
-        <el-input
-          v-model="queryParams.contact"
-          placeholder="请输入联系方式"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="省" prop="province">
-        <el-input
-          v-model="queryParams.province"
-          placeholder="请输入省"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="市" prop="city">
-        <el-input
-          v-model="queryParams.city"
-          placeholder="请输入市"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="状态" prop="disable">
-        <el-input
-          v-model="queryParams.disable"
-          placeholder="请输入0启用   1禁用"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="分管采购员" prop="purchaserName">
-        <el-input
-          v-model="queryParams.purchaserName"
-          placeholder="请输入分管采购员"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
+<!--      <el-form-item label="状态" prop="disable">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.disable"-->
+<!--          placeholder="请输入0启用   1禁用"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -129,27 +88,27 @@
 
     <el-table v-loading="loading" :data="supplierList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="主键" align="center" prop="id" />
+<!--      <el-table-column label="主键" align="center" prop="id" />-->
       <el-table-column label="供应商名称" align="center" prop="name" />
       <el-table-column label="供应商编码" align="center" prop="number" />
-      <el-table-column label="税率" align="center" prop="taxRate" />
-      <el-table-column label="期初应付款" align="center" prop="amount" />
-      <el-table-column label="期初预付款" align="center" prop="periodMoney" />
-      <el-table-column label="初期往来余额" align="center" prop="difMoney" />
-      <el-table-column label="余额日期" align="center" prop="beginDate" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.beginDate, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="税率" align="center" prop="taxRate" />-->
+<!--      <el-table-column label="期初应付款" align="center" prop="amount" />-->
+<!--      <el-table-column label="期初预付款" align="center" prop="periodMoney" />-->
+<!--      <el-table-column label="初期往来余额" align="center" prop="difMoney" />-->
+<!--      <el-table-column label="余额日期" align="center" prop="beginDate" width="180">-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ parseTime(scope.row.beginDate, '{y}-{m}-{d}') }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
       <el-table-column label="备注" align="center" prop="remark" />
       <el-table-column label="职位" align="center" prop="place" />
       <el-table-column label="联系人" align="center" prop="linkMan" />
       <el-table-column label="联系方式" align="center" prop="contact" />
-      <el-table-column label="省" align="center" prop="province" />
-      <el-table-column label="市" align="center" prop="city" />
-      <el-table-column label="区县" align="center" prop="county" />
-      <el-table-column label="拼音" align="center" prop="pinYin" />
-      <el-table-column label="分管采购员" align="center" prop="purchaserName" />
+<!--      <el-table-column label="省" align="center" prop="province" />-->
+<!--      <el-table-column label="市" align="center" prop="city" />-->
+<!--      <el-table-column label="区县" align="center" prop="county" />-->
+<!--      <el-table-column label="拼音" align="center" prop="pinYin" />-->
+<!--      <el-table-column label="分管采购员" align="center" prop="purchaserName" />-->
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>

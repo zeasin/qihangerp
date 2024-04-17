@@ -4,8 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.qihang</groupId>
-        <artifactId>ecerp</artifactId>
-        <version>0.2.0</version>
+        <artifactId>qihangec-erp</artifactId>
+        <version>1.4.17</version>
+
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
@@ -56,7 +57,7 @@
         <dependency>
             <groupId>com.qihang</groupId>
             <artifactId>commons</artifactId>
-            <version>0.4.14</version>
+            <version>1.4.17</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>com.qihang</groupId>-->
