@@ -3,6 +3,10 @@
 
 启航电商ERP系统是一套为中小电商企业构建的一套简单、实用、覆盖全流程的电商系统，本项目采用Java SpringBoot+Vue2前后端分离开发。 
 
+**Dubbo版本请移步：** 
+
+[https://gitee.com/qiliping/qihangerp-dubbo](https://gitee.com/qiliping/qihangerp-dubbo)
+
 支持供应商一件代发和仓库发货两种发货方式，功能覆盖采购、网店订单处理、供应商一件代发、仓库发货、网店售后、网店商品管理、仓库出入库、采购结算、代发结算等功能，基本上覆盖了电商日常业务。 
 
 支持的电商平台有：淘宝、京东、拼多多、抖店、视频号小店、快手、小红书。
@@ -165,10 +169,10 @@ A[录入退款退货] -->B(仅退款)
 + minio文件存储
 
 #### 2.3 启动后端api
-+ 修改`ecerp-api`项目中的配置文件`application.yml`配置`MySQL`数据库相关。
++ 修改`api`项目中的配置文件`application.yml`配置`MySQL`数据库相关。
 
 
-#### 2.4 启动前端 `ecerp-vue`
+#### 2.4 启动前端 `vue`
 + `npm install`
 + `npm run dev`
 + 打包`npm run build:prod`
