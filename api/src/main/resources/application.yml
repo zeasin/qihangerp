@@ -45,12 +45,6 @@ spring:
     username: root
     password: Andy_123
 
-    #引用项目中的数据库文件
-#    driver-class-name: org.sqlite.JDBC
-#    url: jdbc:sqlite::resource:static/sqlite/qihang-erp.db
-#    username: root
-#    password: Andy_123
-
     # H2数据库
 #    url: jdbc:h2:file:./db/qihang-ecerp
 #    driver-class-name: org.h2.Driver
