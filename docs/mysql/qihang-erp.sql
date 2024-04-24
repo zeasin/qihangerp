@@ -11,36 +11,11 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 23/04/2024 16:50:42
+ Date: 24/04/2024 14:20:57
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for b_logistics_company
--- ----------------------------
-DROP TABLE IF EXISTS `b_logistics_company`;
-CREATE TABLE `b_logistics_company`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `name` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递公司',
-  `number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递公司编码',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of b_logistics_company
--- ----------------------------
-INSERT INTO `b_logistics_company` VALUES (1, '中通快递', 'ZTO');
-INSERT INTO `b_logistics_company` VALUES (2, '申通快递', 'STO');
-INSERT INTO `b_logistics_company` VALUES (3, '圆通速递', 'YTO');
-INSERT INTO `b_logistics_company` VALUES (4, '韵达速递', 'YD');
-INSERT INTO `b_logistics_company` VALUES (5, '邮政快递包裹', 'YZPY');
-INSERT INTO `b_logistics_company` VALUES (6, '顺丰速运', 'SF');
-INSERT INTO `b_logistics_company` VALUES (7, '京东快递', 'JD');
-INSERT INTO `b_logistics_company` VALUES (8, '德邦快递', 'DBL');
-INSERT INTO `b_logistics_company` VALUES (9, '极兔速递', 'JTSD');
-INSERT INTO `b_logistics_company` VALUES (10, '菜鸟速递', 'CNSD');
 
 -- ----------------------------
 -- Table structure for erp_after_sale
@@ -2633,6 +2608,33 @@ CREATE TABLE `erp_order_returned`  (
   `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '退换货表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for erp_ship_logistics
+-- ----------------------------
+DROP TABLE IF EXISTS `erp_ship_logistics`;
+CREATE TABLE `erp_ship_logistics`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `name` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递公司',
+  `number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递公司编码',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `status` int(0) DEFAULT NULL COMMENT '状态',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of erp_ship_logistics
+-- ----------------------------
+INSERT INTO `erp_ship_logistics` VALUES (1, '中通快递', 'ZTO', NULL, 1);
+INSERT INTO `erp_ship_logistics` VALUES (2, '申通快递', 'STO', NULL, 1);
+INSERT INTO `erp_ship_logistics` VALUES (3, '圆通速递', 'YTO', NULL, 1);
+INSERT INTO `erp_ship_logistics` VALUES (4, '韵达速递', 'YD', NULL, 1);
+INSERT INTO `erp_ship_logistics` VALUES (5, '邮政快递包裹', 'YZPY', NULL, 1);
+INSERT INTO `erp_ship_logistics` VALUES (6, '顺丰速运', 'SF', NULL, 1);
+INSERT INTO `erp_ship_logistics` VALUES (7, '京东快递', 'JD', NULL, 1);
+INSERT INTO `erp_ship_logistics` VALUES (8, '德邦快递', 'DBL', NULL, 1);
+INSERT INTO `erp_ship_logistics` VALUES (9, '极兔速递', 'JTSD', NULL, 1);
+INSERT INTO `erp_ship_logistics` VALUES (10, '菜鸟速递', 'CNSD', NULL, 1);
 
 -- ----------------------------
 -- Table structure for fms_inventory_report
@@ -8426,6 +8428,14 @@ INSERT INTO `sys_logininfor` VALUES (73, 'admin', '127.0.0.1', '内网IP', 'Chro
 INSERT INTO `sys_logininfor` VALUES (74, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-17 13:41:36');
 INSERT INTO `sys_logininfor` VALUES (75, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-22 18:19:40');
 INSERT INTO `sys_logininfor` VALUES (76, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-23 15:43:11');
+INSERT INTO `sys_logininfor` VALUES (77, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 13:37:10');
+INSERT INTO `sys_logininfor` VALUES (78, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 13:37:59');
+INSERT INTO `sys_logininfor` VALUES (79, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 13:40:17');
+INSERT INTO `sys_logininfor` VALUES (80, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 13:43:50');
+INSERT INTO `sys_logininfor` VALUES (81, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 13:59:24');
+INSERT INTO `sys_logininfor` VALUES (82, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 14:06:11');
+INSERT INTO `sys_logininfor` VALUES (83, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 14:16:44');
+INSERT INTO `sys_logininfor` VALUES (84, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 14:20:00');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -8463,7 +8473,7 @@ INSERT INTO `sys_menu` VALUES (4, '采购管理', 0, 1, 'scm', '', '', 1, 0, 'M'
 INSERT INTO `sys_menu` VALUES (5, '订单管理', 0, 2, 'sale', '', '', 1, 0, 'M', '0', '0', '', 'shopping', 'admin', '2023-12-29 16:53:03', 'admin', '2024-03-24 19:31:53', '');
 INSERT INTO `sys_menu` VALUES (6, '发货管理', 0, 3, 'ship', '', '', 1, 0, 'M', '0', '0', '', 'excel', 'admin', '2024-01-01 14:08:04', 'admin', '2024-01-03 14:07:29', '');
 INSERT INTO `sys_menu` VALUES (7, '售后管理', 0, 4, 'saleafter', NULL, NULL, 1, 0, 'M', '0', '0', '', 'clipboard', 'admin', '2024-01-03 14:23:55', 'admin', '2024-01-12 19:47:33', '');
-INSERT INTO `sys_menu` VALUES (8, '店铺管理', 0, 6, 'shop', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'server', 'admin', '2024-04-12 16:46:19', '', NULL, '');
+INSERT INTO `sys_menu` VALUES (8, '店铺管理', 0, 7, 'shop', NULL, NULL, 1, 0, 'M', '0', '0', '', 'server', 'admin', '2024-04-12 16:46:19', 'admin', '2024-04-24 11:17:09', '');
 INSERT INTO `sys_menu` VALUES (9, '库存管理', 0, 5, 'wms', '', '', 1, 0, 'M', '0', '0', '', 'dict', 'admin', '2023-12-31 12:14:33', 'admin', '2024-04-23 15:43:32', '');
 INSERT INTO `sys_menu` VALUES (100, '用户管理', 1, 1, 'user', 'system/user/index', '', 1, 0, 'C', '0', '0', 'system:user:list', 'user', 'admin', '2023-12-27 15:00:27', '', '', '用户管理菜单');
 INSERT INTO `sys_menu` VALUES (101, '角色管理', 1, 2, 'role', 'system/role/index', '', 1, 0, 'C', '0', '0', 'system:role:list', 'peoples', 'admin', '2023-12-27 15:00:27', '', '', '角色管理菜单');
@@ -8536,7 +8546,7 @@ INSERT INTO `sys_menu` VALUES (2047, '库存查询', 9, 6, 'goodsInventory', 'go
 INSERT INTO `sys_menu` VALUES (2048, '库存盘点', 9, 9, 'pan', NULL, NULL, 1, 0, 'C', '0', '1', '', 'bug', 'admin', '2024-01-03 11:01:43', 'admin', '2024-01-09 19:57:08', '');
 INSERT INTO `sys_menu` VALUES (2049, '打包发货', 6, 3, 'shipping', 'wms/orderShipping/shipping', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-03 14:09:18', 'admin', '2024-01-10 09:21:26', '');
 INSERT INTO `sys_menu` VALUES (2051, '物流跟踪', 6, 4, 'logistics', 'wms/orderShipping/logistics', NULL, 1, 0, 'C', '0', '0', '', 'email', 'admin', '2024-01-03 14:13:12', 'admin', '2024-01-12 17:03:49', '');
-INSERT INTO `sys_menu` VALUES (2052, '发货统计', 6, 9, 'statistics', NULL, NULL, 1, 0, 'C', '0', '1', '', '404', 'admin', '2024-01-03 14:14:09', 'admin', '2024-01-12 08:59:52', '');
+INSERT INTO `sys_menu` VALUES (2052, '物流公司管理', 6, 9, 'logistics_company', 'shipping/logistics/company', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-03 14:14:09', 'admin', '2024-04-24 13:53:14', '');
 INSERT INTO `sys_menu` VALUES (2054, '售后处理', 7, 1, 'refund_list', 'sale/returned', NULL, 1, 0, 'C', '0', '0', '', 'size', 'admin', '2024-01-03 14:24:36', 'admin', '2024-04-17 14:14:00', '');
 INSERT INTO `sys_menu` VALUES (2059, '备货清单', 6, 1, 'stocking', 'shipping/stocking/', '', 1, 0, 'C', '0', '0', '', 'component', 'admin', '2024-01-09 11:51:52', 'admin', '2024-04-15 11:40:42', '');
 INSERT INTO `sys_menu` VALUES (2060, '拣货出库', 6, 2, 'stockout', 'wms/orderShipping/stockOut', NULL, 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-09 13:39:00', 'admin', '2024-01-12 15:51:56', '');
@@ -8602,7 +8612,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type`) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status`) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 290 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 291 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -8710,6 +8720,14 @@ INSERT INTO `sys_oper_log` VALUES (288, '菜单管理', 2, 'com.qihang.erp.api.c
 INSERT INTO `sys_oper_log` VALUES (289, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"fms/payable/agentShip\",\"createTime\":\"2024-01-12 18:35:02\",\"icon\":\"money\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2062,\"menuName\":\"代发账单\",\"menuType\":\"C\",\"orderNum\":6,\"params\":{},\"parentId\":6,\"path\":\"agentShip\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:13:03', 8);
 INSERT INTO `sys_oper_log` VALUES (290, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"sale/returned\",\"createTime\":\"2024-01-03 14:24:36\",\"icon\":\"size\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2054,\"menuName\":\"售后处理\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":7,\"path\":\"refund_list\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-17 14:14:00', 7);
 INSERT INTO `sys_oper_log` VALUES (291, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"\",\"createTime\":\"2023-12-31 12:14:33\",\"icon\":\"dict\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":9,\"menuName\":\"库存管理\",\"menuType\":\"M\",\"orderNum\":5,\"params\":{},\"parentId\":0,\"path\":\"wms\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-23 15:43:33', 759);
+INSERT INTO `sys_oper_log` VALUES (292, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/logistics/company\",\"createTime\":\"2024-01-03 14:14:09\",\"icon\":\"checkbox\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2052,\"menuName\":\"物流公司管理\",\"menuType\":\"C\",\"orderNum\":9,\"params\":{},\"parentId\":6,\"path\":\"logistics_company\",\"perms\":\"\",\"status\":\"1\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 13:53:09', 229);
+INSERT INTO `sys_oper_log` VALUES (293, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/logistics/company\",\"createTime\":\"2024-01-03 14:14:09\",\"icon\":\"checkbox\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2052,\"menuName\":\"物流公司管理\",\"menuType\":\"C\",\"orderNum\":9,\"params\":{},\"parentId\":6,\"path\":\"logistics_company\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 13:53:14', 13);
+INSERT INTO `sys_oper_log` VALUES (294, '物流公司', 1, 'com.qihang.erp.api.controller.BLogisticsCompanyController.add()', 'POST', 1, 'admin', NULL, '/api/logistics', '127.0.0.1', '内网IP', '{\"id\":11,\"name\":\"ADF\",\"number\":\"DD\",\"params\":{}}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 14:12:25', 194);
+INSERT INTO `sys_oper_log` VALUES (295, '物流公司', 2, 'com.qihang.erp.api.controller.BLogisticsCompanyController.edit()', 'PUT', 1, 'admin', NULL, '/api/logistics', '127.0.0.1', '内网IP', '{\"id\":11,\"name\":\"ADF\",\"number\":\"DD1112\",\"params\":{}}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 14:14:16', 19);
+INSERT INTO `sys_oper_log` VALUES (296, '物流公司', 2, 'com.qihang.erp.api.controller.BLogisticsCompanyController.edit()', 'PUT', 1, 'admin', NULL, '/api/logistics', '127.0.0.1', '内网IP', '{\"id\":11,\"name\":\"ADF0000\",\"number\":\"DD1112\",\"params\":{},\"status\":1}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 14:14:24', 8);
+INSERT INTO `sys_oper_log` VALUES (297, '物流公司', 2, 'com.qihang.erp.api.controller.BLogisticsCompanyController.edit()', 'PUT', 1, 'admin', NULL, '/api/logistics', '127.0.0.1', '内网IP', '{\"id\":11,\"name\":\"ADF0000\",\"number\":\"DD1112\",\"params\":{},\"status\":0}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 14:20:14', 51);
+INSERT INTO `sys_oper_log` VALUES (298, '物流公司', 2, 'com.qihang.erp.api.controller.BLogisticsCompanyController.edit()', 'PUT', 1, 'admin', NULL, '/api/logistics', '127.0.0.1', '内网IP', '{\"id\":11,\"name\":\"ADF0000\",\"number\":\"DD1112\",\"params\":{},\"remark\":\"aa\",\"status\":1}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 14:20:27', 7);
+INSERT INTO `sys_oper_log` VALUES (299, '物流公司', 3, 'com.qihang.erp.api.controller.BLogisticsCompanyController.remove()', 'DELETE', 1, 'admin', NULL, '/api/logistics/11', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 14:20:34', 11);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -8897,8 +8915,9 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-23 15:43:11', 'admin', '2023-08-07 19:31:37', '', '2024-04-23 15:43:11', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-24 14:20:01', 'admin', '2023-08-07 19:31:37', '', '2024-04-24 14:20:00', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
+INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_post

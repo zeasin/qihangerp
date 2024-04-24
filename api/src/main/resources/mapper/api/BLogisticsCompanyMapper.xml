@@ -8,10 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="id"    column="id"    />
         <result property="name"    column="name"    />
         <result property="number"    column="number"    />
+        <result property="remark"    column="remark"    />
+        <result property="status"    column="status"    />
     </resultMap>
 
     <sql id="selectBLogisticsCompanyVo">
-        select id, name, number from b_logistics_company
+        select id, name, number,remark,status from erp_ship_logistics
     </sql>
 
     <select id="selectBLogisticsCompanyList" parameterType="BLogisticsCompany" resultMap="BLogisticsCompanyResult">
@@ -28,32 +30,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
         
     <insert id="insertBLogisticsCompany" parameterType="BLogisticsCompany" useGeneratedKeys="true" keyProperty="id">
-        insert into b_logistics_company
+        insert into erp_ship_logistics
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">name,</if>
             <if test="number != null">number,</if>
+            <if test="remark != null">remark,</if>
+            <if test="status != null">status,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="name != null">#{name},</if>
             <if test="number != null">#{number},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="status != null">#{status},</if>
          </trim>
     </insert>
 
     <update id="updateBLogisticsCompany" parameterType="BLogisticsCompany">
-        update b_logistics_company
+        update erp_ship_logistics
         <trim prefix="SET" suffixOverrides=",">
             <if test="name != null">name = #{name},</if>
             <if test="number != null">number = #{number},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="status != null">status = #{status},</if>
         </trim>
         where id = #{id}
     </update>
 
     <delete id="deleteBLogisticsCompanyById" parameterType="Long">
-        delete from b_logistics_company where id = #{id}
+        delete from erp_ship_logistics where id = #{id}
     </delete>
 
     <delete id="deleteBLogisticsCompanyByIds" parameterType="String">
-        delete from b_logistics_company where id in 
+        delete from erp_ship_logistics where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

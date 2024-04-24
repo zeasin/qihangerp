@@ -1,5 +1,6 @@
 package com.qihang.erp.api.domain;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.qihang.common.annotation.Excel;
 import com.qihang.core.domain.BaseEntity;
 
@@ -9,6 +10,7 @@ import com.qihang.core.domain.BaseEntity;
  * @author qihang
  * @date 2024-01-12
  */
+@TableName("erp_ship_logistics")
 public class BLogisticsCompany extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -23,6 +25,9 @@ public class BLogisticsCompany extends BaseEntity
     /** 快递公司编码 */
     @Excel(name = "快递公司编码")
     private String number;
+    private String remark;
+
+    private Integer status;
 
     public void setId(Long id) 
     {
@@ -52,4 +57,21 @@ public class BLogisticsCompany extends BaseEntity
         return number;
     }
 
+    @Override
+    public String getRemark() {
+        return remark;
+    }
+
+    @Override
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }
