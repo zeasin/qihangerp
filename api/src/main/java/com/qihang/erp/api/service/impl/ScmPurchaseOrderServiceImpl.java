@@ -147,29 +147,29 @@ public class ScmPurchaseOrderServiceImpl implements IScmPurchaseOrderService
                 return -1;
             }
 //            // 查询数据
-//            ScmPurchaseOrderItem oi = new ScmPurchaseOrderItem();
-//            oi.setOrderId(order.getId());
-//            List<ScmPurchaseOrderItem> items = scmPurchaseOrderItemMapper.selectScmPurchaseOrderItemList(oi);
-//            Map<Long, List<ScmPurchaseOrderItem>> goodsGroup = items.stream().collect(Collectors.groupingBy(x -> x.getGoodsId()));
-//            Long total = items.stream().mapToLong(ScmPurchaseOrderItem::getQuantity).sum();
-//            // 生成费用信息
-//            ScmPurchaseOrderCost cost = new ScmPurchaseOrderCost();
-//            cost.setId(order.getId());
-//            cost.setOrderNo(order.getOrderNo());
-//            cost.setOrderDate(order.getOrderDate());
-//            cost.setOrderGoodsUnit(goodsGroup.size());
-//            cost.setOrderSpecUnit(items.size());
-//            cost.setOrderSpecUnitTotal(total);
-//            cost.setOrderAmount(order.getOrderAmount());
-//            cost.setActualAmount(bo.getTotalAmount());
-//            cost.setFreight(BigDecimal.ZERO);
-//            cost.setConfirmUser(bo.getConfirmUser());
-//            cost.setConfirmTime(new Date());
-//            cost.setCreateBy(bo.getUpdateBy());
-//            cost.setPayAmount(BigDecimal.ZERO);
-//            cost.setPayCount(0L);
-//            cost.setStatus(0L);
-//            costMapper.insertScmPurchaseOrderCost(cost);
+            ScmPurchaseOrderItem oi = new ScmPurchaseOrderItem();
+            oi.setOrderId(order.getId());
+            List<ScmPurchaseOrderItem> items = scmPurchaseOrderItemMapper.selectScmPurchaseOrderItemList(oi);
+            Map<Long, List<ScmPurchaseOrderItem>> goodsGroup = items.stream().collect(Collectors.groupingBy(x -> x.getGoodsId()));
+            Long total = items.stream().mapToLong(ScmPurchaseOrderItem::getQuantity).sum();
+            // 生成费用信息
+            ScmPurchaseOrderCost cost = new ScmPurchaseOrderCost();
+            cost.setId(order.getId());
+            cost.setOrderNo(order.getOrderNo());
+            cost.setOrderDate(order.getOrderDate());
+            cost.setOrderGoodsUnit(goodsGroup.size());
+            cost.setOrderSpecUnit(items.size());
+            cost.setOrderSpecUnitTotal(total);
+            cost.setOrderAmount(order.getOrderAmount());
+            cost.setActualAmount(bo.getTotalAmount());
+            cost.setFreight(BigDecimal.ZERO);
+            cost.setConfirmUser(bo.getConfirmUser());
+            cost.setConfirmTime(new Date());
+            cost.setCreateBy(bo.getUpdateBy());
+            cost.setPayAmount(BigDecimal.ZERO);
+            cost.setPayCount(0L);
+            cost.setStatus(0L);
+            costMapper.insertScmPurchaseOrderCost(cost);
 
             // 更新主表
             ScmPurchaseOrder scmPurchaseOrder = new ScmPurchaseOrder();
