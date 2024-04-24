@@ -421,7 +421,7 @@
 <script>
 import { listOrder, getOrder, shipOrder } from "@/api/shop/order";
 import { listShop } from "@/api/shop/shop";
-import { listLogistics } from "@/api/api/logistics";
+import { listLogistics } from "@/api/shipping/logistics";
 export default {
   name: "Order",
   data() {

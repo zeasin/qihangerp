@@ -242,7 +242,7 @@
 <script>
 import { listPurchaseOrder, getPurchaseOrder, delPurchaseOrder, addPurchaseOrder, updatePurchaseOrder } from "@/api/purchase/purchaseOrder";
 import { listSupplier} from "@/api/scm/supplier";
-import { listLogistics } from "@/api/api/logistics";
+import { listLogistics } from "@/api/shipping/logistics";
 export default {
   name: "PurchaseOrder",
   data() {

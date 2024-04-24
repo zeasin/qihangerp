@@ -105,7 +105,7 @@ y<template>
     />
     <!-- 添加或修改店铺对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-form-item label="快递公司名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入快递公司名称" />
         </el-form-item>
@@ -139,7 +139,7 @@ import {
   listLogistics,
   updateLogistics,
   updateStatus
-} from "@/api/api/logistics";
+} from "@/api/shipping/logistics";
 
 export default {
   name: "Shop",
