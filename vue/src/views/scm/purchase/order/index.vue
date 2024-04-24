@@ -338,7 +338,7 @@ export default {
     // 详情
     handleDetail(row){
       // this.$router.push('/scm/purchase/order/detail',{id:row.id});
-      this.$router.push({path :"/scm/purchase/order/detail", query: { id: row.id }});
+      this.$router.push({path :"/purchase/order/detail", query: { id: row.id }});
     },
     // 取消按钮
     cancel() {
@@ -387,7 +387,7 @@ export default {
     },
     /** 新增按钮操作 */
     handleAdd() {
-      this.$router.push('/scm/purchase/order/create');
+      this.$router.push('/purchase/order/create');
     },
     handleUpdateStatus(row,optionType){
       this.form.id = row.id

@@ -53,27 +53,27 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['fms:payablePurchase:add']"
-        >新增</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['fms:payablePurchase:edit']"
-        >修改</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="primary"-->
+<!--          plain-->
+<!--          icon="el-icon-plus"-->
+<!--          size="mini"-->
+<!--          @click="handleAdd"-->
+<!--          v-hasPermi="['fms:payablePurchase:add']"-->
+<!--        >新增</el-button>-->
+<!--      </el-col>-->
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="success"-->
+<!--          plain-->
+<!--          icon="el-icon-edit"-->
+<!--          size="mini"-->
+<!--          :disabled="single"-->
+<!--          @click="handleUpdate"-->
+<!--          v-hasPermi="['fms:payablePurchase:edit']"-->
+<!--        >修改</el-button>-->
+<!--      </el-col>-->
 <!--      <el-col :span="1.5">-->
 <!--        <el-button-->
 <!--          type="danger"-->
@@ -85,16 +85,16 @@
 <!--          v-hasPermi="['fms:payablePurchase:remove']"-->
 <!--        >删除</el-button>-->
 <!--      </el-col>-->
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['fms:payablePurchase:export']"
-        >导出</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="warning"-->
+<!--          plain-->
+<!--          icon="el-icon-download"-->
+<!--          size="mini"-->
+<!--          @click="handleExport"-->
+<!--          v-hasPermi="['fms:payablePurchase:export']"-->
+<!--        >导出</el-button>-->
+<!--      </el-col>-->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -117,7 +117,7 @@
       <el-table-column label="备注" align="center" prop="remark" />
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <el-tag type="info" v-if="scope.row.status === 0">已生成</el-tag>
+          <el-tag type="info" v-if="scope.row.status === 0">未结算</el-tag>
           <el-tag type="success" v-if="scope.row.status === 1">已结算</el-tag>
         </template>
       </el-table-column>
@@ -180,6 +180,12 @@
         </el-form-item>
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" placeholder="请输入备注" />
+        </el-form-item>
+        <el-form-item label="是否付款" prop="status">
+          <el-select v-model="form.status" placeholder="是否付款">
+            <el-option label="已结算" value="1"></el-option>
+            <el-option label="未结算" value="0"></el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -313,20 +319,21 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
-    /** 新增按钮操作 */
-    handleAdd() {
-      this.reset();
-      this.open = true;
-      this.title = "添加财务管理-应付款-采购货款";
-    },
+    // /** 新增按钮操作 */
+    // handleAdd() {
+    //   this.reset();
+    //   this.open = true;
+    //   this.title = "添加财务管理-应付款-采购货款";
+    // },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
       const id = row.id || this.ids
       getPayablePurchase(id).then(response => {
         this.form = response.data;
+        this.form.status = response.data.status+''
         this.open = true;
-        this.title = "修改财务管理-应付款-采购货款";
+        this.title = "修改";
       });
     },
     /** 提交按钮 */
@@ -340,11 +347,7 @@ export default {
               this.getList();
             });
           } else {
-            addPayablePurchase(this.form).then(response => {
-              this.$modal.msgSuccess("新增成功");
-              this.open = false;
-              this.getList();
-            });
+
           }
         }
       });

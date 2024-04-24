@@ -72,13 +72,13 @@ public class FmsPayablePurchaseController extends BaseController
     /**
      * 新增财务管理-应付款-采购货款
      */
-    @PreAuthorize("@ss.hasPermi('fms:payablePurchase:add')")
-    @Log(title = "财务管理-应付款-采购货款", businessType = BusinessType.INSERT)
-    @PostMapping
-    public AjaxResult add(@RequestBody FmsPayablePurchase fmsPayablePurchase)
-    {
-        return toAjax(fmsPayablePurchaseService.insertFmsPayablePurchase(fmsPayablePurchase));
-    }
+//    @PreAuthorize("@ss.hasPermi('fms:payablePurchase:add')")
+//    @Log(title = "财务管理-应付款-采购货款", businessType = BusinessType.INSERT)
+//    @PostMapping
+//    public AjaxResult add(@RequestBody FmsPayablePurchase fmsPayablePurchase)
+//    {
+//        return toAjax(fmsPayablePurchaseService.insertFmsPayablePurchase(fmsPayablePurchase));
+//    }
 
     /**
      * 修改财务管理-应付款-采购货款
@@ -94,11 +94,11 @@ public class FmsPayablePurchaseController extends BaseController
     /**
      * 删除财务管理-应付款-采购货款
      */
-    @PreAuthorize("@ss.hasPermi('fms:payablePurchase:remove')")
-    @Log(title = "财务管理-应付款-采购货款", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{ids}")
-    public AjaxResult remove(@PathVariable Long[] ids)
-    {
-        return toAjax(fmsPayablePurchaseService.deleteFmsPayablePurchaseByIds(ids));
-    }
+//    @PreAuthorize("@ss.hasPermi('fms:payablePurchase:remove')")
+//    @Log(title = "财务管理-应付款-采购货款", businessType = BusinessType.DELETE)
+//	@DeleteMapping("/{ids}")
+//    public AjaxResult remove(@PathVariable Long[] ids)
+//    {
+//        return toAjax(fmsPayablePurchaseService.deleteFmsPayablePurchaseByIds(ids));
+//    }
 }

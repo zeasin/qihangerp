@@ -380,11 +380,11 @@ export default {
     },
     /** 详情按钮操作 */
     handleDetail(row) {
-      this.$router.push({path :"/scm/purchase/order/detail", query: { id: row.id }});
+      this.$router.push({path :"/purchase/order/detail", query: { id: row.id }});
     },
     handleCreateEntry(row){
       // this.$router.push("/scm/purchase/ship/create_stock_in_entry", { id: row.id });
-      this.$router.push({path : "/scm/purchase/ship/create_stock_in_entry", query: { id: row.id }})
+      this.$router.push({path : "/purchase/ship/create_stock_in_entry", query: { id: row.id }})
     },
     /** 修改按钮操作 */
     handleConfirmReceipt(row) {
