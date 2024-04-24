@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qihang.erp.api.mapper.FmsPayablePurchaseMapper">
+<mapper namespace="com.qihang.erp.api.mapper.ScmPurchaseOrderPayableMapper">
     
-    <resultMap type="FmsPayablePurchase" id="FmsPayablePurchaseResult">
+    <resultMap type="ScmPurchaseOrderPayable" id="FmsPayablePurchaseResult">
         <result property="id"    column="id"    />
         <result property="supplierId"    column="supplier_id"    />
         <result property="supplierName"    column="supplier_name"    />
@@ -22,10 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectFmsPayablePurchaseVo">
-        select id, supplier_id, supplier_name, amount, date, invoice_no, purchase_order_no, purchase_desc, remark, status, create_time, create_by, update_time, update_by from fms_payable_purchase
+        select id, supplier_id, supplier_name, amount, date, invoice_no, purchase_order_no, purchase_desc, remark, status, create_time, create_by, update_time, update_by
+        from scm_purchase_order_payable
     </sql>
 
-    <select id="selectFmsPayablePurchaseList" parameterType="FmsPayablePurchase" resultMap="FmsPayablePurchaseResult">
+    <select id="selectFmsPayablePurchaseList" parameterType="ScmPurchaseOrderPayable" resultMap="FmsPayablePurchaseResult">
         <include refid="selectFmsPayablePurchaseVo"/>
         <where>  
             <if test="supplierId != null "> and supplier_id = #{supplierId}</if>
@@ -44,8 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
         
-    <insert id="insertFmsPayablePurchase" parameterType="FmsPayablePurchase">
-        insert into fms_payable_purchase
+    <insert id="insertFmsPayablePurchase" parameterType="ScmPurchaseOrderPayable">
+        insert into scm_purchase_order_payable
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">id,</if>
             <if test="supplierId != null">supplier_id,</if>
@@ -80,8 +81,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateFmsPayablePurchase" parameterType="FmsPayablePurchase">
-        update fms_payable_purchase
+    <update id="updateFmsPayablePurchase" parameterType="ScmPurchaseOrderPayable">
+        update scm_purchase_order_payable
         <trim prefix="SET" suffixOverrides=",">
             <if test="supplierId != null">supplier_id = #{supplierId},</if>
             <if test="supplierName != null and supplierName != ''">supplier_name = #{supplierName},</if>
@@ -101,11 +102,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteFmsPayablePurchaseById" parameterType="Long">
-        delete from fms_payable_purchase where id = #{id}
+        delete from scm_purchase_order_payable where id = #{id}
     </delete>
 
     <delete id="deleteFmsPayablePurchaseByIds" parameterType="String">
-        delete from fms_payable_purchase where id in 
+        delete from scm_purchase_order_payable where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

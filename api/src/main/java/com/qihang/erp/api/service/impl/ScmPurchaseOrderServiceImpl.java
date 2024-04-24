@@ -11,6 +11,7 @@ import com.qihang.erp.api.domain.bo.PurchaseOrderAddBo;
 import com.qihang.erp.api.domain.bo.PurchaseOrderOptionBo;
 import com.qihang.erp.api.mapper.*;
 import com.qihang.common.utils.DateUtils;
+import com.qihang.erp.api.mapper.ScmPurchaseOrderPayableMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qihang.erp.api.service.IScmPurchaseOrderService;
@@ -36,7 +37,7 @@ public class ScmPurchaseOrderServiceImpl implements IScmPurchaseOrderService
     @Autowired
     private ScmSupplierMapper  supplierMapper;
     @Autowired
-    private FmsPayablePurchaseMapper  fmsPayablePurchaseMapper;
+    private ScmPurchaseOrderPayableMapper fmsPayablePurchaseMapper;
 
     /**
      * 查询采购订单
@@ -218,7 +219,7 @@ public class ScmPurchaseOrderServiceImpl implements IScmPurchaseOrderService
 
             ScmSupplier scmSupplier = supplierMapper.selectScmSupplierById(order.getContactId());
             // 生成应付信息fms_payable_purchase
-            FmsPayablePurchase fmsPP = new FmsPayablePurchase();
+            com.qihang.erp.api.domain.ScmPurchaseOrderPayable fmsPP = new com.qihang.erp.api.domain.ScmPurchaseOrderPayable();
             fmsPP.setSupplierId(order.getContactId());
             fmsPP.setSupplierName(scmSupplier!=null ? scmSupplier.getName():"数据库未找到供应商信息");
             fmsPP.setAmount(order.getOrderAmount().add(bo.getShipCost()));

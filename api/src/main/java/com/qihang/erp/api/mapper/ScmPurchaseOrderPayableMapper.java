@@ -1,7 +1,7 @@
 package com.qihang.erp.api.mapper;
 
 import java.util.List;
-import com.qihang.erp.api.domain.FmsPayablePurchase;
+
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2024-01-28
  */
 @Mapper
-public interface FmsPayablePurchaseMapper 
+public interface ScmPurchaseOrderPayableMapper
 {
     /**
      * 查询财务管理-应付款-采购货款
@@ -19,7 +19,7 @@ public interface FmsPayablePurchaseMapper
      * @param id 财务管理-应付款-采购货款主键
      * @return 财务管理-应付款-采购货款
      */
-    public FmsPayablePurchase selectFmsPayablePurchaseById(Long id);
+    public com.qihang.erp.api.domain.ScmPurchaseOrderPayable selectFmsPayablePurchaseById(Long id);
 
     /**
      * 查询财务管理-应付款-采购货款列表
@@ -27,7 +27,7 @@ public interface FmsPayablePurchaseMapper
      * @param fmsPayablePurchase 财务管理-应付款-采购货款
      * @return 财务管理-应付款-采购货款集合
      */
-    public List<FmsPayablePurchase> selectFmsPayablePurchaseList(FmsPayablePurchase fmsPayablePurchase);
+    public List<com.qihang.erp.api.domain.ScmPurchaseOrderPayable> selectFmsPayablePurchaseList(com.qihang.erp.api.domain.ScmPurchaseOrderPayable fmsPayablePurchase);
 
     /**
      * 新增财务管理-应付款-采购货款
@@ -35,7 +35,7 @@ public interface FmsPayablePurchaseMapper
      * @param fmsPayablePurchase 财务管理-应付款-采购货款
      * @return 结果
      */
-    public int insertFmsPayablePurchase(FmsPayablePurchase fmsPayablePurchase);
+    public int insertFmsPayablePurchase(com.qihang.erp.api.domain.ScmPurchaseOrderPayable fmsPayablePurchase);
 
     /**
      * 修改财务管理-应付款-采购货款
@@ -43,7 +43,7 @@ public interface FmsPayablePurchaseMapper
      * @param fmsPayablePurchase 财务管理-应付款-采购货款
      * @return 结果
      */
-    public int updateFmsPayablePurchase(FmsPayablePurchase fmsPayablePurchase);
+    public int updateFmsPayablePurchase(com.qihang.erp.api.domain.ScmPurchaseOrderPayable fmsPayablePurchase);
 
     /**
      * 删除财务管理-应付款-采购货款

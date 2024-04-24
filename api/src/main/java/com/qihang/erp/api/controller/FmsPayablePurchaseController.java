@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +15,8 @@ import com.qihang.common.annotation.Log;
 import com.qihang.core.controller.BaseController;
 import com.qihang.core.domain.AjaxResult;
 import com.qihang.common.enums.BusinessType;
-import com.qihang.erp.api.domain.FmsPayablePurchase;
-import com.qihang.erp.api.service.IFmsPayablePurchaseService;
+import com.qihang.erp.api.domain.ScmPurchaseOrderPayable;
+import com.qihang.erp.api.service.IScmPurchaseOrderPayableService;
 import com.qihang.common.utils.poi.ExcelUtil;
 import com.qihang.core.page.TableDataInfo;
 
@@ -32,17 +31,17 @@ import com.qihang.core.page.TableDataInfo;
 public class FmsPayablePurchaseController extends BaseController
 {
     @Autowired
-    private IFmsPayablePurchaseService fmsPayablePurchaseService;
+    private IScmPurchaseOrderPayableService fmsPayablePurchaseService;
 
     /**
      * 查询财务管理-应付款-采购货款列表
      */
     @PreAuthorize("@ss.hasPermi('fms:payablePurchase:list')")
     @GetMapping("/list")
-    public TableDataInfo list(FmsPayablePurchase fmsPayablePurchase)
+    public TableDataInfo list(ScmPurchaseOrderPayable fmsPayablePurchase)
     {
         startPage();
-        List<FmsPayablePurchase> list = fmsPayablePurchaseService.selectFmsPayablePurchaseList(fmsPayablePurchase);
+        List<ScmPurchaseOrderPayable> list = fmsPayablePurchaseService.selectFmsPayablePurchaseList(fmsPayablePurchase);
         return getDataTable(list);
     }
 
@@ -52,10 +51,10 @@ public class FmsPayablePurchaseController extends BaseController
     @PreAuthorize("@ss.hasPermi('fms:payablePurchase:export')")
     @Log(title = "财务管理-应付款-采购货款", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, FmsPayablePurchase fmsPayablePurchase)
+    public void export(HttpServletResponse response, ScmPurchaseOrderPayable fmsPayablePurchase)
     {
-        List<FmsPayablePurchase> list = fmsPayablePurchaseService.selectFmsPayablePurchaseList(fmsPayablePurchase);
-        ExcelUtil<FmsPayablePurchase> util = new ExcelUtil<FmsPayablePurchase>(FmsPayablePurchase.class);
+        List<ScmPurchaseOrderPayable> list = fmsPayablePurchaseService.selectFmsPayablePurchaseList(fmsPayablePurchase);
+        ExcelUtil<ScmPurchaseOrderPayable> util = new ExcelUtil<ScmPurchaseOrderPayable>(ScmPurchaseOrderPayable.class);
         util.exportExcel(response, list, "财务管理-应付款-采购货款数据");
     }
 
@@ -86,7 +85,7 @@ public class FmsPayablePurchaseController extends BaseController
     @PreAuthorize("@ss.hasPermi('fms:payablePurchase:edit')")
     @Log(title = "财务管理-应付款-采购货款", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody FmsPayablePurchase fmsPayablePurchase)
+    public AjaxResult edit(@RequestBody ScmPurchaseOrderPayable fmsPayablePurchase)
     {
         return toAjax(fmsPayablePurchaseService.updateFmsPayablePurchase(fmsPayablePurchase));
     }

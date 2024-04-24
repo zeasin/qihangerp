@@ -12,7 +12,7 @@ import com.qihang.core.domain.BaseEntity;
  * @author qihang
  * @date 2024-01-28
  */
-public class FmsPayablePurchase extends BaseEntity
+public class ScmPurchaseOrderPayable extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 

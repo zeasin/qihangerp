@@ -4,9 +4,8 @@ import java.util.List;
 import com.qihang.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.qihang.erp.api.mapper.FmsPayablePurchaseMapper;
-import com.qihang.erp.api.domain.FmsPayablePurchase;
-import com.qihang.erp.api.service.IFmsPayablePurchaseService;
+import com.qihang.erp.api.mapper.ScmPurchaseOrderPayableMapper;
+import com.qihang.erp.api.service.IScmPurchaseOrderPayableService;
 
 /**
  * 财务管理-应付款-采购货款Service业务层处理
@@ -15,10 +14,10 @@ import com.qihang.erp.api.service.IFmsPayablePurchaseService;
  * @date 2024-01-28
  */
 @Service
-public class FmsPayablePurchaseServiceImpl implements IFmsPayablePurchaseService 
+public class ScmPurchaseOrderPayableServiceImpl implements IScmPurchaseOrderPayableService
 {
     @Autowired
-    private FmsPayablePurchaseMapper fmsPayablePurchaseMapper;
+    private ScmPurchaseOrderPayableMapper fmsPayablePurchaseMapper;
 
     /**
      * 查询财务管理-应付款-采购货款
@@ -27,7 +26,7 @@ public class FmsPayablePurchaseServiceImpl implements IFmsPayablePurchaseService
      * @return 财务管理-应付款-采购货款
      */
     @Override
-    public FmsPayablePurchase selectFmsPayablePurchaseById(Long id)
+    public com.qihang.erp.api.domain.ScmPurchaseOrderPayable selectFmsPayablePurchaseById(Long id)
     {
         return fmsPayablePurchaseMapper.selectFmsPayablePurchaseById(id);
     }
@@ -39,7 +38,7 @@ public class FmsPayablePurchaseServiceImpl implements IFmsPayablePurchaseService
      * @return 财务管理-应付款-采购货款
      */
     @Override
-    public List<FmsPayablePurchase> selectFmsPayablePurchaseList(FmsPayablePurchase fmsPayablePurchase)
+    public List<com.qihang.erp.api.domain.ScmPurchaseOrderPayable> selectFmsPayablePurchaseList(com.qihang.erp.api.domain.ScmPurchaseOrderPayable fmsPayablePurchase)
     {
         return fmsPayablePurchaseMapper.selectFmsPayablePurchaseList(fmsPayablePurchase);
     }
@@ -51,7 +50,7 @@ public class FmsPayablePurchaseServiceImpl implements IFmsPayablePurchaseService
      * @return 结果
      */
     @Override
-    public int insertFmsPayablePurchase(FmsPayablePurchase fmsPayablePurchase)
+    public int insertFmsPayablePurchase(com.qihang.erp.api.domain.ScmPurchaseOrderPayable fmsPayablePurchase)
     {
         fmsPayablePurchase.setCreateTime(DateUtils.getNowDate());
         return fmsPayablePurchaseMapper.insertFmsPayablePurchase(fmsPayablePurchase);
@@ -64,7 +63,7 @@ public class FmsPayablePurchaseServiceImpl implements IFmsPayablePurchaseService
      * @return 结果
      */
     @Override
-    public int updateFmsPayablePurchase(FmsPayablePurchase fmsPayablePurchase)
+    public int updateFmsPayablePurchase(com.qihang.erp.api.domain.ScmPurchaseOrderPayable fmsPayablePurchase)
     {
         fmsPayablePurchase.setUpdateTime(DateUtils.getNowDate());
         return fmsPayablePurchaseMapper.updateFmsPayablePurchase(fmsPayablePurchase);
