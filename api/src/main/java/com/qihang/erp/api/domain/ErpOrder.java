@@ -104,6 +104,15 @@ public class ErpOrder extends BaseEntity
     private Date confirmTime;
 
     private Integer shipType;
+    private Integer shipStatus;
+
+    public Integer getShipStatus() {
+        return shipStatus;
+    }
+
+    public void setShipStatus(Integer shipStatus) {
+        this.shipStatus = shipStatus;
+    }
 
     public Integer getShipType() {
         return shipType;

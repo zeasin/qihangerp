@@ -1,32 +1,35 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-<!--      <el-form-item label="店铺" prop="shopId">-->
-<!--        <el-select v-model="queryParams.shopId" filterable  placeholder="搜索店铺" >-->
-<!--          <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">-->
-<!--            <span style="float: left">{{ item.name }}</span>-->
-<!--              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>-->
-<!--              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>-->
-<!--              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>-->
-<!--              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>-->
-<!--              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 13">快手小店</span>-->
-<!--              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>-->
-<!--          </el-option>-->
-<!--          </el-select>-->
-<!--      </el-form-item>-->
-<!--      <el-form-item label="供应商" prop="supplierId">-->
-<!--        <el-select-->
-<!--          v-model="queryParams.supplierId"-->
-<!--          filterable-->
-<!--          placeholder="请输入供应商名称">-->
-<!--          <el-option-->
-<!--            v-for="item in supplierList"-->
-<!--            :key="item.id"-->
-<!--            :label="item.name"-->
-<!--            :value="item.id">-->
-<!--          </el-option>-->
-<!--        </el-select>-->
-<!--      </el-form-item>-->
+      <el-form-item label="店铺" prop="shopId">
+        <el-select v-model="queryParams.shopId" filterable  placeholder="搜索店铺" >
+          <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">
+            <span style="float: left">{{ item.name }}</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">1688</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">视频号小店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">京东</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 8">快手小店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="供应商" prop="supplierId">
+        <el-select
+          v-model="queryParams.supplierId"
+          filterable
+          placeholder="请选择供应商">
+          <el-option
+            v-for="item in supplierList"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </el-form-item>
 
       <el-form-item label="订单编号" prop="orderNum">
         <el-input
@@ -37,49 +40,15 @@
         />
       </el-form-item>
 
-      <el-form-item label="订单日期" prop="orderDate">
-        <el-date-picker clearable
-          v-model="queryParams.orderDate"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择订单日期">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="商品ID" prop="goodsId">
+
+      <el-form-item label="规格编码" prop="specNum">
         <el-input
-          v-model="queryParams.goodsId"
-          placeholder="请输入erp系统商品id"
+          v-model="queryParams.specNum"
+          placeholder="请输入商品规格编码"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-
-      <el-form-item label="商品编码" prop="goodsNum">
-        <el-input
-          v-model="queryParams.goodsNum"
-          placeholder="请输入商品编码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-<!--      <el-form-item label="物流单号" prop="shipNo">-->
-<!--        <el-input-->
-<!--          v-model="queryParams.shipNo"-->
-<!--          placeholder="请输入物流单号"-->
-<!--          clearable-->
-<!--          @keyup.enter.native="handleQuery"-->
-<!--        />-->
-<!--      </el-form-item>-->
-
-<!--      <el-form-item label="发货时间" prop="shipTime">-->
-<!--        <el-date-picker clearable-->
-<!--          v-model="queryParams.shipTime"-->
-<!--          type="date"-->
-<!--          value-format="yyyy-MM-dd"-->
-<!--          placeholder="请选择发货时间">-->
-<!--        </el-date-picker>-->
-<!--      </el-form-item>-->
 
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -129,14 +98,14 @@
          </template>
       </el-table-column> -->
 
-      <el-table-column label="子订单编号" align="center" prop="subOrderNum" />
-      <el-table-column label="下单日期" align="center" prop="orderDate" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.orderDate, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="子订单编号" align="center" prop="subOrderNum" />-->
+<!--      <el-table-column label="下单日期" align="center" prop="orderDate" width="180">-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ parseTime(scope.row.orderDate, '{y}-{m}-{d}') }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
-      <el-table-column label="商品" >
+      <el-table-column label="商品图片" >
         <template slot-scope="scope">
           <el-image  style="width: 70px; height: 70px;" :src="scope.row.goodsImg"></el-image>
         </template>
@@ -145,7 +114,7 @@
       <el-table-column label="商品SKU" align="center" prop="goodsSpec" />
       <el-table-column label="数量" align="center" prop="quantity" />
 
-      <el-table-column label="SKU编码" align="center" prop="skuNum" />
+      <el-table-column label="SKU编码" align="center" prop="specNum" />
 <!--      <el-table-column label="操作" align="center" >-->
 <!--        <template slot-scope="scope">-->
 <!--          <el-button-->
@@ -330,14 +299,16 @@ export default {
     };
   },
   created() {
-
+    listShop({}).then(response => {
+      this.shopList = response.rows;
+    });
     this.getList();
     // listShop({}).then(response => {
     //     this.shopList = response.rows;
     //   });
-    // listSupplier({}).then(response => {
-    //   this.supplierList = response.rows;
-    //   });
+    listSupplier({}).then(response => {
+      this.supplierList = response.rows;
+      });
     // listLogistics({}).then(resp=>{
     //   this.logisticsList = resp.rows
     // })

@@ -17,11 +17,14 @@
             :label="item.name"
             :value="item.id">
             <span style="float: left">{{ item.name }}</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">1688</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">视频号小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">京东</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 13">快手小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 8">快手小店</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
           </el-option>
         </el-select>
@@ -113,9 +116,9 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="订单ID" align="center" prop="id" />
       <el-table-column label="订单编号" align="center" prop="orderNum" />
-      <el-table-column label="店铺ID" align="center" prop="shopId" >
+      <el-table-column label="店铺" align="center" prop="shopId" >
         <template slot-scope="scope">
-          <span>{{ shopList.find(x=>x.id === scope.row.shopId).name  }}</span>
+          <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>
         </template>
       </el-table-column>
 

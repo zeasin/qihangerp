@@ -2481,94 +2481,97 @@ CREATE TABLE `erp_invoice_img`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_order`;
 CREATE TABLE `erp_order`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
   `order_num` varchar(50)  NOT NULL COMMENT '订单编号（来源订单）',
-  `shop_type` int NULL DEFAULT NULL COMMENT '店铺类型',
-  `shop_id` int NOT NULL COMMENT '店铺ID',
-  `remark` varchar(1000)  NULL DEFAULT NULL COMMENT '订单备注',
-  `buyer_memo` varchar(50)  NULL DEFAULT NULL COMMENT '买家留言信息',
-  `tag` varchar(100)  NULL DEFAULT NULL COMMENT '标签',
-  `refund_status` int NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 5：全部',
-  `order_status` int NOT NULL COMMENT '订单状态1：待发货，2：已出库，3：已发货，4：已完成（结算）',
-  `goods_amount` double NULL DEFAULT NULL COMMENT '商品金额',
+  `shop_type` int(0) DEFAULT NULL COMMENT '店铺类型',
+  `shop_id` int(0) NOT NULL COMMENT '店铺ID',
+  `remark` varchar(1000)  DEFAULT NULL COMMENT '订单备注',
+  `buyer_memo` varchar(50)  DEFAULT NULL COMMENT '买家留言信息',
+  `tag` varchar(100)  DEFAULT NULL COMMENT '标签',
+  `refund_status` int(0) NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 5：全部',
+  `order_status` int(0) NOT NULL COMMENT '订单状态1：待发货，2：已出库，3：已发货，4：已完成（结算）',
+  `goods_amount` double DEFAULT NULL COMMENT '商品金额',
   `discount_amount` double NOT NULL COMMENT '折扣金额',
-  `postage` double NULL DEFAULT NULL COMMENT '运费',
+  `postage` double DEFAULT NULL COMMENT '运费',
   `amount` double NOT NULL COMMENT '支付金额，单位：元，支付金额=商品金额-折扣金额+邮费',
-  `receiver_name` varchar(20)  NULL DEFAULT NULL COMMENT '收件人姓名',
-  `receiver_phone` varchar(20)  NULL DEFAULT NULL COMMENT '收件人手机号',
-  `address` varchar(100)  NULL DEFAULT NULL COMMENT '收件人地址',
-  `country` varchar(50)  NULL DEFAULT NULL COMMENT '国家/地区',
-  `province` varchar(50)  NULL DEFAULT NULL COMMENT '省',
-  `city` varchar(50)  NULL DEFAULT NULL COMMENT '市',
-  `town` varchar(50)  NULL DEFAULT NULL COMMENT '区',
-  `order_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `pay_time` datetime NULL DEFAULT NULL COMMENT '支付时间',
-  `confirm_time` datetime NULL DEFAULT NULL COMMENT '订单确认时间',
-  `ship_type` int NOT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
-  `shipping_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
-  `shipping_number` varchar(50)  NULL DEFAULT NULL COMMENT '快递单号',
-  `shipping_company` varchar(100)  NULL DEFAULT NULL COMMENT '物流公司',
-  `shipping_man` varchar(25)  NULL DEFAULT NULL COMMENT '发货人',
-  `shipping_cost` decimal(10, 2) NULL DEFAULT NULL COMMENT '发货费用',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  `length` float NULL DEFAULT 0 COMMENT '长',
-  `width` float NULL DEFAULT 0 COMMENT '宽',
-  `height` float NULL DEFAULT 0 COMMENT '高',
-  `weight` float NULL DEFAULT NULL COMMENT '重量',
-  PRIMARY KEY (`id`) ,
-  UNIQUE INDEX `order_sn_index`(`order_num`) ,
-  INDEX `shopid_index`(`shop_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单表' ROW_FORMAT = DYNAMIC;
+  `receiver_name` varchar(100)  DEFAULT NULL COMMENT '收件人姓名',
+  `receiver_phone` varchar(100)  DEFAULT NULL COMMENT '收件人手机号',
+  `address` varchar(100)  DEFAULT NULL COMMENT '收件人地址',
+  `country` varchar(50)  DEFAULT NULL COMMENT '国家/地区',
+  `province` varchar(50)  DEFAULT NULL COMMENT '省',
+  `city` varchar(50)  DEFAULT NULL COMMENT '市',
+  `town` varchar(50)  DEFAULT NULL COMMENT '区',
+  `order_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
+  `pay_time` datetime(0) DEFAULT NULL COMMENT '支付时间',
+  `confirm_time` datetime(0) DEFAULT NULL COMMENT '订单确认时间',
+  `ship_type` int(0) NOT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
+  `ship_status` int(0) NOT NULL COMMENT '发货状态（0待备货1备货中2已出库）',
+  `shipping_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
+  `shipping_number` varchar(50)  DEFAULT NULL COMMENT '快递单号',
+  `shipping_company` varchar(100)  DEFAULT NULL COMMENT '物流公司',
+  `shipping_man` varchar(25)  DEFAULT NULL COMMENT '发货人',
+  `shipping_cost` decimal(10, 2) DEFAULT NULL COMMENT '发货费用',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
+  `create_by` varchar(25)  DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25)  DEFAULT NULL COMMENT '更新人',
+  `length` float DEFAULT 0 COMMENT '长',
+  `width` float DEFAULT 0 COMMENT '宽',
+  `height` float DEFAULT 0 COMMENT '高',
+  `weight` float DEFAULT NULL COMMENT '重量',
+  PRIMARY KEY (`id`)
+
+) 
 
 -- ----------------------------
 -- Records of erp_order
 -- ----------------------------
-INSERT INTO `erp_order` VALUES (15, '1631273557325601885', 4, 6, NULL, NULL, NULL, 1, 2, 28.9, 0, 0, 28.9, '王淑芳', '18704389133', '吉林吉林省松原市扶余市 三井子镇 里', '中国', '吉林', '', '', NULL, '2022-07-31 18:14:00', '2024-01-16 13:44:26', 0, NULL, NULL, NULL, NULL, NULL, '2024-01-16 13:44:26', 'admin', '2024-01-16 14:52:43', 'admin', 0, 0, 0, NULL);
-INSERT INTO `erp_order` VALUES (16, '1642473483353670599', 4, 6, NULL, NULL, NULL, 1, 3, 29.92, 0, 0, 29.92, '戴志兰', '17321293202', '上海上海 上海市 徐汇区 天平路街道 建国西路382号三楼4室 ', '中国', '上海', '', '', NULL, '2022-08-13 19:09:13', '2024-01-16 15:04:52', 0, '2024-01-16 15:42:53', 'CN2210003552', '菜鸟速递', '启航', 3.00, '2024-01-16 15:04:52', 'admin', '2024-01-16 15:42:53', 'admin', 20, 56, 19, 409);
-INSERT INTO `erp_order` VALUES (17, '1635222253871665598', 4, 6, NULL, NULL, NULL, 1, 1, 29.92, 0, 0, 29.92, '小红', '15635244122', '上海上海 上海市 徐汇区 华泾镇 华发路368弄 馨宁公寓馨宁公寓368弄23号楼1501', '中国', '上海', '', '', NULL, '2022-08-05 18:48:51', '2024-01-28 19:55:37', 1, NULL, NULL, NULL, NULL, NULL, '2024-01-28 19:55:37', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_order` VALUES (27, '3237115646950643410', 4, 6, '', '', '1', 1, 1, 44.9, 0, 0, 44.9, '#', '18400656752-3383', '北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)', '中国', '北京', '北京市', '丰台区', NULL, '2023-03-04 20:07:09', '2024-04-25 14:14:12', 0, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:14:12', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_order` VALUES (28, '3236924701745643410', 4, 6, '', '', '1', 1, 1, 44.9, 0, 0, 44.9, '#', '18400656752-3383', '北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)', '中国', '北京', '北京市', '丰台区', NULL, '2023-03-04 20:06:39', '2024-04-25 14:28:02', 1, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:28:02', 'admin', NULL, NULL, 0, 0, 0, NULL);
 
 -- ----------------------------
 -- Table structure for erp_order_item
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_order_item`;
 CREATE TABLE `erp_order_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
-  `order_id` bigint NOT NULL COMMENT '订单ID',
-  `goods_id` bigint NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
-  `spec_id` bigint NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `goods_title` varchar(100)  NULL DEFAULT NULL COMMENT '商品标题',
-  `goods_img` varchar(300)  NULL DEFAULT NULL COMMENT '商品图片',
-  `goods_num` varchar(35)  NULL DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(50)  NULL DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(35)  NULL DEFAULT NULL COMMENT '商品规格编码',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
+  `order_id` bigint(0) NOT NULL COMMENT '订单ID',
+  `shop_id` int(0) NOT NULL COMMENT '店铺id',
+  `goods_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
+  `spec_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
+  `goods_title` varchar(100)  DEFAULT NULL COMMENT '商品标题',
+  `goods_img` varchar(300)  DEFAULT NULL COMMENT '商品图片',
+  `goods_num` varchar(35)  DEFAULT NULL COMMENT '商品编码',
+  `goods_spec` varchar(50)  DEFAULT NULL COMMENT '商品规格',
+  `spec_num` varchar(35)  DEFAULT NULL COMMENT '商品规格编码',
   `goods_price` double NOT NULL COMMENT '商品单价',
-  `item_amount` double NULL DEFAULT NULL COMMENT '子订单金额',
-  `quantity` int NOT NULL COMMENT '商品数量',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
+  `item_amount` double DEFAULT NULL COMMENT '子订单金额',
+  `quantity` int(0) NOT NULL COMMENT '商品数量',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '备注',
   `order_item_num` varchar(50)  NOT NULL COMMENT '子订单编号(来源订单)',
   `order_num` varchar(50)  NOT NULL COMMENT '订单编号（来源订单）',
-  `supplier_id` int NULL DEFAULT NULL COMMENT '供应商ID',
-  `is_gift` tinyint NOT NULL DEFAULT 0 COMMENT '是否赠品0否1是',
-  `refund_count` int NULL DEFAULT 0 COMMENT '已退货数量',
-  `refund_status` int NULL DEFAULT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 ',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) ,
-  INDEX `goodId_index`(`goods_id`) ,
-  INDEX `order_id`(`order_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单明细表' ROW_FORMAT = DYNAMIC;
+  `supplier_id` int(0) DEFAULT NULL COMMENT '供应商ID',
+  `is_gift` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否赠品0否1是',
+  `refund_count` int(0) DEFAULT 0 COMMENT '已退货数量',
+  `refund_status` int(0) DEFAULT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 ',
+  `ship_type` int(0) NOT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
+  `ship_status` int(0) NOT NULL COMMENT '发货状态（0待备货1备货中2已出库）',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `create_by` varchar(25)  DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25)  DEFAULT NULL COMMENT '更新人',
+  `shipping_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
+  `shipping_number` varchar(50)  DEFAULT NULL COMMENT '快递单号',
+  `shipping_company` varchar(100)  DEFAULT NULL COMMENT '物流公司',
+  `shipping_man` varchar(25)  DEFAULT NULL COMMENT '发货人',
+  PRIMARY KEY (`id`) 
+) 
 
 -- ----------------------------
 -- Records of erp_order_item
 -- ----------------------------
-INSERT INTO `erp_order_item` VALUES (12, 15, 9, 32, '8026牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01AfNgvA2FOyAvwXZxv_!!2208857268871-0-cib.jpg', '272021008026', '黑色,2XL', '2720210080260105', 28.9, 28.9, 1, NULL, '1631273557325601885', '', 26, 0, 0, 1, '2024-01-16 13:44:26', 'admin', NULL, NULL);
-INSERT INTO `erp_order_item` VALUES (13, 16, 9, 32, '8026牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01AfNgvA2FOyAvwXZxv_!!2208857268871-0-cib.jpg', '272021008026', '黑色,2XL', '2720210080260105', 29.92, 29.92, 1, NULL, '1642473483353670599', '', 26, 0, 0, 1, '2024-01-16 15:04:52', 'admin', NULL, NULL);
-INSERT INTO `erp_order_item` VALUES (14, 17, 9, 40, '8026牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01PHFmsX2FOyB14fPie_!!2208857268871-0-cib.jpg', '272021008026', '浅蓝色,L', '2720210080260303', 29.92, 29.92, 1, NULL, '1635222253871665598', '', 26, 0, 0, 1, '2024-01-28 19:55:37', 'admin', NULL, NULL);
+INSERT INTO `erp_order_item` VALUES (1783378959750635522, 27, 6, 10, 53, 'HN858牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01jpsOio2FOyFVLvlmx_!!2208857268871-0-cib.jpg', 'HN858', '颜色分类：浅蓝色;尺寸：S', '27202208580301', 79, 44.9, 1, NULL, '3237115646950643410', '3237115646950643410', 26, 0, 0, 1, 0, 0, '2024-04-25 14:14:12', 'admin', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `erp_order_item` VALUES (1783382441731792897, 28, 6, 10, 43, 'HN858牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01SJelLi2FOyFPEQgvg_!!2208857268871-0-cib.jpg', 'HN858', '颜色分类：黑色;尺寸：S', '27202208580101', 79, 44.9, 1, NULL, '3236924701745643410', '3236924701745643410', 26, 0, 0, 1, 1, 0, '2024-04-25 14:28:02', 'admin', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for erp_order_returned

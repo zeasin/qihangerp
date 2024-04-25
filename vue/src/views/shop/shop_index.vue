@@ -87,11 +87,15 @@
       <!-- <el-table-column label="店铺主体" align="center" prop="company" /> -->
       <el-table-column label="平台" align="center" prop="type" >
         <template slot-scope="scope">
-          <el-tag v-if="scope.row.type === 4">淘宝</el-tag>
+          <el-tag v-if="scope.row.type === 1">1688</el-tag>
+          <el-tag v-if="scope.row.type === 2">视频号小店</el-tag>
+          <el-tag v-if="scope.row.type === 3">京东</el-tag>
+          <el-tag v-if="scope.row.type === 4">淘系店铺</el-tag>
           <el-tag v-if="scope.row.type === 5">拼多多</el-tag>
           <el-tag v-if="scope.row.type === 6">抖店</el-tag>
           <el-tag v-if="scope.row.type === 7">小红书</el-tag>
-          <el-tag v-if="scope.row.type === 13">快手小店</el-tag>
+          <el-tag v-if="scope.row.type === 8">快手小店</el-tag>
+          <el-tag v-if="scope.row.type === 99">其他</el-tag>
         </template>
       </el-table-column>
       <!-- <el-table-column label="店铺url" align="center" prop="url" /> -->

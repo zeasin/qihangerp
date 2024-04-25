@@ -5,11 +5,14 @@
         <el-select v-model="queryParams.shopId" filterable  placeholder="搜索店铺" >
           <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">
             <span style="float: left">{{ item.name }}</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">1688</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">视频号小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">京东</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 13">快手小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 8">快手小店</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
           </el-option>
           </el-select>
@@ -168,9 +171,9 @@
       <el-table-column label="仓库库存" align="center" prop="inventory" />
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.status === 0">待备货</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 1">备货中</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 2">已出库</el-tag>
+          <el-tag size="small" v-if="scope.row.shipStatus === 0">待备货</el-tag>
+          <el-tag size="small" v-if="scope.row.shipStatus === 1">备货中</el-tag>
+          <el-tag size="small" v-if="scope.row.shipStatus === 2">已出库</el-tag>
         </template>
       </el-table-column>
 <!--      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">-->
@@ -291,7 +294,7 @@ export default {
           label: '备货中'
         }, {
           value: '2',
-          label: '已备货'
+          label: '已出库'
         }
       ],
       // 表单校验

@@ -29,25 +29,27 @@ public class ErpOrderItemServiceImpl extends ServiceImpl<ErpOrderItemMapper, Erp
     private final ErpOrderMapper orderMapper;
     @Override
     public PageResult<ErpOrderItem> queryPageList(Integer shipType, Integer status, ErpOrderItem bo, PageQuery pageQuery) {
-        List<Long> ids = null;
-        if(shipType!=null|| status!= null){
-//            LambdaQueryWrapper<ErpOrder> qw = new LambdaQueryWrapper<ErpOrder>()
-//                    .eq(shipType!=null,ErpOrder::getShipType,shipType)
-//                    .eq(status!=null,ErpOrder::getOrderStatus,status);
-//            List<ErpOrder> erpOrders = orderMapper.selectList(qw);
-            ErpOrder qw = new ErpOrder();
-            qw.setShipType(shipType);
-            qw.setOrderStatus(status);
-            List<ErpOrder> erpOrders = orderMapper.selectErpOrderList(qw);
-            if(erpOrders!=null&&erpOrders.size()>0) {
-                ids = erpOrders.stream().map(m -> m.getId()).collect(Collectors.toList());
-            }
-        }
-        if(ids == null) return PageResult.build();
+//        List<Long> ids = null;
+//        if(shipType!=null|| status!= null){
+////            LambdaQueryWrapper<ErpOrder> qw = new LambdaQueryWrapper<ErpOrder>()
+////                    .eq(shipType!=null,ErpOrder::getShipType,shipType)
+////                    .eq(status!=null,ErpOrder::getOrderStatus,status);
+////            List<ErpOrder> erpOrders = orderMapper.selectList(qw);
+//            ErpOrder qw = new ErpOrder();
+//            qw.setShipType(shipType);
+//            qw.setOrderStatus(status);
+//            List<ErpOrder> erpOrders = orderMapper.selectErpOrderList(qw);
+//            if(erpOrders!=null&&erpOrders.size()>0) {
+//                ids = erpOrders.stream().map(m -> m.getId()).collect(Collectors.toList());
+//            }
+//        }
+//        if(ids == null) return PageResult.build();
 
         LambdaQueryWrapper<ErpOrderItem> queryWrapper = new LambdaQueryWrapper<ErpOrderItem>()
                 .eq(org.springframework.util.StringUtils.hasText(bo.getOrderNum()),ErpOrderItem::getOrderNum,bo.getOrderNum())
-                .in(ErpOrderItem::getOrderId,ids)
+                .eq(org.springframework.util.StringUtils.hasText(bo.getSpecNum()),ErpOrderItem::getSpecNum,bo.getSpecNum())
+                .eq(ErpOrderItem::getShipType,shipType)
+                .eq(ErpOrderItem::getShipStatus,status)
                 ;
         Page<ErpOrderItem> pages = mapper.selectPage(pageQuery.build(), queryWrapper);
 

@@ -16,12 +16,18 @@
 <!--          clearable-->
 <!--          @keyup.enter.native="handleQuery"-->
 <!--        />-->
-        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
-          <el-option
-            v-for="item in shopList"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id">
+        <el-select v-model="form.shopId" filterable r placeholder="搜索店铺" >
+          <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">
+            <span style="float: left">{{ item.name }}</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">1688</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">视频号小店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">京东</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘系店铺</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 8">快手小店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
           </el-option>
         </el-select>
       </el-form-item>
@@ -368,13 +374,13 @@ export default {
     };
   },
   created() {
-    console.log('url参数：',this.$route.query.shopType)
-    if(this.$route.query.shopType) {
-      this.queryParams.shopType = this.$route.query.shopType
+    // console.log('url参数：',this.$route.query.shopType)
+    // if(this.$route.query.shopType) {
+    //   this.queryParams.shopType = this.$route.query.shopType
       listShop({type:this.queryParams.shopType}).then(response => {
         this.shopList = response.rows;
       });
-    }
+    // }
     this.getList();
   },
   methods: {

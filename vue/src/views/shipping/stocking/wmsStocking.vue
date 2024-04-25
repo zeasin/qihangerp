@@ -5,42 +5,45 @@
         <el-select v-model="queryParams.shopId" filterable  placeholder="搜索店铺" >
           <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">
             <span style="float: left">{{ item.name }}</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">1688</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">视频号小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">京东</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 13">快手小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 8">快手小店</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
           </el-option>
           </el-select>
       </el-form-item>
-      <el-form-item label="商品ID" prop="goodsId">
-        <el-input
-          v-model="queryParams.goodsId"
-          placeholder="请输入erp系统商品id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="商品编码" prop="goodsNum">
-        <el-input
-          v-model="queryParams.goodsNum"
-          placeholder="请输入商品编码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="规格ID" prop="specId">
-        <el-input
-          v-model="queryParams.specId"
-          placeholder="请输入erp系统商品规格id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+<!--      <el-form-item label="商品ID" prop="goodsId">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.goodsId"-->
+<!--          placeholder="请输入erp系统商品id"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="商品编码" prop="goodsNum">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.goodsNum"-->
+<!--          placeholder="请输入商品编码"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="规格ID" prop="specId">-->
+<!--        <el-input-->
+<!--          v-model="queryParams.specId"-->
+<!--          placeholder="请输入erp系统商品规格id"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        />-->
+<!--      </el-form-item>-->
       <el-form-item label="规格编码" prop="specNum">
         <el-input
-          v-model="queryParams.goodsNum"
+          v-model="queryParams.specNum"
           placeholder="请输入商品规格编码"
           clearable
           @keyup.enter.native="handleQuery"
@@ -118,11 +121,11 @@
       </el-table-column> -->
 
       <!-- <el-table-column label="子订单编号" align="center" prop="orderItemId" /> -->
-      <el-table-column label="订单日期" align="center" prop="orderDate" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.orderDate, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="订单日期" align="center" prop="orderDate" width="180">-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ parseTime(scope.row.orderDate, '{y}-{m}-{d}') }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
       <el-table-column label="商品" >
           <template slot-scope="scope">
             <el-row :gutter="20">
@@ -131,7 +134,7 @@
               <div style="margin-left:10px">
               <p>{{scope.row.goodsTitle}}</p>
               <p>{{scope.row.goodsSpec}}&nbsp;
-                <el-tag size="small">x {{scope.row.quantity}}</el-tag>
+<!--                <el-tag size="small">x {{scope.row.quantity}}</el-tag>-->
                 </p>
               </div>
             </div>
@@ -146,7 +149,11 @@
       <el-table-column label="商品编码" align="center" prop="goodsNum" />
       <el-table-column label="商品规格" align="center" prop="goodsSpec" />
       <el-table-column label="商品规格编码" align="center" prop="specNum" /> -->
-       <el-table-column label="商品数量" align="center" prop="quantity" />
+       <el-table-column label="商品数量" align="center" prop="quantity" >
+         <template slot-scope="scope">
+         <el-tag size="small">{{scope.row.quantity}}</el-tag>
+         </template>
+       </el-table-column>
       <!-- <el-table-column label="备注" align="center" prop="remark" /> -->
       <!-- <el-table-column label="物流公司" align="center" prop="shipCompany" /> -->
 <!--      <el-table-column label="物流单号" align="center" prop="shipNo" />-->
@@ -168,9 +175,9 @@
       <el-table-column label="仓库库存" align="center" prop="inventory" />
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.status === 0">待备货</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 1">备货中</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 2">已出库</el-tag>
+          <el-tag size="small" v-if="scope.row.shipStatus === 0">待备货</el-tag>
+          <el-tag size="small" v-if="scope.row.shipStatus === 1">备货中</el-tag>
+          <el-tag size="small" v-if="scope.row.shipStatus === 2">已出库</el-tag>
         </template>
       </el-table-column>
 <!--      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">-->
@@ -291,7 +298,7 @@ export default {
           label: '备货中'
         }, {
           value: '2',
-          label: '已备货'
+          label: '已出库'
         }
       ],
       // 表单校验

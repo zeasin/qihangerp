@@ -50,16 +50,16 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['tao:order:add']"
-        >手动添加</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="primary"-->
+<!--          plain-->
+<!--          icon="el-icon-plus"-->
+<!--          size="mini"-->
+<!--          @click="handleAdd"-->
+<!--          v-hasPermi="['tao:order:add']"-->
+<!--        >手动添加</el-button>-->
+<!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
           type="success"
@@ -71,7 +71,7 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          type="danger"
+          type="success"
           plain
           icon="el-icon-download"
           size="mini"
@@ -84,9 +84,9 @@
           plain
           icon="el-icon-refresh"
           size="mini"
-          :disabled="multiple"
-          @click="handlePushOms"
-        >批量确认订单</el-button>
+          :disabled="single"
+          @click="handleConfirm"
+        >确认订单</el-button>
       </el-col>
       <!-- <el-col :span="1.5">
         <el-button
@@ -117,7 +117,7 @@
       <el-table-column label="订单号" align="center" prop="id" />
       <el-table-column label="店铺" align="center" prop="shopId" >
        <template slot-scope="scope">
-          <span v-if="scope.row.shopId==6">梦小妮牛仔裤</span>
+         <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>
         </template>
       </el-table-column>
       <el-table-column label="商品" width="350">
@@ -146,7 +146,7 @@
       <!-- <el-table-column label="优惠描述" align="center" prop="discountRemark" /> -->
       <el-table-column label="订单创建时间" align="center" prop="orderCreateTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.orderCreateTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.orderCreateTime) }}</span>
         </template>
       </el-table-column>
       <!-- <el-table-column label="订单修改时间" align="center" prop="orderModifyTime" width="180">
@@ -227,7 +227,7 @@
             size="mini"
             type="success"
             icon="el-icon-success"
-            @click="handleUpdate(scope.row)"
+            @click="handleConfirm(scope.row)"
             v-hasPermi="['tao:order:edit']"
           >确认订单</el-button>
           <el-button
@@ -425,10 +425,10 @@
               <el-tag size="small" v-if="form.orderSource ===0 ">天猫</el-tag>
             </el-descriptions-item>
             <el-descriptions-item label="店铺">
-              <span v-if="form.shopId==6">梦小妮牛仔裤</span>
+              <span >{{ shopList.find(x=>x.id === form.shopId)?shopList.find(x=>x.id === form.shopId).name :'' }}</span>
             </el-descriptions-item>
             <el-descriptions-item label="下单日期">
-              {{ parseTime(form.orderCreateTime, '{yyyy}-{m}-{dd}')}}
+              {{ parseTime(form.orderCreateTime)}}
               <!-- <el-date-picker
               disabled
                 v-model="form.orderCreateTime"
@@ -1082,7 +1082,21 @@ export default {
       this.form.totalAmount = goodsAmountNew
 
     },
-
+    handleConfirm(row) {
+      this.reset();
+      const id = row.id || this.ids
+      getOrder(id).then(response => {
+        this.form = response.data;
+        this.goodsList = response.data.taoOrderItemList;
+        this.form.provinces = []
+        this.form.provinces.push(response.data.province)
+        this.form.provinces.push(response.data.city)
+        this.form.provinces.push(response.data.town)
+        this.isAudit = true
+        this.detailOpen = true;
+        this.detailTitle = "确认订单";
+      });
+    },
   }
 };
 </script>

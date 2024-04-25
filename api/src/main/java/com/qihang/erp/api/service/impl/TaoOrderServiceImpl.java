@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 import com.qihang.common.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
 import com.qihang.erp.api.service.ITaoOrderService;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 /**
  * 淘宝订单Service业务层处理
@@ -146,6 +147,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
         so.setTag(original.getTag());
         so.setRefundStatus(1);
         so.setOrderStatus(1);
+        so.setShipStatus(0);
         so.setShipType(taoOrder.getShipType());
 
         so.setGoodsAmount(original.getTotalAmount().subtract(original.getShippingFee()).doubleValue());
@@ -172,13 +174,25 @@ public class TaoOrderServiceImpl implements ITaoOrderService
         List<TaoOrderItem> taoOrderItems = taoOrderMapper.selectOrderItemByOrderId(taoOrder.getId());
         List<ErpOrderItem> items = new ArrayList<>();
         for (var i:taoOrderItems) {
-            if(StringUtils.isEmpty(i.getSpecNumber())) return -11;
+            if(StringUtils.isEmpty(i.getSpecNumber())) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -11;
+            }
             GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNumber());
-            if (spec == null) return -11;
+            if (spec == null) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -11;
+            }
             Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-            if(goods == null) return -12;
+            if(goods == null){
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -12;
+            }
 
             ErpOrderItem item = new ErpOrderItem();
+            item.setShipStatus(0);
+            item.setShipType(taoOrder.getShipType());
+            item.setShopId(original.getShopId().intValue());
             item.setOrderId(so.getId());
             item.setOrderNum(original.getId());
             item.setOrderItemNum(i.getSubItemId());
@@ -211,6 +225,9 @@ public class TaoOrderServiceImpl implements ITaoOrderService
                 if(goods == null) return -12;
 
                 ErpOrderItem item = new ErpOrderItem();
+                item.setShipStatus(0);
+                item.setShipType(taoOrder.getShipType());
+                item.setShopId(original.getShopId().intValue());
                 item.setOrderId(so.getId());
                 item.setOrderNum(original.getId());
                 item.setOrderItemNum(original.getId()+"_");
@@ -234,7 +251,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
                 items.add(item);
             }
         }
-//        erpOrderMapper.batchErpOrderItem(items);
+        erpOrderMapper.batchErpOrderItem(items);
 
         //更新自己
         TaoOrder update = new TaoOrder();

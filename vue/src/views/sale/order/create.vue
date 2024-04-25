@@ -5,27 +5,30 @@
           <el-col :span="24">
             <el-input v-model="form.orderNum" style="width:220px" placeholder="请输入订单编号" />
           </el-col>
-          
+
         </el-form-item>
         <el-form-item label="店铺" prop="shopId">
           <el-select v-model="form.shopId" filterable r placeholder="搜索店铺" >
           <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">
              <span style="float: left">{{ item.name }}</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘宝天猫</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">1688</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">视频号小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">京东</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘系店铺</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
-              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 13">快手小店</span>
+              <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 8">快手小店</span>
               <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
           </el-option>
         </el-select>
-        </el-form-item> 
+        </el-form-item>
         <el-form-item label="收件人姓名" prop="receiverName">
           <el-input v-model="form.receiverName" style="width: 220px;" placeholder="请输入收件人姓名" />
         </el-form-item>
         <el-form-item label="收件人手机号" prop="receiverPhone">
           <el-input v-model="form.receiverPhone"  style="width: 220px;" placeholder="请输入收件人手机号" />
-        </el-form-item> 
+        </el-form-item>
         <el-form-item label="省市区" prop="provinces">
           <el-cascader style="width:250px"
             size="large"
@@ -41,7 +44,7 @@
         <el-form-item label="详细地址" prop="address">
           <el-input v-model="form.address" placeholder="请输入详细地址" />
         </el-form-item>
-       
+
         <el-form-item label="商品明细">
           <el-row :gutter="10" class="mb8" >
           <el-col :span="1.5">
@@ -53,7 +56,7 @@
         </el-row>
         </el-form-item>
         <!-- <el-divider content-position="center" style="margin-left: 98px;">商品信息</el-divider> -->
-        
+
         <el-table style="margin-left: 108px;" :data="form.itemList" :row-class-name="rowSShopOrderItemIndex" @selection-change="handleSShopOrderItemSelectionChange" ref="sShopOrderItem">
           <el-table-column type="selection" width="50" align="center" />
           <el-table-column label="序号" align="center" prop="index" width="50"/>
@@ -115,7 +118,7 @@
               <el-input v-model="scope.row.itemAmount" disabled placeholder="请输入子订单金额" />
             </template>
           </el-table-column>
-          
+
           <el-table-column label="是否赠品0否1是" prop="isGift" width="150">
             <template slot-scope="scope">
               <!-- <el-input v-model="scope.row.isGift" placeholder="请输入是否赠品0否1是" /> -->
@@ -147,7 +150,7 @@
         <el-form-item label="折扣金额" prop="discountAmount">
           <el-input v-model="form.discountAmount" style="width: 220px;" placeholder="请输入折扣金额，单位：元，折扣金额=平台优惠+商家优惠+团长免单优惠金额" />
         </el-form-item>
-        
+
         <el-form-item label="支付金额" prop="payAmount">
           <el-input v-model="form.payAmount" style="width: 220px;" placeholder="请输入支付金额，单位：元，支付金额=商品金额-折扣金额+邮费" />
         </el-form-item>
@@ -268,7 +271,7 @@ export default {
         let goodsAmount = this.form.goodsAmount ? this.form.goodsAmount:0.0
         goodsAmount += row.itemAmount
         this.form.goodsAmount = goodsAmount
-        
+
 
       //   this.goodsForm.id = spec.id
       //   this.goodsForm.goodsId = spec.goodsId
@@ -357,7 +360,7 @@ export default {
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          
+
           this.form.province = this.form.provinces[0]
           this.form.city = this.form.provinces[1]
           this.form.town = this.form.provinces[2]
@@ -366,10 +369,10 @@ export default {
             this.form.itemList.forEach(x=>{
               if(!x.goodsId || !x.quantity){
                 this.$modal.msgError("请完善商品信息");
-                return 
+                return
               }
             })
-   
+
             console.log('======创建订单=====',this.form)
             addOrder(this.form).then(response => {
               this.$modal.msgSuccess("订单创建成功");
@@ -377,11 +380,11 @@ export default {
               this.$store.dispatch("tagsView/delView", this.$route);
               this.$router.push('/sale/order/list');
             });
-          
+
         }else{
           this.$modal.msgError("请添加商品");
         }
-          
+
         }
       });
     }

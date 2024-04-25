@@ -26,7 +26,7 @@ public class ShippingController extends BaseController {
     @GetMapping("/supplier_ship_list")
     public TableDataInfo supplierShipList(ErpOrderItem bo, PageQuery pageQuery)
     {
-        PageResult<ErpOrderItem> list = erpOrderItemService.queryPageList(1,1,bo, pageQuery);
+        PageResult<ErpOrderItem> list = erpOrderItemService.queryPageList(1,0,bo, pageQuery);
         return getDataTable(list);
     }
 
@@ -39,7 +39,7 @@ public class ShippingController extends BaseController {
     @GetMapping("/stock_ship_list")
     public TableDataInfo stockShipList(ErpOrderItem bo, PageQuery pageQuery)
     {
-        PageResult<ErpOrderItem> list = erpOrderItemService.queryPageList(0,1,bo, pageQuery);
+        PageResult<ErpOrderItem> list = erpOrderItemService.queryPageList(0,0,bo, pageQuery);
         return getDataTable(list);
     }
 }

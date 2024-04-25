@@ -19,6 +19,7 @@ public class ErpOrderItem implements Serializable {
      * 订单ID
      */
     private Long orderId;
+    private Integer shopId;
 
     /**
      * erp系统商品id
@@ -120,6 +121,13 @@ public class ErpOrderItem implements Serializable {
      * 更新人
      */
     private String updateBy;
+
+    private Integer shipType;
+    private Integer shipStatus;
+    private Date shippingTime;
+    private String shippingNumber;
+    private String shippingCompany;
+    private String shippingMan;
 
     private static final long serialVersionUID = 1L;
 }

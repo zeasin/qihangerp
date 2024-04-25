@@ -99,7 +99,7 @@ public class TaoOrderController extends BaseController
         else if(result == -12) return new AjaxResult(512,"商品信息不存在！");
 
 
-        return toAjax(1);
+        return toAjax(result);
     }
 
 
