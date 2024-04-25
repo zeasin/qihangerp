@@ -58,26 +58,26 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-<!--      <el-col :span="1.5">-->
-<!--        <el-button-->
-<!--          type="primary"-->
-<!--          plain-->
-<!--          icon="el-icon-plus"-->
-<!--          size="mini"-->
-<!--          @click="handleAdd"-->
-<!--          v-hasPermi="['dou:order:add']"-->
-<!--        >手动添加</el-button>-->
-<!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
-          type="success"
+          type="primary"
           plain
-          icon="el-icon-upload"
+          icon="el-icon-plus"
           size="mini"
-          @click="handleImport"
-          v-hasPermi="['dou:order:edit']"
-        >Execl导入</el-button>
+          @click="handleAdd"
+          v-hasPermi="['dou:order:add']"
+        >手动添加</el-button>
       </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="success"-->
+<!--          plain-->
+<!--          icon="el-icon-upload"-->
+<!--          size="mini"-->
+<!--          @click="handleImport"-->
+<!--          v-hasPermi="['dou:order:edit']"-->
+<!--        >Execl导入</el-button>-->
+<!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
           type="danger"
@@ -96,18 +96,18 @@
           size="mini"
           :disabled="multiple"
           @click="handlePushOms"
-        >手动确认选中订单</el-button>
+        >批量确认订单</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['dou:order:export']"
-        >导出订单</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="warning"-->
+<!--          plain-->
+<!--          icon="el-icon-download"-->
+<!--          size="mini"-->
+<!--          @click="handleExport"-->
+<!--          v-hasPermi="['dou:order:export']"-->
+<!--        >导出订单</el-button>-->
+<!--      </el-col>-->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 

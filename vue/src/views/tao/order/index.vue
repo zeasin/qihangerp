@@ -61,16 +61,16 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-<!--      <el-col :span="1.5">-->
-<!--        <el-button-->
-<!--          type="primary"-->
-<!--          plain-->
-<!--          icon="el-icon-plus"-->
-<!--          size="mini"-->
-<!--          @click="handleAdd"-->
-<!--          v-hasPermi="['tao:order:add']"-->
-<!--        >手动添加</el-button>-->
-<!--      </el-col>-->
+      <el-col :span="1.5">
+        <el-button
+          type="primary"
+          plain
+          icon="el-icon-plus"
+          size="mini"
+          @click="handleAdd"
+          v-hasPermi="['tao:order:add']"
+        >手动添加</el-button>
+      </el-col>
       <el-col :span="1.5">
         <el-button
           type="success"
@@ -97,7 +97,7 @@
           size="mini"
           :disabled="multiple"
           @click="handlePushOms"
-        >手动确认选中订单</el-button>
+        >批量确认订单</el-button>
       </el-col>
       <!-- <el-col :span="1.5">
         <el-button
@@ -110,16 +110,16 @@
           v-hasPermi="['tao:order:remove']"
         >删除</el-button>
       </el-col> -->
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['tao:order:export']"
-        >导出订单</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="warning"-->
+<!--          plain-->
+<!--          icon="el-icon-download"-->
+<!--          size="mini"-->
+<!--          @click="handleExport"-->
+<!--          v-hasPermi="['tao:order:export']"-->
+<!--        >导出订单</el-button>-->
+<!--      </el-col>-->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 

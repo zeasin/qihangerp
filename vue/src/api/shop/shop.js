@@ -68,3 +68,11 @@ export function updatePlatform(data) {
     data: data
   })
 }
+
+export function listShopPullLogs(query) {
+  return request({
+    url: '/shop/pull_logs_list',
+    method: 'get',
+    params: query
+  })
+}

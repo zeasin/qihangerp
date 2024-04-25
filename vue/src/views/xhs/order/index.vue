@@ -69,16 +69,16 @@
           v-hasPermi="['xhs:order:add']"
         >手动添加</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-upload"
-          size="mini"
-          @click="handleImport"
-          v-hasPermi="['xhs:order:edit']"
-        >Execl导入</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="success"-->
+<!--          plain-->
+<!--          icon="el-icon-upload"-->
+<!--          size="mini"-->
+<!--          @click="handleImport"-->
+<!--          v-hasPermi="['xhs:order:edit']"-->
+<!--        >Execl导入</el-button>-->
+<!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
           type="danger"
@@ -92,14 +92,24 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          type="warning"
+          type="primary"
           plain
-          icon="el-icon-download"
+          icon="el-icon-refresh"
           size="mini"
-          @click="handleExport"
-          v-hasPermi="['xhs:order:export']"
-        >导出订单</el-button>
+          :disabled="multiple"
+          @click="handlePushOms"
+        >批量确认订单</el-button>
       </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="warning"-->
+<!--          plain-->
+<!--          icon="el-icon-download"-->
+<!--          size="mini"-->
+<!--          @click="handleExport"-->
+<!--          v-hasPermi="['xhs:order:export']"-->
+<!--        >导出订单</el-button>-->
+<!--      </el-col>-->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -594,7 +604,7 @@ import {
   codeToText,
 } from "element-china-area-data";
 export default {
-  name: "Order",
+  name: "OrderXhs",
   data() {
     return {
       // 遮罩层
