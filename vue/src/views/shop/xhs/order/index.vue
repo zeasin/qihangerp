@@ -684,36 +684,16 @@ export default {
       pcaTextArr,
       // 表单校验
       rules: {
-        orderId: [
-          { required: true, message: "订单号不能为空", trigger: "blur" }
-        ],
-        shopId: [
-          { required: true, message: "店铺ID不能为空", trigger: "blur" }
-        ],
-        createTime: [
-          { required: true, message: "下单时间不能为空", trigger: "blur" }
-        ],
-        receiver: [
-          { required: true, message: "收件人姓名不能为空", trigger: "blur" }
-        ],
-        phone: [
-          { required: true, message: "收件人电话不能为空", trigger: "blur" }
-        ],
-        provinces: [
-          { required: true, message: "请选择省市区", trigger: "blur" }
-        ],
-        address: [
-          { required: true, message: "收件人详情不能为空", trigger: "blur" }
-        ],
-        goodsAmount: [
-          { required: true, message: "总金额(不含运费) 不能为空", trigger: "blur" }
-        ],
-        shippingFree: [
-          { required: true, message: "订单运费不能为空", trigger: "blur" }
-        ],
-        shipType: [
-          { required: true, message: "请选择发货方式", trigger: "blur" }
-        ],
+        orderId: [{ required: true, message: "订单号不能为空", trigger: "blur" }],
+        shopId: [{ required: true, message: "店铺ID不能为空", trigger: "blur" }],
+        createTime: [{ required: true, message: "下单时间不能为空", trigger: "blur" }],
+        receiver: [{ required: true, message: "收件人姓名不能为空", trigger: "blur" }],
+        phone: [{ required: true, message: "收件人电话不能为空", trigger: "blur" }],
+        provinces: [{ required: true, message: "请选择省市区", trigger: "blur" }],
+        address: [{ required: true, message: "收件人详情不能为空", trigger: "blur" }],
+        goodsAmount: [{ required: true, message: "总金额(不含运费) 不能为空", trigger: "blur" }],
+        shippingFree: [{ required: true, message: "订单运费不能为空", trigger: "blur" }],
+        shipType: [{ required: true, message: "请选择发货方式", trigger: "blur" }],
       }
     };
   },

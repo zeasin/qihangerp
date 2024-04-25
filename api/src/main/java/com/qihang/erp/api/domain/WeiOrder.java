@@ -16,7 +16,7 @@ public class WeiOrder implements Serializable {
     /**
      * 
      */
-    private Long id;
+    private String id;
 
     /**
      * 店铺id
@@ -187,6 +187,23 @@ public class WeiOrder implements Serializable {
 
     @TableField(exist = false)
     private List<WeiOrderItem> items;
+
+    @TableField(exist = false)
+    private Integer shipType;
+
+    @TableField(exist = false)
+    private String receiver;
+    @TableField(exist = false)
+    private String phone;
+    @TableField(exist = false)
+    private String province;
+    @TableField(exist = false)
+    private String city;
+    @TableField(exist = false)
+    private String district;
+    @TableField(exist = false)
+    private String address;
+
 
     private static final long serialVersionUID = 1L;
 }
