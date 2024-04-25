@@ -153,6 +153,7 @@ public class PddOrderServiceImpl implements IPddOrderService
         so.setTag(original.getTag());
         so.setRefundStatus(1);
         so.setOrderStatus(1);
+        so.setShipStatus(0);
         so.setGoodsAmount(original.getGoodsAmount());
         so.setDiscountAmount(BigDecimal.valueOf(original.getDiscountAmount()));
         so.setAmount(original.getPayAmount());
@@ -163,9 +164,9 @@ public class PddOrderServiceImpl implements IPddOrderService
             so.setPayTime(payDate);
         }catch (Exception e){}
 
-        so.setReceiverName(original.getReceiverName());
-        so.setReceiverPhone(original.getReceiverPhone());
-        so.setAddress(original.getAddress());
+        so.setReceiverName(original.getReceiverName1());
+        so.setReceiverPhone(original.getReceiverPhone1());
+        so.setAddress(original.getReceiverAddress1());
         so.setCountry("中国");
         so.setProvince(original.getProvince());
         so.setCity(original.getCity());
@@ -179,13 +180,25 @@ public class PddOrderServiceImpl implements IPddOrderService
         List<PddOrderItem> orderItems = pddOrderMapper.selectOrderItemByOrderId(pddOrder.getId());
         List<ErpOrderItem> items = new ArrayList<>();
         for (var i:orderItems) {
-            if(StringUtils.isEmpty(i.getSpecNum())) return -11;
+            if(StringUtils.isEmpty(i.getSpecNum())){
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -11;
+            }
             GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNum());
-            if (spec == null) return -11;
+            if (spec == null) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -11;
+            }
             Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-            if(goods == null) return -12;
+            if(goods == null) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -12;
+            }
 
             ErpOrderItem item = new ErpOrderItem();
+            item.setShipStatus(0);
+            item.setShipType(pddOrder.getShipType());
+            item.setShopId(original.getShopId().intValue());
             item.setOrderId(so.getId());
             item.setOrderNum(original.getOrderSn());
             item.setOrderItemNum(i.getId()+"");
@@ -211,13 +224,25 @@ public class PddOrderServiceImpl implements IPddOrderService
         // 添加了赠品
         if(pddOrder.getPddOrderItemList()!=null && !pddOrder.getPddOrderItemList().isEmpty()) {
             for (var i : pddOrder.getPddOrderItemList()) {
-                if(StringUtils.isEmpty(i.getSpecNum())) return -11;
+                if(StringUtils.isEmpty(i.getSpecNum())) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -11;
+                }
                 GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNum());
-                if (spec == null) return -11;
+                if (spec == null) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -11;
+                }
                 Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-                if(goods == null) return -12;
+                if(goods == null) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -12;
+                }
 
                 ErpOrderItem item = new ErpOrderItem();
+                item.setShipStatus(0);
+                item.setShipType(pddOrder.getShipType());
+                item.setShopId(original.getShopId().intValue());
                 item.setOrderNum(original.getOrderSn());
                 item.setOrderId(so.getId());
                 item.setOrderItemNum(pddOrder.getId()+"_");
@@ -241,7 +266,7 @@ public class PddOrderServiceImpl implements IPddOrderService
                 items.add(item);
             }
         }
-//        erpOrderMapper.batchErpOrderItem(items);
+        erpOrderMapper.batchErpOrderItem(items);
 
         //更新自己
         PddOrder po =new PddOrder();

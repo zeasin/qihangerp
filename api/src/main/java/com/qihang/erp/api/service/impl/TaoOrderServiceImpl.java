@@ -218,11 +218,20 @@ public class TaoOrderServiceImpl implements ITaoOrderService
         // 添加了赠品
         if(taoOrder.getTaoOrderItemList()!=null && !taoOrder.getTaoOrderItemList().isEmpty()){
             for (var g:taoOrder.getTaoOrderItemList()) {
-                if(StringUtils.isEmpty(g.getSpecNumber())) return -11;
+                if(StringUtils.isEmpty(g.getSpecNumber())) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -11;
+                }
                 GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(g.getSpecNumber());
-                if (spec == null) return -11;
+                if (spec == null) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -11;
+                }
                 Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-                if(goods == null) return -12;
+                if(goods == null) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -12;
+                }
 
                 ErpOrderItem item = new ErpOrderItem();
                 item.setShipStatus(0);

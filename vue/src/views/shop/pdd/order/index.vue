@@ -98,9 +98,9 @@
           plain
           icon="el-icon-refresh"
           size="mini"
-          :disabled="multiple"
-          @click="handlePushOms"
-        >批量确认订单</el-button>
+          :disabled="single"
+          @click="handleConfirm"
+        >确认订单</el-button>
       </el-col>
 <!--      <el-col :span="1.5">-->
 <!--        <el-button-->
@@ -121,7 +121,7 @@
       <el-table-column label="订单编号" align="center" prop="orderSn" />
       <el-table-column label="店铺" align="center" prop="shopId" >
         <template slot-scope="scope">
-          <span v-if="scope.row.shopId==5">梦小妮潮流女装</span>
+          <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>
         </template>
       </el-table-column>
       <el-table-column label="商品" prop="pddOrderItemList" width="350">

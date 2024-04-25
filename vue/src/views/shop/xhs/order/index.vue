@@ -81,13 +81,14 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
+          v-if="scope.row.auditStatus === 0"
           type="primary"
           plain
           icon="el-icon-refresh"
           size="mini"
-          :disabled="multiple"
-          @click="handlePushOms"
-        >批量确认订单</el-button>
+          :disabled="single"
+          @click="handleConfirm"
+        >确认订单</el-button>
       </el-col>
 <!--      <el-col :span="1.5">-->
 <!--        <el-button-->
@@ -103,12 +104,12 @@
     </el-row>
 
     <el-table v-loading="loading" :data="orderList" @selection-change="handleSelectionChange">
-<!--      <el-table-column type="selection" width="55" align="center" />-->
+      <el-table-column type="selection" width="55" align="center" />
 <!--      <el-table-column label="主键id" align="center" prop="id" />-->
       <el-table-column label="订单号" align="center" prop="orderId" />
       <el-table-column label="店铺" align="center" prop="shopId" >
        <template slot-scope="scope">
-          <span v-if="scope.row.shopId==21">珍姐姐de衣柜的店</span>
+         <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>
         </template>
       </el-table-column>
       <el-table-column label="商品" width="350">

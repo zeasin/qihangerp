@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import com.qihang.common.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
 import com.qihang.erp.api.service.IDouOrderService;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 /**
  * 抖店订单Service业务层处理
@@ -127,6 +128,7 @@ public class DouOrderServiceImpl implements IDouOrderService
         so.setTag("");
         so.setRefundStatus(1);
         so.setOrderStatus(1);
+        so.setShipStatus(0);
         so.setGoodsAmount(original.getOrderTotalAmount().subtract(original.getShopCouponAmount()).subtract(original.getCouponAmount()).doubleValue());
         so.setDiscountAmount(original.getShopCouponAmount().add(original.getCouponAmount()));
         so.setAmount(original.getOrderTotalAmount().add(original.getPostAmount()).doubleValue());
@@ -151,13 +153,25 @@ public class DouOrderServiceImpl implements IDouOrderService
         List<DouOrderItem> orderItems = douOrderMapper.selectOrderItemByOrderId(original.getId());
         List<ErpOrderItem> items = new ArrayList<>();
         for (var i:orderItems) {
-            if(StringUtils.isEmpty(i.getSpecNum())) return -11;
+            if(StringUtils.isEmpty(i.getSpecNum())) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -11;
+            }
             GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNum());
-            if (spec == null) return -11;
+            if (spec == null) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -11;
+            }
             Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-            if(goods == null) return -12;
+            if(goods == null) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -12;
+            }
 
             ErpOrderItem item = new ErpOrderItem();
+            item.setShipStatus(0);
+            item.setShipType(bo.getShipType());
+            item.setShopId(original.getShopId().intValue());
             item.setOrderId(so.getId());
             item.setOrderNum(i.getOrderId());
             item.setOrderItemNum(i.getId()+"");
@@ -183,13 +197,25 @@ public class DouOrderServiceImpl implements IDouOrderService
         // 添加了赠品
         if(bo.getDouOrderItemList()!=null && !bo.getDouOrderItemList().isEmpty()) {
             for (var i : bo.getDouOrderItemList()) {
-                if(StringUtils.isEmpty(i.getSpecNum())) return -11;
+                if(StringUtils.isEmpty(i.getSpecNum())) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -11;
+                }
                 GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNum());
-                if (spec == null) return -11;
+                if (spec == null){
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -11;
+                }
                 Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-                if(goods == null) return -12;
+                if(goods == null){
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -12;
+                }
 
                 ErpOrderItem item = new ErpOrderItem();
+                item.setShipStatus(0);
+                item.setShipType(bo.getShipType());
+                item.setShopId(original.getShopId().intValue());
                 item.setOrderId(so.getId());
                 item.setOrderNum(i.getOrderId());
                 item.setOrderItemNum(original.getOrderId()+"_");
@@ -213,7 +239,7 @@ public class DouOrderServiceImpl implements IDouOrderService
                 items.add(item);
             }
         }
-//        erpOrderMapper.batchErpOrderItem(items);
+        erpOrderMapper.batchErpOrderItem(items);
 
         //更新自己
         DouOrder up =new DouOrder();

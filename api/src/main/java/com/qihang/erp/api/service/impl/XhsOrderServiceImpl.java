@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import com.qihang.common.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
 import com.qihang.erp.api.service.IXhsOrderService;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 /**
  * 小红书订单Service业务层处理
@@ -151,6 +152,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
         so.setTag("");
         so.setRefundStatus(1);
         so.setOrderStatus(1);
+        so.setShipStatus(0);
         BigDecimal shipFee = BigDecimal.valueOf(original.getTotalShippingFree()).divide(BigDecimal.valueOf(100));
         BigDecimal payAmount = BigDecimal.valueOf(original.getTotalPayAmount()).divide(BigDecimal.valueOf(100));
         so.setGoodsAmount(payAmount.subtract(shipFee).doubleValue());
@@ -178,13 +180,25 @@ public class XhsOrderServiceImpl implements IXhsOrderService
         List<XhsOrderItem> orderItems = xhsOrderMapper.selectOrderItemByOrderId(original.getId());
         List<ErpOrderItem> items = new ArrayList<>();
         for (var i:orderItems) {
-            if(StringUtils.isEmpty(i.getItemSpecCode())) return -11;
+            if(StringUtils.isEmpty(i.getItemSpecCode())) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -11;
+            }
             GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getItemSpecCode());
-            if (spec == null) return -11;
+            if (spec == null) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -11;
+            }
             Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-            if(goods == null) return -12;
+            if(goods == null) {
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                return -12;
+            }
 
             ErpOrderItem item = new ErpOrderItem();
+            item.setShipStatus(0);
+            item.setShipType(bo.getShipType());
+            item.setShopId(original.getShopId().intValue());
             item.setOrderId(so.getId());
             item.setOrderNum(original.getOrderId());
             item.setOrderItemNum(i.getId()+"");
@@ -210,13 +224,25 @@ public class XhsOrderServiceImpl implements IXhsOrderService
         // 添加了赠品
         if(bo.getXhsOrderItemList()!=null && !bo.getXhsOrderItemList().isEmpty()) {
             for (var i : bo.getXhsOrderItemList()) {
-                if(StringUtils.isEmpty(i.getItemSpecCode())) return -11;
+                if(StringUtils.isEmpty(i.getItemSpecCode())) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -11;
+                }
                 GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getItemSpecCode());
-                if (spec == null) return -11;
+                if (spec == null) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -11;
+                }
                 Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-                if(goods == null) return -12;
+                if(goods == null) {
+                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                    return -12;
+                }
 
                 ErpOrderItem item = new ErpOrderItem();
+                item.setShipStatus(0);
+                item.setShipType(bo.getShipType());
+                item.setShopId(original.getShopId().intValue());
                 item.setOrderId(so.getId());
                 item.setOrderNum(original.getOrderId());
                 item.setOrderItemNum(original.getOrderId()+"_");
@@ -240,7 +266,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
                 items.add(item);
             }
         }
-//        erpOrderMapper.batchErpOrderItem(items);
+        erpOrderMapper.batchErpOrderItem(items);
 
         //更新自己
         XhsOrder up =new XhsOrder();
