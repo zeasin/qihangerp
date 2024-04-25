@@ -33,21 +33,10 @@
                         placeholder="请选择下单日期">
         </el-date-picker>
       </el-form-item>
-
-<!--      <el-form-item label="优先级" prop="sellerRemarkFlag">-->
-<!--        <el-input-->
-<!--          v-model="queryParams.sellerRemarkFlag"-->
-<!--          placeholder="请输入商家标记优先级，ark订单列表展示旗子颜色 1灰旗 2红旗 3黄旗 4绿旗 5蓝旗 6紫旗"-->
-<!--          clearable-->
-<!--          @keyup.enter.native="handleQuery"-->
-<!--        />-->
-<!--      </el-form-item>-->
-
-
-      <el-form-item label="快递单号" prop="expressTrackingNo">
+      <el-form-item label="订单状态" prop="statusStr">
         <el-input
-          v-model="queryParams.expressTrackingNo"
-          placeholder="请输入快递单号"
+          v-model="queryParams.statusStr"
+          placeholder="请输入订单状态"
           clearable
           @keyup.enter.native="handleQuery"
         />

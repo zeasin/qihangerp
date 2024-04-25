@@ -25,23 +25,6 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="手机号" prop="postTel">
-        <el-input
-          v-model="queryParams.postTel"
-          placeholder="请输入收件人手机号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-      <el-form-item label="物流单号" prop="logisticsCode">
-        <el-input
-          v-model="queryParams.logisticsCode"
-          placeholder="请输入物流单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="下单时间" prop="orderCreateTime">
         <el-date-picker clearable
           v-model="queryParams.orderCreateTime"
@@ -50,7 +33,14 @@
           placeholder="请选择订单创建时间">
         </el-date-picker>
       </el-form-item>
-
+      <el-form-item label="订单状态" prop="statusStr">
+        <el-input
+          v-model="queryParams.statusStr"
+          placeholder="请输入订单状态"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>

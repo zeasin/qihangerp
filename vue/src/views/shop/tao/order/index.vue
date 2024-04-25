@@ -43,17 +43,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-
-      <el-form-item label="快递单号" prop="logisticsCode">
-        <el-input
-          v-model="queryParams.logisticsCode"
-          placeholder="请输入快递单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -633,7 +622,7 @@ import {
   codeToText,
 } from "element-china-area-data";
 import {MessageBox} from "element-ui";
-import {isRelogin} from "../../../utils/request";
+import {isRelogin} from "../../../../utils/request";
 import {getToken} from "@/utils/auth";
 
 export default {

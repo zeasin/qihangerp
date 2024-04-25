@@ -18690,3 +18690,51 @@ SELECT id, category_attribute_id, value, sku_code, orderNum, isDelete FROM erp_g
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT id, category_attribute_id, [*]value, sku_code, orderNum, isDelete FROM erp_goods_category_attribute_value WHERE category_attribute_id = ? order by  ID DESC \000a LIMIT ? "; expected "*, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
 SELECT id, category_attribute_id, value, sku_code, orderNum, isDelete FROM erp_goods_category_attribute_value WHERE category_attribute_id = ? order by  ID DESC 
  LIMIT ?  [42001-214]
+2024-04-25 10:32:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ERP_SHIP_LOGISTICS" not found; SQL statement:
+SELECT count(0) FROM erp_ship_logistics [42102-214]
+2024-04-25 10:42:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "WEI_ORDER" not found; SQL statement:
+SELECT COUNT(*) AS total FROM wei_order [42102-214]
+2024-04-25 10:48:18 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "S_SHOP_PULL_LOGS" not found; SQL statement:
+SELECT COUNT(*) AS total FROM s_shop_pull_logs WHERE (pull_type = ?) [42102-214]
+2024-04-25 10:49:34 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE `s_shop_pull_lasttime`  (\000d\000a  `id` int(0) NOT NULL AUTO_INCREMENT,\000d\000a  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',\000d\000a  `pull_type` enum('ORDER','REFUND') [*]i DEFAULT NULL COMMENT '类型（ORDER:订单，REFUND:退款）',\000d\000a  `lasttime` datetime(0) DEFAULT NULL COMMENT '最后更新时间',\000d\000a  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',\000d\000a  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',\000d\000a  PRIMARY KEY (`id`) \000d\000a)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, NULL, AS, DEFAULT, GENERATED, ON UPDATE, NOT NULL, NULL, AUTO_INCREMENT, DEFAULT ON NULL, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, CHARACTER, COLLATE, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, NULL, CHECK, REFERENCES, AUTO_INCREMENT, ,, )"; SQL statement:
+CREATE TABLE `s_shop_pull_lasttime`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `pull_type` enum('ORDER','REFUND') i DEFAULT NULL COMMENT '类型（ORDER:订单，REFUND:退款）',
+  `lasttime` datetime(0) DEFAULT NULL COMMENT '最后更新时间',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) 
+) [42001-214]
+2024-04-25 10:50:18 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE `s_shop_pull_logs`  (\000d\000a  `id` bigint(0) NOT NULL COMMENT '主键Id',\000d\000a  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',\000d\000a  `shop_type` int(0) NOT NULL COMMENT '平台id',\000d\000a  `pull_type` enum('ORDER','REFUND','GOODS')  DEFAULT NULL COMMENT '类型（ORDER订单，GOODS商品，REFUND退款）',\000d\000a  `pull_way` varchar(255) [*]i DEFAULT NULL COMMENT '拉取方式（主动拉取、定时任务）',\000d\000a  `pull_params` varchar(500) i DEFAULT NULL COMMENT '拉取参数',\000d\000a  `pull_result` text i COMMENT '拉取结果',\000d\000a  `pull_time` datetime(0) DEFAULT NULL COMMENT '拉取时间',\000d\000a  `duration` bigint(0) DEFAULT NULL COMMENT '耗时（毫秒）',\000d\000a  PRIMARY KEY (`id`) \000d\000a)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, NULL, AS, DEFAULT, GENERATED, ON UPDATE, NOT NULL, NULL, AUTO_INCREMENT, DEFAULT ON NULL, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, CHARACTER, COLLATE, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, NULL, CHECK, REFERENCES, AUTO_INCREMENT, ,, )"; SQL statement:
+CREATE TABLE `s_shop_pull_logs`  (
+  `id` bigint(0) NOT NULL COMMENT '主键Id',
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `shop_type` int(0) NOT NULL COMMENT '平台id',
+  `pull_type` enum('ORDER','REFUND','GOODS')  DEFAULT NULL COMMENT '类型（ORDER订单，GOODS商品，REFUND退款）',
+  `pull_way` varchar(255) i DEFAULT NULL COMMENT '拉取方式（主动拉取、定时任务）',
+  `pull_params` varchar(500) i DEFAULT NULL COMMENT '拉取参数',
+  `pull_result` text i COMMENT '拉取结果',
+  `pull_time` datetime(0) DEFAULT NULL COMMENT '拉取时间',
+  `duration` bigint(0) DEFAULT NULL COMMENT '耗时（毫秒）',
+  PRIMARY KEY (`id`) 
+) [42001-214]
+2024-04-25 10:50:36 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE `s_shop_pull_logs`  (\000d\000a  `id` bigint(0) NOT NULL COMMENT '主键Id',\000d\000a  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',\000d\000a  `shop_type` int(0) NOT NULL COMMENT '平台id',\000d\000a  `pull_type` enum('ORDER','REFUND','GOODS')  DEFAULT NULL COMMENT '类型（ORDER订单，GOODS商品，REFUND退款）',\000d\000a  `pull_way` varchar(255) [*]i DEFAULT NULL COMMENT '拉取方式（主动拉取、定时任务）',\000d\000a  `pull_params` varchar(500) i DEFAULT NULL COMMENT '拉取参数',\000d\000a  `pull_result` text  COMMENT '拉取结果',\000d\000a  `pull_time` datetime(0) DEFAULT NULL COMMENT '拉取时间',\000d\000a  `duration` bigint(0) DEFAULT NULL COMMENT '耗时（毫秒）',\000d\000a  PRIMARY KEY (`id`) \000d\000a)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, NULL, AS, DEFAULT, GENERATED, ON UPDATE, NOT NULL, NULL, AUTO_INCREMENT, DEFAULT ON NULL, NULL_TO_DEFAULT, SEQUENCE, SELECTIVITY, CHARACTER, COLLATE, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, NULL, CHECK, REFERENCES, AUTO_INCREMENT, ,, )"; SQL statement:
+CREATE TABLE `s_shop_pull_logs`  (
+  `id` bigint(0) NOT NULL COMMENT '主键Id',
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `shop_type` int(0) NOT NULL COMMENT '平台id',
+  `pull_type` enum('ORDER','REFUND','GOODS')  DEFAULT NULL COMMENT '类型（ORDER订单，GOODS商品，REFUND退款）',
+  `pull_way` varchar(255) i DEFAULT NULL COMMENT '拉取方式（主动拉取、定时任务）',
+  `pull_params` varchar(500) i DEFAULT NULL COMMENT '拉取参数',
+  `pull_result` text  COMMENT '拉取结果',
+  `pull_time` datetime(0) DEFAULT NULL COMMENT '拉取时间',
+  `duration` bigint(0) DEFAULT NULL COMMENT '耗时（毫秒）',
+  PRIMARY KEY (`id`) 
+) [42001-214]

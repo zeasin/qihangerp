@@ -21,42 +21,8 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="手机号" prop="receiverPhone1">
-        <el-input
-          v-model="queryParams.receiverPhone1"
-          placeholder="请输入手机号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="快递单号" prop="trackingNumber">
-        <el-input
-          v-model="queryParams.trackingNumber"
-          placeholder="请输入快递单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
 
-<!--      <el-form-item label="省" prop="province">-->
-<!--        <el-input-->
-<!--          v-model="queryParams.province"-->
-<!--          placeholder="请输入省"-->
-<!--          clearable-->
-<!--          @keyup.enter.native="handleQuery"-->
-<!--        />-->
-<!--      </el-form-item>-->
-<!--      <el-form-item label="市" prop="city">-->
-<!--        <el-input-->
-<!--          v-model="queryParams.city"-->
-<!--          placeholder="请输入市"-->
-<!--          clearable-->
-<!--          @keyup.enter.native="handleQuery"-->
-<!--        />-->
-<!--      </el-form-item>-->
-
-
-      <el-form-item label="创建时间" prop="createdTime">
+      <el-form-item label="下单时间" prop="createdTime">
         <el-date-picker clearable
           v-model="queryParams.createdTime"
           type="date"
@@ -64,7 +30,14 @@
           placeholder="请选择订单创建时间">
         </el-date-picker>
       </el-form-item>
-
+      <el-form-item label="订单状态" prop="statusStr">
+        <el-input
+          v-model="queryParams.statusStr"
+          placeholder="请输入订单状态"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
 <!--       <el-form-item label="标签" prop="tag">
         <el-input
           v-model="queryParams.tag"

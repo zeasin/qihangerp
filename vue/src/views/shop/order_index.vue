@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import OrderTao  from "@/views/tao/order/index";
-import OrderDou  from "@/views/dou/order/index";
-import OrderPdd  from "@/views/pdd/order/index";
-import OrderJd  from "@/views/jd/order/index";
-import OrderWei  from "@/views/wei/order/index";
-import OrderXhs  from "@/views/xhs/order/index";
+import OrderTao  from "@/views/shop/tao/order/index.vue";
+import OrderDou  from "@/views/shop/dou/order/index.vue";
+import OrderPdd  from "@/views/shop/pdd/order/index.vue";
+import OrderJd  from "@/views/shop/jd/order/index.vue";
+import OrderWei  from "@/views/shop/wei/order/index.vue";
+import OrderXhs  from "@/views/shop/xhs/order/index.vue";
 export default {
   name: "Order",
   components:{OrderTao,OrderDou,OrderPdd,OrderJd,OrderWei,OrderXhs},
