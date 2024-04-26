@@ -150,7 +150,7 @@ public class TaoOrderRefundServiceImpl implements ITaoOrderRefundService
         }
         returned.setOrderNum(refund.getTid()+"");
         returned.setOrderId(erpOrderItem.getOrderId());
-        returned.setOrderItemId(erpOrderItem.getId());
+        returned.setOrderItemId(Long.parseLong(erpOrderItem.getId()));
         returned.setShopId(refund.getShopId());
         returned.setShopType(4L);
         returned.setGoodsId(erpOrderItem.getGoodsId());

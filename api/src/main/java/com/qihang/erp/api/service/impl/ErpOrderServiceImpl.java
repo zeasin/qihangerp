@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.qihang.erp.api.domain.*;
 import com.qihang.erp.api.mapper.FmsPayableShipFeeMapper;
-import com.qihang.erp.api.mapper.FmsReceivableOrderMapper;
 import com.qihang.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +26,8 @@ public class ErpOrderServiceImpl implements IErpOrderService
 {
     @Autowired
     private ErpOrderMapper erpOrderMapper;
-    @Autowired
-    private FmsReceivableOrderMapper fmsReceivableOrderMapper;
+//    @Autowired
+//    private FmsReceivableOrderMapper fmsReceivableOrderMapper;
     @Autowired
     private FmsPayableShipFeeMapper fmsPayableShipFeeMapper;
 
@@ -149,25 +148,25 @@ public class ErpOrderServiceImpl implements IErpOrderService
 //        }
 
         // 生成订单收入fms_receivable_order
-        List<ErpOrderItem> erpOrderItems = erpOrderMapper.selectOrderItemByOrderId(erpOrder.getId());
-        for (ErpOrderItem item : erpOrderItems) {
-            FmsReceivableOrder fro = new FmsReceivableOrder();
-            fro.setDate(new Date());
-            fro.setOrderNum(order.getOrderNum());
-            fro.setOrderId(order.getId());
-            fro.setOrderItemId(item.getId());
-            fro.setGoodsId(item.getGoodsId());
-            fro.setGoodsName(item.getGoodsTitle());
-            fro.setSpecId(item.getSpecId());
-            fro.setSpecName(item.getGoodsSpec());
-            fro.setPrice(item.getGoodsPrice());
-            fro.setQuantity(item.getQuantity().longValue());
-            fro.setAmount(item.getItemAmount());
-            fro.setStatus(0L);
-            fro.setCreateTime(new Date());
-            fro.setCreateBy(erpOrder.getUpdateBy());
-            fmsReceivableOrderMapper.insertFmsReceivableOrder(fro);
-        }
+//        List<ErpOrderItem> erpOrderItems = erpOrderMapper.selectOrderItemByOrderId(erpOrder.getId());
+//        for (ErpOrderItem item : erpOrderItems) {
+//            FmsReceivableOrder fro = new FmsReceivableOrder();
+//            fro.setDate(new Date());
+//            fro.setOrderNum(order.getOrderNum());
+//            fro.setOrderId(order.getId());
+//            fro.setOrderItemId(item.getId());
+//            fro.setGoodsId(item.getGoodsId());
+//            fro.setGoodsName(item.getGoodsTitle());
+//            fro.setSpecId(item.getSpecId());
+//            fro.setSpecName(item.getGoodsSpec());
+//            fro.setPrice(item.getGoodsPrice());
+//            fro.setQuantity(item.getQuantity().longValue());
+//            fro.setAmount(item.getItemAmount());
+//            fro.setStatus(0L);
+//            fro.setCreateTime(new Date());
+//            fro.setCreateBy(erpOrder.getUpdateBy());
+//            fmsReceivableOrderMapper.insertFmsReceivableOrder(fro);
+//        }
 
         // 生成物流费用 fms_payable_ship_fee
         FmsPayableShipFee sf = new FmsPayableShipFee();

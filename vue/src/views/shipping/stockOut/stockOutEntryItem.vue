@@ -1,46 +1,39 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="出库单号" prop="stockOutNum">
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="88px">
+      <el-form-item label="原始订单号" prop="sourceOrderNum">
         <el-input
-          v-model="queryParams.stockOutNum"
-          placeholder="请输入出库单号"
+          v-model="queryParams.sourceOrderNum"
+          placeholder="请输入原始订单号"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-<!--      <el-form-item label="源单号" prop="sourceNo">-->
-<!--        <el-input-->
-<!--          v-model="queryParams.sourceNo"-->
-<!--          placeholder="请输入来源单据号"-->
-<!--          clearable-->
-<!--          @keyup.enter.native="handleQuery"-->
-<!--        />-->
-<!--      </el-form-item>-->
-<!--      <el-form-item label="源单Id" prop="sourceId">-->
-<!--        <el-input-->
-<!--          v-model="queryParams.sourceId"-->
-<!--          placeholder="请输入来源单据Id"-->
-<!--          clearable-->
-<!--          @keyup.enter.native="handleQuery"-->
-<!--        />-->
-<!--      </el-form-item>-->
-      <el-form-item label="打印时间" prop="printTime">
-        <el-date-picker clearable
-          v-model="queryParams.printTime"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择打印时间">
-        </el-date-picker>
+      <el-form-item label="商品ID" prop="goodsId">
+        <el-input
+          v-model="queryParams.goodsId"
+          placeholder="请输入商品ID"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
       </el-form-item>
-      <el-form-item label="创建日期" prop="createTime">
-        <el-date-picker clearable
-          v-model="queryParams.createTime"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择创建日期">
-        </el-date-picker>
+      <el-form-item label="规格ID" prop="specId">
+        <el-input
+          v-model="queryParams.specId"
+          placeholder="请输入规格ID"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
       </el-form-item>
+      <el-form-item label="规格编码" prop="specNum">
+        <el-input
+          v-model="queryParams.specNum"
+          placeholder="请输入规格编码"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+
 
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -63,19 +56,16 @@
     </el-row>
 
     <el-table v-loading="loading" :data="stockOutEntryList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="ID" align="center" prop="id" />
-      <el-table-column label="出库单号" align="center" prop="stockOutNum" />
-<!--      <el-table-column label="源单号" align="center" prop="sourceNo" />-->
-<!--      <el-table-column label="源单Id" align="center" prop="sourceId" />-->
-      <el-table-column label="出库类型" align="center" prop="stockOutType" >
-        <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.stockOutType === 1">订单拣货出库</el-tag>
-          <el-tag size="small" v-if="scope.row.stockOutType === 2">采购退货出库</el-tag>
-          <el-tag size="small" v-if="scope.row.stockOutType === 3">盘点出库</el-tag>
-          <el-tag size="small" v-if="scope.row.stockOutType === 4">报损出库</el-tag>
-        </template>
-      </el-table-column>
+<!--      <el-table-column type="selection" width="55" align="center" />-->
+<!--      <el-table-column label="ID" align="center" prop="id" />-->
+<!--      <el-table-column label="出库单号" align="center" prop="stockOutNum" />-->
+      <el-table-column label="源单号" align="center" prop="sourceOrderNum" />
+      <el-table-column label="商品Id" align="center" prop="goodsId" />
+      <el-table-column label="规格Id" align="center" prop="specId" />
+      <el-table-column label="规格编码" align="center" prop="specNum" />
+      <el-table-column label="总数量" align="center" prop="originalQuantity" />
+      <el-table-column label="已出库数量" align="center" prop="outQuantity" />
+
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
           <el-tag size="small" v-if="scope.row.status === 0">待拣货</el-tag>
@@ -84,46 +74,13 @@
           <el-tag size="small" v-if="scope.row.status === 3">已出库</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="是否打印" align="center" prop="printStatus" >
-        <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.printStatus === 0">未打印</el-tag>
-          <el-tag size="small" v-if="scope.row.printStatus === 1">已打印</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="打印时间" align="center" prop="printTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.printTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+
       <el-table-column label="创建日期" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-<!--      <el-table-column label="创建人" align="center" prop="createBy" />-->
-      <el-table-column label="更新时间" align="center" prop="updateTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.updateTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-<!--      <el-table-column label="更新人" align="center" prop="updateBy" />-->
-      <el-table-column label="完成时间" align="center" prop="completeTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.completeTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
-<!--      <el-table-column label="出库操作人userid" align="center" prop="stockOutOperatorId" />-->
-      <el-table-column label="操作人" align="center" prop="stockOutOperatorName" />
-<!--      <el-table-column label="出库时间" align="center" prop="stockOutTime" width="180">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ parseTime(scope.row.stockOutTime, '{y}-{m}-{d}') }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-      <el-table-column label="备注" align="center" prop="remark" />
-<!--      <el-table-column label="是否删除0未删除1已删除" align="center" prop="isDelete" />-->
-      <el-table-column label="商品数" align="center" prop="goodsUnit" />
-      <el-table-column label="商品规格数" align="center" prop="specUnit" />
-      <el-table-column label="总件数" align="center" prop="specUnitTotal" />
+
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -221,10 +178,10 @@
 </template>
 
 <script>
-import { listStockOutEntry, getStockOutEntry, delStockOutEntry, addStockOutEntry, stockOut } from "@/api/wms/stockOutEntry";
 
+import {listOrderStockOutEntryItem} from "@/api/wms/shipping";
 export default {
-  name: "StockOutEntry",
+  name: "StockOutEntryItem",
   data() {
     return {
       // 遮罩层
@@ -285,7 +242,7 @@ export default {
     /** 查询出库单列表 */
     getList() {
       this.loading = true;
-      listStockOutEntry(this.queryParams).then(response => {
+      listOrderStockOutEntryItem(this.queryParams).then(response => {
         this.stockOutEntryList = response.rows;
         this.total = response.total;
         this.loading = false;

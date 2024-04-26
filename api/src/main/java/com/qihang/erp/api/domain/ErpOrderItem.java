@@ -2,18 +2,21 @@ package com.qihang.erp.api.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * 订单明细表
- * @TableName erp_order_item
+ * @TableName erp_sale_order_item
  */
+@TableName("erp_sale_order_item")
 @Data
 public class ErpOrderItem implements Serializable {
     /**
      * id，自增
      */
-    private Long id;
+    private String id;
 
     /**
      * 订单ID

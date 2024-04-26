@@ -17,10 +17,10 @@ export function getShipping(id) {
   })
 }
 
-// 新增仓库订单发货
-export function stockingAdd(data) {
+// 生成出库单
+export function generateStockOutEntry(data) {
   return request({
-    url: '/wms/shipping/stockingAdd',
+    url: '/shipping/generate_stock_out_entry',
     method: 'post',
     data: data
   })
@@ -47,6 +47,25 @@ export function delShipping(id) {
 export function listShippingSupplier(query) {
   return request({
     url: '/shipping/supplier_ship_list',
+    method: 'get',
+    params: query
+  })
+}
+
+
+// 订单待出库列表
+export function listOrderStockOutEntry(query) {
+  return request({
+    url: '/shipping/order_stock_out_entry_list',
+    method: 'get',
+    params: query
+  })
+}
+
+// 订单待出库明细列表
+export function listOrderStockOutEntryItem(query) {
+  return request({
+    url: '/shipping/order_stock_out_entry_item_list',
     method: 'get',
     params: query
   })

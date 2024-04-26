@@ -126,21 +126,28 @@
 <!--          <span>{{ parseTime(scope.row.orderDate, '{y}-{m}-{d}') }}</span>-->
 <!--        </template>-->
 <!--      </el-table-column>-->
-      <el-table-column label="商品" >
-          <template slot-scope="scope">
-            <el-row :gutter="20">
-            <div style="float: left;display: flex;align-items: center;" >
+      <el-table-column label="商品图片" >
+        <template slot-scope="scope">
               <el-image  style="width: 70px; height: 70px;" :src="scope.row.goodsImg"></el-image>
-              <div style="margin-left:10px">
-              <p>{{scope.row.goodsTitle}}</p>
-              <p>{{scope.row.goodsSpec}}&nbsp;
-<!--                <el-tag size="small">x {{scope.row.quantity}}</el-tag>-->
-                </p>
-              </div>
-            </div>
-            </el-row>
-          </template>
+        </template>
       </el-table-column>
+<!--      <el-table-column label="商品" >-->
+<!--          <template slot-scope="scope">-->
+<!--            <el-row :gutter="20">-->
+<!--            <div style="float: left;display: flex;align-items: center;" >-->
+<!--              <el-image  style="width: 70px; height: 70px;" :src="scope.row.goodsImg"></el-image>-->
+<!--              <div style="margin-left:10px">-->
+<!--              <p>{{scope.row.goodsTitle}}</p>-->
+<!--              <p>{{scope.row.goodsSpec}}&nbsp;-->
+<!--&lt;!&ndash;                <el-tag size="small">x {{scope.row.quantity}}</el-tag>&ndash;&gt;-->
+<!--                </p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            </el-row>-->
+<!--          </template>-->
+<!--      </el-table-column>-->
+      <el-table-column label="商品标题" align="center" prop="goodsTitle" />
+      <el-table-column label="规格" align="center" prop="goodsSpec" />
       <el-table-column label="规格编码" align="center" prop="specNum" />
       <!-- <el-table-column label="erp系统商品id" align="center" prop="goodsId" />
       <el-table-column label="erp系统商品规格id" align="center" prop="specId" />
@@ -248,7 +255,7 @@
 </template>
 
 <script>
-import { listShipping, getShipping, stockingAdd } from "@/api/wms/shipping";
+import {listShipping, getShipping, generateStockOutEntry} from "@/api/wms/shipping";
 import { listShop } from "@/api/shop/shop";
 export default {
   name: "wmsStocking",
@@ -286,7 +293,9 @@ export default {
         status: null,
       },
       // 表单参数
-      form: {},
+      form: {
+        orderItemIds:[]
+      },
       shopList: [],
       skuList:[],
       statusList: [
@@ -376,8 +385,8 @@ export default {
           if(!this.skuList || this.skuList.length === 0){
             this.$modal.msgError("请选择备货商品");
           }
-          this.form.ids = this.ids;
-          stockingAdd(this.form).then(response => {
+          this.form.orderItemIds = this.ids;
+          generateStockOutEntry(this.form).then(response => {
             this.$modal.msgSuccess("拣货单生成成功");
             this.open = false;
             this.getList();
@@ -389,7 +398,7 @@ export default {
     handleStatistics(row){
       this.handleSelection(row,false)
     },
-    /** 删除按钮操作 */
+    /** 按钮操作 */
     handleSelection(row,isGen) {
       const ids = row.id || this.ids;
       // console.log("=====生成出库单=====",ids)

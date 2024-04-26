@@ -2,6 +2,7 @@ package com.qihang.erp.api.mapper;
 
 import com.qihang.erp.api.domain.ErpOrderItem;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author TW
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-04-15 13:35:02
 * @Entity com.qihang.erp.api.domain.ErpOrderItem
 */
+@Mapper
 public interface ErpOrderItemMapper extends BaseMapper<ErpOrderItem> {
 
 }
