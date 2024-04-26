@@ -213,7 +213,7 @@ public class PddOrderServiceImpl implements IPddOrderService
             item.setGoodsPrice(i.getGoodsPrice());
 //            item.setGoodsPurPrice(spec.getPurPrice());
             item.setItemAmount(i.getItemAmount());
-            item.setQuantity(i.getQuantity().intValue());
+            item.setQuantity(i.getQuantity());
             item.setIsGift(i.getIsGift().intValue());
             item.setRefundCount(0);
             item.setRefundStatus(1);
@@ -257,7 +257,7 @@ public class PddOrderServiceImpl implements IPddOrderService
                 item.setGoodsPrice(i.getGoodsPrice());
 //                item.setGoodsPurPrice(spec.getPurPrice());
                 item.setItemAmount(i.getItemAmount());
-                item.setQuantity(i.getQuantity().intValue());
+                item.setQuantity(i.getQuantity());
                 item.setIsGift(1);
                 item.setRefundCount(0);
                 item.setRefundStatus(1);

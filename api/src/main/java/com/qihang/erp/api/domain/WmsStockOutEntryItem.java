@@ -58,12 +58,12 @@ public class WmsStockOutEntryItem implements Serializable {
     /**
      * 总数量
      */
-    private Integer originalQuantity;
+    private Long originalQuantity;
 
     /**
      * 已出库数量
      */
-    private Integer outQuantity;
+    private Long outQuantity;
 
     /**
      * 完成出库时间

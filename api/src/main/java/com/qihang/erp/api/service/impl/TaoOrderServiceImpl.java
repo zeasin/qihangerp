@@ -207,7 +207,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
             item.setGoodsPrice(i.getPrice().doubleValue());
 //            item.setGoodsPurPrice(spec.getPurPrice());
             item.setItemAmount(i.getItemAmount().doubleValue());
-            item.setQuantity(i.getQuantity().intValue());
+            item.setQuantity(i.getQuantity());
             item.setIsGift(i.getIsGift().intValue());
             item.setRefundCount(0);
             item.setRefundStatus(1);
@@ -251,7 +251,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
                 item.setGoodsPrice(g.getPrice().doubleValue());
 //                item.setGoodsPurPrice(spec.getPurPrice());
                 item.setItemAmount(g.getItemAmount().doubleValue());
-                item.setQuantity(g.getQuantity().intValue());
+                item.setQuantity(g.getQuantity());
                 item.setIsGift(1);
                 item.setRefundCount(0);
                 item.setRefundStatus(1);

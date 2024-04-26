@@ -5,6 +5,7 @@ import com.qihang.common.PageResult;
 import com.qihang.erp.api.domain.ErpOrderItem;
 import com.qihang.erp.api.domain.WmsStockOutEntry;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.qihang.erp.api.domain.bo.StockOutBo;
 import com.qihang.erp.api.domain.bo.StockOutEntryGenerateBo;
 
 /**
@@ -16,4 +17,6 @@ public interface WmsStockOutEntryService extends IService<WmsStockOutEntry> {
     int generateStockOutEntryForOrderItem(StockOutEntryGenerateBo bo);
 
     PageResult<WmsStockOutEntry> queryPageList(WmsStockOutEntry bo, PageQuery pageQuery);
+
+    int stockOut(StockOutBo bo);
 }

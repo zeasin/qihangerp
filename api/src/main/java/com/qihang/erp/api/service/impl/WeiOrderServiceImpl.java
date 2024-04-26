@@ -295,7 +295,7 @@ public class WeiOrderServiceImpl extends ServiceImpl<WeiOrderMapper, WeiOrder>
             item.setGoodsPrice(i.getSalePrice().doubleValue()/100);
 //            item.setGoodsPurPrice(spec.getPurPrice());
             item.setItemAmount(i.getRealPrice().doubleValue()/100);
-            item.setQuantity(i.getSkuCnt());
+            item.setQuantity(i.getSkuCnt().longValue());
             item.setIsGift(0);
             item.setRefundCount(0);
             item.setRefundStatus(1);

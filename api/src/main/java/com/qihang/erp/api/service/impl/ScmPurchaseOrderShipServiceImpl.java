@@ -11,6 +11,7 @@ import com.qihang.erp.api.domain.bo.PurchaseOrderStockInBo;
 import com.qihang.erp.api.mapper.ScmPurchaseOrderMapper;
 import com.qihang.erp.api.mapper.WmsStockInEntryMapper;
 import com.qihang.common.utils.DateUtils;
+import com.qihang.erp.api.service.WmsStockInEntryItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.qihang.erp.api.mapper.ScmPurchaseOrderShipMapper;
@@ -33,6 +34,8 @@ public class ScmPurchaseOrderShipServiceImpl implements IScmPurchaseOrderShipSer
     private ScmPurchaseOrderMapper purchaseOrderMapper;
     @Autowired
     private WmsStockInEntryMapper stockInEntryMapper;
+    @Autowired
+    private WmsStockInEntryItemService stockInEntryItemService;
 
     /**
      * 查询采购订单物流
@@ -118,17 +121,17 @@ public class ScmPurchaseOrderShipServiceImpl implements IScmPurchaseOrderShipSer
         else if(ship.getStatus().intValue() == 2) return -3;//已入库请勿重复操作
         else if (ship.getStatus().intValue() == 1) {
             WmsStockInEntry entry = new WmsStockInEntry();
-            entry.setNo(DateUtils.parseDateToStr("yyyyMMddHHmmss",new Date()));
+            entry.setStockInNum(DateUtils.parseDateToStr("yyyyMMddHHmmss",new Date()));
             entry.setSourceId(ship.getId());
             entry.setSourceNo(ship.getOrderNo());
             entry.setSourceSpecUnit(ship.getOrderSpecUnit());
             entry.setSourceGoodsUnit(ship.getOrderGoodsUnit());
             entry.setSourceSpecUnitTotal(ship.getOrderSpecUnitTotal());
-            entry.setSourceType(1L);
+            entry.setSourceType(1);
             entry.setStatus(0);
             entry.setCreateBy(bo.getCreateBy());
             entry.setCreateTime(new Date());
-            stockInEntryMapper.insertWmsStockInEntry(entry);
+            stockInEntryMapper.insert(entry);
 
             // 子表
 
@@ -137,7 +140,7 @@ public class ScmPurchaseOrderShipServiceImpl implements IScmPurchaseOrderShipSer
                 for (var item:bo.getGoodsList()) {
                     WmsStockInEntryItem entryItem = new WmsStockInEntryItem();
                     entryItem.setEntryId(entry.getId());
-                    entryItem.setSourceType(1L);
+                    entryItem.setSourceType(1);
                     entryItem.setSourceId(ship.getId());
                     entryItem.setSourceItemId(item.getId());
                     entryItem.setGoodsId(item.getGoodsId());
@@ -158,7 +161,8 @@ public class ScmPurchaseOrderShipServiceImpl implements IScmPurchaseOrderShipSer
                     entryItem.setStatus(0);
                     items.add(entryItem);
                 }
-                stockInEntryMapper.batchWmsStockInEntryItem(items);
+//                stockInEntryMapper.batchWmsStockInEntryItem(items);
+                stockInEntryItemService.saveBatch(items);
             }
 
             // 更新表状态

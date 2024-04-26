@@ -213,7 +213,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
             item.setGoodsPrice(i.getPrice().doubleValue());
 //            item.setGoodsPurPrice(spec.getPurPrice());
             item.setItemAmount(i.getTotalPaidAmount().doubleValue() / 100);
-            item.setQuantity(i.getQuantity().intValue());
+            item.setQuantity(i.getQuantity());
             item.setIsGift(i.getItemTag().intValue());
             item.setRefundCount(0);
             item.setRefundStatus(1);
@@ -257,7 +257,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
                 item.setGoodsPrice(i.getPrice().doubleValue());
 //                item.setGoodsPurPrice(spec.getPurPrice());
                 item.setItemAmount(i.getItemAmount().doubleValue() / 100);
-                item.setQuantity(i.getQuantity().intValue());
+                item.setQuantity(i.getQuantity());
                 item.setIsGift(1);
                 item.setRefundCount(0);
                 item.setRefundStatus(1);

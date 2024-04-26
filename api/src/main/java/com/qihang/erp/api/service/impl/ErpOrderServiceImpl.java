@@ -114,7 +114,10 @@ public class ErpOrderServiceImpl implements IErpOrderService
     public int shipErpOrder(ErpOrder erpOrder) {
         ErpOrder order = erpOrderMapper.selectErpOrderById(erpOrder.getId());
         if (order==null) return -1;// 订单不存在
-        else if(order.getOrderStatus() != 2) return -2;//状态不对
+        else if (order.getShipStatus()!=null && order.getShipStatus()==3) {
+            return -3;//发货状态不对
+        }
+        else if(order.getOrderStatus() != 1 && order.getOrderStatus() != 2) return -2;//状态不对
         // 发货
         ErpOrder update = new ErpOrder();
         update.setId(order.getId());

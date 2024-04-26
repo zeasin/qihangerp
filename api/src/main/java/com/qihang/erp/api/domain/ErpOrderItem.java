@@ -72,7 +72,7 @@ public class ErpOrderItem implements Serializable {
     /**
      * 商品数量
      */
-    private Integer quantity;
+    private Long quantity;
 
     /**
      * 备注

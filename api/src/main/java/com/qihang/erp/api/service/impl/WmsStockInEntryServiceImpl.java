@@ -1,83 +1,56 @@
 package com.qihang.erp.api.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qihang.common.PageQuery;
+import com.qihang.common.PageResult;
+import com.qihang.common.utils.StringUtils;
+import com.qihang.erp.api.domain.*;
+import com.qihang.erp.api.mapper.ErpGoodsInventoryMapper;
+import com.qihang.erp.api.mapper.WmsStockInEntryItemMapper;
+import com.qihang.erp.api.service.WmsStockInEntryService;
+import com.qihang.erp.api.mapper.WmsStockInEntryMapper;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.qihang.erp.api.domain.ErpGoodsInventory;
-import com.qihang.erp.api.domain.ErpGoodsInventoryDetail;
-import com.qihang.erp.api.mapper.ErpGoodsInventoryMapper;
-import com.qihang.common.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import com.qihang.common.utils.StringUtils;
-import org.springframework.transaction.annotation.Transactional;
-import com.qihang.erp.api.domain.WmsStockInEntryItem;
-import com.qihang.erp.api.mapper.WmsStockInEntryMapper;
-import com.qihang.erp.api.domain.WmsStockInEntry;
-import com.qihang.erp.api.service.IWmsStockInEntryService;
-
 /**
- * 入库单Service业务层处理
- * 
- * @author qihang
- * @date 2023-12-31
- */
+* @author TW
+* @description 针对表【wms_stock_in_entry(入库单)】的数据库操作Service实现
+* @createDate 2024-04-26 14:54:16
+*/
+@AllArgsConstructor
 @Service
-public class WmsStockInEntryServiceImpl implements IWmsStockInEntryService 
-{
-    @Autowired
-    private WmsStockInEntryMapper wmsStockInEntryMapper;
+public class WmsStockInEntryServiceImpl extends ServiceImpl<WmsStockInEntryMapper, WmsStockInEntry>
+    implements WmsStockInEntryService{
+    private final WmsStockInEntryMapper wmsStockInEntryMapper;
+    private final WmsStockInEntryItemMapper wmsStockInEntryItemMapper;
+    private final ErpGoodsInventoryMapper goodsInventoryMapper;
 
-    @Autowired
-    private ErpGoodsInventoryMapper goodsInventoryMapper;
-
-
-    /**
-     * 查询入库单
-     * 
-     * @param id 入库单主键
-     * @return 入库单
-     */
     @Override
-    public WmsStockInEntry selectWmsStockInEntryById(Long id)
-    {
-        return wmsStockInEntryMapper.selectWmsStockInEntryById(id);
-    }
+    public PageResult<WmsStockInEntry> queryPageList(WmsStockInEntry bo, PageQuery pageQuery) {
+        LambdaQueryWrapper<WmsStockInEntry> qw = new LambdaQueryWrapper<WmsStockInEntry>();
+//        qw.eq(WmsStockOutEntry::getStockOutType,bo.getStockOutType());
+//        if(bo.getStatus()!=null) {
+//            if (bo.getStatus() == 0) {
+//                qw.and(q -> q.eq(WmsStockOutEntry::getStatus, 0).or().eq(WmsStockOutEntry::getStatus, 1));
+//            } else {
+//                qw.eq(WmsStockOutEntry::getStatus, bo.getStatus());
+//            }
+//        }
+        Page<WmsStockInEntry> pages = wmsStockInEntryMapper.selectPage(pageQuery.build(), qw);
 
-    /**
-     * 查询入库单列表
-     * 
-     * @param wmsStockInEntry 入库单
-     * @return 入库单
-     */
-    @Override
-    public List<WmsStockInEntry> selectWmsStockInEntryList(WmsStockInEntry wmsStockInEntry)
-    {
-        return wmsStockInEntryMapper.selectWmsStockInEntryList(wmsStockInEntry);
-    }
-
-
-
-    /**
-     * 新增入库单
-     * 
-     * @param wmsStockInEntry 入库单
-     * @return 结果
-     */
-    @Transactional
-    @Override
-    public int insertWmsStockInEntry(WmsStockInEntry wmsStockInEntry)
-    {
-        wmsStockInEntry.setCreateTime(DateUtils.getNowDate());
-        int rows = wmsStockInEntryMapper.insertWmsStockInEntry(wmsStockInEntry);
-        insertWmsStockInEntryItem(wmsStockInEntry);
-        return rows;
+        return PageResult.build(pages);
     }
 
     /**
      * 修改入库单
-     * 
+     *
      * @param wmsStockInEntry 入库单
      * @return 结果
      */
@@ -86,9 +59,10 @@ public class WmsStockInEntryServiceImpl implements IWmsStockInEntryService
     public int stockIn(WmsStockInEntry wmsStockInEntry)
     {
         // 查询入库单
-        WmsStockInEntry origin = wmsStockInEntryMapper.selectWmsStockInEntryById(wmsStockInEntry.getId());
+        WmsStockInEntry origin = wmsStockInEntryMapper.selectById(wmsStockInEntry.getId());
         if(origin == null) return -1;
         else if(origin.getStatus() == 2) return -9;
+
         // 待入库数据
         List<WmsStockInEntryItem> waitList = new ArrayList<>();
         for (var item:wmsStockInEntry.getWmsStockInEntryItemList()) {
@@ -140,8 +114,8 @@ public class WmsStockInEntryServiceImpl implements IWmsStockInEntryService
                 upItem.setStatus(1);
                 upItem.setUpdateTime(new Date());
                 upItem.setUpdateBy(wmsStockInEntry.getUpdateBy());
-                wmsStockInEntryMapper.updateWmsStockInEntryItem(upItem);
-
+//                wmsStockInEntryMapper.updateWmsStockInEntryItem(upItem);
+                wmsStockInEntryItemMapper.updateById(upItem);
             }else{
                 // 修改
                 ErpGoodsInventory update = new ErpGoodsInventory();
@@ -175,7 +149,8 @@ public class WmsStockInEntryServiceImpl implements IWmsStockInEntryService
                 upItem.setStatus(1);
                 upItem.setUpdateTime(new Date());
                 upItem.setUpdateBy(wmsStockInEntry.getUpdateBy());
-                wmsStockInEntryMapper.updateWmsStockInEntryItem(upItem);
+//                wmsStockInEntryMapper.updateWmsStockInEntryItem(upItem);
+                wmsStockInEntryItemMapper.updateById(upItem);
             }
 
         }
@@ -189,7 +164,7 @@ public class WmsStockInEntryServiceImpl implements IWmsStockInEntryService
         new1.setUpdateBy(wmsStockInEntry.getUpdateBy());
         new1.setUpdateTime(new Date());
         new1.setStatus(1);
-        wmsStockInEntryMapper.updateWmsStockInEntry(new1);
+        wmsStockInEntryMapper.updateById(new1);
 //        wmsStockInEntry.setUpdateTime(DateUtils.getNowDate());
 //        wmsStockInEntryMapper.deleteWmsStockInEntryItemByEntryId(wmsStockInEntry.getId());
 //        insertWmsStockInEntryItem(wmsStockInEntry);
@@ -206,9 +181,9 @@ public class WmsStockInEntryServiceImpl implements IWmsStockInEntryService
         new1.setUpdateBy(updateBy);
         new1.setUpdateTime(new Date());
         new1.setStatus(2);
-        wmsStockInEntryMapper.updateWmsStockInEntry(new1);
+        wmsStockInEntryMapper.updateById(new1);
 
-        List<WmsStockInEntryItem> items = wmsStockInEntryMapper.selectWmsStockInEntryItemByEntryId(id);
+        List<WmsStockInEntryItem> items = wmsStockInEntryItemMapper.selectList(new LambdaQueryWrapper<WmsStockInEntryItem>().eq(WmsStockInEntryItem::getEntryId,id));
         if(!items.isEmpty()){
             for (var item:items) {
                 // update item
@@ -217,62 +192,14 @@ public class WmsStockInEntryServiceImpl implements IWmsStockInEntryService
                 upItem.setStatus(2);
                 upItem.setUpdateTime(new Date());
                 upItem.setUpdateBy(updateBy);
-                wmsStockInEntryMapper.updateWmsStockInEntryItem(upItem);
+                wmsStockInEntryItemMapper.updateById(upItem);
             }
         }
 
         return 1;
     }
-
-    /**
-     * 批量删除入库单
-     * 
-     * @param ids 需要删除的入库单主键
-     * @return 结果
-     */
-    @Transactional
-    @Override
-    public int deleteWmsStockInEntryByIds(Long[] ids)
-    {
-        wmsStockInEntryMapper.deleteWmsStockInEntryItemByEntryIds(ids);
-        return wmsStockInEntryMapper.deleteWmsStockInEntryByIds(ids);
-    }
-
-    /**
-     * 删除入库单信息
-     * 
-     * @param id 入库单主键
-     * @return 结果
-     */
-    @Transactional
-    @Override
-    public int deleteWmsStockInEntryById(Long id)
-    {
-        wmsStockInEntryMapper.deleteWmsStockInEntryItemByEntryId(id);
-        return wmsStockInEntryMapper.deleteWmsStockInEntryById(id);
-    }
-
-    /**
-     * 新增入库单明细信息
-     * 
-     * @param wmsStockInEntry 入库单对象
-     */
-    public void insertWmsStockInEntryItem(WmsStockInEntry wmsStockInEntry)
-    {
-        List<WmsStockInEntryItem> wmsStockInEntryItemList = wmsStockInEntry.getWmsStockInEntryItemList();
-        Long id = wmsStockInEntry.getId();
-        if (StringUtils.isNotNull(wmsStockInEntryItemList))
-        {
-            List<WmsStockInEntryItem> list = new ArrayList<WmsStockInEntryItem>();
-            for (WmsStockInEntryItem wmsStockInEntryItem : wmsStockInEntryItemList)
-            {
-                wmsStockInEntryItem.setEntryId(id);
-                list.add(wmsStockInEntryItem);
-            }
-            if (list.size() > 0)
-            {
-                wmsStockInEntryMapper.batchWmsStockInEntryItem(list);
-            }
-        }
-    }
 }
+
+
+
+

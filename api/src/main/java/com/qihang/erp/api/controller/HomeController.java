@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
-    @Autowired
-    private MySpiderController spiderController;
+//    @Autowired
+//    private MySpiderController spiderController;
 
-    @GetMapping("/test/22")
-    public String home(){
-        spiderController.startSpider();
-        return "hello world";
-    }
+//    @GetMapping("/test/22")
+//    public String home(){
+//        spiderController.startSpider();
+//        return "hello world";
+//    }
 
     @Value(value = "${zhijian.name:1}")
     private String serverName;

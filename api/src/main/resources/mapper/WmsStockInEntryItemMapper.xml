@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qihang.erp.api.mapper.WmsStockInEntryItemMapper">
+
+    <resultMap id="BaseResultMap" type="com.qihang.erp.api.domain.WmsStockInEntryItem">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="entryId" column="entry_id" jdbcType="BIGINT"/>
+            <result property="sourceType" column="source_type" jdbcType="INTEGER"/>
+            <result property="sourceId" column="source_id" jdbcType="BIGINT"/>
+            <result property="sourceItemId" column="source_item_id" jdbcType="BIGINT"/>
+            <result property="goodsId" column="goods_id" jdbcType="BIGINT"/>
+            <result property="goodsNum" column="goods_num" jdbcType="VARCHAR"/>
+            <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
+            <result property="specId" column="spec_id" jdbcType="BIGINT"/>
+            <result property="specNum" column="spec_num" jdbcType="VARCHAR"/>
+            <result property="colorValue" column="color_value" jdbcType="VARCHAR"/>
+            <result property="colorImage" column="color_image" jdbcType="VARCHAR"/>
+            <result property="sizeValue" column="size_value" jdbcType="VARCHAR"/>
+            <result property="styleValue" column="style_value" jdbcType="VARCHAR"/>
+            <result property="originalQuantity" column="original_quantity" jdbcType="BIGINT"/>
+            <result property="inQuantity" column="in_quantity" jdbcType="BIGINT"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="locationId" column="location_id" jdbcType="INTEGER"/>
+            <result property="locationNum" column="location_num" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,entry_id,source_type,
+        source_id,source_item_id,goods_id,
+        goods_num,goods_name,spec_id,
+        spec_num,color_value,color_image,
+        size_value,style_value,original_quantity,
+        in_quantity,remark,location_id,
+        location_num,status,create_by,
+        create_time,update_by,update_time
+    </sql>
+</mapper>

@@ -3,6 +3,8 @@ package com.qihang.erp.api.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qihang.common.PageQuery;
+import com.qihang.erp.api.service.WmsStockInEntryService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,6 @@ import com.qihang.core.controller.BaseController;
 import com.qihang.core.domain.AjaxResult;
 import com.qihang.common.enums.BusinessType;
 import com.qihang.erp.api.domain.WmsStockInEntry;
-import com.qihang.erp.api.service.IWmsStockInEntryService;
 import com.qihang.common.utils.poi.ExcelUtil;
 import com.qihang.core.page.TableDataInfo;
 
@@ -31,32 +32,30 @@ import com.qihang.core.page.TableDataInfo;
 public class WmsStockInEntryController extends BaseController
 {
     @Autowired
-    private IWmsStockInEntryService wmsStockInEntryService;
+    private WmsStockInEntryService wmsStockInEntryService;
 
     /**
      * 查询入库单列表
      */
     @PreAuthorize("@ss.hasPermi('wms:WmsStockInEntry:list')")
     @GetMapping("/list")
-    public TableDataInfo list(WmsStockInEntry wmsStockInEntry)
-    {
-        startPage();
-        List<WmsStockInEntry> list = wmsStockInEntryService.selectWmsStockInEntryList(wmsStockInEntry);
+    public TableDataInfo list(WmsStockInEntry bo, PageQuery pageQuery) {
+        var list = wmsStockInEntryService.queryPageList(bo, pageQuery);
         return getDataTable(list);
     }
 
     /**
      * 导出入库单列表
      */
-    @PreAuthorize("@ss.hasPermi('wms:WmsStockInEntry:export')")
-    @Log(title = "入库单", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public void export(HttpServletResponse response, WmsStockInEntry wmsStockInEntry)
-    {
-        List<WmsStockInEntry> list = wmsStockInEntryService.selectWmsStockInEntryList(wmsStockInEntry);
-        ExcelUtil<WmsStockInEntry> util = new ExcelUtil<WmsStockInEntry>(WmsStockInEntry.class);
-        util.exportExcel(response, list, "入库单数据");
-    }
+//    @PreAuthorize("@ss.hasPermi('wms:WmsStockInEntry:export')")
+//    @Log(title = "入库单", businessType = BusinessType.EXPORT)
+//    @PostMapping("/export")
+//    public void export(HttpServletResponse response, WmsStockInEntry wmsStockInEntry)
+//    {
+//        List<WmsStockInEntry> list = wmsStockInEntryService.selectWmsStockInEntryList(wmsStockInEntry);
+//        ExcelUtil<WmsStockInEntry> util = new ExcelUtil<WmsStockInEntry>(WmsStockInEntry.class);
+//        util.exportExcel(response, list, "入库单数据");
+//    }
 
     /**
      * 获取入库单详细信息
@@ -65,7 +64,7 @@ public class WmsStockInEntryController extends BaseController
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
-        return success(wmsStockInEntryService.selectWmsStockInEntryById(id));
+        return success(wmsStockInEntryService.getById(id));
     }
 
 

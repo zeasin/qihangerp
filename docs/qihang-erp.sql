@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 26/04/2024 14:19:29
+ Date: 26/04/2024 15:32:27
 */
 
 SET NAMES utf8mb4;
@@ -2544,7 +2544,7 @@ CREATE TABLE `erp_sale_order`  (
   `pay_time` datetime(0) DEFAULT NULL COMMENT '支付时间',
   `confirm_time` datetime(0) DEFAULT NULL COMMENT '订单确认时间',
   `ship_type` int(0) NOT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
-  `ship_status` int(0) NOT NULL COMMENT '发货状态（0待备货1备货中2已出库）',
+  `ship_status` int(0) NOT NULL COMMENT '发货状态（0待备货1备货中2已出库3已发货）',
   `shipping_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
   `shipping_number` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递单号',
   `shipping_company` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流公司',
@@ -2570,7 +2570,7 @@ INSERT INTO `erp_sale_order` VALUES (27, '3237115646950643410', 4, 6, '', '', '1
 INSERT INTO `erp_sale_order` VALUES (28, '3236924701745643410', 4, 6, '', '', '1', 1, 1, 44.9, 0, 0, 44.9, '#', '18400656752-3383', '北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)', '中国', '北京', '北京市', '丰台区', NULL, '2023-03-04 20:06:39', '2024-04-25 14:28:02', 1, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:28:02', 'admin', NULL, NULL, 0, 0, 0, NULL);
 INSERT INTO `erp_sale_order` VALUES (29, '230405-342695669310441', 5, 5, '', '', NULL, 1, 1, 32.79, 0, 0, 32.79, NULL, NULL, NULL, '中国', '云南省', '西双版纳傣族自治州', '景洪市', NULL, '2023-04-05 02:43:01', '2024-04-25 14:52:29', 1, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:52:29', 'admin', NULL, NULL, 0, 0, 0, NULL);
 INSERT INTO `erp_sale_order` VALUES (31, '5030436502888242865', 6, 22, '', NULL, '', 1, 1, 29.9, 0, 0, 29.9, '刘艳', '13540005969', '四川省 成都市 都江堰市  大观镇', '中国', '四川省', '成都市', '都江堰市', NULL, '2023-02-02 20:26:45', '2024-04-25 15:06:53', 0, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 15:06:53', 'admin', NULL, NULL, 0, 0, 0, NULL);
-INSERT INTO `erp_sale_order` VALUES (33, '1773651223045967873', 2, 2, NULL, NULL, NULL, 1, 1, 99.9, 0, 0, 99.9, '11111111111', '11111111', '1111111', '中国', '浙江省', '温州市', '瓯海区', NULL, NULL, '2024-04-25 16:48:57', 1, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 16:48:57', '确认订单', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (33, '1773651223045967873', 2, 2, NULL, NULL, NULL, 1, 3, 99.9, 0, 0, 99.9, '11111111111', '11111111', '1111111', '中国', '浙江省', '温州市', '瓯海区', NULL, NULL, '2024-04-25 16:48:57', 1, 0, '2024-04-26 14:39:38', '121212112', '邮政快递包裹', '12', 12.00, '2024-04-25 16:48:57', '确认订单', '2024-04-26 14:39:36', 'admin', 0, 0, 0, 12);
 
 -- ----------------------------
 -- Table structure for erp_sale_order_item
@@ -2649,44 +2649,6 @@ INSERT INTO `erp_ship_logistics` VALUES (9, '极兔速递', 'JTSD', NULL, 1);
 INSERT INTO `erp_ship_logistics` VALUES (10, '菜鸟速递', 'CNSD', '0', 1);
 
 -- ----------------------------
--- Table structure for fms_inventory_report
--- ----------------------------
-DROP TABLE IF EXISTS `fms_inventory_report`;
-CREATE TABLE `fms_inventory_report`  (
-  `id` bigint(0) NOT NULL,
-  `date` date NOT NULL COMMENT '日期',
-  `total` int(0) NOT NULL COMMENT '库存总数量',
-  `goods_count` int(0) NOT NULL COMMENT '商品总数',
-  `sku_count` int(0) NOT NULL COMMENT 'SKU总数',
-  `amount` decimal(10, 2) NOT NULL COMMENT '总货值',
-  `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存存货报表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for fms_inventory_report_detail
--- ----------------------------
-DROP TABLE IF EXISTS `fms_inventory_report_detail`;
-CREATE TABLE `fms_inventory_report_detail`  (
-  `id` bigint(0) NOT NULL,
-  `report_id` bigint(0) NOT NULL COMMENT 'Report外键ID',
-  `date` date NOT NULL COMMENT '日期',
-  `goods_id` int(0) NOT NULL COMMENT '商品id',
-  `spec_id` int(0) NOT NULL COMMENT '商品规格ID',
-  `total` int(0) NOT NULL COMMENT '总数量',
-  `amount` decimal(10, 2) NOT NULL COMMENT '总货值',
-  `inventory_dist` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '库存分布',
-  `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存存货报表明细' ROW_FORMAT = Dynamic;
-
--- ----------------------------
 -- Table structure for fms_payable_agent_ship
 -- ----------------------------
 DROP TABLE IF EXISTS `fms_payable_agent_ship`;
@@ -2745,40 +2707,12 @@ CREATE TABLE `fms_payable_ship_fee`  (
   `city` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '市',
   `town` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '区',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应付款-物流费用' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '物流费用应付款' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fms_payable_ship_fee
 -- ----------------------------
-INSERT INTO `fms_payable_ship_fee` VALUES (1, '33', '中山裤豪', '', 'PUR20240128113656', NULL, 52.00, '2024-01-28', NULL, 0, '2024-01-28 12:07:32', 'admin', NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL);
-
--- ----------------------------
--- Table structure for fms_receivable_order
--- ----------------------------
-DROP TABLE IF EXISTS `fms_receivable_order`;
-CREATE TABLE `fms_receivable_order`  (
-  `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL COMMENT '日期',
-  `order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单号',
-  `order_id` bigint(0) NOT NULL COMMENT '订单id',
-  `order_item_id` bigint(0) NOT NULL COMMENT '子订单id',
-  `goods_id` int(0) NOT NULL COMMENT '商品id',
-  `goods_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '商品名称',
-  `spec_id` int(0) NOT NULL COMMENT '规格id',
-  `spec_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '规格名称',
-  `price` decimal(10, 2) NOT NULL COMMENT '单价',
-  `amount` decimal(10, 2) NOT NULL COMMENT '应收金额',
-  `quantity` int(0) NOT NULL COMMENT '数量',
-  `invoice_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '发票号码',
-  `order_desc` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单说明',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
-  `status` int(0) NOT NULL COMMENT '状态（0已生成1已结算)',
-  `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应收款-订单收入' ROW_FORMAT = Dynamic;
+INSERT INTO `fms_payable_ship_fee` VALUES (2, '邮政快递包裹', NULL, '121212112', '1773651223045967873', 2, 12.00, '2024-04-26', NULL, 0, '2024-04-26 14:39:49', 'admin', NULL, NULL, 0, 0, 0, 12, '11111111111', '11111111', '浙江省', '温州市', '瓯海区');
 
 -- ----------------------------
 -- Table structure for s_dou_order
@@ -8875,6 +8809,10 @@ INSERT INTO `sys_logininfor` VALUES (120, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (121, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 13:42:36');
 INSERT INTO `sys_logininfor` VALUES (122, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 13:47:51');
 INSERT INTO `sys_logininfor` VALUES (123, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 14:05:51');
+INSERT INTO `sys_logininfor` VALUES (124, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 14:32:31');
+INSERT INTO `sys_logininfor` VALUES (125, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 14:34:13');
+INSERT INTO `sys_logininfor` VALUES (126, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 14:39:01');
+INSERT INTO `sys_logininfor` VALUES (127, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 15:31:15');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -8982,14 +8920,14 @@ INSERT INTO `sys_menu` VALUES (2036, '网店订单导入', 5, 2, 'shop_order', '
 INSERT INTO `sys_menu` VALUES (2046, '出库管理', 9, 5, 'stockOut', 'wms/stockOutEntry', NULL, 1, 0, 'C', '0', '0', '', 'link', 'admin', '2024-01-03 11:00:53', 'admin', '2024-01-12 15:52:19', '');
 INSERT INTO `sys_menu` VALUES (2047, '库存查询', 9, 6, 'goodsInventory', 'goods/goodsInventory', NULL, 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2024-01-03 11:01:14', 'admin', '2024-01-09 17:55:33', '');
 INSERT INTO `sys_menu` VALUES (2048, '库存盘点', 9, 9, 'pan', NULL, NULL, 1, 0, 'C', '0', '1', '', 'bug', 'admin', '2024-01-03 11:01:43', 'admin', '2024-01-09 19:57:08', '');
-INSERT INTO `sys_menu` VALUES (2049, '打包发货', 6, 3, 'shipping', 'wms/orderShipping/shipping', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-03 14:09:18', 'admin', '2024-01-10 09:21:26', '');
-INSERT INTO `sys_menu` VALUES (2051, '物流跟踪', 6, 4, 'logistics', 'wms/orderShipping/logistics', NULL, 1, 0, 'C', '0', '0', '', 'email', 'admin', '2024-01-03 14:13:12', 'admin', '2024-01-12 17:03:49', '');
+INSERT INTO `sys_menu` VALUES (2049, '打包发货', 6, 3, 'order_ship', 'shipping/orderShip/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-03 14:09:18', 'admin', '2024-04-26 14:27:56', '');
+INSERT INTO `sys_menu` VALUES (2051, '物流跟踪', 6, 4, 'order_logistics', 'shipping/orderShip/logistics', NULL, 1, 0, 'C', '0', '0', '', 'email', 'admin', '2024-01-03 14:13:12', 'admin', '2024-04-26 14:41:45', '');
 INSERT INTO `sys_menu` VALUES (2052, '物流公司管理', 6, 9, 'logistics_company', 'shipping/logistics/company', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-03 14:14:09', 'admin', '2024-04-24 13:53:14', '');
 INSERT INTO `sys_menu` VALUES (2054, '售后处理', 7, 1, 'refund_list', 'sale/returned', NULL, 1, 0, 'C', '0', '0', '', 'size', 'admin', '2024-01-03 14:24:36', 'admin', '2024-04-17 14:14:00', '');
 INSERT INTO `sys_menu` VALUES (2059, '备货清单', 6, 1, 'stocking', 'shipping/stocking/', '', 1, 0, 'C', '0', '0', '', 'component', 'admin', '2024-01-09 11:51:52', 'admin', '2024-04-15 11:40:42', '');
 INSERT INTO `sys_menu` VALUES (2060, '拣货出库', 6, 2, 'stockout', 'shipping/stockOut', NULL, 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-09 13:39:00', 'admin', '2024-04-26 13:51:21', '');
 INSERT INTO `sys_menu` VALUES (2061, '库位管理', 9, 99, 'stock_location', 'wms/location', NULL, 1, 0, 'C', '0', '0', '', 'education', 'admin', '2024-01-09 13:54:30', 'admin', '2024-01-09 14:50:33', '');
-INSERT INTO `sys_menu` VALUES (2062, '代发账单', 6, 6, 'agentShip', 'fms/payable/agentShip', NULL, 1, 0, 'C', '0', '0', '', 'money', 'admin', '2024-01-12 18:35:02', 'admin', '2024-04-17 14:13:03', '');
+INSERT INTO `sys_menu` VALUES (2062, '代发账单', 4, 6, 'agentShip', 'fms/payable/agentShip', NULL, 1, 0, 'C', '0', '0', '', 'excel', 'admin', '2024-01-12 18:35:02', 'admin', '2024-04-26 14:43:00', '');
 INSERT INTO `sys_menu` VALUES (2063, '物流费用', 6, 5, 'shipFee', 'fms/payable/shipFee', NULL, 1, 0, 'C', '0', '0', '', 'money', 'admin', '2024-01-12 18:35:31', 'admin', '2024-04-17 14:12:53', '');
 INSERT INTO `sys_menu` VALUES (2066, '添加商品', 2, 2, 'create', 'goods/create', NULL, 1, 0, 'C', '1', '0', '', 'component', 'admin', '2024-01-14 19:42:11', 'admin', '2024-04-14 18:50:36', '');
 INSERT INTO `sys_menu` VALUES (2067, '商品SKU管理', 2, 3, 'spec_list', 'goods/spec', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-16 14:17:39', 'admin', '2024-04-14 18:51:13', '');
@@ -9220,6 +9158,17 @@ INSERT INTO `sys_oper_log` VALUES (349, '小红书订单', 2, 'com.qihang.erp.ap
 INSERT INTO `sys_oper_log` VALUES (350, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"四川省 内江市 东兴区 东兴街道中兴路1104号上海花园2幢30－2(000000)\",\"auditStatus\":1,\"auditTime\":\"2024-04-25\",\"buyerFeedback\":\"\",\"buyerName\":\"\",\"city\":\"内江市\",\"closeReason\":\"\",\"createTime\":\"2023-03-05 14:38:03\",\"discountAmount\":0,\"id\":\"3238963057148759844\",\"isComment\":0,\"isMerge\":0,\"logisticsCode\":\"433101363722890\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2023-03-05\",\"orderSource\":1,\"params\":{},\"payAmount\":82.21,\"payTime\":\"2023-03-05\",\"phone\":\"17822627951-4875\",\"province\":\"四川省\",\"receiver\":\"周静\",\"remark\":\"\",\"sellerMemo\":\"\",\"sendStatus\":4,\"sendTime\":\"2023-03-05\",\"shipType\":1,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"tag\":\"1\",\"taoOrderItemList\":[],\"totalAmount\":82.21,\"updateBy\":\"admin\",\"updateTime\":\"2024-04-25 14:06:36\"}', '{\"msg\":\"已确认过了！请勿重复确认！\",\"code\":501}', 0, NULL, '2024-04-25 16:09:42', 151);
 INSERT INTO `sys_oper_log` VALUES (351, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/stockOut/stockOut\",\"createTime\":\"2024-01-09 13:39:00\",\"icon\":\"bug\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2060,\"menuName\":\"拣货出库\",\"menuType\":\"C\",\"orderNum\":2,\"params\":{},\"parentId\":6,\"path\":\"stockout\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 13:43:12', 57);
 INSERT INTO `sys_oper_log` VALUES (352, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/stockOut\",\"createTime\":\"2024-01-09 13:39:00\",\"icon\":\"bug\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2060,\"menuName\":\"拣货出库\",\"menuType\":\"C\",\"orderNum\":2,\"params\":{},\"parentId\":6,\"path\":\"stockout\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 13:51:21', 70);
+INSERT INTO `sys_oper_log` VALUES (353, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/orderShip/index\",\"createTime\":\"2024-01-03 14:09:18\",\"icon\":\"guide\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2049,\"menuName\":\"打包发货\",\"menuType\":\"C\",\"orderNum\":3,\"params\":{},\"parentId\":6,\"path\":\"order_ship\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:27:57', 228);
+INSERT INTO `sys_oper_log` VALUES (354, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":12,\"shippingMan\":\"qq\",\"shippingNumber\":\"12122\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号已存在！\",\"code\":502}', 0, NULL, '2024-04-26 14:28:33', 206);
+INSERT INTO `sys_oper_log` VALUES (355, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":12,\"shippingMan\":\"qq\",\"shippingNumber\":\"12122\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号已存在！\",\"code\":502}', 0, NULL, '2024-04-26 14:29:24', 15778);
+INSERT INTO `sys_oper_log` VALUES (356, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":12,\"shippingMan\":\"qq\",\"shippingNumber\":\"12122\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号已存在！\",\"code\":502}', 0, NULL, '2024-04-26 14:29:28', 9);
+INSERT INTO `sys_oper_log` VALUES (357, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"邮政快递包裹\",\"shippingCost\":12,\"shippingMan\":\"111\",\"shippingNumber\":\"122dd\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号已存在！\",\"code\":502}', 0, NULL, '2024-04-26 14:32:48', 65);
+INSERT INTO `sys_oper_log` VALUES (358, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":11,\"shippingMan\":\"11\",\"shippingNumber\":\"111111111111111\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号状态不对！无法发货！\",\"code\":502}', 0, NULL, '2024-04-26 14:35:19', 45380);
+INSERT INTO `sys_oper_log` VALUES (359, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":11,\"shippingMan\":\"11\",\"shippingNumber\":\"111111111111111\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号状态不对！无法发货！\",\"code\":502}', 0, NULL, '2024-04-26 14:38:33', 191021);
+INSERT INTO `sys_oper_log` VALUES (360, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"邮政快递包裹\",\"shippingCost\":12,\"shippingMan\":\"12\",\"shippingNumber\":\"121212112\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":12.0,\"width\":0.0}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:39:55', 27285);
+INSERT INTO `sys_oper_log` VALUES (361, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/orderShip/logistics\",\"createTime\":\"2024-01-03 14:13:12\",\"icon\":\"email\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2051,\"menuName\":\"物流跟踪\",\"menuType\":\"C\",\"orderNum\":4,\"params\":{},\"parentId\":6,\"path\":\"logistics\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:41:26', 20);
+INSERT INTO `sys_oper_log` VALUES (362, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/orderShip/logistics\",\"createTime\":\"2024-01-03 14:13:12\",\"icon\":\"email\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2051,\"menuName\":\"物流跟踪\",\"menuType\":\"C\",\"orderNum\":4,\"params\":{},\"parentId\":6,\"path\":\"order_logistics\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:41:45', 20);
+INSERT INTO `sys_oper_log` VALUES (363, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"fms/payable/agentShip\",\"createTime\":\"2024-01-12 18:35:02\",\"icon\":\"excel\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2062,\"menuName\":\"代发账单\",\"menuType\":\"C\",\"orderNum\":6,\"params\":{},\"parentId\":4,\"path\":\"agentShip\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:43:00', 11);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -9407,7 +9356,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-26 14:05:52', 'admin', '2023-08-07 19:31:37', '', '2024-04-26 14:05:51', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-26 15:31:16', 'admin', '2023-08-07 19:31:37', '', '2024-04-26 15:31:15', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 

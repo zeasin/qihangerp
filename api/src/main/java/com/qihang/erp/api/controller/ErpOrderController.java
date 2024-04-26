@@ -94,7 +94,8 @@ public class ErpOrderController extends BaseController
         order.setUpdateBy(getUsername());
         int result = orderService.shipErpOrder(order);
         if(result == -1) return new AjaxResult(501,"订单不存在！");
-        else if(result == -2) return new AjaxResult(502,"订单号已存在！");
+        else if(result == -2) return new AjaxResult(502,"订单状态不对！无法发货！");
+        else if(result == -3) return new AjaxResult(502,"订单发货状态不对！无法发货！");
         return toAjax(result);
     }
 

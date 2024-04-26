@@ -1,258 +1,138 @@
 package com.qihang.erp.api.domain;
 
-import com.qihang.common.annotation.Excel;
-import com.qihang.core.domain.BaseEntity;
+import java.io.Serializable;
+import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.Data;
 
 /**
- * 入库单明细对象 wms_stock_in_entry_item
- * 
- * @author qihang
- * @date 2023-12-31
+ * 入库单明细
+ * @TableName wms_stock_in_entry_item
  */
-public class WmsStockInEntryItem extends BaseEntity
-{
-    private static final long serialVersionUID = 1L;
-
-    /** $column.columnComment */
+@Data
+public class WmsStockInEntryItem implements Serializable {
+    /**
+     * 
+     */
     private Long id;
 
-    /** 入库单id */
-    @Excel(name = "入库单id")
+    /**
+     * 入库单id
+     */
     private Long entryId;
 
-    /** 来源类型（1采购订单2退货订单） */
-    @Excel(name = "来源类型", readConverterExp = "1=采购订单2退货订单")
-    private Long sourceType;
+    /**
+     * 来源类型（1采购订单2退货订单）
+     */
+    private Integer sourceType;
 
-    /** 来源单id */
-    @Excel(name = "来源单id")
+    /**
+     * 来源单id
+     */
     private Long sourceId;
 
-    /** 来源单itemId */
-    @Excel(name = "来源单itemId")
+    /**
+     * 来源单itemId
+     */
     private Long sourceItemId;
 
-    /** 商品id */
-    @Excel(name = "商品id")
+    /**
+     * 商品id
+     */
     private Long goodsId;
 
-    /** 商品编码 */
-    @Excel(name = "商品编码")
+    /**
+     * 商品编码
+     */
     private String goodsNum;
+
+    /**
+     * 商品名称
+     */
     private String goodsName;
 
-    /** 商品规格id */
-    @Excel(name = "商品规格id")
+    /**
+     * 商品规格id
+     */
     private Long specId;
 
-    /** 商品规格编码 */
-    @Excel(name = "商品规格编码")
+    /**
+     * 商品规格编码
+     */
     private String specNum;
 
+    /**
+     * 颜色
+     */
     private String colorValue;
+
+    /**
+     * 图片
+     */
     private String colorImage;
+
+    /**
+     * 尺码
+     */
     private String sizeValue;
+
+    /**
+     * 款式
+     */
     private String styleValue;
 
-    /** 原始数量 */
-    @Excel(name = "原始数量")
+    /**
+     * 原始数量
+     */
     private Long originalQuantity;
 
-    /** 入库数量 */
-    @Excel(name = "已入库数量")
+    /**
+     * 入库数量
+     */
     private Long inQuantity;
+    @TableField(exist = false)
     private Long quantity;
-    private Long totalQuantity;
 
-    /** 入库仓位 */
-    @Excel(name = "入库仓位")
+    /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 入库仓位
+     */
     private Long locationId;
 
-    /** 入库仓位编码 */
-    @Excel(name = "入库仓位编码")
+    /**
+     * 入库仓位编码
+     */
     private String locationNum;
-    private Integer status;//状态（0待入库1部分入库2全部入库）
 
-    public Long getQuantity() {
-        return quantity;
-    }
+    /**
+     * 状态（0待入库1部分入库2全部入库）
+     */
+    private Integer status;
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
+    /**
+     * 创建人
+     */
+    private String createBy;
 
-    public Long getTotalQuantity() {
-        return totalQuantity;
-    }
+    /**
+     * 创建时间
+     */
+    private Date createTime;
 
-    public void setTotalQuantity(Long totalQuantity) {
-        this.totalQuantity = totalQuantity;
-    }
+    /**
+     * 更新人
+     */
+    private String updateBy;
 
-    public Integer getStatus() {
-        return status;
-    }
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
-    }
-
-    public String getColorValue() {
-        return colorValue;
-    }
-
-    public void setColorValue(String colorValue) {
-        this.colorValue = colorValue;
-    }
-
-    public String getColorImage() {
-        return colorImage;
-    }
-
-    public void setColorImage(String colorImage) {
-        this.colorImage = colorImage;
-    }
-
-    public String getSizeValue() {
-        return sizeValue;
-    }
-
-    public void setSizeValue(String sizeValue) {
-        this.sizeValue = sizeValue;
-    }
-
-    public String getStyleValue() {
-        return styleValue;
-    }
-
-    public void setStyleValue(String styleValue) {
-        this.styleValue = styleValue;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
-    public Long getId() 
-    {
-        return id;
-    }
-    public void setEntryId(Long entryId) 
-    {
-        this.entryId = entryId;
-    }
-
-    public Long getEntryId() 
-    {
-        return entryId;
-    }
-    public void setSourceType(Long sourceType) 
-    {
-        this.sourceType = sourceType;
-    }
-
-    public Long getSourceType() 
-    {
-        return sourceType;
-    }
-    public void setSourceId(Long sourceId) 
-    {
-        this.sourceId = sourceId;
-    }
-
-    public Long getSourceId() 
-    {
-        return sourceId;
-    }
-    public void setSourceItemId(Long sourceItemId) 
-    {
-        this.sourceItemId = sourceItemId;
-    }
-
-    public Long getSourceItemId() 
-    {
-        return sourceItemId;
-    }
-    public void setGoodsId(Long goodsId) 
-    {
-        this.goodsId = goodsId;
-    }
-
-    public Long getGoodsId() 
-    {
-        return goodsId;
-    }
-    public void setGoodsNum(String goodsNum) 
-    {
-        this.goodsNum = goodsNum;
-    }
-
-    public String getGoodsNum() 
-    {
-        return goodsNum;
-    }
-    public void setSpecId(Long specId) 
-    {
-        this.specId = specId;
-    }
-
-    public Long getSpecId() 
-    {
-        return specId;
-    }
-    public void setSpecNum(String specNum) 
-    {
-        this.specNum = specNum;
-    }
-
-    public String getSpecNum() 
-    {
-        return specNum;
-    }
-    public void setOriginalQuantity(Long originalQuantity) 
-    {
-        this.originalQuantity = originalQuantity;
-    }
-
-    public Long getOriginalQuantity() 
-    {
-        return originalQuantity;
-    }
-    public void setInQuantity(Long inQuantity) 
-    {
-        this.inQuantity = inQuantity;
-    }
-
-    public Long getInQuantity() 
-    {
-        return inQuantity;
-    }
-    public void setLocationId(Long locationId) 
-    {
-        this.locationId = locationId;
-    }
-
-    public Long getLocationId() 
-    {
-        return locationId;
-    }
-    public void setLocationNum(String locationNum) 
-    {
-        this.locationNum = locationNum;
-    }
-
-    public String getLocationNum() 
-    {
-        return locationNum;
-    }
-
+    private static final long serialVersionUID = 1L;
 }

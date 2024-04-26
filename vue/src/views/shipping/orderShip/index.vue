@@ -423,7 +423,7 @@ import { listOrder, getOrder, shipOrder } from "@/api/shop/order";
 import { listShop } from "@/api/shop/shop";
 import { listLogistics } from "@/api/shipping/logistics";
 export default {
-  name: "Order",
+  name: "OrderShip",
   data() {
     return {
       // 遮罩层
@@ -458,7 +458,7 @@ export default {
         shopId: null,
         tag: null,
         refundStatus: 1,
-        orderStatus: 2,
+        orderStatus: 1,
         receiverName: null,
         receiverPhone: null,
         town: null,
