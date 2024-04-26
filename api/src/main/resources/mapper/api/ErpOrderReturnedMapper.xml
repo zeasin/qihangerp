@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectErpOrderReturnedVo">
-        select id, returned_num, returned_type, order_num, shop_id, shop_type, order_id, order_item_id, goods_id, spec_id, goods_num, spec_num, goods_name, goods_spec, goods_image, quantity, logistics_company, logistics_code, receive_time, remark, contactPerson, mobile, address, status, create_time, create_by, update_time, update_by from erp_order_returned
+        select id, returned_num, returned_type, order_num, shop_id, shop_type, order_id, order_item_id, goods_id, spec_id, goods_num, spec_num, goods_name, goods_spec, goods_image, quantity, logistics_company, logistics_code, receive_time, remark, contactPerson, mobile, address, status, create_time, create_by, update_time, update_by from erp_sale_returned
     </sql>
 
     <select id="selectErpOrderReturnedList" parameterType="ErpOrderReturned" resultMap="ErpOrderReturnedResult">
@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
         
     <insert id="insertErpOrderReturned" parameterType="ErpOrderReturned" useGeneratedKeys="true" keyProperty="id">
-        insert into erp_order_returned
+        insert into erp_sale_returned
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="returnedNum != null and returnedNum != ''">returned_num,</if>
             <if test="returnedType != null">returned_type,</if>
@@ -135,7 +135,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
     <update id="updateErpOrderReturned" parameterType="ErpOrderReturned">
-        update erp_order_returned
+        update erp_sale_returned
         <trim prefix="SET" suffixOverrides=",">
             <if test="returnedNum != null and returnedNum != ''">returned_num = #{returnedNum},</if>
             <if test="returnedType != null">returned_type = #{returnedType},</if>
@@ -169,11 +169,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteErpOrderReturnedById" parameterType="Long">
-        delete from erp_order_returned where id = #{id}
+        delete from erp_sale_returned where id = #{id}
     </delete>
 
     <delete id="deleteErpOrderReturnedByIds" parameterType="String">
-        delete from erp_order_returned where id in 
+        delete from erp_sale_returned where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>

@@ -2,12 +2,15 @@ package com.qihang.erp.api.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * 售后处理表
  * @TableName erp_after_sale
  */
+@TableName("erp_sale_after")
 @Data
 public class ErpAfterSale implements Serializable {
     /**
