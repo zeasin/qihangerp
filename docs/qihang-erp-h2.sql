@@ -1,62 +1,14 @@
 
--- ----------------------------
--- Table structure for erp_after_sale
--- ----------------------------
-DROP TABLE IF EXISTS `erp_after_sale`;
-CREATE TABLE `erp_after_sale`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `type` int NULL DEFAULT NULL COMMENT '类型（10退货；20换货；80补发；99订单拦截；）',
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
-  `shop_type` int NULL DEFAULT NULL COMMENT '店铺类型',
-  `after_sale_order_id` varchar(50)  NULL DEFAULT NULL COMMENT '售后单号',
-  `order_id` varchar(50)  NULL DEFAULT NULL COMMENT '订单号',
-  `sub_order_id` varchar(50)  NULL DEFAULT NULL COMMENT '子订单号',
-  `product_id` varchar(100)  NULL DEFAULT NULL COMMENT '商品spuid',
-  `sku_id` varchar(100)  NULL DEFAULT NULL COMMENT '商品skuid',
-  `count` int NULL DEFAULT NULL COMMENT '数量',
-  `title` varchar(255)  NULL DEFAULT NULL COMMENT '商品标题',
-  `img` varchar(555)  NULL DEFAULT NULL COMMENT '商品图片',
-  `sku_info` varchar(2550)  NULL DEFAULT NULL COMMENT 'sku描述',
-  `sku_code` varchar(255)  NULL DEFAULT NULL COMMENT 'sku编码',
-  `erp_goods_id` int NULL DEFAULT NULL COMMENT 'ERP商品id',
-  `erp_sku_id` int NULL DEFAULT NULL COMMENT 'ERP商品skuId',
-  `return_info` varchar(2550)  NULL DEFAULT NULL COMMENT '退回人信息json',
-  `return_waybill_code` varchar(50)  NULL DEFAULT NULL COMMENT '退回快递单号',
-  `return_company` varchar(255)  NULL DEFAULT NULL COMMENT '退回物流公司名称',
-  `receiver_name` varchar(255)  NULL DEFAULT NULL COMMENT '收件人姓名',
-  `receiver_tel` varchar(255)  NULL DEFAULT NULL COMMENT '收件人联系电话',
-  `receiver_province` varchar(255)  NULL DEFAULT NULL COMMENT '省',
-  `receiver_city` varchar(255)  NULL DEFAULT NULL COMMENT '市',
-  `receiver_town` varchar(255)  NULL DEFAULT NULL COMMENT '区',
-  `receiver_address` varchar(255)  NULL DEFAULT NULL COMMENT '收件人详细地址',
-  `ship_waybill_code` varchar(255)  NULL DEFAULT NULL COMMENT '发货快递单号（补发、换货发货、拦截订单发货）',
-  `ship_company` varchar(255)  NULL DEFAULT NULL COMMENT '发货快递公司',
-  `status` int NULL DEFAULT NULL COMMENT '状态:1已发出；2已完成(已收货);3已入库',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
-  `create_time` datetime NULL DEFAULT NULL,
-  `create_by` varchar(255)  NULL DEFAULT NULL,
-  `update_time` datetime NULL DEFAULT NULL,
-  `update_by` varchar(50)  NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) 
-) 
-
--- ----------------------------
--- Records of erp_after_sale
--- ----------------------------
-
--- ----------------------------
--- Table structure for erp_goods
--- ----------------------------
 DROP TABLE IF EXISTS `erp_goods`;
 CREATE TABLE `erp_goods`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(50)  NULL DEFAULT '' COMMENT '商品名称',
-  `image` varchar(255)  NULL DEFAULT NULL COMMENT '商品图片地址',
-  `number` varchar(20)  NULL DEFAULT '' COMMENT '商品编号',
-  `unit_name` varchar(10)  NULL DEFAULT '' COMMENT '单位名称',
-  `category_id` int NULL DEFAULT 0 COMMENT '商品分类ID',
-  `bar_code` varchar(60)  NULL DEFAULT '' COMMENT '条码',
-  `remark` varchar(500)  NULL DEFAULT '' COMMENT '备注',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `name` varchar(50) DEFAULT '' COMMENT '商品名称',
+  `image` varchar(255) DEFAULT NULL COMMENT '商品图片地址',
+  `number` varchar(20) DEFAULT '' COMMENT '商品编号',
+  `unit_name` varchar(10) DEFAULT '' COMMENT '单位名称',
+  `category_id` int(0) DEFAULT 0 COMMENT '商品分类ID',
+  `bar_code` varchar(60) DEFAULT '' COMMENT '条码',
+  `remark` varchar(500) DEFAULT '' COMMENT '备注',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态1销售中2已下架',
   `length` float NOT NULL DEFAULT 0 COMMENT '衣长/裙长/裤长',
   `height` float NOT NULL DEFAULT 0 COMMENT '高度/袖长',
@@ -65,26 +17,26 @@ CREATE TABLE `erp_goods`  (
   `width2` float NOT NULL DEFAULT 0 COMMENT '腰阔',
   `width3` float NOT NULL DEFAULT 0 COMMENT '臀阔',
   `weight` float NOT NULL DEFAULT 0 COMMENT '重量',
-  `disable` tinyint(1) NULL DEFAULT 0 COMMENT '0启用   1禁用',
-  `period` varchar(10)  NULL DEFAULT '0' COMMENT '保质期',
-  `pur_price` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '预计采购价格',
-  `whole_price` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '建议批发价',
-  `retail_price` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '建议零售价',
-  `unit_cost` decimal(8, 2) NULL DEFAULT NULL COMMENT '单位成本',
-  `supplier_id` int NULL DEFAULT 0 COMMENT '供应商id',
-  `brand_id` int NULL DEFAULT 0 COMMENT '品牌id',
-  `attr1` varchar(15)  NULL DEFAULT NULL COMMENT '属性1：季节',
-  `attr2` varchar(15)  NULL DEFAULT NULL COMMENT '属性2：分类',
-  `attr3` varchar(15)  NULL DEFAULT NULL COMMENT '属性3：风格',
-  `attr4` varchar(15)  NULL DEFAULT NULL COMMENT '属性4：年份',
-  `attr5` varchar(50)  NULL DEFAULT NULL COMMENT '属性5：面料',
-  `link_url` varchar(500)  NULL DEFAULT NULL COMMENT '外链url',
-  `low_qty` int NULL DEFAULT 0 COMMENT '最低库存（预警）',
-  `high_qty` int NULL DEFAULT 0 COMMENT '最高库存（预警）',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `disable` tinyint(1) DEFAULT 0 COMMENT '0启用   1禁用',
+  `period` varchar(10) DEFAULT '0' COMMENT '保质期',
+  `pur_price` decimal(8, 2) DEFAULT 0.00 COMMENT '预计采购价格',
+  `whole_price` decimal(8, 2) DEFAULT 0.00 COMMENT '建议批发价',
+  `retail_price` decimal(8, 2) DEFAULT 0.00 COMMENT '建议零售价',
+  `unit_cost` decimal(8, 2) DEFAULT NULL COMMENT '单位成本',
+  `supplier_id` int(0) DEFAULT 0 COMMENT '供应商id',
+  `brand_id` int(0) DEFAULT 0 COMMENT '品牌id',
+  `attr1` varchar(15) DEFAULT NULL COMMENT '属性1：季节',
+  `attr2` varchar(15) DEFAULT NULL COMMENT '属性2：分类',
+  `attr3` varchar(15) DEFAULT NULL COMMENT '属性3：风格',
+  `attr4` varchar(15) DEFAULT NULL COMMENT '属性4：年份',
+  `attr5` varchar(50) DEFAULT NULL COMMENT '属性5：面料',
+  `link_url` varchar(500) DEFAULT NULL COMMENT '外链url',
+  `low_qty` int(0) DEFAULT 0 COMMENT '最低库存（预警）',
+  `high_qty` int(0) DEFAULT 0 COMMENT '最高库存（预警）',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) ,
   INDEX `number`(`number`) ,
   INDEX `id`(`id`) 
@@ -158,29 +110,25 @@ INSERT INTO `erp_goods` VALUES (74, '测试测试', 'http://localhost:8080/previ
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_attribute`;
 CREATE TABLE `erp_goods_attribute`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `goods_id` bigint NULL DEFAULT 0 COMMENT '商品id',
-  `attribute_id` int NULL DEFAULT NULL COMMENT '属性id',
-  `name` varchar(50)  NULL DEFAULT NULL COMMENT '属性名',
-  `value` varchar(50)  NULL DEFAULT NULL COMMENT '属性值',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `goods_id` bigint(0) DEFAULT 0 COMMENT '商品id',
+  `attribute_id` int(0) DEFAULT NULL COMMENT '属性id',
+  `name` varchar(50)  DEFAULT NULL COMMENT '属性名',
+  `value` varchar(50)  DEFAULT NULL COMMENT '属性值',
   PRIMARY KEY (`id`) 
-) 
-
--- ----------------------------
--- Records of erp_goods_attribute
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '商品属性表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for erp_goods_attribute_config
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_attribute_config`;
 CREATE TABLE `erp_goods_attribute_config`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `category_id` int NULL DEFAULT NULL COMMENT '分类id（0为所有共用）',
-  `name` varchar(20)  NULL DEFAULT NULL COMMENT '属性名',
-  `value` varchar(500)  NULL DEFAULT NULL COMMENT '属性值',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `category_id` int(0) DEFAULT NULL COMMENT '分类id（0为所有共用）',
+  `name` varchar(20)  DEFAULT NULL COMMENT '属性名',
+  `value` varchar(500)  DEFAULT NULL COMMENT '属性值',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '商品属性表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_attribute_config
@@ -193,15 +141,16 @@ INSERT INTO `erp_goods_attribute_config` VALUES (2, 1, '季节', '春季,夏季,
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_brand`;
 CREATE TABLE `erp_goods_brand`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `name` varchar(50)  NOT NULL COMMENT '品牌名',
-  `status` int NULL DEFAULT NULL COMMENT '状态',
-  `create_by` varchar(20)  NULL DEFAULT NULL,
-  `create_time` datetime NULL DEFAULT NULL,
-  `update_by` varchar(20)  NULL DEFAULT NULL,
-  `update_time` datetime NULL DEFAULT NULL,
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `name` varchar(50) NOT NULL COMMENT '品牌名',
+  `status` int(0) DEFAULT NULL COMMENT '状态',
+  `create_by` varchar(20) DEFAULT NULL,
+  `create_time` datetime(0) DEFAULT NULL,
+  `update_by` varchar(20) DEFAULT NULL,
+  `update_time` datetime(0) DEFAULT NULL,
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
 -- ----------------------------
 -- Records of erp_goods_brand
 -- ----------------------------
@@ -212,21 +161,21 @@ INSERT INTO `erp_goods_brand` VALUES (1, '梦小妮', 1, 'admin', '2023-12-29 13
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_category`;
 CREATE TABLE `erp_goods_category`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `number` varchar(10)  NULL DEFAULT NULL COMMENT '分类编码',
-  `name` varchar(20)  NULL DEFAULT NULL COMMENT '分类名称',
-  `remark` varchar(50)  NULL DEFAULT NULL,
-  `parent_id` int NULL DEFAULT NULL COMMENT '上架分类id',
-  `path` varchar(45)  NOT NULL DEFAULT '' COMMENT '分类路径',
-  `sort` int NULL DEFAULT 0 COMMENT '排序值',
-  `image` varchar(100)  NULL DEFAULT NULL COMMENT '图片',
-  `isDelete` tinyint(1) NULL DEFAULT 0 COMMENT '0正常  1删除',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `number` varchar(10) DEFAULT NULL COMMENT '分类编码',
+  `name` varchar(20) DEFAULT NULL COMMENT '分类名称',
+  `remark` varchar(50) DEFAULT NULL,
+  `parent_id` int(0) DEFAULT NULL COMMENT '上架分类id',
+  `path` varchar(45) NOT NULL DEFAULT '' COMMENT '分类路径',
+  `sort` int(0) DEFAULT 0 COMMENT '排序值',
+  `image` varchar(100) DEFAULT NULL COMMENT '图片',
+  `isDelete` tinyint(1) DEFAULT 0 COMMENT '0正常  1删除',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_category
@@ -270,13 +219,13 @@ INSERT INTO `erp_goods_category` VALUES (33, NULL, '背带裤', '', 26, '0|26', 
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_category_attribute`;
 CREATE TABLE `erp_goods_category_attribute`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `category_id` int NOT NULL,
-  `type` int NOT NULL DEFAULT 0 COMMENT '类型：0属性1规格',
-  `title` varchar(45)  NULL DEFAULT NULL COMMENT '\'属性名\'',
-  `code` char(5)  NULL DEFAULT NULL COMMENT '固定值color颜色size尺码style款式',
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `category_id` int(0) NOT NULL,
+  `type` int(0) NOT NULL DEFAULT 0 COMMENT '类型：0属性1规格',
+  `title` varchar(45)  DEFAULT NULL COMMENT '\'属性名\'',
+  `code` char(5)  DEFAULT NULL COMMENT '固定值color颜色size尺码style款式',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB AUTO_INCREMENT = 117 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_category_attribute
@@ -290,14 +239,14 @@ INSERT INTO `erp_goods_category_attribute` VALUES (116, 1, 1, '款式', 'style')
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_category_attribute_value`;
 CREATE TABLE `erp_goods_category_attribute_value`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键，属性值id',
-  `category_attribute_id` int NULL DEFAULT NULL COMMENT '属性id',
-  `value` varchar(45)  NULL DEFAULT NULL COMMENT '属性值文本',
-  `sku_code` varchar(10)  NULL DEFAULT NULL COMMENT '生成SKU的编码',
-  `orderNum` int NULL DEFAULT 0,
-  `isDelete` int NOT NULL DEFAULT 0,
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '主键，属性值id',
+  `category_attribute_id` int(0) DEFAULT NULL COMMENT '属性id',
+  `value` varchar(45)  DEFAULT NULL COMMENT '属性值文本',
+  `sku_code` varchar(10)  DEFAULT NULL COMMENT '生成SKU的编码',
+  `orderNum` int(0) DEFAULT 0,
+  `isDelete` int(0) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB AUTO_INCREMENT = 424 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_category_attribute_value
@@ -424,39 +373,35 @@ INSERT INTO `erp_goods_category_attribute_value` VALUES (423, 116, '加长裤加
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_img`;
 CREATE TABLE `erp_goods_img`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `goods_id` bigint NULL DEFAULT 0 COMMENT '商品Id',
-  `type` varchar(100)  NULL DEFAULT '' COMMENT '类型',
-  `url` varchar(255)  NULL DEFAULT '' COMMENT '图片url',
-  `remark` varchar(255)  NULL DEFAULT '' COMMENT '图片说明',
-  `sort` int NULL DEFAULT NULL COMMENT '排序',
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `goods_id` bigint(0) DEFAULT 0 COMMENT '商品Id',
+  `type` varchar(100)  DEFAULT '' COMMENT '类型',
+  `url` varchar(255)  DEFAULT '' COMMENT '图片url',
+  `remark` varchar(255)  DEFAULT '' COMMENT '图片说明',
+  `sort` int(0) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of erp_goods_img
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for erp_goods_inventory
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_inventory`;
 CREATE TABLE `erp_goods_inventory`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `goodsId` int NOT NULL COMMENT '商品id',
-  `goodsNumber` varchar(20)  NULL DEFAULT NULL COMMENT '商品编码',
-  `specId` int NOT NULL COMMENT '商品规格id',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `goodsId` int(0) NOT NULL COMMENT '商品id',
+  `goodsNumber` varchar(20)  DEFAULT NULL COMMENT '商品编码',
+  `specId` int(0) NOT NULL COMMENT '商品规格id',
   `specNumber` varchar(25)  NOT NULL DEFAULT '' COMMENT '规格编码（唯一）',
-  `currentQty` bigint NOT NULL DEFAULT 0 COMMENT '当前库存',
-  `lockedQty` bigint NOT NULL DEFAULT 0 COMMENT '锁定库存',
+  `currentQty` bigint(0) NOT NULL DEFAULT 0 COMMENT '当前库存',
+  `lockedQty` bigint(0) NOT NULL DEFAULT 0 COMMENT '锁定库存',
   `isDelete` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0正常  1删除',
-  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `createBy` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  `updateBy` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
+  `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `createBy` varchar(25)  DEFAULT NULL COMMENT '创建人',
+  `updateTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updateBy` varchar(25)  DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) ,
   INDEX `specIdIndex`(`specId`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_inventory
@@ -468,22 +413,22 @@ INSERT INTO `erp_goods_inventory` VALUES (6, 9, 'HN8026', 32, '2720210080260105'
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_inventory_detail`;
 CREATE TABLE `erp_goods_inventory_detail`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `inventoryId` bigint NOT NULL COMMENT '商品库存id',
-  `inQty` int NOT NULL DEFAULT 0 COMMENT '入库数量',
-  `originQty` bigint NOT NULL COMMENT '入库前数量',
-  `currentQty` bigint NOT NULL DEFAULT 0 COMMENT '当前库存数量',
-  `purPrice` double NULL DEFAULT 0 COMMENT '采购价',
-  `entryId` bigint NOT NULL COMMENT '入库单id',
-  `entryItemId` bigint NOT NULL COMMENT '入库单itemId',
-  `remark` varchar(250)  NULL DEFAULT NULL COMMENT '备注',
-  `specId` int NOT NULL COMMENT '规格id',
-  `goodsId` int NOT NULL COMMENT '商品id',
-  `inLocation` int NOT NULL COMMENT '入库仓位id',
-  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `createBy` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `inventoryId` bigint(0) NOT NULL COMMENT '商品库存id',
+  `inQty` int(0) NOT NULL DEFAULT 0 COMMENT '入库数量',
+  `originQty` bigint(0) NOT NULL COMMENT '入库前数量',
+  `currentQty` bigint(0) NOT NULL DEFAULT 0 COMMENT '当前库存数量',
+  `purPrice` double DEFAULT 0 COMMENT '采购价',
+  `entryId` bigint(0) NOT NULL COMMENT '入库单id',
+  `entryItemId` bigint(0) NOT NULL COMMENT '入库单itemId',
+  `remark` varchar(250)  DEFAULT NULL COMMENT '备注',
+  `specId` int(0) NOT NULL COMMENT '规格id',
+  `goodsId` int(0) NOT NULL COMMENT '商品id',
+  `inLocation` int(0) NOT NULL COMMENT '入库仓位id',
+  `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `createBy` varchar(25)  DEFAULT NULL COMMENT '创建人',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存明细表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_inventory_detail
@@ -495,31 +440,31 @@ INSERT INTO `erp_goods_inventory_detail` VALUES (7, 6, 10, 0, 8, NULL, 8, 4, NUL
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_spec`;
 CREATE TABLE `erp_goods_spec`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `goods_id` bigint NOT NULL COMMENT '商品id',
-  `spec_name` varchar(50)  NULL DEFAULT '' COMMENT '规格名',
-  `spec_num` varchar(25)  NOT NULL COMMENT '规格编码',
-  `color_id` int NULL DEFAULT 0 COMMENT '颜色id',
-  `color_value` varchar(50)  NULL DEFAULT NULL COMMENT '颜色值',
-  `color_image` varchar(100)  NULL DEFAULT NULL COMMENT '颜色图片',
-  `size_id` int NULL DEFAULT 0 COMMENT '尺码id',
-  `size_value` varchar(50)  NULL DEFAULT NULL COMMENT '尺码值',
-  `style_id` int NULL DEFAULT 0 COMMENT '款式id',
-  `style_value` varchar(50)  NULL DEFAULT NULL COMMENT '款式值',
-  `bar_code` varchar(60)  NULL DEFAULT NULL COMMENT '库存条形码',
-  `pur_price` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '预计采购价',
-  `whole_price` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '建议批发价',
-  `retail_price` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '建议零售价',
-  `unit_cost` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '单位成本',
-  `remark` varchar(50)  NULL DEFAULT '' COMMENT '备注',
-  `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态',
-  `low_qty` int NULL DEFAULT 0 COMMENT '最低库存（预警）',
-  `high_qty` int NULL DEFAULT 0 COMMENT '最高库存（预警）',
-  `disable` tinyint(1) NULL DEFAULT 0 COMMENT '0启用   1禁用',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `goods_id` bigint(0) NOT NULL COMMENT '商品id',
+  `spec_name` varchar(50) DEFAULT '' COMMENT '规格名',
+  `spec_num` varchar(25) NOT NULL COMMENT '规格编码',
+  `color_id` int(0) DEFAULT 0 COMMENT '颜色id',
+  `color_value` varchar(50) DEFAULT NULL COMMENT '颜色值',
+  `color_image` varchar(100) DEFAULT NULL COMMENT '颜色图片',
+  `size_id` int(0) DEFAULT 0 COMMENT '尺码id',
+  `size_value` varchar(50) DEFAULT NULL COMMENT '尺码值',
+  `style_id` int(0) DEFAULT 0 COMMENT '款式id',
+  `style_value` varchar(50) DEFAULT NULL COMMENT '款式值',
+  `bar_code` varchar(60) DEFAULT NULL COMMENT '库存条形码',
+  `pur_price` decimal(8, 2) DEFAULT 0.00 COMMENT '预计采购价',
+  `whole_price` decimal(8, 2) DEFAULT 0.00 COMMENT '建议批发价',
+  `retail_price` decimal(8, 2) DEFAULT 0.00 COMMENT '建议零售价',
+  `unit_cost` decimal(8, 2) DEFAULT 0.00 COMMENT '单位成本',
+  `remark` varchar(50) DEFAULT '' COMMENT '备注',
+  `status` tinyint(1) DEFAULT 1 COMMENT '状态',
+  `low_qty` int(0) DEFAULT 0 COMMENT '最低库存（预警）',
+  `high_qty` int(0) DEFAULT 0 COMMENT '最高库存（预警）',
+  `disable` tinyint(1) DEFAULT 0 COMMENT '0启用   1禁用',
   PRIMARY KEY (`id`) ,
   INDEX `id`(`id`) ,
   INDEX `number`(`spec_num`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 1372 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品规格库存管理' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1372 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品规格库存管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_spec
@@ -1848,16 +1793,16 @@ INSERT INTO `erp_goods_spec` VALUES (1371, 74, '', 'A0012D14031', 412, '复古�
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_goods_spec_attr`;
 CREATE TABLE `erp_goods_spec_attr`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `goods_id` int NOT NULL,
-  `type` char(5)  NULL DEFAULT NULL,
-  `k` varchar(10)  NULL DEFAULT NULL,
-  `kid` int NULL DEFAULT NULL,
-  `vid` int NULL DEFAULT NULL,
-  `v` varchar(50)  NULL DEFAULT NULL,
-  `img` varchar(200)  NULL DEFAULT NULL,
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `goods_id` int(0) NOT NULL,
+  `type` char(5)  DEFAULT NULL,
+  `k` varchar(10)  DEFAULT NULL,
+  `kid` int(0) DEFAULT NULL,
+  `vid` int(0) DEFAULT NULL,
+  `v` varchar(50)  DEFAULT NULL,
+  `img` varchar(200)  DEFAULT NULL,
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 603 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 603 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_spec_attr
@@ -2458,29 +2403,66 @@ INSERT INTO `erp_goods_spec_attr` VALUES (602, 74, 'style', '款式', 116, 412, 
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_invoice_img`;
 CREATE TABLE `erp_invoice_img`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255)  NULL DEFAULT '' COMMENT '名称',
-  `billNo` varchar(50)  NULL DEFAULT '' COMMENT '单据编号',
-  `type` varchar(100)  NULL DEFAULT '' COMMENT '类型',
-  `url` varchar(255)  NULL DEFAULT '' COMMENT 'url',
-  `thumbnailUrl` varchar(255)  NULL DEFAULT '' COMMENT '缩略图URL',
-  `size` int NULL DEFAULT 0 COMMENT '大小',
-  `deleteUrl` varchar(255)  NULL DEFAULT '',
-  `deleteType` varchar(50)  NULL DEFAULT '',
-  `isDelete` tinyint(1) NULL DEFAULT 0,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255)  DEFAULT '' COMMENT '名称',
+  `billNo` varchar(50)  DEFAULT '' COMMENT '单据编号',
+  `type` varchar(100)  DEFAULT '' COMMENT '类型',
+  `url` varchar(255)  DEFAULT '' COMMENT 'url',
+  `thumbnailUrl` varchar(255)  DEFAULT '' COMMENT '缩略图URL',
+  `size` int(0) DEFAULT 0 COMMENT '大小',
+  `deleteUrl` varchar(255)  DEFAULT '',
+  `deleteType` varchar(50)  DEFAULT '',
+  `isDelete` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`) ,
   INDEX `invId`(`billNo`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of erp_invoice_img
+-- Table structure for erp_sale_after
 -- ----------------------------
+DROP TABLE IF EXISTS `erp_sale_after`;
+CREATE TABLE `erp_sale_after`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `type` int(0) DEFAULT NULL COMMENT '类型（10退货；20换货；80补发；99订单拦截；）',
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `shop_type` int(0) DEFAULT NULL COMMENT '店铺类型',
+  `after_sale_order_id` varchar(50)  DEFAULT NULL COMMENT '售后单号',
+  `order_id` varchar(50)  DEFAULT NULL COMMENT '订单号',
+  `sub_order_id` varchar(50)  DEFAULT NULL COMMENT '子订单号',
+  `product_id` varchar(100)  DEFAULT NULL COMMENT '商品spuid',
+  `sku_id` varchar(100)  DEFAULT NULL COMMENT '商品skuid',
+  `count` int(0) DEFAULT NULL COMMENT '数量',
+  `title` varchar(255)  DEFAULT NULL COMMENT '商品标题',
+  `img` varchar(555)  DEFAULT NULL COMMENT '商品图片',
+  `sku_info` varchar(2550)  DEFAULT NULL COMMENT 'sku描述',
+  `sku_code` varchar(255)  DEFAULT NULL COMMENT 'sku编码',
+  `erp_goods_id` int(0) DEFAULT NULL COMMENT 'ERP商品id',
+  `erp_sku_id` int(0) DEFAULT NULL COMMENT 'ERP商品skuId',
+  `return_info` varchar(2550)  DEFAULT NULL COMMENT '退回人信息json',
+  `return_waybill_code` varchar(50)  DEFAULT NULL COMMENT '退回快递单号',
+  `return_company` varchar(255)  DEFAULT NULL COMMENT '退回物流公司名称',
+  `receiver_name` varchar(255)  DEFAULT NULL COMMENT '收件人姓名',
+  `receiver_tel` varchar(255)  DEFAULT NULL COMMENT '收件人联系电话',
+  `receiver_province` varchar(255)  DEFAULT NULL COMMENT '省',
+  `receiver_city` varchar(255)  DEFAULT NULL COMMENT '市',
+  `receiver_town` varchar(255)  DEFAULT NULL COMMENT '区',
+  `receiver_address` varchar(255)  DEFAULT NULL COMMENT '收件人详细地址',
+  `ship_waybill_code` varchar(255)  DEFAULT NULL COMMENT '发货快递单号（补发、换货发货、拦截订单发货）',
+  `ship_company` varchar(255)  DEFAULT NULL COMMENT '发货快递公司',
+  `status` int(0) DEFAULT NULL COMMENT '状态:1已发出；2已完成(已收货);3已入库',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '备注',
+  `create_time` datetime(0) DEFAULT NULL,
+  `create_by` varchar(255)  DEFAULT NULL,
+  `update_time` datetime(0) DEFAULT NULL,
+  `update_by` varchar(50)  DEFAULT NULL,
+  PRIMARY KEY (`id`) 
+) 
 
 -- ----------------------------
--- Table structure for erp_order
+-- Table structure for erp_sale_order
 -- ----------------------------
-DROP TABLE IF EXISTS `erp_order`;
-CREATE TABLE `erp_order`  (
+DROP TABLE IF EXISTS `erp_sale_order`;
+CREATE TABLE `erp_sale_order`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
   `order_num` varchar(50)  NOT NULL COMMENT '订单编号（来源订单）',
   `shop_type` int(0) DEFAULT NULL COMMENT '店铺类型',
@@ -2505,35 +2487,38 @@ CREATE TABLE `erp_order`  (
   `pay_time` datetime(0) DEFAULT NULL COMMENT '支付时间',
   `confirm_time` datetime(0) DEFAULT NULL COMMENT '订单确认时间',
   `ship_type` int(0) NOT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
-  `ship_status` int(0) NOT NULL COMMENT '发货状态（0待备货1备货中2已出库）',
+  `ship_status` int(0) NOT NULL COMMENT '发货状态（0待备货1备货中2已出库3已发货）',
   `shipping_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
   `shipping_number` varchar(50)  DEFAULT NULL COMMENT '快递单号',
   `shipping_company` varchar(100)  DEFAULT NULL COMMENT '物流公司',
   `shipping_man` varchar(25)  DEFAULT NULL COMMENT '发货人',
   `shipping_cost` decimal(10, 2) DEFAULT NULL COMMENT '发货费用',
   `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
   `length` float DEFAULT 0 COMMENT '长',
   `width` float DEFAULT 0 COMMENT '宽',
   `height` float DEFAULT 0 COMMENT '高',
   `weight` float DEFAULT NULL COMMENT '重量',
-  PRIMARY KEY (`id`)
-
+  PRIMARY KEY (`id`) ,
+  UNIQUE INDEX `order_sn_index`(`order_num`) ,
+  INDEX `shopid_index`(`shop_id`) 
 ) 
+-- ----------------------------
+-- Records of erp_sale_order
+-- ----------------------------
+INSERT INTO `erp_sale_order` VALUES (27, '3237115646950643410', 4, 6, '', '', '1', 1, 1, 44.9, 0, 0, 44.9, '#', '18400656752-3383', '北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)', '中国', '北京', '北京市', '丰台区', NULL, '2023-03-04 20:07:09', '2024-04-25 14:14:12', 0, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:14:12', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (28, '3236924701745643410', 4, 6, '', '', '1', 1, 1, 44.9, 0, 0, 44.9, '#', '18400656752-3383', '北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)', '中国', '北京', '北京市', '丰台区', NULL, '2023-03-04 20:06:39', '2024-04-25 14:28:02', 1, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:28:02', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (29, '230405-342695669310441', 5, 5, '', '', NULL, 1, 1, 32.79, 0, 0, 32.79, NULL, NULL, NULL, '中国', '云南省', '西双版纳傣族自治州', '景洪市', NULL, '2023-04-05 02:43:01', '2024-04-25 14:52:29', 1, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:52:29', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (31, '5030436502888242865', 6, 22, '', NULL, '', 1, 1, 29.9, 0, 0, 29.9, '刘艳', '13540005969', '四川省 成都市 都江堰市  大观镇', '中国', '四川省', '成都市', '都江堰市', NULL, '2023-02-02 20:26:45', '2024-04-25 15:06:53', 0, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 15:06:53', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (33, '1773651223045967873', 2, 2, NULL, NULL, NULL, 1, 3, 99.9, 0, 0, 99.9, '11111111111', '11111111', '1111111', '中国', '浙江省', '温州市', '瓯海区', NULL, NULL, '2024-04-25 16:48:57', 1, 0, '2024-04-26 14:39:38', '121212112', '邮政快递包裹', '12', 12.00, '2024-04-25 16:48:57', '确认订单', '2024-04-26 14:39:36', 'admin', 0, 0, 0, 12);
 
 -- ----------------------------
--- Records of erp_order
+-- Table structure for erp_sale_order_item
 -- ----------------------------
-INSERT INTO `erp_order` VALUES (27, '3237115646950643410', 4, 6, '', '', '1', 1, 1, 44.9, 0, 0, 44.9, '#', '18400656752-3383', '北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)', '中国', '北京', '北京市', '丰台区', NULL, '2023-03-04 20:07:09', '2024-04-25 14:14:12', 0, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:14:12', 'admin', NULL, NULL, 0, 0, 0, NULL);
-INSERT INTO `erp_order` VALUES (28, '3236924701745643410', 4, 6, '', '', '1', 1, 1, 44.9, 0, 0, 44.9, '#', '18400656752-3383', '北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)', '中国', '北京', '北京市', '丰台区', NULL, '2023-03-04 20:06:39', '2024-04-25 14:28:02', 1, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:28:02', 'admin', NULL, NULL, 0, 0, 0, NULL);
-
--- ----------------------------
--- Table structure for erp_order_item
--- ----------------------------
-DROP TABLE IF EXISTS `erp_order_item`;
-CREATE TABLE `erp_order_item`  (
+DROP TABLE IF EXISTS `erp_sale_order_item`;
+CREATE TABLE `erp_sale_order_item`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
   `order_id` bigint(0) NOT NULL COMMENT '订单ID',
   `shop_id` int(0) NOT NULL COMMENT '店铺id',
@@ -2542,7 +2527,7 @@ CREATE TABLE `erp_order_item`  (
   `goods_title` varchar(100)  DEFAULT NULL COMMENT '商品标题',
   `goods_img` varchar(300)  DEFAULT NULL COMMENT '商品图片',
   `goods_num` varchar(35)  DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(50)  DEFAULT NULL COMMENT '商品规格',
+  `goods_spec` varchar(5000)  DEFAULT NULL COMMENT '商品规格',
   `spec_num` varchar(35)  DEFAULT NULL COMMENT '商品规格编码',
   `goods_price` double NOT NULL COMMENT '商品单价',
   `item_amount` double DEFAULT NULL COMMENT '子订单金额',
@@ -2557,74 +2542,74 @@ CREATE TABLE `erp_order_item`  (
   `ship_type` int(0) NOT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
   `ship_status` int(0) NOT NULL COMMENT '发货状态（0待备货1备货中2已出库）',
   `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `create_by` varchar(25)  DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
   `shipping_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
   `shipping_number` varchar(50)  DEFAULT NULL COMMENT '快递单号',
   `shipping_company` varchar(100)  DEFAULT NULL COMMENT '物流公司',
   `shipping_man` varchar(25)  DEFAULT NULL COMMENT '发货人',
-  PRIMARY KEY (`id`) 
+  PRIMARY KEY (`id`) ,
+  INDEX `goodId_index`(`goods_id`) ,
+  INDEX `order_id`(`order_id`) 
 ) 
 
 -- ----------------------------
--- Records of erp_order_item
+-- Records of erp_sale_order_item
 -- ----------------------------
-INSERT INTO `erp_order_item` VALUES (1783378959750635522, 27, 6, 10, 53, 'HN858牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01jpsOio2FOyFVLvlmx_!!2208857268871-0-cib.jpg', 'HN858', '颜色分类：浅蓝色;尺寸：S', '27202208580301', 79, 44.9, 1, NULL, '3237115646950643410', '3237115646950643410', 26, 0, 0, 1, 0, 0, '2024-04-25 14:14:12', 'admin', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `erp_order_item` VALUES (1783382441731792897, 28, 6, 10, 43, 'HN858牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01SJelLi2FOyFPEQgvg_!!2208857268871-0-cib.jpg', 'HN858', '颜色分类：黑色;尺寸：S', '27202208580101', 79, 44.9, 1, NULL, '3236924701745643410', '3236924701745643410', 26, 0, 0, 1, 1, 0, '2024-04-25 14:28:02', 'admin', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1783378959750635522, 27, 6, 10, 53, 'HN858牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01jpsOio2FOyFVLvlmx_!!2208857268871-0-cib.jpg', 'HN858', '颜色分类：浅蓝色;尺寸：S', '27202208580301', 79, 44.9, 1, NULL, '3237115646950643410', '3237115646950643410', 26, 0, 0, 1, 0, 1, '2024-04-25 14:14:12', 'admin', '2024-04-26 11:58:30', '生成拣货单', NULL, NULL, NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1783382441731792897, 28, 6, 10, 43, 'HN858牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01SJelLi2FOyFPEQgvg_!!2208857268871-0-cib.jpg', 'HN858', '颜色分类：黑色;尺寸：S', '27202208580101', 79, 44.9, 1, NULL, '3236924701745643410', '3236924701745643410', 26, 0, 0, 1, 0, 1, '2024-04-25 14:28:02', 'admin', '2024-04-26 12:02:20', '生成拣货单', NULL, NULL, NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1783388592376631298, 29, 5, 10, 48, '牛仔短裤辣妹高腰裤短款弹力紧身a字型抽绳绑带纯欲风学生潮流夏', 'https://img.pddpic.com/mms-material-img/2022-07-23/b68b46a8-b269-4328-8909-7facf0a6354a.jpeg', 'HN858', '深灰色 黑灰色,S', '27202208580201', 32.79, 32.79, 1, NULL, '3490', '230405-342695669310441', 26, 0, 0, 1, 0, 1, '2024-04-25 14:52:29', 'admin', '2024-04-26 12:02:20', '生成拣货单', NULL, NULL, NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1783392215382802434, 31, 22, 9, 40, '	【夏款清仓】牛仔短裤女夏高腰宽松毛边牛仔裤甜欲风辣妹阔腿新款', 'http://img.huayiyungou.com/niuzaiduanku/HN8026.jpg', '2720218026', '	浅蓝色;L', '2720210080260303', 29.9, 29.9, 1, NULL, '67', '5030436502888242865', 26, 0, 0, 1, 0, 1, '2024-04-25 15:06:53', 'admin', '2024-04-26 11:58:30', '生成拣货单', NULL, NULL, NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1783417904404250626, 33, 2, 0, 0, '泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50', '10000103058379', '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍3罐送1罐到手4罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天升级30天试喝及运费险\"}]', '', 99.9, 99.9, 1, NULL, '1773651223083716609', '3718586550340945408', 0, 0, 0, 1, 0, 1, '2024-04-25 16:48:57', '确认订单', '2024-04-26 12:02:20', '生成拣货单', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
--- Table structure for erp_order_returned
+-- Table structure for erp_sale_returned
 -- ----------------------------
-DROP TABLE IF EXISTS `erp_order_returned`;
-CREATE TABLE `erp_order_returned`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `erp_sale_returned`;
+CREATE TABLE `erp_sale_returned`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `returned_num` varchar(50)  NOT NULL DEFAULT '' COMMENT '退货单号',
-  `returned_type` int NULL DEFAULT NULL COMMENT '退货类型（1退货2换货）',
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
-  `shop_type` int NULL DEFAULT NULL COMMENT '店铺类型',
-  `order_id` bigint NOT NULL COMMENT '订单id',
+  `returned_type` int(0) DEFAULT NULL COMMENT '退货类型（1退货2换货）',
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `shop_type` int(0) DEFAULT NULL COMMENT '店铺类型',
+  `order_id` bigint(0) NOT NULL COMMENT '订单id',
   `order_num` varchar(50)  NOT NULL DEFAULT '' COMMENT '源订单号',
-  `order_item_id` bigint NOT NULL COMMENT '子订单id',
-  `goods_id` bigint NULL DEFAULT NULL COMMENT '商品id',
-  `spec_id` bigint NULL DEFAULT NULL COMMENT '规格id',
-  `goods_num` varchar(25)  NULL DEFAULT NULL COMMENT '商品编码',
-  `spec_num` varchar(25)  NULL DEFAULT NULL COMMENT '规格编码',
-  `goods_name` varchar(55)  NULL DEFAULT NULL COMMENT '商品名称',
-  `goods_spec` varchar(50)  NULL DEFAULT NULL COMMENT '商品规格',
-  `goods_image` varchar(255)  NULL DEFAULT NULL COMMENT '商品图片',
-  `quantity` bigint NULL DEFAULT NULL COMMENT '退货数量',
-  `logistics_company` varchar(30)  NULL DEFAULT NULL COMMENT '物流公司',
-  `logistics_code` varchar(30)  NULL DEFAULT NULL COMMENT '物流单号',
-  `receive_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
-  `remark` varchar(50)  NULL DEFAULT '' COMMENT '备注',
-  `contactPerson` varchar(20)  NULL DEFAULT '' COMMENT '发货人',
-  `mobile` varchar(20)  NULL DEFAULT '' COMMENT '发货人手机号',
-  `address` varchar(50)  NULL DEFAULT '' COMMENT '发货地址',
-  `status` int NOT NULL COMMENT '状态（0待发货1待收货2已收货3已完成）',
-  `create_time` datetime NOT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
+  `order_item_id` bigint(0) NOT NULL COMMENT '子订单id',
+  `goods_id` bigint(0) DEFAULT NULL COMMENT '商品id',
+  `spec_id` bigint(0) DEFAULT NULL COMMENT '规格id',
+  `goods_num` varchar(25)  DEFAULT NULL COMMENT '商品编码',
+  `spec_num` varchar(25)  DEFAULT NULL COMMENT '规格编码',
+  `goods_name` varchar(55)  DEFAULT NULL COMMENT '商品名称',
+  `goods_spec` varchar(50)  DEFAULT NULL COMMENT '商品规格',
+  `goods_image` varchar(255)  DEFAULT NULL COMMENT '商品图片',
+  `quantity` bigint(0) DEFAULT NULL COMMENT '退货数量',
+  `logistics_company` varchar(30)  DEFAULT NULL COMMENT '物流公司',
+  `logistics_code` varchar(30)  DEFAULT NULL COMMENT '物流单号',
+  `receive_time` datetime(0) DEFAULT NULL COMMENT '收货时间',
+  `remark` varchar(50)  DEFAULT '' COMMENT '备注',
+  `contactPerson` varchar(20)  DEFAULT '' COMMENT '发货人',
+  `mobile` varchar(20)  DEFAULT '' COMMENT '发货人手机号',
+  `address` varchar(50)  DEFAULT '' COMMENT '发货地址',
+  `status` int(0) NOT NULL COMMENT '状态（0待发货1待收货2已收货3已完成）',
+  `create_time` datetime(0) NOT NULL COMMENT '订单创建时间',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) 
 ) 
-
--- ----------------------------
--- Records of erp_order_returned
--- ----------------------------
-
 -- ----------------------------
 -- Table structure for erp_ship_logistics
 -- ----------------------------
 DROP TABLE IF EXISTS `erp_ship_logistics`;
 CREATE TABLE `erp_ship_logistics`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(15)  NULL DEFAULT NULL COMMENT '快递公司',
-  `number` varchar(10)  NULL DEFAULT NULL COMMENT '快递公司编码',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
-  `status` int NULL DEFAULT NULL COMMENT '状态',
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `name` varchar(15)  DEFAULT NULL COMMENT '快递公司',
+  `number` varchar(10)  DEFAULT NULL COMMENT '快递公司编码',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '备注',
+  `status` int(0) DEFAULT NULL COMMENT '状态',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_ship_logistics
@@ -2641,75 +2626,29 @@ INSERT INTO `erp_ship_logistics` VALUES (9, '极兔速递', 'JTSD', NULL, 1);
 INSERT INTO `erp_ship_logistics` VALUES (10, '菜鸟速递', 'CNSD', '0', 1);
 
 -- ----------------------------
--- Table structure for fms_inventory_report
--- ----------------------------
-DROP TABLE IF EXISTS `fms_inventory_report`;
-CREATE TABLE `fms_inventory_report`  (
-  `id` bigint NOT NULL,
-  `date` date NOT NULL COMMENT '日期',
-  `total` int NOT NULL COMMENT '库存总数量',
-  `goods_count` int NOT NULL COMMENT '商品总数',
-  `sku_count` int NOT NULL COMMENT 'SKU总数',
-  `amount` decimal(10, 2) NOT NULL COMMENT '总货值',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存存货报表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of fms_inventory_report
--- ----------------------------
-
--- ----------------------------
--- Table structure for fms_inventory_report_detail
--- ----------------------------
-DROP TABLE IF EXISTS `fms_inventory_report_detail`;
-CREATE TABLE `fms_inventory_report_detail`  (
-  `id` bigint NOT NULL,
-  `report_id` bigint NOT NULL COMMENT 'Report外键ID',
-  `date` date NOT NULL COMMENT '日期',
-  `goods_id` int NOT NULL COMMENT '商品id',
-  `spec_id` int NOT NULL COMMENT '商品规格ID',
-  `total` int NOT NULL COMMENT '总数量',
-  `amount` decimal(10, 2) NOT NULL COMMENT '总货值',
-  `inventory_dist` varchar(500)  NULL DEFAULT NULL COMMENT '库存分布',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '库存存货报表明细' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of fms_inventory_report_detail
--- ----------------------------
-
--- ----------------------------
 -- Table structure for fms_payable_agent_ship
 -- ----------------------------
 DROP TABLE IF EXISTS `fms_payable_agent_ship`;
 CREATE TABLE `fms_payable_agent_ship`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `order_num` varchar(50)  NOT NULL COMMENT '订单号',
-  `shop_id` int NOT NULL COMMENT '店铺id',
-  `supplier_id` int NOT NULL COMMENT '供应商id',
-  `supplier_name` varchar(50)  NULL DEFAULT NULL COMMENT '供应商名称',
+  `shop_id` int(0) NOT NULL COMMENT '店铺id',
+  `supplier_id` int(0) NOT NULL COMMENT '供应商id',
+  `supplier_name` varchar(50)  DEFAULT NULL COMMENT '供应商名称',
   `date` date NOT NULL COMMENT '日期',
   `ship_company` varchar(50)  NOT NULL COMMENT '物流公司',
   `ship_no` varchar(50)  NOT NULL COMMENT '物流单号',
   `amount` decimal(10, 2) NOT NULL COMMENT '应付总金额',
   `ship_amount` decimal(5, 2) NOT NULL COMMENT '物流费用',
   `goods_amount` decimal(10, 2) NOT NULL COMMENT '商品金额',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
-  `status` int NOT NULL COMMENT '状态（0已生成1已结算)',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '备注',
+  `status` int(0) NOT NULL COMMENT '状态（0已生成1已结算)',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应付款-代发账单' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应付款-代发账单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fms_payable_agent_ship
@@ -2721,229 +2660,201 @@ INSERT INTO `fms_payable_agent_ship` VALUES (2, '1635222253871665598', 6, 26, '�
 -- ----------------------------
 DROP TABLE IF EXISTS `fms_payable_ship_fee`;
 CREATE TABLE `fms_payable_ship_fee`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `logistics_company` varchar(50)  NOT NULL COMMENT '物流公司',
-  `logistics_company_id` varchar(10)  NULL DEFAULT NULL COMMENT '物流公司id',
+  `logistics_company_id` varchar(10)  DEFAULT NULL COMMENT '物流公司id',
   `logistics_num` varchar(50)  NOT NULL COMMENT '物流单号',
-  `order_num` varchar(50)  NULL DEFAULT NULL COMMENT '订单号',
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
+  `order_num` varchar(50)  DEFAULT NULL COMMENT '订单号',
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
   `amount` decimal(10, 2) NOT NULL COMMENT '应付金额',
   `date` date NOT NULL COMMENT '应付日期',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
-  `status` int NOT NULL COMMENT '状态（0已生成1已结算)',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  `length` float NULL DEFAULT 0 COMMENT '长',
-  `width` float NULL DEFAULT 0 COMMENT '宽',
-  `height` float NULL DEFAULT 0 COMMENT '高',
-  `weight` float NULL DEFAULT NULL COMMENT '重量',
-  `receiver_name` varchar(20)  NULL DEFAULT NULL COMMENT '收件人姓名',
-  `receiver_phone` varchar(20)  NULL DEFAULT NULL COMMENT '收件人手机号',
-  `province` varchar(50)  NULL DEFAULT NULL COMMENT '省',
-  `city` varchar(50)  NULL DEFAULT NULL COMMENT '市',
-  `town` varchar(50)  NULL DEFAULT NULL COMMENT '区',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '备注',
+  `status` int(0) NOT NULL COMMENT '状态（0已生成1已结算)',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
+  `length` float DEFAULT 0 COMMENT '长',
+  `width` float DEFAULT 0 COMMENT '宽',
+  `height` float DEFAULT 0 COMMENT '高',
+  `weight` float DEFAULT NULL COMMENT '重量',
+  `receiver_name` varchar(20)  DEFAULT NULL COMMENT '收件人姓名',
+  `receiver_phone` varchar(20)  DEFAULT NULL COMMENT '收件人手机号',
+  `province` varchar(50)  DEFAULT NULL COMMENT '省',
+  `city` varchar(50)  DEFAULT NULL COMMENT '市',
+  `town` varchar(50)  DEFAULT NULL COMMENT '区',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应付款-物流费用' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '物流费用应付款' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of fms_payable_ship_fee
 -- ----------------------------
-INSERT INTO `fms_payable_ship_fee` VALUES (1, '33', '中山裤豪', '', 'PUR20240128113656', NULL, 52.00, '2024-01-28', NULL, 0, '2024-01-28 12:07:32', 'admin', NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL);
-
--- ----------------------------
--- Table structure for fms_receivable_order
--- ----------------------------
-DROP TABLE IF EXISTS `fms_receivable_order`;
-CREATE TABLE `fms_receivable_order`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL COMMENT '日期',
-  `order_num` varchar(50)  NOT NULL COMMENT '订单号',
-  `order_id` bigint NOT NULL COMMENT '订单id',
-  `order_item_id` bigint NOT NULL COMMENT '子订单id',
-  `goods_id` int NOT NULL COMMENT '商品id',
-  `goods_name` varchar(255)  NOT NULL COMMENT '商品名称',
-  `spec_id` int NOT NULL COMMENT '规格id',
-  `spec_name` varchar(255)  NULL DEFAULT NULL COMMENT '规格名称',
-  `price` decimal(10, 2) NOT NULL COMMENT '单价',
-  `amount` decimal(10, 2) NOT NULL COMMENT '应收金额',
-  `quantity` int NOT NULL COMMENT '数量',
-  `invoice_no` varchar(50)  NULL DEFAULT NULL COMMENT '发票号码',
-  `order_desc` varchar(500)  NULL DEFAULT NULL COMMENT '订单说明',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
-  `status` int NOT NULL COMMENT '状态（0已生成1已结算)',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) 
-) 
+INSERT INTO `fms_payable_ship_fee` VALUES (2, '邮政快递包裹', NULL, '121212112', '1773651223045967873', 2, 12.00, '2024-04-26', NULL, 0, '2024-04-26 14:39:49', 'admin', NULL, NULL, 0, 0, 0, 12, '11111111111', '11111111', '浙江省', '温州市', '瓯海区');
 
 -- ----------------------------
 -- Table structure for s_dou_order
 -- ----------------------------
 DROP TABLE IF EXISTS `s_dou_order`;
 CREATE TABLE `s_dou_order`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
   `order_id` varchar(30)  NOT NULL COMMENT '抖音订单id',
-  `shop_id` bigint NOT NULL COMMENT '订单所属商户id',
-  `user_name` varchar(50)  NULL DEFAULT NULL COMMENT '买家用户名',
-  `post_addr` varchar(150)  NULL DEFAULT NULL COMMENT '邮寄地址 (展开为省市区json, 格式参考 订单-获取订单列表 返回示例)',
-  `post_code` varchar(50)  NULL DEFAULT NULL COMMENT '邮政编码',
-  `post_receiver` varchar(50)  NULL DEFAULT NULL COMMENT '收件人姓名',
-  `post_tel` varchar(50)  NULL DEFAULT NULL COMMENT '收件人电话',
-  `buyer_words` varchar(50)  NULL DEFAULT NULL COMMENT '买家备注',
-  `seller_words` varchar(50)  NULL DEFAULT NULL COMMENT '卖家备注',
-  `logistics_id` varchar(20)  NULL DEFAULT NULL COMMENT '物流公司id',
-  `logistics_code` varchar(50)  NULL DEFAULT NULL COMMENT '物流单号',
-  `logistics_company` varchar(50)  NULL DEFAULT NULL COMMENT '物流公司',
-  `logistics_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
-  `receipt_time` bigint NULL DEFAULT 0 COMMENT '收货时间',
-  `order_status` int NOT NULL COMMENT '订单状态1 待确认/待支付（订单创建完毕）105 已支付 2 备货中 101 部分发货 3 已发货（全部发货）4 已取消5 已完成（已收货）',
+  `shop_id` bigint(0) NOT NULL COMMENT '订单所属商户id',
+  `user_name` varchar(50)  DEFAULT NULL COMMENT '买家用户名',
+  `post_addr` varchar(150)  DEFAULT NULL COMMENT '邮寄地址 (展开为省市区json, 格式参考 订单-获取订单列表 返回示例)',
+  `post_code` varchar(50)  DEFAULT NULL COMMENT '邮政编码',
+  `post_receiver` varchar(50)  DEFAULT NULL COMMENT '收件人姓名',
+  `post_tel` varchar(50)  DEFAULT NULL COMMENT '收件人电话',
+  `buyer_words` varchar(50)  DEFAULT NULL COMMENT '买家备注',
+  `seller_words` varchar(50)  DEFAULT NULL COMMENT '卖家备注',
+  `logistics_id` varchar(20)  DEFAULT NULL COMMENT '物流公司id',
+  `logistics_code` varchar(50)  DEFAULT NULL COMMENT '物流单号',
+  `logistics_company` varchar(50)  DEFAULT NULL COMMENT '物流公司',
+  `logistics_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
+  `receipt_time` bigint(0) DEFAULT 0 COMMENT '收货时间',
+  `order_status` int(0) NOT NULL COMMENT '订单状态1 待确认/待支付（订单创建完毕）105 已支付 2 备货中 101 部分发货 3 已发货（全部发货）4 已取消5 已完成（已收货）',
   `order_status_str` varchar(10)  NOT NULL DEFAULT '',
-  `order_create_time` datetime NOT NULL COMMENT '订单创建时间',
-  `exp_ship_time` datetime NULL DEFAULT NULL COMMENT '最晚发货时间',
-  `cancel_reason` varchar(50)  NULL DEFAULT NULL COMMENT '订单取消原因',
-  `pay_type` int NULL DEFAULT NULL COMMENT '【支付类型】 0、货到付款 1 、微信 2、支付宝 3、小程序 4、银行卡 5、余额 7、无需支付（0元单） 8、DOU分期（信用支付） 9、新卡支付 12、先用后付',
-  `pay_type_name` varchar(10)  NULL DEFAULT '' COMMENT '支付方式',
-  `pay_time` datetime NULL DEFAULT NULL COMMENT '支付时间 (pay_type为0货到付款时, 此字段为空)',
+  `order_create_time` datetime(0) NOT NULL COMMENT '订单创建时间',
+  `exp_ship_time` datetime(0) DEFAULT NULL COMMENT '最晚发货时间',
+  `cancel_reason` varchar(50)  DEFAULT NULL COMMENT '订单取消原因',
+  `pay_type` int(0) DEFAULT NULL COMMENT '【支付类型】 0、货到付款 1 、微信 2、支付宝 3、小程序 4、银行卡 5、余额 7、无需支付（0元单） 8、DOU分期（信用支付） 9、新卡支付 12、先用后付',
+  `pay_type_name` varchar(10)  DEFAULT '' COMMENT '支付方式',
+  `pay_time` datetime(0) DEFAULT NULL COMMENT '支付时间 (pay_type为0货到付款时, 此字段为空)',
   `post_amount` double NOT NULL DEFAULT 0 COMMENT '邮费金额 (单位: 分)',
   `coupon_amount` double NOT NULL COMMENT '平台优惠券金额 (单位: 分)',
   `shop_coupon_amount` double NOT NULL DEFAULT 0 COMMENT '商家优惠券金额 (单位: 分)',
-  `coupon_info` varchar(50)  NULL DEFAULT NULL COMMENT '优惠券详情 (type为优惠券类型, credit为优惠金额,单位分)',
+  `coupon_info` varchar(50)  DEFAULT NULL COMMENT '优惠券详情 (type为优惠券类型, credit为优惠金额,单位分)',
   `order_total_amount` double NOT NULL COMMENT '父订单总金额 (单位: 分) 即用户实际支付金额, 不包含运费',
-  `post_insurance_amount` bigint NOT NULL DEFAULT 0 COMMENT '运费险金额（单位：分）',
-  `is_comment` int NULL DEFAULT 0 COMMENT '是否评价 (1:已评价)',
-  `c_type` int NULL DEFAULT NULL COMMENT '订单佣金 (详情见附录)',
-  `b_type` int NULL DEFAULT NULL COMMENT '订单渠道 (站外0 火山1 抖音2 头条3 西瓜4 微信5 闪购6 头条lite版本7 懂车帝8 皮皮虾9)',
-  `appSource` varchar(10)  NULL DEFAULT '' COMMENT 'app渠道',
-  `trafficeSource` varchar(10)  NULL DEFAULT '' COMMENT '流量来源',
-  `cos_ratio` decimal(10, 2) NULL DEFAULT 0.00 COMMENT '佣金率',
-  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `send_status` int NOT NULL DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
-  `send_time` datetime NULL DEFAULT NULL COMMENT '发货时间（仓库真实发货时间）',
-  `auditStatus` int NOT NULL DEFAULT 0 COMMENT '订单审核状态（0待审核1已审核）',
-  `encryptDetail` varchar(5000)  NULL DEFAULT NULL COMMENT '加密地址详情',
-  `province` varchar(50)  NULL DEFAULT NULL,
-  `city` varchar(50)  NULL DEFAULT NULL,
-  `town` varchar(50)  NULL DEFAULT NULL,
-  `street` varchar(50)  NULL DEFAULT NULL,
-  `ship_time` bigint NULL DEFAULT 0 COMMENT '发货时间',
-  `trade_type` int NULL DEFAULT 0 COMMENT '0、普通 1、拼团 2、定金预售 3、订金找贷 4、拍卖 5、0元单 6、回收 7、寄卖',
-  `encrypt_post_tel` varchar(5000)  NULL DEFAULT NULL COMMENT '加密电话',
-  `encrypt_post_receiver` varchar(5000)  NULL DEFAULT NULL COMMENT '加密联系人',
-  `result` varchar(50)  NULL DEFAULT NULL COMMENT '打单结果',
-  `print_status` tinyint(1) NULL DEFAULT 0 COMMENT '打印状态（0：未打印1已取号2已打印3已回收4已取消）',
-  `print_time` datetime NULL DEFAULT NULL COMMENT '打印日期',
-  `phoneKey` varchar(100)  NULL DEFAULT NULL COMMENT '号码检索串',
-  `addressKey` varchar(255)  NULL DEFAULT NULL COMMENT '地址检索串',
-  `author_id` bigint NULL DEFAULT 0 COMMENT '达人id',
-  `author_name` varchar(20)  NULL DEFAULT NULL,
-  `settlement_status` int NULL DEFAULT 0 COMMENT '是否结算（0:未结算1：已结算,2.已退款）',
+  `post_insurance_amount` bigint(0) NOT NULL DEFAULT 0 COMMENT '运费险金额（单位：分）',
+  `is_comment` int(0) DEFAULT 0 COMMENT '是否评价 (1:已评价)',
+  `c_type` int(0) DEFAULT NULL COMMENT '订单佣金 (详情见附录)',
+  `b_type` int(0) DEFAULT NULL COMMENT '订单渠道 (站外0 火山1 抖音2 头条3 西瓜4 微信5 闪购6 头条lite版本7 懂车帝8 皮皮虾9)',
+  `appSource` varchar(10)  DEFAULT '' COMMENT 'app渠道',
+  `trafficeSource` varchar(10)  DEFAULT '' COMMENT '流量来源',
+  `cos_ratio` decimal(10, 2) DEFAULT 0.00 COMMENT '佣金率',
+  `created_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
+  `send_status` int(0) NOT NULL DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
+  `send_time` datetime(0) DEFAULT NULL COMMENT '发货时间（仓库真实发货时间）',
+  `auditStatus` int(0) NOT NULL DEFAULT 0 COMMENT '订单审核状态（0待审核1已审核）',
+  `encryptDetail` varchar(5000)  DEFAULT NULL COMMENT '加密地址详情',
+  `province` varchar(50)  DEFAULT NULL,
+  `city` varchar(50)  DEFAULT NULL,
+  `town` varchar(50)  DEFAULT NULL,
+  `street` varchar(50)  DEFAULT NULL,
+  `ship_time` bigint(0) DEFAULT 0 COMMENT '发货时间',
+  `trade_type` int(0) DEFAULT 0 COMMENT '0、普通 1、拼团 2、定金预售 3、订金找贷 4、拍卖 5、0元单 6、回收 7、寄卖',
+  `encrypt_post_tel` varchar(5000)  DEFAULT NULL COMMENT '加密电话',
+  `encrypt_post_receiver` varchar(5000)  DEFAULT NULL COMMENT '加密联系人',
+  `result` varchar(50)  DEFAULT NULL COMMENT '打单结果',
+  `print_status` tinyint(1) DEFAULT 0 COMMENT '打印状态（0：未打印1已取号2已打印3已回收4已取消）',
+  `print_time` datetime(0) DEFAULT NULL COMMENT '打印日期',
+  `phoneKey` varchar(100)  DEFAULT NULL COMMENT '号码检索串',
+  `addressKey` varchar(255)  DEFAULT NULL COMMENT '地址检索串',
+  `author_id` bigint(0) DEFAULT 0 COMMENT '达人id',
+  `author_name` varchar(20)  DEFAULT NULL,
+  `settlement_status` int(0) DEFAULT 0 COMMENT '是否结算（0:未结算1：已结算,2.已退款）',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 70 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '抖店订单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 70 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '抖店订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_dou_order
 -- ----------------------------
-INSERT INTO `s_dou_order` VALUES (1, '4980315283258053681', 22, NULL, '江西省上饶市余干县玉亭镇干越壹号1单元21栋1601', NULL, '语沐', '19916092086', NULL, NULL, NULL, 'JT3013085289401', '极兔速递', '2022-09-20 20:20:45', 0, 5, '已完成', '2022-09-20 17:16:07', '2022-09-21 23:59:59', NULL, NULL, '	DOU分期', '2022-09-20 17:16:09', 0, 0.04, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-20 20:54:56', '2024-01-08 17:45:31', 4, '2022-09-20 20:20:45', 9, NULL, '江西省', '上饶市', '余干县', '玉亭镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (2, '4980742293215945801', 22, NULL, '福建省龙岩市长汀县汀州镇店头街118－1号', NULL, '李梅', '13799731774', NULL, NULL, NULL, 'JT3013264495033', '极兔速递', '2022-09-22 19:52:10', 0, 5, '已完成', '2022-09-21 20:51:47', '2022-09-22 23:59:59', NULL, NULL, '	银行卡', '2022-09-21 20:51:51', 0, 0.01, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-21 21:24:11', '2024-01-08 17:45:31', 4, '2022-09-22 19:52:10', 9, NULL, '福建省', '龙岩市', '长汀县', '汀州镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (3, '4980739737839346786', 22, NULL, '福建省福州市马尾区琅岐镇星辉村村前里34号', NULL, '小齐', '15280204101', NULL, NULL, NULL, 'JT3013264495044', '极兔速递', '2022-09-22 19:53:24', 0, 5, '已完成', '2022-09-21 20:40:01', '2022-09-22 23:59:59', NULL, NULL, '	微信', '2022-09-21 20:40:14', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-21 21:24:15', '2024-01-08 17:45:31', 4, '2022-09-22 19:53:24', 9, NULL, '福建省', '福州市', '马尾区', '琅岐镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (4, '4981009994229820718', 22, NULL, '福建省 厦门市 同安区 西柯镇 西柯镇美溪一里7号楼507室', NULL, '彩萍', '13696914103', NULL, NULL, NULL, 'JT3013264495011', '极兔速递', '2022-09-22 19:50:45', 0, 5, '已完成', '2022-09-22 14:12:26', '2022-09-23 23:59:59', NULL, NULL, '	微信', '2022-09-22 14:12:45', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-22 19:22:38', '2024-01-08 17:45:31', 4, '2022-09-22 19:50:45', 9, NULL, '福建省', '厦门市', '同安区', '西柯镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (5, '4980929863018262391', 22, NULL, '福建省 龙岩市 长汀县 汀州镇 西外街9号(长汀宾馆旁)前卫一店(西门店)', NULL, '王静', '18039840579', NULL, NULL, NULL, 'JT3013264495022', '极兔速递', '2022-09-22 19:51:50', 0, 5, '已完成', '2022-09-22 09:03:31', '2022-09-23 23:59:59', NULL, NULL, '	支付宝', '2022-09-22 09:03:43', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-22 19:22:38', '2024-01-08 17:45:31', 4, '2022-09-22 19:51:50', 9, NULL, '福建省', '龙岩市', '长汀县', '汀州镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (6, '4981382213267316710', 22, NULL, '福建省 福州市 马尾区 琅岐镇 琅岐经济区琅岐镇闽江村闽江村委会', NULL, '薛薛', '15860821450', NULL, NULL, NULL, 'JT3013352355693', '极兔速递', '2022-09-23 20:03:21', 0, 5, '已完成', '2022-09-23 14:17:04', '2022-09-24 23:59:59', NULL, NULL, '	银行卡', '2022-09-23 14:17:06', 0, 0.01, 0, NULL, 21.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-01-08 17:45:31', 4, '2022-09-23 20:03:21', 9, NULL, '福建省', '福州市', '马尾区', '琅岐镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (7, '4981351418362338326', 22, NULL, '广东省 深圳市 光明区 新湖街道 新陂头南36栋', NULL, '徐莉', '18075105364', NULL, NULL, NULL, 'JT3013352355704', '极兔速递', '2022-09-23 20:03:34', 0, 5, '已完成', '2022-09-23 12:15:41', '2022-09-24 23:59:59', NULL, NULL, '	支付宝', '2022-09-23 12:15:58', 0, 0, 0, NULL, 21.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-01-08 17:45:31', 4, '2022-09-23 20:03:34', 9, NULL, '广东省', '深圳市', '光明区', '新湖街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (8, '4981344413261051453', 22, NULL, '广东省 深圳市 光明区  公明塘尾塘府华庭', NULL, '万银园', '18575507172', NULL, NULL, NULL, 'JT3013352355660', '极兔速递', '2022-09-23 20:03:44', 0, 5, '已完成', '2022-09-23 11:51:01', '2022-09-24 23:59:59', NULL, NULL, '	支付宝', '2022-09-23 11:51:36', 0, 0, 0, NULL, 21.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-01-08 17:45:31', 4, '2022-09-23 20:03:44', 9, NULL, '广东省', '深圳市', '光明区', '-', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (9, '4981336248537466096', 22, NULL, '福建省 福州市 马尾区 琅岐镇 农旗村翻身路50号', NULL, '陈美花', '13509332273', NULL, NULL, NULL, 'JT3013352355671', '极兔速递', '2022-09-23 20:03:55', 0, 5, '已完成', '2022-09-23 11:18:13', '2022-09-24 23:59:59', NULL, NULL, '	微信', '2022-09-23 11:18:22', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-01-08 17:45:31', 4, '2022-09-23 20:03:55', 9, NULL, '福建省', '福州市', '马尾区', '琅岐镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (10, '4981100643812308278', 22, NULL, '广东省 深圳市 坪山区 龙田街道 锦绣中路9号米特华浦京生物科学园901', NULL, '杨女士', '18312524191', NULL, NULL, NULL, 'JT3013352355671', '极兔速递', '2022-09-23 20:04:05', 0, 5, '已完成', '2022-09-22 20:03:55', '2022-09-23 23:59:59', NULL, NULL, '	支付宝', '2022-09-22 20:04:15', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-01-08 17:45:31', 4, '2022-09-23 20:04:05', 9, NULL, '广东省', '深圳市', '坪山区', '龙田街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (11, '4981813720039097426', 22, NULL, '湖南省 长沙市 雨花区 圭塘街道 天赐良园B2栋', NULL, '然然', '15207393453', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 18:12:11', '2022-09-25 23:59:59', NULL, NULL, '	微信', '2022-09-24 18:12:17', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '湖南省', '长沙市', '雨花区', '圭塘街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (12, '4981781091175316880', 22, NULL, '湖南省 怀化市 鹤城区 盈口乡 怀西路840号', NULL, '侯娟', '18169451522', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 16:04:49', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 16:05:34', 0, 3, 0, NULL, 26.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '湖南省', '怀化市', '鹤城区', '盈口乡', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (13, '4981717255098122158', 22, NULL, '湖南省 怀化市 鹤城区 红星街道 湖天开发区湖天新苑', NULL, '姜飞', '15115294900', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:56:40', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 11:56:59', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '湖南省', '怀化市', '鹤城区', '红星街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (14, '4981716043892401739', 22, NULL, '湖南省 怀化市 鹤城区 迎丰街道 城东家园', NULL, '阳欢', '17674545513', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:53:45', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 11:53:52', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '湖南省', '怀化市', '鹤城区', '迎丰街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (15, '4981713101841898630', 22, NULL, '湖南省 怀化市 鹤城区 红星街道 湖天一色紫庭精品酒店对面的艺剪坊理发店', NULL, '宣宝', '15111524051', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:42:00', '2022-09-25 23:59:59', NULL, NULL, '	微信', '2022-09-24 11:42:39', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '湖南省', '怀化市', '鹤城区', '红星街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (16, '4981712449013626314', 22, NULL, '湖南省 怀化市 溆浦县 龙潭镇 龙潭镇建设街', NULL, '舒芳', '18797562323', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:39:43', '2022-09-25 23:59:59', NULL, NULL, '	微信', '2022-09-24 11:40:03', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '湖南省', '怀化市', '溆浦县', '龙潭镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (17, '4981706075292310548', 22, NULL, '湖南省 怀化市 鹤城区 迎丰街道 迎丰街道紫东路维也纳国际酒店旁 恒福一品1506', NULL, '吴俊', '19145906220', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:13:07', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 11:13:36', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '湖南省', '怀化市', '鹤城区', '迎丰街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (18, '4981839657363922002', 22, NULL, '湖南省 长沙市 雨花区 圭塘街道 天赐良园B2栋', NULL, '然然', '15207393453', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 19:50:02', '2022-09-25 23:59:59', NULL, NULL, '	微信', '2022-09-24 19:50:09', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 20:04:35', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '湖南省', '长沙市', '雨花区', '圭塘街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (19, '4982174664813235511', 22, NULL, '福建省 漳州市 龙海区 石码镇 石码镇柯坑民生小区5栋603', NULL, '小卢', '13959646993', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 17:33:58', '2022-09-26 23:59:59', NULL, NULL, '	微信', '2022-09-25 17:34:09', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '福建省', '漳州市', '龙海区', '石码镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (20, '4982170301122420058', 22, NULL, '福建省 厦门市 湖里区 湖里街道 华泰路69号303室', NULL, '何渊', '13666077073', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 17:16:38', '2022-09-26 23:59:59', NULL, NULL, '	微信', '2022-09-25 17:16:52', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '福建省', '厦门市', '湖里区', '湖里街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (21, '4982168540189244621', 22, NULL, '福建省 厦门市 海沧区 嵩屿街道 海发路166号604室', NULL, '上官', '18959265748', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 17:09:42', '2022-09-26 23:59:59', NULL, NULL, '	银行卡', '2022-09-25 17:10:58', 0, 0.05, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '福建省', '厦门市', '海沧区', '嵩屿街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (22, '4982166010444580517', 22, NULL, '广东省 深圳市 南山区 南山街道 南山区南山村南巷16号', NULL, '张丽君', '13215106005', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 17:00:11', '2022-09-26 23:59:59', NULL, NULL, '	银行卡', '2022-09-25 17:00:13', 0, 0.2, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '广东省', '深圳市', '南山区', '南山街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (23, '4982153791254318586', 22, NULL, '福建省 龙岩市 长汀县 大同镇 黄屋新村西河纺织内联达纺织', NULL, '齐', '13799731774', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 16:10:02', '2022-09-26 23:59:59', NULL, NULL, '	微信', '2022-09-25 16:10:10', 0, 12, 0, NULL, 47.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '福建省', '龙岩市', '长汀县', '大同镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (24, '4982118185976428094', 22, NULL, '福建省 厦门市 思明区  文屏路8号2303', NULL, '卢小姐', '13616021430', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 13:52:42', '2022-09-26 23:59:59', NULL, NULL, '	支付宝', '2022-09-25 13:52:50', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '福建省', '厦门市', '思明区', '-', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (25, '4981846310281270729', 22, NULL, '广东省 深圳市 龙华区 龙华街道 龙华区玉翠新村a区100栋', NULL, '杨宁树', '18676372186', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 20:16:57', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 20:17:20', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '广东省', '深圳市', '龙华区', '龙华街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (26, '4982912553062280265', 22, NULL, '福建省 龙岩市 长汀县 汀州镇 店头街118－1号', NULL, '李梅', '13799731774', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-27 17:17:31', '2022-09-28 23:59:59', NULL, NULL, '	银行卡', '2022-09-27 17:17:35', 0, 5.01, 0, NULL, 54.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-27 18:00:40', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '福建省', '龙岩市', '长汀县', '汀州镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (27, '4982776011764581556', 22, NULL, '福建省 福州市 马尾区 琅岐镇 琅岐中学', NULL, '李艳', '15280204221', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-27 08:30:40', '2022-09-28 23:59:59', NULL, NULL, '	微信', '2022-09-27 08:31:48', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-27 18:00:40', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '福建省', '福州市', '马尾区', '琅岐镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (28, '4982594218678984083', 22, NULL, '江西省 上饶市 余干县 玉亭镇 余干县苗圃路', NULL, '牡香', '13879314724', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-26 20:39:00', '2022-09-27 23:59:59', NULL, NULL, '	支付宝', '2022-09-26 20:39:28', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-27 18:00:40', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '江西省', '上饶市', '余干县', '玉亭镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (29, '4982591100530857503', 22, NULL, '福建省 龙岩市 长汀县 大同镇 腾飞六路一号十一栋四楼宏润科技四楼', NULL, '丘先生', '18759089921', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-26 20:27:33', '2022-09-27 23:59:59', NULL, NULL, '	支付宝', '2022-09-26 20:28:09', 0, 5, 0, NULL, 54.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-27 18:00:40', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '福建省', '龙岩市', '长汀县', '大同镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (31, '4983005972896058555', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'JT3013803427607', '极兔速递', '2022-09-28 20:18:25', 0, 5, '已完成', '2022-09-27 23:16:10', '2022-09-28 23:59:59', NULL, NULL, '	微信', '2022-09-27 23:16:30', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-28 20:14:01', '2024-01-08 17:45:31', 4, '2022-09-28 20:18:25', 9, NULL, '广东省', '深圳市', '宝安区', '新安街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (32, '4983005762442034363', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 9, '已关闭', '2022-09-27 23:15:11', '2022-09-28 23:59:59', NULL, NULL, '	微信', NULL, 0, 4, 0, NULL, 45.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-28 20:14:01', '2024-01-08 17:45:31', 0, NULL, 9, NULL, '***', '***', '***', '***', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (33, '4983732861753556161', 22, NULL, '江西省 吉安市 安福县 平都镇 平都镇小康路平三小对面东投阳光城', NULL, '唐优丽', '13755482314', NULL, '', NULL, 'JT3013958239656', '极兔速递', NULL, 0, 5, '已完成', '2022-09-29 22:16:15', '2022-09-30 23:59:59', NULL, NULL, '	微信', '2022-09-29 22:16:23', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-29 23:22:02', '2024-01-08 17:45:31', 4, '2022-09-30 21:33:34', 1, NULL, '江西省', '吉安市', '安福县', '平都镇', 1664544815, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (34, '4984152428526264105', 22, NULL, '广东省 东莞市 东莞市 石碣镇 同富中路127号', NULL, '李娜', '13657457082', NULL, '', NULL, 'JT3014024881920', '极兔速递', NULL, 0, 9, '已关闭', '2022-10-01 01:53:07', '2022-10-02 23:59:59', NULL, NULL, '	DOU分期', '2022-10-01 01:53:09', 0, 0.01, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-01 17:34:48', '2024-01-08 17:45:31', 4, '2022-10-01 18:53:49', 1, NULL, '广东省', '东莞市', '东莞市', '石碣镇', 1664621629, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (35, '4984697223642336769', 22, NULL, '浙江省 嘉兴市 秀洲区 王江泾镇 依云小区', NULL, '李萍', '18324383714', NULL, '', NULL, 'JT3014110702158', '极兔速递', NULL, 0, 5, '已完成', '2022-10-02 12:40:19', '2022-10-03 23:59:59', NULL, NULL, '	微信', '2022-10-02 12:40:40', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-02 14:50:12', '2024-01-08 17:45:31', 4, '2022-10-02 19:52:15', 1, NULL, '浙江省', '嘉兴市', '秀洲区', '王江泾镇', 1664711535, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (36, '4985133429141212811', 22, NULL, '广西壮族自治区 桂林市 平乐县  广西桂林平乐县二塘镇', NULL, '黎陈陈', '18074736552', NULL, '', NULL, 'JT3014193121516', '极兔速递', NULL, 0, 5, '已完成', '2022-10-03 16:55:00', '2022-10-04 23:59:59', NULL, NULL, '	微信', '2022-10-03 16:55:08', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-03 19:06:37', '2024-01-08 17:45:31', 4, '2022-10-03 19:51:52', 1, NULL, '广西壮族自治区', '桂林市', '平乐县', '-', 1664797912, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (37, '4984860625685372406', 22, NULL, '广东省 东莞市 东莞市 南城街道 白马黄金路瑞华厂', NULL, '李s', '13412324296', NULL, '', NULL, 'JT3014193121527', '极兔速递', NULL, 0, 5, '已完成', '2022-10-02 23:12:34', '2022-10-03 23:59:59', NULL, NULL, '	微信', '2022-10-02 23:12:43', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-03 19:06:37', '2024-01-08 17:45:31', 4, '2022-10-03 19:52:09', 1, NULL, '广东省', '东莞市', '东莞市', '南城街道', 1664797929, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (38, '4984857743749323958', 22, NULL, '江西省 吉安市 万安县 芙蓉镇 东风路和芙五路交叉口香港贝恩旗舰园小博士保育院', NULL, '李臣优', '13970681542', NULL, '', NULL, 'JT3014193121538', '极兔速递', NULL, 0, 5, '已完成', '2022-10-02 23:02:23', '2022-10-03 23:59:59', NULL, NULL, '	支付宝', '2022-10-02 23:02:33', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-03 19:06:37', '2024-01-08 17:45:31', 4, '2022-10-03 19:52:24', 1, NULL, '江西省', '吉安市', '万安县', '芙蓉镇', 1664797944, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (39, '4984799985040999907', 22, NULL, '四川省 宜宾市 叙州区 柏溪街道 金沙尚品', NULL, '毛11', '18990918900', NULL, '', NULL, 'JT3014193121549', '极兔速递', NULL, 0, 9, '已关闭', '2022-10-02 19:18:01', '2022-10-03 23:59:59', NULL, NULL, '	支付宝', '2022-10-02 19:18:03', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-03 19:06:37', '2024-01-08 17:45:31', 4, '2022-10-03 19:52:39', 1, NULL, '四川省', '宜宾市', '叙州区', '柏溪街道', 1664797959, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (40, '4985515088500698469', 22, NULL, '青海省 西宁市 城西区 彭家寨镇 城西区海馨墅园11号楼', NULL, '贾佳', '13086283929', NULL, '', NULL, 'JT3014277833261', '极兔速递', NULL, 0, 5, '已完成', '2022-10-04 17:36:37', '2022-10-05 23:59:59', NULL, NULL, '	银行卡', '2022-10-04 17:36:39', 0, 0.03, 0, NULL, 39.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-04 19:27:49', '2024-01-08 17:45:31', 4, '2022-10-04 20:02:03', 1, NULL, '青海省', '西宁市', '城西区', '彭家寨镇', 1664884923, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (41, '4985482850497469683', 22, NULL, '广西壮族自治区 钦州市 浦北县 张黄镇 张黄镇镇南小区', NULL, '许春丽', '18778706584', NULL, '', NULL, 'JT3014277833272', '极兔速递', NULL, 0, 5, '已完成', '2022-10-04 15:29:43', '2022-10-05 23:59:59', NULL, NULL, '	DOU分期', '2022-10-04 15:29:47', 0, 0.3, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-04 19:27:49', '2024-01-08 17:45:31', 4, '2022-10-04 20:02:17', 1, NULL, '广西壮族自治区', '钦州市', '浦北县', '张黄镇', 1664884937, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (42, '4985286686428839495', 22, NULL, '广东省 广州市 黄埔区 黄埔街道 东奥广场', NULL, '覃少眉', '18011151381', NULL, '', NULL, 'JT3014277833294', '极兔速递', NULL, 0, 5, '已完成', '2022-10-04 04:13:17', '2022-10-05 23:59:59', NULL, NULL, '	微信', '2022-10-04 04:13:38', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-04 19:27:49', '2024-01-08 17:45:31', 4, '2022-10-04 20:02:29', 1, NULL, '广东省', '广州市', '黄埔区', '黄埔街道', 1664884949, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (43, '4985223189643046588', 22, NULL, '福建省 厦门市 翔安区 马巷街道 市头村南里139号菜鸟驿站', NULL, '白麦玲', '18220414740', NULL, '', NULL, 'JT3014277833283', '极兔速递', NULL, 0, 5, '已完成', '2022-10-03 22:40:28', '2022-10-04 23:59:59', NULL, NULL, '	微信', '2022-10-03 22:40:49', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-04 19:27:49', '2024-01-08 17:45:31', 4, '2022-10-04 20:01:45', 1, NULL, '福建省', '厦门市', '翔安区', '马巷街道', 1664884905, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (44, '4986214167436640206', 22, NULL, '广东省 佛山市 禅城区  深村北东村七巷2号店菜鸟驿站', NULL, '钟珍', '15976610202', NULL, '', NULL, 'JT3014452617502', '极兔速递', NULL, 0, 5, '已完成', '2022-10-06 14:46:55', '2022-10-07 23:59:59', NULL, NULL, '	微信', '2022-10-06 14:47:04', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-06 18:12:11', '2024-01-08 17:45:31', 4, '2022-10-07 17:19:37', 1, NULL, '广东省', '佛山市', '禅城区', '-', 1665134377, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (45, '4985977884115549285', 22, NULL, '湖南省 娄底市 娄星区 乐坪街道 氐星路18号亲亲宝贝儿童摄影', NULL, '蓝天', '15207384138', NULL, '', NULL, 'JT3014452617513', '极兔速递', NULL, 0, 5, '已完成', '2022-10-05 23:29:44', '2022-10-06 23:59:59', NULL, NULL, '	支付宝', '2022-10-05 23:32:53', 0, 0, 0, NULL, 39.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-06 18:12:11', '2024-01-08 17:45:31', 4, '2022-10-07 17:19:04', 1, NULL, '湖南省', '娄底市', '娄星区', '乐坪街道', 1665134344, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (1, '4980315283258053681', 22, NULL, '江西省上饶市余干县玉亭镇干越壹号1单元21栋1601', NULL, '语沐', '19916092086', NULL, NULL, NULL, 'JT3013085289401', '极兔速递', '2022-09-20 20:20:45', 0, 5, '已完成', '2022-09-20 17:16:07', '2022-09-21 23:59:59', NULL, NULL, '	DOU分期', '2022-09-20 17:16:09', 0, 0.04, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-20 20:54:56', '2024-04-25 14:56:46', 4, '2022-09-20 20:20:45', 0, NULL, '江西省', '上饶市', '余干县', '玉亭镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (2, '4980742293215945801', 22, NULL, '福建省龙岩市长汀县汀州镇店头街118－1号', NULL, '李梅', '13799731774', NULL, NULL, NULL, 'JT3013264495033', '极兔速递', '2022-09-22 19:52:10', 0, 5, '已完成', '2022-09-21 20:51:47', '2022-09-22 23:59:59', NULL, NULL, '	银行卡', '2022-09-21 20:51:51', 0, 0.01, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-21 21:24:11', '2024-04-25 14:56:46', 4, '2022-09-22 19:52:10', 0, NULL, '福建省', '龙岩市', '长汀县', '汀州镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (3, '4980739737839346786', 22, NULL, '福建省福州市马尾区琅岐镇星辉村村前里34号', NULL, '小齐', '15280204101', NULL, NULL, NULL, 'JT3013264495044', '极兔速递', '2022-09-22 19:53:24', 0, 5, '已完成', '2022-09-21 20:40:01', '2022-09-22 23:59:59', NULL, NULL, '	微信', '2022-09-21 20:40:14', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-21 21:24:15', '2024-04-25 14:56:46', 4, '2022-09-22 19:53:24', 0, NULL, '福建省', '福州市', '马尾区', '琅岐镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (4, '4981009994229820718', 22, NULL, '福建省 厦门市 同安区 西柯镇 西柯镇美溪一里7号楼507室', NULL, '彩萍', '13696914103', NULL, NULL, NULL, 'JT3013264495011', '极兔速递', '2022-09-22 19:50:45', 0, 5, '已完成', '2022-09-22 14:12:26', '2022-09-23 23:59:59', NULL, NULL, '	微信', '2022-09-22 14:12:45', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-22 19:22:38', '2024-04-25 14:56:46', 4, '2022-09-22 19:50:45', 0, NULL, '福建省', '厦门市', '同安区', '西柯镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (5, '4980929863018262391', 22, NULL, '福建省 龙岩市 长汀县 汀州镇 西外街9号(长汀宾馆旁)前卫一店(西门店)', NULL, '王静', '18039840579', NULL, NULL, NULL, 'JT3013264495022', '极兔速递', '2022-09-22 19:51:50', 0, 5, '已完成', '2022-09-22 09:03:31', '2022-09-23 23:59:59', NULL, NULL, '	支付宝', '2022-09-22 09:03:43', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-22 19:22:38', '2024-04-25 14:56:46', 4, '2022-09-22 19:51:50', 0, NULL, '福建省', '龙岩市', '长汀县', '汀州镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (6, '4981382213267316710', 22, NULL, '福建省 福州市 马尾区 琅岐镇 琅岐经济区琅岐镇闽江村闽江村委会', NULL, '薛薛', '15860821450', NULL, NULL, NULL, 'JT3013352355693', '极兔速递', '2022-09-23 20:03:21', 0, 5, '已完成', '2022-09-23 14:17:04', '2022-09-24 23:59:59', NULL, NULL, '	银行卡', '2022-09-23 14:17:06', 0, 0.01, 0, NULL, 21.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-04-25 14:56:46', 4, '2022-09-23 20:03:21', 0, NULL, '福建省', '福州市', '马尾区', '琅岐镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (7, '4981351418362338326', 22, NULL, '广东省 深圳市 光明区 新湖街道 新陂头南36栋', NULL, '徐莉', '18075105364', NULL, NULL, NULL, 'JT3013352355704', '极兔速递', '2022-09-23 20:03:34', 0, 5, '已完成', '2022-09-23 12:15:41', '2022-09-24 23:59:59', NULL, NULL, '	支付宝', '2022-09-23 12:15:58', 0, 0, 0, NULL, 21.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-04-25 14:56:46', 4, '2022-09-23 20:03:34', 0, NULL, '广东省', '深圳市', '光明区', '新湖街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (8, '4981344413261051453', 22, NULL, '广东省 深圳市 光明区  公明塘尾塘府华庭', NULL, '万银园', '18575507172', NULL, NULL, NULL, 'JT3013352355660', '极兔速递', '2022-09-23 20:03:44', 0, 5, '已完成', '2022-09-23 11:51:01', '2022-09-24 23:59:59', NULL, NULL, '	支付宝', '2022-09-23 11:51:36', 0, 0, 0, NULL, 21.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-04-25 14:56:46', 4, '2022-09-23 20:03:44', 0, NULL, '广东省', '深圳市', '光明区', '-', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (9, '4981336248537466096', 22, NULL, '福建省 福州市 马尾区 琅岐镇 农旗村翻身路50号', NULL, '陈美花', '13509332273', NULL, NULL, NULL, 'JT3013352355671', '极兔速递', '2022-09-23 20:03:55', 0, 5, '已完成', '2022-09-23 11:18:13', '2022-09-24 23:59:59', NULL, NULL, '	微信', '2022-09-23 11:18:22', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-04-25 14:56:46', 4, '2022-09-23 20:03:55', 0, NULL, '福建省', '福州市', '马尾区', '琅岐镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (10, '4981100643812308278', 22, NULL, '广东省 深圳市 坪山区 龙田街道 锦绣中路9号米特华浦京生物科学园901', NULL, '杨女士', '18312524191', NULL, NULL, NULL, 'JT3013352355671', '极兔速递', '2022-09-23 20:04:05', 0, 5, '已完成', '2022-09-22 20:03:55', '2022-09-23 23:59:59', NULL, NULL, '	支付宝', '2022-09-22 20:04:15', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-23 17:11:59', '2024-04-25 14:56:46', 4, '2022-09-23 20:04:05', 0, NULL, '广东省', '深圳市', '坪山区', '龙田街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (11, '4981813720039097426', 22, NULL, '湖南省 长沙市 雨花区 圭塘街道 天赐良园B2栋', NULL, '然然', '15207393453', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 18:12:11', '2022-09-25 23:59:59', NULL, NULL, '	微信', '2022-09-24 18:12:17', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '湖南省', '长沙市', '雨花区', '圭塘街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (12, '4981781091175316880', 22, NULL, '湖南省 怀化市 鹤城区 盈口乡 怀西路840号', NULL, '侯娟', '18169451522', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 16:04:49', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 16:05:34', 0, 3, 0, NULL, 26.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '湖南省', '怀化市', '鹤城区', '盈口乡', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (13, '4981717255098122158', 22, NULL, '湖南省 怀化市 鹤城区 红星街道 湖天开发区湖天新苑', NULL, '姜飞', '15115294900', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:56:40', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 11:56:59', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '湖南省', '怀化市', '鹤城区', '红星街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (14, '4981716043892401739', 22, NULL, '湖南省 怀化市 鹤城区 迎丰街道 城东家园', NULL, '阳欢', '17674545513', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:53:45', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 11:53:52', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '湖南省', '怀化市', '鹤城区', '迎丰街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (15, '4981713101841898630', 22, NULL, '湖南省 怀化市 鹤城区 红星街道 湖天一色紫庭精品酒店对面的艺剪坊理发店', NULL, '宣宝', '15111524051', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:42:00', '2022-09-25 23:59:59', NULL, NULL, '	微信', '2022-09-24 11:42:39', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '湖南省', '怀化市', '鹤城区', '红星街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (16, '4981712449013626314', 22, NULL, '湖南省 怀化市 溆浦县 龙潭镇 龙潭镇建设街', NULL, '舒芳', '18797562323', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:39:43', '2022-09-25 23:59:59', NULL, NULL, '	微信', '2022-09-24 11:40:03', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '湖南省', '怀化市', '溆浦县', '龙潭镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (17, '4981706075292310548', 22, NULL, '湖南省 怀化市 鹤城区 迎丰街道 迎丰街道紫东路维也纳国际酒店旁 恒福一品1506', NULL, '吴俊', '19145906220', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 11:13:07', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 11:13:36', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 19:26:47', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '湖南省', '怀化市', '鹤城区', '迎丰街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (18, '4981839657363922002', 22, NULL, '湖南省 长沙市 雨花区 圭塘街道 天赐良园B2栋', NULL, '然然', '15207393453', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 19:50:02', '2022-09-25 23:59:59', NULL, NULL, '	微信', '2022-09-24 19:50:09', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-24 20:04:35', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '湖南省', '长沙市', '雨花区', '圭塘街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (19, '4982174664813235511', 22, NULL, '福建省 漳州市 龙海区 石码镇 石码镇柯坑民生小区5栋603', NULL, '小卢', '13959646993', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 17:33:58', '2022-09-26 23:59:59', NULL, NULL, '	微信', '2022-09-25 17:34:09', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '福建省', '漳州市', '龙海区', '石码镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (20, '4982170301122420058', 22, NULL, '福建省 厦门市 湖里区 湖里街道 华泰路69号303室', NULL, '何渊', '13666077073', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 17:16:38', '2022-09-26 23:59:59', NULL, NULL, '	微信', '2022-09-25 17:16:52', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '福建省', '厦门市', '湖里区', '湖里街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (21, '4982168540189244621', 22, NULL, '福建省 厦门市 海沧区 嵩屿街道 海发路166号604室', NULL, '上官', '18959265748', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 17:09:42', '2022-09-26 23:59:59', NULL, NULL, '	银行卡', '2022-09-25 17:10:58', 0, 0.05, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '福建省', '厦门市', '海沧区', '嵩屿街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (22, '4982166010444580517', 22, NULL, '广东省 深圳市 南山区 南山街道 南山区南山村南巷16号', NULL, '张丽君', '13215106005', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 17:00:11', '2022-09-26 23:59:59', NULL, NULL, '	银行卡', '2022-09-25 17:00:13', 0, 0.2, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '广东省', '深圳市', '南山区', '南山街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (23, '4982153791254318586', 22, NULL, '福建省 龙岩市 长汀县 大同镇 黄屋新村西河纺织内联达纺织', NULL, '齐', '13799731774', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 16:10:02', '2022-09-26 23:59:59', NULL, NULL, '	微信', '2022-09-25 16:10:10', 0, 12, 0, NULL, 47.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '福建省', '龙岩市', '长汀县', '大同镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (24, '4982118185976428094', 22, NULL, '福建省 厦门市 思明区  文屏路8号2303', NULL, '卢小姐', '13616021430', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-25 13:52:42', '2022-09-26 23:59:59', NULL, NULL, '	支付宝', '2022-09-25 13:52:50', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '福建省', '厦门市', '思明区', '-', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (25, '4981846310281270729', 22, NULL, '广东省 深圳市 龙华区 龙华街道 龙华区玉翠新村a区100栋', NULL, '杨宁树', '18676372186', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-24 20:16:57', '2022-09-25 23:59:59', NULL, NULL, '	支付宝', '2022-09-24 20:17:20', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-25 18:06:12', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '广东省', '深圳市', '龙华区', '龙华街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (26, '4982912553062280265', 22, NULL, '福建省 龙岩市 长汀县 汀州镇 店头街118－1号', NULL, '李梅', '13799731774', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-27 17:17:31', '2022-09-28 23:59:59', NULL, NULL, '	银行卡', '2022-09-27 17:17:35', 0, 5.01, 0, NULL, 54.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-09-27 18:00:40', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '福建省', '龙岩市', '长汀县', '汀州镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (27, '4982776011764581556', 22, NULL, '福建省 福州市 马尾区 琅岐镇 琅岐中学', NULL, '李艳', '15280204221', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-27 08:30:40', '2022-09-28 23:59:59', NULL, NULL, '	微信', '2022-09-27 08:31:48', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-27 18:00:40', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '福建省', '福州市', '马尾区', '琅岐镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (28, '4982594218678984083', 22, NULL, '江西省 上饶市 余干县 玉亭镇 余干县苗圃路', NULL, '牡香', '13879314724', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-26 20:39:00', '2022-09-27 23:59:59', NULL, NULL, '	支付宝', '2022-09-26 20:39:28', 0, 0, 0, NULL, 59.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-27 18:00:40', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '江西省', '上饶市', '余干县', '玉亭镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (29, '4982591100530857503', 22, NULL, '福建省 龙岩市 长汀县 大同镇 腾飞六路一号十一栋四楼宏润科技四楼', NULL, '丘先生', '18759089921', NULL, NULL, NULL, NULL, NULL, NULL, 0, 5, '已完成', '2022-09-26 20:27:33', '2022-09-27 23:59:59', NULL, NULL, '	支付宝', '2022-09-26 20:28:09', 0, 5, 0, NULL, 54.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-27 18:00:40', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '福建省', '龙岩市', '长汀县', '大同镇', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (31, '4983005972896058555', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'JT3013803427607', '极兔速递', '2022-09-28 20:18:25', 0, 5, '已完成', '2022-09-27 23:16:10', '2022-09-28 23:59:59', NULL, NULL, '	微信', '2022-09-27 23:16:30', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-28 20:14:01', '2024-04-25 14:56:46', 4, '2022-09-28 20:18:25', 0, NULL, '广东省', '深圳市', '宝安区', '新安街道', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (32, '4983005762442034363', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 9, '已关闭', '2022-09-27 23:15:11', '2022-09-28 23:59:59', NULL, NULL, '	微信', NULL, 0, 4, 0, NULL, 45.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-28 20:14:01', '2024-04-25 14:56:46', 0, NULL, 0, NULL, '***', '***', '***', '***', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (33, '4983732861753556161', 22, NULL, '江西省 吉安市 安福县 平都镇 平都镇小康路平三小对面东投阳光城', NULL, '唐优丽', '13755482314', NULL, '', NULL, 'JT3013958239656', '极兔速递', NULL, 0, 5, '已完成', '2022-09-29 22:16:15', '2022-09-30 23:59:59', NULL, NULL, '	微信', '2022-09-29 22:16:23', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-09-29 23:22:02', '2024-04-25 14:56:46', 4, '2022-09-30 21:33:34', 0, NULL, '江西省', '吉安市', '安福县', '平都镇', 1664544815, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (34, '4984152428526264105', 22, NULL, '广东省 东莞市 东莞市 石碣镇 同富中路127号', NULL, '李娜', '13657457082', NULL, '', NULL, 'JT3014024881920', '极兔速递', NULL, 0, 9, '已关闭', '2022-10-01 01:53:07', '2022-10-02 23:59:59', NULL, NULL, '	DOU分期', '2022-10-01 01:53:09', 0, 0.01, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-01 17:34:48', '2024-04-25 14:56:46', 4, '2022-10-01 18:53:49', 0, NULL, '广东省', '东莞市', '东莞市', '石碣镇', 1664621629, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (35, '4984697223642336769', 22, NULL, '浙江省 嘉兴市 秀洲区 王江泾镇 依云小区', NULL, '李萍', '18324383714', NULL, '', NULL, 'JT3014110702158', '极兔速递', NULL, 0, 5, '已完成', '2022-10-02 12:40:19', '2022-10-03 23:59:59', NULL, NULL, '	微信', '2022-10-02 12:40:40', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-02 14:50:12', '2024-04-25 14:56:46', 4, '2022-10-02 19:52:15', 0, NULL, '浙江省', '嘉兴市', '秀洲区', '王江泾镇', 1664711535, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (36, '4985133429141212811', 22, NULL, '广西壮族自治区 桂林市 平乐县  广西桂林平乐县二塘镇', NULL, '黎陈陈', '18074736552', NULL, '', NULL, 'JT3014193121516', '极兔速递', NULL, 0, 5, '已完成', '2022-10-03 16:55:00', '2022-10-04 23:59:59', NULL, NULL, '	微信', '2022-10-03 16:55:08', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-03 19:06:37', '2024-04-25 14:56:46', 4, '2022-10-03 19:51:52', 0, NULL, '广西壮族自治区', '桂林市', '平乐县', '-', 1664797912, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (37, '4984860625685372406', 22, NULL, '广东省 东莞市 东莞市 南城街道 白马黄金路瑞华厂', NULL, '李s', '13412324296', NULL, '', NULL, 'JT3014193121527', '极兔速递', NULL, 0, 5, '已完成', '2022-10-02 23:12:34', '2022-10-03 23:59:59', NULL, NULL, '	微信', '2022-10-02 23:12:43', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-03 19:06:37', '2024-04-25 14:56:46', 4, '2022-10-03 19:52:09', 0, NULL, '广东省', '东莞市', '东莞市', '南城街道', 1664797929, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (38, '4984857743749323958', 22, NULL, '江西省 吉安市 万安县 芙蓉镇 东风路和芙五路交叉口香港贝恩旗舰园小博士保育院', NULL, '李臣优', '13970681542', NULL, '', NULL, 'JT3014193121538', '极兔速递', NULL, 0, 5, '已完成', '2022-10-02 23:02:23', '2022-10-03 23:59:59', NULL, NULL, '	支付宝', '2022-10-02 23:02:33', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-03 19:06:37', '2024-04-25 14:56:46', 4, '2022-10-03 19:52:24', 0, NULL, '江西省', '吉安市', '万安县', '芙蓉镇', 1664797944, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (39, '4984799985040999907', 22, NULL, '四川省 宜宾市 叙州区 柏溪街道 金沙尚品', NULL, '毛11', '18990918900', NULL, '', NULL, 'JT3014193121549', '极兔速递', NULL, 0, 9, '已关闭', '2022-10-02 19:18:01', '2022-10-03 23:59:59', NULL, NULL, '	支付宝', '2022-10-02 19:18:03', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-03 19:06:37', '2024-04-25 14:56:46', 4, '2022-10-03 19:52:39', 0, NULL, '四川省', '宜宾市', '叙州区', '柏溪街道', 1664797959, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (40, '4985515088500698469', 22, NULL, '青海省 西宁市 城西区 彭家寨镇 城西区海馨墅园11号楼', NULL, '贾佳', '13086283929', NULL, '', NULL, 'JT3014277833261', '极兔速递', NULL, 0, 5, '已完成', '2022-10-04 17:36:37', '2022-10-05 23:59:59', NULL, NULL, '	银行卡', '2022-10-04 17:36:39', 0, 0.03, 0, NULL, 39.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-04 19:27:49', '2024-04-25 14:56:46', 4, '2022-10-04 20:02:03', 0, NULL, '青海省', '西宁市', '城西区', '彭家寨镇', 1664884923, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (41, '4985482850497469683', 22, NULL, '广西壮族自治区 钦州市 浦北县 张黄镇 张黄镇镇南小区', NULL, '许春丽', '18778706584', NULL, '', NULL, 'JT3014277833272', '极兔速递', NULL, 0, 5, '已完成', '2022-10-04 15:29:43', '2022-10-05 23:59:59', NULL, NULL, '	DOU分期', '2022-10-04 15:29:47', 0, 0.3, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-04 19:27:49', '2024-04-25 14:56:46', 4, '2022-10-04 20:02:17', 0, NULL, '广西壮族自治区', '钦州市', '浦北县', '张黄镇', 1664884937, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (42, '4985286686428839495', 22, NULL, '广东省 广州市 黄埔区 黄埔街道 东奥广场', NULL, '覃少眉', '18011151381', NULL, '', NULL, 'JT3014277833294', '极兔速递', NULL, 0, 5, '已完成', '2022-10-04 04:13:17', '2022-10-05 23:59:59', NULL, NULL, '	微信', '2022-10-04 04:13:38', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-04 19:27:49', '2024-04-25 14:56:46', 4, '2022-10-04 20:02:29', 0, NULL, '广东省', '广州市', '黄埔区', '黄埔街道', 1664884949, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (43, '4985223189643046588', 22, NULL, '福建省 厦门市 翔安区 马巷街道 市头村南里139号菜鸟驿站', NULL, '白麦玲', '18220414740', NULL, '', NULL, 'JT3014277833283', '极兔速递', NULL, 0, 5, '已完成', '2022-10-03 22:40:28', '2022-10-04 23:59:59', NULL, NULL, '	微信', '2022-10-03 22:40:49', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-04 19:27:49', '2024-04-25 14:56:46', 4, '2022-10-04 20:01:45', 0, NULL, '福建省', '厦门市', '翔安区', '马巷街道', 1664884905, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (44, '4986214167436640206', 22, NULL, '广东省 佛山市 禅城区  深村北东村七巷2号店菜鸟驿站', NULL, '钟珍', '15976610202', NULL, '', NULL, 'JT3014452617502', '极兔速递', NULL, 0, 5, '已完成', '2022-10-06 14:46:55', '2022-10-07 23:59:59', NULL, NULL, '	微信', '2022-10-06 14:47:04', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-06 18:12:11', '2024-04-25 14:56:46', 4, '2022-10-07 17:19:37', 0, NULL, '广东省', '佛山市', '禅城区', '-', 1665134377, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (45, '4985977884115549285', 22, NULL, '湖南省 娄底市 娄星区 乐坪街道 氐星路18号亲亲宝贝儿童摄影', NULL, '蓝天', '15207384138', NULL, '', NULL, 'JT3014452617513', '极兔速递', NULL, 0, 5, '已完成', '2022-10-05 23:29:44', '2022-10-06 23:59:59', NULL, NULL, '	支付宝', '2022-10-05 23:32:53', 0, 0, 0, NULL, 39.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-06 18:12:11', '2024-04-25 14:56:46', 4, '2022-10-07 17:19:04', 0, NULL, '湖南省', '娄底市', '娄星区', '乐坪街道', 1665134344, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
 INSERT INTO `s_dou_order` VALUES (46, '4985865613666237541', 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 9, '已关闭', '2022-10-05 16:13:11', '2022-10-06 23:59:59', NULL, NULL, '	新卡支付', NULL, 0, 0, 0, NULL, 39.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-06 18:12:11', '2024-01-08 17:45:31', 0, NULL, 0, NULL, '***', '***', '***', '***', 0, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (47, '4986269263301058458', 22, NULL, '广东省 揭阳市 普宁市 里湖镇 普宁市里湖镇新埔路口美加乐便利店', NULL, '十七', '18877971709', NULL, '', NULL, 'JT3014452617491', '极兔速递', NULL, 0, 5, '已完成', '2022-10-06 18:22:45', '2022-10-07 23:59:59', NULL, NULL, '	微信', '2022-10-06 18:23:07', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-06 18:44:20', '2024-01-08 17:45:31', 4, '2022-10-07 17:23:04', 1, NULL, '广东省', '揭阳市', '普宁市', '里湖镇', 1665134584, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (48, '4986530410189666111', 22, NULL, '重庆市 重庆市 合川区 合阳城街道 合阳城街道学府路10号重庆对外经贸学院', NULL, '秦梦雪', '17323751179', NULL, '', NULL, 'JT3014544526603', '极兔速递', NULL, 0, 5, '已完成', '2022-10-07 11:14:33', '2022-10-08 23:59:59', NULL, NULL, '	银行卡', '2022-10-07 11:14:35', 0, 0.06, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-07 16:07:20', '2024-01-08 17:45:31', 4, '2022-10-07 20:29:29', 1, NULL, '重庆市', '重庆市', '合川区', '合阳城街道', 1665145769, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (49, '4986458349216746955', 22, NULL, '海南省 海口市 秀英区 秀英街道 菜篮子农产品批发市场鲜菜二区53档', NULL, '杨茜茜', '13678743969', NULL, '', NULL, 'JT3014544526614', '极兔速递', NULL, 0, 5, '已完成', '2022-10-07 06:44:44', '2022-10-08 23:59:59', NULL, NULL, '	支付宝', '2022-10-07 06:44:50', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-07 16:07:20', '2024-01-08 17:45:31', 4, '2022-10-07 20:29:49', 1, NULL, '海南省', '海口市', '秀英区', '秀英街道', 1665145789, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (52, '4986353242795029713', 22, NULL, '广东省 茂名市 茂南区 鳌头镇 624省道鳌头镇人民政府', NULL, '吴紫一', '15920060428', NULL, '', NULL, 'JT3014544526625', '极兔速递', NULL, 0, 5, '已完成', '2022-10-06 23:45:01', '2022-10-07 23:59:59', NULL, NULL, '	支付宝', '2022-10-06 23:45:09', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-07 17:07:48', '2024-01-08 17:45:31', 4, '2022-10-07 20:30:15', 1, NULL, '广东省', '茂名市', '茂南区', '鳌头镇', 1665145815, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (53, '4987317639028192536', 22, NULL, '广东省 佛山市 南海区 西樵镇 西樵镇太平市场稔岗村鼎丰纺织厂', NULL, '李美英', '13670603083', NULL, '', NULL, 'JT3014730014279', '极兔速递', NULL, 0, 5, '已完成', '2022-10-09 14:06:23', '2022-10-10 23:59:59', NULL, NULL, '	微信', '2022-10-09 14:06:54', 0, 0, 0, NULL, 19.99, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-09 17:55:05', '2024-01-08 17:45:31', 4, '2022-10-09 19:40:35', 1, NULL, '广东省', '佛山市', '南海区', '西樵镇', 1665315635, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (54, '4987087171099764040', 22, NULL, '湖北省 十堰市 茅箭区 二堰街道 北京南路二堰街办献珍路7号汉江师范学院西校区', NULL, '杨巧玲', '15198339739', NULL, '', NULL, 'JT3014730014280', '极兔速递', NULL, 0, 9, '已关闭', '2022-10-08 23:12:09', '2022-10-09 23:59:59', NULL, NULL, '	银行卡', '2022-10-08 23:12:26', 0, 0.36, 0, NULL, 39.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-09 17:55:05', '2024-01-08 17:45:31', 4, '2022-10-09 19:42:21', 1, NULL, '湖北省', '十堰市', '茅箭区', '二堰街道', 1665315741, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (55, '4988109583767749813', 22, NULL, '福建省 漳州市 龙海区 石码镇 石码镇高坑村罗锦254号长艺建筑', NULL, '江江', '18850252221', NULL, '', NULL, '432838449722883', '韵达速递', NULL, 0, 5, '已完成', '2022-10-11 17:23:55', '2022-10-12 23:59:59', NULL, NULL, '	微信', '2022-10-11 17:24:02', 0, 0, 0, NULL, 39.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-11 20:56:16', '2024-01-08 17:45:31', 4, '2022-10-11 23:25:28', 1, NULL, '福建省', '漳州市', '龙海区', '石码镇', 1665501928, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (56, '4987826846069765150', 22, NULL, '广东省 茂名市 化州市 丽岗镇 朱砂路63号世纪花园', NULL, '何天佑', '19375923169', NULL, '', NULL, '432838449722973', '韵达速递', NULL, 0, 9, '已关闭', '2022-10-10 23:02:59', '2022-10-11 23:59:59', NULL, NULL, '	支付宝', '2022-10-10 23:03:11', 0, 0, 0, NULL, 19.99, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-11 20:56:16', '2024-01-08 17:45:31', 4, '2022-10-11 23:25:43', 1, NULL, '广东省', '茂名市', '化州市', '丽岗镇', 1665501943, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (57, '4988783189254734873', 22, NULL, '福建省 泉州市 泉港区 界山镇 泉港区槐山村', NULL, '兔小姐', '13514015462', NULL, '', NULL, '432842636454522', '韵达速递', NULL, 0, 9, '已关闭', '2022-10-13 12:55:51', '2022-10-14 23:59:59', NULL, NULL, '	支付宝', '2022-10-13 12:56:01', 0, 0, 0, NULL, 19.99, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-13 19:04:30', '2024-01-08 17:45:31', 4, '2022-10-13 23:58:29', 1, NULL, '福建省', '泉州市', '泉港区', '界山镇', 1665676709, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (58, '4990034244498293970', 22, NULL, '广东省 广州市 白云区 京溪街道 云景花园云桂路54号店菜鸟驿站', NULL, '黄晓清', '13660665806', NULL, '', NULL, '432850296503464', '韵达速递', NULL, 0, 9, '已关闭', '2022-10-16 21:48:33', '2022-10-17 23:59:59', NULL, NULL, '	支付宝', '2022-10-16 21:48:53', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-17 19:59:41', '2024-01-08 17:45:31', 4, '2022-10-17 20:32:44', 1, NULL, '广东省', '广州市', '白云区', '京溪街道', 1666009964, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (59, '4990731090063189786', 22, NULL, '上海市 上海市 崇明区 陈家镇 陈家镇裕展路769弄12期90号401室', NULL, '施清菡', '17807543990', NULL, '', NULL, '432854235143741', '韵达速递', NULL, 0, 9, '已关闭', '2022-10-18 18:56:11', '2022-10-19 23:59:59', NULL, NULL, '	微信', '2022-10-18 18:56:23', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-19 17:50:12', '2024-01-08 17:45:31', 4, '2022-10-19 19:29:07', 1, NULL, '上海市', '上海市', '崇明区', '陈家镇', 1666178947, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (60, '4995886566937347738', 22, NULL, '河南省 洛阳市 宜阳县 锦屏镇 锦屏镇桥兴路妈妈驿站', NULL, '崔静', '13213232316', NULL, '', NULL, '318395745074816', '韵达速递', NULL, 0, 3, '已发货', '2022-11-01 16:20:37', '2022-11-18 23:59:59', NULL, NULL, '	DOU分期', '2022-11-01 16:20:47', 0, 0.01, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-11-01 22:22:28', '2024-01-08 17:45:31', 4, '2022-11-05 16:27:37', 1, NULL, '河南省', '洛阳市', '宜阳县', '锦屏镇', 1667636857, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
-INSERT INTO `s_dou_order` VALUES (61, '4998455107699478221', 22, NULL, '上海市 上海市 浦东新区 老港镇 洛神花路55弄东宸源著91楼401', NULL, '米粒', '13848734097', NULL, '', NULL, '318398020863570', '韵达速递', NULL, 0, 3, '已发货', '2022-11-08 14:28:11', '2022-11-12 23:59:59', NULL, NULL, '	微信', '2022-11-08 14:28:29', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-11-08 14:35:07', '2024-01-08 17:45:31', 4, '2022-11-08 15:56:37', 1, NULL, '上海市', '上海市', '浦东新区', '老港镇', 1667894197, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (62, '4998374216282836536', 22, NULL, '海南省 陵水黎族自治县 陵水黎族自治县 英州镇 清水湾阿罗哈别墅区，凤凰东路D3／07／01', NULL, '符爱珍', '18389824051', NULL, '', NULL, '318398010251223', '韵达速递', NULL, 0, 3, '已发货', '2022-11-08 09:14:56', '2022-11-12 23:59:59', NULL, NULL, '	微信', '2022-11-08 09:15:08', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-11-08 14:35:07', '2024-01-08 17:45:31', 4, '2022-11-08 15:56:58', 1, NULL, '海南省', '陵水黎族自治县', '陵水黎族自治县', '英州镇', 1667894218, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (63, '5001032152516589435', 22, NULL, '湖南省 株洲市 攸县 皇图岭镇 皇图岭镇国策路蜜雪冰城店', NULL, '陈润婷', '15570756889', NULL, '', NULL, '432916942132546', '韵达速递', NULL, 0, 3, '已发货', '2022-11-15 13:08:27', '2022-11-16 23:59:59', NULL, NULL, '	微信', '2022-11-15 13:08:37', 0, 15, 0, NULL, 44.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-11-15 17:08:25', '2024-01-08 17:45:31', 4, '2022-11-15 17:19:07', 1, NULL, '湖南省', '株洲市', '攸县', '皇图岭镇', 1668503947, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (64, '5001672953034223384', 22, NULL, '海南省 海口市 龙华区 城西镇 学院路热科广场B座沙县小吃店', NULL, '小小吴', '13950916427', NULL, '', NULL, '318405057886734', '韵达速递', NULL, 0, 3, '已发货', '2022-11-17 06:46:43', '2022-11-18 23:59:59', NULL, NULL, '	支付宝', '2022-11-17 06:46:55', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-11-17 16:01:38', '2024-01-08 17:45:31', 4, '2022-11-17 16:59:23', 1, NULL, '海南省', '海口市', '龙华区', '城西镇', 1668675563, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (65, '5029531752869619571', 22, NULL, '广东省 珠海市 香洲区 前山街道 前山造贝卫生院', NULL, '贺媛媛', '15096386532', NULL, '', NULL, '318453013002422', '韵达速递', '2023-02-01 08:23:55', 0, 3, '已发货', '2023-01-31 09:49:49', '2023-02-01 23:59:59', NULL, NULL, '	支付宝', '2023-01-31 09:49:59', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2023-02-01 07:49:37', '2024-01-08 17:45:31', 4, '2023-02-01 08:24:22', 1, NULL, '广东省', '珠海市', '香洲区', '前山街道', 1675239862, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
-INSERT INTO `s_dou_order` VALUES (66, '5030436502888242865', 22, NULL, '四川省 成都市 都江堰市  大观镇', NULL, '刘艳', '13540005969', NULL, '', NULL, '433042074667095', '韵达速递', NULL, 0, 3, '已发货', '2023-02-02 20:26:34', '2023-02-03 23:59:59', NULL, NULL, '	支付宝', '2023-02-02 20:26:45', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2023-02-03 09:22:09', '2024-01-08 17:45:31', 4, '2023-02-03 11:12:29', 1, NULL, '四川省', '成都市', '都江堰市', '-', 1675422749, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (47, '4986269263301058458', 22, NULL, '广东省 揭阳市 普宁市 里湖镇 普宁市里湖镇新埔路口美加乐便利店', NULL, '十七', '18877971709', NULL, '', NULL, 'JT3014452617491', '极兔速递', NULL, 0, 5, '已完成', '2022-10-06 18:22:45', '2022-10-07 23:59:59', NULL, NULL, '	微信', '2022-10-06 18:23:07', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-06 18:44:20', '2024-04-25 14:56:46', 4, '2022-10-07 17:23:04', 0, NULL, '广东省', '揭阳市', '普宁市', '里湖镇', 1665134584, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (48, '4986530410189666111', 22, NULL, '重庆市 重庆市 合川区 合阳城街道 合阳城街道学府路10号重庆对外经贸学院', NULL, '秦梦雪', '17323751179', NULL, '', NULL, 'JT3014544526603', '极兔速递', NULL, 0, 5, '已完成', '2022-10-07 11:14:33', '2022-10-08 23:59:59', NULL, NULL, '	银行卡', '2022-10-07 11:14:35', 0, 0.06, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-07 16:07:20', '2024-04-25 14:56:46', 4, '2022-10-07 20:29:29', 0, NULL, '重庆市', '重庆市', '合川区', '合阳城街道', 1665145769, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (49, '4986458349216746955', 22, NULL, '海南省 海口市 秀英区 秀英街道 菜篮子农产品批发市场鲜菜二区53档', NULL, '杨茜茜', '13678743969', NULL, '', NULL, 'JT3014544526614', '极兔速递', NULL, 0, 5, '已完成', '2022-10-07 06:44:44', '2022-10-08 23:59:59', NULL, NULL, '	支付宝', '2022-10-07 06:44:50', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-07 16:07:20', '2024-04-25 14:56:46', 4, '2022-10-07 20:29:49', 0, NULL, '海南省', '海口市', '秀英区', '秀英街道', 1665145789, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (52, '4986353242795029713', 22, NULL, '广东省 茂名市 茂南区 鳌头镇 624省道鳌头镇人民政府', NULL, '吴紫一', '15920060428', NULL, '', NULL, 'JT3014544526625', '极兔速递', NULL, 0, 5, '已完成', '2022-10-06 23:45:01', '2022-10-07 23:59:59', NULL, NULL, '	支付宝', '2022-10-06 23:45:09', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-07 17:07:48', '2024-04-25 14:56:46', 4, '2022-10-07 20:30:15', 0, NULL, '广东省', '茂名市', '茂南区', '鳌头镇', 1665145815, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (53, '4987317639028192536', 22, NULL, '广东省 佛山市 南海区 西樵镇 西樵镇太平市场稔岗村鼎丰纺织厂', NULL, '李美英', '13670603083', NULL, '', NULL, 'JT3014730014279', '极兔速递', NULL, 0, 5, '已完成', '2022-10-09 14:06:23', '2022-10-10 23:59:59', NULL, NULL, '	微信', '2022-10-09 14:06:54', 0, 0, 0, NULL, 19.99, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-10-09 17:55:05', '2024-04-25 14:56:46', 4, '2022-10-09 19:40:35', 0, NULL, '广东省', '佛山市', '南海区', '西樵镇', 1665315635, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (54, '4987087171099764040', 22, NULL, '湖北省 十堰市 茅箭区 二堰街道 北京南路二堰街办献珍路7号汉江师范学院西校区', NULL, '杨巧玲', '15198339739', NULL, '', NULL, 'JT3014730014280', '极兔速递', NULL, 0, 9, '已关闭', '2022-10-08 23:12:09', '2022-10-09 23:59:59', NULL, NULL, '	银行卡', '2022-10-08 23:12:26', 0, 0.36, 0, NULL, 39.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-09 17:55:05', '2024-04-25 14:56:46', 4, '2022-10-09 19:42:21', 0, NULL, '湖北省', '十堰市', '茅箭区', '二堰街道', 1665315741, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (55, '4988109583767749813', 22, NULL, '福建省 漳州市 龙海区 石码镇 石码镇高坑村罗锦254号长艺建筑', NULL, '江江', '18850252221', NULL, '', NULL, '432838449722883', '韵达速递', NULL, 0, 5, '已完成', '2022-10-11 17:23:55', '2022-10-12 23:59:59', NULL, NULL, '	微信', '2022-10-11 17:24:02', 0, 0, 0, NULL, 39.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-11 20:56:16', '2024-04-25 14:56:46', 4, '2022-10-11 23:25:28', 0, NULL, '福建省', '漳州市', '龙海区', '石码镇', 1665501928, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (56, '4987826846069765150', 22, NULL, '广东省 茂名市 化州市 丽岗镇 朱砂路63号世纪花园', NULL, '何天佑', '19375923169', NULL, '', NULL, '432838449722973', '韵达速递', NULL, 0, 9, '已关闭', '2022-10-10 23:02:59', '2022-10-11 23:59:59', NULL, NULL, '	支付宝', '2022-10-10 23:03:11', 0, 0, 0, NULL, 19.99, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-11 20:56:16', '2024-04-25 14:56:47', 4, '2022-10-11 23:25:43', 0, NULL, '广东省', '茂名市', '化州市', '丽岗镇', 1665501943, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (57, '4988783189254734873', 22, NULL, '福建省 泉州市 泉港区 界山镇 泉港区槐山村', NULL, '兔小姐', '13514015462', NULL, '', NULL, '432842636454522', '韵达速递', NULL, 0, 9, '已关闭', '2022-10-13 12:55:51', '2022-10-14 23:59:59', NULL, NULL, '	支付宝', '2022-10-13 12:56:01', 0, 0, 0, NULL, 19.99, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-13 19:04:30', '2024-04-25 14:56:47', 4, '2022-10-13 23:58:29', 0, NULL, '福建省', '泉州市', '泉港区', '界山镇', 1665676709, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (58, '4990034244498293970', 22, NULL, '广东省 广州市 白云区 京溪街道 云景花园云桂路54号店菜鸟驿站', NULL, '黄晓清', '13660665806', NULL, '', NULL, '432850296503464', '韵达速递', NULL, 0, 9, '已关闭', '2022-10-16 21:48:33', '2022-10-17 23:59:59', NULL, NULL, '	支付宝', '2022-10-16 21:48:53', 0, 0, 0, NULL, 19.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-17 19:59:41', '2024-04-25 14:56:47', 4, '2022-10-17 20:32:44', 0, NULL, '广东省', '广州市', '白云区', '京溪街道', 1666009964, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (59, '4990731090063189786', 22, NULL, '上海市 上海市 崇明区 陈家镇 陈家镇裕展路769弄12期90号401室', NULL, '施清菡', '17807543990', NULL, '', NULL, '432854235143741', '韵达速递', NULL, 0, 9, '已关闭', '2022-10-18 18:56:11', '2022-10-19 23:59:59', NULL, NULL, '	微信', '2022-10-18 18:56:23', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-10-19 17:50:12', '2024-04-25 14:56:47', 4, '2022-10-19 19:29:07', 0, NULL, '上海市', '上海市', '崇明区', '陈家镇', 1666178947, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (60, '4995886566937347738', 22, NULL, '河南省 洛阳市 宜阳县 锦屏镇 锦屏镇桥兴路妈妈驿站', NULL, '崔静', '13213232316', NULL, '', NULL, '318395745074816', '韵达速递', NULL, 0, 3, '已发货', '2022-11-01 16:20:37', '2022-11-18 23:59:59', NULL, NULL, '	DOU分期', '2022-11-01 16:20:47', 0, 0.01, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-11-01 22:22:28', '2024-04-25 14:56:47', 4, '2022-11-05 16:27:37', 0, NULL, '河南省', '洛阳市', '宜阳县', '锦屏镇', 1667636857, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
+INSERT INTO `s_dou_order` VALUES (61, '4998455107699478221', 22, NULL, '上海市 上海市 浦东新区 老港镇 洛神花路55弄东宸源著91楼401', NULL, '米粒', '13848734097', NULL, '', NULL, '318398020863570', '韵达速递', NULL, 0, 3, '已发货', '2022-11-08 14:28:11', '2022-11-12 23:59:59', NULL, NULL, '	微信', '2022-11-08 14:28:29', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-11-08 14:35:07', '2024-04-25 14:56:47', 4, '2022-11-08 15:56:37', 0, NULL, '上海市', '上海市', '浦东新区', '老港镇', 1667894197, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (62, '4998374216282836536', 22, NULL, '海南省 陵水黎族自治县 陵水黎族自治县 英州镇 清水湾阿罗哈别墅区，凤凰东路D3／07／01', NULL, '符爱珍', '18389824051', NULL, '', NULL, '318398010251223', '韵达速递', NULL, 0, 3, '已发货', '2022-11-08 09:14:56', '2022-11-12 23:59:59', NULL, NULL, '	微信', '2022-11-08 09:15:08', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音', '小店自卖', 0.00, '2022-11-08 14:35:07', '2024-04-25 14:56:47', 4, '2022-11-08 15:56:58', 0, NULL, '海南省', '陵水黎族自治县', '陵水黎族自治县', '英州镇', 1667894218, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (63, '5001032152516589435', 22, NULL, '湖南省 株洲市 攸县 皇图岭镇 皇图岭镇国策路蜜雪冰城店', NULL, '陈润婷', '15570756889', NULL, '', NULL, '432916942132546', '韵达速递', NULL, 0, 3, '已发货', '2022-11-15 13:08:27', '2022-11-16 23:59:59', NULL, NULL, '	微信', '2022-11-15 13:08:37', 0, 15, 0, NULL, 44.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-11-15 17:08:25', '2024-04-25 14:56:47', 4, '2022-11-15 17:19:07', 0, NULL, '湖南省', '株洲市', '攸县', '皇图岭镇', 1668503947, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (64, '5001672953034223384', 22, NULL, '海南省 海口市 龙华区 城西镇 学院路热科广场B座沙县小吃店', NULL, '小小吴', '13950916427', NULL, '', NULL, '318405057886734', '韵达速递', NULL, 0, 3, '已发货', '2022-11-17 06:46:43', '2022-11-18 23:59:59', NULL, NULL, '	支付宝', '2022-11-17 06:46:55', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2022-11-17 16:01:38', '2024-04-25 14:56:47', 4, '2022-11-17 16:59:23', 0, NULL, '海南省', '海口市', '龙华区', '城西镇', 1668675563, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (65, '5029531752869619571', 22, NULL, '广东省 珠海市 香洲区 前山街道 前山造贝卫生院', NULL, '贺媛媛', '15096386532', NULL, '', NULL, '318453013002422', '韵达速递', '2023-02-01 08:23:55', 0, 3, '已发货', '2023-01-31 09:49:49', '2023-02-01 23:59:59', NULL, NULL, '	支付宝', '2023-01-31 09:49:59', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2023-02-01 07:49:37', '2024-04-25 14:56:47', 4, '2023-02-01 08:24:22', 0, NULL, '广东省', '珠海市', '香洲区', '前山街道', 1675239862, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, NULL, 0);
+INSERT INTO `s_dou_order` VALUES (66, '5030436502888242865', 22, NULL, '四川省 成都市 都江堰市  大观镇', NULL, '刘艳', '13540005969', NULL, '', NULL, '433042074667095', '韵达速递', NULL, 0, 3, '已发货', '2023-02-02 20:26:34', '2023-02-03 23:59:59', NULL, NULL, '	支付宝', '2023-02-02 20:26:45', 0, 0, 0, NULL, 29.9, 0, 0, NULL, NULL, '抖音极速版', '小店自卖', 0.00, '2023-02-03 09:22:09', '2024-04-25 15:06:53', 4, '2023-02-03 11:12:29', 1, NULL, '四川省', '成都市', '都江堰市', '-', 1675422749, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, 3866300938460863, '梦小妮牛仔裤', 0);
 
 -- ----------------------------
 -- Table structure for s_dou_order_item
 -- ----------------------------
 DROP TABLE IF EXISTS `s_dou_order_item`;
 CREATE TABLE `s_dou_order_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
-  `douyin_order_id` bigint NOT NULL COMMENT 'dc_douyin_orders主键id',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
+  `douyin_order_id` bigint(0) NOT NULL COMMENT 'dc_douyin_orders主键id',
   `order_id` varchar(30)  NOT NULL COMMENT '抖音订单id',
   `sub_order_id` varchar(30)  NOT NULL COMMENT '子订单id',
-  `product_id` varchar(50)  NULL DEFAULT NULL COMMENT '该子订单购买的商品id',
-  `product_name` varchar(50)  NULL DEFAULT NULL COMMENT '商品名称',
-  `product_pic` varchar(500)  NULL DEFAULT NULL COMMENT '商品图片 (spu维度的商品主图)',
-  `combo_id` varchar(50)  NULL DEFAULT '' COMMENT '该子订单购买的商品 sku_id',
-  `goods_num` varchar(20)  NULL DEFAULT NULL COMMENT '商品编码',
-  `spec_num` varchar(30)  NULL DEFAULT NULL COMMENT '该子订单购买的商品的编码 code',
-  `goods_spec` varchar(500)  NULL DEFAULT NULL COMMENT '该子订单所属商品规格描述',
-  `combo_num` int NOT NULL COMMENT '该子订单所购买的sku的数量',
+  `product_id` varchar(50)  DEFAULT NULL COMMENT '该子订单购买的商品id',
+  `product_name` varchar(50)  DEFAULT NULL COMMENT '商品名称',
+  `product_pic` varchar(500)  DEFAULT NULL COMMENT '商品图片 (spu维度的商品主图)',
+  `combo_id` varchar(50)  DEFAULT '' COMMENT '该子订单购买的商品 sku_id',
+  `goods_num` varchar(20)  DEFAULT NULL COMMENT '商品编码',
+  `spec_num` varchar(30)  DEFAULT NULL COMMENT '该子订单购买的商品的编码 code',
+  `goods_spec` varchar(500)  DEFAULT NULL COMMENT '该子订单所属商品规格描述',
+  `combo_num` int(0) NOT NULL COMMENT '该子订单所购买的sku的数量',
   `post_amount` double NOT NULL DEFAULT 0 COMMENT '邮费金额 (单位: 分)',
   `coupon_amount` double NOT NULL DEFAULT 0 COMMENT '平台优惠券金额 (单位: 分)',
-  `coupon_meta_id` bigint NULL DEFAULT 0 COMMENT '优惠券id',
-  `coupon_info` varchar(50)  NULL DEFAULT NULL COMMENT '优惠券详情 (type为优惠券类型, credit为优惠金额,单位分)',
-  `campaign_info` varchar(100)  NULL DEFAULT NULL COMMENT '活动细则 (活动可能会导致商品成交价combo_amount变成活动sku价格 ,活动campaign_info字段中的title为活动标题)',
+  `coupon_meta_id` bigint(0) DEFAULT 0 COMMENT '优惠券id',
+  `coupon_info` varchar(50)  DEFAULT NULL COMMENT '优惠券详情 (type为优惠券类型, credit为优惠金额,单位分)',
+  `campaign_info` varchar(100)  DEFAULT NULL COMMENT '活动细则 (活动可能会导致商品成交价combo_amount变成活动sku价格 ,活动campaign_info字段中的title为活动标题)',
   `total_amount` double NOT NULL COMMENT '该子订单总金额 (单位: 分)',
-  `is_comment` int NOT NULL DEFAULT 0 COMMENT '是否评价 (1:已评价)',
-  `erp_goods_id` int NOT NULL COMMENT 'erp系统商品id',
-  `erp_spec_id` int NOT NULL COMMENT 'erp系统商品规格id',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '修改备注',
+  `is_comment` int(0) NOT NULL DEFAULT 0 COMMENT '是否评价 (1:已评价)',
+  `erp_goods_id` int(0) NOT NULL COMMENT 'erp系统商品id',
+  `erp_spec_id` int(0) NOT NULL COMMENT 'erp系统商品规格id',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '修改备注',
   `price` double NOT NULL DEFAULT 0 COMMENT '商品单价',
-  `is_gift` tinyint NOT NULL DEFAULT 0 COMMENT '是否赠品0否1是',
-  `item_status` tinyint NOT NULL DEFAULT 0 COMMENT '子订单状态0无售后4已取消2已退货',
+  `is_gift` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否赠品0否1是',
+  `item_status` tinyint(0) NOT NULL DEFAULT 0 COMMENT '子订单状态0无售后4已取消2已退货',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '抖店订单明细表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '抖店订单明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_dou_order_item
@@ -3018,59 +2929,112 @@ INSERT INTO `s_dou_order_item` VALUES (67, 66, '5030436502888242865', '	50304365
 -- ----------------------------
 DROP TABLE IF EXISTS `s_dou_order_refund`;
 CREATE TABLE `s_dou_order_refund`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '售后订单id，自增',
-  `aftersale_id` bigint NULL DEFAULT 0 COMMENT '售后id',
-  `aftersale_type` int NOT NULL COMMENT '售后类型，枚举为0(退货退款),1(已发货仅退款),2(未发货仅退款),3(换货)',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '售后订单id，自增',
+  `aftersale_id` bigint(0) DEFAULT 0 COMMENT '售后id',
+  `aftersale_type` int(0) NOT NULL COMMENT '售后类型，枚举为0(退货退款),1(已发货仅退款),2(未发货仅退款),3(换货)',
   `order_id` varchar(30)  NOT NULL COMMENT '抖音订单id',
   `sub_order_id` varchar(30)  NOT NULL COMMENT '抖音子订单id',
-  `shop_id` bigint NOT NULL COMMENT '订单所属商户id',
-  `product_pic` varchar(150)  NULL DEFAULT NULL COMMENT '商品图片',
-  `product_id` varchar(20)  NULL DEFAULT NULL COMMENT '商品id',
-  `product_name` varchar(50)  NULL DEFAULT NULL COMMENT '商品名',
-  `goods_num` varchar(50)  NULL DEFAULT NULL COMMENT '商品编码',
-  `combo_id` varchar(20)  NULL DEFAULT NULL COMMENT '该子订单购买的商品 sku_id',
-  `goods_spec` varchar(150)  NULL DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(20)  NULL DEFAULT NULL COMMENT '商品规格编码',
-  `combo_num` int NOT NULL COMMENT '退货数量',
-  `logistics_code` varchar(50)  NULL DEFAULT NULL COMMENT '物流单号',
-  `logistics_company` varchar(50)  NULL DEFAULT NULL COMMENT '物流公司',
-  `logistics_time` varchar(20)  NULL DEFAULT NULL COMMENT '发货时间',
-  `receipt_time` varchar(20)  NULL DEFAULT NULL COMMENT '收货时间',
-  `cancel_reason` varchar(50)  NULL DEFAULT NULL COMMENT '订单取消原因',
-  `remark` varchar(50)  NULL DEFAULT NULL COMMENT '备注',
+  `shop_id` bigint(0) NOT NULL COMMENT '订单所属商户id',
+  `product_pic` varchar(150)  DEFAULT NULL COMMENT '商品图片',
+  `product_id` varchar(20)  DEFAULT NULL COMMENT '商品id',
+  `product_name` varchar(50)  DEFAULT NULL COMMENT '商品名',
+  `goods_num` varchar(50)  DEFAULT NULL COMMENT '商品编码',
+  `combo_id` varchar(20)  DEFAULT NULL COMMENT '该子订单购买的商品 sku_id',
+  `goods_spec` varchar(150)  DEFAULT NULL COMMENT '商品规格',
+  `spec_num` varchar(20)  DEFAULT NULL COMMENT '商品规格编码',
+  `combo_num` int(0) NOT NULL COMMENT '退货数量',
+  `logistics_code` varchar(50)  DEFAULT NULL COMMENT '物流单号',
+  `logistics_company` varchar(50)  DEFAULT NULL COMMENT '物流公司',
+  `logistics_time` varchar(20)  DEFAULT NULL COMMENT '发货时间',
+  `receipt_time` varchar(20)  DEFAULT NULL COMMENT '收货时间',
+  `cancel_reason` varchar(50)  DEFAULT NULL COMMENT '订单取消原因',
+  `remark` varchar(50)  DEFAULT NULL COMMENT '备注',
   `order_amount` double NOT NULL COMMENT '父订单总金额 (单位: 分) 即用户实际支付金额, 不包含运费',
   `combo_amount` double NOT NULL COMMENT '金额',
-  `question_desc` varchar(150)  NULL DEFAULT NULL COMMENT '售后理由',
-  `apply_time` datetime NULL DEFAULT NULL COMMENT '申请退货时间',
-  `audit_status` int NOT NULL DEFAULT 0 COMMENT '确认状态0:未处理2已签收9供应商已退款',
-  `audit_time` datetime NULL DEFAULT NULL COMMENT '审核时间',
-  `refund_status` int NOT NULL DEFAULT 0 COMMENT '枚举为6(待商家同意),7(待买家退货),11(待商家二次同意),12(售后成功),13(换货待买家收货),14(换货成功),27(商家一次拒绝),28(售后失败),29(商家二次拒绝)',
-  `erp_goods_id` int NULL DEFAULT 0 COMMENT 'erp商品ID',
-  `erp_spec_id` int NULL DEFAULT 0 COMMENT 'erp商品规格ID',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `question_desc` varchar(150)  DEFAULT NULL COMMENT '售后理由',
+  `apply_time` datetime(0) DEFAULT NULL COMMENT '申请退货时间',
+  `audit_status` int(0) NOT NULL DEFAULT 0 COMMENT '确认状态0:未处理2已签收9供应商已退款',
+  `audit_time` datetime(0) DEFAULT NULL COMMENT '审核时间',
+  `refund_status` int(0) NOT NULL DEFAULT 0 COMMENT '枚举为6(待商家同意),7(待买家退货),11(待商家二次同意),12(售后成功),13(换货待买家收货),14(换货成功),27(商家一次拒绝),28(售后失败),29(商家二次拒绝)',
+  `erp_goods_id` int(0) DEFAULT 0 COMMENT 'erp商品ID',
+  `erp_spec_id` int(0) DEFAULT 0 COMMENT 'erp商品规格ID',
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '抖店订单退款表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '抖店订单退款表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of s_dou_order_refund
+-- Table structure for s_kwai_order
 -- ----------------------------
+DROP TABLE IF EXISTS `s_kwai_order`;
+CREATE TABLE `s_kwai_order`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'dc订单id',
+  `oid` bigint(0) NOT NULL COMMENT '快手订单id',
+  `createTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '创建时间',
+  `discountFee` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '折扣价格',
+  `expressFee` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '运费',
+  `num` int(0) NOT NULL COMMENT 'sku数量',
+  `consignee` varchar(30)  NOT NULL DEFAULT '' COMMENT '收件人姓名',
+  `mobile` varchar(30)  NOT NULL DEFAULT '' COMMENT '收件人手机号',
+  `payTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '支付时间',
+  `buyerRemark` varchar(500)  DEFAULT NULL COMMENT '买家备注',
+  `sellerRemark` varchar(500)  DEFAULT NULL COMMENT '卖家备注',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT '订单状态',
+  `refund` int(0) NOT NULL DEFAULT 0 COMMENT '是否退款 0未退款 1该订单申请过退款',
+  `totalFee` decimal(10, 2) NOT NULL COMMENT '子订单商品总价',
+  `province` varchar(50)  DEFAULT NULL COMMENT '省',
+  `city` varchar(50)  DEFAULT NULL COMMENT '市',
+  `district` varchar(50)  DEFAULT NULL COMMENT '区',
+  `address` varchar(200)  DEFAULT NULL COMMENT '详细地址',
+  `logisticsCompany` varchar(20)  DEFAULT NULL COMMENT '快递公司',
+  `logisticsCompanyCode` varchar(20)  DEFAULT NULL COMMENT '快递公司编码',
+  `logisticsCode` varchar(30)  DEFAULT NULL COMMENT '快递单号',
+  `auditStatus` int(0) NOT NULL DEFAULT 0 COMMENT '订单审核状态（0待审核1已审核）',
+  `createOn` bigint(0) NOT NULL DEFAULT 0 COMMENT '创建时间',
+  `sendStatus` int(0) DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
+  `sendTime` bigint(0) DEFAULT NULL COMMENT '发货时间（仓库真实发货时间）',
+  PRIMARY KEY (`id`) 
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '快手订单' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for s_kwai_orders_item
+-- ----------------------------
+DROP TABLE IF EXISTS `s_kwai_orders_item`;
+CREATE TABLE `s_kwai_orders_item`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
+  `itemId` bigint(0) NOT NULL COMMENT '快手子订单id',
+  `orderId` bigint(0) NOT NULL COMMENT '订单ID',
+  `erpGoodsId` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
+  `erpGoodsSpecId` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
+  `itemTitle` varchar(100)  NOT NULL COMMENT '商品名称',
+  `itemPicUrl` varchar(100)  DEFAULT NULL COMMENT '商品图片',
+  `goodsNum` varchar(35)  NOT NULL COMMENT '商品编码',
+  `goodsSpec` varchar(50)  NOT NULL COMMENT '商品规格',
+  `skuNick` varchar(35)  NOT NULL COMMENT '商品规格编码',
+  `price` double NOT NULL COMMENT '商品单价',
+  `num` int(0) NOT NULL COMMENT '商品数量',
+  `refundId` bigint(0) NOT NULL COMMENT '退货Id',
+  `refundStatus` int(0) NOT NULL COMMENT '退货状态',
+  `remark` varchar(500)  DEFAULT NULL,
+  `isGift` int(0) NOT NULL DEFAULT 0 COMMENT '是否赠品0:否1:是',
+  PRIMARY KEY (`id`) 
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for s_pdd_order
 -- ----------------------------
 DROP TABLE IF EXISTS `s_pdd_order`;
 CREATE TABLE `s_pdd_order`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
   `order_sn` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '订单编号',
-  `shop_id` int NOT NULL COMMENT '内部店铺ID',
-  `trade_type` int NOT NULL COMMENT '订单类型 0-普通订单 ，1- 定金订单',
-  `free_sf` int NOT NULL COMMENT '是否顺丰包邮，1-是 0-否',
-  `is_lucky_flag` int NOT NULL COMMENT '是否是抽奖订单，1-非抽奖订单，2-抽奖订单',
-  `group_status` int NOT NULL COMMENT '成团状态：0：拼团中、1：已成团、2：团失败',
-  `confirm_status` int NOT NULL COMMENT '成交状态：0：未成交、1：已成交、2：已取消、',
-  `order_status` int NOT NULL COMMENT '订单状态1：待发货，2：已发货待签收，3：已签收',
-  `refund_status` int NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 5：全部',
+  `shop_id` int(0) NOT NULL COMMENT '内部店铺ID',
+  `trade_type` int(0) NOT NULL COMMENT '订单类型 0-普通订单 ，1- 定金订单',
+  `free_sf` int(0) NOT NULL COMMENT '是否顺丰包邮，1-是 0-否',
+  `is_lucky_flag` int(0) NOT NULL COMMENT '是否是抽奖订单，1-非抽奖订单，2-抽奖订单',
+  `group_status` int(0) NOT NULL COMMENT '成团状态：0：拼团中、1：已成团、2：团失败',
+  `confirm_status` int(0) NOT NULL COMMENT '成交状态：0：未成交、1：已成交、2：已取消、',
+  `order_status` int(0) NOT NULL COMMENT '订单状态1：待发货，2：已发货待签收，3：已签收',
+  `refund_status` int(0) NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 5：全部',
   `capital_free_discount` double NOT NULL COMMENT '团长免单金额，单位：元',
   `seller_discount` double NOT NULL COMMENT '商家优惠金额，单位：元',
   `platform_discount` double NOT NULL COMMENT '平台优惠金额，单位：元',
@@ -3078,47 +3042,47 @@ CREATE TABLE `s_pdd_order`  (
   `discount_amount` double NOT NULL COMMENT '折扣金额，单位：元，折扣金额=平台优惠+商家优惠+团长免单优惠金额',
   `pay_amount` double NOT NULL COMMENT '支付金额，单位：元，支付金额=商品金额-折扣金额+邮费',
   `postage` double NOT NULL COMMENT '邮费，单位：元',
-  `remark` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '订单备注',
-  `buyer_memo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '买家留言信息',
-  `updated_at` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '订单的更新时间',
-  `shipping_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '发货时间',
-  `tracking_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '快递单号',
-  `tracking_company` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '物流公司',
-  `pay_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '支付方式，枚举值：QQ,WEIXIN,ALIPAY,LIANLIANPAY',
-  `pay_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '支付单号',
-  `receiver_phone` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '收件人电话',
-  `receiver_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '收件人姓名',
-  `receiver_name1` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `receiver_phone1` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `receiver_address1` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `address` varchar(800) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '详细地址',
-  `town` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '区县',
-  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '市',
-  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '省',
-  `country` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '国家地区',
-  `created_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `pay_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '支付时间',
-  `confirm_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '成交时间',
-  `receive_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '确认收货时间',
-  `after_sales_status` int NOT NULL COMMENT '售后状态 0：无售后 2：买家申请退款，待商家处理 3：退货退款，待商家处理 4：商家同意退款，退款中 5：平台同意退款，退款中 6：驳回退款， 待买家处理 7：已同意退货退款,待用户发货 8：平台处理中 9：平台拒 绝退款，退款关闭 10：退款成功 11：买家撤销 12：买家逾期未处 理，退款失败 13：买家逾期，超过有效期 14 : 换货补寄待商家处理 15:换货补寄待用户处理 16:换货补寄成功 17:换货补寄失败 18:换货补寄待用户确认完成',
-  `order_confirm_time` bigint NOT NULL COMMENT '订单成交时间',
-  `last_ship_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '订单承诺发货时间',
-  `audit_status` int NOT NULL DEFAULT 0 COMMENT '0待确认，1已确认2已拦截-9未拉取',
-  `settlement_status` int NOT NULL DEFAULT 0 COMMENT '结算状态（0未结算1已结算）',
-  `ship_status` int NOT NULL DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
-  `ship_time` bigint NULL DEFAULT 0 COMMENT '发货时间（仓库真实发货时间）',
-  `tag` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '标签',
-  `excel_log_id` int NULL DEFAULT 0 COMMENT '导入文件id',
-  `excel_msg` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '导入结果',
-  `encryptedData` varchar(6000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '打印密文',
-  `signature` varchar(3000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '打印签名',
-  `print_status` tinyint(1) NULL DEFAULT 0 COMMENT '打印状态（0：未打印1已打印2已取号3已回收）',
-  `print_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '打印时间',
-  `nameKey` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '收件人检索',
-  `phoneKey` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '手机号检索',
-  `addressKey` varchar(355) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '地址检索',
-  `result` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '订单处理结果',
-  `pull_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'API拉取时间',
+  `remark` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '订单备注',
+  `buyer_memo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '买家留言信息',
+  `updated_at` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '订单的更新时间',
+  `shipping_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '发货时间',
+  `tracking_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '快递单号',
+  `tracking_company` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '物流公司',
+  `pay_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '支付方式，枚举值：QQ,WEIXIN,ALIPAY,LIANLIANPAY',
+  `pay_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '支付单号',
+  `receiver_phone` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '收件人电话',
+  `receiver_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '收件人姓名',
+  `receiver_name1` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `receiver_phone1` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `receiver_address1` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(800) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '详细地址',
+  `town` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '区县',
+  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '市',
+  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '省',
+  `country` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '国家地区',
+  `created_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
+  `pay_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '支付时间',
+  `confirm_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '成交时间',
+  `receive_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '确认收货时间',
+  `after_sales_status` int(0) NOT NULL COMMENT '售后状态 0：无售后 2：买家申请退款，待商家处理 3：退货退款，待商家处理 4：商家同意退款，退款中 5：平台同意退款，退款中 6：驳回退款， 待买家处理 7：已同意退货退款,待用户发货 8：平台处理中 9：平台拒 绝退款，退款关闭 10：退款成功 11：买家撤销 12：买家逾期未处 理，退款失败 13：买家逾期，超过有效期 14 : 换货补寄待商家处理 15:换货补寄待用户处理 16:换货补寄成功 17:换货补寄失败 18:换货补寄待用户确认完成',
+  `order_confirm_time` bigint(0) NOT NULL COMMENT '订单成交时间',
+  `last_ship_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '订单承诺发货时间',
+  `audit_status` int(0) NOT NULL DEFAULT 0 COMMENT '0待确认，1已确认2已拦截-9未拉取',
+  `settlement_status` int(0) NOT NULL DEFAULT 0 COMMENT '结算状态（0未结算1已结算）',
+  `ship_status` int(0) NOT NULL DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
+  `ship_time` bigint(0) DEFAULT 0 COMMENT '发货时间（仓库真实发货时间）',
+  `tag` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '标签',
+  `excel_log_id` int(0) DEFAULT 0 COMMENT '导入文件id',
+  `excel_msg` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '导入结果',
+  `encryptedData` varchar(6000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '打印密文',
+  `signature` varchar(3000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '打印签名',
+  `print_status` tinyint(1) DEFAULT 0 COMMENT '打印状态（0：未打印1已打印2已取号3已回收）',
+  `print_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '打印时间',
+  `nameKey` char(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '收件人检索',
+  `phoneKey` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '手机号检索',
+  `addressKey` varchar(355) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '地址检索',
+  `result` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '订单处理结果',
+  `pull_time` timestamp(0) DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'API拉取时间',
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `order_sn_index`(`order_sn`) ,
   INDEX `shopid_index`(`shop_id`) ,
@@ -3126,7 +3090,7 @@ CREATE TABLE `s_pdd_order`  (
   INDEX `phoneKey_index`(`phoneKey`) ,
   INDEX `addressKey_index`(`addressKey`) ,
   INDEX `printStatus_index`(`print_status`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 3506 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '拼多多订单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3506 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '拼多多订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_pdd_order
@@ -3621,35 +3585,35 @@ INSERT INTO `s_pdd_order` VALUES (3486, '230329-581210009042281', 5, 0, 0, 1, 1,
 INSERT INTO `s_pdd_order` VALUES (3487, '230330-050987017230645', 5, 0, 0, 1, 1, 1, 2, 1, 0, 0, 0, 32.79, 0, 32.79, 0, '', '', '2023-03-30 18:14:11', '2023-03-30 18:14:11', '78331857598514', NULL, '', '', '', '', NULL, NULL, NULL, '', '', '', '', '中国', '2023-03-30 17:19:14', '2023-03-30 17:19:51', '2023-03-30 17:19:51', '', 0, 1680167991, '2023-04-01 17:19:51', 0, 0, 0, 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2023-04-05 20:48:54');
 INSERT INTO `s_pdd_order` VALUES (3488, '230330-314745896382491', 5, 0, 0, 1, 1, 1, 2, 1, 0, 0, 0, 33, 0, 33, 0, '', '', '2023-03-31 16:35:11', '2023-03-30 18:13:14', '78331857597972', NULL, '', '', '', '', NULL, NULL, NULL, '', '', '', '', '中国', '2023-03-30 17:43:24', '2023-03-30 17:43:33', '2023-03-30 17:43:33', '', 0, 1680169413, '2023-04-01 17:43:33', 0, 0, 0, 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2023-04-05 20:48:54');
 INSERT INTO `s_pdd_order` VALUES (3489, '230403-066542714452758', 5, 0, 0, 1, 1, 1, 2, 1, 0, 1, 0, 29.6, 1, 28.6, 0, '', '', '2023-04-05 13:00:23', '2023-04-04 17:06:27', '78332839676626', NULL, '', '', '', '', NULL, NULL, NULL, '', '', '', '', '中国', '2023-04-03 20:11:15', '2023-04-03 20:11:22', '2023-04-03 20:11:22', '', 0, 1680523882, '2023-04-05 20:11:22', 0, 0, 0, 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2023-04-05 20:48:55');
-INSERT INTO `s_pdd_order` VALUES (3490, '230405-342695669310441', 5, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 32.79, 0, 32.79, 0, '', '', '2023-04-05 02:43:11', '', '', NULL, '', '', '$vxGyQuVp6bpn$AgAAAAHv6FsGVfxouQDwiBet5SE/w21BlGn6x8VZ8bA=$3$$', '~AgAAAAHv6FsFVfxouQDJ/gs/ADhdzMsCoqXQfss7IvQ=~Sn7H~3~~', NULL, NULL, NULL, '~AgAAAAHv6FsHVfxouQHmr1gjB0AePR62JSRgCnoVVHuaeVGytseL1GMD0sfRhhwGQUlZnktQDBe4lJ8SZKzl2+aAaC/llMoujMjYS98oYqpDNA9BaAcfF77HCd4UoQyvxF4Gg6yLjP+fSY8cOU3PL90N/G0QnKVGqNp+Z0fbcCJ2Fi2XQtJJHTmBNVInw4pd~3RY9I/SuW19d5Z0jQkFZVcKlj4hs2qt+oTTQt0cwxcG61q+p4UzRA1GPFogyvA7sGM6rE+/nVfkjelsNvJaynhj1ElKLcdAP+hvcDaAbjZMRFy+n3wZPGL+RdSM4kjgH~3~~', '景洪市', '西双版纳傣族自治州', '云南省', '中国', '2023-04-05 02:42:59', '2023-04-05 02:43:01', '2023-04-05 02:43:01', '', 0, 1680633781, '2023-04-07 02:43:01', 0, 0, 0, 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2023-04-05 20:48:55');
+INSERT INTO `s_pdd_order` VALUES (3490, '230405-342695669310441', 5, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 32.79, 0, 32.79, 0, '', '', '2023-04-05 02:43:11', '', '', NULL, '', '', '$vxGyQuVp6bpn$AgAAAAHv6FsGVfxouQDwiBet5SE/w21BlGn6x8VZ8bA=$3$$', '~AgAAAAHv6FsFVfxouQDJ/gs/ADhdzMsCoqXQfss7IvQ=~Sn7H~3~~', NULL, NULL, NULL, '~AgAAAAHv6FsHVfxouQHmr1gjB0AePR62JSRgCnoVVHuaeVGytseL1GMD0sfRhhwGQUlZnktQDBe4lJ8SZKzl2+aAaC/llMoujMjYS98oYqpDNA9BaAcfF77HCd4UoQyvxF4Gg6yLjP+fSY8cOU3PL90N/G0QnKVGqNp+Z0fbcCJ2Fi2XQtJJHTmBNVInw4pd~3RY9I/SuW19d5Z0jQkFZVcKlj4hs2qt+oTTQt0cwxcG61q+p4UzRA1GPFogyvA7sGM6rE+/nVfkjelsNvJaynhj1ElKLcdAP+hvcDaAbjZMRFy+n3wZPGL+RdSM4kjgH~3~~', '景洪市', '西双版纳傣族自治州', '云南省', '中国', '2023-04-05 02:42:59', '2023-04-05 02:43:01', '2023-04-05 02:43:01', '', 0, 1680633781, '2023-04-07 02:43:01', 1, 0, 0, 0, NULL, 0, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2024-04-25 14:52:28');
 
 -- ----------------------------
 -- Table structure for s_pdd_order_item
 -- ----------------------------
 DROP TABLE IF EXISTS `s_pdd_order_item`;
 CREATE TABLE `s_pdd_order_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
-  `order_id` bigint NOT NULL COMMENT '订单ID',
-  `erp_goods_id` int NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
-  `erp_spec_id` int NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `goods_name` varchar(100)  NULL DEFAULT NULL COMMENT '商品名称',
-  `goods_image` varchar(100)  NULL DEFAULT NULL COMMENT '商品图片',
-  `goods_num` varchar(35)  NULL DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(50)  NULL DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(35)  NULL DEFAULT NULL COMMENT '商品规格编码',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
+  `order_id` bigint(0) NOT NULL COMMENT '订单ID',
+  `erp_goods_id` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
+  `erp_spec_id` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
+  `goods_name` varchar(100)  DEFAULT NULL COMMENT '商品名称',
+  `goods_image` varchar(100)  DEFAULT NULL COMMENT '商品图片',
+  `goods_num` varchar(35)  DEFAULT NULL COMMENT '商品编码',
+  `goods_spec` varchar(50)  DEFAULT NULL COMMENT '商品规格',
+  `spec_num` varchar(35)  DEFAULT NULL COMMENT '商品规格编码',
   `goods_price` double NOT NULL COMMENT '商品单价',
-  `item_amount` double NULL DEFAULT NULL COMMENT '子订单金额',
-  `quantity` int NOT NULL COMMENT '商品数量',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
-  `is_gift` tinyint NOT NULL DEFAULT 0 COMMENT '是否礼品0否1是',
-  `good_id` bigint NULL DEFAULT 0 COMMENT '拼多多商品id',
-  `sku_id` bigint NULL DEFAULT 0 COMMENT '拼多多商品skuid',
-  `refund_count` int NULL DEFAULT 0 COMMENT '已退货数量',
-  `refund_status` int NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 ',
+  `item_amount` double DEFAULT NULL COMMENT '子订单金额',
+  `quantity` int(0) NOT NULL COMMENT '商品数量',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '备注',
+  `is_gift` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否礼品0否1是',
+  `good_id` bigint(0) DEFAULT 0 COMMENT '拼多多商品id',
+  `sku_id` bigint(0) DEFAULT 0 COMMENT '拼多多商品skuid',
+  `refund_count` int(0) DEFAULT 0 COMMENT '已退货数量',
+  `refund_status` int(0) NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 ',
   PRIMARY KEY (`id`) ,
   INDEX `goodId_index`(`erp_goods_id`) ,
   INDEX `order_id`(`order_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 3497 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '拼多多订单明细表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3497 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '拼多多订单明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_pdd_order_item
@@ -4151,74 +4115,70 @@ INSERT INTO `s_pdd_order_item` VALUES (3490, 3490, 10, 48, '牛仔短裤辣妹�
 -- ----------------------------
 DROP TABLE IF EXISTS `s_pdd_order_refund`;
 CREATE TABLE `s_pdd_order_refund`  (
-  `id` bigint NOT NULL COMMENT '售后编号',
+  `id` bigint(0) NOT NULL COMMENT '售后编号',
   `order_sn` varchar(50)  NOT NULL COMMENT '订单编号',
-  `shopId` int NOT NULL COMMENT '内部店铺ID',
-  `after_sales_type` int NOT NULL COMMENT '必填，售后类型2：仅退款 3：退货退款 4：换货 5：缺货补寄 9:拦截退货',
-  `after_sales_status` int NOT NULL COMMENT '必填，售后状态 1：全部 2：买家申请退款，待商家处理 3：退货退款，待商家处理 4：商家同意退款，退款中 5：平台同意退款，退款中 6：驳回退款， 待买家处理 7：已同意退货退款,待用户发货 8：平台处理中 9：平台拒 绝退款，退款关闭 10：退款成功 11：买家撤销 12：买家逾期未处 理，退款失败 13：买家逾期，超过有效期 14 : 换货补寄待商家处理 15:换货补寄待用户处理 16:换货补寄成功 17:换货补寄失败 18:换货补寄待用户确认完成 31：商家同意拒收退款，待用户拒收;32: 待商家补寄发货',
-  `after_sale_reason` varchar(50)  NULL DEFAULT NULL COMMENT '售后原因',
-  `confirm_time` bigint NOT NULL COMMENT '订单成团时间',
-  `created_time` bigint NOT NULL COMMENT '创建时间',
+  `shopId` int(0) NOT NULL COMMENT '内部店铺ID',
+  `after_sales_type` int(0) NOT NULL COMMENT '必填，售后类型2：仅退款 3：退货退款 4：换货 5：缺货补寄 9:拦截退货',
+  `after_sales_status` int(0) NOT NULL COMMENT '必填，售后状态 1：全部 2：买家申请退款，待商家处理 3：退货退款，待商家处理 4：商家同意退款，退款中 5：平台同意退款，退款中 6：驳回退款， 待买家处理 7：已同意退货退款,待用户发货 8：平台处理中 9：平台拒 绝退款，退款关闭 10：退款成功 11：买家撤销 12：买家逾期未处 理，退款失败 13：买家逾期，超过有效期 14 : 换货补寄待商家处理 15:换货补寄待用户处理 16:换货补寄成功 17:换货补寄失败 18:换货补寄待用户确认完成 31：商家同意拒收退款，待用户拒收;32: 待商家补寄发货',
+  `after_sale_reason` varchar(50)  DEFAULT NULL COMMENT '售后原因',
+  `confirm_time` bigint(0) NOT NULL COMMENT '订单成团时间',
+  `created_time` bigint(0) NOT NULL COMMENT '创建时间',
   `discount_amount` double NOT NULL COMMENT '订单折扣金额（元）',
   `order_amount` double NOT NULL COMMENT '订单金额（元）',
   `refund_amount` double NOT NULL COMMENT '退款金额（元）',
-  `goods_image` varchar(245)  NULL DEFAULT NULL COMMENT '商品图片',
-  `goods_id` bigint NULL DEFAULT NULL COMMENT '拼多多商品id',
-  `sku_id` bigint NULL DEFAULT NULL COMMENT '拼多多商品skuid',
-  `goods_name` varchar(100)  NULL DEFAULT NULL COMMENT '商品名称',
-  `goods_number` varchar(50)  NULL DEFAULT '' COMMENT '商品编码',
-  `spec_number` varchar(50)  NULL DEFAULT '' COMMENT '商品编码',
-  `goods_spec` varchar(50)  NULL DEFAULT '' COMMENT '商品规格',
-  `quantity` int NOT NULL COMMENT '数量',
+  `goods_image` varchar(245)  DEFAULT NULL COMMENT '商品图片',
+  `goods_id` bigint(0) DEFAULT NULL COMMENT '拼多多商品id',
+  `sku_id` bigint(0) DEFAULT NULL COMMENT '拼多多商品skuid',
+  `goods_name` varchar(100)  DEFAULT NULL COMMENT '商品名称',
+  `goods_number` varchar(50)  DEFAULT '' COMMENT '商品编码',
+  `spec_number` varchar(50)  DEFAULT '' COMMENT '商品编码',
+  `goods_spec` varchar(50)  DEFAULT '' COMMENT '商品规格',
+  `quantity` int(0) NOT NULL COMMENT '数量',
   `goods_price` double NOT NULL COMMENT '商品价格，单位：元',
-  `updated_time` varchar(50)  NULL DEFAULT NULL COMMENT '更新时间',
-  `tracking_number` varchar(50)  NULL DEFAULT NULL COMMENT '快递单号',
-  `tracking_company` varchar(50)  NULL DEFAULT NULL COMMENT '快递公司',
-  `audit_status` int NOT NULL DEFAULT 0 COMMENT '审核状态2已签收9供应商已退款',
-  `audit_time` datetime NULL DEFAULT NULL COMMENT '审核时间',
-  `describe` varchar(300)  NULL DEFAULT NULL COMMENT '备注',
-  `remark` varchar(100)  NULL DEFAULT NULL COMMENT '退货说明',
-  `shipping_status` int NULL DEFAULT NULL COMMENT '订单发货状态 0:未发货， 1:已发货（包含：已发货，已揽收）',
-  `user_shipping_status` int NULL DEFAULT NULL COMMENT '0-未勾选 1-消费者选择的收货状态为未收到货 2-消费者选择的收货状态为已收到货',
-  `erp_order_return_num` varchar(50)  NULL DEFAULT NULL COMMENT 'erp退货单号',
-  `erp_order_return_id` bigint NULL DEFAULT NULL COMMENT 'erp退货单id',
-  `sign` varchar(50)  NULL DEFAULT NULL COMMENT '标记',
+  `updated_time` varchar(50)  DEFAULT NULL COMMENT '更新时间',
+  `tracking_number` varchar(50)  DEFAULT NULL COMMENT '快递单号',
+  `tracking_company` varchar(50)  DEFAULT NULL COMMENT '快递公司',
+  `audit_status` int(0) NOT NULL DEFAULT 0 COMMENT '审核状态2已签收9供应商已退款',
+  `audit_time` datetime(0) DEFAULT NULL COMMENT '审核时间',
+  `describe` varchar(300)  DEFAULT NULL COMMENT '备注',
+  `remark` varchar(100)  DEFAULT NULL COMMENT '退货说明',
+  `shipping_status` int(0) DEFAULT NULL COMMENT '订单发货状态 0:未发货， 1:已发货（包含：已发货，已揽收）',
+  `user_shipping_status` int(0) DEFAULT NULL COMMENT '0-未勾选 1-消费者选择的收货状态为未收到货 2-消费者选择的收货状态为已收到货',
+  `erp_order_return_num` varchar(50)  DEFAULT NULL COMMENT 'erp退货单号',
+  `erp_order_return_id` bigint(0) DEFAULT NULL COMMENT 'erp退货单id',
+  `sign` varchar(50)  DEFAULT NULL COMMENT '标记',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '拼多多订单退款表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of s_pdd_order_refund
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '拼多多订单退款表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for s_shop
 -- ----------------------------
 DROP TABLE IF EXISTS `s_shop`;
 CREATE TABLE `s_shop`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` varchar(50)  NOT NULL COMMENT '店铺名',
-  `nickName` varchar(15)  NULL DEFAULT NULL COMMENT '店铺别名',
-  `ename` varchar(10)  NULL DEFAULT NULL COMMENT '标识',
-  `company` varchar(50)  NULL DEFAULT NULL COMMENT '店铺主题',
-  `type` int NOT NULL COMMENT '对应第三方平台Id',
-  `url` varchar(100)  NULL DEFAULT NULL COMMENT '店铺url',
-  `orderNum` int NOT NULL DEFAULT 9 COMMENT '排序',
-  `isDelete` int NOT NULL DEFAULT 0 COMMENT '是否删除0否1是',
-  `isShow` int NULL DEFAULT 0 COMMENT '是否显示(0：是1否）',
-  `modify_on` bigint NOT NULL COMMENT '更新时间',
-  `remark` varchar(50)  NULL DEFAULT NULL COMMENT '描述',
-  `sellerUserId` bigint NOT NULL DEFAULT 0 COMMENT '第三方平台店铺id，淘宝天猫开放平台使用',
-  `sellerUserIdStr` varchar(50)  NULL DEFAULT NULL COMMENT '卖家userId',
-  `sessionKey` varchar(100)  NULL DEFAULT NULL COMMENT '第三方平台sessionKey（access_token）',
-  `appkey` varchar(100)  NULL DEFAULT NULL COMMENT 'Appkey',
-  `appSercet` varchar(100)  NULL DEFAULT NULL COMMENT 'Appsercet',
-  `expires_in` bigint NULL DEFAULT NULL COMMENT '到期',
-  `access_token_begin` bigint NULL DEFAULT NULL COMMENT 'access_token开始时间',
-  `refresh_token` varchar(500)  NULL DEFAULT NULL COMMENT '刷新token',
-  `refresh_token_timeout` bigint NULL DEFAULT NULL COMMENT '刷新token过期时间',
-  `api_request_url` varchar(100)  NULL DEFAULT NULL COMMENT '请求url',
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(50) NOT NULL COMMENT '店铺名',
+  `nickName` varchar(15) DEFAULT NULL COMMENT '店铺别名',
+  `ename` varchar(10) DEFAULT NULL COMMENT '标识',
+  `company` varchar(50) DEFAULT NULL COMMENT '店铺主题',
+  `type` int(0) NOT NULL COMMENT '对应第三方平台Id',
+  `url` varchar(100) DEFAULT NULL COMMENT '店铺url',
+  `orderNum` int(0) NOT NULL DEFAULT 9 COMMENT '排序',
+  `isDelete` int(0) NOT NULL DEFAULT 0 COMMENT '是否删除0否1是',
+  `isShow` int(0) DEFAULT 0 COMMENT '是否显示(0：是1否）',
+  `modify_on` bigint(0) NOT NULL COMMENT '更新时间',
+  `remark` varchar(50) DEFAULT NULL COMMENT '描述',
+  `sellerUserId` bigint(0) NOT NULL DEFAULT 0 COMMENT '第三方平台店铺id，淘宝天猫开放平台使用',
+  `sellerUserIdStr` varchar(50) DEFAULT NULL COMMENT '卖家userId',
+  `sessionKey` varchar(100) DEFAULT NULL COMMENT '第三方平台sessionKey（access_token）',
+  `appkey` varchar(100) DEFAULT NULL COMMENT 'Appkey',
+  `appSercet` varchar(100) DEFAULT NULL COMMENT 'Appsercet',
+  `expires_in` bigint(0) DEFAULT NULL COMMENT '到期',
+  `access_token_begin` bigint(0) DEFAULT NULL COMMENT 'access_token开始时间',
+  `refresh_token` varchar(500) DEFAULT NULL COMMENT '刷新token',
+  `refresh_token_timeout` bigint(0) DEFAULT NULL COMMENT '刷新token过期时间',
+  `api_request_url` varchar(100) DEFAULT NULL COMMENT '请求url',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据中心-店铺' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_shop
@@ -4228,7 +4188,7 @@ INSERT INTO `s_shop` VALUES (2, '视频号店铺-测试', '拼多多-梦小妮',
 INSERT INTO `s_shop` VALUES (3, '测试京东', '拼多多-梦小妮', 'jd', '煜梦服饰', 3, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `s_shop` VALUES (5, '梦小妮潮流女装', '拼多多-梦小妮', 'pdd', '煜梦服饰', 5, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `s_shop` VALUES (6, '梦小妮牛仔裤', '淘宝-梦小妮', 'taobao', '煜梦服饰', 4, '', 98, 0, 1, 0, '', 2200787809358, '0', '610140071d1070a37cecea89f1c1f3d6e5d19bf4b58dd942200787809358', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', NULL, NULL, NULL, NULL, 'http://gw.api.taobao.com/router/rest');
-INSERT INTO `s_shop` VALUES (13, '梦小妮牛仔裤-快手', '快手小店', 'kuaishou', '华衣云商', 13, NULL, 9, 1, 0, 0, NULL, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `s_shop` VALUES (13, '梦小妮牛仔裤-快手', '快手小店', 'kuaishou', '华衣云商', 8, NULL, 9, 1, 0, 0, NULL, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `s_shop` VALUES (21, '珍姐姐de衣柜的店', '启航家常菜的店-小红书', 'xhs', '启航', 7, 'https://ark.xiaohongshu.com/ark/open_api/v3/common_controller', 2, 0, 0, 1658303081, NULL, 21, '6255224c3801e1000190d3d0', 'token-0f3f8a5fc5aa465aa29a66d27c6cf170-dad68769d83e4e1a9f52a950a680b9f2', '621919dd99484598a69c', '1747d77da2ce58b97483932041c5503e', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `s_shop` VALUES (22, '梦小妮牛仔裤', '抖音-梦小妮', 'douyin', '华衣云商', 6, 'http://openapi.jinritemai.com', 87, 0, 1, 1653672695, NULL, 4463798, '0', '', '7249607407477720636', '36a12497-fb9d-4b54-8cd1-fd1617346687', NULL, NULL, NULL, NULL, '2');
 
@@ -4237,25 +4197,25 @@ INSERT INTO `s_shop` VALUES (22, '梦小妮牛仔裤', '抖音-梦小妮', 'douy
 -- ----------------------------
 DROP TABLE IF EXISTS `s_shop_goods`;
 CREATE TABLE `s_shop_goods`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `goodsId` bigint NOT NULL COMMENT '商品id，PDD商品id',
-  `erp_goods_id` int NULL DEFAULT NULL,
-  `shopId` int NOT NULL,
-  `shopType` int NOT NULL,
-  `goodsNum` varchar(50)  NULL DEFAULT NULL COMMENT '商品货号，erp系统商品编码',
-  `goodsName` varchar(60)  NULL DEFAULT NULL,
-  `price` varchar(50)  NULL DEFAULT NULL COMMENT '参考价格，返回价格区间，可能为空',
-  `title` varchar(50)  NULL DEFAULT NULL COMMENT '商品标题',
-  `remark` varchar(50)  NULL DEFAULT NULL,
-  `thumbUrl` varchar(200)  NULL DEFAULT NULL COMMENT '主图',
-  `imageUrl` varchar(500)  NULL DEFAULT NULL COMMENT '商品图片json',
-  `isMoreSku` int NULL DEFAULT NULL,
-  `isOnsale` int NULL DEFAULT NULL,
-  `totalSales` int NULL DEFAULT 0 COMMENT '累计销量',
-  `publishTime` datetime NULL DEFAULT NULL COMMENT '发布日期',
-  `createTime` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `goodsId` bigint(0) NOT NULL COMMENT '商品id，PDD商品id',
+  `erp_goods_id` int(0) DEFAULT NULL,
+  `shopId` int(0) NOT NULL,
+  `shopType` int(0) NOT NULL,
+  `goodsNum` varchar(50)  DEFAULT NULL COMMENT '商品货号，erp系统商品编码',
+  `goodsName` varchar(60)  DEFAULT NULL,
+  `price` varchar(50)  DEFAULT NULL COMMENT '参考价格，返回价格区间，可能为空',
+  `title` varchar(50)  DEFAULT NULL COMMENT '商品标题',
+  `remark` varchar(50)  DEFAULT NULL,
+  `thumbUrl` varchar(200)  DEFAULT NULL COMMENT '主图',
+  `imageUrl` varchar(500)  DEFAULT NULL COMMENT '商品图片json',
+  `isMoreSku` int(0) DEFAULT NULL,
+  `isOnsale` int(0) DEFAULT NULL,
+  `totalSales` int(0) DEFAULT 0 COMMENT '累计销量',
+  `publishTime` datetime(0) DEFAULT NULL COMMENT '发布日期',
+  `createTime` datetime(0) DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_shop_goods
@@ -4367,26 +4327,26 @@ INSERT INTO `s_shop_goods` VALUES (101, 700462980460, 0, 6, 4, 'KH2012', '2023�
 -- ----------------------------
 DROP TABLE IF EXISTS `s_shop_goods_sku`;
 CREATE TABLE `s_shop_goods_sku`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `shop_goods_id` bigint NOT NULL COMMENT '外键id',
-  `goodsId` bigint NOT NULL COMMENT '商品id，阿里productID',
-  `skuId` bigint NOT NULL COMMENT '商品skuid，阿里',
-  `spec` varchar(100)  NULL DEFAULT '' COMMENT 'specId',
-  `erp_goods_spec_id` int NULL DEFAULT NULL,
-  `erp_goods_id` int NULL DEFAULT NULL,
-  `erp_goods_spec_code` varchar(50)  NULL DEFAULT NULL,
-  `skuQuantity` bigint NULL DEFAULT NULL,
-  `consignPrice` double NULL DEFAULT NULL COMMENT '分销基准价。代销场景均使用该价格。无SKU商品查看saleInfo中的consignPrice',
-  `outerId` varchar(50)  NULL DEFAULT NULL COMMENT 'sku编码',
-  `outerGoodsId` varchar(50)  NULL DEFAULT NULL COMMENT 'spu编码',
-  `price` double NULL DEFAULT NULL COMMENT '报价时该规格的单价，国际站注意要点：含有SKU属性的在线批发产品设定具体价格时使用此值，若设置阶梯价格则使用priceRange',
-  `retailPrice` double NULL DEFAULT NULL COMMENT '建议零售价',
-  `amountOnSale` int NULL DEFAULT NULL COMMENT '可销售数量',
-  `isSkuOnsale` int NULL DEFAULT NULL,
-  `cargoNumber` varchar(50)  NULL DEFAULT NULL COMMENT '指定规格的货号,对应ERP系统商品specNumber',
-  `attributes` varchar(1000)  NULL DEFAULT NULL COMMENT 'SKU属性值json',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `shop_goods_id` bigint(0) NOT NULL COMMENT '外键id',
+  `goodsId` bigint(0) NOT NULL COMMENT '商品id，阿里productID',
+  `skuId` bigint(0) NOT NULL COMMENT '商品skuid，阿里',
+  `spec` varchar(100)  DEFAULT '' COMMENT 'specId',
+  `erp_goods_spec_id` int(0) DEFAULT NULL,
+  `erp_goods_id` int(0) DEFAULT NULL,
+  `erp_goods_spec_code` varchar(50)  DEFAULT NULL,
+  `skuQuantity` bigint(0) DEFAULT NULL,
+  `consignPrice` double DEFAULT NULL COMMENT '分销基准价。代销场景均使用该价格。无SKU商品查看saleInfo中的consignPrice',
+  `outerId` varchar(50)  DEFAULT NULL COMMENT 'sku编码',
+  `outerGoodsId` varchar(50)  DEFAULT NULL COMMENT 'spu编码',
+  `price` double DEFAULT NULL COMMENT '报价时该规格的单价，国际站注意要点：含有SKU属性的在线批发产品设定具体价格时使用此值，若设置阶梯价格则使用priceRange',
+  `retailPrice` double DEFAULT NULL COMMENT '建议零售价',
+  `amountOnSale` int(0) DEFAULT NULL COMMENT '可销售数量',
+  `isSkuOnsale` int(0) DEFAULT NULL,
+  `cargoNumber` varchar(50)  DEFAULT NULL COMMENT '指定规格的货号,对应ERP系统商品specNumber',
+  `attributes` varchar(1000)  DEFAULT NULL COMMENT 'SKU属性值json',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 2282 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2282 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_shop_goods_sku
@@ -6674,25 +6634,341 @@ INSERT INTO `s_shop_goods_sku` VALUES (2280, 100, 433742784706, 1318560053561, '
 INSERT INTO `s_shop_goods_sku` VALUES (2281, 100, 433742784706, 1318560053563, '咖啡色 均码', 1228, 65, 'GZYYZ72773100', 99, NULL, '', 'GZYYZ7277', NULL, NULL, NULL, 1, NULL, NULL);
 
 -- ----------------------------
+-- Table structure for s_shop_pull_lasttime
+-- ----------------------------
+DROP TABLE IF EXISTS `s_shop_pull_lasttime`;
+CREATE TABLE `s_shop_pull_lasttime`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `pull_type` enum('ORDER','REFUND')  DEFAULT NULL COMMENT '类型（ORDER:订单，REFUND:退款）',
+  `lasttime` datetime(0) DEFAULT NULL COMMENT '最后更新时间',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) 
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺更新最后时间记录' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of s_shop_pull_lasttime
+-- ----------------------------
+INSERT INTO `s_shop_pull_lasttime` VALUES (1, 1, 'ORDER', '2024-04-09 16:23:00', '2024-03-23 15:56:13', '2024-04-09 16:23:00');
+INSERT INTO `s_shop_pull_lasttime` VALUES (2, 1, 'REFUND', '2024-04-09 17:43:00', '2024-03-24 13:03:54', '2024-04-09 17:43:00');
+INSERT INTO `s_shop_pull_lasttime` VALUES (3, 2, 'ORDER', '2024-04-09 19:44:00', '2024-03-10 13:00:07', '2024-04-09 19:44:00');
+INSERT INTO `s_shop_pull_lasttime` VALUES (4, 2, 'REFUND', '2024-04-10 23:35:56', '2024-03-24 13:50:24', '2024-04-11 11:35:58');
+
+-- ----------------------------
+-- Table structure for s_shop_pull_logs
+-- ----------------------------
+DROP TABLE IF EXISTS `s_shop_pull_logs`;
+CREATE TABLE `s_shop_pull_logs`  (
+  `id` bigint(0) NOT NULL COMMENT '主键Id',
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `shop_type` int(0) NOT NULL COMMENT '平台id',
+  `pull_type` enum('ORDER','REFUND','GOODS')  DEFAULT NULL COMMENT '类型（ORDER订单，GOODS商品，REFUND退款）',
+  `pull_way` varchar(255)  DEFAULT NULL COMMENT '拉取方式（主动拉取、定时任务）',
+  `pull_params` varchar(500)  DEFAULT NULL COMMENT '拉取参数',
+  `pull_result` text  COMMENT '拉取结果',
+  `pull_time` datetime(0) DEFAULT NULL COMMENT '拉取时间',
+  `duration` bigint(0) DEFAULT NULL COMMENT '耗时（毫秒）',
+  PRIMARY KEY (`id`) 
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '店铺更新日志表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of s_shop_pull_logs
+-- ----------------------------
+INSERT INTO `s_shop_pull_logs` VALUES (1777586240679788546, 1, 1, 'ORDER', '定时任务', '{startTime:2023-12-31T23:00:01,endTime:2024-01-01T23:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 14:36:00', 282);
+INSERT INTO `s_shop_pull_logs` VALUES (1777586491285258241, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-01T22:00:01,endTime:2024-01-02T22:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 14:37:00', 129);
+INSERT INTO `s_shop_pull_logs` VALUES (1777586860845383681, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-02T21:00:01,endTime:2024-01-03T21:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 14:38:00', 28237);
+INSERT INTO `s_shop_pull_logs` VALUES (1777587002038239233, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-03T20:00:01,endTime:2024-01-04T20:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 14:39:00', 1900);
+INSERT INTO `s_shop_pull_logs` VALUES (1777587249367957506, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-04T19:00:01,endTime:2024-01-05T19:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 14:40:00', 873);
+INSERT INTO `s_shop_pull_logs` VALUES (1777587499025514498, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-05T18:00:01,endTime:2024-01-06T18:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 14:41:00', 392);
+INSERT INTO `s_shop_pull_logs` VALUES (1777587757637910529, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-06T17:00:01,endTime:2024-01-07T17:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 14:42:00', 2052);
+INSERT INTO `s_shop_pull_logs` VALUES (1777588010009182210, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-07T16:00:01,endTime:2024-01-08T16:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 14:43:00', 2222);
+INSERT INTO `s_shop_pull_logs` VALUES (1777588258647523330, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-08T15:00:01,endTime:2024-01-09T15:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 14:44:00', 1503);
+INSERT INTO `s_shop_pull_logs` VALUES (1777588511668912129, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-09T14:00:01,endTime:2024-01-10T14:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 14:45:00', 1828);
+INSERT INTO `s_shop_pull_logs` VALUES (1777588757492875266, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-10T13:00:01,endTime:2024-01-11T13:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 14:46:00', 441);
+INSERT INTO `s_shop_pull_logs` VALUES (1777589009692180481, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-11T12:00:01,endTime:2024-01-12T12:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 14:47:00', 568);
+INSERT INTO `s_shop_pull_logs` VALUES (1777589265779605505, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-12T11:00:01,endTime:2024-01-13T11:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 14:48:00', 1624);
+INSERT INTO `s_shop_pull_logs` VALUES (1777589519312699394, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-13T10:00:01,endTime:2024-01-14T10:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 14:49:00', 2072);
+INSERT INTO `s_shop_pull_logs` VALUES (1777589773634322433, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-14T09:00:01,endTime:2024-01-15T09:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 14:50:00', 2705);
+INSERT INTO `s_shop_pull_logs` VALUES (1777590021437997057, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-15T08:00:01,endTime:2024-01-16T08:00:01}', '{insert:4,update:1,fail:0}', '2024-04-09 14:51:00', 1785);
+INSERT INTO `s_shop_pull_logs` VALUES (1777590268570583042, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-16T07:00:01,endTime:2024-01-17T07:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 14:52:00', 706);
+INSERT INTO `s_shop_pull_logs` VALUES (1777590528609042434, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-17T06:00:01,endTime:2024-01-18T06:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 14:53:00', 2705);
+INSERT INTO `s_shop_pull_logs` VALUES (1777590781307469825, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-18T05:00:01,endTime:2024-01-19T05:00:01}', '{insert:7,update:1,fail:0}', '2024-04-09 14:54:00', 2955);
+INSERT INTO `s_shop_pull_logs` VALUES (1777591026842025986, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-19T04:00:01,endTime:2024-01-20T04:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 14:55:00', 1496);
+INSERT INTO `s_shop_pull_logs` VALUES (1777591290638581761, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-20T03:00:01,endTime:2024-01-21T03:00:01}', '{insert:10,update:1,fail:0}', '2024-04-09 14:56:00', 4387);
+INSERT INTO `s_shop_pull_logs` VALUES (1777591537548869634, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-21T02:00:01,endTime:2024-01-22T02:00:01}', '{insert:7,update:1,fail:0}', '2024-04-09 14:57:00', 3258);
+INSERT INTO `s_shop_pull_logs` VALUES (1777591783586742274, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-22T01:00:01,endTime:2024-01-23T01:00:01}', '{insert:4,update:1,fail:0}', '2024-04-09 14:58:00', 1917);
+INSERT INTO `s_shop_pull_logs` VALUES (1777592039418314753, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-23T00:00:01,endTime:2024-01-24T00:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 14:59:00', 2913);
+INSERT INTO `s_shop_pull_logs` VALUES (1777592292762664962, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-23T23:00:01,endTime:2024-01-24T23:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 15:00:00', 3314);
+INSERT INTO `s_shop_pull_logs` VALUES (1777592555082825729, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-24T22:00:01,endTime:2024-01-25T22:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 15:01:00', 5853);
+INSERT INTO `s_shop_pull_logs` VALUES (1777592792086167554, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-25T21:00:01,endTime:2024-01-26T21:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:02:00', 2361);
+INSERT INTO `s_shop_pull_logs` VALUES (1777593040221192193, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-26T20:00:01,endTime:2024-01-27T20:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 15:03:00', 1522);
+INSERT INTO `s_shop_pull_logs` VALUES (1777593297298472962, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-27T19:00:01,endTime:2024-01-28T19:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 15:04:00', 2813);
+INSERT INTO `s_shop_pull_logs` VALUES (1777593547971051521, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-28T18:00:01,endTime:2024-01-29T18:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 15:05:00', 2563);
+INSERT INTO `s_shop_pull_logs` VALUES (1777593798945619969, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-29T17:00:01,endTime:2024-01-30T17:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:06:00', 2412);
+INSERT INTO `s_shop_pull_logs` VALUES (1777594055985152002, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-30T16:00:01,endTime:2024-01-31T16:00:01}', '{insert:9,update:0,fail:0}', '2024-04-09 15:07:00', 3699);
+INSERT INTO `s_shop_pull_logs` VALUES (1777594301108666369, 1, 1, 'ORDER', '定时任务', '{startTime:2024-01-31T15:00:01,endTime:2024-02-01T15:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:08:00', 2140);
+INSERT INTO `s_shop_pull_logs` VALUES (1777594551651221506, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-01T14:00:01,endTime:2024-02-02T14:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 15:09:00', 1874);
+INSERT INTO `s_shop_pull_logs` VALUES (1777594810695630850, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-02T13:00:01,endTime:2024-02-03T13:00:01}', '{insert:9,update:0,fail:0}', '2024-04-09 15:10:00', 3637);
+INSERT INTO `s_shop_pull_logs` VALUES (1777595055131279361, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-03T12:00:01,endTime:2024-02-04T12:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:11:00', 1913);
+INSERT INTO `s_shop_pull_logs` VALUES (1777595300552589314, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-04T11:00:01,endTime:2024-02-05T11:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 15:12:00', 428);
+INSERT INTO `s_shop_pull_logs` VALUES (1777595552827392002, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-05T10:00:01,endTime:2024-02-06T10:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:13:00', 573);
+INSERT INTO `s_shop_pull_logs` VALUES (1777595805299326978, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-06T09:00:01,endTime:2024-02-07T09:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:14:00', 768);
+INSERT INTO `s_shop_pull_logs` VALUES (1777596056483610626, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-07T08:00:01,endTime:2024-02-08T08:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:15:00', 655);
+INSERT INTO `s_shop_pull_logs` VALUES (1777596305935646722, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-08T07:00:01,endTime:2024-02-09T07:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 15:16:00', 127);
+INSERT INTO `s_shop_pull_logs` VALUES (1777596559728787458, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-09T06:00:01,endTime:2024-02-10T06:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:17:00', 638);
+INSERT INTO `s_shop_pull_logs` VALUES (1777596809243738114, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-10T05:00:01,endTime:2024-02-11T05:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 15:18:00', 127);
+INSERT INTO `s_shop_pull_logs` VALUES (1777597060881006593, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-11T04:00:01,endTime:2024-02-12T04:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 15:19:00', 120);
+INSERT INTO `s_shop_pull_logs` VALUES (1777597312581189633, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-12T03:00:01,endTime:2024-02-13T03:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 15:20:00', 132);
+INSERT INTO `s_shop_pull_logs` VALUES (1777597567175442433, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-13T02:00:01,endTime:2024-02-14T02:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:21:00', 834);
+INSERT INTO `s_shop_pull_logs` VALUES (1777597818829488129, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-14T01:00:01,endTime:2024-02-15T01:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:22:00', 832);
+INSERT INTO `s_shop_pull_logs` VALUES (1777598068415741953, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-15T00:00:01,endTime:2024-02-16T00:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 15:23:00', 338);
+INSERT INTO `s_shop_pull_logs` VALUES (1777598321651040257, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-15T23:00:01,endTime:2024-02-16T23:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:24:00', 711);
+INSERT INTO `s_shop_pull_logs` VALUES (1777598574487879681, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-16T22:00:01,endTime:2024-02-17T22:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 15:25:00', 996);
+INSERT INTO `s_shop_pull_logs` VALUES (1777598827865784322, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-17T21:00:01,endTime:2024-02-18T21:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 15:26:00', 1405);
+INSERT INTO `s_shop_pull_logs` VALUES (1777599076495736833, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-18T20:00:01,endTime:2024-02-19T20:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:27:00', 681);
+INSERT INTO `s_shop_pull_logs` VALUES (1777599332927094785, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-19T19:00:01,endTime:2024-02-20T19:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 15:28:00', 1823);
+INSERT INTO `s_shop_pull_logs` VALUES (1777599581552852994, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-20T18:00:01,endTime:2024-02-21T18:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 15:29:00', 1100);
+INSERT INTO `s_shop_pull_logs` VALUES (1777599830216359937, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-21T17:00:01,endTime:2024-02-22T17:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 15:30:00', 384);
+INSERT INTO `s_shop_pull_logs` VALUES (1777600087750819841, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-22T16:00:01,endTime:2024-02-23T16:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 15:31:00', 1783);
+INSERT INTO `s_shop_pull_logs` VALUES (1777600334933737474, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-23T15:00:01,endTime:2024-02-24T15:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:32:00', 716);
+INSERT INTO `s_shop_pull_logs` VALUES (1777600585769893890, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-24T14:00:01,endTime:2024-02-25T14:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 15:33:00', 521);
+INSERT INTO `s_shop_pull_logs` VALUES (1777600839923744769, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-25T13:00:01,endTime:2024-02-26T13:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:34:00', 1118);
+INSERT INTO `s_shop_pull_logs` VALUES (1777601091477127170, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-26T12:00:01,endTime:2024-02-27T12:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:35:00', 1075);
+INSERT INTO `s_shop_pull_logs` VALUES (1777601341558308866, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-27T11:00:01,endTime:2024-02-28T11:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:36:00', 707);
+INSERT INTO `s_shop_pull_logs` VALUES (1777601593006833665, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-28T10:00:01,endTime:2024-02-29T10:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:37:00', 666);
+INSERT INTO `s_shop_pull_logs` VALUES (1777601845168390145, 1, 1, 'ORDER', '定时任务', '{startTime:2024-02-29T09:00:01,endTime:2024-03-01T09:00:01}', '{insert:3,update:0,fail:0}', '2024-04-09 15:38:00', 786);
+INSERT INTO `s_shop_pull_logs` VALUES (1777602097795514369, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-01T08:00:01,endTime:2024-03-02T08:00:01}', '{insert:3,update:1,fail:0}', '2024-04-09 15:39:00', 1018);
+INSERT INTO `s_shop_pull_logs` VALUES (1777602358119186433, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-02T07:00:01,endTime:2024-03-03T07:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 15:40:00', 3084);
+INSERT INTO `s_shop_pull_logs` VALUES (1777602604207390722, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-03T06:00:01,endTime:2024-03-04T06:00:01}', '{insert:7,update:1,fail:0}', '2024-04-09 15:41:00', 1755);
+INSERT INTO `s_shop_pull_logs` VALUES (1777602862979170305, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-04T05:00:01,endTime:2024-03-05T05:00:01}', '{insert:13,update:1,fail:0}', '2024-04-09 15:42:00', 3451);
+INSERT INTO `s_shop_pull_logs` VALUES (1777603113601417218, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-05T04:00:01,endTime:2024-03-06T04:00:01}', '{insert:12,update:1,fail:0}', '2024-04-09 15:43:00', 3205);
+INSERT INTO `s_shop_pull_logs` VALUES (1777603363120562178, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-06T03:00:01,endTime:2024-03-07T03:00:01}', '{insert:9,update:2,fail:0}', '2024-04-09 15:44:00', 2692);
+INSERT INTO `s_shop_pull_logs` VALUES (1777603619413508098, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-07T02:00:01,endTime:2024-03-08T02:00:01}', '{insert:17,update:0,fail:0}', '2024-04-09 15:45:00', 3800);
+INSERT INTO `s_shop_pull_logs` VALUES (1777603862129491969, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-08T01:00:01,endTime:2024-03-09T01:00:01}', '{insert:6,update:1,fail:0}', '2024-04-09 15:46:00', 1666);
+INSERT INTO `s_shop_pull_logs` VALUES (1777604121186484226, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-09T00:00:01,endTime:2024-03-10T00:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 15:47:00', 3431);
+INSERT INTO `s_shop_pull_logs` VALUES (1777604370726600706, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-09T23:00:01,endTime:2024-03-10T23:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 15:48:00', 2923);
+INSERT INTO `s_shop_pull_logs` VALUES (1777604616785444865, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-10T22:00:01,endTime:2024-03-11T22:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 15:49:00', 1591);
+INSERT INTO `s_shop_pull_logs` VALUES (1777604871333560321, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-11T21:00:01,endTime:2024-03-12T21:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 15:50:00', 2281);
+INSERT INTO `s_shop_pull_logs` VALUES (1777605121922252802, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-12T20:00:01,endTime:2024-03-13T20:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 15:51:00', 2026);
+INSERT INTO `s_shop_pull_logs` VALUES (1777605376088686593, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-13T19:00:01,endTime:2024-03-14T19:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 15:52:00', 2622);
+INSERT INTO `s_shop_pull_logs` VALUES (1777605624643141633, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-14T18:00:01,endTime:2024-03-15T18:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 15:53:00', 1882);
+INSERT INTO `s_shop_pull_logs` VALUES (1777605883242954754, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-15T17:00:01,endTime:2024-03-16T17:00:01}', '{insert:13,update:1,fail:0}', '2024-04-09 15:54:00', 3539);
+INSERT INTO `s_shop_pull_logs` VALUES (1777606137052872706, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-16T16:00:01,endTime:2024-03-17T16:00:01}', '{insert:16,update:0,fail:0}', '2024-04-09 15:55:00', 4051);
+INSERT INTO `s_shop_pull_logs` VALUES (1777606390535634945, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-17T15:00:01,endTime:2024-03-18T15:00:01}', '{insert:18,update:1,fail:0}', '2024-04-09 15:56:00', 4488);
+INSERT INTO `s_shop_pull_logs` VALUES (1777606637810827265, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-18T14:00:01,endTime:2024-03-19T14:00:01}', '{insert:12,update:2,fail:0}', '2024-04-09 15:57:00', 3442);
+INSERT INTO `s_shop_pull_logs` VALUES (1777606885090213889, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-19T13:00:01,endTime:2024-03-20T13:00:01}', '{insert:9,update:1,fail:0}', '2024-04-09 15:58:00', 2397);
+INSERT INTO `s_shop_pull_logs` VALUES (1777607137369210882, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-20T12:00:01,endTime:2024-03-21T12:00:01}', '{insert:11,update:1,fail:0}', '2024-04-09 15:59:00', 2545);
+INSERT INTO `s_shop_pull_logs` VALUES (1777607390508040193, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-21T11:00:01,endTime:2024-03-22T11:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 16:00:00', 2897);
+INSERT INTO `s_shop_pull_logs` VALUES (1777607643214856194, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-22T10:00:01,endTime:2024-03-23T10:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 16:01:00', 3148);
+INSERT INTO `s_shop_pull_logs` VALUES (1777607898702495745, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-23T09:00:01,endTime:2024-03-24T09:00:01}', '{insert:18,update:2,fail:0}', '2024-04-09 16:02:00', 4062);
+INSERT INTO `s_shop_pull_logs` VALUES (1777608144589373442, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-24T08:00:01,endTime:2024-03-25T08:00:01}', '{insert:10,update:1,fail:0}', '2024-04-09 16:03:00', 2684);
+INSERT INTO `s_shop_pull_logs` VALUES (1777608402996248577, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-25T07:00:01,endTime:2024-03-26T07:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 16:04:00', 4287);
+INSERT INTO `s_shop_pull_logs` VALUES (1777608646861471746, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-26T06:00:01,endTime:2024-03-27T06:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 16:05:00', 2430);
+INSERT INTO `s_shop_pull_logs` VALUES (1777608897299169282, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-27T05:00:01,endTime:2024-03-28T05:00:01}', '{insert:9,update:0,fail:0}', '2024-04-09 16:06:00', 2145);
+INSERT INTO `s_shop_pull_logs` VALUES (1777609166342799362, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-28T04:00:01,endTime:2024-03-29T04:00:01}', '{insert:20,update:1,fail:0}', '2024-04-09 16:07:00', 6292);
+INSERT INTO `s_shop_pull_logs` VALUES (1777609406252793857, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-29T03:00:01,endTime:2024-03-30T03:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 16:08:00', 3489);
+INSERT INTO `s_shop_pull_logs` VALUES (1777609664223461377, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-30T02:00:01,endTime:2024-03-31T02:00:01}', '{insert:16,update:1,fail:0}', '2024-04-09 16:09:00', 4993);
+INSERT INTO `s_shop_pull_logs` VALUES (1777609914384334850, 1, 1, 'ORDER', '定时任务', '{startTime:2024-03-31T01:00:01,endTime:2024-04-01T01:00:01}', '{insert:20,update:0,fail:0}', '2024-04-09 16:10:00', 4636);
+INSERT INTO `s_shop_pull_logs` VALUES (1777610160883580930, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-01T00:00:01,endTime:2024-04-02T00:00:01}', '{insert:13,update:3,fail:0}', '2024-04-09 16:11:00', 3406);
+INSERT INTO `s_shop_pull_logs` VALUES (1777610415154872321, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-01T23:00:01,endTime:2024-04-02T23:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 16:12:00', 4030);
+INSERT INTO `s_shop_pull_logs` VALUES (1777610661872222209, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-02T22:00:01,endTime:2024-04-03T22:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 16:13:00', 2854);
+INSERT INTO `s_shop_pull_logs` VALUES (1777610924058165250, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-03T21:00:01,endTime:2024-04-04T21:00:01}', '{insert:22,update:0,fail:0}', '2024-04-09 16:14:00', 5363);
+INSERT INTO `s_shop_pull_logs` VALUES (1777611168904855554, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-04T20:00:01,endTime:2024-04-05T20:00:01}', '{insert:16,update:0,fail:0}', '2024-04-09 16:15:00', 3743);
+INSERT INTO `s_shop_pull_logs` VALUES (1777611412694581249, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-05T19:00:01,endTime:2024-04-06T19:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 16:16:00', 1865);
+INSERT INTO `s_shop_pull_logs` VALUES (1777611683193634817, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-06T18:00:01,endTime:2024-04-07T18:00:01}', '{insert:27,update:0,fail:0}', '2024-04-09 16:17:00', 6353);
+INSERT INTO `s_shop_pull_logs` VALUES (1777611953587830786, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-07T17:00:01,endTime:2024-04-08T17:00:01}', '{insert:49,update:0,fail:0}', '2024-04-09 16:18:00', 10821);
+INSERT INTO `s_shop_pull_logs` VALUES (1777612194982608897, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-08T16:00:01,endTime:2024-04-09T16:00:01}', '{insert:38,update:0,fail:0}', '2024-04-09 16:19:00', 8375);
+INSERT INTO `s_shop_pull_logs` VALUES (1777612412012675074, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-09T15:00:01,endTime:2024-04-09T16:20:00.005931700}', '{insert:0,update:0,fail:0}', '2024-04-09 16:20:00', 118);
+INSERT INTO `s_shop_pull_logs` VALUES (1777612663712858114, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-09T15:20,endTime:2024-04-09T16:21:00.005693100}', '{insert:0,update:0,fail:0}', '2024-04-09 16:21:00', 128);
+INSERT INTO `s_shop_pull_logs` VALUES (1777612915358515201, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-09T15:21,endTime:2024-04-09T16:22:00.005968900}', '{insert:0,update:0,fail:0}', '2024-04-09 16:22:00', 124);
+INSERT INTO `s_shop_pull_logs` VALUES (1777613166974812161, 1, 1, 'ORDER', '定时任务', '{startTime:2024-04-09T15:22,endTime:2024-04-09T16:23:00.006756800}', '{insert:0,update:0,fail:0}', '2024-04-09 16:23:00', 115);
+INSERT INTO `s_shop_pull_logs` VALUES (1777621234764738561, 1, 1, 'REFUND', '定时任务', '{startTime:2024-02-29T23:00:02,endTime:2024-03-01T23:00:02}', '{insert:5,update:0,fail:0}', '2024-04-09 16:55:00', 3540);
+INSERT INTO `s_shop_pull_logs` VALUES (1777622236003758082, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-01T23:00:02,endTime:2024-03-02T23:00:02}', '{insert:0,update:1,fail:0}', '2024-04-09 16:59:00', 2270);
+INSERT INTO `s_shop_pull_logs` VALUES (1777622481156632577, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-02T22:00:02,endTime:2024-03-03T22:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:00:00', 780);
+INSERT INTO `s_shop_pull_logs` VALUES (1777622738347159555, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-03T21:00:02,endTime:2024-03-04T21:00:02}', '{insert:9,update:0,fail:0}', '2024-04-09 17:01:00', 2121);
+INSERT INTO `s_shop_pull_logs` VALUES (1777622988935852033, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-04T20:00:02,endTime:2024-03-05T20:00:02}', '{insert:10,update:0,fail:0}', '2024-04-09 17:02:00', 1853);
+INSERT INTO `s_shop_pull_logs` VALUES (1777623238090092546, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-05T19:00:02,endTime:2024-03-06T19:00:02}', '{insert:6,update:0,fail:0}', '2024-04-09 17:03:00', 1243);
+INSERT INTO `s_shop_pull_logs` VALUES (1777623488796225537, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-06T18:00:02,endTime:2024-03-07T18:00:02}', '{insert:5,update:0,fail:0}', '2024-04-09 17:04:00', 1019);
+INSERT INTO `s_shop_pull_logs` VALUES (1777623743218511874, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-07T17:00:02,endTime:2024-03-08T17:00:02}', '{insert:7,update:0,fail:0}', '2024-04-09 17:05:00', 1682);
+INSERT INTO `s_shop_pull_logs` VALUES (1777623989159915521, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-08T16:00:02,endTime:2024-03-09T16:00:02}', '{insert:1,update:0,fail:0}', '2024-04-09 17:06:00', 310);
+INSERT INTO `s_shop_pull_logs` VALUES (1777624494070231042, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-09T15:00:02,endTime:2024-03-10T15:00:02}', '{insert:4,update:0,fail:0}', '2024-04-09 17:08:00', 703);
+INSERT INTO `s_shop_pull_logs` VALUES (1777624744575037442, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-10T14:00:02,endTime:2024-03-11T14:00:02}', '{insert:1,update:1,fail:0}', '2024-04-09 17:09:00', 430);
+INSERT INTO `s_shop_pull_logs` VALUES (1777624996086476802, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-11T13:00:02,endTime:2024-03-12T13:00:02}', '{insert:1,update:0,fail:0}', '2024-04-09 17:10:00', 392);
+INSERT INTO `s_shop_pull_logs` VALUES (1777625250890444801, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-12T12:00:02,endTime:2024-03-13T12:00:02}', '{insert:5,update:0,fail:0}', '2024-04-09 17:11:00', 1143);
+INSERT INTO `s_shop_pull_logs` VALUES (1777625502112477186, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-13T11:00:02,endTime:2024-03-14T11:00:02}', '{insert:2,update:1,fail:0}', '2024-04-09 17:12:00', 1037);
+INSERT INTO `s_shop_pull_logs` VALUES (1777625753007353857, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-14T10:00:02,endTime:2024-03-15T10:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:13:00', 857);
+INSERT INTO `s_shop_pull_logs` VALUES (1777626007299616769, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-15T09:00:02,endTime:2024-03-16T09:00:02}', '{insert:11,update:0,fail:0}', '2024-04-09 17:14:00', 1449);
+INSERT INTO `s_shop_pull_logs` VALUES (1777626508212760578, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-16T08:00:02,endTime:2024-03-17T08:00:02}', '{insert:5,update:0,fail:0}', '2024-04-09 17:16:00', 912);
+INSERT INTO `s_shop_pull_logs` VALUES (1777626760529506306, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-17T07:00:02,endTime:2024-03-18T07:00:02}', '{insert:6,update:0,fail:0}', '2024-04-09 17:17:00', 1070);
+INSERT INTO `s_shop_pull_logs` VALUES (1777627009549529090, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-18T06:00:02,endTime:2024-03-19T06:00:02}', '{insert:2,update:0,fail:0}', '2024-04-09 17:18:00', 441);
+INSERT INTO `s_shop_pull_logs` VALUES (1777627517337137154, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-19T05:00:02,endTime:2024-03-20T05:00:02}', '{insert:7,update:0,fail:0}', '2024-04-09 17:20:00', 1506);
+INSERT INTO `s_shop_pull_logs` VALUES (1777627766436851714, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-20T04:00:02,endTime:2024-03-21T04:00:02}', '{insert:4,update:1,fail:0}', '2024-04-09 17:21:00', 894);
+INSERT INTO `s_shop_pull_logs` VALUES (1777628016954241026, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-21T03:00:02,endTime:2024-03-22T03:00:02}', '{insert:4,update:1,fail:0}', '2024-04-09 17:22:00', 625);
+INSERT INTO `s_shop_pull_logs` VALUES (1777628268570537986, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-22T02:00:02,endTime:2024-03-23T02:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:23:00', 614);
+INSERT INTO `s_shop_pull_logs` VALUES (1777628523059933185, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-23T01:00:02,endTime:2024-03-24T01:00:02}', '{insert:7,update:0,fail:0}', '2024-04-09 17:24:00', 1290);
+INSERT INTO `s_shop_pull_logs` VALUES (1777628774382628866, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-24T00:00:02,endTime:2024-03-25T00:00:02}', '{insert:7,update:0,fail:0}', '2024-04-09 17:25:00', 1208);
+INSERT INTO `s_shop_pull_logs` VALUES (1777629028779749377, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-24T23:00:02,endTime:2024-03-25T23:00:02}', '{insert:11,update:0,fail:0}', '2024-04-09 17:26:00', 1862);
+INSERT INTO `s_shop_pull_logs` VALUES (1777629279506853889, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-25T22:00:02,endTime:2024-03-26T22:00:02}', '{insert:9,update:0,fail:0}', '2024-04-09 17:27:00', 1639);
+INSERT INTO `s_shop_pull_logs` VALUES (1777629526740103170, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-26T21:00:02,endTime:2024-03-27T21:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:28:00', 580);
+INSERT INTO `s_shop_pull_logs` VALUES (1777629787353182210, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-27T20:00:02,endTime:2024-03-28T20:00:02}', '{insert:14,update:0,fail:0}', '2024-04-09 17:29:00', 2715);
+INSERT INTO `s_shop_pull_logs` VALUES (1777630030589259778, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-28T19:00:02,endTime:2024-03-29T19:00:02}', '{insert:3,update:0,fail:0}', '2024-04-09 17:30:00', 710);
+INSERT INTO `s_shop_pull_logs` VALUES (1777630286429220866, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-29T18:00:02,endTime:2024-03-30T18:00:02}', '{insert:12,update:0,fail:0}', '2024-04-09 17:31:00', 1710);
+INSERT INTO `s_shop_pull_logs` VALUES (1777630532890718210, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-30T17:00:02,endTime:2024-03-31T17:00:02}', '{insert:2,update:0,fail:0}', '2024-04-09 17:32:00', 472);
+INSERT INTO `s_shop_pull_logs` VALUES (1777630785484288002, 1, 1, 'REFUND', '定时任务', '{startTime:2024-03-31T16:00:02,endTime:2024-04-01T16:00:02}', '{insert:4,update:0,fail:0}', '2024-04-09 17:33:00', 696);
+INSERT INTO `s_shop_pull_logs` VALUES (1777631041965977602, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-01T15:00:02,endTime:2024-04-02T15:00:02}', '{insert:11,update:0,fail:0}', '2024-04-09 17:34:00', 1844);
+INSERT INTO `s_shop_pull_logs` VALUES (1777631291522871297, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-02T14:00:02,endTime:2024-04-03T14:00:02}', '{insert:6,update:0,fail:0}', '2024-04-09 17:35:00', 1343);
+INSERT INTO `s_shop_pull_logs` VALUES (1777631541838934017, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-03T13:00:02,endTime:2024-04-04T13:00:02}', '{insert:4,update:1,fail:0}', '2024-04-09 17:36:00', 1024);
+INSERT INTO `s_shop_pull_logs` VALUES (1777631790733127681, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-04T12:00:02,endTime:2024-04-05T12:00:02}', '{insert:2,update:0,fail:0}', '2024-04-09 17:37:00', 365);
+INSERT INTO `s_shop_pull_logs` VALUES (1777632293701480450, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-05T11:00:02,endTime:2024-04-06T11:00:02}', '{insert:1,update:0,fail:0}', '2024-04-09 17:39:00', 282);
+INSERT INTO `s_shop_pull_logs` VALUES (1777632552846553090, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-06T10:00:02,endTime:2024-04-07T10:00:02}', '{insert:12,update:0,fail:0}', '2024-04-09 17:40:00', 2066);
+INSERT INTO `s_shop_pull_logs` VALUES (1777632807252062209, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-07T09:00:02,endTime:2024-04-08T09:00:02}', '{insert:15,update:2,fail:0}', '2024-04-09 17:41:00', 2721);
+INSERT INTO `s_shop_pull_logs` VALUES (1777633054653083650, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-08T08:00:02,endTime:2024-04-09T08:00:02}', '{insert:9,update:0,fail:0}', '2024-04-09 17:42:00', 1706);
+INSERT INTO `s_shop_pull_logs` VALUES (1777633299646574594, 1, 1, 'REFUND', '定时任务', '{startTime:2024-04-09T07:00:02,endTime:2024-04-09T17:43:00.006712200}', '{insert:0,update:0,fail:0}', '2024-04-09 17:43:00', 118);
+INSERT INTO `s_shop_pull_logs` VALUES (1777636327288164354, 2, 2, 'ORDER', '定时任务', '{startTime:2023-12-31T23:00:01,endTime:2024-01-01T23:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 17:55:00', 1888);
+INSERT INTO `s_shop_pull_logs` VALUES (1777636573669969922, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-01T22:00:01,endTime:2024-01-02T22:00:01}', '{insert:29,update:0,fail:0}', '2024-04-09 17:56:00', 703);
+INSERT INTO `s_shop_pull_logs` VALUES (1777636824401268738, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-02T21:00:01,endTime:2024-01-03T21:00:01}', '{insert:15,update:2,fail:0}', '2024-04-09 17:57:00', 483);
+INSERT INTO `s_shop_pull_logs` VALUES (1777637076311166978, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-03T20:00:01,endTime:2024-01-04T20:00:01}', '{insert:16,update:1,fail:0}', '2024-04-09 17:58:00', 541);
+INSERT INTO `s_shop_pull_logs` VALUES (1777637327264763906, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-04T19:00:01,endTime:2024-01-05T19:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 17:59:00', 375);
+INSERT INTO `s_shop_pull_logs` VALUES (1777637579757670402, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-05T18:00:01,endTime:2024-01-06T18:00:01}', '{insert:19,update:1,fail:0}', '2024-04-09 18:00:00', 573);
+INSERT INTO `s_shop_pull_logs` VALUES (1777637831365578754, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-06T17:00:01,endTime:2024-01-07T17:00:01}', '{insert:18,update:1,fail:0}', '2024-04-09 18:01:00', 564);
+INSERT INTO `s_shop_pull_logs` VALUES (1777638084324052993, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-07T16:00:01,endTime:2024-01-08T16:00:01}', '{insert:29,update:2,fail:0}', '2024-04-09 18:02:00', 870);
+INSERT INTO `s_shop_pull_logs` VALUES (1777638335109877761, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-08T15:00:01,endTime:2024-01-09T15:00:01}', '{insert:25,update:1,fail:0}', '2024-04-09 18:03:00', 664);
+INSERT INTO `s_shop_pull_logs` VALUES (1777638586097029122, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-09T14:00:01,endTime:2024-01-10T14:00:01}', '{insert:14,update:2,fail:0}', '2024-04-09 18:04:00', 507);
+INSERT INTO `s_shop_pull_logs` VALUES (1777638837268729858, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-10T13:00:01,endTime:2024-01-11T13:00:01}', '{insert:10,update:3,fail:0}', '2024-04-09 18:05:00', 389);
+INSERT INTO `s_shop_pull_logs` VALUES (1777639089136685057, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-11T12:00:01,endTime:2024-01-12T12:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 18:06:00', 439);
+INSERT INTO `s_shop_pull_logs` VALUES (1777639341168218114, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-12T11:00:01,endTime:2024-01-13T11:00:01}', '{insert:15,update:1,fail:0}', '2024-04-09 18:07:00', 527);
+INSERT INTO `s_shop_pull_logs` VALUES (1777639592952287233, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-13T10:00:01,endTime:2024-01-14T10:00:01}', '{insert:20,update:1,fail:0}', '2024-04-09 18:08:00', 556);
+INSERT INTO `s_shop_pull_logs` VALUES (1777639846271471617, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-14T09:00:01,endTime:2024-01-15T09:00:01}', '{insert:24,update:7,fail:1}', '2024-04-09 18:09:00', 955);
+INSERT INTO `s_shop_pull_logs` VALUES (1777640095929028609, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-15T08:00:01,endTime:2024-01-16T08:00:01}', '{insert:15,update:2,fail:0}', '2024-04-09 18:10:00', 477);
+INSERT INTO `s_shop_pull_logs` VALUES (1777640348283523074, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-16T07:00:01,endTime:2024-01-17T07:00:01}', '{insert:20,update:0,fail:0}', '2024-04-09 18:11:00', 643);
+INSERT INTO `s_shop_pull_logs` VALUES (1777640598826078210, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-17T06:00:01,endTime:2024-01-18T06:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 18:12:00', 378);
+INSERT INTO `s_shop_pull_logs` VALUES (1777640850794696705, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-18T05:00:01,endTime:2024-01-19T05:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 18:13:00', 451);
+INSERT INTO `s_shop_pull_logs` VALUES (1777641103266631681, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-19T04:00:01,endTime:2024-01-20T04:00:01}', '{insert:22,update:0,fail:0}', '2024-04-09 18:14:00', 644);
+INSERT INTO `s_shop_pull_logs` VALUES (1777641353976958977, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-20T03:00:01,endTime:2024-01-21T03:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 18:15:00', 420);
+INSERT INTO `s_shop_pull_logs` VALUES (1777641605974937601, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-21T02:00:01,endTime:2024-01-22T02:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 18:16:00', 501);
+INSERT INTO `s_shop_pull_logs` VALUES (1777641857561874434, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-22T01:00:01,endTime:2024-01-23T01:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 18:17:00', 485);
+INSERT INTO `s_shop_pull_logs` VALUES (1777642109371109378, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-23T00:00:01,endTime:2024-01-24T00:00:01}', '{insert:19,update:0,fail:0}', '2024-04-09 18:18:00', 519);
+INSERT INTO `s_shop_pull_logs` VALUES (1777642360526032897, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-23T23:00:01,endTime:2024-01-24T23:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 18:19:00', 402);
+INSERT INTO `s_shop_pull_logs` VALUES (1777642612314296321, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-24T22:00:01,endTime:2024-01-25T22:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 18:20:00', 432);
+INSERT INTO `s_shop_pull_logs` VALUES (1777642863657963522, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-25T21:00:01,endTime:2024-01-26T21:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 18:21:00', 358);
+INSERT INTO `s_shop_pull_logs` VALUES (1777643115840491521, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-26T20:00:01,endTime:2024-01-27T20:00:01}', '{insert:19,update:0,fail:0}', '2024-04-09 18:22:00', 481);
+INSERT INTO `s_shop_pull_logs` VALUES (1777643367259656193, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-27T19:00:01,endTime:2024-01-28T19:00:01}', '{insert:11,update:1,fail:0}', '2024-04-09 18:23:00', 424);
+INSERT INTO `s_shop_pull_logs` VALUES (1777643620281044994, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-28T18:00:01,endTime:2024-01-29T18:00:01}', '{insert:33,update:3,fail:0}', '2024-04-09 18:24:00', 750);
+INSERT INTO `s_shop_pull_logs` VALUES (1777643871620517890, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-29T17:00:01,endTime:2024-01-30T17:00:01}', '{insert:24,update:6,fail:0}', '2024-04-09 18:25:00', 669);
+INSERT INTO `s_shop_pull_logs` VALUES (1777644122012078082, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-30T16:00:01,endTime:2024-01-31T16:00:01}', '{insert:12,update:2,fail:0}', '2024-04-09 18:26:00', 372);
+INSERT INTO `s_shop_pull_logs` VALUES (1777644373779369985, 2, 2, 'ORDER', '定时任务', '{startTime:2024-01-31T15:00:01,endTime:2024-02-01T15:00:01}', '{insert:11,update:1,fail:0}', '2024-04-09 18:27:00', 398);
+INSERT INTO `s_shop_pull_logs` VALUES (1777644625789931522, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-01T14:00:01,endTime:2024-02-02T14:00:01}', '{insert:14,update:0,fail:0}', '2024-04-09 18:28:00', 481);
+INSERT INTO `s_shop_pull_logs` VALUES (1777644876630282242, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-02T13:00:01,endTime:2024-02-03T13:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 18:29:00', 286);
+INSERT INTO `s_shop_pull_logs` VALUES (1777645128963805186, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-03T12:00:01,endTime:2024-02-04T12:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 18:30:00', 448);
+INSERT INTO `s_shop_pull_logs` VALUES (1777645379632189441, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-04T11:00:01,endTime:2024-02-05T11:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 18:31:00', 210);
+INSERT INTO `s_shop_pull_logs` VALUES (1777645631479173121, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-05T10:00:01,endTime:2024-02-06T10:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:32:00', 257);
+INSERT INTO `s_shop_pull_logs` VALUES (1777645882877366273, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-06T09:00:01,endTime:2024-02-07T09:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 18:33:00', 196);
+INSERT INTO `s_shop_pull_logs` VALUES (1777646135294775297, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-07T08:00:01,endTime:2024-02-08T08:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 18:34:00', 375);
+INSERT INTO `s_shop_pull_logs` VALUES (1777646386382589954, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-08T07:00:01,endTime:2024-02-09T07:00:01}', '{insert:1,update:0,fail:0}', '2024-04-09 18:35:00', 238);
+INSERT INTO `s_shop_pull_logs` VALUES (1777646638028247041, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-09T06:00:01,endTime:2024-02-10T06:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:36:00', 237);
+INSERT INTO `s_shop_pull_logs` VALUES (1777646889699069954, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-10T05:00:01,endTime:2024-02-11T05:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:37:00', 240);
+INSERT INTO `s_shop_pull_logs` VALUES (1777647141306978305, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-11T04:00:01,endTime:2024-02-12T04:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 18:38:00', 227);
+INSERT INTO `s_shop_pull_logs` VALUES (1777647392696782849, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-12T03:00:01,endTime:2024-02-13T03:00:01}', '{insert:0,update:0,fail:0}', '2024-04-09 18:39:00', 161);
+INSERT INTO `s_shop_pull_logs` VALUES (1777647644795424770, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-13T02:00:01,endTime:2024-02-14T02:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 18:40:00', 267);
+INSERT INTO `s_shop_pull_logs` VALUES (1777647896365584386, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-14T01:00:01,endTime:2024-02-15T01:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:41:00', 247);
+INSERT INTO `s_shop_pull_logs` VALUES (1777648147956715521, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-15T00:00:01,endTime:2024-02-16T00:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:42:00', 231);
+INSERT INTO `s_shop_pull_logs` VALUES (1777648399661092865, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-15T23:00:01,endTime:2024-02-16T23:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:43:00', 244);
+INSERT INTO `s_shop_pull_logs` VALUES (1777648651373858817, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-16T22:00:01,endTime:2024-02-17T22:00:01}', '{insert:7,update:0,fail:0}', '2024-04-09 18:44:00', 255);
+INSERT INTO `s_shop_pull_logs` VALUES (1777648903170510850, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-17T21:00:01,endTime:2024-02-18T21:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:45:00', 290);
+INSERT INTO `s_shop_pull_logs` VALUES (1777649154568704002, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-18T20:00:01,endTime:2024-02-19T20:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 18:46:00', 228);
+INSERT INTO `s_shop_pull_logs` VALUES (1777649406294052866, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-19T19:00:01,endTime:2024-02-20T19:00:01}', '{insert:2,update:0,fail:0}', '2024-04-09 18:47:00', 243);
+INSERT INTO `s_shop_pull_logs` VALUES (1777649657872601089, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-20T18:00:01,endTime:2024-02-21T18:00:01}', '{insert:4,update:0,fail:0}', '2024-04-09 18:48:00', 221);
+INSERT INTO `s_shop_pull_logs` VALUES (1777649909560201217, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-21T17:00:01,endTime:2024-02-22T17:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:49:00', 230);
+INSERT INTO `s_shop_pull_logs` VALUES (1777650161356853250, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-22T16:00:01,endTime:2024-02-23T16:00:01}', '{insert:5,update:0,fail:0}', '2024-04-09 18:50:00', 263);
+INSERT INTO `s_shop_pull_logs` VALUES (1777650413069619201, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-23T15:00:01,endTime:2024-02-24T15:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 18:51:00', 276);
+INSERT INTO `s_shop_pull_logs` VALUES (1777650664719470594, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-24T14:00:01,endTime:2024-02-25T14:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:52:00', 274);
+INSERT INTO `s_shop_pull_logs` VALUES (1777650916579037185, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-25T13:00:01,endTime:2024-02-26T13:00:01}', '{insert:9,update:0,fail:0}', '2024-04-09 18:53:00', 322);
+INSERT INTO `s_shop_pull_logs` VALUES (1777651168887394306, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-26T12:00:01,endTime:2024-02-27T12:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 18:54:00', 471);
+INSERT INTO `s_shop_pull_logs` VALUES (1777651420155564034, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-27T11:00:01,endTime:2024-02-28T11:00:01}', '{insert:10,update:3,fail:0}', '2024-04-09 18:55:00', 384);
+INSERT INTO `s_shop_pull_logs` VALUES (1777651671474065409, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-28T10:00:01,endTime:2024-02-29T10:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 18:56:00', 305);
+INSERT INTO `s_shop_pull_logs` VALUES (1777651922926784513, 2, 2, 'ORDER', '定时任务', '{startTime:2024-02-29T09:00:01,endTime:2024-03-01T09:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:57:00', 254);
+INSERT INTO `s_shop_pull_logs` VALUES (1777652174475972610, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-01T08:00:01,endTime:2024-03-02T08:00:01}', '{insert:6,update:0,fail:0}', '2024-04-09 18:58:00', 228);
+INSERT INTO `s_shop_pull_logs` VALUES (1777652426692055042, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-02T07:00:01,endTime:2024-03-03T07:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 18:59:00', 361);
+INSERT INTO `s_shop_pull_logs` VALUES (1777652678354489345, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-03T06:00:01,endTime:2024-03-04T06:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 19:00:00', 363);
+INSERT INTO `s_shop_pull_logs` VALUES (1777652930079838210, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-04T05:00:01,endTime:2024-03-05T05:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 19:01:00', 379);
+INSERT INTO `s_shop_pull_logs` VALUES (1777653181364785154, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-05T04:00:01,endTime:2024-03-06T04:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 19:02:00', 289);
+INSERT INTO `s_shop_pull_logs` VALUES (1777653433631199234, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-06T03:00:01,endTime:2024-03-07T03:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 19:03:00', 435);
+INSERT INTO `s_shop_pull_logs` VALUES (1777653685696286721, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-07T02:00:01,endTime:2024-03-08T02:00:01}', '{insert:23,update:0,fail:0}', '2024-04-09 19:04:00', 530);
+INSERT INTO `s_shop_pull_logs` VALUES (1777653936683438082, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-08T01:00:01,endTime:2024-03-09T01:00:01}', '{insert:11,update:0,fail:0}', '2024-04-09 19:05:00', 370);
+INSERT INTO `s_shop_pull_logs` VALUES (1777654188689805314, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-09T00:00:01,endTime:2024-03-10T00:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 19:06:00', 456);
+INSERT INTO `s_shop_pull_logs` VALUES (1777654439500795906, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-09T23:00:01,endTime:2024-03-10T23:00:01}', '{insert:6,update:1,fail:0}', '2024-04-09 19:07:00', 253);
+INSERT INTO `s_shop_pull_logs` VALUES (1777654691842707457, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-10T22:00:01,endTime:2024-03-11T22:00:01}', '{insert:14,update:1,fail:0}', '2024-04-09 19:08:00', 417);
+INSERT INTO `s_shop_pull_logs` VALUES (1777654943719051266, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-11T21:00:01,endTime:2024-03-12T21:00:01}', '{insert:17,update:0,fail:0}', '2024-04-09 19:09:00', 467);
+INSERT INTO `s_shop_pull_logs` VALUES (1777655195243073537, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-12T20:00:01,endTime:2024-03-13T20:00:01}', '{insert:17,update:0,fail:0}', '2024-04-09 19:10:00', 436);
+INSERT INTO `s_shop_pull_logs` VALUES (1777655446448328705, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-13T19:00:01,endTime:2024-03-14T19:00:01}', '{insert:7,update:3,fail:0}', '2024-04-09 19:11:00', 327);
+INSERT INTO `s_shop_pull_logs` VALUES (1777655698727325698, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-14T18:00:01,endTime:2024-03-15T18:00:01}', '{insert:17,update:1,fail:0}', '2024-04-09 19:12:00', 476);
+INSERT INTO `s_shop_pull_logs` VALUES (1777655950331039745, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-15T17:00:01,endTime:2024-03-16T17:00:01}', '{insert:14,update:2,fail:0}', '2024-04-09 19:13:00', 462);
+INSERT INTO `s_shop_pull_logs` VALUES (1777656202144468994, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-16T16:00:01,endTime:2024-03-17T16:00:01}', '{insert:20,update:0,fail:0}', '2024-04-09 19:14:00', 501);
+INSERT INTO `s_shop_pull_logs` VALUES (1777656453781737474, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-17T15:00:01,endTime:2024-03-18T15:00:01}', '{insert:19,update:2,fail:0}', '2024-04-09 19:15:00', 495);
+INSERT INTO `s_shop_pull_logs` VALUES (1777656706245283841, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-18T14:00:01,endTime:2024-03-19T14:00:01}', '{insert:28,update:3,fail:0}', '2024-04-09 19:16:00', 687);
+INSERT INTO `s_shop_pull_logs` VALUES (1777656957811249153, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-19T13:00:01,endTime:2024-03-20T13:00:01}', '{insert:24,update:5,fail:0}', '2024-04-09 19:17:00', 666);
+INSERT INTO `s_shop_pull_logs` VALUES (1777657208848732162, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-20T12:00:01,endTime:2024-03-21T12:00:01}', '{insert:24,update:0,fail:0}', '2024-04-09 19:18:00', 518);
+INSERT INTO `s_shop_pull_logs` VALUES (1777657460536332290, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-21T11:00:01,endTime:2024-03-22T11:00:01}', '{insert:22,update:0,fail:0}', '2024-04-09 19:19:00', 526);
+INSERT INTO `s_shop_pull_logs` VALUES (1777657711808696322, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-22T10:00:01,endTime:2024-03-23T10:00:01}', '{insert:14,update:2,fail:0}', '2024-04-09 19:20:00', 432);
+INSERT INTO `s_shop_pull_logs` VALUES (1777657963450159105, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-23T09:00:01,endTime:2024-03-24T09:00:01}', '{insert:11,update:5,fail:1}', '2024-04-09 19:21:00', 428);
+INSERT INTO `s_shop_pull_logs` VALUES (1777658214445699074, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-24T08:00:01,endTime:2024-03-25T08:00:01}', '{insert:8,update:0,fail:0}', '2024-04-09 19:22:00', 270);
+INSERT INTO `s_shop_pull_logs` VALUES (1777658468335308801, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-25T07:00:01,endTime:2024-03-26T07:00:01}', '{insert:26,update:0,fail:0}', '2024-04-09 19:23:00', 802);
+INSERT INTO `s_shop_pull_logs` VALUES (1777658975355379714, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-22T23:00:01,endTime:2024-03-23T23:00:01}', '{insert:1,update:17,fail:0}', '2024-04-09 19:25:00', 1615);
+INSERT INTO `s_shop_pull_logs` VALUES (1777659221607161857, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-23T22:00:01,endTime:2024-03-24T22:00:01}', '{insert:0,update:10,fail:0}', '2024-04-09 19:26:00', 390);
+INSERT INTO `s_shop_pull_logs` VALUES (1777659474158788609, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-24T21:00:01,endTime:2024-03-25T21:00:01}', '{insert:0,update:25,fail:0}', '2024-04-09 19:27:00', 605);
+INSERT INTO `s_shop_pull_logs` VALUES (1777659726114824193, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-25T20:00:01,endTime:2024-03-26T20:00:01}', '{insert:16,update:8,fail:0}', '2024-04-09 19:28:00', 678);
+INSERT INTO `s_shop_pull_logs` VALUES (1777659977240387586, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-26T19:00:01,endTime:2024-03-27T19:00:01}', '{insert:18,update:0,fail:0}', '2024-04-09 19:29:00', 551);
+INSERT INTO `s_shop_pull_logs` VALUES (1777660229167063042, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-27T18:00:01,endTime:2024-03-28T18:00:01}', '{insert:15,update:1,fail:0}', '2024-04-09 19:30:00', 609);
+INSERT INTO `s_shop_pull_logs` VALUES (1777660480040968194, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-28T17:00:01,endTime:2024-03-29T17:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 19:31:00', 427);
+INSERT INTO `s_shop_pull_logs` VALUES (1777660731812454401, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-29T16:00:01,endTime:2024-03-30T16:00:01}', '{insert:13,update:0,fail:0}', '2024-04-09 19:32:00', 454);
+INSERT INTO `s_shop_pull_logs` VALUES (1777660983592329217, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-30T15:00:01,endTime:2024-03-31T15:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 19:33:00', 481);
+INSERT INTO `s_shop_pull_logs` VALUES (1777661235489644545, 2, 2, 'ORDER', '定时任务', '{startTime:2024-03-31T14:00:01,endTime:2024-04-01T14:00:01}', '{insert:18,update:1,fail:0}', '2024-04-09 19:34:00', 541);
+INSERT INTO `s_shop_pull_logs` VALUES (1777661487475040257, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-01T13:00:01,endTime:2024-04-02T13:00:01}', '{insert:15,update:0,fail:0}', '2024-04-09 19:35:00', 620);
+INSERT INTO `s_shop_pull_logs` VALUES (1777661738910982146, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-02T12:00:01,endTime:2024-04-03T12:00:01}', '{insert:20,update:1,fail:0}', '2024-04-09 19:36:00', 567);
+INSERT INTO `s_shop_pull_logs` VALUES (1777661989659058177, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-03T11:00:01,endTime:2024-04-04T11:00:01}', '{insert:10,update:0,fail:0}', '2024-04-09 19:37:00', 352);
+INSERT INTO `s_shop_pull_logs` VALUES (1777662241317298178, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-04T10:00:01,endTime:2024-04-05T10:00:01}', '{insert:8,update:2,fail:0}', '2024-04-09 19:38:00', 352);
+INSERT INTO `s_shop_pull_logs` VALUES (1777662493256556546, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-05T09:00:01,endTime:2024-04-06T09:00:01}', '{insert:12,update:0,fail:0}', '2024-04-09 19:39:00', 418);
+INSERT INTO `s_shop_pull_logs` VALUES (1777662744759607298, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-06T08:00:01,endTime:2024-04-07T08:00:01}', '{insert:9,update:1,fail:0}', '2024-04-09 19:40:00', 375);
+INSERT INTO `s_shop_pull_logs` VALUES (1777662998556942338, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-07T07:00:01,endTime:2024-04-08T07:00:01}', '{insert:38,update:0,fail:0}', '2024-04-09 19:41:00', 890);
+INSERT INTO `s_shop_pull_logs` VALUES (1777663249372127233, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-08T06:00:01,endTime:2024-04-09T06:00:01}', '{insert:28,update:0,fail:0}', '2024-04-09 19:42:00', 688);
+INSERT INTO `s_shop_pull_logs` VALUES (1777663500548022273, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-09T05:00:01,endTime:2024-04-09T19:43:00.003414200}', '{insert:22,update:1,fail:0}', '2024-04-09 19:43:00', 577);
+INSERT INTO `s_shop_pull_logs` VALUES (1777663750599843841, 2, 2, 'ORDER', '定时任务', '{startTime:2024-04-09T18:43,endTime:2024-04-09T19:44:00.006601200}', '{insert:0,update:1,fail:0}', '2024-04-09 19:44:00', 190);
+INSERT INTO `s_shop_pull_logs` VALUES (1777948211799371778, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 02:10:21,ApplyTimeEnd:2024-04-10 02:10:21,PageIndex:1,PageSize:100}', '{total:2,hasExist:0,totalError:0}', '2024-04-10 14:10:21', 1439547);
+INSERT INTO `s_shop_pull_logs` VALUES (1777978967368101890, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 04:34:53,ApplyTimeEnd:2024-04-10 04:34:53,PageIndex:1,PageSize:100}', '{total:3,hasExist:49,totalError:0}', '2024-04-10 16:34:53', 100488);
+INSERT INTO `s_shop_pull_logs` VALUES (1777981723495587841, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 04:45:17,ApplyTimeEnd:2024-04-10 04:45:17,PageIndex:1,PageSize:100}', '{total:49,hasExist:3,totalError:0}', '2024-04-10 16:45:18', 133162);
+INSERT INTO `s_shop_pull_logs` VALUES (1777993274201870337, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 05:33:10,ApplyTimeEnd:2024-04-10 05:33:10,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-10 17:33:10', 14276);
+INSERT INTO `s_shop_pull_logs` VALUES (1777995616620052481, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 05:42:41,ApplyTimeEnd:2024-04-10 05:42:41,PageIndex:1,PageSize:100}', '{total:52,hasExist:0,totalError:0}', '2024-04-10 17:42:41', 2019);
+INSERT INTO `s_shop_pull_logs` VALUES (1777999870848110593, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 05:59:29,ApplyTimeEnd:2024-04-10 05:59:29,PageIndex:1,PageSize:100}', '{total:52,hasExist:0,totalError:0}', '2024-04-10 17:59:29', 8617);
+INSERT INTO `s_shop_pull_logs` VALUES (1778260078669299713, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:13:33,ApplyTimeEnd:2024-04-10 23:13:33,PageIndex:1,PageSize:100}', '{total:2,hasExist:50,totalError:0}', '2024-04-11 11:13:33', 2942);
+INSERT INTO `s_shop_pull_logs` VALUES (1778262189968695298, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:21:56,ApplyTimeEnd:2024-04-10 23:21:56,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:21:56', 3329);
+INSERT INTO `s_shop_pull_logs` VALUES (1778264117200945153, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:29:05,ApplyTimeEnd:2024-04-10 23:29:05,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:29:05', 33489);
+INSERT INTO `s_shop_pull_logs` VALUES (1778264356444045313, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:30:32,ApplyTimeEnd:2024-04-10 23:30:32,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:30:32', 3520);
+INSERT INTO `s_shop_pull_logs` VALUES (1778265231816261634, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:34:02,ApplyTimeEnd:2024-04-10 23:34:02,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:34:03', 1604);
+INSERT INTO `s_shop_pull_logs` VALUES (1778265709430046722, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:35:56,ApplyTimeEnd:2024-04-10 23:35:56,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:35:56', 2283);
+INSERT INTO `s_shop_pull_logs` VALUES (1782655076842622978, 2, 2, 'GOODS', '主动拉取', '{WareStatusValue:8,PageNo:1,PageSize:100}', '{successTotal:57}', '2024-04-23 14:17:20', 24615);
+INSERT INTO `s_shop_pull_logs` VALUES (1782655845054566401, 2, 2, 'GOODS', '主动拉取', '{WareStatusValue:8,PageNo:1,PageSize:100}', '{successTotal:57}', '2024-04-23 14:20:29', 19615);
+
+-- ----------------------------
 -- Table structure for s_shop_setting
 -- ----------------------------
 DROP TABLE IF EXISTS `s_shop_setting`;
 CREATE TABLE `s_shop_setting`  (
-  `id` int NOT NULL COMMENT '主键',
-  `name` varchar(50)  NOT NULL COMMENT '配置名',
-  `app_key` varchar(50)  NOT NULL COMMENT 'appKey',
+  `id` int(0) NOT NULL COMMENT '主键',
+  `name` varchar(50) NOT NULL COMMENT '配置名',
+  `app_key` varchar(50) NOT NULL COMMENT 'appKey',
   `app_secret` varchar(50)  NOT NULL COMMENT 'appSecret',
-  `access_token` varchar(500)  NULL DEFAULT NULL COMMENT '阿里access token',
-  `expires_in` bigint NULL DEFAULT NULL COMMENT '到期',
-  `access_token_begin` bigint NULL DEFAULT NULL COMMENT 'access_token开始时间',
-  `refresh_token` varchar(500)  NULL DEFAULT NULL COMMENT '刷新token',
-  `refresh_token_timeout` bigint NULL DEFAULT NULL COMMENT '刷新token过期时间',
-  `modify_on` bigint NOT NULL COMMENT '更新时间',
-  `remark` varchar(50)  NULL DEFAULT NULL COMMENT '描述',
-  `request_url` varchar(100)  NULL DEFAULT NULL COMMENT '请求url',
-  `third_id` varchar(50)  NULL DEFAULT NULL COMMENT '第三方店铺id',
+  `access_token` varchar(500) DEFAULT NULL COMMENT '阿里access token',
+  `expires_in` bigint(0) DEFAULT NULL COMMENT '到期',
+  `access_token_begin` bigint(0) DEFAULT NULL COMMENT 'access_token开始时间',
+  `refresh_token` varchar(500) DEFAULT NULL COMMENT '刷新token',
+  `refresh_token_timeout` bigint(0) DEFAULT NULL COMMENT '刷新token过期时间',
+  `modify_on` bigint(0) NOT NULL COMMENT '更新时间',
+  `remark` varchar(50) DEFAULT NULL COMMENT '描述',
+  `request_url` varchar(100) DEFAULT NULL COMMENT '请求url',
+  `third_id` varchar(50) DEFAULT NULL COMMENT '第三方店铺id',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '第三方平台设置' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_shop_setting
@@ -6712,64 +6988,64 @@ INSERT INTO `s_shop_setting` VALUES (99, 'ERP系统', '', '', NULL, NULL, NULL, 
 -- ----------------------------
 DROP TABLE IF EXISTS `s_tao_order`;
 CREATE TABLE `s_tao_order`  (
-  `id` bigint NOT NULL COMMENT '订单id（天猫订单id）',
-  `shopId` int NOT NULL DEFAULT 0 COMMENT '店铺id',
-  `orderSource` int NULL DEFAULT 1 COMMENT '订单来源0天猫1淘宝',
-  `buyerName` varchar(30)  NULL DEFAULT '' COMMENT '买家昵称',
+  `id` bigint(0) NOT NULL COMMENT '订单id（天猫订单id）',
+  `shopId` int(0) NOT NULL DEFAULT 0 COMMENT '店铺id',
+  `orderSource` int(0) DEFAULT 1 COMMENT '订单来源0天猫1淘宝',
+  `buyerName` varchar(30)  DEFAULT '' COMMENT '买家昵称',
   `totalAmount` decimal(10, 2) NOT NULL COMMENT '应付款总金额，totalAmount = ∑itemAmount + shippingFee，单位为元',
   `shippingFee` decimal(5, 2) NOT NULL DEFAULT 0.00 COMMENT '运费',
   `discountAmount` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '优惠金额',
   `payAmount` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '实际支付金额',
-  `discountRemark` varchar(255)  NULL DEFAULT NULL COMMENT '优惠描述',
-  `orderCreateTime` datetime NOT NULL COMMENT '订单创建时间',
-  `orderModifyTime` datetime NULL DEFAULT NULL COMMENT '订单修改时间',
-  `payTime` datetime NULL DEFAULT NULL COMMENT '付款时间，如果有多次付款，这里返回的是首次付款时间',
-  `confirmedTime` datetime NULL DEFAULT NULL COMMENT '确认时间',
-  `deliveredTime` datetime NULL DEFAULT NULL COMMENT '发货时间',
-  `completeTime` datetime NULL DEFAULT NULL COMMENT '完成时间',
-  `sellerMemo` varchar(100)  NULL DEFAULT NULL COMMENT '卖家备忘信息',
-  `buyerFeedback` varchar(500)  NULL DEFAULT NULL COMMENT '买家留言，不超过500字',
-  `closeReason` varchar(50)  NULL DEFAULT '' COMMENT '关闭原因。buyerCancel:买家取消订单，sellerGoodsLack:卖家库存不足，other:其它',
-  `receivingTime` datetime NULL DEFAULT NULL COMMENT '收货时间，这里返回的是完全收货时间',
-  `statusStr` varchar(50)  NULL DEFAULT '' COMMENT '订单状态',
-  `status` int NOT NULL DEFAULT 0 COMMENT '交易状态，waitbuyerpay:等待买家付款;waitsellersend:等待卖家发货;waitlogisticstakein:等待物流公司揽件;waitbuyerreceive:等待买家收货;waitbuyersign:等待买家签收;signinsuccess:买家已签收;confirm_goods:已收货;success:交易成功;cancel:交易取消;terminated:交易终止;未枚举:其他状态',
-  `logisticsCompany` varchar(20)  NULL DEFAULT NULL COMMENT '快递公司',
-  `logisticsCompanyCode` varchar(20)  NULL DEFAULT NULL COMMENT '快递公司编码',
-  `logisticsCode` varchar(30)  NULL DEFAULT NULL COMMENT '快递单号',
-  `refundId` varchar(45)  NULL DEFAULT NULL COMMENT '退款单ID',
-  `refundAmount` decimal(10, 2) NULL DEFAULT NULL COMMENT '退款金额，单位为元',
-  `refundStatus` varchar(20)  NULL DEFAULT NULL COMMENT '订单的售中退款状态，等待卖家同意：waitselleragree ，待买家修改：waitbuyermodify，等待买家退货：waitbuyersend，等待卖家确认收货：waitsellerreceive，退款成功：refundsuccess，退款失败：refundclose',
-  `auditStatus` int NOT NULL COMMENT '订单审核状态（0待审核1已审核）',
-  `auditTime` datetime NULL DEFAULT NULL COMMENT '订单审核时间',
-  `sendStatus` int NULL DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
-  `sendTime` datetime NULL DEFAULT NULL COMMENT '仓库发货时间',
-  `tag` varchar(20)  NULL DEFAULT NULL COMMENT '标签(1：实售2：淘宝客3：刷单4：返现)',
-  `remark` varchar(2000)  NULL DEFAULT NULL COMMENT '备注',
-  `is_comment` tinyint(1) NULL DEFAULT 0 COMMENT '是否评价',
-  `is_merge` tinyint(1) NULL DEFAULT 0 COMMENT '是否合并发货(0:否1:是)',
-  `createTime` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `createBy` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `updateTime` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `updateBy` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
+  `discountRemark` varchar(255)  DEFAULT NULL COMMENT '优惠描述',
+  `orderCreateTime` datetime(0) NOT NULL COMMENT '订单创建时间',
+  `orderModifyTime` datetime(0) DEFAULT NULL COMMENT '订单修改时间',
+  `payTime` datetime(0) DEFAULT NULL COMMENT '付款时间，如果有多次付款，这里返回的是首次付款时间',
+  `confirmedTime` datetime(0) DEFAULT NULL COMMENT '确认时间',
+  `deliveredTime` datetime(0) DEFAULT NULL COMMENT '发货时间',
+  `completeTime` datetime(0) DEFAULT NULL COMMENT '完成时间',
+  `sellerMemo` varchar(100)  DEFAULT NULL COMMENT '卖家备忘信息',
+  `buyerFeedback` varchar(500)  DEFAULT NULL COMMENT '买家留言，不超过500字',
+  `closeReason` varchar(50)  DEFAULT '' COMMENT '关闭原因。buyerCancel:买家取消订单，sellerGoodsLack:卖家库存不足，other:其它',
+  `receivingTime` datetime(0) DEFAULT NULL COMMENT '收货时间，这里返回的是完全收货时间',
+  `statusStr` varchar(50)  DEFAULT '' COMMENT '订单状态',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT '交易状态，waitbuyerpay:等待买家付款;waitsellersend:等待卖家发货;waitlogisticstakein:等待物流公司揽件;waitbuyerreceive:等待买家收货;waitbuyersign:等待买家签收;signinsuccess:买家已签收;confirm_goods:已收货;success:交易成功;cancel:交易取消;terminated:交易终止;未枚举:其他状态',
+  `logisticsCompany` varchar(20)  DEFAULT NULL COMMENT '快递公司',
+  `logisticsCompanyCode` varchar(20)  DEFAULT NULL COMMENT '快递公司编码',
+  `logisticsCode` varchar(30)  DEFAULT NULL COMMENT '快递单号',
+  `refundId` varchar(45)  DEFAULT NULL COMMENT '退款单ID',
+  `refundAmount` decimal(10, 2) DEFAULT NULL COMMENT '退款金额，单位为元',
+  `refundStatus` varchar(20)  DEFAULT NULL COMMENT '订单的售中退款状态，等待卖家同意：waitselleragree ，待买家修改：waitbuyermodify，等待买家退货：waitbuyersend，等待卖家确认收货：waitsellerreceive，退款成功：refundsuccess，退款失败：refundclose',
+  `auditStatus` int(0) NOT NULL COMMENT '订单审核状态（0待审核1已审核）',
+  `auditTime` datetime(0) DEFAULT NULL COMMENT '订单审核时间',
+  `sendStatus` int(0) DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
+  `sendTime` datetime(0) DEFAULT NULL COMMENT '仓库发货时间',
+  `tag` varchar(20)  DEFAULT NULL COMMENT '标签(1：实售2：淘宝客3：刷单4：返现)',
+  `remark` varchar(2000)  DEFAULT NULL COMMENT '备注',
+  `is_comment` tinyint(1) DEFAULT 0 COMMENT '是否评价',
+  `is_merge` tinyint(1) DEFAULT 0 COMMENT '是否合并发货(0:否1:是)',
+  `createTime` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
+  `createBy` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `updateTime` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `updateBy` varchar(25) DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝订单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_tao_order
 -- ----------------------------
-INSERT INTO `s_tao_order` VALUES (1631273557325601885, 6, 0, '', 28.90, 0.00, 0.00, 28.90, '', '2022-07-31 18:14:00', '2022-07-31 18:14:00', '2022-07-31 18:14:00', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432700565699461', NULL, NULL, NULL, 1, '2024-01-16 13:44:26', 0, '2022-07-31 19:55:48', NULL, NULL, NULL, 0, '2022-07-31 18:13:59', NULL, '2024-01-16 13:44:26', 'admin');
-INSERT INTO `s_tao_order` VALUES (1634650644223535380, 6, 0, '', 39.52, 0.00, 0.00, 39.52, '', '2022-08-05 18:54:56', '2022-08-05 18:54:56', '2022-08-05 18:54:56', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432709738409379', NULL, NULL, NULL, 0, '2022-08-05 18:54:56', 0, '2022-08-05 19:52:56', NULL, NULL, NULL, 0, '2022-08-05 18:54:56', NULL, '2022-08-05 19:52:56', NULL);
-INSERT INTO `s_tao_order` VALUES (1635222253871665598, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-05 18:48:51', '2022-08-05 18:48:51', '2022-08-05 18:48:51', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432709738409767', NULL, NULL, NULL, 1, '2024-01-28 19:55:37', 0, '2022-08-05 19:49:12', NULL, NULL, NULL, 0, '2022-08-05 18:48:51', NULL, '2024-01-28 19:55:37', 'admin');
-INSERT INTO `s_tao_order` VALUES (1635963673656309898, 6, 0, '', 39.52, 0.00, 0.00, 39.52, '', '2022-08-06 18:26:01', '2022-08-06 18:26:01', '2022-08-06 18:26:01', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432711322752762', NULL, NULL, NULL, 0, '2022-08-06 18:26:01', 0, '2022-08-09 19:19:10', NULL, NULL, NULL, 0, '2022-08-06 18:26:01', NULL, '2022-08-09 19:19:10', NULL);
-INSERT INTO `s_tao_order` VALUES (1638101679063535380, 6, 0, '', 39.52, 0.00, 0.00, 39.52, '', '2022-08-09 19:34:24', '2022-08-09 19:34:24', '2022-08-09 19:34:24', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432716874752516', NULL, NULL, NULL, 0, '2022-08-09 19:34:24', 0, '2022-08-09 22:45:55', NULL, NULL, NULL, 0, '2022-08-09 19:34:24', NULL, '2022-08-09 22:45:55', NULL);
-INSERT INTO `s_tao_order` VALUES (1638388920088435398, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-10 17:17:21', '2022-08-10 17:17:21', '2022-08-10 17:17:21', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432718792062072', NULL, NULL, NULL, 0, '2022-08-10 17:17:21', 0, '2022-08-10 19:47:37', NULL, NULL, NULL, 0, '2022-08-10 17:17:21', NULL, '2022-08-10 19:47:37', NULL);
+INSERT INTO `s_tao_order` VALUES (1631273557325601885, 6, 0, '', 28.90, 0.00, 0.00, 28.90, '', '2022-07-31 18:14:00', '2022-07-31 18:14:00', '2022-07-31 18:14:00', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432700565699461', NULL, NULL, NULL, 0, '2024-01-16 13:44:26', 0, '2022-07-31 19:55:48', NULL, NULL, NULL, 0, '2022-07-31 18:13:59', NULL, '2024-01-16 13:44:26', 'admin');
+INSERT INTO `s_tao_order` VALUES (1634650644223535380, 6, 0, '', 39.52, 0.00, 0.00, 39.52, '', '2022-08-05 18:54:56', '2022-08-05 18:54:56', '2022-08-05 18:54:56', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432709738409379', NULL, NULL, NULL, 0, '2024-04-25 13:47:22', 0, '2022-08-05 19:52:56', NULL, NULL, NULL, 0, '2022-08-05 18:54:56', NULL, '2024-04-25 13:47:22', 'admin');
+INSERT INTO `s_tao_order` VALUES (1635222253871665598, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-05 18:48:51', '2022-08-05 18:48:51', '2022-08-05 18:48:51', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432709738409767', NULL, NULL, NULL, 0, '2024-01-28 19:55:37', 0, '2022-08-05 19:49:12', NULL, NULL, NULL, 0, '2022-08-05 18:48:51', NULL, '2024-01-28 19:55:37', 'admin');
+INSERT INTO `s_tao_order` VALUES (1635963673656309898, 6, 0, '', 39.52, 0.00, 0.00, 39.52, '', '2022-08-06 18:26:01', '2022-08-06 18:26:01', '2022-08-06 18:26:01', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432711322752762', NULL, NULL, NULL, 0, '2024-04-25 13:31:55', 0, '2022-08-09 19:19:10', NULL, NULL, NULL, 0, '2022-08-06 18:26:01', NULL, '2024-04-25 13:31:56', 'admin');
+INSERT INTO `s_tao_order` VALUES (1638101679063535380, 6, 0, '', 39.52, 0.00, 0.00, 39.52, '', '2022-08-09 19:34:24', '2022-08-09 19:34:24', '2022-08-09 19:34:24', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432716874752516', NULL, NULL, NULL, 0, '2024-04-25 13:24:45', 0, '2022-08-09 22:45:55', NULL, NULL, NULL, 0, '2022-08-09 19:34:24', NULL, '2024-04-25 13:24:45', 'admin');
+INSERT INTO `s_tao_order` VALUES (1638388920088435398, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-10 17:17:21', '2022-08-10 17:17:21', '2022-08-10 17:17:21', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432718792062072', NULL, NULL, NULL, 0, '2024-04-25 13:22:18', 0, '2022-08-10 19:47:37', NULL, NULL, NULL, 0, '2022-08-10 17:17:21', NULL, '2024-04-25 13:22:18', 'admin');
 INSERT INTO `s_tao_order` VALUES (1639000560200588828, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-11 18:26:09', '2022-08-11 18:26:09', '2022-08-11 18:26:09', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432720544409446', NULL, NULL, NULL, 0, '2022-08-11 18:26:09', 0, '2022-08-12 19:50:15', NULL, NULL, NULL, 0, '2022-08-11 18:26:09', NULL, '2022-08-12 19:50:15', NULL);
 INSERT INTO `s_tao_order` VALUES (1639678765959282960, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-11 18:24:58', '2022-08-11 18:24:58', '2022-08-11 18:24:58', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '中通快递', NULL, '78605337159555', NULL, NULL, NULL, 0, '2022-08-11 18:24:58', 0, '2022-08-12 19:50:28', NULL, NULL, NULL, 0, '2022-08-11 18:24:58', NULL, '2022-08-12 19:50:28', NULL);
 INSERT INTO `s_tao_order` VALUES (1640039089142149277, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-11 18:27:07', '2022-08-11 18:27:07', '2022-08-11 18:27:07', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432720552181285', NULL, NULL, NULL, 0, '2022-08-11 18:27:07', 0, '2022-08-12 19:50:02', NULL, NULL, NULL, 0, '2022-08-11 18:27:07', NULL, '2022-08-12 19:50:02', NULL);
 INSERT INTO `s_tao_order` VALUES (1640069402434910729, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-11 18:28:22', '2022-08-11 18:28:22', '2022-08-11 18:28:22', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432720547617821', NULL, NULL, NULL, 0, '2022-08-11 18:28:22', 0, '2022-08-12 19:49:46', NULL, NULL, NULL, 0, '2022-08-11 18:28:22', NULL, '2022-08-12 19:49:46', NULL);
 INSERT INTO `s_tao_order` VALUES (1641540792944799598, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-13 19:06:15', '2022-08-13 19:06:15', '2022-08-13 19:06:15', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432723807527213', NULL, NULL, NULL, 0, '2022-08-13 19:06:15', 0, '2022-08-13 21:24:12', NULL, NULL, NULL, 0, '2022-08-13 19:06:15', NULL, '2022-08-13 21:24:12', NULL);
 INSERT INTO `s_tao_order` VALUES (1642459225787395472, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-13 19:08:09', '2022-08-13 19:08:09', '2022-08-13 19:08:09', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432723807527023', NULL, NULL, NULL, 0, '2022-08-13 19:08:09', 0, '2022-08-13 21:23:49', NULL, NULL, NULL, 0, '2022-08-13 19:08:09', NULL, '2022-08-13 21:23:49', NULL);
-INSERT INTO `s_tao_order` VALUES (1642473483353670599, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-13 19:09:13', '2022-08-13 19:09:13', '2022-08-13 19:09:13', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432723807526979', NULL, NULL, NULL, 1, '2024-01-16 15:04:52', 0, '2022-08-13 21:23:33', NULL, NULL, NULL, 0, '2022-08-13 19:09:13', NULL, '2024-01-16 15:04:52', 'admin');
+INSERT INTO `s_tao_order` VALUES (1642473483353670599, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-13 19:09:13', '2022-08-13 19:09:13', '2022-08-13 19:09:13', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432723807526979', NULL, NULL, NULL, 0, '2024-01-16 15:04:52', 0, '2022-08-13 21:23:33', NULL, NULL, NULL, 0, '2022-08-13 19:09:13', NULL, '2024-01-16 15:04:52', 'admin');
 INSERT INTO `s_tao_order` VALUES (1645143458981500079, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-16 19:17:01', '2022-08-16 19:17:01', '2022-08-16 19:17:01', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432728674221907', NULL, NULL, NULL, 0, '2022-08-16 19:17:01', 0, '2022-08-16 19:49:48', NULL, NULL, NULL, 0, '2022-08-16 19:17:01', NULL, '2022-08-16 19:49:48', NULL);
 INSERT INTO `s_tao_order` VALUES (1645147956136238382, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-17 18:18:37', '2022-08-17 18:18:37', '2022-08-17 18:18:37', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432730372496826', NULL, NULL, NULL, 0, '2022-08-17 18:18:37', 0, '2022-08-17 19:51:41', NULL, NULL, NULL, 0, '2022-08-17 18:18:37', NULL, '2022-08-17 19:51:41', NULL);
 INSERT INTO `s_tao_order` VALUES (1646030496778058766, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-18 19:19:41', '2022-08-18 19:19:41', '2022-08-18 19:19:41', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432732189595068', NULL, NULL, NULL, 0, '2022-08-18 19:19:41', 0, '2022-08-18 19:46:12', NULL, NULL, NULL, 0, '2022-08-18 19:19:41', NULL, '2022-08-18 19:46:12', NULL);
@@ -6779,17 +7055,17 @@ INSERT INTO `s_tao_order` VALUES (1647477879589747479, 6, 0, '', 29.92, 0.00, 0.
 INSERT INTO `s_tao_order` VALUES (1649326118935313381, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-21 19:27:21', '2022-08-21 19:27:21', '2022-08-21 19:27:21', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432737498051156', NULL, NULL, NULL, 0, '2022-08-21 19:27:21', 0, '2022-08-21 19:50:24', NULL, NULL, NULL, 0, '2022-08-21 19:27:21', NULL, '2022-08-21 19:50:24', NULL);
 INSERT INTO `s_tao_order` VALUES (1653154394408665996, 6, 0, '', 39.52, 0.00, 0.00, 39.52, '', '2022-08-25 20:12:35', '2022-08-25 20:12:35', '2022-08-25 20:12:35', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432745220903636', NULL, NULL, NULL, 0, '2022-08-25 20:12:35', 0, '2022-08-25 20:23:07', NULL, NULL, NULL, 0, '2022-08-25 20:12:35', NULL, '2022-08-25 20:23:07', NULL);
 INSERT INTO `s_tao_order` VALUES (1654118401554519282, 6, 0, '', 29.92, 0.00, 0.00, 29.92, '', '2022-08-26 19:53:24', '2022-08-26 19:53:24', '2022-08-26 19:53:24', NULL, NULL, NULL, '', NULL, '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432747058224996', NULL, NULL, NULL, 0, '2022-08-26 19:53:24', 0, '2022-08-26 20:49:23', NULL, NULL, NULL, 0, '2022-08-26 19:53:24', NULL, '2022-08-26 20:49:23', NULL);
-INSERT INTO `s_tao_order` VALUES (1664188610043377195, 6, 1, '', 19.90, 0.00, 0.00, 19.90, NULL, '2022-09-06 23:05:35', NULL, '2022-09-06 23:05:57', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3012001081470', NULL, NULL, NULL, 1, '2024-01-07 16:03:56', 0, '2022-09-07 19:20:59', NULL, NULL, 0, 0, '2022-09-07 18:06:01', NULL, '2024-01-07 16:03:56', 'admin');
+INSERT INTO `s_tao_order` VALUES (1664188610043377195, 6, 1, '', 19.90, 0.00, 0.00, 19.90, NULL, '2022-09-06 23:05:35', NULL, '2022-09-06 23:05:57', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3012001081470', NULL, NULL, NULL, 0, '2024-01-07 16:03:56', 0, '2022-09-07 19:20:59', NULL, NULL, 0, 0, '2022-09-07 18:06:01', NULL, '2024-01-07 16:03:56', 'admin');
 INSERT INTO `s_tao_order` VALUES (1664990796806753993, 6, 1, '', 24.90, 0.00, 0.00, 24.90, NULL, '2022-09-08 13:44:02', NULL, '2022-09-08 13:44:12', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3012093953057', NULL, NULL, NULL, 0, '2022-09-08 19:50:50', 0, '2022-09-08 21:22:23', NULL, NULL, 0, 0, '2022-09-08 19:50:50', NULL, '2022-09-08 21:22:23', NULL);
 INSERT INTO `s_tao_order` VALUES (1666956540494199587, 6, 1, '', 34.90, 0.00, 0.00, 34.90, NULL, '2022-09-10 17:43:28', NULL, '2022-09-10 17:43:32', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3012292164995', NULL, NULL, NULL, 0, '2022-09-10 19:28:38', 0, '2022-09-11 18:15:40', NULL, NULL, 0, 0, '2022-09-10 19:28:38', NULL, '2022-09-11 18:15:40', NULL);
 INSERT INTO `s_tao_order` VALUES (1668790597296915884, 6, 1, '', 51.91, 0.00, 0.00, 51.91, NULL, '2022-09-11 21:32:48', NULL, '2022-09-11 21:33:08', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3012393584895', NULL, NULL, NULL, 0, '2022-09-12 19:19:49', 0, '2022-09-12 19:43:47', NULL, NULL, 0, 0, '2022-09-12 19:19:49', NULL, '2022-09-12 19:43:47', NULL);
 INSERT INTO `s_tao_order` VALUES (1681236338785922394, 6, 1, '', 43.49, 0.00, 0.00, 43.49, NULL, '2022-09-25 14:51:29', NULL, '2022-09-25 14:51:37', NULL, NULL, NULL, '送腰带', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3013527906908', NULL, NULL, NULL, 0, '2022-09-25 18:31:43', 0, '2022-09-27 17:01:02', NULL, NULL, 0, 0, '2022-09-25 18:31:43', NULL, '2022-09-27 17:01:02', NULL);
-INSERT INTO `s_tao_order` VALUES (1683558230877541495, 6, 1, '', 49.63, 0.00, 0.00, 49.63, NULL, '2022-09-27 10:15:53', NULL, '2022-09-27 10:15:57', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3013717179230', NULL, NULL, NULL, 1, '2022-09-27 17:12:03', 0, '2022-09-27 20:17:50', '1', '不要腰带', 0, 0, '2022-09-27 17:12:03', NULL, '2022-09-27 20:17:50', NULL);
-INSERT INTO `s_tao_order` VALUES (1707397970934272173, 6, 1, '', 52.30, 0.00, 0.00, 52.30, NULL, '2022-10-19 14:56:17', NULL, '2022-10-19 14:58:35', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432854235143832', NULL, NULL, NULL, 1, '2022-10-19 17:54:54', 4, '2022-10-19 19:28:49', '1', '', 0, 0, '2022-10-19 17:54:54', NULL, '2022-10-19 19:28:49', NULL);
-INSERT INTO `s_tao_order` VALUES (1719046705687156592, 6, 1, '', 67.15, 0.00, 0.00, 67.15, NULL, '2022-10-30 10:27:56', NULL, '2022-10-30 10:43:37', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773189893623897', NULL, NULL, NULL, 1, '2022-10-30 15:13:17', 4, '2022-10-30 19:05:10', '1', '', 0, 0, '2022-10-30 15:13:17', NULL, '2022-10-30 19:05:10', NULL);
-INSERT INTO `s_tao_order` VALUES (1727577552380645780, 6, 1, '', 69.22, 0.00, 0.00, 69.22, NULL, '2022-11-06 14:12:16', NULL, '2022-11-06 14:12:43', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773191590346950', NULL, NULL, NULL, 1, '2022-11-06 17:19:32', 4, '2022-11-06 18:45:54', '1', '', 0, 0, '2022-11-06 17:19:32', NULL, '2022-11-06 18:45:54', NULL);
-INSERT INTO `s_tao_order` VALUES (1732019991903645780, 6, 1, '', 69.22, 0.00, 0.00, 69.22, NULL, '2022-11-10 09:28:11', NULL, '2022-11-10 09:28:19', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773192240748155', NULL, NULL, NULL, 1, '2022-11-10 17:12:48', 4, '2022-11-10 18:04:02', '1', '', 0, 0, '2022-11-10 17:12:48', NULL, '2022-11-10 18:04:02', NULL);
-INSERT INTO `s_tao_order` VALUES (1747680279246507087, 6, 1, '', 52.30, 0.00, 0.00, 52.30, NULL, '2022-11-23 10:50:31', NULL, '2022-11-23 10:50:36', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432931916667103', NULL, NULL, NULL, 1, '2022-11-23 18:13:01', 4, '2022-11-23 18:13:42', '1', '', 0, 0, '2022-11-23 18:13:01', NULL, '2022-11-23 18:13:42', NULL);
+INSERT INTO `s_tao_order` VALUES (1683558230877541495, 6, 1, '', 49.63, 0.00, 0.00, 49.63, NULL, '2022-09-27 10:15:53', NULL, '2022-09-27 10:15:57', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3013717179230', NULL, NULL, NULL, 0, '2022-09-27 17:12:03', 0, '2022-09-27 20:17:50', '1', '不要腰带', 0, 0, '2022-09-27 17:12:03', NULL, '2022-09-27 20:17:50', NULL);
+INSERT INTO `s_tao_order` VALUES (1707397970934272173, 6, 1, '', 52.30, 0.00, 0.00, 52.30, NULL, '2022-10-19 14:56:17', NULL, '2022-10-19 14:58:35', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432854235143832', NULL, NULL, NULL, 0, '2022-10-19 17:54:54', 4, '2022-10-19 19:28:49', '1', '', 0, 0, '2022-10-19 17:54:54', NULL, '2022-10-19 19:28:49', NULL);
+INSERT INTO `s_tao_order` VALUES (1719046705687156592, 6, 1, '', 67.15, 0.00, 0.00, 67.15, NULL, '2022-10-30 10:27:56', NULL, '2022-10-30 10:43:37', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773189893623897', NULL, NULL, NULL, 0, '2022-10-30 15:13:17', 4, '2022-10-30 19:05:10', '1', '', 0, 0, '2022-10-30 15:13:17', NULL, '2022-10-30 19:05:10', NULL);
+INSERT INTO `s_tao_order` VALUES (1727577552380645780, 6, 1, '', 69.22, 0.00, 0.00, 69.22, NULL, '2022-11-06 14:12:16', NULL, '2022-11-06 14:12:43', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773191590346950', NULL, NULL, NULL, 0, '2022-11-06 17:19:32', 4, '2022-11-06 18:45:54', '1', '', 0, 0, '2022-11-06 17:19:32', NULL, '2022-11-06 18:45:54', NULL);
+INSERT INTO `s_tao_order` VALUES (1732019991903645780, 6, 1, '', 69.22, 0.00, 0.00, 69.22, NULL, '2022-11-10 09:28:11', NULL, '2022-11-10 09:28:19', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773192240748155', NULL, NULL, NULL, 0, '2022-11-10 17:12:48', 4, '2022-11-10 18:04:02', '1', '', 0, 0, '2022-11-10 17:12:48', NULL, '2022-11-10 18:04:02', NULL);
+INSERT INTO `s_tao_order` VALUES (1747680279246507087, 6, 1, '', 52.30, 0.00, 0.00, 52.30, NULL, '2022-11-23 10:50:31', NULL, '2022-11-23 10:50:36', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432931916667103', NULL, NULL, NULL, 0, '2022-11-23 18:13:01', 4, '2022-11-23 18:13:42', '1', '', 0, 0, '2022-11-23 18:13:01', NULL, '2022-11-23 18:13:42', NULL);
 INSERT INTO `s_tao_order` VALUES (2091944533739757390, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-19 21:28:53', NULL, '2024-03-19 21:29:09', NULL, '2024-03-20 17:20:32', NULL, '20仓  273同行调货', 'null', '', NULL, '卖家已发货，等待买家确认', 0, '圆通速递', NULL, 'No:YT7453244865603', NULL, NULL, '没有申请退款', 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
 INSERT INTO `s_tao_order` VALUES (2092331244369909155, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 20:54:16', NULL, '2024-03-20 20:54:21', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
 INSERT INTO `s_tao_order` VALUES (2092354860226419156, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 21:15:37', NULL, '2024-03-20 21:15:46', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
@@ -6882,74 +7158,46 @@ INSERT INTO `s_tao_order` VALUES (2882180559719256611, 6, 1, '', 39.52, 0.00, 0.
 INSERT INTO `s_tao_order` VALUES (2894222592323299060, 6, 1, '', 53.91, 0.00, 0.00, 53.91, NULL, '2022-09-18 13:56:25', NULL, '2022-09-18 13:56:28', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3012900266448', NULL, NULL, NULL, 0, '2022-09-18 20:25:12', 0, '2022-09-18 20:33:36', NULL, NULL, 0, 0, '2022-09-18 20:25:12', NULL, '2022-09-18 20:33:36', NULL);
 INSERT INTO `s_tao_order` VALUES (2899913437459231759, 6, 1, '', 39.52, 0.00, 0.00, 39.52, NULL, '2022-09-20 21:23:12', NULL, '2022-09-20 21:40:20', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3013085384696', NULL, NULL, NULL, 0, '2022-09-20 22:05:07', 0, '2022-09-20 22:17:34', NULL, NULL, 0, 0, '2022-09-20 22:05:07', NULL, '2022-09-20 22:17:34', NULL);
 INSERT INTO `s_tao_order` VALUES (2900221419737927908, 6, 1, '', 29.92, 0.00, 0.00, 29.92, NULL, '2022-09-20 18:13:56', NULL, '2022-09-20 18:13:58', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3013083656908', NULL, NULL, NULL, 0, '2022-09-20 20:30:31', 0, '2022-09-20 22:17:53', NULL, NULL, 0, 0, '2022-09-20 20:30:31', NULL, '2022-09-20 22:17:53', NULL);
-INSERT INTO `s_tao_order` VALUES (2923690718502279654, 6, 1, '', 54.90, 0.00, 0.00, 54.90, NULL, '2022-10-02 01:22:04', NULL, '2022-10-02 01:23:13', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3014110318112', NULL, NULL, NULL, 1, '2022-10-02 17:14:28', 0, '2022-10-02 19:51:49', '1', '\'', 0, 0, '2022-10-02 17:14:28', NULL, '2022-10-02 19:51:49', NULL);
-INSERT INTO `s_tao_order` VALUES (2927935514314953754, 6, 1, '', 53.61, 0.00, 0.00, 53.61, NULL, '2022-10-04 07:32:38', NULL, '2022-10-04 07:32:44', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3014278403520', NULL, NULL, NULL, 1, '2022-10-04 19:23:44', 0, '2022-10-04 19:58:27', '1', '\'', 0, 0, '2022-10-04 19:23:44', NULL, '2022-10-04 19:58:27', NULL);
-INSERT INTO `s_tao_order` VALUES (2934328755836161104, 6, 1, '', 133.03, 0.00, 0.00, 133.03, NULL, '2022-10-06 23:58:12', NULL, '2022-10-06 23:58:21', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3014544579342', NULL, NULL, NULL, 1, '2022-10-07 18:10:19', 0, '2022-10-07 20:27:37', '1', '\'', 0, 0, '2022-10-07 18:10:19', NULL, '2022-10-07 20:27:37', NULL);
-INSERT INTO `s_tao_order` VALUES (2989950941864043634, 6, 1, '', 63.90, 0.00, 0.00, 63.90, NULL, '2022-10-31 21:21:23', NULL, '2022-10-31 21:21:40', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773190534080476', NULL, NULL, NULL, 1, '2022-11-01 18:50:16', 4, '2022-11-01 19:09:15', '1', '', 0, 0, '2022-11-01 18:50:16', NULL, '2022-11-01 19:09:15', NULL);
-INSERT INTO `s_tao_order` VALUES (2996431995920305209, 6, 1, '', 53.91, 0.00, 0.00, 53.91, NULL, '2022-11-02 01:40:10', NULL, '2022-11-02 01:40:12', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432883942432533', NULL, NULL, NULL, 1, '2022-11-02 15:11:44', 4, '2022-11-02 16:39:35', '1', '', 0, 0, '2022-11-02 15:11:44', NULL, '2022-11-02 16:39:35', NULL);
-INSERT INTO `s_tao_order` VALUES (3007753525735252502, 6, 1, '', 29.01, 0.00, 0.00, 29.01, NULL, '2022-11-06 14:18:00', NULL, '2022-11-06 14:18:02', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432893399430806', NULL, NULL, NULL, 1, '2022-11-06 17:19:32', 4, '2022-11-06 18:45:15', '1', '', 0, 0, '2022-11-06 17:19:32', NULL, '2022-11-06 18:45:15', NULL);
-INSERT INTO `s_tao_order` VALUES (3020629500584706539, 6, 1, '', 56.85, 0.00, 0.00, 56.85, NULL, '2022-11-11 07:55:56', NULL, '2022-11-11 07:56:08', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773192733587587', NULL, NULL, NULL, 1, '2022-11-11 12:56:22', 4, '2022-11-11 18:22:36', '1', '', 0, 0, '2022-11-11 12:56:22', NULL, '2022-11-11 18:22:36', NULL);
-INSERT INTO `s_tao_order` VALUES (3068371695265649519, 6, 1, '', 58.11, 0.00, 0.00, 58.11, NULL, '2022-12-03 15:19:34', NULL, '2022-12-03 15:19:39', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432947479125602', NULL, NULL, NULL, 1, '2022-12-03 18:46:25', 4, '2022-12-03 18:52:12', '1', '', 0, 0, '2022-12-03 18:46:25', NULL, '2022-12-03 18:52:12', NULL);
-INSERT INTO `s_tao_order` VALUES (3176359130095573624, 6, 1, '', 87.21, 0.00, 0.00, 87.21, NULL, '2023-02-01 07:46:58', NULL, '2023-02-01 07:47:07', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '中通快递', NULL, '78653479793989', NULL, NULL, NULL, 1, '2023-02-01 16:00:23', 4, '2023-02-01 21:39:31', '1', '', 0, 0, '2023-02-01 16:00:23', NULL, '2023-02-01 21:39:31', NULL);
-INSERT INTO `s_tao_order` VALUES (3198002834286896419, 6, 1, '', 24.00, 0.00, 0.00, 24.00, NULL, '2023-02-13 00:04:10', NULL, '2023-02-13 00:04:20', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433063122463688', NULL, NULL, NULL, 1, '2023-02-13 19:19:15', 4, '2023-02-13 20:01:31', '1', '', 0, 0, '2023-02-13 19:19:15', NULL, '2023-02-13 20:01:31', NULL);
-INSERT INTO `s_tao_order` VALUES (3199194974134669907, 6, 1, '', 23.13, 0.00, 0.00, 23.13, NULL, '2023-02-13 17:21:51', NULL, '2023-02-13 17:21:58', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433063114339003', NULL, NULL, NULL, 1, '2023-02-13 19:19:15', 4, '2023-02-13 20:01:21', '1', '', 0, 0, '2023-02-13 19:19:15', NULL, '2023-02-13 20:01:21', NULL);
-INSERT INTO `s_tao_order` VALUES (3200980287903658205, 6, 1, '', 84.90, 0.00, 0.00, 84.90, NULL, '2023-02-14 14:11:28', NULL, '2023-02-14 14:11:34', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '78657308957007', NULL, NULL, NULL, 1, '2023-02-14 17:17:27', 4, '2023-02-15 17:14:56', '1', '', 0, 0, '2023-02-14 17:17:27', NULL, '2023-02-15 17:14:56', NULL);
-INSERT INTO `s_tao_order` VALUES (3202795730989743130, 6, 1, '', 23.13, 0.00, 0.00, 23.13, NULL, '2023-02-15 15:33:52', NULL, '2023-02-15 15:34:00', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433067053019083', NULL, NULL, NULL, 1, '2023-02-15 17:22:05', 4, '2023-02-15 17:35:46', '1', '', 0, 0, '2023-02-15 17:22:05', NULL, '2023-02-15 17:35:46', NULL);
-INSERT INTO `s_tao_order` VALUES (3203383969440472843, 6, 1, '', 23.13, 0.00, 0.00, 23.13, NULL, '2023-02-15 23:16:19', NULL, '2023-02-15 23:16:29', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433069082682593', NULL, NULL, NULL, 1, '2023-02-16 18:04:18', 4, '2023-02-16 18:11:21', '1', '', 0, 0, '2023-02-16 18:04:18', NULL, '2023-02-16 18:11:21', NULL);
-INSERT INTO `s_tao_order` VALUES (3207092509128923220, 6, 1, '', 84.90, 0.00, 0.00, 84.90, NULL, '2023-02-17 21:32:52', NULL, '2023-02-17 21:32:56', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '中通快递', NULL, '78658550530176', NULL, NULL, NULL, 1, '2023-02-18 16:31:49', 4, '2023-02-21 19:46:44', '1', '', 0, 0, '2023-02-18 16:31:49', NULL, '2023-02-21 19:46:44', NULL);
-INSERT INTO `s_tao_order` VALUES (3212109471054044857, 6, 1, '', 84.90, 0.00, 0.00, 84.90, NULL, '2023-02-20 08:08:45', NULL, '2023-02-20 08:08:47', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433079039535713', NULL, NULL, NULL, 1, '2023-02-21 19:45:23', 4, '2023-02-21 19:46:08', '1', '', 0, 0, '2023-02-21 19:45:23', NULL, '2023-02-21 19:46:08', NULL);
-INSERT INTO `s_tao_order` VALUES (3214812817200681765, 6, 1, '', 82.21, 0.00, 0.00, 82.21, NULL, '2023-02-21 19:31:08', NULL, '2023-02-21 19:31:21', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433079025482626', NULL, NULL, NULL, 1, '2023-02-21 20:03:58', 4, '2023-02-21 20:47:29', '1', '', 0, 0, '2023-02-21 20:03:58', NULL, '2023-02-21 20:47:29', NULL);
-INSERT INTO `s_tao_order` VALUES (3217043487978326218, 6, 1, '', 84.90, 0.00, 0.00, 84.90, NULL, '2023-02-22 17:46:00', NULL, '2023-02-22 17:46:07', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433080943458113', NULL, NULL, NULL, 1, '2023-02-22 18:10:19', 4, '2023-02-22 19:18:26', '1', '', 0, 0, '2023-02-22 18:10:19', NULL, '2023-02-22 19:18:26', NULL);
-INSERT INTO `s_tao_order` VALUES (3236924701745643410, 6, 1, '', 44.90, 0.00, 0.00, 44.90, NULL, '2023-03-04 20:06:23', NULL, '2023-03-04 20:06:39', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433100961138996', NULL, NULL, NULL, 1, '2023-03-05 14:38:03', 4, '2023-03-05 16:19:34', '1', '', 0, 0, '2023-03-05 14:38:03', NULL, '2023-03-05 16:19:34', NULL);
-INSERT INTO `s_tao_order` VALUES (3237115646950643410, 6, 1, '', 44.90, 0.00, 0.00, 44.90, NULL, '2023-03-04 20:07:06', NULL, '2023-03-04 20:07:09', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433100961138996', NULL, NULL, NULL, 1, '2023-03-05 14:38:03', 4, '2023-03-05 16:19:39', '1', '', 0, 0, '2023-03-05 14:38:03', NULL, '2023-03-05 16:19:39', NULL);
-INSERT INTO `s_tao_order` VALUES (3238963057148759844, 6, 1, '', 82.21, 0.00, 0.00, 82.21, NULL, '2023-03-05 12:48:00', NULL, '2023-03-05 12:50:20', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433101363722890', NULL, NULL, NULL, 1, '2023-03-05 14:38:03', 4, '2023-03-05 21:27:21', '1', '', 0, 0, '2023-03-05 14:38:03', NULL, '2023-03-05 21:27:21', NULL);
-INSERT INTO `s_tao_order` VALUES (3819775933334145112, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 11:39:48', NULL, '2024-03-20 11:39:54', NULL, NULL, NULL, '？', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3819944487281553923, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 10:59:22', NULL, '2024-03-20 10:59:27', NULL, NULL, NULL, '？', '保证质量问题', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3819958560710336006, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 18:04:34', NULL, '2024-03-20 18:04:40', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3819990132578663600, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 18:34:07', NULL, '2024-03-20 18:34:28', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820272769117067531, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 18:03:07', NULL, '2024-03-20 18:03:16', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820306825348817610, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 18:38:15', NULL, '2024-03-20 18:38:54', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820338615854903633, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 15:57:24', NULL, '2024-03-20 15:57:27', NULL, NULL, NULL, '？', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820417596012802346, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 04:11:02', NULL, '2024-03-21 04:11:04', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820447838892889121, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 17:40:34', NULL, '2024-03-20 17:40:57', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820452696046992600, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 07:38:40', NULL, '2024-03-21 07:41:16', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820574702301726338, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 19:38:01', NULL, '2024-03-20 19:38:07', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820650195932597510, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 20:25:30', NULL, '2024-03-20 20:25:36', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820708730535102020, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 21:23:26', NULL, '2024-03-20 21:24:30', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820712329459723406, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 01:23:40', NULL, '2024-03-21 01:23:48', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820770867860860349, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 22:02:12', NULL, '2024-03-20 22:02:21', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820809386027374725, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 22:44:02', NULL, '2024-03-20 22:44:06', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820815865370764035, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 08:48:02', NULL, '2024-03-21 08:48:15', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820840741699874712, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 09:17:56', NULL, '2024-03-21 09:18:01', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820842615724411325, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 23:03:59', NULL, '2024-03-20 23:04:06', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820886715080236842, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-20 23:48:04', NULL, '2024-03-20 23:48:11', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820940174689660511, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 04:53:01', NULL, '2024-03-21 04:53:31', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820955583888374139, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 04:56:14', NULL, '2024-03-21 04:56:15', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820987406295363534, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 08:05:04', NULL, '2024-03-21 08:05:14', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820993058651997431, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 08:19:35', NULL, '2024-03-21 08:20:27', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3820996766739579744, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 08:26:49', NULL, '2024-03-21 08:26:56', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3821055879426500841, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 09:14:59', NULL, '2024-03-21 09:15:04', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3821099223441193525, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 09:55:27', NULL, '2024-03-21 09:55:37', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `s_tao_order` VALUES (3821113838621237025, 6, 1, '', 0.00, 0.00, 0.00, 0.00, NULL, '2024-03-21 10:24:20', NULL, '2024-03-21 10:24:29', NULL, NULL, NULL, '', 'null', '', NULL, '买家已付款，等待卖家发货', 2, 'null', NULL, 'null', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, 0, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `s_tao_order` VALUES (2923690718502279654, 6, 1, '', 54.90, 0.00, 0.00, 54.90, NULL, '2022-10-02 01:22:04', NULL, '2022-10-02 01:23:13', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3014110318112', NULL, NULL, NULL, 0, '2022-10-02 17:14:28', 0, '2022-10-02 19:51:49', '1', '\'', 0, 0, '2022-10-02 17:14:28', NULL, '2022-10-02 19:51:49', NULL);
+INSERT INTO `s_tao_order` VALUES (2927935514314953754, 6, 1, '', 53.61, 0.00, 0.00, 53.61, NULL, '2022-10-04 07:32:38', NULL, '2022-10-04 07:32:44', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3014278403520', NULL, NULL, NULL, 0, '2022-10-04 19:23:44', 0, '2022-10-04 19:58:27', '1', '\'', 0, 0, '2022-10-04 19:23:44', NULL, '2022-10-04 19:58:27', NULL);
+INSERT INTO `s_tao_order` VALUES (2934328755836161104, 6, 1, '', 133.03, 0.00, 0.00, 133.03, NULL, '2022-10-06 23:58:12', NULL, '2022-10-06 23:58:21', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '极兔速递', NULL, 'JT3014544579342', NULL, NULL, NULL, 0, '2022-10-07 18:10:19', 0, '2022-10-07 20:27:37', '1', '\'', 0, 0, '2022-10-07 18:10:19', NULL, '2022-10-07 20:27:37', NULL);
+INSERT INTO `s_tao_order` VALUES (2989950941864043634, 6, 1, '', 63.90, 0.00, 0.00, 63.90, NULL, '2022-10-31 21:21:23', NULL, '2022-10-31 21:21:40', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773190534080476', NULL, NULL, NULL, 0, '2022-11-01 18:50:16', 4, '2022-11-01 19:09:15', '1', '', 0, 0, '2022-11-01 18:50:16', NULL, '2022-11-01 19:09:15', NULL);
+INSERT INTO `s_tao_order` VALUES (2996431995920305209, 6, 1, '', 53.91, 0.00, 0.00, 53.91, NULL, '2022-11-02 01:40:10', NULL, '2022-11-02 01:40:12', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432883942432533', NULL, NULL, NULL, 0, '2022-11-02 15:11:44', 4, '2022-11-02 16:39:35', '1', '', 0, 0, '2022-11-02 15:11:44', NULL, '2022-11-02 16:39:35', NULL);
+INSERT INTO `s_tao_order` VALUES (3007753525735252502, 6, 1, '', 29.01, 0.00, 0.00, 29.01, NULL, '2022-11-06 14:18:00', NULL, '2022-11-06 14:18:02', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432893399430806', NULL, NULL, NULL, 0, '2022-11-06 17:19:32', 4, '2022-11-06 18:45:15', '1', '', 0, 0, '2022-11-06 17:19:32', NULL, '2022-11-06 18:45:15', NULL);
+INSERT INTO `s_tao_order` VALUES (3020629500584706539, 6, 1, '', 56.85, 0.00, 0.00, 56.85, NULL, '2022-11-11 07:55:56', NULL, '2022-11-11 07:56:08', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '773192733587587', NULL, NULL, NULL, 0, '2022-11-11 12:56:22', 4, '2022-11-11 18:22:36', '1', '', 0, 0, '2022-11-11 12:56:22', NULL, '2022-11-11 18:22:36', NULL);
+INSERT INTO `s_tao_order` VALUES (3068371695265649519, 6, 1, '', 58.11, 0.00, 0.00, 58.11, NULL, '2022-12-03 15:19:34', NULL, '2022-12-03 15:19:39', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '432947479125602', NULL, NULL, NULL, 0, '2022-12-03 18:46:25', 4, '2022-12-03 18:52:12', '1', '', 0, 0, '2022-12-03 18:46:25', NULL, '2022-12-03 18:52:12', NULL);
+INSERT INTO `s_tao_order` VALUES (3176359130095573624, 6, 1, '', 87.21, 0.00, 0.00, 87.21, NULL, '2023-02-01 07:46:58', NULL, '2023-02-01 07:47:07', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '中通快递', NULL, '78653479793989', NULL, NULL, NULL, 0, '2023-02-01 16:00:23', 4, '2023-02-01 21:39:31', '1', '', 0, 0, '2023-02-01 16:00:23', NULL, '2023-02-01 21:39:31', NULL);
+INSERT INTO `s_tao_order` VALUES (3198002834286896419, 6, 1, '', 24.00, 0.00, 0.00, 24.00, NULL, '2023-02-13 00:04:10', NULL, '2023-02-13 00:04:20', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433063122463688', NULL, NULL, NULL, 0, '2023-02-13 19:19:15', 4, '2023-02-13 20:01:31', '1', '', 0, 0, '2023-02-13 19:19:15', NULL, '2023-02-13 20:01:31', NULL);
+INSERT INTO `s_tao_order` VALUES (3199194974134669907, 6, 1, '', 23.13, 0.00, 0.00, 23.13, NULL, '2023-02-13 17:21:51', NULL, '2023-02-13 17:21:58', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433063114339003', NULL, NULL, NULL, 0, '2023-02-13 19:19:15', 4, '2023-02-13 20:01:21', '1', '', 0, 0, '2023-02-13 19:19:15', NULL, '2023-02-13 20:01:21', NULL);
+INSERT INTO `s_tao_order` VALUES (3200980287903658205, 6, 1, '', 84.90, 0.00, 0.00, 84.90, NULL, '2023-02-14 14:11:28', NULL, '2023-02-14 14:11:34', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '申通快递', NULL, '78657308957007', NULL, NULL, NULL, 0, '2023-02-14 17:17:27', 4, '2023-02-15 17:14:56', '1', '', 0, 0, '2023-02-14 17:17:27', NULL, '2023-02-15 17:14:56', NULL);
+INSERT INTO `s_tao_order` VALUES (3202795730989743130, 6, 1, '', 23.13, 0.00, 0.00, 23.13, NULL, '2023-02-15 15:33:52', NULL, '2023-02-15 15:34:00', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433067053019083', NULL, NULL, NULL, 0, '2023-02-15 17:22:05', 4, '2023-02-15 17:35:46', '1', '', 0, 0, '2023-02-15 17:22:05', NULL, '2023-02-15 17:35:46', NULL);
+INSERT INTO `s_tao_order` VALUES (3203383969440472843, 6, 1, '', 23.13, 0.00, 0.00, 23.13, NULL, '2023-02-15 23:16:19', NULL, '2023-02-15 23:16:29', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433069082682593', NULL, NULL, NULL, 0, '2023-02-16 18:04:18', 4, '2023-02-16 18:11:21', '1', '', 0, 0, '2023-02-16 18:04:18', NULL, '2023-02-16 18:11:21', NULL);
+INSERT INTO `s_tao_order` VALUES (3207092509128923220, 6, 1, '', 84.90, 0.00, 0.00, 84.90, NULL, '2023-02-17 21:32:52', NULL, '2023-02-17 21:32:56', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '中通快递', NULL, '78658550530176', NULL, NULL, NULL, 0, '2023-02-18 16:31:49', 4, '2023-02-21 19:46:44', '1', '', 0, 0, '2023-02-18 16:31:49', NULL, '2023-02-21 19:46:44', NULL);
+INSERT INTO `s_tao_order` VALUES (3212109471054044857, 6, 1, '', 84.90, 0.00, 0.00, 84.90, NULL, '2023-02-20 08:08:45', NULL, '2023-02-20 08:08:47', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433079039535713', NULL, NULL, NULL, 0, '2023-02-21 19:45:23', 4, '2023-02-21 19:46:08', '1', '', 0, 0, '2023-02-21 19:45:23', NULL, '2023-02-21 19:46:08', NULL);
+INSERT INTO `s_tao_order` VALUES (3214812817200681765, 6, 1, '', 82.21, 0.00, 0.00, 82.21, NULL, '2023-02-21 19:31:08', NULL, '2023-02-21 19:31:21', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433079025482626', NULL, NULL, NULL, 0, '2023-02-21 20:03:58', 4, '2023-02-21 20:47:29', '1', '', 0, 0, '2023-02-21 20:03:58', NULL, '2023-02-21 20:47:29', NULL);
+INSERT INTO `s_tao_order` VALUES (3217043487978326218, 6, 1, '', 84.90, 0.00, 0.00, 84.90, NULL, '2023-02-22 17:46:00', NULL, '2023-02-22 17:46:07', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433080943458113', NULL, NULL, NULL, 0, '2023-02-22 18:10:19', 4, '2023-02-22 19:18:26', '1', '', 0, 0, '2023-02-22 18:10:19', NULL, '2023-02-22 19:18:26', NULL);
+INSERT INTO `s_tao_order` VALUES (3236924701745643410, 6, 1, '', 44.90, 0.00, 0.00, 44.90, NULL, '2023-03-04 20:06:23', NULL, '2023-03-04 20:06:39', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433100961138996', NULL, NULL, NULL, 1, '2024-04-25 14:28:02', 4, '2023-03-05 16:19:34', '1', '', 0, 0, '2023-03-05 14:38:03', NULL, '2024-04-25 14:28:02', 'admin');
+INSERT INTO `s_tao_order` VALUES (3237115646950643410, 6, 1, '', 44.90, 0.00, 0.00, 44.90, NULL, '2023-03-04 20:07:06', NULL, '2023-03-04 20:07:09', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433100961138996', NULL, NULL, NULL, 1, '2024-04-25 14:14:12', 4, '2023-03-05 16:19:39', '1', '', 0, 0, '2023-03-05 14:38:03', NULL, '2024-04-25 14:14:12', 'admin');
+INSERT INTO `s_tao_order` VALUES (3238963057148759844, 6, 1, '', 82.21, 0.00, 0.00, 82.21, NULL, '2023-03-05 12:48:00', NULL, '2023-03-05 12:50:20', NULL, NULL, NULL, '', '', '', NULL, '等待买家确认收货', 3, '韵达速递', NULL, '433101363722890', NULL, NULL, NULL, 1, '2024-04-25 14:06:36', 4, '2023-03-05 21:27:21', '1', '', 0, 0, '2023-03-05 14:38:03', NULL, '2024-04-25 14:06:36', 'admin');
 
 -- ----------------------------
 -- Table structure for s_tao_order_address
 -- ----------------------------
 DROP TABLE IF EXISTS `s_tao_order_address`;
 CREATE TABLE `s_tao_order_address`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `orderId` bigint NOT NULL COMMENT '订单id',
-  `contactPerson` varchar(20)  NULL DEFAULT NULL,
-  `mobile` varchar(20)  NULL DEFAULT NULL,
-  `province` varchar(20)  NULL DEFAULT NULL,
-  `city` varchar(30)  NULL DEFAULT NULL,
-  `area` varchar(30)  NULL DEFAULT NULL,
-  `areaCode` varchar(10)  NULL DEFAULT NULL,
-  `town` varchar(30)  NULL DEFAULT NULL,
-  `townCode` varchar(20)  NULL DEFAULT NULL,
-  `address` varchar(250)  NULL DEFAULT NULL,
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `orderId` bigint(0) NOT NULL COMMENT '订单id',
+  `contactPerson` varchar(20)  DEFAULT NULL,
+  `mobile` varchar(20)  DEFAULT NULL,
+  `province` varchar(20)  DEFAULT NULL,
+  `city` varchar(30)  DEFAULT NULL,
+  `area` varchar(30)  DEFAULT NULL,
+  `areaCode` varchar(10)  DEFAULT NULL,
+  `town` varchar(30)  DEFAULT NULL,
+  `townCode` varchar(20)  DEFAULT NULL,
+  `address` varchar(250)  DEFAULT NULL,
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 122 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝订单地址表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 122 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝订单地址表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_tao_order_address
@@ -7078,39 +7326,39 @@ INSERT INTO `s_tao_order_address` VALUES (121, 32, 'sdf', 'sfda', '北京市', '
 -- ----------------------------
 DROP TABLE IF EXISTS `s_tao_order_item`;
 CREATE TABLE `s_tao_order_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `orderId` bigint NOT NULL COMMENT '订单id',
-  `subItemId` bigint NOT NULL COMMENT '天猫子订单id',
-  `itemAmount` decimal(10, 2) NULL DEFAULT NULL COMMENT '明细总金额',
-  `discount_fee` decimal(10, 2) NULL DEFAULT NULL COMMENT '优惠金额',
-  `adjust_fee` decimal(10, 2) NULL DEFAULT NULL COMMENT '手工调整金额',
-  `goodsTitle` varchar(50)  NULL DEFAULT NULL COMMENT '商品标题',
-  `goodsNumber` varchar(30)  NULL DEFAULT NULL COMMENT '商品货号，对应系统商品编码',
-  `productImgUrl` varchar(200)  NULL DEFAULT NULL COMMENT '商品主图',
-  `productUrl` varchar(100)  NULL DEFAULT NULL COMMENT '商品链接',
-  `productId` bigint NULL DEFAULT NULL COMMENT '天猫的商品Id',
-  `skuId` bigint NULL DEFAULT NULL COMMENT '天猫的SKUID',
-  `specNumber` varchar(30)  NULL DEFAULT NULL COMMENT '单品货号，对应系统sku编码',
-  `skuInfo` varchar(100)  NULL DEFAULT NULL COMMENT 'SKU字符串',
-  `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '实际单价',
-  `quantity` decimal(4, 0) NULL DEFAULT NULL COMMENT '数量',
-  `status` varchar(30)  NULL DEFAULT NULL COMMENT '子订单状态',
-  `statusStr` varchar(30)  NULL DEFAULT NULL COMMENT '子订单状态',
-  `refundStatus` int NOT NULL DEFAULT 0 COMMENT '退款状态0无售后1售后中',
-  `refundStatusStr` varchar(200)  NULL DEFAULT 'NO_REFUND' COMMENT '退款状态',
-  `refundAmount` decimal(4, 0) NULL DEFAULT NULL COMMENT '退款金额',
-  `refundId` bigint NULL DEFAULT NULL COMMENT '退款单id',
-  `logisticsStatus` int NULL DEFAULT NULL COMMENT '1 未发货 2 已发货 3 已收货 4 已经退货 5 部分发货 8 还未创建物流订单',
-  `new_spec_id` int NOT NULL DEFAULT 0 COMMENT '确认订单最新规格id',
-  `new_spec_number` varchar(25)  NULL DEFAULT NULL COMMENT '确认订单最新规格编码',
-  `after_sale_state` int NULL DEFAULT 0 COMMENT '售后状态0未申请售后1售后申请中(退款待审核)2同意退货(退款待收货)3买家已发货，待收货(待收货)4已收货（待退款）5退款退货成功(退款完成)6退款拒绝7已确认收货，正在退款中 8退款取消',
-  `erpGoodsId` int NULL DEFAULT 0 COMMENT 'erp系统商品id',
-  `erpGoodsSpecId` int NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `remark` varchar(500)  NULL DEFAULT NULL,
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `orderId` bigint(0) NOT NULL COMMENT '订单id',
+  `subItemId` bigint(0) NOT NULL COMMENT '天猫子订单id',
+  `itemAmount` decimal(10, 2) DEFAULT NULL COMMENT '明细总金额',
+  `discount_fee` decimal(10, 2) DEFAULT NULL COMMENT '优惠金额',
+  `adjust_fee` decimal(10, 2) DEFAULT NULL COMMENT '手工调整金额',
+  `goodsTitle` varchar(50)  DEFAULT NULL COMMENT '商品标题',
+  `goodsNumber` varchar(30)  DEFAULT NULL COMMENT '商品货号，对应系统商品编码',
+  `productImgUrl` varchar(200)  DEFAULT NULL COMMENT '商品主图',
+  `productUrl` varchar(100)  DEFAULT NULL COMMENT '商品链接',
+  `productId` bigint(0) DEFAULT NULL COMMENT '天猫的商品Id',
+  `skuId` bigint(0) DEFAULT NULL COMMENT '天猫的SKUID',
+  `specNumber` varchar(30)  DEFAULT NULL COMMENT '单品货号，对应系统sku编码',
+  `skuInfo` varchar(100)  DEFAULT NULL COMMENT 'SKU字符串',
+  `price` decimal(10, 2) DEFAULT NULL COMMENT '实际单价',
+  `quantity` decimal(4, 0) DEFAULT NULL COMMENT '数量',
+  `status` varchar(30)  DEFAULT NULL COMMENT '子订单状态',
+  `statusStr` varchar(30)  DEFAULT NULL COMMENT '子订单状态',
+  `refundStatus` int(0) NOT NULL DEFAULT 0 COMMENT '退款状态0无售后1售后中',
+  `refundStatusStr` varchar(200)  DEFAULT 'NO_REFUND' COMMENT '退款状态',
+  `refundAmount` decimal(4, 0) DEFAULT NULL COMMENT '退款金额',
+  `refundId` bigint(0) DEFAULT NULL COMMENT '退款单id',
+  `logisticsStatus` int(0) DEFAULT NULL COMMENT '1 未发货 2 已发货 3 已收货 4 已经退货 5 部分发货 8 还未创建物流订单',
+  `new_spec_id` int(0) NOT NULL DEFAULT 0 COMMENT '确认订单最新规格id',
+  `new_spec_number` varchar(25)  DEFAULT NULL COMMENT '确认订单最新规格编码',
+  `after_sale_state` int(0) DEFAULT 0 COMMENT '售后状态0未申请售后1售后申请中(退款待审核)2同意退货(退款待收货)3买家已发货，待收货(待收货)4已收货（待退款）5退款退货成功(退款完成)6退款拒绝7已确认收货，正在退款中 8退款取消',
+  `erpGoodsId` int(0) DEFAULT 0 COMMENT 'erp系统商品id',
+  `erpGoodsSpecId` int(0) DEFAULT 0 COMMENT 'erp系统商品规格id',
+  `remark` varchar(500)  DEFAULT NULL,
   `isGift` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否礼品0否1是',
   `isSwap` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否换货(0:否1:是)',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 196 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝订单明细表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 196 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝订单明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_tao_order_item
@@ -7314,94 +7562,90 @@ INSERT INTO `s_tao_order_item` VALUES (195, 2093298529448455063, 209329852944845
 -- ----------------------------
 DROP TABLE IF EXISTS `s_tao_order_refund`;
 CREATE TABLE `s_tao_order_refund`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `refund_id` varchar(50)  NULL DEFAULT NULL COMMENT '退款id',
-  `after_sales_type` int NOT NULL COMMENT '类型（1退货3换货）',
-  `shopId` int NOT NULL COMMENT '店铺id',
-  `tid` bigint NULL DEFAULT NULL COMMENT '淘宝交易单号（订单号）',
-  `oid` bigint NULL DEFAULT NULL COMMENT '子订单号。如果是单笔交易oid会等于tid',
-  `refund_fee` decimal(10, 2) NULL DEFAULT NULL COMMENT '退还金额(退还给买家的金额)。精确到2位小数;单位:元。如:200.07，表示:200元7分',
-  `created` bigint NULL DEFAULT NULL COMMENT '退款申请时间',
-  `modified` bigint NULL DEFAULT NULL COMMENT '更新时间',
-  `status` varchar(50)  NULL DEFAULT NULL COMMENT '退款状态。可选值WAIT_SELLER_AGREE(买家已经申请退款，等待卖家同意) WAIT_BUYER_RETURN_GOODS(卖家已经同意退款，等待买家退货) WAIT_SELLER_CONFIRM_GOODS(买家已经退货，等待卖家确认收货) SELLER_REFUSE_BUYER(卖家拒绝退款) CLOSED(退款关闭) SUCCESS(退款成功)',
-  `good_status` varchar(50)  NULL DEFAULT NULL COMMENT '货物状态。可选值BUYER_NOT_RECEIVED (买家未收到货) BUYER_RECEIVED (买家已收到货) BUYER_RETURNED_GOODS (买家已退货)',
-  `num` bigint NOT NULL DEFAULT 0 COMMENT '退货数量',
-  `has_good_return` int NULL DEFAULT NULL COMMENT '买家是否需要退货。可选值:true(是),false(否)',
-  `reason` varchar(100)  NULL DEFAULT NULL COMMENT '退款原因',
-  `remark` varchar(1000)  NULL DEFAULT NULL COMMENT '退款说明',
-  `logisticsCompany` varchar(50)  NULL DEFAULT NULL COMMENT '物流公司',
-  `logisticsCode` varchar(50)  NULL DEFAULT NULL COMMENT '物流单号',
-  `send_time` varchar(25)  NULL DEFAULT NULL COMMENT '买家发货时间',
-  `auditStatus` int NOT NULL DEFAULT 0 COMMENT '2已签收9供应商已退款',
-  `auditTime` datetime NULL DEFAULT NULL COMMENT '处理时间',
-  `receivedTime` datetime NULL DEFAULT NULL COMMENT '收货时间',
-  `erpGoodsId` int NULL DEFAULT 0,
-  `erpGoodsSpecId` int NULL DEFAULT 0,
-  `productId` bigint NULL DEFAULT NULL COMMENT '天猫的商品Id',
-  `skuId` bigint NULL DEFAULT NULL COMMENT '天猫的SKUID',
-  `goodsTitle` varchar(50)  NULL DEFAULT NULL COMMENT '商品标题',
-  `goodsNumber` varchar(30)  NULL DEFAULT NULL COMMENT '商品货号，对应系统商品编码',
-  `specNumber` varchar(50)  NULL DEFAULT NULL COMMENT 'sku编号',
-  `productImgUrl` varchar(200)  NULL DEFAULT NULL COMMENT '商品主图',
-  `skuInfo` varchar(100)  NULL DEFAULT NULL COMMENT 'SKU字符串',
-  `refund_phase` varchar(15)  NULL DEFAULT NULL COMMENT '退款阶段，可选值：onsale/aftersale',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `refund_id` varchar(50)  DEFAULT NULL COMMENT '退款id',
+  `after_sales_type` int(0) NOT NULL COMMENT '类型（1退货3换货）',
+  `shopId` int(0) NOT NULL COMMENT '店铺id',
+  `tid` bigint(0) DEFAULT NULL COMMENT '淘宝交易单号（订单号）',
+  `oid` bigint(0) DEFAULT NULL COMMENT '子订单号。如果是单笔交易oid会等于tid',
+  `refund_fee` decimal(10, 2) DEFAULT NULL COMMENT '退还金额(退还给买家的金额)。精确到2位小数;单位:元。如:200.07，表示:200元7分',
+  `created` bigint(0) DEFAULT NULL COMMENT '退款申请时间',
+  `modified` bigint(0) DEFAULT NULL COMMENT '更新时间',
+  `status` varchar(50)  DEFAULT NULL COMMENT '退款状态。可选值WAIT_SELLER_AGREE(买家已经申请退款，等待卖家同意) WAIT_BUYER_RETURN_GOODS(卖家已经同意退款，等待买家退货) WAIT_SELLER_CONFIRM_GOODS(买家已经退货，等待卖家确认收货) SELLER_REFUSE_BUYER(卖家拒绝退款) CLOSED(退款关闭) SUCCESS(退款成功)',
+  `good_status` varchar(50)  DEFAULT NULL COMMENT '货物状态。可选值BUYER_NOT_RECEIVED (买家未收到货) BUYER_RECEIVED (买家已收到货) BUYER_RETURNED_GOODS (买家已退货)',
+  `num` bigint(0) NOT NULL DEFAULT 0 COMMENT '退货数量',
+  `has_good_return` int(0) DEFAULT NULL COMMENT '买家是否需要退货。可选值:true(是),false(否)',
+  `reason` varchar(100)  DEFAULT NULL COMMENT '退款原因',
+  `remark` varchar(1000)  DEFAULT NULL COMMENT '退款说明',
+  `logisticsCompany` varchar(50)  DEFAULT NULL COMMENT '物流公司',
+  `logisticsCode` varchar(50)  DEFAULT NULL COMMENT '物流单号',
+  `send_time` varchar(25)  DEFAULT NULL COMMENT '买家发货时间',
+  `auditStatus` int(0) NOT NULL DEFAULT 0 COMMENT '2已签收9供应商已退款',
+  `auditTime` datetime(0) DEFAULT NULL COMMENT '处理时间',
+  `receivedTime` datetime(0) DEFAULT NULL COMMENT '收货时间',
+  `erpGoodsId` int(0) DEFAULT 0,
+  `erpGoodsSpecId` int(0) DEFAULT 0,
+  `productId` bigint(0) DEFAULT NULL COMMENT '天猫的商品Id',
+  `skuId` bigint(0) DEFAULT NULL COMMENT '天猫的SKUID',
+  `goodsTitle` varchar(50)  DEFAULT NULL COMMENT '商品标题',
+  `goodsNumber` varchar(30)  DEFAULT NULL COMMENT '商品货号，对应系统商品编码',
+  `specNumber` varchar(50)  DEFAULT NULL COMMENT 'sku编号',
+  `productImgUrl` varchar(200)  DEFAULT NULL COMMENT '商品主图',
+  `skuInfo` varchar(100)  DEFAULT NULL COMMENT 'SKU字符串',
+  `refund_phase` varchar(15)  DEFAULT NULL COMMENT '退款阶段，可选值：onsale/aftersale',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝退款订单表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of s_tao_order_refund
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝退款订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for s_xhs_order
 -- ----------------------------
 DROP TABLE IF EXISTS `s_xhs_order`;
 CREATE TABLE `s_xhs_order`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键id（自增长）',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id（自增长）',
   `orderId` varchar(50)  NOT NULL DEFAULT '' COMMENT '订单号（第三方平台orderId）',
-  `shopType` int NOT NULL DEFAULT 0 COMMENT '订单来源（dc_sys_third_setting表id）',
-  `shopId` int NOT NULL DEFAULT 0 COMMENT '店铺ID（dc_shop表id）',
-  `orderType` int NOT NULL DEFAULT 0 COMMENT '订单类型：（小红书：订单类型，1普通 2定金预售 3全款预售 4延迟发货 5换货补发）',
-  `orderStatus` int NOT NULL DEFAULT 0 COMMENT '小红书订单状态，1已下单待付款 2已支付处理中 3清关中 4待发货 5部分发货 6待收货 7已完成 8已关闭 9已取消 10换货申请中',
-  `afterSalesStatus` int NOT NULL DEFAULT 0 COMMENT '小红书售后状态，1无售后 2售后处理中 3售后完成(含取消)',
-  `cancelStatus` int NOT NULL DEFAULT 0 COMMENT '申请取消状态，0未申请取消 1取消处理中',
-  `orderCreatedTime` bigint NOT NULL DEFAULT 0 COMMENT '订单创建时间 单位ms',
-  `orderPaidTime` bigint NOT NULL DEFAULT 0 COMMENT '订单支付时间 单位ms',
-  `orderUpdateTime` bigint NOT NULL DEFAULT 0 COMMENT '订单更新时间 单位ms',
-  `orderDeliveryTime` bigint NOT NULL DEFAULT 0 COMMENT '订单发货时间 单位ms',
-  `orderCancelTime` bigint NOT NULL DEFAULT 0 COMMENT '订单取消时间 单位ms',
-  `orderFinishTime` bigint NOT NULL DEFAULT 0 COMMENT '订单完成时间 单位ms',
-  `promiseLastDeliveryTime` bigint NOT NULL DEFAULT 0 COMMENT '承诺最晚发货时间 单位ms',
-  `customerRemark` varchar(50)  NULL DEFAULT '' COMMENT '用户备注',
-  `sellerRemark` varchar(50)  NULL DEFAULT '' COMMENT '商家标记备注',
-  `sellerRemarkFlag` int NOT NULL DEFAULT 0 COMMENT '商家标记优先级，ark订单列表展示旗子颜色 1灰旗 2红旗 3黄旗 4绿旗 5蓝旗 6紫旗',
-  `presaleDeliveryStartTime` bigint NOT NULL DEFAULT 0 COMMENT '预售最早发货时间 单位ms',
-  `presaleDeliveryEndTime` bigint NOT NULL DEFAULT 0 COMMENT '预售最晚发货时间 单位ms',
-  `originalPackageId` varchar(50)  NULL DEFAULT '' COMMENT '原始关联订单号(退换订单的原订单)',
-  `totalPayAmount` int NOT NULL DEFAULT 0 COMMENT '订单实付金额(包含运费) 单位分',
-  `totalShippingFree` int NOT NULL DEFAULT 0 COMMENT '订单运费 单位分',
-  `expressTrackingNo` varchar(50)  NULL DEFAULT '' COMMENT '快递单号',
-  `expressCompanyCode` varchar(50)  NULL DEFAULT '' COMMENT '快递公司编码',
+  `shopType` int(0) NOT NULL DEFAULT 0 COMMENT '订单来源（dc_sys_third_setting表id）',
+  `shopId` int(0) NOT NULL DEFAULT 0 COMMENT '店铺ID（dc_shop表id）',
+  `orderType` int(0) NOT NULL DEFAULT 0 COMMENT '订单类型：（小红书：订单类型，1普通 2定金预售 3全款预售 4延迟发货 5换货补发）',
+  `orderStatus` int(0) NOT NULL DEFAULT 0 COMMENT '小红书订单状态，1已下单待付款 2已支付处理中 3清关中 4待发货 5部分发货 6待收货 7已完成 8已关闭 9已取消 10换货申请中',
+  `afterSalesStatus` int(0) NOT NULL DEFAULT 0 COMMENT '小红书售后状态，1无售后 2售后处理中 3售后完成(含取消)',
+  `cancelStatus` int(0) NOT NULL DEFAULT 0 COMMENT '申请取消状态，0未申请取消 1取消处理中',
+  `orderCreatedTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '订单创建时间 单位ms',
+  `orderPaidTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '订单支付时间 单位ms',
+  `orderUpdateTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '订单更新时间 单位ms',
+  `orderDeliveryTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '订单发货时间 单位ms',
+  `orderCancelTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '订单取消时间 单位ms',
+  `orderFinishTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '订单完成时间 单位ms',
+  `promiseLastDeliveryTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '承诺最晚发货时间 单位ms',
+  `customerRemark` varchar(50)  DEFAULT '' COMMENT '用户备注',
+  `sellerRemark` varchar(50)  DEFAULT '' COMMENT '商家标记备注',
+  `sellerRemarkFlag` int(0) NOT NULL DEFAULT 0 COMMENT '商家标记优先级，ark订单列表展示旗子颜色 1灰旗 2红旗 3黄旗 4绿旗 5蓝旗 6紫旗',
+  `presaleDeliveryStartTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '预售最早发货时间 单位ms',
+  `presaleDeliveryEndTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '预售最晚发货时间 单位ms',
+  `originalPackageId` varchar(50)  DEFAULT '' COMMENT '原始关联订单号(退换订单的原订单)',
+  `totalPayAmount` int(0) NOT NULL DEFAULT 0 COMMENT '订单实付金额(包含运费) 单位分',
+  `totalShippingFree` int(0) NOT NULL DEFAULT 0 COMMENT '订单运费 单位分',
+  `expressTrackingNo` varchar(50)  DEFAULT '' COMMENT '快递单号',
+  `expressCompanyCode` varchar(50)  DEFAULT '' COMMENT '快递公司编码',
   `openAddressId` varchar(50)  NOT NULL DEFAULT '' COMMENT '收件人姓名+手机+地址等计算得出，用来查询收件人详情',
   `province` varchar(50)  NOT NULL DEFAULT '' COMMENT '省',
   `city` varchar(50)  NOT NULL DEFAULT '' COMMENT '市',
   `district` varchar(50)  NOT NULL DEFAULT '' COMMENT '区',
-  `auditStatus` int NULL DEFAULT 0 COMMENT '订单审核状态（0待审核1已审核）',
-  `auditTime` datetime NULL DEFAULT NULL COMMENT '订单审核时间',
-  `settleStatus` smallint NOT NULL DEFAULT 0 COMMENT '结算状态0未结算1已结算',
+  `auditStatus` int(0) DEFAULT 0 COMMENT '订单审核状态（0待审核1已审核）',
+  `auditTime` datetime(0) DEFAULT NULL COMMENT '订单审核时间',
+  `settleStatus` smallint(0) NOT NULL DEFAULT 0 COMMENT '结算状态0未结算1已结算',
   `settleAmount` decimal(6, 2) NOT NULL DEFAULT 0.00 COMMENT '结算金额',
-  `sendStatus` int NOT NULL DEFAULT 0 COMMENT 'ERP发货状态0待处理1出库中2已出库3已发货',
-  `sendTime` datetime NULL DEFAULT NULL COMMENT '发货时间',
-  `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间（系统）',
-  `createBy` varchar(20)  NULL DEFAULT NULL COMMENT '创建人',
-  `updateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间（系统）',
-  `updateBy` varchar(20)  NULL DEFAULT NULL COMMENT '更新人',
+  `sendStatus` int(0) NOT NULL DEFAULT 0 COMMENT 'ERP发货状态0待处理1出库中2已出库3已发货',
+  `sendTime` datetime(0) DEFAULT NULL COMMENT '发货时间',
+  `createTime` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间（系统）',
+  `createBy` varchar(20)  DEFAULT NULL COMMENT '创建人',
+  `updateTime` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间（系统）',
+  `updateBy` varchar(20)  DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书订单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_xhs_order
@@ -7515,32 +7759,31 @@ INSERT INTO `s_xhs_order` VALUES (106, 'P656575170906937241', 7, 21, 1, 9, 1, 0,
 INSERT INTO `s_xhs_order` VALUES (107, 'P656748207113734701', 7, 21, 1, 9, 1, 0, 1656748207190, 0, 1656750020304, 0, 1656750020303, 0, 0, NULL, NULL, 0, 0, 0, NULL, 1280, 0, NULL, NULL, '197b752dffdca268b04ac405b1d7afeb', '北京', '北京市', '昌平区', 0, NULL, 0, 0.00, 0, NULL, '2022-07-20 15:46:46', NULL, '2022-07-20 15:46:46', NULL);
 INSERT INTO `s_xhs_order` VALUES (108, 'P656848564205726681', 7, 21, 1, 7, 1, 0, 1656848564271, 1656848571000, 1657940258751, 1656903458412, 0, 1657940258716, 1658058482000, NULL, NULL, 0, 0, 0, NULL, 1990, 0, '432650839190733', 'yunda', 'c3e2abb2de87b1069d129602b49eac47', '山东省', '淄博市', '张店区', 0, NULL, 0, 0.00, 0, NULL, '2022-07-20 15:46:52', NULL, '2022-07-20 15:46:52', NULL);
 INSERT INTO `s_xhs_order` VALUES (109, 'P657124492725901641', 7, 21, 1, 7, 1, 0, 1657124492800, 1657124509000, 1658286563492, 1657249763117, 0, 1658286563457, 1658334465000, NULL, NULL, 0, 0, 0, NULL, 1290, 0, '432658338105728', 'yunda', '7ea3369e4c236d53ba04add9ec50374a', '贵州省', '贵阳市', '云岩区', 0, NULL, 0, 0.00, 0, NULL, '2022-07-20 15:47:17', NULL, '2022-07-20 15:47:17', NULL);
-INSERT INTO `s_xhs_order` VALUES (112, 'ads', 7, 21, 1, 2, 1, 0, 1704522654000, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, '', 2100, 0, '', '', '0', '河北省', '秦皇岛市', '山海关区', 1, NULL, 0, 0.00, 0, NULL, '2024-01-06 14:35:56', NULL, '2024-01-08 20:14:21', 'admin');
 
 -- ----------------------------
 -- Table structure for s_xhs_order_item
 -- ----------------------------
 DROP TABLE IF EXISTS `s_xhs_order_item`;
 CREATE TABLE `s_xhs_order_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `orderId` bigint NOT NULL COMMENT '订单id',
-  `itemId` varchar(50)  NULL DEFAULT NULL COMMENT '商品id',
-  `itemName` varchar(100)  NULL DEFAULT NULL COMMENT '商品名称',
-  `erpcode` varchar(50)  NULL DEFAULT NULL COMMENT '商家编码(若为组合品，暂不支持组合品的商家编码，但skulist会返回子商品商家编码)',
-  `itemSpecCode` varchar(55)  NULL DEFAULT NULL COMMENT '规格编码',
-  `itemSpec` varchar(50)  NULL DEFAULT NULL COMMENT '规格',
-  `itemImage` varchar(250)  NULL DEFAULT NULL COMMENT '商品图片url',
-  `price` double(10, 2) NULL DEFAULT NULL COMMENT '单价',
-  `quantity` int NOT NULL COMMENT '数量',
-  `totalPaidAmount` bigint NOT NULL DEFAULT 0 COMMENT '总支付金额（考虑总件数）商品总实付',
-  `totalMerchantDiscount` bigint NOT NULL DEFAULT 0 COMMENT '商家承担总优惠',
-  `totalRedDiscount` bigint NOT NULL DEFAULT 0 COMMENT '平台承担总优惠',
-  `itemTag` int NOT NULL COMMENT '是否赠品，1 赠品 0 普通商品',
-  `erpSendStatus` int NOT NULL DEFAULT 0 COMMENT 'ERP发货状态0待处理1出库中2已出库3已发货',
-  `erpGoodsId` int NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
-  `erpGoodsSpecId` int NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `orderId` bigint(0) NOT NULL COMMENT '订单id',
+  `itemId` varchar(50)  DEFAULT NULL COMMENT '商品id',
+  `itemName` varchar(100)  DEFAULT NULL COMMENT '商品名称',
+  `erpcode` varchar(50)  DEFAULT NULL COMMENT '商家编码(若为组合品，暂不支持组合品的商家编码，但skulist会返回子商品商家编码)',
+  `itemSpecCode` varchar(55)  DEFAULT NULL COMMENT '规格编码',
+  `itemSpec` varchar(50)  DEFAULT NULL COMMENT '规格',
+  `itemImage` varchar(250)  DEFAULT NULL COMMENT '商品图片url',
+  `price` double(10, 2) DEFAULT NULL COMMENT '单价',
+  `quantity` int(0) NOT NULL COMMENT '数量',
+  `totalPaidAmount` bigint(0) NOT NULL DEFAULT 0 COMMENT '总支付金额（考虑总件数）商品总实付',
+  `totalMerchantDiscount` bigint(0) NOT NULL DEFAULT 0 COMMENT '商家承担总优惠',
+  `totalRedDiscount` bigint(0) NOT NULL DEFAULT 0 COMMENT '平台承担总优惠',
+  `itemTag` int(0) NOT NULL COMMENT '是否赠品，1 赠品 0 普通商品',
+  `erpSendStatus` int(0) NOT NULL DEFAULT 0 COMMENT 'ERP发货状态0待处理1出库中2已出库3已发货',
+  `erpGoodsId` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
+  `erpGoodsSpecId` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 111 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书订单明细表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 111 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书订单明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_xhs_order_item
@@ -7654,24 +7897,23 @@ INSERT INTO `s_xhs_order_item` VALUES (106, 106, '6284ddd4ec09650001a14bb5', '�
 INSERT INTO `s_xhs_order_item` VALUES (107, 107, '6267d2fd5c083a0001f08d46', '正宗盐焗鸡粉家用盐局虾焗海鲜调味专用配料 盐焗粉30g*5包', NULL, NULL, '盐焗粉30g*5包', '//qimg.xiaohongshu.com/arkgoods/01024q01kd5bhe81cua0l14yz5i7frbtze?itemId=6267d2fd5c083a0001f08d46&imageView2/1/w/320/h/320/q/90', NULL, 1, 1280, 0, 0, 0, 0, 0, 0);
 INSERT INTO `s_xhs_order_item` VALUES (108, 108, '627796fdc618a40001fe1870', '小风扇USB风扇5寸6寸8寸迷你静音台扇桌面学生办公室台扇小电风扇 欧美白 6寸', NULL, NULL, '欧美白 6寸', '//qimg.xiaohongshu.com/arkgoods/b4acfb19d112eb6a0cbd6f11e055917fb1100c20?itemId=627796fdc618a40001fe1870&imageView2/1/w/320/h/320/q/90.jpg', NULL, 1, 1990, 0, 0, 0, 0, 0, 0);
 INSERT INTO `s_xhs_order_item` VALUES (109, 109, '627796fcc618a40001fe185d', '小风扇USB风扇5寸6寸8寸迷你静音台扇桌面学生办公室台扇小电风扇 欧美白 5寸', NULL, NULL, '欧美白 5寸', '//qimg.xiaohongshu.com/arkgoods/b4acfb19d112eb6a0cbd6f11e055917fb1100c20?itemId=627796fcc618a40001fe185d&imageView2/1/w/320/h/320/q/90.jpg', NULL, 1, 1290, 0, 0, 0, 0, 0, 0);
-INSERT INTO `s_xhs_order_item` VALUES (110, 112, '', 'HNP182弹力紧身贴标牛仔短裤女ins', NULL, 'HNP1825001', '浅蓝色 S ', 'https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg', 21.00, 1, 2100, 0, 0, 0, 0, 29, 435);
 
 -- ----------------------------
 -- Table structure for s_xhs_order_receiver
 -- ----------------------------
 DROP TABLE IF EXISTS `s_xhs_order_receiver`;
 CREATE TABLE `s_xhs_order_receiver`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `orderId` bigint NOT NULL DEFAULT 0 COMMENT '外键',
-  `receiver` varchar(50)  NULL DEFAULT NULL COMMENT '收件人',
-  `phone` varchar(50)  NULL DEFAULT NULL COMMENT '电话',
-  `country` varchar(50)  NULL DEFAULT '中国' COMMENT '国家',
-  `province` varchar(50)  NULL DEFAULT NULL COMMENT '省',
-  `city` varchar(50)  NULL DEFAULT NULL COMMENT '市',
-  `district` varchar(50)  NULL DEFAULT NULL COMMENT '区',
-  `address` varchar(100)  NULL DEFAULT NULL COMMENT '详细地址',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `orderId` bigint(0) NOT NULL DEFAULT 0 COMMENT '外键',
+  `receiver` varchar(50)  DEFAULT NULL COMMENT '收件人',
+  `phone` varchar(50)  DEFAULT NULL COMMENT '电话',
+  `country` varchar(50)  DEFAULT '中国' COMMENT '国家',
+  `province` varchar(50)  DEFAULT NULL COMMENT '省',
+  `city` varchar(50)  DEFAULT NULL COMMENT '市',
+  `district` varchar(50)  DEFAULT NULL COMMENT '区',
+  `address` varchar(100)  DEFAULT NULL COMMENT '详细地址',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 107 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单收件人信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 107 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单收件人信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_xhs_order_receiver
@@ -7758,7 +8000,7 @@ INSERT INTO `s_xhs_order_receiver` VALUES (90, 84, '刘俐君', '13973626964', '
 INSERT INTO `s_xhs_order_receiver` VALUES (91, 87, '薛婷', '19811784698', '中国', '山东省', '青岛市', '市北区', '山东省青岛市市北区阜新路抚顺路11号青岛理工大学市北校区');
 INSERT INTO `s_xhs_order_receiver` VALUES (93, 88, '高雪', '13644926024', '中国', '辽宁省', '鞍山市', '铁西区', '辽宁省鞍山市铁西区永发街道马驿屯菜鸟驿站');
 INSERT INTO `s_xhs_order_receiver` VALUES (94, 89, '陈久久', '13450333376', '中国', '广东省', '广州市', '天河区', '广东省广州市天河区车陂街道车陂东溪大街23号');
-INSERT INTO `s_xhs_order_receiver` VALUES (95, 90, '齐李平', '18123879144', '中国', '广东省', '深圳市', '宝安区', '广东省深圳市宝安区新安街道海富社区新城花园四栋407');
+INSERT INTO `s_xhs_order_receiver` VALUES (95, 90, '齐李平', '1812****144', '中国', '广东省', '深圳市', '宝安区', '广东省深圳市宝安区新安街道海富社区新城花园四栋407');
 INSERT INTO `s_xhs_order_receiver` VALUES (96, 91, '周梦颖', '18770452994', '中国', '广东省', '广州市', '荔湾区', '广东省广州市荔湾区龙津街道人民中路375号(近儿童医院) 广州东升医院三围街3号302房');
 INSERT INTO `s_xhs_order_receiver` VALUES (97, 92, '陈彬彬', '15669836389', '中国', '浙江省', '台州市', '临海市', '浙江省台州市临海市经济开发区东方大道605号');
 INSERT INTO `s_xhs_order_receiver` VALUES (98, 93, '邱红梅', '15986410557', '中国', '广东省', '广州市', '增城区', '广东省广州市增城区中新镇福和车站对面驿站');
@@ -7769,18 +8011,17 @@ INSERT INTO `s_xhs_order_receiver` VALUES (102, 98, '吴诗薇', '15623934952', 
 INSERT INTO `s_xhs_order_receiver` VALUES (103, 97, '曲圣全', '15040639321', '中国', '辽宁省', '大连市', '沙河口区', '辽宁省大连市沙河口区大连市 沙河口区 五一广场 大胜街 鑫联友汽配');
 INSERT INTO `s_xhs_order_receiver` VALUES (104, 0, '英', '15068659387', '中国', '浙江省', '台州市', '温岭市', '太平街道星光南路99号A幢4单元707');
 INSERT INTO `s_xhs_order_receiver` VALUES (105, 0, '丁辰', '13863151151', '中国', '山东省', '威海市', '环翠区', '高区一品莲花城合家欢');
-INSERT INTO `s_xhs_order_receiver` VALUES (106, 112, 'sdf', 'ass', '中国', '河北省', '秦皇岛市', '山海关区', 'sdfsdfs');
 
 -- ----------------------------
 -- Table structure for s_xhs_order_settle
 -- ----------------------------
 DROP TABLE IF EXISTS `s_xhs_order_settle`;
 CREATE TABLE `s_xhs_order_settle`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `orderNo` varchar(50)  NOT NULL COMMENT '订单号',
   `afterSaleNo` varchar(50)  NOT NULL COMMENT '售后单号',
-  `orderCreateTime` datetime NOT NULL COMMENT '订单创建时间',
-  `orderSettleTime` datetime NOT NULL COMMENT '结算时间',
+  `orderCreateTime` datetime(0) NOT NULL COMMENT '订单创建时间',
+  `orderSettleTime` datetime(0) NOT NULL COMMENT '结算时间',
   `transactionType` varchar(50)  NOT NULL COMMENT '交易类型',
   `settleAccount` varchar(50)  NOT NULL COMMENT '结算账户',
   `amount` decimal(6, 2) NOT NULL DEFAULT 0.00 COMMENT '动账金额',
@@ -7795,9 +8036,9 @@ CREATE TABLE `s_xhs_order_settle`  (
   `distributionCommission` decimal(6, 2) NOT NULL COMMENT '分销佣金',
   `huabeiFee` decimal(6, 2) NOT NULL COMMENT '花呗手续费',
   `remark` varchar(50)  NOT NULL DEFAULT '' COMMENT '备注',
-  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '小红书店铺订单结算明细' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '小红书店铺订单结算明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_xhs_order_settle
@@ -7863,39 +8104,39 @@ INSERT INTO `s_xhs_order_settle` VALUES (55, 'P651745605368708111', '-', '2022-0
 -- ----------------------------
 DROP TABLE IF EXISTS `s_xhs_refund`;
 CREATE TABLE `s_xhs_refund`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `returnsId` varchar(50)  NOT NULL COMMENT '小红书店铺售后id',
-  `returnType` int NOT NULL COMMENT '退货类型 1-退货退款, 2-换货, 3:仅退款(old) 4:仅退款(new) 理论上不会有3出现 5:未发货仅退款',
-  `reasonId` int NULL DEFAULT NULL COMMENT '售后原因id',
-  `shopId` int NOT NULL,
+  `returnType` int(0) NOT NULL COMMENT '退货类型 1-退货退款, 2-换货, 3:仅退款(old) 4:仅退款(new) 理论上不会有3出现 5:未发货仅退款',
+  `reasonId` int(0) DEFAULT NULL COMMENT '售后原因id',
+  `shopId` int(0) NOT NULL,
   `reason` varchar(50)  NOT NULL COMMENT '售后原因说明',
-  `status` int NOT NULL COMMENT '售后状态 1:待审核 2:待用户寄回 3:待收货 4:完成 5:取消 6:关闭 9:拒绝 9999:删除',
-  `subStatus` int NULL DEFAULT NULL COMMENT '售后子状态 301-待审核 302-快递已签收 304-收货异常',
-  `receiveAbnormalType` int NULL DEFAULT NULL COMMENT '收货异常类型',
+  `status` int(0) NOT NULL COMMENT '售后状态 1:待审核 2:待用户寄回 3:待收货 4:完成 5:取消 6:关闭 9:拒绝 9999:删除',
+  `subStatus` int(0) DEFAULT NULL COMMENT '售后子状态 301-待审核 302-快递已签收 304-收货异常',
+  `receiveAbnormalType` int(0) DEFAULT NULL COMMENT '收货异常类型',
   `packageId` varchar(50)  NOT NULL COMMENT '订单id',
-  `exchangePackageId` varchar(50)  NULL DEFAULT NULL COMMENT '换货订单id',
-  `createdTime` bigint NOT NULL DEFAULT 0,
-  `returnExpressNo` varchar(50)  NULL DEFAULT '0',
-  `returnExpressCompany` varchar(50)  NULL DEFAULT '0',
-  `returnAddress` varchar(50)  NULL DEFAULT '0',
-  `shipNeeded` int NOT NULL DEFAULT 0 COMMENT '是否需要寄回 1-需要 0-不需要',
-  `refunded` tinyint NOT NULL DEFAULT 0 COMMENT '是否已退款',
-  `refundStatus` int NOT NULL DEFAULT 0 COMMENT '退款状态 108触发退款 1退款中 3退款失败 2退款成功 401已取消 101已创建 201待审核 301审核通过 302审核不通过 402自动关闭',
-  `refundTime` bigint NOT NULL DEFAULT 0 COMMENT '退款时间',
-  `fillExpressTime` bigint NOT NULL DEFAULT 0,
-  `expressSignTime` bigint NOT NULL DEFAULT 0,
+  `exchangePackageId` varchar(50)  DEFAULT NULL COMMENT '换货订单id',
+  `createdTime` bigint(0) NOT NULL DEFAULT 0,
+  `returnExpressNo` varchar(50)  DEFAULT '0',
+  `returnExpressCompany` varchar(50)  DEFAULT '0',
+  `returnAddress` varchar(50)  DEFAULT '0',
+  `shipNeeded` int(0) NOT NULL DEFAULT 0 COMMENT '是否需要寄回 1-需要 0-不需要',
+  `refunded` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否已退款',
+  `refundStatus` int(0) NOT NULL DEFAULT 0 COMMENT '退款状态 108触发退款 1退款中 3退款失败 2退款成功 401已取消 101已创建 201待审核 301审核通过 302审核不通过 402自动关闭',
+  `refundTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '退款时间',
+  `fillExpressTime` bigint(0) NOT NULL DEFAULT 0,
+  `expressSignTime` bigint(0) NOT NULL DEFAULT 0,
   `refundFee` double NOT NULL DEFAULT 0,
-  `returnExpressRefundable` int NOT NULL DEFAULT 0,
-  `returnExpressRefunded` int NOT NULL DEFAULT 0,
+  `returnExpressRefundable` int(0) NOT NULL DEFAULT 0,
+  `returnExpressRefunded` int(0) NOT NULL DEFAULT 0,
   `expectRefundFee` double NOT NULL DEFAULT 0,
-  `autoReceiveDeadline` bigint NOT NULL DEFAULT 0 COMMENT '自动确认收货时间',
-  `updateTime` bigint NOT NULL DEFAULT 0,
-  `erpSendStatus` int NOT NULL DEFAULT 0 COMMENT 'erp系统发货状态（判断是否出库是否需要拦截）0未处理2已出库',
-  `returnExpressCompanyCode` varchar(50)  NULL DEFAULT '0' COMMENT '退货快递公司编号',
-  `createOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modifyOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `autoReceiveDeadline` bigint(0) NOT NULL DEFAULT 0 COMMENT '自动确认收货时间',
+  `updateTime` bigint(0) NOT NULL DEFAULT 0,
+  `erpSendStatus` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统发货状态（判断是否出库是否需要拦截）0未处理2已出库',
+  `returnExpressCompanyCode` varchar(50)  DEFAULT '0' COMMENT '退货快递公司编号',
+  `createOn` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modifyOn` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书订单退款表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书订单退款表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_xhs_refund
@@ -7908,116 +8149,108 @@ INSERT INTO `s_xhs_refund` VALUES (2, 'R7231546168933888', 5, 600097, 21, '发�
 -- ----------------------------
 DROP TABLE IF EXISTS `s_xhs_refund_item`;
 CREATE TABLE `s_xhs_refund_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `refundId` bigint NOT NULL COMMENT '外键',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `refundId` bigint(0) NOT NULL COMMENT '外键',
   `itemId` varchar(50)  NOT NULL DEFAULT '' COMMENT '商品id',
-  `itemName` varchar(50)  NULL DEFAULT NULL COMMENT '商品名',
-  `image` varchar(255)  NULL DEFAULT NULL,
-  `price` double NULL DEFAULT NULL,
-  `boughtCount` int NULL DEFAULT NULL,
-  `appliedCount` int NULL DEFAULT NULL,
-  `returnedCount` int NULL DEFAULT NULL,
-  `refundedCount` int NULL DEFAULT NULL,
-  `returnPrice` int NULL DEFAULT NULL,
-  `exchangeItemId` varchar(50)  NULL DEFAULT NULL,
-  `exchangeItemName` varchar(50)  NULL DEFAULT NULL,
-  `exchangeItemImage` varchar(255)  NULL DEFAULT NULL,
-  `skucode` varchar(255)  NULL DEFAULT NULL,
-  `exchangeSkucode` varchar(255)  NULL DEFAULT NULL,
+  `itemName` varchar(50)  DEFAULT NULL COMMENT '商品名',
+  `image` varchar(255)  DEFAULT NULL,
+  `price` double DEFAULT NULL,
+  `boughtCount` int(0) DEFAULT NULL,
+  `appliedCount` int(0) DEFAULT NULL,
+  `returnedCount` int(0) DEFAULT NULL,
+  `refundedCount` int(0) DEFAULT NULL,
+  `returnPrice` int(0) DEFAULT NULL,
+  `exchangeItemId` varchar(50)  DEFAULT NULL,
+  `exchangeItemName` varchar(50)  DEFAULT NULL,
+  `exchangeItemImage` varchar(255)  DEFAULT NULL,
+  `skucode` varchar(255)  DEFAULT NULL,
+  `exchangeSkucode` varchar(255)  DEFAULT NULL,
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书订单退款明细表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of s_xhs_refund_item
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书订单退款明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for scm_purchase_contract
 -- ----------------------------
 DROP TABLE IF EXISTS `scm_purchase_contract`;
 CREATE TABLE `scm_purchase_contract`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `contact_id` bigint NULL DEFAULT NULL COMMENT '供应商id',
-  `bill_no` varchar(30)  NULL DEFAULT '' COMMENT '单据编号',
-  `contractNo` varchar(50)  NULL DEFAULT NULL,
-  `billDate` date NULL DEFAULT NULL COMMENT '单据日期',
-  `userId` smallint NULL DEFAULT 0 COMMENT '制单人id',
-  `userName` varchar(50)  NULL DEFAULT '' COMMENT '制单人',
-  `transType` char(15)  NULL DEFAULT '0' COMMENT '交易类型:BUY购货 BUYR退货 SALE销售 SALER退销 OTHER其他入库',
-  `transTypeName` varchar(20)  NULL DEFAULT NULL COMMENT '交易类型名称',
-  `totalAmount` decimal(10, 2) NULL DEFAULT NULL COMMENT '购货总金额',
-  `disRate` double NULL DEFAULT 0 COMMENT '整单折扣率',
-  `disAmount` double NULL DEFAULT 0 COMMENT '整单折扣金额',
-  `amount` double NULL DEFAULT 0 COMMENT '折扣后金额',
-  `totalDiscount` double NULL DEFAULT 0 COMMENT '总折扣（计算商品折扣和整单折扣之和）',
-  `totalQuantity` bigint NULL DEFAULT 0 COMMENT '总数量',
-  `qualifiedQuantity` bigint NULL DEFAULT 0 COMMENT '合格数量',
-  `inQuantity` bigint NULL DEFAULT 0 COMMENT '已入库数量(已出库数量)',
-  `rpAmount` double NULL DEFAULT 0 COMMENT '本次付款',
-  `arrears` double NULL DEFAULT 0 COMMENT '本次欠款',
-  `freight` double NULL DEFAULT 0 COMMENT '运费',
-  `description` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
-  `billType` varchar(20)  NULL DEFAULT NULL COMMENT 'PO采购订单 OI其他入库 PUR采购入库 BAL初期余额',
-  `billStatus` tinyint(1) NULL DEFAULT 0 COMMENT '订单状态 0待审核1正常2已作废3已入库 11已验货',
-  `isDelete` tinyint(1) NULL DEFAULT 0 COMMENT '1删除  0正常',
-  `checkName` varchar(50)  NULL DEFAULT '' COMMENT '采购单审核人',
-  `checked` tinyint(1) NULL DEFAULT 0 COMMENT '采购单审核状态0待审核1已审核',
-  `createTime` bigint NULL DEFAULT NULL COMMENT '创建时间',
-  `modifyTime` bigint NULL DEFAULT NULL COMMENT '更新时间',
-  `salesId` smallint NULL DEFAULT NULL,
-  `customerFree` double NULL DEFAULT 0 COMMENT '客户承担费用',
-  `hxStateCode` tinyint NULL DEFAULT 0 COMMENT '核销状态 0未付款  1部分付款  2全部付款',
-  `hxAmount` double NULL DEFAULT 0 COMMENT '本次核销金额',
-  `payment` double NULL DEFAULT 0 COMMENT '本次预收款',
-  `srcOrderNo` varchar(1000)  NULL DEFAULT '' COMMENT '订单编号',
-  `srcOrderId` varchar(500)  NULL DEFAULT NULL COMMENT '订单id',
-  `logisticsNo` varchar(30)  NULL DEFAULT NULL COMMENT '快递物流单号（）',
-  `logisticsCompany` varchar(30)  NULL DEFAULT NULL COMMENT '物流公司',
-  `logisticsCompanyCode` varchar(30)  NULL DEFAULT NULL COMMENT '物流公司代码',
-  `logisticsNumber` varchar(50)  NULL DEFAULT NULL COMMENT '物流单号',
-  `locationId` varchar(255)  NULL DEFAULT NULL COMMENT '仓库id多个,分割',
-  `inLocationId` varchar(255)  NULL DEFAULT '' COMMENT '调入仓库ID多个,分割',
-  `outLocationId` varchar(255)  NULL DEFAULT '' COMMENT '调出仓库ID多个,分割',
-  `serialno` varchar(500)  NULL DEFAULT NULL COMMENT '序列号',
-  `checkoutName` varchar(255)  NULL DEFAULT NULL COMMENT '检验人',
-  `checkoutTime` bigint NULL DEFAULT 0 COMMENT '检验时间',
-  `checkoutStatus` int NULL DEFAULT 0 COMMENT '0 未检验  1已检验',
-  `qualifiedStatus` int NULL DEFAULT 0 COMMENT '0为合格数量为0,1为合格数量不为0',
-  `stockInName` varchar(255)  NULL DEFAULT NULL COMMENT '入库人',
-  `stockInTime` bigint NULL DEFAULT 0 COMMENT '入库时间',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `contact_id` bigint(0) DEFAULT NULL COMMENT '供应商id',
+  `bill_no` varchar(30)  DEFAULT '' COMMENT '单据编号',
+  `contractNo` varchar(50)  DEFAULT NULL,
+  `billDate` date DEFAULT NULL COMMENT '单据日期',
+  `userId` smallint(0) DEFAULT 0 COMMENT '制单人id',
+  `userName` varchar(50)  DEFAULT '' COMMENT '制单人',
+  `transType` char(15)  DEFAULT '0' COMMENT '交易类型:BUY购货 BUYR退货 SALE销售 SALER退销 OTHER其他入库',
+  `transTypeName` varchar(20)  DEFAULT NULL COMMENT '交易类型名称',
+  `totalAmount` decimal(10, 2) DEFAULT NULL COMMENT '购货总金额',
+  `disRate` double DEFAULT 0 COMMENT '整单折扣率',
+  `disAmount` double DEFAULT 0 COMMENT '整单折扣金额',
+  `amount` double DEFAULT 0 COMMENT '折扣后金额',
+  `totalDiscount` double DEFAULT 0 COMMENT '总折扣（计算商品折扣和整单折扣之和）',
+  `totalQuantity` bigint(0) DEFAULT 0 COMMENT '总数量',
+  `qualifiedQuantity` bigint(0) DEFAULT 0 COMMENT '合格数量',
+  `inQuantity` bigint(0) DEFAULT 0 COMMENT '已入库数量(已出库数量)',
+  `rpAmount` double DEFAULT 0 COMMENT '本次付款',
+  `arrears` double DEFAULT 0 COMMENT '本次欠款',
+  `freight` double DEFAULT 0 COMMENT '运费',
+  `description` varchar(255)  DEFAULT NULL COMMENT '备注',
+  `billType` varchar(20)  DEFAULT NULL COMMENT 'PO采购订单 OI其他入库 PUR采购入库 BAL初期余额',
+  `billStatus` tinyint(1) DEFAULT 0 COMMENT '订单状态 0待审核1正常2已作废3已入库 11已验货',
+  `isDelete` tinyint(1) DEFAULT 0 COMMENT '1删除  0正常',
+  `checkName` varchar(50)  DEFAULT '' COMMENT '采购单审核人',
+  `checked` tinyint(1) DEFAULT 0 COMMENT '采购单审核状态0待审核1已审核',
+  `createTime` bigint(0) DEFAULT NULL COMMENT '创建时间',
+  `modifyTime` bigint(0) DEFAULT NULL COMMENT '更新时间',
+  `salesId` smallint(0) DEFAULT NULL,
+  `customerFree` double DEFAULT 0 COMMENT '客户承担费用',
+  `hxStateCode` tinyint(0) DEFAULT 0 COMMENT '核销状态 0未付款  1部分付款  2全部付款',
+  `hxAmount` double DEFAULT 0 COMMENT '本次核销金额',
+  `payment` double DEFAULT 0 COMMENT '本次预收款',
+  `srcOrderNo` varchar(1000)  DEFAULT '' COMMENT '订单编号',
+  `srcOrderId` varchar(500)  DEFAULT NULL COMMENT '订单id',
+  `logisticsNo` varchar(30)  DEFAULT NULL COMMENT '快递物流单号（）',
+  `logisticsCompany` varchar(30)  DEFAULT NULL COMMENT '物流公司',
+  `logisticsCompanyCode` varchar(30)  DEFAULT NULL COMMENT '物流公司代码',
+  `logisticsNumber` varchar(50)  DEFAULT NULL COMMENT '物流单号',
+  `locationId` varchar(255)  DEFAULT NULL COMMENT '仓库id多个,分割',
+  `inLocationId` varchar(255)  DEFAULT '' COMMENT '调入仓库ID多个,分割',
+  `outLocationId` varchar(255)  DEFAULT '' COMMENT '调出仓库ID多个,分割',
+  `serialno` varchar(500)  DEFAULT NULL COMMENT '序列号',
+  `checkoutName` varchar(255)  DEFAULT NULL COMMENT '检验人',
+  `checkoutTime` bigint(0) DEFAULT 0 COMMENT '检验时间',
+  `checkoutStatus` int(0) DEFAULT 0 COMMENT '0 未检验  1已检验',
+  `qualifiedStatus` int(0) DEFAULT 0 COMMENT '0为合格数量为0,1为合格数量不为0',
+  `stockInName` varchar(255)  DEFAULT NULL COMMENT '入库人',
+  `stockInTime` bigint(0) DEFAULT 0 COMMENT '入库时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购单' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of scm_purchase_contract
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for scm_purchase_order
 -- ----------------------------
 DROP TABLE IF EXISTS `scm_purchase_order`;
 CREATE TABLE `scm_purchase_order`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `contact_id` bigint NOT NULL COMMENT '供应商id',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `contact_id` bigint(0) NOT NULL COMMENT '供应商id',
   `order_no` varchar(30)  NOT NULL DEFAULT '' COMMENT '订单编号',
   `order_date` date NOT NULL COMMENT '订单日期',
-  `order_time` bigint NOT NULL COMMENT '订单创建时间',
+  `order_time` bigint(0) NOT NULL COMMENT '订单创建时间',
   `order_amount` decimal(10, 2) NOT NULL COMMENT '订单总金额',
   `ship_amount` decimal(6, 2) NOT NULL COMMENT '物流费用',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '备注',
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '订单状态 0待审核1已审核101供应商已确认102供应商已发货2已收货3已入库',
-  `audit_user` varchar(50)  NULL DEFAULT '' COMMENT '采购单审核人',
-  `audit_time` bigint NULL DEFAULT 0 COMMENT '审核时间',
-  `supplier_confirm_time` datetime NULL DEFAULT NULL COMMENT '供应商确认时间',
-  `supplier_delivery_time` datetime NULL DEFAULT NULL COMMENT '供应商发货时间',
-  `received_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
-  `stock_in_time` datetime NULL DEFAULT NULL COMMENT '入库时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `audit_user` varchar(50)  DEFAULT '' COMMENT '采购单审核人',
+  `audit_time` bigint(0) DEFAULT 0 COMMENT '审核时间',
+  `supplier_confirm_time` datetime(0) DEFAULT NULL COMMENT '供应商确认时间',
+  `supplier_delivery_time` datetime(0) DEFAULT NULL COMMENT '供应商发货时间',
+  `received_time` datetime(0) DEFAULT NULL COMMENT '收货时间',
+  `stock_in_time` datetime(0) DEFAULT NULL COMMENT '入库时间',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 469 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购订单' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 469 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购订单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_purchase_order
@@ -8031,27 +8264,27 @@ INSERT INTO `scm_purchase_order` VALUES (468, 31, 'PUR20240424162152', '2024-04-
 -- ----------------------------
 DROP TABLE IF EXISTS `scm_purchase_order_cost`;
 CREATE TABLE `scm_purchase_order_cost`  (
-  `id` bigint NOT NULL COMMENT '采购单ID（主键）',
-  `order_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '采购单金额',
-  `order_date` date NULL DEFAULT NULL COMMENT '采购订单日期',
-  `order_no` varchar(50)  NULL DEFAULT NULL COMMENT '采购订单编号',
-  `order_spec_unit` int NULL DEFAULT NULL COMMENT '采购订单商品规格数',
-  `order_goods_unit` int NULL DEFAULT NULL COMMENT '采购订单商品数',
-  `order_spec_unit_total` int NULL DEFAULT NULL COMMENT '采购订单总件数',
-  `actual_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '实际金额',
-  `freight` decimal(6, 2) NULL DEFAULT NULL COMMENT '运费',
-  `confirm_user` varchar(25)  NULL DEFAULT NULL COMMENT '确认人',
-  `confirm_time` datetime NULL DEFAULT NULL COMMENT '确认时间',
-  `create_by` varchar(50)  NULL DEFAULT NULL COMMENT '创建人',
-  `pay_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '已支付金额',
-  `pay_time` datetime NULL DEFAULT NULL COMMENT '支付时间',
-  `pay_count` int NULL DEFAULT NULL COMMENT '支付次数',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '说明',
-  `status` int NULL DEFAULT NULL COMMENT '状态（0未支付1已支付）',
-  `update_by` varchar(20)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `id` bigint(0) NOT NULL COMMENT '采购单ID（主键）',
+  `order_amount` decimal(10, 2) DEFAULT NULL COMMENT '采购单金额',
+  `order_date` date DEFAULT NULL COMMENT '采购订单日期',
+  `order_no` varchar(50)  DEFAULT NULL COMMENT '采购订单编号',
+  `order_spec_unit` int(0) DEFAULT NULL COMMENT '采购订单商品规格数',
+  `order_goods_unit` int(0) DEFAULT NULL COMMENT '采购订单商品数',
+  `order_spec_unit_total` int(0) DEFAULT NULL COMMENT '采购订单总件数',
+  `actual_amount` decimal(10, 2) DEFAULT NULL COMMENT '实际金额',
+  `freight` decimal(6, 2) DEFAULT NULL COMMENT '运费',
+  `confirm_user` varchar(25)  DEFAULT NULL COMMENT '确认人',
+  `confirm_time` datetime(0) DEFAULT NULL COMMENT '确认时间',
+  `create_by` varchar(50)  DEFAULT NULL COMMENT '创建人',
+  `pay_amount` decimal(10, 2) DEFAULT NULL COMMENT '已支付金额',
+  `pay_time` datetime(0) DEFAULT NULL COMMENT '支付时间',
+  `pay_count` int(0) DEFAULT NULL COMMENT '支付次数',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '说明',
+  `status` int(0) DEFAULT NULL COMMENT '状态（0未支付1已支付）',
+  `update_by` varchar(20)  DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购订单费用确认表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_purchase_order_cost
@@ -8064,30 +8297,30 @@ INSERT INTO `scm_purchase_order_cost` VALUES (468, 420.00, '2024-04-24', 'PUR202
 -- ----------------------------
 DROP TABLE IF EXISTS `scm_purchase_order_item`;
 CREATE TABLE `scm_purchase_order_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `order_id` bigint NULL DEFAULT 0 COMMENT '订单id',
-  `order_no` varchar(30)  NULL DEFAULT '' COMMENT '订单编号',
-  `transType` char(15)  NULL DEFAULT '0' COMMENT '150501采购 150502退货',
-  `amount` double NULL DEFAULT 0 COMMENT '购货金额',
-  `order_date` date NULL DEFAULT NULL COMMENT '订单日期',
-  `remark` varchar(255)  NULL DEFAULT '' COMMENT '备注',
-  `goods_id` bigint NULL DEFAULT 0 COMMENT '商品ID',
-  `goods_num` varchar(20)  NULL DEFAULT NULL COMMENT '商品编码',
-  `goods_name` varchar(255)  NULL DEFAULT NULL COMMENT '商品名称',
-  `spec_id` bigint NULL DEFAULT 0 COMMENT '商品规格id',
-  `spec_num` varchar(25)  NULL DEFAULT NULL COMMENT '商品规格编码',
-  `color_value` varchar(25)  NULL DEFAULT NULL COMMENT '颜色',
-  `color_image` varchar(255)  NULL DEFAULT NULL COMMENT '图片',
-  `size_value` varchar(25)  NULL DEFAULT NULL COMMENT '尺码',
-  `style_value` varchar(25)  NULL DEFAULT NULL COMMENT '款式',
-  `price` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '单价',
-  `dis_amount` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '折扣额',
-  `dis_rate` decimal(8, 2) NULL DEFAULT 0.00 COMMENT '折扣率',
-  `quantity` bigint NOT NULL DEFAULT 0 COMMENT '数量(采购单据)',
-  `inQty` bigint NOT NULL DEFAULT 0 COMMENT '已入库数量',
-  `locationId` int NULL DEFAULT NULL COMMENT '入库的仓库id',
-  `is_delete` tinyint(1) NULL DEFAULT 0 COMMENT '1删除 0正常',
-  `status` int NULL DEFAULT 0 COMMENT '状态（同billStatus）0待审核1正常2已作废3已入库',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `order_id` bigint(0) DEFAULT 0 COMMENT '订单id',
+  `order_no` varchar(30)  DEFAULT '' COMMENT '订单编号',
+  `transType` char(15)  DEFAULT '0' COMMENT '150501采购 150502退货',
+  `amount` double DEFAULT 0 COMMENT '购货金额',
+  `order_date` date DEFAULT NULL COMMENT '订单日期',
+  `remark` varchar(255)  DEFAULT '' COMMENT '备注',
+  `goods_id` bigint(0) DEFAULT 0 COMMENT '商品ID',
+  `goods_num` varchar(20)  DEFAULT NULL COMMENT '商品编码',
+  `goods_name` varchar(255)  DEFAULT NULL COMMENT '商品名称',
+  `spec_id` bigint(0) DEFAULT 0 COMMENT '商品规格id',
+  `spec_num` varchar(25)  DEFAULT NULL COMMENT '商品规格编码',
+  `color_value` varchar(25)  DEFAULT NULL COMMENT '颜色',
+  `color_image` varchar(255)  DEFAULT NULL COMMENT '图片',
+  `size_value` varchar(25)  DEFAULT NULL COMMENT '尺码',
+  `style_value` varchar(25)  DEFAULT NULL COMMENT '款式',
+  `price` decimal(8, 2) DEFAULT 0.00 COMMENT '单价',
+  `dis_amount` decimal(8, 2) DEFAULT 0.00 COMMENT '折扣额',
+  `dis_rate` decimal(8, 2) DEFAULT 0.00 COMMENT '折扣率',
+  `quantity` bigint(0) NOT NULL DEFAULT 0 COMMENT '数量(采购单据)',
+  `inQty` bigint(0) NOT NULL DEFAULT 0 COMMENT '已入库数量',
+  `locationId` int(0) DEFAULT NULL COMMENT '入库的仓库id',
+  `is_delete` tinyint(1) DEFAULT 0 COMMENT '1删除 0正常',
+  `status` int(0) DEFAULT 0 COMMENT '状态（同billStatus）0待审核1正常2已作废3已入库',
   PRIMARY KEY (`id`) ,
   INDEX `type`(`transType`) ,
   INDEX `billdate`(`order_date`) ,
@@ -8095,7 +8328,7 @@ CREATE TABLE `scm_purchase_order_item`  (
   INDEX `transType`(`transType`) ,
   INDEX `iid`(`order_id`) ,
   INDEX `id`(`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 1965 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购订单明细' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1965 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购订单明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_purchase_order_item
@@ -8109,22 +8342,22 @@ INSERT INTO `scm_purchase_order_item` VALUES (1964, 468, 'PUR20240424162152', 'P
 -- ----------------------------
 DROP TABLE IF EXISTS `scm_purchase_order_payable`;
 CREATE TABLE `scm_purchase_order_payable`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `supplier_id` int NOT NULL COMMENT '供应商id',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `supplier_id` int(0) NOT NULL COMMENT '供应商id',
   `supplier_name` varchar(255)  NOT NULL COMMENT '供应商名称',
   `amount` decimal(10, 2) NOT NULL COMMENT '应付金额',
   `date` date NOT NULL COMMENT '应付日期',
-  `invoice_no` varchar(50)  NULL DEFAULT NULL COMMENT '发票号码',
-  `purchase_order_no` varchar(50)  NULL DEFAULT NULL COMMENT '采购单号',
-  `purchase_desc` varchar(500)  NULL DEFAULT NULL COMMENT '采购说明',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
-  `status` int NOT NULL COMMENT '状态（0已生成1已结算)',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
+  `invoice_no` varchar(50)  DEFAULT NULL COMMENT '发票号码',
+  `purchase_order_no` varchar(50)  DEFAULT NULL COMMENT '采购单号',
+  `purchase_desc` varchar(500)  DEFAULT NULL COMMENT '采购说明',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '备注',
+  `status` int(0) NOT NULL COMMENT '状态（0已生成1已结算)',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购单应付款' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_purchase_order_payable
@@ -8137,28 +8370,28 @@ INSERT INTO `scm_purchase_order_payable` VALUES (2, 31, '中山市金客隆服�
 -- ----------------------------
 DROP TABLE IF EXISTS `scm_purchase_order_ship`;
 CREATE TABLE `scm_purchase_order_ship`  (
-  `id` bigint NOT NULL COMMENT '采购单ID（主键）',
-  `ship_company` varchar(20)  NULL DEFAULT NULL COMMENT '物流公司',
-  `ship_no` varchar(50)  NULL DEFAULT NULL COMMENT '物流单号',
-  `freight` decimal(6, 0) NULL DEFAULT NULL COMMENT '运费',
-  `ship_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
-  `receipt_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
-  `create_by` varchar(50)  NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `status` int NULL DEFAULT NULL COMMENT '状态（0未收货1已收货2已入库）',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '说明',
-  `back_count` int NULL DEFAULT NULL COMMENT '退回数量',
-  `stock_in_time` datetime NULL DEFAULT NULL COMMENT '入库时间',
-  `stock_in_count` int NULL DEFAULT NULL COMMENT '入库数量',
-  `update_by` varchar(20)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `order_date` date NULL DEFAULT NULL COMMENT '采购订单日期',
-  `order_no` varchar(50)  NULL DEFAULT NULL COMMENT '采购订单编号',
-  `order_spec_unit` int NULL DEFAULT NULL COMMENT '采购订单商品规格数',
-  `order_goods_unit` int NULL DEFAULT NULL COMMENT '采购订单商品数',
-  `order_spec_unit_total` int NULL DEFAULT NULL COMMENT '采购订单总件数',
+  `id` bigint(0) NOT NULL COMMENT '采购单ID（主键）',
+  `ship_company` varchar(20)  DEFAULT NULL COMMENT '物流公司',
+  `ship_no` varchar(50)  DEFAULT NULL COMMENT '物流单号',
+  `freight` decimal(6, 0) DEFAULT NULL COMMENT '运费',
+  `ship_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
+  `receipt_time` datetime(0) DEFAULT NULL COMMENT '收货时间',
+  `create_by` varchar(50)  DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `status` int(0) DEFAULT NULL COMMENT '状态（0未收货1已收货2已入库）',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '说明',
+  `back_count` int(0) DEFAULT NULL COMMENT '退回数量',
+  `stock_in_time` datetime(0) DEFAULT NULL COMMENT '入库时间',
+  `stock_in_count` int(0) DEFAULT NULL COMMENT '入库数量',
+  `update_by` varchar(20)  DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `order_date` date DEFAULT NULL COMMENT '采购订单日期',
+  `order_no` varchar(50)  DEFAULT NULL COMMENT '采购订单编号',
+  `order_spec_unit` int(0) DEFAULT NULL COMMENT '采购订单商品规格数',
+  `order_goods_unit` int(0) DEFAULT NULL COMMENT '采购订单商品数',
+  `order_spec_unit_total` int(0) DEFAULT NULL COMMENT '采购订单总件数',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购订单物流表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购订单物流表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_purchase_order_ship
@@ -8172,30 +8405,30 @@ INSERT INTO `scm_purchase_order_ship` VALUES (468, '菜鸟速递', 'SF232323', 1
 -- ----------------------------
 DROP TABLE IF EXISTS `scm_supplier`;
 CREATE TABLE `scm_supplier`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(50)  NULL DEFAULT NULL COMMENT '供应商名称',
-  `number` varchar(18)  NULL DEFAULT NULL COMMENT '供应商编码',
-  `taxRate` double NULL DEFAULT 0 COMMENT '税率',
-  `amount` double NULL DEFAULT 0 COMMENT '期初应付款',
-  `periodMoney` double NULL DEFAULT 0 COMMENT '期初预付款',
-  `difMoney` double NULL DEFAULT 0 COMMENT '初期往来余额',
-  `beginDate` date NULL DEFAULT NULL COMMENT '余额日期',
-  `remark` varchar(100)  NULL DEFAULT '' COMMENT '备注',
-  `place` varchar(100)  NULL DEFAULT '' COMMENT '职位',
-  `linkMan` varchar(10)  NULL DEFAULT NULL COMMENT '联系人',
-  `contact` varchar(15)  NULL DEFAULT '' COMMENT '联系方式',
-  `province` varchar(20)  NULL DEFAULT NULL COMMENT '省',
-  `city` varchar(20)  NULL DEFAULT NULL COMMENT '市',
-  `county` varchar(20)  NULL DEFAULT NULL COMMENT '区县',
-  `address` varchar(100)  NULL DEFAULT NULL COMMENT '收货地址详情',
-  `pinYin` varchar(50)  NULL DEFAULT '',
-  `disable` tinyint(1) NULL DEFAULT 0 COMMENT '0启用   1禁用',
-  `isDelete` tinyint(1) NULL DEFAULT 0 COMMENT '0正常 1删除',
-  `purchaserName` varchar(50)  NULL DEFAULT NULL COMMENT '分管采购员',
-  `createTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50)  DEFAULT NULL COMMENT '供应商名称',
+  `number` varchar(18)  DEFAULT NULL COMMENT '供应商编码',
+  `taxRate` double DEFAULT 0 COMMENT '税率',
+  `amount` double DEFAULT 0 COMMENT '期初应付款',
+  `periodMoney` double DEFAULT 0 COMMENT '期初预付款',
+  `difMoney` double DEFAULT 0 COMMENT '初期往来余额',
+  `beginDate` date DEFAULT NULL COMMENT '余额日期',
+  `remark` varchar(100)  DEFAULT '' COMMENT '备注',
+  `place` varchar(100)  DEFAULT '' COMMENT '职位',
+  `linkMan` varchar(10)  DEFAULT NULL COMMENT '联系人',
+  `contact` varchar(15)  DEFAULT '' COMMENT '联系方式',
+  `province` varchar(20)  DEFAULT NULL COMMENT '省',
+  `city` varchar(20)  DEFAULT NULL COMMENT '市',
+  `county` varchar(20)  DEFAULT NULL COMMENT '区县',
+  `address` varchar(100)  DEFAULT NULL COMMENT '收货地址详情',
+  `pinYin` varchar(50)  DEFAULT '',
+  `disable` tinyint(1) DEFAULT 0 COMMENT '0启用   1禁用',
+  `isDelete` tinyint(1) DEFAULT 0 COMMENT '0正常 1删除',
+  `purchaserName` varchar(50)  DEFAULT NULL COMMENT '分管采购员',
+  `createTime` datetime(0) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) ,
   INDEX `id`(`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_supplier
@@ -8223,36 +8456,36 @@ INSERT INTO `scm_supplier` VALUES (33, '中山裤豪', 'ZSKH', 0, 0, 0, 0, NULL,
 -- ----------------------------
 DROP TABLE IF EXISTS `scm_supplier_agent_shipping`;
 CREATE TABLE `scm_supplier_agent_shipping`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `shop_id` int NOT NULL COMMENT '店铺ID',
-  `shop_type` int NOT NULL COMMENT '店铺平台',
-  `supplier_id` int NOT NULL COMMENT '供应商ID',
-  `erp_order_id` bigint NOT NULL COMMENT 'erp订单ID',
-  `erp_order_item_id` bigint NOT NULL COMMENT '子订单ID',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `shop_id` int(0) NOT NULL COMMENT '店铺ID',
+  `shop_type` int(0) NOT NULL COMMENT '店铺平台',
+  `supplier_id` int(0) NOT NULL COMMENT '供应商ID',
+  `erp_order_id` bigint(0) NOT NULL COMMENT 'erp订单ID',
+  `erp_order_item_id` bigint(0) NOT NULL COMMENT '子订单ID',
   `order_num` varchar(50)  NOT NULL COMMENT '订单编号',
-  `order_date` datetime NOT NULL COMMENT '订单日期',
-  `goods_id` bigint NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
-  `spec_id` bigint NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `goods_title` varchar(100)  NULL DEFAULT NULL COMMENT '商品标题',
-  `goods_img` varchar(300)  NULL DEFAULT NULL COMMENT '商品图片',
-  `goods_num` varchar(35)  NULL DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(50)  NULL DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(35)  NULL DEFAULT NULL COMMENT '商品规格编码',
+  `order_date` datetime(0) NOT NULL COMMENT '订单日期',
+  `goods_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
+  `spec_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
+  `goods_title` varchar(100)  DEFAULT NULL COMMENT '商品标题',
+  `goods_img` varchar(300)  DEFAULT NULL COMMENT '商品图片',
+  `goods_num` varchar(35)  DEFAULT NULL COMMENT '商品编码',
+  `goods_spec` varchar(50)  DEFAULT NULL COMMENT '商品规格',
+  `spec_num` varchar(35)  DEFAULT NULL COMMENT '商品规格编码',
   `goods_price` double NOT NULL COMMENT '商品单价',
-  `quantity` int NOT NULL COMMENT '商品数量',
-  `item_amount` double NULL DEFAULT NULL COMMENT '子订单金额',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '说明',
-  `ship_company` varchar(20)  NULL DEFAULT NULL COMMENT '物流公司',
-  `ship_no` varchar(50)  NULL DEFAULT NULL COMMENT '物流单号',
-  `ship_cost` decimal(6, 0) NULL DEFAULT NULL COMMENT '运费',
-  `ship_time` datetime NULL DEFAULT NULL COMMENT '运送时间',
-  `status` int NULL DEFAULT NULL COMMENT '状态（0未发货1已发货2已结算）',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `create_by` varchar(50)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_by` varchar(20)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `quantity` int(0) NOT NULL COMMENT '商品数量',
+  `item_amount` double DEFAULT NULL COMMENT '子订单金额',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '说明',
+  `ship_company` varchar(20)  DEFAULT NULL COMMENT '物流公司',
+  `ship_no` varchar(50)  DEFAULT NULL COMMENT '物流单号',
+  `ship_cost` decimal(6, 0) DEFAULT NULL COMMENT '运费',
+  `ship_time` datetime(0) DEFAULT NULL COMMENT '运送时间',
+  `status` int(0) DEFAULT NULL COMMENT '状态（0未发货1已发货2已结算）',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `create_by` varchar(50)  DEFAULT NULL COMMENT '创建人',
+  `update_by` varchar(20)  DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '供应商代发货表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '供应商代发货表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_supplier_agent_shipping
@@ -8264,18 +8497,18 @@ INSERT INTO `scm_supplier_agent_shipping` VALUES (1, 6, 4, 26, 17, 14, '16352222
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_config`;
 CREATE TABLE `sys_config`  (
-  `config_id` int NOT NULL AUTO_INCREMENT COMMENT '参数主键',
-  `config_name` varchar(100)  NULL DEFAULT '' COMMENT '参数名称',
-  `config_key` varchar(100)  NULL DEFAULT '' COMMENT '参数键名',
-  `config_value` varchar(500)  NULL DEFAULT '' COMMENT '参数键值',
-  `config_type` char(1)  NULL DEFAULT 'N' COMMENT '系统内置（Y是 N否）',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
+  `config_id` int(0) NOT NULL AUTO_INCREMENT COMMENT '参数主键',
+  `config_name` varchar(100)  DEFAULT '' COMMENT '参数名称',
+  `config_key` varchar(100)  DEFAULT '' COMMENT '参数键名',
+  `config_value` varchar(500)  DEFAULT '' COMMENT '参数键值',
+  `config_type` char(1)  DEFAULT 'N' COMMENT '系统内置（Y是 N否）',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`config_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '参数配置表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '参数配置表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_config
@@ -8292,22 +8525,22 @@ INSERT INTO `sys_config` VALUES (6, '用户登录-黑名单列表', 'sys.login.b
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dept`;
 CREATE TABLE `sys_dept`  (
-  `dept_id` bigint NOT NULL AUTO_INCREMENT COMMENT '部门id',
-  `parent_id` bigint NULL DEFAULT 0 COMMENT '父部门id',
-  `ancestors` varchar(50)  NULL DEFAULT '' COMMENT '祖级列表',
-  `dept_name` varchar(30)  NULL DEFAULT '' COMMENT '部门名称',
-  `order_num` int NULL DEFAULT 0 COMMENT '显示顺序',
-  `leader` varchar(20)  NULL DEFAULT NULL COMMENT '负责人',
-  `phone` varchar(11)  NULL DEFAULT NULL COMMENT '联系电话',
-  `email` varchar(50)  NULL DEFAULT NULL COMMENT '邮箱',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '部门状态（0正常 1停用）',
-  `del_flag` char(1)  NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `dept_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '部门id',
+  `parent_id` bigint(0) DEFAULT 0 COMMENT '父部门id',
+  `ancestors` varchar(50)  DEFAULT '' COMMENT '祖级列表',
+  `dept_name` varchar(30)  DEFAULT '' COMMENT '部门名称',
+  `order_num` int(0) DEFAULT 0 COMMENT '显示顺序',
+  `leader` varchar(20)  DEFAULT NULL COMMENT '负责人',
+  `phone` varchar(11)  DEFAULT NULL COMMENT '联系电话',
+  `email` varchar(50)  DEFAULT NULL COMMENT '邮箱',
+  `status` char(1)  DEFAULT '0' COMMENT '部门状态（0正常 1停用）',
+  `del_flag` char(1)  DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`dept_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 200 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '部门表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 200 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dept
@@ -8328,22 +8561,22 @@ INSERT INTO `sys_dept` VALUES (109, 102, '0,100,102', '财务部门', 2, '至简
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict_data`;
 CREATE TABLE `sys_dict_data`  (
-  `dict_code` bigint NOT NULL AUTO_INCREMENT COMMENT '字典编码',
-  `dict_sort` int NULL DEFAULT 0 COMMENT '字典排序',
-  `dict_label` varchar(100)  NULL DEFAULT '' COMMENT '字典标签',
-  `dict_value` varchar(100)  NULL DEFAULT '' COMMENT '字典键值',
-  `dict_type` varchar(100)  NULL DEFAULT '' COMMENT '字典类型',
-  `css_class` varchar(100)  NULL DEFAULT NULL COMMENT '样式属性（其他样式扩展）',
-  `list_class` varchar(100)  NULL DEFAULT NULL COMMENT '表格回显样式',
-  `is_default` char(1)  NULL DEFAULT 'N' COMMENT '是否默认（Y是 N否）',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
+  `dict_code` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '字典编码',
+  `dict_sort` int(0) DEFAULT 0 COMMENT '字典排序',
+  `dict_label` varchar(100)  DEFAULT '' COMMENT '字典标签',
+  `dict_value` varchar(100)  DEFAULT '' COMMENT '字典键值',
+  `dict_type` varchar(100)  DEFAULT '' COMMENT '字典类型',
+  `css_class` varchar(100)  DEFAULT NULL COMMENT '样式属性（其他样式扩展）',
+  `list_class` varchar(100)  DEFAULT NULL COMMENT '表格回显样式',
+  `is_default` char(1)  DEFAULT 'N' COMMENT '是否默认（Y是 N否）',
+  `status` char(1)  DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_code`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典数据表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典数据表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict_data
@@ -8383,18 +8616,18 @@ INSERT INTO `sys_dict_data` VALUES (29, 2, '失败', '1', 'sys_common_status', '
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict_type`;
 CREATE TABLE `sys_dict_type`  (
-  `dict_id` bigint NOT NULL AUTO_INCREMENT COMMENT '字典主键',
-  `dict_name` varchar(100)  NULL DEFAULT '' COMMENT '字典名称',
-  `dict_type` varchar(100)  NULL DEFAULT '' COMMENT '字典类型',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
+  `dict_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '字典主键',
+  `dict_name` varchar(100)  DEFAULT '' COMMENT '字典名称',
+  `dict_type` varchar(100)  DEFAULT '' COMMENT '字典类型',
+  `status` char(1)  DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`dict_id`) ,
   UNIQUE INDEX `dict_type`(`dict_type`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典类型表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典类型表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict_type
@@ -8415,21 +8648,21 @@ INSERT INTO `sys_dict_type` VALUES (10, '系统状态', 'sys_common_status', '0'
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_job`;
 CREATE TABLE `sys_job`  (
-  `job_id` bigint NOT NULL AUTO_INCREMENT COMMENT '任务ID',
+  `job_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '任务ID',
   `job_name` varchar(64)  NOT NULL DEFAULT '' COMMENT '任务名称',
   `job_group` varchar(64)  NOT NULL DEFAULT 'DEFAULT' COMMENT '任务组名',
   `invoke_target` varchar(500)  NOT NULL COMMENT '调用目标字符串',
-  `cron_expression` varchar(255)  NULL DEFAULT '' COMMENT 'cron执行表达式',
-  `misfire_policy` varchar(20)  NULL DEFAULT '3' COMMENT '计划执行错误策略（1立即执行 2执行一次 3放弃执行）',
-  `concurrent` char(1)  NULL DEFAULT '1' COMMENT '是否并发执行（0允许 1禁止）',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '状态（0正常 1暂停）',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500)  NULL DEFAULT '' COMMENT '备注信息',
+  `cron_expression` varchar(255)  DEFAULT '' COMMENT 'cron执行表达式',
+  `misfire_policy` varchar(20)  DEFAULT '3' COMMENT '计划执行错误策略（1立即执行 2执行一次 3放弃执行）',
+  `concurrent` char(1)  DEFAULT '1' COMMENT '是否并发执行（0允许 1禁止）',
+  `status` char(1)  DEFAULT '0' COMMENT '状态（0正常 1暂停）',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500)  DEFAULT '' COMMENT '备注信息',
   PRIMARY KEY (`job_id`, `job_name`, `job_group`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_job
@@ -8444,16 +8677,16 @@ INSERT INTO `sys_job` VALUES (100, '库存存货日报生成', 'SYSTEM', 'invent
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_job_log`;
 CREATE TABLE `sys_job_log`  (
-  `job_log_id` bigint NOT NULL AUTO_INCREMENT COMMENT '任务日志ID',
+  `job_log_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '任务日志ID',
   `job_name` varchar(64)  NOT NULL COMMENT '任务名称',
   `job_group` varchar(64)  NOT NULL COMMENT '任务组名',
   `invoke_target` varchar(500)  NOT NULL COMMENT '调用目标字符串',
-  `job_message` varchar(500)  NULL DEFAULT NULL COMMENT '日志信息',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '执行状态（0正常 1失败）',
-  `exception_info` varchar(2000)  NULL DEFAULT '' COMMENT '异常信息',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `job_message` varchar(500)  DEFAULT NULL COMMENT '日志信息',
+  `status` char(1)  DEFAULT '0' COMMENT '执行状态（0正常 1失败）',
+  `exception_info` varchar(2000)  DEFAULT '' COMMENT '异常信息',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_job_log
@@ -8471,19 +8704,19 @@ INSERT INTO `sys_job_log` VALUES (7, '库存存货日报生成', 'SYSTEM', 'inve
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_logininfor`;
 CREATE TABLE `sys_logininfor`  (
-  `info_id` bigint NOT NULL AUTO_INCREMENT COMMENT '访问ID',
-  `user_name` varchar(50)  NULL DEFAULT '' COMMENT '用户账号',
-  `ipaddr` varchar(128)  NULL DEFAULT '' COMMENT '登录IP地址',
-  `login_location` varchar(255)  NULL DEFAULT '' COMMENT '登录地点',
-  `browser` varchar(50)  NULL DEFAULT '' COMMENT '浏览器类型',
-  `os` varchar(50)  NULL DEFAULT '' COMMENT '操作系统',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '登录状态（0成功 1失败）',
-  `msg` varchar(255)  NULL DEFAULT '' COMMENT '提示消息',
-  `login_time` datetime NULL DEFAULT NULL COMMENT '访问时间',
+  `info_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '访问ID',
+  `user_name` varchar(50)  DEFAULT '' COMMENT '用户账号',
+  `ipaddr` varchar(128)  DEFAULT '' COMMENT '登录IP地址',
+  `login_location` varchar(255)  DEFAULT '' COMMENT '登录地点',
+  `browser` varchar(50)  DEFAULT '' COMMENT '浏览器类型',
+  `os` varchar(50)  DEFAULT '' COMMENT '操作系统',
+  `status` char(1)  DEFAULT '0' COMMENT '登录状态（0成功 1失败）',
+  `msg` varchar(255)  DEFAULT '' COMMENT '提示消息',
+  `login_time` datetime(0) DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) ,
   INDEX `idx_sys_logininfor_s`(`status`) ,
   INDEX `idx_sys_logininfor_lt`(`login_time`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 91 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -8520,31 +8753,70 @@ INSERT INTO `sys_logininfor` VALUES (87, 'admin', '127.0.0.1', '内网IP', 'Chro
 INSERT INTO `sys_logininfor` VALUES (88, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 16:20:57');
 INSERT INTO `sys_logininfor` VALUES (89, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-24 17:01:21');
 INSERT INTO `sys_logininfor` VALUES (90, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-04-24 17:09:07');
+INSERT INTO `sys_logininfor` VALUES (91, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 10:11:25');
+INSERT INTO `sys_logininfor` VALUES (92, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 10:20:29');
+INSERT INTO `sys_logininfor` VALUES (93, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 10:59:25');
+INSERT INTO `sys_logininfor` VALUES (94, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 13:13:10');
+INSERT INTO `sys_logininfor` VALUES (95, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 13:35:11');
+INSERT INTO `sys_logininfor` VALUES (96, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 13:46:47');
+INSERT INTO `sys_logininfor` VALUES (97, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 14:05:26');
+INSERT INTO `sys_logininfor` VALUES (98, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 14:11:59');
+INSERT INTO `sys_logininfor` VALUES (99, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 14:14:00');
+INSERT INTO `sys_logininfor` VALUES (100, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 14:18:34');
+INSERT INTO `sys_logininfor` VALUES (101, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 14:42:32');
+INSERT INTO `sys_logininfor` VALUES (102, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 14:51:55');
+INSERT INTO `sys_logininfor` VALUES (103, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 15:03:29');
+INSERT INTO `sys_logininfor` VALUES (104, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 15:06:20');
+INSERT INTO `sys_logininfor` VALUES (105, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 15:12:23');
+INSERT INTO `sys_logininfor` VALUES (106, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 15:45:37');
+INSERT INTO `sys_logininfor` VALUES (107, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 15:51:40');
+INSERT INTO `sys_logininfor` VALUES (108, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 15:57:48');
+INSERT INTO `sys_logininfor` VALUES (109, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 16:45:05');
+INSERT INTO `sys_logininfor` VALUES (110, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-25 16:48:14');
+INSERT INTO `sys_logininfor` VALUES (111, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 09:44:57');
+INSERT INTO `sys_logininfor` VALUES (112, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 09:50:36');
+INSERT INTO `sys_logininfor` VALUES (113, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 10:24:58');
+INSERT INTO `sys_logininfor` VALUES (114, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 10:31:27');
+INSERT INTO `sys_logininfor` VALUES (115, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 11:16:01');
+INSERT INTO `sys_logininfor` VALUES (116, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 11:16:12');
+INSERT INTO `sys_logininfor` VALUES (117, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 11:48:42');
+INSERT INTO `sys_logininfor` VALUES (118, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 11:56:48');
+INSERT INTO `sys_logininfor` VALUES (119, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 12:01:37');
+INSERT INTO `sys_logininfor` VALUES (120, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 13:28:27');
+INSERT INTO `sys_logininfor` VALUES (121, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 13:42:36');
+INSERT INTO `sys_logininfor` VALUES (122, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 13:47:51');
+INSERT INTO `sys_logininfor` VALUES (123, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 14:05:51');
+INSERT INTO `sys_logininfor` VALUES (124, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 14:32:31');
+INSERT INTO `sys_logininfor` VALUES (125, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 14:34:13');
+INSERT INTO `sys_logininfor` VALUES (126, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 14:39:01');
+INSERT INTO `sys_logininfor` VALUES (127, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 15:31:15');
+INSERT INTO `sys_logininfor` VALUES (128, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 15:54:38');
+INSERT INTO `sys_logininfor` VALUES (129, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 15:57:58');
 
 -- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`  (
-  `menu_id` bigint NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
+  `menu_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
   `menu_name` varchar(50)  NOT NULL COMMENT '菜单名称',
-  `parent_id` bigint NULL DEFAULT 0 COMMENT '父菜单ID',
-  `order_num` int NULL DEFAULT 0 COMMENT '显示顺序',
-  `path` varchar(200)  NULL DEFAULT '' COMMENT '路由地址',
-  `component` varchar(255)  NULL DEFAULT NULL COMMENT '组件路径',
-  `query` varchar(255)  NULL DEFAULT NULL COMMENT '路由参数',
-  `is_frame` int NULL DEFAULT 1 COMMENT '是否为外链（0是 1否）',
-  `is_cache` int NULL DEFAULT 0 COMMENT '是否缓存（0缓存 1不缓存）',
-  `menu_type` char(1)  NULL DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
-  `visible` char(1)  NULL DEFAULT '0' COMMENT '菜单状态（0显示 1隐藏）',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '菜单状态（0正常 1停用）',
-  `perms` varchar(100)  NULL DEFAULT NULL COMMENT '权限标识',
-  `icon` varchar(100)  NULL DEFAULT '#' COMMENT '菜单图标',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` varchar(64)  NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500)  NULL DEFAULT '' COMMENT '备注',
+  `parent_id` bigint(0) DEFAULT 0 COMMENT '父菜单ID',
+  `order_num` int(0) DEFAULT 0 COMMENT '显示顺序',
+  `path` varchar(200)  DEFAULT '' COMMENT '路由地址',
+  `component` varchar(255)  DEFAULT NULL COMMENT '组件路径',
+  `query` varchar(255)  DEFAULT NULL COMMENT '路由参数',
+  `is_frame` int(0) DEFAULT 1 COMMENT '是否为外链（0是 1否）',
+  `is_cache` int(0) DEFAULT 0 COMMENT '是否缓存（0缓存 1不缓存）',
+  `menu_type` char(1)  DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
+  `visible` char(1)  DEFAULT '0' COMMENT '菜单状态（0显示 1隐藏）',
+  `status` char(1)  DEFAULT '0' COMMENT '菜单状态（0正常 1停用）',
+  `perms` varchar(100)  DEFAULT NULL COMMENT '权限标识',
+  `icon` varchar(100)  DEFAULT '#' COMMENT '菜单图标',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` varchar(64)  DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500)  DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) 
 ) 
 
@@ -8611,7 +8883,7 @@ INSERT INTO `sys_menu` VALUES (2008, '商品分类', 2, 88, 'goods_category', 'g
 INSERT INTO `sys_menu` VALUES (2009, '品牌管理', 2, 99, 'goods/brand', 'goods/brand/index', '', 1, 0, 'C', '0', '1', 'goods:brand', 'clipboard', 'admin', '2023-12-29 13:34:49', 'admin', '2024-04-14 18:51:23', '');
 INSERT INTO `sys_menu` VALUES (2010, '采购单管理', 4, 1, 'order', 'scm/purchase/order', '', 1, 0, 'C', '0', '0', 'scm:purchase:order', 'button', 'admin', '2023-12-29 16:35:55', 'admin', '2024-04-24 17:06:32', '');
 INSERT INTO `sys_menu` VALUES (2012, '采购物流管理', 4, 2, 'ship', 'scm/purchase/ship', '', 1, 0, 'C', '0', '0', 'scm:purchase:ship', 'component', 'admin', '2023-12-29 16:45:42', 'admin', '2024-04-24 17:10:48', '');
-INSERT INTO `sys_menu` VALUES (2015, '店铺管理', 8, 10, 'shop', 'shop/index', '', 1, 0, 'C', '0', '0', 'shop:list', 'example', 'admin', '2023-12-29 16:54:02', 'admin', '2024-04-12 16:46:33', '');
+INSERT INTO `sys_menu` VALUES (2015, '店铺管理', 8, 10, 'shop_list', 'shop/shop_index', '', 1, 0, 'C', '0', '0', 'shop:list', 'example', 'admin', '2023-12-29 16:54:02', 'admin', '2024-04-25 11:15:07', '');
 INSERT INTO `sys_menu` VALUES (2016, '店铺商品管理', 5, 9, 'shop/goods', 'shop/goods', '', 1, 0, 'C', '0', '1', 'shop:goods', 'color', 'admin', '2023-12-29 17:02:42', 'admin', '2024-01-14 14:04:20', '');
 INSERT INTO `sys_menu` VALUES (2017, '店铺数据统计', 5, 8, 'data', 'shop/data', '', 1, 0, 'C', '0', '1', 'shop:data', 'chart', 'admin', '2023-12-29 17:04:08', 'admin', '2023-12-31 19:04:58.785609', '');
 INSERT INTO `sys_menu` VALUES (2019, '采购账单管理1', 4, 2, 'purchase', 'scm/purchase/cost', '', 1, 0, 'C', '0', '1', '', 'money', 'admin', '2023-12-29 17:09:32', 'admin', '2024-04-24 17:05:06', '');
@@ -8621,21 +8893,20 @@ INSERT INTO `sys_menu` VALUES (2027, '入库管理', 9, 0, 'stock_in_entry/list'
 INSERT INTO `sys_menu` VALUES (2028, '生成采购入库单', 4, 3, 'ship/create_stock_in_entry', 'scm/purchase/ship/create_stock_in_entry', '', 1, 0, 'C', '1', '0', '', 'button', 'admin', '2023-12-31 12:31:32', 'admin', '2024-04-24 17:12:38', '');
 INSERT INTO `sys_menu` VALUES (2029, '店铺售后导入', 7, 2, 'shop_refund', 'shop/refund/index', '', 1, 0, 'C', '0', '0', '', 'clipboard', 'admin', '2023-12-31 17:29:03', 'admin', '2024-03-24 20:29:07', '');
 INSERT INTO `sys_menu` VALUES (2030, '手动创建订单', 5, 1, 'order/create', 'sale/order/create', '', 1, 0, 'C', '1', '0', '', 'documentation', 'admin', '2023-12-31 20:01:22', 'admin', '2024-03-24 19:32:32', '');
-INSERT INTO `sys_menu` VALUES (2032, 'API拉取订单', 5, 3, 'order/pull', 'shop/order/pull', '', 1, 0, 'M', '0', '1', '', 'upload', 'admin', '2023-12-31 20:04:12', 'admin', '2024-01-01 14:34:22.157829', '');
-INSERT INTO `sys_menu` VALUES (2033, '订单查询', 5, 1, 'order/list', 'sale/order/index', '', 1, 0, 'C', '0', '0', '', 'list', 'admin', '2023-12-31 20:05:05', 'admin', '2024-03-24 19:32:00', '');
-INSERT INTO `sys_menu` VALUES (2036, '网店订单导入', 5, 2, 'shop_order', 'shop/order/index', '', 1, 0, 'C', '0', '0', '', 'excel', 'admin', '2024-01-01 14:14:42', 'admin', '2024-03-24 20:35:32', '');
-INSERT INTO `sys_menu` VALUES (2038, '拼多多订单拉取', 2032, 0, 'pdd', '', '', 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-01 14:20:19', '', '', '');
+INSERT INTO `sys_menu` VALUES (2032, '订单拉取日志', 5, 3, 'order/pull_log', 'shop/order_pull_log', '', 1, 0, 'C', '0', '0', '', 'upload', 'admin', '2023-12-31 20:04:12', 'admin', '2024-04-25 10:23:18', '');
+INSERT INTO `sys_menu` VALUES (2033, '订单管理', 5, 1, 'order/list', 'sale/order/index', '', 1, 0, 'C', '0', '0', '', 'list', 'admin', '2023-12-31 20:05:05', 'admin', '2024-04-25 09:57:36', '');
+INSERT INTO `sys_menu` VALUES (2036, '网店订单导入', 5, 2, 'shop_order', 'shop/order_index', '', 1, 0, 'C', '0', '0', '', 'excel', 'admin', '2024-01-01 14:14:42', 'admin', '2024-04-25 10:23:10', '');
 INSERT INTO `sys_menu` VALUES (2046, '出库管理', 9, 5, 'stockOut', 'wms/stockOutEntry', NULL, 1, 0, 'C', '0', '0', '', 'link', 'admin', '2024-01-03 11:00:53', 'admin', '2024-01-12 15:52:19', '');
 INSERT INTO `sys_menu` VALUES (2047, '库存查询', 9, 6, 'goodsInventory', 'goods/goodsInventory', NULL, 1, 0, 'C', '0', '0', '', 'monitor', 'admin', '2024-01-03 11:01:14', 'admin', '2024-01-09 17:55:33', '');
 INSERT INTO `sys_menu` VALUES (2048, '库存盘点', 9, 9, 'pan', NULL, NULL, 1, 0, 'C', '0', '1', '', 'bug', 'admin', '2024-01-03 11:01:43', 'admin', '2024-01-09 19:57:08', '');
-INSERT INTO `sys_menu` VALUES (2049, '打包发货', 6, 3, 'shipping', 'wms/orderShipping/shipping', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-03 14:09:18', 'admin', '2024-01-10 09:21:26', '');
-INSERT INTO `sys_menu` VALUES (2051, '物流跟踪', 6, 4, 'logistics', 'wms/orderShipping/logistics', NULL, 1, 0, 'C', '0', '0', '', 'email', 'admin', '2024-01-03 14:13:12', 'admin', '2024-01-12 17:03:49', '');
+INSERT INTO `sys_menu` VALUES (2049, '打包发货', 6, 3, 'order_ship', 'shipping/orderShip/index', NULL, 1, 0, 'C', '0', '0', '', 'guide', 'admin', '2024-01-03 14:09:18', 'admin', '2024-04-26 14:27:56', '');
+INSERT INTO `sys_menu` VALUES (2051, '物流跟踪', 6, 4, 'order_logistics', 'shipping/orderShip/logistics', NULL, 1, 0, 'C', '0', '0', '', 'email', 'admin', '2024-01-03 14:13:12', 'admin', '2024-04-26 14:41:45', '');
 INSERT INTO `sys_menu` VALUES (2052, '物流公司管理', 6, 9, 'logistics_company', 'shipping/logistics/company', NULL, 1, 0, 'C', '0', '0', '', 'checkbox', 'admin', '2024-01-03 14:14:09', 'admin', '2024-04-24 13:53:14', '');
 INSERT INTO `sys_menu` VALUES (2054, '售后处理', 7, 1, 'refund_list', 'sale/returned', NULL, 1, 0, 'C', '0', '0', '', 'size', 'admin', '2024-01-03 14:24:36', 'admin', '2024-04-17 14:14:00', '');
 INSERT INTO `sys_menu` VALUES (2059, '备货清单', 6, 1, 'stocking', 'shipping/stocking/', '', 1, 0, 'C', '0', '0', '', 'component', 'admin', '2024-01-09 11:51:52', 'admin', '2024-04-15 11:40:42', '');
-INSERT INTO `sys_menu` VALUES (2060, '拣货出库', 6, 2, 'stockout', 'wms/orderShipping/stockOut', NULL, 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-09 13:39:00', 'admin', '2024-01-12 15:51:56', '');
+INSERT INTO `sys_menu` VALUES (2060, '拣货出库', 6, 2, 'stockout', 'shipping/stockOut', NULL, 1, 0, 'C', '0', '0', '', 'bug', 'admin', '2024-01-09 13:39:00', 'admin', '2024-04-26 13:51:21', '');
 INSERT INTO `sys_menu` VALUES (2061, '库位管理', 9, 99, 'stock_location', 'wms/location', NULL, 1, 0, 'C', '0', '0', '', 'education', 'admin', '2024-01-09 13:54:30', 'admin', '2024-01-09 14:50:33', '');
-INSERT INTO `sys_menu` VALUES (2062, '代发账单', 6, 6, 'agentShip', 'fms/payable/agentShip', NULL, 1, 0, 'C', '0', '0', '', 'money', 'admin', '2024-01-12 18:35:02', 'admin', '2024-04-17 14:13:03', '');
+INSERT INTO `sys_menu` VALUES (2062, '代发账单', 4, 6, 'agentShip', 'fms/payable/agentShip', NULL, 1, 0, 'C', '0', '0', '', 'excel', 'admin', '2024-01-12 18:35:02', 'admin', '2024-04-26 14:43:00', '');
 INSERT INTO `sys_menu` VALUES (2063, '物流费用', 6, 5, 'shipFee', 'fms/payable/shipFee', NULL, 1, 0, 'C', '0', '0', '', 'money', 'admin', '2024-01-12 18:35:31', 'admin', '2024-04-17 14:12:53', '');
 INSERT INTO `sys_menu` VALUES (2066, '添加商品', 2, 2, 'create', 'goods/create', NULL, 1, 0, 'C', '1', '0', '', 'component', 'admin', '2024-01-14 19:42:11', 'admin', '2024-04-14 18:50:36', '');
 INSERT INTO `sys_menu` VALUES (2067, '商品SKU管理', 2, 3, 'spec_list', 'goods/spec', NULL, 1, 0, 'C', '0', '0', '', 'theme', 'admin', '2024-01-16 14:17:39', 'admin', '2024-04-14 18:51:13', '');
@@ -8652,18 +8923,18 @@ INSERT INTO `sys_menu` VALUES (2085, '采购账单管理', 4, 4, 'bill', 'fms/pa
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_notice`;
 CREATE TABLE `sys_notice`  (
-  `notice_id` int NOT NULL AUTO_INCREMENT COMMENT '公告ID',
+  `notice_id` int(0) NOT NULL AUTO_INCREMENT COMMENT '公告ID',
   `notice_title` varchar(50)  NOT NULL COMMENT '公告标题',
   `notice_type` char(1)  NOT NULL COMMENT '公告类型（1通知 2公告）',
-  `notice_content` longblob NULL COMMENT '公告内容',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '公告状态（0正常 1关闭）',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
+  `notice_content` longblob COMMENT '公告内容',
+  `status` char(1)  DEFAULT '0' COMMENT '公告状态（0正常 1关闭）',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`notice_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '通知公告表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '通知公告表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_notice
@@ -8676,28 +8947,28 @@ INSERT INTO `sys_notice` VALUES (2, '维护通知：2018-07-01 至简系统凌�
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_oper_log`;
 CREATE TABLE `sys_oper_log`  (
-  `oper_id` bigint NOT NULL AUTO_INCREMENT COMMENT '日志主键',
-  `title` varchar(50)  NULL DEFAULT '' COMMENT '模块标题',
-  `business_type` int NULL DEFAULT 0 COMMENT '业务类型（0其它 1新增 2修改 3删除）',
-  `method` varchar(100)  NULL DEFAULT '' COMMENT '方法名称',
-  `request_method` varchar(10)  NULL DEFAULT '' COMMENT '请求方式',
-  `operator_type` int NULL DEFAULT 0 COMMENT '操作类别（0其它 1后台用户 2手机端用户）',
-  `oper_name` varchar(50)  NULL DEFAULT '' COMMENT '操作人员',
-  `dept_name` varchar(50)  NULL DEFAULT '' COMMENT '部门名称',
-  `oper_url` varchar(255)  NULL DEFAULT '' COMMENT '请求URL',
-  `oper_ip` varchar(128)  NULL DEFAULT '' COMMENT '主机地址',
-  `oper_location` varchar(255)  NULL DEFAULT '' COMMENT '操作地点',
-  `oper_param` varchar(2000)  NULL DEFAULT '' COMMENT '请求参数',
-  `json_result` varchar(2000)  NULL DEFAULT '' COMMENT '返回参数',
-  `status` int NULL DEFAULT 0 COMMENT '操作状态（0正常 1异常）',
-  `error_msg` varchar(2000)  NULL DEFAULT '' COMMENT '错误消息',
-  `oper_time` datetime NULL DEFAULT NULL COMMENT '操作时间',
-  `cost_time` bigint NULL DEFAULT 0 COMMENT '消耗时间',
+  `oper_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '日志主键',
+  `title` varchar(50)  DEFAULT '' COMMENT '模块标题',
+  `business_type` int(0) DEFAULT 0 COMMENT '业务类型（0其它 1新增 2修改 3删除）',
+  `method` varchar(100)  DEFAULT '' COMMENT '方法名称',
+  `request_method` varchar(10)  DEFAULT '' COMMENT '请求方式',
+  `operator_type` int(0) DEFAULT 0 COMMENT '操作类别（0其它 1后台用户 2手机端用户）',
+  `oper_name` varchar(50)  DEFAULT '' COMMENT '操作人员',
+  `dept_name` varchar(50)  DEFAULT '' COMMENT '部门名称',
+  `oper_url` varchar(255)  DEFAULT '' COMMENT '请求URL',
+  `oper_ip` varchar(128)  DEFAULT '' COMMENT '主机地址',
+  `oper_location` varchar(255)  DEFAULT '' COMMENT '操作地点',
+  `oper_param` varchar(2000)  DEFAULT '' COMMENT '请求参数',
+  `json_result` varchar(2000)  DEFAULT '' COMMENT '返回参数',
+  `status` int(0) DEFAULT 0 COMMENT '操作状态（0正常 1异常）',
+  `error_msg` varchar(2000)  DEFAULT '' COMMENT '错误消息',
+  `oper_time` datetime(0) DEFAULT NULL COMMENT '操作时间',
+  `cost_time` bigint(0) DEFAULT 0 COMMENT '消耗时间',
   PRIMARY KEY (`oper_id`) ,
   INDEX `idx_sys_oper_log_bt`(`business_type`) ,
   INDEX `idx_sys_oper_log_s`(`status`) ,
   INDEX `idx_sys_oper_log_ot`(`oper_time`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 324 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 350 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -8837,28 +9108,68 @@ INSERT INTO `sys_oper_log` VALUES (320, '菜单管理', 2, 'com.qihang.erp.api.c
 INSERT INTO `sys_oper_log` VALUES (321, '财务管理-应付款-采购货款', 2, 'com.qihang.erp.api.controller.FmsPayablePurchaseController.edit()', 'PUT', 1, 'admin', NULL, '/fms/payablePurchase', '127.0.0.1', '内网IP', '{\"amount\":432,\"createBy\":\"admin\",\"createTime\":\"2024-04-24 16:22:40\",\"date\":\"2024-04-24\",\"id\":2,\"params\":{},\"purchaseDesc\":\"{采购商品总数量:10,不同款式:1,不同SKU:1,商品总价:420.00,运费:12}\",\"purchaseOrderNo\":\"PUR20240424162152\",\"remark\":\"1\",\"status\":0,\"supplierId\":31,\"supplierName\":\"中山市金客隆服饰有限公司\",\"updateTime\":\"2024-04-24 17:15:51\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 17:15:51', 156);
 INSERT INTO `sys_oper_log` VALUES (322, '财务管理-应付款-采购货款', 2, 'com.qihang.erp.api.controller.FmsPayablePurchaseController.edit()', 'PUT', 1, 'admin', NULL, '/fms/payablePurchase', '127.0.0.1', '内网IP', '{\"amount\":432,\"createBy\":\"admin\",\"createTime\":\"2024-04-24 16:22:40\",\"date\":\"2024-04-24\",\"id\":2,\"params\":{},\"purchaseDesc\":\"{采购商品总数量:10,不同款式:1,不同SKU:1,商品总价:420.00,运费:12}\",\"purchaseOrderNo\":\"PUR20240424162152\",\"remark\":\"1\",\"status\":1,\"supplierId\":31,\"supplierName\":\"中山市金客隆服饰有限公司\",\"updateTime\":\"2024-04-24 17:18:31\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 17:18:31', 10);
 INSERT INTO `sys_oper_log` VALUES (323, '财务管理-应付款-采购货款', 2, 'com.qihang.erp.api.controller.FmsPayablePurchaseController.edit()', 'PUT', 1, 'admin', NULL, '/fms/payablePurchase', '127.0.0.1', '内网IP', '{\"amount\":432,\"createBy\":\"admin\",\"createTime\":\"2024-04-24 16:22:40\",\"date\":\"2024-04-24\",\"id\":2,\"params\":{},\"purchaseDesc\":\"{采购商品总数量:10,不同款式:1,不同SKU:1,商品总价:420.00,运费:12}\",\"purchaseOrderNo\":\"PUR20240424162152\",\"remark\":\"1\",\"status\":0,\"supplierId\":31,\"supplierName\":\"中山市金客隆服饰有限公司\",\"updateTime\":\"2024-04-24 17:20:49\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-24 17:20:49', 13);
+INSERT INTO `sys_oper_log` VALUES (324, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"sale/order/index\",\"createTime\":\"2023-12-31 20:05:05\",\"icon\":\"list\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2033,\"menuName\":\"订单管理\",\"menuType\":\"C\",\"orderNum\":1,\"params\":{},\"parentId\":5,\"path\":\"order/list\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 09:57:36', 198);
+INSERT INTO `sys_oper_log` VALUES (325, '菜单管理', 3, 'com.qihang.erp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2038', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 09:57:53', 39);
+INSERT INTO `sys_oper_log` VALUES (326, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shop/order/pull_log\",\"createTime\":\"2023-12-31 20:04:12\",\"icon\":\"upload\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2032,\"menuName\":\"订单拉取日志\",\"menuType\":\"C\",\"orderNum\":3,\"params\":{},\"parentId\":5,\"path\":\"order/pull_log\",\"perms\":\"\",\"query\":\"\",\"status\":\"1\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 10:01:57', 17);
+INSERT INTO `sys_oper_log` VALUES (327, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shop/order/pull_log\",\"createTime\":\"2023-12-31 20:04:12\",\"icon\":\"upload\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2032,\"menuName\":\"订单拉取日志\",\"menuType\":\"C\",\"orderNum\":3,\"params\":{},\"parentId\":5,\"path\":\"order/pull_log\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 10:02:03', 8);
+INSERT INTO `sys_oper_log` VALUES (328, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shop/order_index\",\"createTime\":\"2024-01-01 14:14:42\",\"icon\":\"excel\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2036,\"menuName\":\"网店订单导入\",\"menuType\":\"C\",\"orderNum\":2,\"params\":{},\"parentId\":5,\"path\":\"shop_order\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 10:23:10', 59);
+INSERT INTO `sys_oper_log` VALUES (329, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shop/order_pull_log\",\"createTime\":\"2023-12-31 20:04:12\",\"icon\":\"upload\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2032,\"menuName\":\"订单拉取日志\",\"menuType\":\"C\",\"orderNum\":3,\"params\":{},\"parentId\":5,\"path\":\"order/pull_log\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 10:23:18', 8);
+INSERT INTO `sys_oper_log` VALUES (330, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shop/shop_index\",\"createTime\":\"2023-12-29 16:54:02\",\"icon\":\"example\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2015,\"menuName\":\"店铺管理\",\"menuType\":\"C\",\"orderNum\":10,\"params\":{},\"parentId\":8,\"path\":\"shop_list\",\"perms\":\"shop:list\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 11:15:07', 104);
+INSERT INTO `sys_oper_log` VALUES (331, '拼多多订单', 2, 'com.qihang.erp.api.controller.PddOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/pdd/order/confirm', '127.0.0.1', '内网IP', '{\"address\":\"~AgAAAAHv6FsHVfxouQHmr1gjB0AePR62JSRgCnoVVHuaeVGytseL1GMD0sfRhhwGQUlZnktQDBe4lJ8SZKzl2+aAaC/llMoujMjYS98oYqpDNA9BaAcfF77HCd4UoQyvxF4Gg6yLjP+fSY8cOU3PL90N/G0QnKVGqNp+Z0fbcCJ2Fi2XQtJJHTmBNVInw4pd~3RY9I/SuW19d5Z0jQkFZVcKlj4hs2qt+oTTQt0cwxcG61q+p4UzRA1GPFogyvA7sGM6rE+/nVfkjelsNvJaynhj1ElKLcdAP+hvcDaAbjZMRFy+n3wZPGL+RdSM4kjgH~3~~\",\"afterSalesStatus\":0,\"auditStatus\":0,\"buyerMemo\":\"\",\"capitalFreeDiscount\":0.0,\"city\":\"西双版纳傣族自治州\",\"confirmStatus\":1,\"confirmTime\":\"2023-04-05 02:43:01\",\"country\":\"中国\",\"createdTime\":\"2023-04-05 02:42:59\",\"discountAmount\":0.0,\"excelLogId\":0,\"freeSf\":0,\"goodsAmount\":32.79,\"groupStatus\":1,\"id\":3490,\"isLuckyFlag\":1,\"lastShipTime\":\"2023-04-07 02:43:01\",\"orderConfirmTime\":1680633781,\"orderSn\":\"230405-342695669310441\",\"orderStatus\":1,\"params\":{},\"payAmount\":32.79,\"payNo\":\"\",\"payTime\":\"2023-04-05 02:43:01\",\"payType\":\"\",\"pddOrderItemList\":[],\"platformDiscount\":0.0,\"postage\":0.0,\"printStatus\":0,\"province\":\"云南省\",\"pullTime\":\"2023-04-05\",\"receiveTime\":\"\",\"receiverAddress1\":\"aaaa\",\"receiverName\":\"~AgAAAAHv6FsFVfxouQDJ/gs/ADhdzMsCoqXQfss7IvQ=~Sn7H~3~~\",\"receiverName1\":\"a\",\"receiverPhone\":\"$vxGyQuVp6bpn$AgAAAAHv6FsGVfxouQDwiBet5SE/w21BlGn6x8VZ8bA=$3$$\",\"receiverPhone1\":\"1500000\",\"refundStatus\":1,\"remark\":\"\",\"sellerDiscount\":0.0,\"settlementStatus\":0,\"shipStatus\":0,\"shipTime\":0,\"shipType\":0,\"shippingTime\":\"\",\"shopId\":5,\"town\":\"景洪市\",\"trackingNumber\":\"\",\"tradeType\":0,\"updateBy\":\"admin\",\"updatedAt\":\"2023-04-05 02:43:11\"}', NULL, 1, '\r\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'receiver_name\' at row 1\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve com.qihang.erp.api.mapper.ErpOrderMapper.insertErpOrder-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_order          ( order_num,             shop_type,             shop_id,             remark,             buyer_memo,                          refund_status,             order_status,             goods_amount,             discount_amount,             postage,             amount,             receiver_name,             receiver_phone,             address,             country,             province,             city,             town,             pay_time,             ship_type,             confirm_time,                                                                 create_time,             create_by )           values ( ?,             ?,             ?,             ?,             ?,                          ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,                                                                 ?,             ? )\r\n### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'receiver_name\' at row 1\n; Data truncation: Data too long for column \'receiver_name\' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'receiver_name\' at row 1', '2024-04-25 13:14:09', 909);
+INSERT INTO `sys_oper_log` VALUES (332, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"广东广东省 佛山市 顺德区 容桂街道 佛山市顺德区容桂镇公园路五号逸涛居五座602号房\",\"auditStatus\":0,\"auditTime\":\"2022-08-10\",\"buyerName\":\"\",\"city\":\"\",\"closeReason\":\"\",\"createTime\":\"2022-08-10 17:17:21\",\"discountAmount\":0,\"discountRemark\":\"\",\"id\":\"1638388920088435398\",\"isMerge\":0,\"logisticsCode\":\"432718792062072\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2022-08-10\",\"orderModifyTime\":\"2022-08-10\",\"orderSource\":0,\"params\":{},\"payAmount\":29.92,\"payTime\":\"2022-08-10\",\"phone\":\"13622522205\",\"province\":\"广东\",\"receiver\":\"叶润好\",\"sellerMemo\":\"\",\"sendStatus\":0,\"sendTime\":\"2022-08-10\",\"shipType\":0,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"taoOrderItemList\":[],\"totalAmount\":29.92,\"updateBy\":\"admin\",\"updateTime\":\"2022-08-10 19:47:37\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 13:22:17', 157);
+INSERT INTO `sys_oper_log` VALUES (333, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"四川四川省 眉山市 仁寿县 视高镇 工业园区倍特电动车公司\",\"auditStatus\":0,\"auditTime\":\"2022-08-09\",\"buyerName\":\"\",\"city\":\"\",\"closeReason\":\"\",\"createTime\":\"2022-08-09 19:34:24\",\"discountAmount\":0,\"discountRemark\":\"\",\"id\":\"1638101679063535380\",\"isMerge\":0,\"logisticsCode\":\"432716874752516\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2022-08-09\",\"orderModifyTime\":\"2022-08-09\",\"orderSource\":0,\"params\":{},\"payAmount\":39.52,\"payTime\":\"2022-08-09\",\"phone\":\"13880931736\",\"province\":\"四川\",\"receiver\":\"杨琴\",\"sellerMemo\":\"\",\"sendStatus\":0,\"sendTime\":\"2022-08-09\",\"shipType\":1,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"taoOrderItemList\":[],\"totalAmount\":39.52,\"updateBy\":\"admin\",\"updateTime\":\"2022-08-09 22:45:55\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 13:24:44', 36);
+INSERT INTO `sys_oper_log` VALUES (334, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"湖南湖南省 邵阳市 城步苗族自治县儒林镇湘西南幼儿园旁边\",\"auditStatus\":0,\"auditTime\":\"2022-08-06\",\"buyerName\":\"\",\"city\":\"\",\"closeReason\":\"\",\"createTime\":\"2022-08-06 18:26:01\",\"discountAmount\":0,\"discountRemark\":\"\",\"id\":\"1635963673656309898\",\"isMerge\":0,\"logisticsCode\":\"432711322752762\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2022-08-06\",\"orderModifyTime\":\"2022-08-06\",\"orderSource\":0,\"params\":{},\"payAmount\":39.52,\"payTime\":\"2022-08-06\",\"phone\":\"13725742593\",\"province\":\"湖南\",\"receiver\":\"朱松梅\",\"sellerMemo\":\"\",\"sendStatus\":0,\"sendTime\":\"2022-08-09\",\"shipType\":0,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"taoOrderItemList\":[],\"totalAmount\":39.52,\"updateBy\":\"admin\",\"updateTime\":\"2022-08-09 19:19:10\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 13:32:33', 127107);
+INSERT INTO `sys_oper_log` VALUES (335, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"四川四川省 眉山市 仁寿县 视高镇 工业园区倍特电动车公司\",\"auditStatus\":0,\"auditTime\":\"2022-08-05\",\"buyerName\":\"\",\"city\":\"\",\"closeReason\":\"\",\"createTime\":\"2022-08-05 18:54:56\",\"discountAmount\":0,\"discountRemark\":\"\",\"id\":\"1634650644223535380\",\"isMerge\":0,\"logisticsCode\":\"432709738409379\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2022-08-05\",\"orderModifyTime\":\"2022-08-05\",\"orderSource\":0,\"params\":{},\"payAmount\":39.52,\"payTime\":\"2022-08-05\",\"phone\":\"13880931736\",\"province\":\"四川\",\"receiver\":\"杨琴\",\"sellerMemo\":\"\",\"sendStatus\":0,\"sendTime\":\"2022-08-05\",\"shipType\":0,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"taoOrderItemList\":[],\"totalAmount\":39.52,\"updateBy\":\"admin\",\"updateTime\":\"2022-08-05 19:52:56\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'order_num\' doesn\'t have a default value\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_order_item( id, order_id,supplier_id,order_item_num, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, refund_status, create_time, create_by, update_time, update_by) values                  ( ?, ?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\r\n### Cause: java.sql.SQLException: Field \'order_num\' doesn\'t have a default value\n; Field \'order_num\' doesn\'t have a default value; nested exception is java.sql.SQLException: Field \'order_num\' doesn\'t have a default value', '2024-04-25 13:36:22', 46178);
+INSERT INTO `sys_oper_log` VALUES (336, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"四川四川省 眉山市 仁寿县 视高镇 工业园区倍特电动车公司\",\"auditStatus\":0,\"auditTime\":\"2022-08-05\",\"buyerName\":\"\",\"city\":\"\",\"closeReason\":\"\",\"createTime\":\"2022-08-05 18:54:56\",\"discountAmount\":0,\"discountRemark\":\"\",\"id\":\"1634650644223535380\",\"isMerge\":0,\"logisticsCode\":\"432709738409379\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2022-08-05\",\"orderModifyTime\":\"2022-08-05\",\"orderSource\":0,\"params\":{},\"payAmount\":39.52,\"payTime\":\"2022-08-05\",\"phone\":\"13880931736\",\"province\":\"四川\",\"receiver\":\"杨琴\",\"sellerMemo\":\"\",\"sendStatus\":0,\"sendTime\":\"2022-08-05\",\"shipType\":0,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"taoOrderItemList\":[],\"totalAmount\":39.52,\"updateBy\":\"admin\",\"updateTime\":\"2022-08-05 19:52:56\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'order_num\' doesn\'t have a default value\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_order_item( id, order_id,supplier_id,order_item_num, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, refund_status, create_time, create_by, update_time, update_by) values                  ( ?, ?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\r\n### Cause: java.sql.SQLException: Field \'order_num\' doesn\'t have a default value\n; Field \'order_num\' doesn\'t have a default value; nested exception is java.sql.SQLException: Field \'order_num\' doesn\'t have a default value', '2024-04-25 13:41:18', 187026);
+INSERT INTO `sys_oper_log` VALUES (337, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"四川四川省 眉山市 仁寿县 视高镇 工业园区倍特电动车公司\",\"auditStatus\":0,\"auditTime\":\"2022-08-05\",\"buyerName\":\"\",\"city\":\"\",\"closeReason\":\"\",\"createTime\":\"2022-08-05 18:54:56\",\"discountAmount\":0,\"discountRemark\":\"\",\"id\":\"1634650644223535380\",\"isMerge\":0,\"logisticsCode\":\"432709738409379\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2022-08-05\",\"orderModifyTime\":\"2022-08-05\",\"orderSource\":0,\"params\":{},\"payAmount\":39.52,\"payTime\":\"2022-08-05\",\"phone\":\"13880931736\",\"province\":\"四川\",\"receiver\":\"杨琴\",\"sellerMemo\":\"\",\"sendStatus\":0,\"sendTime\":\"2022-08-05\",\"shipType\":0,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"taoOrderItemList\":[],\"totalAmount\":39.52,\"updateBy\":\"admin\",\"updateTime\":\"2022-08-05 19:52:56\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'order_num\' doesn\'t have a default value\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_order_item( id, order_id,supplier_id,order_item_num, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, refund_status, create_time, create_by, update_time, update_by) values                  ( ?, ?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\r\n### Cause: java.sql.SQLException: Field \'order_num\' doesn\'t have a default value\n; Field \'order_num\' doesn\'t have a default value; nested exception is java.sql.SQLException: Field \'order_num\' doesn\'t have a default value', '2024-04-25 13:45:52', 253917);
+INSERT INTO `sys_oper_log` VALUES (338, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"四川四川省 眉山市 仁寿县 视高镇 工业园区倍特电动车公司\",\"auditStatus\":0,\"auditTime\":\"2022-08-05\",\"buyerName\":\"\",\"city\":\"\",\"closeReason\":\"\",\"createTime\":\"2022-08-05 18:54:56\",\"discountAmount\":0,\"discountRemark\":\"\",\"id\":\"1634650644223535380\",\"isMerge\":0,\"logisticsCode\":\"432709738409379\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2022-08-05\",\"orderModifyTime\":\"2022-08-05\",\"orderSource\":0,\"params\":{},\"payAmount\":39.52,\"payTime\":\"2022-08-05\",\"phone\":\"13880931736\",\"province\":\"四川\",\"receiver\":\"杨琴\",\"sellerMemo\":\"\",\"sendStatus\":0,\"sendTime\":\"2022-08-05\",\"shipType\":1,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"taoOrderItemList\":[],\"totalAmount\":39.52,\"updateBy\":\"admin\",\"updateTime\":\"2022-08-05 19:52:56\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 13:47:21', 14039);
+INSERT INTO `sys_oper_log` VALUES (339, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"四川省 内江市 东兴区 东兴街道中兴路1104号上海花园2幢30－2(000000)\",\"auditStatus\":0,\"auditTime\":\"2023-03-05\",\"buyerFeedback\":\"\",\"buyerName\":\"\",\"city\":\"内江市\",\"closeReason\":\"\",\"createTime\":\"2023-03-05 14:38:03\",\"discountAmount\":0,\"id\":\"3238963057148759844\",\"isComment\":0,\"isMerge\":0,\"logisticsCode\":\"433101363722890\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2023-03-05\",\"orderSource\":1,\"params\":{},\"payAmount\":82.21,\"payTime\":\"2023-03-05\",\"phone\":\"17822627951-4875\",\"province\":\"四川省\",\"receiver\":\"周静\",\"remark\":\"\",\"sellerMemo\":\"\",\"sendStatus\":4,\"sendTime\":\"2023-03-05\",\"shipType\":0,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"tag\":\"1\",\"taoOrderItemList\":[],\"totalAmount\":82.21,\"updateBy\":\"admin\",\"updateTime\":\"2023-03-05 21:27:21\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 14:06:36', 11419);
+INSERT INTO `sys_oper_log` VALUES (340, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)\",\"auditStatus\":0,\"auditTime\":\"2023-03-05\",\"buyerFeedback\":\"\",\"buyerName\":\"\",\"city\":\"北京市\",\"closeReason\":\"\",\"createTime\":\"2023-03-05 14:38:03\",\"discountAmount\":0,\"id\":\"3237115646950643410\",\"isComment\":0,\"isMerge\":0,\"logisticsCode\":\"433100961138996\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2023-03-04\",\"orderSource\":1,\"params\":{},\"payAmount\":44.9,\"payTime\":\"2023-03-04\",\"phone\":\"18400656752-3383\",\"province\":\"北京\",\"receiver\":\"#\",\"remark\":\"\",\"sellerMemo\":\"\",\"sendStatus\":4,\"sendTime\":\"2023-03-05\",\"shipType\":0,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"tag\":\"1\",\"taoOrderItemList\":[],\"totalAmount\":44.9,\"updateBy\":\"admin\",\"updateTime\":\"2023-03-05 16:19:39\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'shop_id\' doesn\'t have a default value\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_order_item( id, order_id,supplier_id,ship_type,ship_status,order_num,order_item_num, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, refund_status, create_time, create_by, update_time, update_by) values                  ( ?, ?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\r\n### Cause: java.sql.SQLException: Field \'shop_id\' doesn\'t have a default value\n; Field \'shop_id\' doesn\'t have a default value; nested exception is java.sql.SQLException: Field \'shop_id\' doesn\'t have a default value', '2024-04-25 14:12:26', 223);
+INSERT INTO `sys_oper_log` VALUES (341, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)\",\"auditStatus\":0,\"auditTime\":\"2023-03-05\",\"buyerFeedback\":\"\",\"buyerName\":\"\",\"city\":\"北京市\",\"closeReason\":\"\",\"createTime\":\"2023-03-05 14:38:03\",\"discountAmount\":0,\"id\":\"3237115646950643410\",\"isComment\":0,\"isMerge\":0,\"logisticsCode\":\"433100961138996\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2023-03-04\",\"orderSource\":1,\"params\":{},\"payAmount\":44.9,\"payTime\":\"2023-03-04\",\"phone\":\"18400656752-3383\",\"province\":\"北京\",\"receiver\":\"#\",\"remark\":\"\",\"sellerMemo\":\"\",\"sendStatus\":4,\"sendTime\":\"2023-03-05\",\"shipType\":0,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"tag\":\"1\",\"taoOrderItemList\":[],\"totalAmount\":44.9,\"updateBy\":\"admin\",\"updateTime\":\"2023-03-05 16:19:39\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 14:14:12', 144);
+INSERT INTO `sys_oper_log` VALUES (342, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"北京 北京市 丰台区 卢沟桥乡万丰路312号金悦缘ktv旁边的丰巢e栈柜里(000000)\",\"auditStatus\":0,\"auditTime\":\"2023-03-05\",\"buyerFeedback\":\"\",\"buyerName\":\"\",\"city\":\"北京市\",\"closeReason\":\"\",\"createTime\":\"2023-03-05 14:38:03\",\"discountAmount\":0,\"id\":\"3236924701745643410\",\"isComment\":0,\"isMerge\":0,\"logisticsCode\":\"433100961138996\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2023-03-04\",\"orderSource\":1,\"params\":{},\"payAmount\":44.9,\"payTime\":\"2023-03-04\",\"phone\":\"18400656752-3383\",\"province\":\"北京\",\"receiver\":\"#\",\"remark\":\"\",\"sellerMemo\":\"\",\"sendStatus\":4,\"sendTime\":\"2023-03-05\",\"shipType\":1,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"tag\":\"1\",\"taoOrderItemList\":[],\"totalAmount\":44.9,\"updateBy\":\"admin\",\"updateTime\":\"2023-03-05 16:19:34\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 14:28:02', 184);
+INSERT INTO `sys_oper_log` VALUES (343, '拼多多订单', 2, 'com.qihang.erp.api.controller.PddOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/pdd/order/confirm', '127.0.0.1', '内网IP', '{\"address\":\"~AgAAAAHv6FsHVfxouQHmr1gjB0AePR62JSRgCnoVVHuaeVGytseL1GMD0sfRhhwGQUlZnktQDBe4lJ8SZKzl2+aAaC/llMoujMjYS98oYqpDNA9BaAcfF77HCd4UoQyvxF4Gg6yLjP+fSY8cOU3PL90N/G0QnKVGqNp+Z0fbcCJ2Fi2XQtJJHTmBNVInw4pd~3RY9I/SuW19d5Z0jQkFZVcKlj4hs2qt+oTTQt0cwxcG61q+p4UzRA1GPFogyvA7sGM6rE+/nVfkjelsNvJaynhj1ElKLcdAP+hvcDaAbjZMRFy+n3wZPGL+RdSM4kjgH~3~~\",\"afterSalesStatus\":0,\"auditStatus\":0,\"buyerMemo\":\"\",\"capitalFreeDiscount\":0.0,\"city\":\"西双版纳傣族自治州\",\"confirmStatus\":1,\"confirmTime\":\"2023-04-05 02:43:01\",\"country\":\"中国\",\"createdTime\":\"2023-04-05 02:42:59\",\"discountAmount\":0.0,\"excelLogId\":0,\"freeSf\":0,\"goodsAmount\":32.79,\"groupStatus\":1,\"id\":3490,\"isLuckyFlag\":1,\"lastShipTime\":\"2023-04-07 02:43:01\",\"orderConfirmTime\":1680633781,\"orderSn\":\"230405-342695669310441\",\"orderStatus\":1,\"params\":{},\"payAmount\":32.79,\"payNo\":\"\",\"payTime\":\"2023-04-05 02:43:01\",\"payType\":\"\",\"pddOrderItemList\":[],\"platformDiscount\":0.0,\"postage\":0.0,\"printStatus\":0,\"province\":\"云南省\",\"pullTime\":\"2023-04-05\",\"receiveTime\":\"\",\"receiverAddress1\":\"aaa\",\"receiverName\":\"~AgAAAAHv6FsFVfxouQDJ/gs/ADhdzMsCoqXQfss7IvQ=~Sn7H~3~~\",\"receiverName1\":\"A\",\"receiverPhone\":\"$vxGyQuVp6bpn$AgAAAAHv6FsGVfxouQDwiBet5SE/w21BlGn6x8VZ8bA=$3$$\",\"receiverPhone1\":\"1580000000\",\"refundStatus\":1,\"remark\":\"\",\"sellerDiscount\":0.0,\"settlementStatus\":0,\"shipStatus\":0,\"shipTime\":0,\"shipType\":1,\"shippingTime\":\"\",\"shopId\":5,\"town\":\"景洪市\",\"trackingNumber\":\"\",\"tradeType\":0,\"updateBy\":\"admin\",\"updatedAt\":\"2023-04-05 02:43:11\"}', NULL, 1, '\r\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'address\' at row 1\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve com.qihang.erp.api.mapper.ErpOrderMapper.insertErpOrder-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_order          ( order_num,             shop_type,             shop_id,             remark,             buyer_memo,                          refund_status,             order_status,             goods_amount,             discount_amount,             postage,             amount,             receiver_name,             receiver_phone,             address,             country,             province,             city,             town,             pay_time,             ship_type,                          confirm_time,                                                                 create_time,             create_by )           values ( ?,             ?,             ?,             ?,             ?,                          ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,                          ?,                                                                 ?,             ? )\r\n### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'address\' at row 1\n; Data truncation: Data too long for column \'address\' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'address\' at row 1', '2024-04-25 14:45:56', 168);
+INSERT INTO `sys_oper_log` VALUES (344, '拼多多订单', 2, 'com.qihang.erp.api.controller.PddOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/pdd/order/confirm', '127.0.0.1', '内网IP', '{\"address\":\"~AgAAAAHv6FsHVfxouQHmr1gjB0AePR62JSRgCnoVVHuaeVGytseL1GMD0sfRhhwGQUlZnktQDBe4lJ8SZKzl2+aAaC/llMoujMjYS98oYqpDNA9BaAcfF77HCd4UoQyvxF4Gg6yLjP+fSY8cOU3PL90N/G0QnKVGqNp+Z0fbcCJ2Fi2XQtJJHTmBNVInw4pd~3RY9I/SuW19d5Z0jQkFZVcKlj4hs2qt+oTTQt0cwxcG61q+p4UzRA1GPFogyvA7sGM6rE+/nVfkjelsNvJaynhj1ElKLcdAP+hvcDaAbjZMRFy+n3wZPGL+RdSM4kjgH~3~~\",\"afterSalesStatus\":0,\"auditStatus\":0,\"buyerMemo\":\"\",\"capitalFreeDiscount\":0.0,\"city\":\"西双版纳傣族自治州\",\"confirmStatus\":1,\"confirmTime\":\"2023-04-05 02:43:01\",\"country\":\"中国\",\"createdTime\":\"2023-04-05 02:42:59\",\"discountAmount\":0.0,\"excelLogId\":0,\"freeSf\":0,\"goodsAmount\":32.79,\"groupStatus\":1,\"id\":3490,\"isLuckyFlag\":1,\"lastShipTime\":\"2023-04-07 02:43:01\",\"orderConfirmTime\":1680633781,\"orderSn\":\"230405-342695669310441\",\"orderStatus\":1,\"params\":{},\"payAmount\":32.79,\"payNo\":\"\",\"payTime\":\"2023-04-05 02:43:01\",\"payType\":\"\",\"pddOrderItemList\":[],\"platformDiscount\":0.0,\"postage\":0.0,\"printStatus\":0,\"province\":\"云南省\",\"pullTime\":\"2023-04-05\",\"receiveTime\":\"\",\"receiverAddress1\":\"aaa\",\"receiverName\":\"~AgAAAAHv6FsFVfxouQDJ/gs/ADhdzMsCoqXQfss7IvQ=~Sn7H~3~~\",\"receiverName1\":\"A\",\"receiverPhone\":\"$vxGyQuVp6bpn$AgAAAAHv6FsGVfxouQDwiBet5SE/w21BlGn6x8VZ8bA=$3$$\",\"receiverPhone1\":\"1580000000\",\"refundStatus\":1,\"remark\":\"\",\"sellerDiscount\":0.0,\"settlementStatus\":0,\"shipStatus\":0,\"shipTime\":0,\"shipType\":1,\"shippingTime\":\"\",\"shopId\":5,\"town\":\"景洪市\",\"trackingNumber\":\"\",\"tradeType\":0,\"updateBy\":\"admin\",\"updatedAt\":\"2023-04-05 02:43:11\"}', NULL, 1, '\r\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'address\' at row 1\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve com.qihang.erp.api.mapper.ErpOrderMapper.insertErpOrder-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_order          ( order_num,             shop_type,             shop_id,             remark,             buyer_memo,                          refund_status,             order_status,             goods_amount,             discount_amount,             postage,             amount,             receiver_name,             receiver_phone,             address,             country,             province,             city,             town,             pay_time,             ship_type,                          confirm_time,                                                                 create_time,             create_by )           values ( ?,             ?,             ?,             ?,             ?,                          ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,                          ?,                                                                 ?,             ? )\r\n### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'address\' at row 1\n; Data truncation: Data too long for column \'address\' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'address\' at row 1', '2024-04-25 14:50:04', 187920);
+INSERT INTO `sys_oper_log` VALUES (345, '拼多多订单', 2, 'com.qihang.erp.api.controller.PddOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/pdd/order/confirm', '127.0.0.1', '内网IP', '{\"address\":\"~AgAAAAHv6FsHVfxouQHmr1gjB0AePR62JSRgCnoVVHuaeVGytseL1GMD0sfRhhwGQUlZnktQDBe4lJ8SZKzl2+aAaC/llMoujMjYS98oYqpDNA9BaAcfF77HCd4UoQyvxF4Gg6yLjP+fSY8cOU3PL90N/G0QnKVGqNp+Z0fbcCJ2Fi2XQtJJHTmBNVInw4pd~3RY9I/SuW19d5Z0jQkFZVcKlj4hs2qt+oTTQt0cwxcG61q+p4UzRA1GPFogyvA7sGM6rE+/nVfkjelsNvJaynhj1ElKLcdAP+hvcDaAbjZMRFy+n3wZPGL+RdSM4kjgH~3~~\",\"afterSalesStatus\":0,\"auditStatus\":0,\"buyerMemo\":\"\",\"capitalFreeDiscount\":0.0,\"city\":\"西双版纳傣族自治州\",\"confirmStatus\":1,\"confirmTime\":\"2023-04-05 02:43:01\",\"country\":\"中国\",\"createdTime\":\"2023-04-05 02:42:59\",\"discountAmount\":0.0,\"excelLogId\":0,\"freeSf\":0,\"goodsAmount\":32.79,\"groupStatus\":1,\"id\":3490,\"isLuckyFlag\":1,\"lastShipTime\":\"2023-04-07 02:43:01\",\"orderConfirmTime\":1680633781,\"orderSn\":\"230405-342695669310441\",\"orderStatus\":1,\"params\":{},\"payAmount\":32.79,\"payNo\":\"\",\"payTime\":\"2023-04-05 02:43:01\",\"payType\":\"\",\"pddOrderItemList\":[],\"platformDiscount\":0.0,\"postage\":0.0,\"printStatus\":0,\"province\":\"云南省\",\"pullTime\":\"2023-04-05\",\"receiveTime\":\"\",\"receiverAddress1\":\"AAAA\",\"receiverName\":\"~AgAAAAHv6FsFVfxouQDJ/gs/ADhdzMsCoqXQfss7IvQ=~Sn7H~3~~\",\"receiverName1\":\"AAA\",\"receiverPhone\":\"$vxGyQuVp6bpn$AgAAAAHv6FsGVfxouQDwiBet5SE/w21BlGn6x8VZ8bA=$3$$\",\"receiverPhone1\":\"15810002220\",\"refundStatus\":1,\"remark\":\"\",\"sellerDiscount\":0.0,\"settlementStatus\":0,\"shipStatus\":0,\"shipTime\":0,\"shipType\":1,\"shippingTime\":\"\",\"shopId\":5,\"town\":\"景洪市\",\"trackingNumber\":\"\",\"tradeType\":0,\"updateBy\":\"admin\",\"updatedAt\":\"2023-04-05 02:43:11\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 14:52:28', 6888);
+INSERT INTO `sys_oper_log` VALUES (346, '抖店订单', 2, 'com.qihang.erp.api.controller.DouOrderController.confirm()', 'POST', 1, 'admin', NULL, '/dou/order/confirm', '127.0.0.1', '内网IP', '{\"appSource\":\"抖音极速版\",\"auditStatus\":0,\"authorId\":3866300938460863,\"authorName\":\"梦小妮牛仔裤\",\"city\":\"成都市\",\"cosRatio\":0,\"couponAmount\":0,\"createdTime\":\"2023-02-03\",\"douOrderItemList\":[],\"expShipTime\":\"2023-02-03 23:59:59\",\"id\":66,\"isComment\":0,\"logisticsCode\":\"433042074667095\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2023-02-02 20:26:34\",\"orderId\":\"5030436502888242865\",\"orderStatus\":3,\"orderStatusStr\":\"已发货\",\"orderTotalAmount\":29.9,\"params\":{},\"payTime\":\"2023-02-02 20:26:45\",\"payTypeName\":\"\\t支付宝\",\"postAddr\":\"四川省 成都市 都江堰市  大观镇\",\"postAmount\":0,\"postInsuranceAmount\":0,\"postReceiver\":\"刘艳\",\"postTel\":\"13540005969\",\"printStatus\":0,\"province\":\"四川省\",\"receiptTime\":0,\"sellerWords\":\"\",\"sendStatus\":4,\"sendTime\":\"2023-02-03 11:12:29\",\"settlementStatus\":0,\"shipTime\":1675422749,\"shipType\":0,\"shopCouponAmount\":0,\"shopId\":22,\"street\":\"-\",\"town\":\"都江堰市\",\"tradeType\":0,\"trafficeSource\":\"小店自卖\",\"updateBy\":\"admin\",\"updateTime\":\"2024-04-25 14:56:47\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'ship_status\' doesn\'t have a default value\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve com.qihang.erp.api.mapper.ErpOrderMapper.insertErpOrder-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_order          ( order_num,             shop_type,             shop_id,             remark,                          tag,             refund_status,             order_status,             goods_amount,             discount_amount,             postage,             amount,             receiver_name,             receiver_phone,             address,             country,             province,             city,             town,             pay_time,             ship_type,                          confirm_time,                                                                 create_time,             create_by )           values ( ?,             ?,             ?,             ?,                          ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,                          ?,                                                                 ?,             ? )\r\n### Cause: java.sql.SQLException: Field \'ship_status\' doesn\'t have a default value\n; Field \'ship_status\' doesn\'t have a default value; nested exception is java.sql.SQLException: Field \'ship_status\' doesn\'t have a default value', '2024-04-25 14:58:13', 159);
+INSERT INTO `sys_oper_log` VALUES (347, '抖店订单', 2, 'com.qihang.erp.api.controller.DouOrderController.confirm()', 'POST', 1, 'admin', NULL, '/dou/order/confirm', '127.0.0.1', '内网IP', '{\"appSource\":\"抖音极速版\",\"auditStatus\":0,\"authorId\":3866300938460863,\"authorName\":\"梦小妮牛仔裤\",\"city\":\"成都市\",\"cosRatio\":0,\"couponAmount\":0,\"createdTime\":\"2023-02-03\",\"douOrderItemList\":[],\"expShipTime\":\"2023-02-03 23:59:59\",\"id\":66,\"isComment\":0,\"logisticsCode\":\"433042074667095\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2023-02-02 20:26:34\",\"orderId\":\"5030436502888242865\",\"orderStatus\":3,\"orderStatusStr\":\"已发货\",\"orderTotalAmount\":29.9,\"params\":{},\"payTime\":\"2023-02-02 20:26:45\",\"payTypeName\":\"\\t支付宝\",\"postAddr\":\"四川省 成都市 都江堰市  大观镇\",\"postAmount\":0,\"postInsuranceAmount\":0,\"postReceiver\":\"刘艳\",\"postTel\":\"13540005969\",\"printStatus\":0,\"province\":\"四川省\",\"receiptTime\":0,\"sellerWords\":\"\",\"sendStatus\":4,\"sendTime\":\"2023-02-03 11:12:29\",\"settlementStatus\":0,\"shipTime\":1675422749,\"shipType\":0,\"shopCouponAmount\":0,\"shopId\":22,\"street\":\"-\",\"town\":\"都江堰市\",\"tradeType\":0,\"trafficeSource\":\"小店自卖\",\"updateBy\":\"admin\",\"updateTime\":\"2024-04-25 14:56:47\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 15:04:32', 136);
+INSERT INTO `sys_oper_log` VALUES (348, '抖店订单', 2, 'com.qihang.erp.api.controller.DouOrderController.confirm()', 'POST', 1, 'admin', NULL, '/dou/order/confirm', '127.0.0.1', '内网IP', '{\"appSource\":\"抖音极速版\",\"auditStatus\":0,\"authorId\":3866300938460863,\"authorName\":\"梦小妮牛仔裤\",\"city\":\"成都市\",\"cosRatio\":0,\"couponAmount\":0,\"createdTime\":\"2023-02-03\",\"douOrderItemList\":[],\"expShipTime\":\"2023-02-03 23:59:59\",\"id\":66,\"isComment\":0,\"logisticsCode\":\"433042074667095\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2023-02-02 20:26:34\",\"orderId\":\"5030436502888242865\",\"orderStatus\":3,\"orderStatusStr\":\"已发货\",\"orderTotalAmount\":29.9,\"params\":{},\"payTime\":\"2023-02-02 20:26:45\",\"payTypeName\":\"\\t支付宝\",\"postAddr\":\"四川省 成都市 都江堰市  大观镇\",\"postAmount\":0,\"postInsuranceAmount\":0,\"postReceiver\":\"刘艳\",\"postTel\":\"13540005969\",\"printStatus\":0,\"province\":\"四川省\",\"receiptTime\":0,\"sellerWords\":\"\",\"sendStatus\":4,\"sendTime\":\"2023-02-03 11:12:29\",\"settlementStatus\":0,\"shipTime\":1675422749,\"shipType\":0,\"shopCouponAmount\":0,\"shopId\":22,\"street\":\"-\",\"town\":\"都江堰市\",\"tradeType\":0,\"trafficeSource\":\"小店自卖\",\"updateBy\":\"admin\",\"updateTime\":\"2024-04-25 15:06:06\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-25 15:06:52', 185);
+INSERT INTO `sys_oper_log` VALUES (349, '小红书订单', 2, 'com.qihang.erp.api.controller.XhsOrderController.confirm()', 'POST', 1, 'admin', NULL, '/xhs/order/confirm', '127.0.0.1', '内网IP', '{\"address\":\"asdfasd\",\"afterSalesStatus\":1,\"auditStatus\":0,\"cancelStatus\":0,\"city\":\"市辖区\",\"createTime\":\"2022-07-20 15:47:17\",\"district\":\"和平区\",\"expressCompanyCode\":\"yunda\",\"expressTrackingNo\":\"432658338105728\",\"goodsAmount\":null,\"id\":109,\"openAddressId\":\"7ea3369e4c236d53ba04add9ec50374a\",\"orderCancelTime\":0,\"orderCreatedTime\":1657124492800,\"orderDeliveryTime\":1657249763117,\"orderFinishTime\":1658286563457,\"orderId\":\"P657124492725901641\",\"orderPaidTime\":1657124509000,\"orderStatus\":7,\"orderType\":1,\"orderUpdateTime\":1658286563492,\"params\":{},\"phone\":\"132324444\",\"presaleDeliveryEndTime\":0,\"presaleDeliveryStartTime\":0,\"promiseLastDeliveryTime\":1658334465000,\"province\":\"天津市\",\"receiver\":\"aaa\",\"sellerRemarkFlag\":0,\"sendStatus\":0,\"settleAmount\":0,\"settleStatus\":0,\"shipType\":1,\"shippingFree\":null,\"shopId\":21,\"shopType\":7,\"totalPayAmount\":1290,\"totalShippingFree\":0,\"updateBy\":\"admin\",\"updateTime\":\"2022-07-20 15:47:17\",\"xhsOrderItemList\":[]}', '{\"msg\":\"商品SKU编码不存在！\",\"code\":511}', 0, NULL, '2024-04-25 15:13:05', 116);
+INSERT INTO `sys_oper_log` VALUES (350, '淘宝订单', 2, 'com.qihang.erp.api.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao/order/confirmOrder', '127.0.0.1', '内网IP', '{\"address\":\"四川省 内江市 东兴区 东兴街道中兴路1104号上海花园2幢30－2(000000)\",\"auditStatus\":1,\"auditTime\":\"2024-04-25\",\"buyerFeedback\":\"\",\"buyerName\":\"\",\"city\":\"内江市\",\"closeReason\":\"\",\"createTime\":\"2023-03-05 14:38:03\",\"discountAmount\":0,\"id\":\"3238963057148759844\",\"isComment\":0,\"isMerge\":0,\"logisticsCode\":\"433101363722890\",\"logisticsCompany\":\"韵达速递\",\"orderCreateTime\":\"2023-03-05\",\"orderSource\":1,\"params\":{},\"payAmount\":82.21,\"payTime\":\"2023-03-05\",\"phone\":\"17822627951-4875\",\"province\":\"四川省\",\"receiver\":\"周静\",\"remark\":\"\",\"sellerMemo\":\"\",\"sendStatus\":4,\"sendTime\":\"2023-03-05\",\"shipType\":1,\"shippingFee\":0,\"shopId\":6,\"status\":3,\"statusStr\":\"等待买家确认收货\",\"tag\":\"1\",\"taoOrderItemList\":[],\"totalAmount\":82.21,\"updateBy\":\"admin\",\"updateTime\":\"2024-04-25 14:06:36\"}', '{\"msg\":\"已确认过了！请勿重复确认！\",\"code\":501}', 0, NULL, '2024-04-25 16:09:42', 151);
+INSERT INTO `sys_oper_log` VALUES (351, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/stockOut/stockOut\",\"createTime\":\"2024-01-09 13:39:00\",\"icon\":\"bug\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2060,\"menuName\":\"拣货出库\",\"menuType\":\"C\",\"orderNum\":2,\"params\":{},\"parentId\":6,\"path\":\"stockout\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 13:43:12', 57);
+INSERT INTO `sys_oper_log` VALUES (352, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/stockOut\",\"createTime\":\"2024-01-09 13:39:00\",\"icon\":\"bug\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2060,\"menuName\":\"拣货出库\",\"menuType\":\"C\",\"orderNum\":2,\"params\":{},\"parentId\":6,\"path\":\"stockout\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 13:51:21', 70);
+INSERT INTO `sys_oper_log` VALUES (353, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/orderShip/index\",\"createTime\":\"2024-01-03 14:09:18\",\"icon\":\"guide\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2049,\"menuName\":\"打包发货\",\"menuType\":\"C\",\"orderNum\":3,\"params\":{},\"parentId\":6,\"path\":\"order_ship\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:27:57', 228);
+INSERT INTO `sys_oper_log` VALUES (354, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":12,\"shippingMan\":\"qq\",\"shippingNumber\":\"12122\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号已存在！\",\"code\":502}', 0, NULL, '2024-04-26 14:28:33', 206);
+INSERT INTO `sys_oper_log` VALUES (355, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":12,\"shippingMan\":\"qq\",\"shippingNumber\":\"12122\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号已存在！\",\"code\":502}', 0, NULL, '2024-04-26 14:29:24', 15778);
+INSERT INTO `sys_oper_log` VALUES (356, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":12,\"shippingMan\":\"qq\",\"shippingNumber\":\"12122\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号已存在！\",\"code\":502}', 0, NULL, '2024-04-26 14:29:28', 9);
+INSERT INTO `sys_oper_log` VALUES (357, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"邮政快递包裹\",\"shippingCost\":12,\"shippingMan\":\"111\",\"shippingNumber\":\"122dd\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号已存在！\",\"code\":502}', 0, NULL, '2024-04-26 14:32:48', 65);
+INSERT INTO `sys_oper_log` VALUES (358, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":11,\"shippingMan\":\"11\",\"shippingNumber\":\"111111111111111\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号状态不对！无法发货！\",\"code\":502}', 0, NULL, '2024-04-26 14:35:19', 45380);
+INSERT INTO `sys_oper_log` VALUES (359, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"菜鸟速递\",\"shippingCost\":11,\"shippingMan\":\"11\",\"shippingNumber\":\"111111111111111\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":1.0,\"width\":0.0}', '{\"msg\":\"订单号状态不对！无法发货！\",\"code\":502}', 0, NULL, '2024-04-26 14:38:33', 191021);
+INSERT INTO `sys_oper_log` VALUES (360, '店铺订单', 2, 'com.qihang.erp.api.controller.ErpOrderController.ship()', 'POST', 1, 'admin', NULL, '/api/order/ship', '127.0.0.1', '内网IP', '{\"address\":\"1111111\",\"amount\":99.9,\"city\":\"温州市\",\"confirmTime\":\"2024-04-25\",\"country\":\"中国\",\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"discountAmount\":0,\"erpOrderItemList\":[{\"createBy\":\"确认订单\",\"createTime\":\"2024-04-25 16:48:57\",\"goodsId\":0,\"goodsImg\":\"https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/65f29bc400032a7c023ca7e6b960b01e000000a000004f50\",\"goodsNum\":\"10000103058379\",\"goodsPrice\":99.9,\"goodsSpec\":\"[{\\\"attr_key\\\":\\\"净含量\\\",\\\"attr_value\\\":\\\"拍3罐送1罐到手4罐\\\"},{\\\"attr_key\\\":\\\"主播承诺\\\",\\\"attr_value\\\":\\\"7天升级30天试喝及运费险\\\"}]\",\"goodsTitle\":\"泷御堂 冲饮谷物  赤小豆薏米芡实茯苓330g*罐\",\"id\":\"1783417904404250626\",\"isGift\":0,\"itemAmount\":99.9,\"orderId\":33,\"orderItemNum\":\"1773651223083716609\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"specId\":0,\"specNum\":\"\",\"supplierId\":0,\"updateBy\":\"生成拣货单\",\"updateTime\":\"2024-04-26 12:02:20\"}],\"goodsAmount\":99.9,\"height\":0.0,\"id\":33,\"length\":0.0,\"orderNum\":\"1773651223045967873\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"浙江省\",\"receiverName\":\"11111111111\",\"receiverPhone\":\"11111111\",\"refundStatus\":1,\"shipType\":1,\"shippingCompany\":\"邮政快递包裹\",\"shippingCost\":12,\"shippingMan\":\"12\",\"shippingNumber\":\"121212112\",\"shopId\":2,\"shopType\":2,\"town\":\"瓯海区\",\"updateBy\":\"admin\",\"weight\":12.0,\"width\":0.0}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:39:55', 27285);
+INSERT INTO `sys_oper_log` VALUES (361, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/orderShip/logistics\",\"createTime\":\"2024-01-03 14:13:12\",\"icon\":\"email\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2051,\"menuName\":\"物流跟踪\",\"menuType\":\"C\",\"orderNum\":4,\"params\":{},\"parentId\":6,\"path\":\"logistics\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:41:26', 20);
+INSERT INTO `sys_oper_log` VALUES (362, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/orderShip/logistics\",\"createTime\":\"2024-01-03 14:13:12\",\"icon\":\"email\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2051,\"menuName\":\"物流跟踪\",\"menuType\":\"C\",\"orderNum\":4,\"params\":{},\"parentId\":6,\"path\":\"order_logistics\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:41:45', 20);
+INSERT INTO `sys_oper_log` VALUES (363, '菜单管理', 2, 'com.qihang.erp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"fms/payable/agentShip\",\"createTime\":\"2024-01-12 18:35:02\",\"icon\":\"excel\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2062,\"menuName\":\"代发账单\",\"menuType\":\"C\",\"orderNum\":6,\"params\":{},\"parentId\":4,\"path\":\"agentShip\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-04-26 14:43:00', 11);
 
 -- ----------------------------
 -- Table structure for sys_oss
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_oss`;
 CREATE TABLE `sys_oss`  (
-  `oss_id` bigint NOT NULL AUTO_INCREMENT COMMENT '文件id',
-  `file_name` varchar(100)  NULL DEFAULT '' COMMENT '文件名',
-  `original_name` varchar(100)  NULL DEFAULT '' COMMENT '原名',
-  `file_suffix` varchar(100)  NULL DEFAULT '' COMMENT '文件后缀名',
-  `url` varchar(300)  NULL DEFAULT '' COMMENT 'URL地址',
-  `object_name` varchar(300)  NULL DEFAULT '' COMMENT '对象名',
-  `bucket` varchar(100)  NULL DEFAULT '' COMMENT '桶名',
-  `order_num` int NULL DEFAULT 0 COMMENT '显示顺序',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '状态（0正常 1停用）',
-  `del_flag` char(1)  NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `oss_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '文件id',
+  `file_name` varchar(100)  DEFAULT '' COMMENT '文件名',
+  `original_name` varchar(100)  DEFAULT '' COMMENT '原名',
+  `file_suffix` varchar(100)  DEFAULT '' COMMENT '文件后缀名',
+  `url` varchar(300)  DEFAULT '' COMMENT 'URL地址',
+  `object_name` varchar(300)  DEFAULT '' COMMENT '对象名',
+  `bucket` varchar(100)  DEFAULT '' COMMENT '桶名',
+  `order_num` int(0) DEFAULT 0 COMMENT '显示顺序',
+  `status` char(1)  DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `del_flag` char(1)  DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`oss_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文件表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oss
@@ -8918,18 +9229,18 @@ INSERT INTO `sys_oss` VALUES (49, '20231208173247.png', '20231208173247.png', '.
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_post`;
 CREATE TABLE `sys_post`  (
-  `post_id` bigint NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
+  `post_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
   `post_code` varchar(64)  NOT NULL COMMENT '岗位编码',
   `post_name` varchar(50)  NOT NULL COMMENT '岗位名称',
-  `post_sort` int NOT NULL COMMENT '显示顺序',
+  `post_sort` int(0) NOT NULL COMMENT '显示顺序',
   `status` char(1)  NOT NULL COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`post_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '岗位信息表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '岗位信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_post
@@ -8944,22 +9255,22 @@ INSERT INTO `sys_post` VALUES (4, 'user', '普通员工', 4, '0', 'admin', '2023
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
-  `role_id` bigint NOT NULL AUTO_INCREMENT COMMENT '角色ID',
+  `role_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
   `role_name` varchar(30)  NOT NULL COMMENT '角色名称',
   `role_key` varchar(100)  NOT NULL COMMENT '角色权限字符串',
-  `role_sort` int NOT NULL COMMENT '显示顺序',
-  `data_scope` char(1)  NULL DEFAULT '1' COMMENT '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
-  `menu_check_strictly` tinyint(1) NULL DEFAULT 1 COMMENT '菜单树选择项是否关联显示',
-  `dept_check_strictly` tinyint(1) NULL DEFAULT 1 COMMENT '部门树选择项是否关联显示',
+  `role_sort` int(0) NOT NULL COMMENT '显示顺序',
+  `data_scope` char(1)  DEFAULT '1' COMMENT '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
+  `menu_check_strictly` tinyint(1) DEFAULT 1 COMMENT '菜单树选择项是否关联显示',
+  `dept_check_strictly` tinyint(1) DEFAULT 1 COMMENT '部门树选择项是否关联显示',
   `status` char(1)  NOT NULL COMMENT '角色状态（0正常 1停用）',
-  `del_flag` char(1)  NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
+  `del_flag` char(1)  DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`role_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色信息表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role
@@ -8972,10 +9283,10 @@ INSERT INTO `sys_role` VALUES (2, '普通角色', 'common', 2, '2', 1, 1, '0', '
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_dept`;
 CREATE TABLE `sys_role_dept`  (
-  `role_id` bigint NOT NULL COMMENT '角色ID',
-  `dept_id` bigint NOT NULL COMMENT '部门ID',
+  `role_id` bigint(0) NOT NULL COMMENT '角色ID',
+  `dept_id` bigint(0) NOT NULL COMMENT '部门ID',
   PRIMARY KEY (`role_id`, `dept_id`) 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和部门关联表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和部门关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role_dept
@@ -8989,46 +9300,42 @@ INSERT INTO `sys_role_dept` VALUES (2, 105);
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu`  (
-  `role_id` bigint NOT NULL COMMENT '角色ID',
-  `menu_id` bigint NOT NULL COMMENT '菜单ID',
+  `role_id` bigint(0) NOT NULL COMMENT '角色ID',
+  `menu_id` bigint(0) NOT NULL COMMENT '菜单ID',
   PRIMARY KEY (`role_id`, `menu_id`) 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和菜单关联表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of sys_role_menu
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色和菜单关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
-  `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `dept_id` bigint NULL DEFAULT NULL COMMENT '部门ID',
+  `user_id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `dept_id` bigint(0) DEFAULT NULL COMMENT '部门ID',
   `user_name` varchar(30)  NOT NULL COMMENT '用户账号',
   `nick_name` varchar(30)  NOT NULL COMMENT '用户昵称',
-  `user_type` varchar(2)  NULL DEFAULT '00' COMMENT '用户类型（00系统用户）',
-  `email` varchar(50)  NULL DEFAULT '' COMMENT '用户邮箱',
-  `phonenumber` varchar(11)  NULL DEFAULT '' COMMENT '手机号码',
-  `sex` char(1)  NULL DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
-  `avatar` varchar(100)  NULL DEFAULT '' COMMENT '头像地址',
-  `password` varchar(100)  NULL DEFAULT '' COMMENT '密码',
-  `status` char(1)  NULL DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
-  `del_flag` char(1)  NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `login_ip` varchar(128)  NULL DEFAULT '' COMMENT '最后登录IP',
-  `login_date` datetime NULL DEFAULT NULL COMMENT '最后登录时间',
-  `create_by` varchar(64)  NULL DEFAULT '' COMMENT '创建者',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64)  NULL DEFAULT '' COMMENT '更新者',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
+  `user_type` varchar(2)  DEFAULT '00' COMMENT '用户类型（00系统用户）',
+  `email` varchar(50)  DEFAULT '' COMMENT '用户邮箱',
+  `phonenumber` varchar(11)  DEFAULT '' COMMENT '手机号码',
+  `sex` char(1)  DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
+  `avatar` varchar(100)  DEFAULT '' COMMENT '头像地址',
+  `password` varchar(100)  DEFAULT '' COMMENT '密码',
+  `status` char(1)  DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
+  `del_flag` char(1)  DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  `login_ip` varchar(128)  DEFAULT '' COMMENT '最后登录IP',
+  `login_date` datetime(0) DEFAULT NULL COMMENT '最后登录时间',
+  `create_by` varchar(64)  DEFAULT '' COMMENT '创建者',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64)  DEFAULT '' COMMENT '更新者',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`user_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-24 17:30:29', 'admin', '2023-08-07 19:31:37', '', '2024-04-24 17:30:29', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-26 15:57:59', 'admin', '2023-08-07 19:31:37', '', '2024-04-26 15:57:58', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 
@@ -9037,10 +9344,10 @@ INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', ''
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_post`;
 CREATE TABLE `sys_user_post`  (
-  `user_id` bigint NOT NULL COMMENT '用户ID',
-  `post_id` bigint NOT NULL COMMENT '岗位ID',
+  `user_id` bigint(0) NOT NULL COMMENT '用户ID',
+  `post_id` bigint(0) NOT NULL COMMENT '岗位ID',
   PRIMARY KEY (`user_id`, `post_id`) 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户与岗位关联表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户与岗位关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user_post
@@ -9053,10 +9360,10 @@ INSERT INTO `sys_user_post` VALUES (2, 2);
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role`  (
-  `user_id` bigint NOT NULL COMMENT '用户ID',
-  `role_id` bigint NOT NULL COMMENT '角色ID',
+  `user_id` bigint(0) NOT NULL COMMENT '用户ID',
+  `role_id` bigint(0) NOT NULL COMMENT '角色ID',
   PRIMARY KEY (`user_id`, `role_id`) 
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户和角色关联表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户和角色关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user_role
@@ -9069,42 +9376,42 @@ INSERT INTO `sys_user_role` VALUES (2, 2);
 -- ----------------------------
 DROP TABLE IF EXISTS `wei_order`;
 CREATE TABLE `wei_order`  (
-  `id` bigint NOT NULL,
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
-  `order_id` varchar(50)  NULL DEFAULT NULL COMMENT '订单号',
-  `openid` varchar(250)  NULL DEFAULT NULL COMMENT '买家身份标识',
-  `create_time` int NULL DEFAULT NULL COMMENT '秒级时间戳',
-  `update_time` int NULL DEFAULT NULL COMMENT '秒级时间戳',
-  `unionid` varchar(250)  NULL DEFAULT NULL,
-  `status` int NULL DEFAULT NULL COMMENT '状态10	待付款；20	待发货；21	部分发货；30	待收货；100	完成；200	全部商品售后之后，订单取消；250	未付款用户主动取消或超时未付款订单自动取消；',
-  `aftersale_detail` text  NULL COMMENT '售后信息json',
-  `pay_info` varchar(5500)  NULL DEFAULT NULL COMMENT '支付信息json',
-  `product_price` int NULL DEFAULT NULL COMMENT '商品总价，单位为分',
-  `order_price` int NULL DEFAULT NULL COMMENT '订单金额，单位为分，order_price=original_order_price-discounted_price-deduction_price-change_down_price',
-  `freight` int NULL DEFAULT NULL COMMENT '运费，单位为分',
-  `discounted_price` int NULL DEFAULT NULL COMMENT '优惠券优惠金额，单位为分',
-  `user_name` varchar(255)  NULL DEFAULT NULL COMMENT '收货人姓名',
-  `postal_code` varchar(255)  NULL DEFAULT NULL COMMENT '邮编',
-  `province_name` varchar(255)  NULL DEFAULT NULL COMMENT '省份',
-  `city_name` varchar(255)  NULL DEFAULT NULL COMMENT '城市',
-  `county_name` varchar(255)  NULL DEFAULT NULL COMMENT '区',
-  `detail_info` varchar(255)  NULL DEFAULT NULL COMMENT '详细地址',
-  `tel_number` varchar(50)  NULL DEFAULT NULL COMMENT '联系方式\r\n',
-  `house_number` varchar(50)  NULL DEFAULT NULL COMMENT '门牌号码',
-  `virtual_order_tel_number` varchar(50)  NULL DEFAULT NULL COMMENT '虚拟发货订单联系方式(deliver_method=1时返回)',
-  `tel_number_ext_info` varchar(500)  NULL DEFAULT NULL COMMENT '额外的联系方式信息（虚拟号码相关）',
-  `use_tel_number` int NULL DEFAULT NULL COMMENT '0：不使用虚拟号码，1：使用虚拟号码',
-  `hash_code` varchar(255)  NULL DEFAULT NULL COMMENT '标识当前店铺下一个唯一的用户收货地址',
-  `delivery_product_info` text  NULL COMMENT '发货物流信息JSON',
-  `ship_done_time` int NULL DEFAULT NULL COMMENT '发货完成时间，秒级时间戳',
-  `ewaybill_order_code` varchar(255)  NULL DEFAULT NULL COMMENT '电子面单代发时的订单密文\r\n',
-  `settle_info` varchar(2550)  NULL DEFAULT NULL COMMENT '结算信息json',
-  `confirm_status` int NULL DEFAULT 0 COMMENT '订单确认状态（0未确认1已确认）',
-  `confirm_time` datetime NULL DEFAULT NULL COMMENT '确认时间',
-  `erp_send_status` int NULL DEFAULT NULL COMMENT 'erp发货状态',
-  `erp_send_time` datetime NULL DEFAULT NULL COMMENT 'ERP发货时间',
+  `id` bigint(0) NOT NULL,
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `order_id` varchar(50)  DEFAULT NULL COMMENT '订单号',
+  `openid` varchar(250)  DEFAULT NULL COMMENT '买家身份标识',
+  `create_time` int(0) DEFAULT NULL COMMENT '秒级时间戳',
+  `update_time` int(0) DEFAULT NULL COMMENT '秒级时间戳',
+  `unionid` varchar(250)  DEFAULT NULL,
+  `status` int(0) DEFAULT NULL COMMENT '状态10	待付款；20	待发货；21	部分发货；30	待收货；100	完成；200	全部商品售后之后，订单取消；250	未付款用户主动取消或超时未付款订单自动取消；',
+  `aftersale_detail` text  COMMENT '售后信息json',
+  `pay_info` varchar(5500)  DEFAULT NULL COMMENT '支付信息json',
+  `product_price` int(0) DEFAULT NULL COMMENT '商品总价，单位为分',
+  `order_price` int(0) DEFAULT NULL COMMENT '订单金额，单位为分，order_price=original_order_price-discounted_price-deduction_price-change_down_price',
+  `freight` int(0) DEFAULT NULL COMMENT '运费，单位为分',
+  `discounted_price` int(0) DEFAULT NULL COMMENT '优惠券优惠金额，单位为分',
+  `user_name` varchar(255)  DEFAULT NULL COMMENT '收货人姓名',
+  `postal_code` varchar(255)  DEFAULT NULL COMMENT '邮编',
+  `province_name` varchar(255)  DEFAULT NULL COMMENT '省份',
+  `city_name` varchar(255)  DEFAULT NULL COMMENT '城市',
+  `county_name` varchar(255)  DEFAULT NULL COMMENT '区',
+  `detail_info` varchar(255)  DEFAULT NULL COMMENT '详细地址',
+  `tel_number` varchar(50)  DEFAULT NULL COMMENT '联系方式\r\n',
+  `house_number` varchar(50)  DEFAULT NULL COMMENT '门牌号码',
+  `virtual_order_tel_number` varchar(50)  DEFAULT NULL COMMENT '虚拟发货订单联系方式(deliver_method=1时返回)',
+  `tel_number_ext_info` varchar(500)  DEFAULT NULL COMMENT '额外的联系方式信息（虚拟号码相关）',
+  `use_tel_number` int(0) DEFAULT NULL COMMENT '0：不使用虚拟号码，1：使用虚拟号码',
+  `hash_code` varchar(255)  DEFAULT NULL COMMENT '标识当前店铺下一个唯一的用户收货地址',
+  `delivery_product_info` text  COMMENT '发货物流信息JSON',
+  `ship_done_time` int(0) DEFAULT NULL COMMENT '发货完成时间，秒级时间戳',
+  `ewaybill_order_code` varchar(255)  DEFAULT NULL COMMENT '电子面单代发时的订单密文\r\n',
+  `settle_info` varchar(2550)  DEFAULT NULL COMMENT '结算信息json',
+  `confirm_status` int(0) DEFAULT 0 COMMENT '订单确认状态（0未确认1已确认）',
+  `confirm_time` datetime(0) DEFAULT NULL COMMENT '确认时间',
+  `erp_send_status` int(0) DEFAULT NULL COMMENT 'erp发货状态',
+  `erp_send_time` datetime(0) DEFAULT NULL COMMENT 'ERP发货时间',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wei_order
@@ -9120,50 +9427,50 @@ INSERT INTO `wei_order` VALUES (1773651208210714625, 2, '3718589016159424768', '
 INSERT INTO `wei_order` VALUES (1773651209330593793, 2, '3718588644526002432', 'oAv196_7aFUZPJalgmLxL_iWw804', 1710900128, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20100209893206a12375aa409b48bb0000\",\"prepay_time\":1710900130,\"pay_time\":1710900140,\"transaction_id\":\"4341200952202403200383974611\"}', 9990, 9990, 0, NULL, '马**', '101100', '北京市', '北京市', '通州区', '****', '183****6247', '', '', 'null', 0, '1b704e24c12cf7062ee5736e7551429a', '[{\"waybill_id\":\"312317506509480\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofLFnCZuN2by9AcKov46K5tJm1_mG0bBQbXQ-_cUpATAtdYqQOtzeRBYQ04D_HDZy2hxy0QD5PzA', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
 INSERT INTO `wei_order` VALUES (1773651210421112833, 2, '3718588590994097408', 'oAv196zhzMf97Ba2R8xdQ0QZxnKs', 1710899924, 1710900826, NULL, 250, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"prepay_id\":\"up_wx20095845672477c9ce9c4315ec892c0000\",\"prepay_time\":1710899925}', 9990, 9990, 0, NULL, '幸*', '543200', '广西壮族自治区', '梧州市', '岑溪市', '****', '182****6206', '', '', 'null', 0, 'd839bebe74d2c0f69bb659ed50726e11', '[]', 0, 'ofRpFXMXe91gV1dn-cpRjsVM35DtD8SKNaIGhmSGSi-GtHwBkt6aIV87SGxa-3CEfaVc1JKUTevA', '{\"predict_commission_fee\":0}', 0, NULL, NULL, NULL);
 INSERT INTO `wei_order` VALUES (1773651211620683777, 2, '3718588208610936064', 'oAv196xSiMAiXvclFVbm3uQtFiMk', 1710898465, 1711510861, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx200934271410802829cd13e6d377c20000\",\"prepay_time\":1710898467,\"pay_time\":1710898475,\"transaction_id\":\"4305500964202403207977225252\"}', 9990, 9990, 0, NULL, '王**', '361001', '福建省', '厦门市', '思明区', '****', '137****5379', '', '', 'null', 0, '5391edd5cb004407c49340082782bdfa', '[{\"waybill_id\":\"73610448785566\",\"delivery_id\":\"ZTO\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"中通快递\",\"delivery_time\":1710906061,\"deliver_type\":1}]', 1710906061, 'of9UExPPPXndZlepNABvZdWT2c8mlrxKRiYI22tfavxYnl_FlimXLP4T7mBcNYEeixdBBISBdGJA', '{\"predict_commission_fee\":99}', 0, NULL, NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651212686036993, 2, '3718588207135065344', 'oAv1965NJAgLllnVsL1sqtLu_eYc', 1710898460, 1710899360, NULL, 250, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"prepay_id\":\"up_wx20093421419085b90d7f5497a5e3170000\",\"prepay_time\":1710898461}', 9990, 9990, 0, NULL, '冯**', '563000', '贵州省', '遵义市', '红花岗区', '****', '156****2268', '', '15608522268', 'null', 0, 'b89011e707f7538071a8f39c5364f380', '[]', 0, 'ofwqKwLKOxvcPzpqCQ0Bt00U8Z8fiSQk-G6KM2AO7ml5VFXvDhNsb52AWxYQ_h0WDwhpzPsJG9Og', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651213822693377, 2, '3718587822346996736', 'oAv196wFsnkezeypRf0egcDMGiWM', 1710896992, 1710898600, NULL, 200, '{\"aftersale_order_list\":[{\"aftersale_order_id\":\"2000000376158056\",\"status\":13}],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20090953417027afb2603f0b09c7fb0000\",\"prepay_time\":1710896993,\"pay_time\":1710897001,\"transaction_id\":\"4331701107202403200001411174\"}', 9990, 9990, 0, NULL, '赵**', '100010', '北京市', '北京市', '东城区', '****', '134****1877', '', '', 'null', 0, '05bae94246e4ad5e05f1cfb5cfcdabd6', '[]', 0, 'ofIj04A4BImnu3akL1Jq5Web4yULuKS6G3O91u5HVEj62aCmbPEpFgwhM0JWXapPCi-jgV9-49ng', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651214942572545, 2, '3718587815659965440', 'oAv196291g5xNrw1spVQpjXhoXg0', 1710896966, 1710897868, NULL, 250, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"prepay_id\":\"up_wx20090927863922d6ba03e28352d80e0000\",\"prepay_time\":1710896968}', 9990, 9990, 0, NULL, '崔*', '445300', '湖北省', '恩施土家族苗族自治州', '建始县', '****', '133****5865', '', '', 'null', 0, '43d9d5270bc81462f94547083e6f1ecd', '[]', 0, 'of_9-SntfOwUc_ivgA-GyQxaNuCyBtJSWOEwvNsWZSdxOnC58AZV7y9mVgCoK8eEJKepOGwg5ciQ', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651216016314369, 2, '3718587814527504384', 'oAv1965374koR_XZBopbQIgbwvYg', 1710896962, 1711161629, NULL, 100, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20090923692523ec3d6e1ed350c68a0000\",\"prepay_time\":1710896963,\"pay_time\":1710896972,\"transaction_id\":\"4317200957202403206956316633\"}', 9990, 9990, 0, NULL, '王**', '100020', '北京市', '北京市', '朝阳区', '****', '136****6620', '', '', 'null', 0, 'abed73df538b1b73d8e60a3bd15836c8', '[{\"waybill_id\":\"312317506527084\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'of31XR_nQ-ipiULDnExMHqt2Nm3TWsinqzjDYw60zSAnM361_3JAI6V_i6wFGe0T2GfbyDES4h8A', '{\"predict_commission_fee\":99}', 1, '2024-04-12 14:41:11', NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651217362685954, 2, '3718587810203962368', 'oAv196z-7_wGiRBgD8b1Ob3LTuSQ', 1710896946, 1711510789, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx200909072119543b9b208278195da40000\",\"prepay_time\":1710896947,\"pay_time\":1710896954,\"transaction_id\":\"4313501099202403202886208440\"}', 9990, 9990, 0, NULL, '忻*', '550001', '贵州省', '贵阳市', '云岩区', '****', '139****5732', '', '', 'null', 0, '1e90e5b3739a2e46587e0de50ed28879', '[{\"waybill_id\":\"312317506456736\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofbNlHM1Uwy9tTtGAuieftzGiYjpBfQGsnHGNYyTMfcPSQ0oJvdf5-iqL2-4iK_-xoxbWgc8UqOA', '{\"predict_commission_fee\":99}', 1, '2024-04-12 14:41:11', NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651218482565122, 2, '3718587809541260800', 'oAv1960PTbIGg1azMM97-Yb1BILM', 1710896943, 1711692550, NULL, 200, '{\"aftersale_order_list\":[{\"aftersale_order_id\":\"2000000387777830\",\"status\":14}],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx200909048136598e32c836acdd7fce0000\",\"prepay_time\":1710896945,\"pay_time\":1710896952,\"transaction_id\":\"4326500957202403203893580121\"}', 9990, 9990, 0, NULL, '耿*', '100071', '北京市', '北京市', '丰台区', '****', '136****6190', '', '', 'null', 0, '72ef646c988a5284a2790d3aa2477dad', '[{\"waybill_id\":\"312317506638952\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofFXYhtxh8BiP2LmchmbuhbYisvOgAgOUryV0F15xG8o0SIp1NITD4vbSATpaoRhYp_trkhgrUaA', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651219539529730, 2, '3718587542502772992', 'oAv196_y-DtYDOLcAI27-wOQyI4M', 1710895924, 1711591705, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20085206263250579fa283be7dc8e20000\",\"prepay_time\":1710895926,\"pay_time\":1710896086,\"transaction_id\":\"4311100949202403208635067416\"}', 990, 990, 0, NULL, '吴*', '215000', '江苏省', '苏州市', '姑苏区', '****', '131****1805', '', '', 'null', 0, '5a32b39d6fe49c2cbbeaa498788c154f', '[{\"waybill_id\":\"318890755728720\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000104315300\",\"sku_id\":\"2086367126\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710986905,\"deliver_type\":1}]', 1710986905, 'ofK-HQreW8UkLCXw-zFmtdIMY8QpqFqK9i923uHIa7txGXok4EeLDgFNn96yGLh8eU2LIIjwikPA', '{\"predict_commission_fee\":9}', 1, '2024-04-12 14:41:11', NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651220789432322, 2, '3718587018572858624', 'oAv1962vGm4-XWRG9ma4_S_yCVA4', 1710893926, 1710916555, NULL, 200, '{\"aftersale_order_list\":[{\"aftersale_order_id\":\"2000000376505279\",\"status\":13}],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20081903030176f28c94820f0507750000\",\"prepay_time\":1710893943,\"pay_time\":1710893948,\"transaction_id\":\"4336600964202403204980463253\"}', 109890, 100, 0, NULL, '阿*', '657000', '云南省', '昭通市', '昭阳区', '****', '139****6961', '', '13512120557', 'null', 0, 'd25a0ad0da52d5f279aad62152a4ba53', '[]', 0, 'ofGKBzBVIOKCbWhuAzmzE2XxfAF-E9wkCgc8JxviQzRb4gezkLahY55ckCgjhKu9FMHQRUYMkcIw', '{\"predict_commission_fee\":0}', 1, '2024-04-12 14:41:11', NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651221888339969, 2, '3718586568279724288', 'oAv1966osuFsbYH6YSExD6uKr3WY', 1710892208, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20075009764726ff1a9fc3b58ae4400000\",\"prepay_time\":1710892209,\"pay_time\":1710892227,\"transaction_id\":\"4335800950202403200637254989\"}', 9990, 9990, 0, NULL, '王**', '475000', '河南省', '开封市', '禹王台区', '****', '152****2706', '', '', 'null', 0, '4f1ffa0a6c31d9bebc1c30440544d7b2', '[{\"waybill_id\":\"312317506457252\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofmS5hUKMgVF7Htd3qfQ3G_wXgz3x-C2R6n6BUinYFVeKjBZ2guWU1YHcAVbKnzinff0FerdU79Q', '{\"predict_commission_fee\":99}', 1, '2024-04-12 14:41:11', NULL, NULL);
-INSERT INTO `wei_order` VALUES (1773651223045967873, 2, '3718586550340945408', 'oAv1964cOETzaRR_Swm2LXxmBypY', 1710892139, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx2007490139983219e20e83520865070000\",\"prepay_time\":1710892141,\"pay_time\":1710892148,\"transaction_id\":\"4307200968202403207539523408\"}', 9990, 9990, 0, NULL, '张*', '231500', '安徽省', '合肥市', '庐江县', '****', '153****8788', '', '', 'null', 0, '934fd91e344f6a1bf99e1c3105dd6344', '[{\"waybill_id\":\"312317506455345\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'of1oLHaoKiJqqNvZ2oAdPPFO_ABYUwSB-yoigQlISLILJx6x_DXmqhSCux2OTZ_-frSVwyHgfqoQ', '{\"predict_commission_fee\":99}', 1, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651212686036993, 2, '3718588207135065344', 'oAv1965NJAgLllnVsL1sqtLu_eYc', 1710898460, 1710899360, NULL, 250, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"prepay_id\":\"up_wx20093421419085b90d7f5497a5e3170000\",\"prepay_time\":1710898461}', 9990, 9990, 0, NULL, '冯**', '563000', '贵州省', '遵义市', '红花岗区', '****', '156****2268', '', '15608522268', 'null', 0, 'b89011e707f7538071a8f39c5364f380', '[]', 0, 'ofwqKwLKOxvcPzpqCQ0Bt00U8Z8fiSQk-G6KM2AO7ml5VFXvDhNsb52AWxYQ_h0WDwhpzPsJG9Og', '{\"predict_commission_fee\":0}', 0, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651213822693377, 2, '3718587822346996736', 'oAv196wFsnkezeypRf0egcDMGiWM', 1710896992, 1710898600, NULL, 200, '{\"aftersale_order_list\":[{\"aftersale_order_id\":\"2000000376158056\",\"status\":13}],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20090953417027afb2603f0b09c7fb0000\",\"prepay_time\":1710896993,\"pay_time\":1710897001,\"transaction_id\":\"4331701107202403200001411174\"}', 9990, 9990, 0, NULL, '赵**', '100010', '北京市', '北京市', '东城区', '****', '134****1877', '', '', 'null', 0, '05bae94246e4ad5e05f1cfb5cfcdabd6', '[]', 0, 'ofIj04A4BImnu3akL1Jq5Web4yULuKS6G3O91u5HVEj62aCmbPEpFgwhM0JWXapPCi-jgV9-49ng', '{\"predict_commission_fee\":0}', 0, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651214942572545, 2, '3718587815659965440', 'oAv196291g5xNrw1spVQpjXhoXg0', 1710896966, 1710897868, NULL, 250, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"prepay_id\":\"up_wx20090927863922d6ba03e28352d80e0000\",\"prepay_time\":1710896968}', 9990, 9990, 0, NULL, '崔*', '445300', '湖北省', '恩施土家族苗族自治州', '建始县', '****', '133****5865', '', '', 'null', 0, '43d9d5270bc81462f94547083e6f1ecd', '[]', 0, 'of_9-SntfOwUc_ivgA-GyQxaNuCyBtJSWOEwvNsWZSdxOnC58AZV7y9mVgCoK8eEJKepOGwg5ciQ', '{\"predict_commission_fee\":0}', 0, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651216016314369, 2, '3718587814527504384', 'oAv1965374koR_XZBopbQIgbwvYg', 1710896962, 1711161629, NULL, 100, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20090923692523ec3d6e1ed350c68a0000\",\"prepay_time\":1710896963,\"pay_time\":1710896972,\"transaction_id\":\"4317200957202403206956316633\"}', 9990, 9990, 0, NULL, '王**', '100020', '北京市', '北京市', '朝阳区', '****', '136****6620', '', '', 'null', 0, 'abed73df538b1b73d8e60a3bd15836c8', '[{\"waybill_id\":\"312317506527084\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'of31XR_nQ-ipiULDnExMHqt2Nm3TWsinqzjDYw60zSAnM361_3JAI6V_i6wFGe0T2GfbyDES4h8A', '{\"predict_commission_fee\":99}', 0, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651217362685954, 2, '3718587810203962368', 'oAv196z-7_wGiRBgD8b1Ob3LTuSQ', 1710896946, 1711510789, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx200909072119543b9b208278195da40000\",\"prepay_time\":1710896947,\"pay_time\":1710896954,\"transaction_id\":\"4313501099202403202886208440\"}', 9990, 9990, 0, NULL, '忻*', '550001', '贵州省', '贵阳市', '云岩区', '****', '139****5732', '', '', 'null', 0, '1e90e5b3739a2e46587e0de50ed28879', '[{\"waybill_id\":\"312317506456736\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofbNlHM1Uwy9tTtGAuieftzGiYjpBfQGsnHGNYyTMfcPSQ0oJvdf5-iqL2-4iK_-xoxbWgc8UqOA', '{\"predict_commission_fee\":99}', 0, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651218482565122, 2, '3718587809541260800', 'oAv1960PTbIGg1azMM97-Yb1BILM', 1710896943, 1711692550, NULL, 200, '{\"aftersale_order_list\":[{\"aftersale_order_id\":\"2000000387777830\",\"status\":14}],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx200909048136598e32c836acdd7fce0000\",\"prepay_time\":1710896945,\"pay_time\":1710896952,\"transaction_id\":\"4326500957202403203893580121\"}', 9990, 9990, 0, NULL, '耿*', '100071', '北京市', '北京市', '丰台区', '****', '136****6190', '', '', 'null', 0, '72ef646c988a5284a2790d3aa2477dad', '[{\"waybill_id\":\"312317506638952\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofFXYhtxh8BiP2LmchmbuhbYisvOgAgOUryV0F15xG8o0SIp1NITD4vbSATpaoRhYp_trkhgrUaA', '{\"predict_commission_fee\":0}', 0, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651219539529730, 2, '3718587542502772992', 'oAv196_y-DtYDOLcAI27-wOQyI4M', 1710895924, 1711591705, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20085206263250579fa283be7dc8e20000\",\"prepay_time\":1710895926,\"pay_time\":1710896086,\"transaction_id\":\"4311100949202403208635067416\"}', 990, 990, 0, NULL, '吴*', '215000', '江苏省', '苏州市', '姑苏区', '****', '131****1805', '', '', 'null', 0, '5a32b39d6fe49c2cbbeaa498788c154f', '[{\"waybill_id\":\"318890755728720\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000104315300\",\"sku_id\":\"2086367126\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710986905,\"deliver_type\":1}]', 1710986905, 'ofK-HQreW8UkLCXw-zFmtdIMY8QpqFqK9i923uHIa7txGXok4EeLDgFNn96yGLh8eU2LIIjwikPA', '{\"predict_commission_fee\":9}', 0, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651220789432322, 2, '3718587018572858624', 'oAv1962vGm4-XWRG9ma4_S_yCVA4', 1710893926, 1710916555, NULL, 200, '{\"aftersale_order_list\":[{\"aftersale_order_id\":\"2000000376505279\",\"status\":13}],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20081903030176f28c94820f0507750000\",\"prepay_time\":1710893943,\"pay_time\":1710893948,\"transaction_id\":\"4336600964202403204980463253\"}', 109890, 100, 0, NULL, '阿*', '657000', '云南省', '昭通市', '昭阳区', '****', '139****6961', '', '13512120557', 'null', 0, 'd25a0ad0da52d5f279aad62152a4ba53', '[]', 0, 'ofGKBzBVIOKCbWhuAzmzE2XxfAF-E9wkCgc8JxviQzRb4gezkLahY55ckCgjhKu9FMHQRUYMkcIw', '{\"predict_commission_fee\":0}', 0, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651221888339969, 2, '3718586568279724288', 'oAv1966osuFsbYH6YSExD6uKr3WY', 1710892208, 1711510790, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx20075009764726ff1a9fc3b58ae4400000\",\"prepay_time\":1710892209,\"pay_time\":1710892227,\"transaction_id\":\"4335800950202403200637254989\"}', 9990, 9990, 0, NULL, '王**', '475000', '河南省', '开封市', '禹王台区', '****', '152****2706', '', '', 'null', 0, '4f1ffa0a6c31d9bebc1c30440544d7b2', '[{\"waybill_id\":\"312317506457252\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'ofmS5hUKMgVF7Htd3qfQ3G_wXgz3x-C2R6n6BUinYFVeKjBZ2guWU1YHcAVbKnzinff0FerdU79Q', '{\"predict_commission_fee\":99}', 0, '2024-04-12 14:41:11', NULL, NULL);
+INSERT INTO `wei_order` VALUES (1773651223045967873, 2, '3718586550340945408', 'oAv1964cOETzaRR_Swm2LXxmBypY', 1710892139, 1714034937, NULL, 30, '{\"aftersale_order_list\":[],\"on_aftersale_order_cnt\":0}', '{\"payment_method\":1,\"prepay_id\":\"up_wx2007490139983219e20e83520865070000\",\"prepay_time\":1710892141,\"pay_time\":1710892148,\"transaction_id\":\"4307200968202403207539523408\"}', 9990, 9990, 0, NULL, '张*', '231500', '安徽省', '合肥市', '庐江县', '****', '153****8788', '', '', 'null', 0, '934fd91e344f6a1bf99e1c3105dd6344', '[{\"waybill_id\":\"312317506455345\",\"delivery_id\":\"YD\",\"product_infos\":[{\"product_id\":\"10000103058379\",\"sku_id\":\"2069165392\",\"product_cnt\":1}],\"delivery_name\":\"韵达速递\",\"delivery_time\":1710905989,\"deliver_type\":1}]', 1710905989, 'of1oLHaoKiJqqNvZ2oAdPPFO_ABYUwSB-yoigQlISLILJx6x_DXmqhSCux2OTZ_-frSVwyHgfqoQ', '{\"predict_commission_fee\":99}', 1, '2024-04-25 16:48:57', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for wei_order_item
 -- ----------------------------
 DROP TABLE IF EXISTS `wei_order_item`;
 CREATE TABLE `wei_order_item`  (
-  `id` bigint NOT NULL,
-  `wei_order_id` bigint NULL DEFAULT NULL COMMENT '外键id',
-  `product_id` varchar(50)  NULL DEFAULT NULL COMMENT '商品spuid',
-  `sku_id` varchar(50)  NULL DEFAULT NULL COMMENT '商品skuid\r\n',
-  `thumb_img` varchar(550)  NULL DEFAULT NULL COMMENT 'sku小图',
-  `sku_cnt` int NULL DEFAULT NULL COMMENT 'sku数量',
-  `sale_price` int NULL DEFAULT NULL COMMENT '售卖单价（单位：分）',
-  `title` varchar(255)  NULL DEFAULT NULL COMMENT '商品标题',
-  `on_aftersale_sku_cnt` int NULL DEFAULT NULL COMMENT '正在售后/退款流程中的 sku 数量',
-  `finish_aftersale_sku_cnt` int NULL DEFAULT NULL COMMENT '完成售后/退款的 sku 数量',
-  `sku_code` varchar(255)  NULL DEFAULT NULL COMMENT '商品编码',
-  `market_price` int NULL DEFAULT NULL COMMENT '市场单价（单位：分）',
-  `sku_attrs` varchar(2550)  NULL DEFAULT NULL COMMENT 'sku属性JSON',
-  `real_price` int NULL DEFAULT NULL COMMENT 'sku实付总价，取estimate_price和change_price中较小值',
-  `out_product_id` varchar(50)  NULL DEFAULT NULL COMMENT '商品外部spuid',
-  `out_sku_id` varchar(50)  NULL DEFAULT NULL COMMENT '商品外部skuid',
-  `is_discounted` varchar(255)  NULL DEFAULT NULL COMMENT '是否有优惠金额，非必填，默认为false',
-  `estimate_price` int NULL DEFAULT NULL COMMENT '优惠后sku总价，非必填，is_discounted为true时有值',
-  `is_change_price` varchar(10)  NULL DEFAULT NULL COMMENT '是否修改过价格，非必填，默认为false',
-  `change_price` int NULL DEFAULT NULL COMMENT '改价后sku总价，非必填，is_change_price为true时有值',
-  `out_warehouse_id` varchar(50)  NULL DEFAULT NULL COMMENT '区域库存id',
-  `sku_deliver_info` varchar(2550)  NULL DEFAULT NULL COMMENT '商品发货信息JSON',
-  `extra_service` varchar(2550)  NULL DEFAULT NULL COMMENT '商品额外服务信息JSON',
-  `use_deduction` varchar(255)  NULL DEFAULT NULL COMMENT '是否使用了会员积分抵扣\r\n',
-  `deduction_price` int NULL DEFAULT NULL COMMENT '会员积分抵扣金额，单位为分',
-  `order_product_coupon_info_list` varchar(2550)  NULL DEFAULT NULL COMMENT '商品优惠券信息，逐步替换 order.order_detail.coupon_info',
+  `id` bigint(0) NOT NULL,
+  `wei_order_id` bigint(0) DEFAULT NULL COMMENT '外键id',
+  `product_id` varchar(50)  DEFAULT NULL COMMENT '商品spuid',
+  `sku_id` varchar(50)  DEFAULT NULL COMMENT '商品skuid\r\n',
+  `thumb_img` varchar(550)  DEFAULT NULL COMMENT 'sku小图',
+  `sku_cnt` int(0) DEFAULT NULL COMMENT 'sku数量',
+  `sale_price` int(0) DEFAULT NULL COMMENT '售卖单价（单位：分）',
+  `title` varchar(255)  DEFAULT NULL COMMENT '商品标题',
+  `on_aftersale_sku_cnt` int(0) DEFAULT NULL COMMENT '正在售后/退款流程中的 sku 数量',
+  `finish_aftersale_sku_cnt` int(0) DEFAULT NULL COMMENT '完成售后/退款的 sku 数量',
+  `sku_code` varchar(255)  DEFAULT NULL COMMENT '商品编码',
+  `market_price` int(0) DEFAULT NULL COMMENT '市场单价（单位：分）',
+  `sku_attrs` varchar(2550)  DEFAULT NULL COMMENT 'sku属性JSON',
+  `real_price` int(0) DEFAULT NULL COMMENT 'sku实付总价，取estimate_price和change_price中较小值',
+  `out_product_id` varchar(50)  DEFAULT NULL COMMENT '商品外部spuid',
+  `out_sku_id` varchar(50)  DEFAULT NULL COMMENT '商品外部skuid',
+  `is_discounted` varchar(255)  DEFAULT NULL COMMENT '是否有优惠金额，非必填，默认为false',
+  `estimate_price` int(0) DEFAULT NULL COMMENT '优惠后sku总价，非必填，is_discounted为true时有值',
+  `is_change_price` varchar(10)  DEFAULT NULL COMMENT '是否修改过价格，非必填，默认为false',
+  `change_price` int(0) DEFAULT NULL COMMENT '改价后sku总价，非必填，is_change_price为true时有值',
+  `out_warehouse_id` varchar(50)  DEFAULT NULL COMMENT '区域库存id',
+  `sku_deliver_info` varchar(2550)  DEFAULT NULL COMMENT '商品发货信息JSON',
+  `extra_service` varchar(2550)  DEFAULT NULL COMMENT '商品额外服务信息JSON',
+  `use_deduction` varchar(255)  DEFAULT NULL COMMENT '是否使用了会员积分抵扣\r\n',
+  `deduction_price` int(0) DEFAULT NULL COMMENT '会员积分抵扣金额，单位为分',
+  `order_product_coupon_info_list` varchar(2550)  DEFAULT NULL COMMENT '商品优惠券信息，逐步替换 order.order_detail.coupon_info',
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wei_order_item
@@ -9195,63 +9502,59 @@ INSERT INTO `wei_order_item` VALUES (1773651223083716609, 1773651223045967873, '
 -- ----------------------------
 DROP TABLE IF EXISTS `wei_refund`;
 CREATE TABLE `wei_refund`  (
-  `id` bigint NOT NULL,
-  `shop_id` int NULL DEFAULT NULL COMMENT '店铺id',
-  `after_sale_order_id` varchar(50)  NULL DEFAULT NULL COMMENT '售后单号',
-  `status` varchar(55)  NULL DEFAULT NULL COMMENT '售后单当前状态，参考：AfterSaleStatus',
-  `openid` varchar(100)  NULL DEFAULT NULL COMMENT '买家身份标识',
-  `unionid` varchar(100)  NULL DEFAULT NULL COMMENT '买家在开放平台的唯一标识符，若当前视频号小店已绑定到微信开放平台账号下会返回',
-  `product_id` varchar(100)  NULL DEFAULT NULL COMMENT '商品spuid',
-  `sku_id` varchar(100)  NULL DEFAULT NULL COMMENT '商品skuid',
-  `count` int NULL DEFAULT NULL COMMENT '售后数量',
-  `fast_refund` varchar(255)  NULL DEFAULT NULL COMMENT '是否极速退款RefundInfo',
-  `refund_reason` int NULL DEFAULT NULL COMMENT '标明售后单退款直接原因, 枚举值参考 RefundReason',
-  `refund_amount` int NULL DEFAULT NULL COMMENT '退款金额（分）',
-  `return_waybill_id` varchar(255)  NULL DEFAULT NULL COMMENT '快递单号',
-  `return_delivery_id` varchar(255)  NULL DEFAULT NULL COMMENT '物流公司id',
-  `return_delivery_name` varchar(255)  NULL DEFAULT NULL COMMENT '物流公司名称',
-  `merchant_upload_info` text  NULL COMMENT '售后相关商品信息JSON',
-  `create_time` int NULL DEFAULT NULL COMMENT '售后单创建时间戳',
-  `update_time` int NULL DEFAULT NULL COMMENT '售后单更新时间戳',
-  `reason` varchar(255)  NULL DEFAULT NULL COMMENT '退款原因',
-  `reason_text` varchar(2550)  NULL DEFAULT NULL COMMENT '退款原因解释',
-  `type` varchar(255)  NULL DEFAULT NULL COMMENT '售后类型。REFUND:退款；RETURN:退货退款。',
-  `order_id` varchar(55)  NULL DEFAULT NULL COMMENT '订单号，该字段可用于获取订单',
-  `details` text  NULL COMMENT 'detail json',
-  `complaint_id` varchar(100)  NULL DEFAULT NULL COMMENT '纠纷id，该字段可用于获取纠纷信息',
-  `refund_resp` varchar(2550)  NULL DEFAULT NULL COMMENT '微信支付退款的响应',
-  `confirm_status` int NULL DEFAULT NULL COMMENT '确认状态9退货已签收8已拦截',
-  `confirm_time` datetime NULL DEFAULT NULL COMMENT '确认时间',
+  `id` bigint(0) NOT NULL,
+  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
+  `after_sale_order_id` varchar(50)  DEFAULT NULL COMMENT '售后单号',
+  `status` varchar(55)  DEFAULT NULL COMMENT '售后单当前状态，参考：AfterSaleStatus',
+  `openid` varchar(100)  DEFAULT NULL COMMENT '买家身份标识',
+  `unionid` varchar(100)  DEFAULT NULL COMMENT '买家在开放平台的唯一标识符，若当前视频号小店已绑定到微信开放平台账号下会返回',
+  `product_id` varchar(100)  DEFAULT NULL COMMENT '商品spuid',
+  `sku_id` varchar(100)  DEFAULT NULL COMMENT '商品skuid',
+  `count` int(0) DEFAULT NULL COMMENT '售后数量',
+  `fast_refund` varchar(255)  DEFAULT NULL COMMENT '是否极速退款RefundInfo',
+  `refund_reason` int(0) DEFAULT NULL COMMENT '标明售后单退款直接原因, 枚举值参考 RefundReason',
+  `refund_amount` int(0) DEFAULT NULL COMMENT '退款金额（分）',
+  `return_waybill_id` varchar(255)  DEFAULT NULL COMMENT '快递单号',
+  `return_delivery_id` varchar(255)  DEFAULT NULL COMMENT '物流公司id',
+  `return_delivery_name` varchar(255)  DEFAULT NULL COMMENT '物流公司名称',
+  `merchant_upload_info` text  COMMENT '售后相关商品信息JSON',
+  `create_time` int(0) DEFAULT NULL COMMENT '售后单创建时间戳',
+  `update_time` int(0) DEFAULT NULL COMMENT '售后单更新时间戳',
+  `reason` varchar(255)  DEFAULT NULL COMMENT '退款原因',
+  `reason_text` varchar(2550)  DEFAULT NULL COMMENT '退款原因解释',
+  `type` varchar(255)  DEFAULT NULL COMMENT '售后类型。REFUND:退款；RETURN:退货退款。',
+  `order_id` varchar(55)  DEFAULT NULL COMMENT '订单号，该字段可用于获取订单',
+  `details` text  COMMENT 'detail json',
+  `complaint_id` varchar(100)  DEFAULT NULL COMMENT '纠纷id，该字段可用于获取纠纷信息',
+  `refund_resp` varchar(2550)  DEFAULT NULL COMMENT '微信支付退款的响应',
+  `confirm_status` int(0) DEFAULT NULL COMMENT '确认状态9退货已签收8已拦截',
+  `confirm_time` datetime(0) DEFAULT NULL COMMENT '确认时间',
   PRIMARY KEY (`id`) 
-) 
-
--- ----------------------------
--- Records of wei_refund
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '视频号小店退款' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_goods_bad_stock
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_goods_bad_stock`;
 CREATE TABLE `wms_goods_bad_stock`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `goodsId` int NOT NULL COMMENT '商品id',
-  `specId` int NOT NULL COMMENT '商品规格id',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `goodsId` int(0) NOT NULL COMMENT '商品id',
+  `specId` int(0) NOT NULL COMMENT '商品规格id',
   `specNumber` varchar(25)  NOT NULL DEFAULT '' COMMENT '规格编码（唯一）',
   `sourceId` varchar(50)  NOT NULL DEFAULT '' COMMENT '来源ID（type==1时 order_send_return主键id）',
-  `type` int NOT NULL COMMENT '类型（1退货报损3待退还供应商）',
-  `locationId` int NOT NULL DEFAULT 0 COMMENT '仓位',
-  `quantity` int NOT NULL DEFAULT 0 COMMENT '数量',
+  `type` int(0) NOT NULL COMMENT '类型（1退货报损3待退还供应商）',
+  `locationId` int(0) NOT NULL DEFAULT 0 COMMENT '仓位',
+  `quantity` int(0) NOT NULL DEFAULT 0 COMMENT '数量',
   `lossAmount` double NOT NULL DEFAULT 0 COMMENT '损失金额（最大成本）',
   `isDelete` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0正常  1删除',
-  `result` varchar(500)  NULL DEFAULT NULL COMMENT '处理结果',
-  `resultTime` datetime NULL DEFAULT NULL COMMENT '处理时间',
-  `reason` varchar(500)  NULL DEFAULT NULL COMMENT '理由',
-  `status` tinyint NOT NULL DEFAULT 0 COMMENT '是否处理0未处理1已处理',
-  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `modifyTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `result` varchar(500)  DEFAULT NULL COMMENT '处理结果',
+  `resultTime` datetime(0) DEFAULT NULL COMMENT '处理时间',
+  `reason` varchar(500)  DEFAULT NULL COMMENT '理由',
+  `status` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否处理0未处理1已处理',
+  `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `modifyTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) 
-) 
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '不良品库存' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_goods_bad_stock
@@ -9267,16 +9570,16 @@ INSERT INTO `wms_goods_bad_stock` VALUES (5, 37, 558, 'HN1062904', '327', 1, 0, 
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_goods_bad_stock_log`;
 CREATE TABLE `wms_goods_bad_stock_log`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `stockId` bigint NOT NULL COMMENT '商品id',
-  `specId` int NOT NULL COMMENT '商品规格id',
-  `locationId` int NOT NULL COMMENT '所在仓位',
-  `type` int NOT NULL COMMENT '类型1入库2出库',
-  `quantity` bigint NOT NULL DEFAULT 0 COMMENT '数量',
-  `remark` varchar(50)  NULL DEFAULT NULL COMMENT '备注',
-  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `stockId` bigint(0) NOT NULL COMMENT '商品id',
+  `specId` int(0) NOT NULL COMMENT '商品规格id',
+  `locationId` int(0) NOT NULL COMMENT '所在仓位',
+  `type` int(0) NOT NULL COMMENT '类型1入库2出库',
+  `quantity` bigint(0) NOT NULL DEFAULT 0 COMMENT '数量',
+  `remark` varchar(50)  DEFAULT NULL COMMENT '备注',
+  `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '不良品库存日志' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '不良品库存日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_goods_bad_stock_log
@@ -9292,67 +9595,61 @@ INSERT INTO `wms_goods_bad_stock_log` VALUES (5, 5, 558, 0, 1, 1, '退货不良�
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_order_shipping`;
 CREATE TABLE `wms_order_shipping`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `shop_id` int NOT NULL COMMENT '店铺ID',
-  `shop_type` int NOT NULL COMMENT '店铺平台',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `shop_id` int(0) NOT NULL COMMENT '店铺ID',
+  `shop_type` int(0) NOT NULL COMMENT '店铺平台',
   `order_num` varchar(50)  NOT NULL COMMENT '订单编号',
-  `erp_order_id` bigint NULL DEFAULT NULL COMMENT 'erp订单ID',
-  `erp_order_item_id` bigint NOT NULL COMMENT 'erp子订单ID',
-  `order_date` datetime NOT NULL COMMENT '订单日期',
-  `goods_id` bigint NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
-  `spec_id` bigint NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `goods_title` varchar(100)  NULL DEFAULT NULL COMMENT '商品标题',
-  `goods_img` varchar(300)  NULL DEFAULT NULL COMMENT '商品图片',
-  `goods_num` varchar(35)  NULL DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(50)  NULL DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(35)  NULL DEFAULT NULL COMMENT '商品规格编码',
-  `quantity` int NOT NULL COMMENT '商品数量',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '说明',
-  `ship_company` varchar(20)  NULL DEFAULT NULL COMMENT '物流公司',
-  `ship_no` varchar(50)  NULL DEFAULT NULL COMMENT '物流单号',
-  `ship_cost` decimal(6, 0) NULL DEFAULT NULL COMMENT '运费',
-  `ship_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
-  `out_operator` varchar(25)  NULL DEFAULT NULL COMMENT '出库人',
-  `out_position` varchar(25)  NULL DEFAULT NULL COMMENT '出库仓位',
-  `out_time` datetime NULL DEFAULT NULL COMMENT '出库时间',
-  `status` int NULL DEFAULT NULL COMMENT '状态（0未处理1出库中2已出库3已发货）',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `create_by` varchar(50)  NULL DEFAULT NULL COMMENT '创建人',
-  `update_by` varchar(20)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `erp_order_id` bigint(0) DEFAULT NULL COMMENT 'erp订单ID',
+  `erp_order_item_id` bigint(0) NOT NULL COMMENT 'erp子订单ID',
+  `order_date` datetime(0) NOT NULL COMMENT '订单日期',
+  `goods_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
+  `spec_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
+  `goods_title` varchar(100)  DEFAULT NULL COMMENT '商品标题',
+  `goods_img` varchar(300)  DEFAULT NULL COMMENT '商品图片',
+  `goods_num` varchar(35)  DEFAULT NULL COMMENT '商品编码',
+  `goods_spec` varchar(50)  DEFAULT NULL COMMENT '商品规格',
+  `spec_num` varchar(35)  DEFAULT NULL COMMENT '商品规格编码',
+  `quantity` int(0) NOT NULL COMMENT '商品数量',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '说明',
+  `ship_company` varchar(20)  DEFAULT NULL COMMENT '物流公司',
+  `ship_no` varchar(50)  DEFAULT NULL COMMENT '物流单号',
+  `ship_cost` decimal(6, 0) DEFAULT NULL COMMENT '运费',
+  `ship_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
+  `out_operator` varchar(25)  DEFAULT NULL COMMENT '出库人',
+  `out_position` varchar(25)  DEFAULT NULL COMMENT '出库仓位',
+  `out_time` datetime(0) DEFAULT NULL COMMENT '出库时间',
+  `status` int(0) DEFAULT NULL COMMENT '状态（0未处理1出库中2已出库3已发货）',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `create_by` varchar(50)  DEFAULT NULL COMMENT '创建人',
+  `update_by` varchar(20)  DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '仓库订单发货表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of wms_order_shipping
--- ----------------------------
-INSERT INTO `wms_order_shipping` VALUES (11, 6, 4, '1631273557325601885', 15, 12, '2022-07-31 18:14:00', 9, 32, '8026牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01AfNgvA2FOyAvwXZxv_!!2208857268871-0-cib.jpg', '272021008026', '黑色,2XL', '2720210080260105', 1, NULL, NULL, NULL, NULL, NULL, 'admin', '20', '2024-01-16 14:52:43', 2, '2024-01-16 13:44:26', 'admin', 'admin', '2024-01-16 14:52:43');
-INSERT INTO `wms_order_shipping` VALUES (12, 6, 4, '1642473483353670599', 16, 13, '2022-08-13 19:09:13', 9, 32, '8026牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01AfNgvA2FOyAvwXZxv_!!2208857268871-0-cib.jpg', '272021008026', '黑色,2XL', '2720210080260105', 1, NULL, NULL, NULL, NULL, NULL, 'admin', '20', '2024-01-16 15:05:47', 3, '2024-01-16 15:04:52', 'admin', 'admin', '2024-01-16 15:42:53');
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '仓库订单发货表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for wms_stock_in_entry
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_stock_in_entry`;
 CREATE TABLE `wms_stock_in_entry`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `no` varchar(30)  NOT NULL DEFAULT '' COMMENT '单据编号',
-  `source_no` varchar(50)  NULL DEFAULT NULL COMMENT '来源单号',
-  `source_id` bigint NULL DEFAULT NULL COMMENT '来源单id',
-  `source_type` int NOT NULL COMMENT '来源类型（1采购订单2退货订单）',
-  `source_goods_unit` int NULL DEFAULT NULL COMMENT '采购订单商品数',
-  `source_spec_unit_total` int NULL DEFAULT NULL COMMENT '采购订单总件数',
-  `source_spec_unit` int NULL DEFAULT NULL COMMENT '采购订单商品规格数',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
-  `stock_in_operator_id` int NULL DEFAULT NULL COMMENT '操作入库人id',
-  `stock_in_operator` varchar(25)  NULL DEFAULT NULL COMMENT '操作入库人',
-  `stock_in_time` datetime NULL DEFAULT NULL COMMENT '入库时间',
-  `status` int NOT NULL DEFAULT 0 COMMENT '状态（0待入库1部分入库2全部入库）',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `stock_in_num` varchar(30)  NOT NULL DEFAULT '' COMMENT '入库单据编号',
+  `source_no` varchar(50)  DEFAULT NULL COMMENT '来源单号',
+  `source_id` bigint(0) DEFAULT NULL COMMENT '来源单id',
+  `source_type` int(0) NOT NULL COMMENT '来源类型（1采购订单2退货订单）',
+  `source_goods_unit` int(0) DEFAULT NULL COMMENT '采购订单商品数',
+  `source_spec_unit_total` int(0) DEFAULT NULL COMMENT '采购订单总件数',
+  `source_spec_unit` int(0) DEFAULT NULL COMMENT '采购订单商品规格数',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '备注',
+  `stock_in_operator_id` int(0) DEFAULT NULL COMMENT '操作入库人id',
+  `stock_in_operator` varchar(25)  DEFAULT NULL COMMENT '操作入库人',
+  `stock_in_time` datetime(0) DEFAULT NULL COMMENT '入库时间',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT '状态（0待入库1部分入库2全部入库）',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '入库单' ROW_FORMAT = DYNAMIC;
+) 
 
 -- ----------------------------
 -- Records of wms_stock_in_entry
@@ -9364,33 +9661,33 @@ INSERT INTO `wms_stock_in_entry` VALUES (8, '20240116145057', 'PUR20240116144408
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_stock_in_entry_item`;
 CREATE TABLE `wms_stock_in_entry_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `entry_id` bigint NOT NULL COMMENT '入库单id',
-  `source_type` int NULL DEFAULT NULL COMMENT '来源类型（1采购订单2退货订单）',
-  `source_id` bigint NULL DEFAULT NULL COMMENT '来源单id',
-  `source_item_id` bigint NOT NULL COMMENT '来源单itemId',
-  `goods_id` bigint NOT NULL COMMENT '商品id',
-  `goods_num` varchar(20)  NULL DEFAULT NULL COMMENT '商品编码',
-  `goods_name` varchar(50)  NULL DEFAULT NULL COMMENT '商品名称',
-  `spec_id` bigint NOT NULL COMMENT '商品规格id',
-  `spec_num` varchar(25)  NULL DEFAULT NULL COMMENT '商品规格编码',
-  `color_value` varchar(55)  NULL DEFAULT NULL COMMENT '颜色',
-  `color_image` varchar(255)  NULL DEFAULT NULL COMMENT '图片',
-  `size_value` varchar(50)  NULL DEFAULT NULL COMMENT '尺码',
-  `style_value` varchar(55)  NULL DEFAULT NULL COMMENT '款式',
-  `original_quantity` bigint NULL DEFAULT NULL COMMENT '原始数量',
-  `in_quantity` bigint NOT NULL COMMENT '入库数量',
-  `remark` varchar(500)  NULL DEFAULT '' COMMENT '备注',
-  `location_id` int NULL DEFAULT NULL COMMENT '入库仓位',
-  `location_num` varchar(25)  NULL DEFAULT NULL COMMENT '入库仓位编码',
-  `status` int NULL DEFAULT 0 COMMENT '状态（0待入库1部分入库2全部入库）',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `entry_id` bigint(0) NOT NULL COMMENT '入库单id',
+  `source_type` int(0) DEFAULT NULL COMMENT '来源类型（1采购订单2退货订单）',
+  `source_id` bigint(0) DEFAULT NULL COMMENT '来源单id',
+  `source_item_id` bigint(0) NOT NULL COMMENT '来源单itemId',
+  `goods_id` bigint(0) NOT NULL COMMENT '商品id',
+  `goods_num` varchar(20)  DEFAULT NULL COMMENT '商品编码',
+  `goods_name` varchar(50)  DEFAULT NULL COMMENT '商品名称',
+  `spec_id` bigint(0) NOT NULL COMMENT '商品规格id',
+  `spec_num` varchar(25)  DEFAULT NULL COMMENT '商品规格编码',
+  `color_value` varchar(55)  DEFAULT NULL COMMENT '颜色',
+  `color_image` varchar(255)  DEFAULT NULL COMMENT '图片',
+  `size_value` varchar(50)  DEFAULT NULL COMMENT '尺码',
+  `style_value` varchar(55)  DEFAULT NULL COMMENT '款式',
+  `original_quantity` bigint(0) DEFAULT NULL COMMENT '原始数量',
+  `in_quantity` bigint(0) NOT NULL COMMENT '入库数量',
+  `remark` varchar(500)  DEFAULT '' COMMENT '备注',
+  `location_id` int(0) DEFAULT NULL COMMENT '入库仓位',
+  `location_num` varchar(25)  DEFAULT NULL COMMENT '入库仓位编码',
+  `status` int(0) DEFAULT 0 COMMENT '状态（0待入库1部分入库2全部入库）',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) ,
   INDEX `specIndex`(`spec_id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '入库单明细' ROW_FORMAT = DYNAMIC;
+)
 
 -- ----------------------------
 -- Records of wms_stock_in_entry_item
@@ -9402,22 +9699,22 @@ INSERT INTO `wms_stock_in_entry_item` VALUES (4, 8, 1, 466, 1962, 9, 'HN8026', '
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_stock_location`;
 CREATE TABLE `wms_stock_location`  (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(0) NOT NULL AUTO_INCREMENT,
   `number` varchar(10)  NOT NULL COMMENT '货架编号',
   `name` varchar(20)  NOT NULL COMMENT '货架名称',
-  `parent_id` int NOT NULL COMMENT '上级id',
-  `depth` int NULL DEFAULT 1 COMMENT '层级深度1级2级3级',
-  `parent_id1` int NOT NULL COMMENT '一级类目id',
-  `parent_id2` int NOT NULL COMMENT '二级类目id',
-  `address` varchar(20)  NULL DEFAULT NULL COMMENT '地址',
-  `remark` varchar(255)  NULL DEFAULT NULL COMMENT '备注',
-  `isDelete` int NOT NULL DEFAULT 0 COMMENT '0正常  1删除',
-  `create_by` varchar(25)  NULL DEFAULT NULL COMMENT '创建人',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25)  NULL DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `parent_id` int(0) NOT NULL COMMENT '上级id',
+  `depth` int(0) DEFAULT 1 COMMENT '层级深度1级2级3级',
+  `parent_id1` int(0) NOT NULL COMMENT '一级类目id',
+  `parent_id2` int(0) NOT NULL COMMENT '二级类目id',
+  `address` varchar(20)  DEFAULT NULL COMMENT '地址',
+  `remark` varchar(255)  DEFAULT NULL COMMENT '备注',
+  `isDelete` int(0) NOT NULL DEFAULT 0 COMMENT '0正常  1删除',
+  `create_by` varchar(25) DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(25) DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '仓库货架表' ROW_FORMAT = DYNAMIC;
+) 
 
 -- ----------------------------
 -- Records of wms_stock_location
@@ -9448,140 +9745,82 @@ INSERT INTO `wms_stock_location` VALUES (20, 'A01-1-16', 'A01-1-16', 2, 3, 1, 2,
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_stock_out_entry`;
 CREATE TABLE `wms_stock_out_entry`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `stockOutNum` varchar(20)  NOT NULL COMMENT '出库单编号',
-  `sourceNo` varchar(35)  NULL DEFAULT NULL COMMENT '来源单据号',
-  `sourceId` bigint NULL DEFAULT NULL COMMENT '来源单据Id',
-  `stockOutType` int NOT NULL DEFAULT 1 COMMENT '出库类型1订单拣货出库2采购退货出库3盘点出库4报损出库',
-  `status` int NOT NULL COMMENT '状态：0待出库1部分出库2全部出库',
-  `printStatus` int NOT NULL COMMENT '打印状态：是否打印1已打印0未打印',
-  `printTime` datetime NULL DEFAULT NULL COMMENT '打印时间',
-  `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
-  `createBy` varchar(20)  NULL DEFAULT NULL COMMENT '创建人',
-  `updateTime` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `updateBy` varchar(20)  NULL DEFAULT NULL COMMENT '更新人',
-  `completeTime` datetime NULL DEFAULT NULL COMMENT '完成出库时间',
-  `stockOutOperatorId` int NULL DEFAULT 0 COMMENT '出库操作人userid',
-  `stockOutOperatorName` varchar(50)  NULL DEFAULT NULL COMMENT '出库操作人',
-  `stockOutTime` datetime NULL DEFAULT NULL COMMENT '出库时间',
-  `remark` varchar(500)  NULL DEFAULT NULL COMMENT '备注',
-  `isDelete` tinyint NOT NULL DEFAULT 0 COMMENT '是否删除0未删除1已删除',
-  `goodsUnit` int NOT NULL COMMENT '商品数',
-  `specUnit` int NOT NULL COMMENT '商品规格数',
-  `specUnitTotal` int NOT NULL COMMENT '总件数',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `stock_out_num` varchar(20)  NOT NULL COMMENT '出库单编号',
+  `source_num` varchar(35)  DEFAULT NULL COMMENT '来源单据号',
+  `source_id` bigint(0) DEFAULT NULL COMMENT '来源单据Id',
+  `stock_out_type` int(0) NOT NULL DEFAULT 1 COMMENT '出库类型1订单拣货出库2采购退货出库3盘点出库4报损出库',
+  `goods_unit` int(0) NOT NULL COMMENT '商品数',
+  `spec_unit` int(0) NOT NULL COMMENT '商品规格数',
+  `spec_unit_total` int(0) NOT NULL COMMENT '总件数',
+  `remark` varchar(500)  DEFAULT NULL COMMENT '备注',
+  `status` int(0) NOT NULL COMMENT '状态：0待出库1部分出库2全部出库',
+  `print_status` int(0) NOT NULL COMMENT '打印状态：是否打印1已打印0未打印',
+  `print_time` datetime(0) DEFAULT NULL COMMENT '打印时间',
+  `out_time` datetime(0) DEFAULT NULL COMMENT '出库时间',
+  `complete_time` datetime(0) DEFAULT NULL COMMENT '完成出库时间',
+  `operator_id` int(0) DEFAULT 0 COMMENT '出库操作人userid',
+  `operator_name` varchar(50)  DEFAULT NULL COMMENT '出库操作人',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
+  `create_by` varchar(20)  DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
+  `update_by` varchar(20)  DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单' ROW_FORMAT = DYNAMIC;
+) 
 
 -- ----------------------------
 -- Records of wms_stock_out_entry
 -- ----------------------------
-INSERT INTO `wms_stock_out_entry` VALUES (2, '202401161452276', NULL, NULL, 1, 0, 0, NULL, '2024-01-16 14:52:29', 'admin', '2024-01-16 14:52:29', NULL, NULL, 0, NULL, NULL, NULL, 0, 1, 1, 1);
-INSERT INTO `wms_stock_out_entry` VALUES (3, '202401161504597', NULL, NULL, 1, 0, 0, NULL, '2024-01-16 15:05:02', 'admin', '2024-01-16 15:05:01', NULL, NULL, 0, NULL, NULL, NULL, 0, 1, 1, 1);
+INSERT INTO `wms_stock_out_entry` VALUES (1783708162622738433, '202404261202183', NULL, NULL, 1, 2, 3, 3, NULL, 0, 0, NULL, NULL, NULL, 0, NULL, '2024-04-26 12:02:20', '生成拣货单', '2024-04-26 13:51:44', NULL);
 
 -- ----------------------------
 -- Table structure for wms_stock_out_entry_item
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_stock_out_entry_item`;
 CREATE TABLE `wms_stock_out_entry_item`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `entryId` bigint NOT NULL COMMENT '出库单id',
-  `sourceOrderId` bigint NOT NULL COMMENT '来源订单id',
-  `sourceOrderNo` varchar(50)  NOT NULL DEFAULT '' COMMENT '来源订单号',
-  `sourceOrderItemId` bigint NOT NULL COMMENT '来源订单itemId出库对应的itemId，如：order_item表id、invoice_info表id',
-  `goodsId` int NOT NULL COMMENT '商品id',
-  `specId` int NOT NULL COMMENT '商品规格id',
-  `specNum` varchar(50)  NOT NULL DEFAULT '' COMMENT '规格编码',
-  `originalQuantity` bigint NOT NULL COMMENT '总数量',
-  `outQuantity` bigint NOT NULL DEFAULT 0 COMMENT '已出库数量',
-  `completeTime` datetime NULL DEFAULT NULL COMMENT '完成出库时间',
-  `pickedTime` datetime NULL DEFAULT NULL COMMENT '完成拣货时间',
-  `status` int NOT NULL DEFAULT 0 COMMENT '状态：0待出库1部分出库2全部出库',
-  PRIMARY KEY (`id`) ,
-  INDEX `specIndex`(`specId`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单明细' ROW_FORMAT = DYNAMIC;
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `stock_out_type` int(0) NOT NULL COMMENT '出库类型1订单拣货出库2采购退货出库3盘点出库4报损出库',
+  `entry_id` bigint(0) NOT NULL COMMENT '出库单id（外键）',
+  `source_order_id` bigint(0) NOT NULL COMMENT '来源订单id',
+  `source_order_item_id` bigint(0) NOT NULL COMMENT '来源订单itemId出库对应的itemId，如：order_item表id、invoice_info表id',
+  `source_order_num` varchar(50)  NOT NULL DEFAULT '' COMMENT '来源订单号',
+  `goods_id` int(0) NOT NULL COMMENT '商品id',
+  `spec_id` int(0) NOT NULL COMMENT '商品规格id',
+  `spec_num` varchar(50)  NOT NULL DEFAULT '' COMMENT '规格编码',
+  `original_quantity` bigint(0) NOT NULL COMMENT '总数量',
+  `out_quantity` bigint(0) NOT NULL DEFAULT 0 COMMENT '已出库数量',
+  `complete_time` datetime(0) DEFAULT NULL COMMENT '完成出库时间',
+  `picked_time` datetime(0) DEFAULT NULL COMMENT '完成拣货时间',
+  `status` int(0) NOT NULL DEFAULT 0 COMMENT '状态：0待出库1部分出库2全部出库',
+  `create_time` datetime(0) DEFAULT NULL,
+  `update_time` datetime(0) DEFAULT NULL,
+  PRIMARY KEY (`id`) 
+) 
 
 -- ----------------------------
 -- Records of wms_stock_out_entry_item
 -- ----------------------------
-INSERT INTO `wms_stock_out_entry_item` VALUES (8, 2, 15, '1631273557325601885', 12, 9, 32, '2720210080260105', 1, 1, '2024-01-16 14:52:43', '2024-01-16 14:52:43', 2);
-INSERT INTO `wms_stock_out_entry_item` VALUES (9, 3, 16, '1642473483353670599', 13, 9, 32, '2720210080260105', 1, 1, '2024-01-16 15:05:37', '2024-01-16 15:05:36', 2);
+INSERT INTO `wms_stock_out_entry_item` VALUES (1783708162685652993, 1, 1783708162622738433, 33, 1783417904404250626, '3718586550340945408', 0, 0, '', 1, 0, NULL, NULL, 0, NULL, NULL);
+INSERT INTO `wms_stock_out_entry_item` VALUES (1783708162694041601, 1, 1783708162622738433, 29, 1783388592376631298, '230405-342695669310441', 10, 48, '27202208580201', 1, 0, NULL, NULL, 0, NULL, NULL);
+INSERT INTO `wms_stock_out_entry_item` VALUES (1783708162694041602, 1, 1783708162622738433, 28, 1783382441731792897, '3236924701745643410', 10, 43, '27202208580101', 1, 0, NULL, NULL, 0, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for wms_stock_out_entry_item_detail
 -- ----------------------------
 DROP TABLE IF EXISTS `wms_stock_out_entry_item_detail`;
 CREATE TABLE `wms_stock_out_entry_item_detail`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `entryId` bigint NOT NULL COMMENT '出库单ID',
-  `entryItemId` bigint NOT NULL DEFAULT 0 COMMENT '出库单ItemID',
-  `goodsInventoryId` bigint NOT NULL DEFAULT 0 COMMENT '库存ID',
-  `goodsInventoryDetailId` bigint NOT NULL DEFAULT 0 COMMENT '库存详情ID',
-  `quantity` bigint NOT NULL DEFAULT 0 COMMENT '出库数量',
-  `locationId` int NULL DEFAULT NULL COMMENT '出库仓位ID',
-  `stockOutOperatorId` int NULL DEFAULT 0 COMMENT '出库操作人userid',
-  `stockOutOperatorName` varchar(50)  NULL DEFAULT NULL COMMENT '出库操作人',
-  `stockOutTime` datetime NULL DEFAULT NULL COMMENT '出库时间',
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `entry_id` bigint(0) NOT NULL COMMENT '出库单ID',
+  `entry_item_id` bigint(0) NOT NULL DEFAULT 0 COMMENT '出库单ItemID',
+  `goods_inventory_id` bigint(0) NOT NULL DEFAULT 0 COMMENT '库存ID',
+  `goods_inventory_detail_id` bigint(0) NOT NULL DEFAULT 0 COMMENT '库存详情ID',
+  `quantity` bigint(0) NOT NULL DEFAULT 0 COMMENT '出库数量',
+  `location_id` int(0) DEFAULT NULL COMMENT '出库仓位ID',
+  `operator_id` int(0) DEFAULT 0 COMMENT '出库操作人userid',
+  `operator_name` varchar(50)  DEFAULT NULL COMMENT '出库操作人',
+  `out_time` datetime(0) DEFAULT NULL COMMENT '出库时间',
   PRIMARY KEY (`id`) ,
-  INDEX `goods_stock_info_item_id_index`(`goodsInventoryDetailId`) 
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库明细详情' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of wms_stock_out_entry_item_detail
--- ----------------------------
-INSERT INTO `wms_stock_out_entry_item_detail` VALUES (4, 2, 8, 6, 7, 1, 20, 1, 'admin', '2024-01-16 14:52:43');
-INSERT INTO `wms_stock_out_entry_item_detail` VALUES (5, 3, 9, 6, 7, 1, 20, 1, 'admin', '2024-01-16 15:05:32');
-
-
-
--- ----------------------------
--- Table structure for s_shop_pull_lasttime
--- ----------------------------
-DROP TABLE IF EXISTS `s_shop_pull_lasttime`;
-CREATE TABLE `s_shop_pull_lasttime`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
-  `pull_type` enum('ORDER','REFUND')  DEFAULT NULL COMMENT '类型（ORDER:订单，REFUND:退款）',
-  `lasttime` datetime(0) DEFAULT NULL COMMENT '最后更新时间',
-  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) 
-) 
-
--- ----------------------------
--- Records of s_shop_pull_lasttime
--- ----------------------------
-INSERT INTO `s_shop_pull_lasttime` VALUES (1, 1, 'ORDER', '2024-04-09 16:23:00', '2024-03-23 15:56:13', '2024-04-09 16:23:00');
-INSERT INTO `s_shop_pull_lasttime` VALUES (2, 1, 'REFUND', '2024-04-09 17:43:00', '2024-03-24 13:03:54', '2024-04-09 17:43:00');
-INSERT INTO `s_shop_pull_lasttime` VALUES (3, 2, 'ORDER', '2024-04-09 19:44:00', '2024-03-10 13:00:07', '2024-04-09 19:44:00');
-INSERT INTO `s_shop_pull_lasttime` VALUES (4, 2, 'REFUND', '2024-04-10 23:35:56', '2024-03-24 13:50:24', '2024-04-11 11:35:58');
-
--- ----------------------------
--- Table structure for s_shop_pull_logs
--- ----------------------------
-DROP TABLE IF EXISTS `s_shop_pull_logs`;
-CREATE TABLE `s_shop_pull_logs`  (
-  `id` bigint(0) NOT NULL COMMENT '主键Id',
-  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
-  `shop_type` int(0) NOT NULL COMMENT '平台id',
-  `pull_type` enum('ORDER','REFUND','GOODS')  DEFAULT NULL COMMENT '类型（ORDER订单，GOODS商品，REFUND退款）',
-  `pull_way` varchar(255) DEFAULT NULL COMMENT '拉取方式（主动拉取、定时任务）',
-  `pull_params` varchar(500)  DEFAULT NULL COMMENT '拉取参数',
-  `pull_result` text  COMMENT '拉取结果',
-  `pull_time` datetime(0) DEFAULT NULL COMMENT '拉取时间',
-  `duration` bigint(0) DEFAULT NULL COMMENT '耗时（毫秒）',
-  PRIMARY KEY (`id`) 
-) 
-
-
-
-
-
-
-
-
-
-
-
-
+  INDEX `goods_stock_info_item_id_index`(`goods_inventory_detail_id`) 
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库明细详情' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

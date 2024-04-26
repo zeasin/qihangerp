@@ -50,9 +50,9 @@ spring:
 #    driver-class-name: org.h2.Driver
 #    username: qihang
 #    password: Andy_123
-  h2:
-    console:
-      enabled: true
+#  h2:
+#    console:
+#      enabled: true
 
 
 #nacos:
