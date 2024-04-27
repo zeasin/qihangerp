@@ -1,4 +1,4 @@
-package cn.qihangerp.api.domain;
+package cn.qihangerp.domain;
 
 import cn.qihangerp.common.annotation.Excel;
 import cn.qihangerp.domain.BaseEntity;

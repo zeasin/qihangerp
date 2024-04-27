@@ -5,6 +5,8 @@ package cn.qihangerp.open.tao.service;
 //import com.qihang.erp.api.domain.TaoOrder;
 
 import cn.qihangerp.common.ResultVo;
+import cn.qihangerp.domain.Shop;
+import cn.qihangerp.domain.ShopSetting;
 import cn.qihangerp.open.tao.domain.TaoOrder;
 import cn.qihangerp.open.tao.domain.bo.OrderImportItem;
 
@@ -62,4 +64,14 @@ public interface ITaoOrderService
 
     ResultVo<Integer> updateTmallOrderForOpenTaobao(Long shopId, TaoOrder order);
     ResultVo<Integer> excelImportForSubOrder(List<OrderImportItem> orderItemList);
+
+    Shop selectShopById(Long id);
+
+    /**
+     * 查询第三方平台设置
+     *
+     * @param id 第三方平台设置主键
+     * @return 第三方平台设置
+     */
+    ShopSetting selectShopSettingById(Long id);
 }

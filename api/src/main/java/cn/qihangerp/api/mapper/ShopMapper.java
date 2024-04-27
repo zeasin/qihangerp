@@ -1,7 +1,7 @@
 package cn.qihangerp.api.mapper;
 
 import java.util.List;
-import cn.qihangerp.api.domain.Shop;
+import cn.qihangerp.domain.Shop;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

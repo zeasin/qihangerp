@@ -10,7 +10,7 @@ import com.pdd.pop.sdk.http.api.pop.response.*;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.api.controller.dou.DouRequest;
 import cn.qihangerp.api.controller.dou.ErpSalesPullCountResp;
-import cn.qihangerp.api.controller.tao.ShopApiParams;
+import cn.qihangerp.open.tao.controller.ShopApiParams;
 import cn.qihangerp.api.domain.PddOrder;
 import cn.qihangerp.api.service.IPddOrderService;
 import cn.qihangerp.api.service.IShopService;

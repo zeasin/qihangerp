@@ -3,7 +3,7 @@ package cn.qihangerp.api.controller;
 import java.util.List;
 import jakarta.servlet.http.HttpServletResponse;
 
-import cn.qihangerp.api.domain.ShopSetting;
+import cn.qihangerp.domain.ShopSetting;
 import cn.qihangerp.api.service.IShopSettingService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import cn.qihangerp.common.annotation.Log;
 import cn.qihangerp.core.controller.BaseController;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.common.enums.BusinessType;
-import cn.qihangerp.api.domain.Shop;
+import cn.qihangerp.domain.Shop;
 import cn.qihangerp.api.service.IShopService;
 import cn.qihangerp.common.utils.poi.ExcelUtil;
 import cn.qihangerp.core.page.TableDataInfo;

@@ -2,6 +2,8 @@ package cn.qihangerp.open.tao.mapper;
 
 //import com.qihang.erp.api.domain.TaoOrder;
 //import com.qihang.erp.api.domain.TaoOrderItem;
+import cn.qihangerp.domain.Shop;
+import cn.qihangerp.domain.ShopSetting;
 import cn.qihangerp.open.tao.domain.TaoOrder;
 import cn.qihangerp.open.tao.domain.TaoOrderItem;
 import org.apache.ibatis.annotations.Mapper;
@@ -91,4 +93,20 @@ public interface TaoOrderMapper
      * @return 结果
      */
     public int deleteTaoOrderItemByOrderId(Long id);
+
+    /**
+     * 查询店铺
+     *
+     * @param id 店铺主键
+     * @return 店铺
+     */
+    Shop selectShopById(Long id);
+
+    /**
+     * 查询第三方平台设置
+     *
+     * @param id 第三方平台设置主键
+     * @return 第三方平台设置
+     */
+    ShopSetting selectShopSettingById(Long id);
 }

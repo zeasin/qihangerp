@@ -1,4 +1,4 @@
-package cn.qihangerp.api.req;
+package cn.qihangerp.open.tao.bo;
 
 public class TaoRequest {
     private Long shopId;//店铺Id

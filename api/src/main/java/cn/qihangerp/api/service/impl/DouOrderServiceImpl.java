@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import cn.qihangerp.api.common.EnumShopType;
+import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.api.domain.*;
 import cn.qihangerp.api.mapper.*;
 import cn.qihangerp.common.utils.DateUtils;

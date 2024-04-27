@@ -7,6 +7,8 @@ import cn.qihangerp.common.utils.StringUtils;
 //import com.qihang.erp.api.common.ResultVo;
 //import com.qihang.erp.api.controller.tao.OrderImportItem;
 //import com.qihang.erp.api.service.ITaoOrderService;
+import cn.qihangerp.domain.Shop;
+import cn.qihangerp.domain.ShopSetting;
 import cn.qihangerp.open.tao.domain.TaoOrder;
 import cn.qihangerp.open.tao.domain.TaoOrderAddress;
 import cn.qihangerp.open.tao.domain.TaoOrderItem;
@@ -534,6 +536,16 @@ public class TaoOrderServiceImpl implements ITaoOrderService
 
 
         return ResultVo.success();
+    }
+
+    @Override
+    public Shop selectShopById(Long id) {
+        return taoOrderMapper.selectShopById(id);
+    }
+
+    @Override
+    public ShopSetting selectShopSettingById(Long id) {
+        return taoOrderMapper.selectShopSettingById(id);
     }
 
     /**

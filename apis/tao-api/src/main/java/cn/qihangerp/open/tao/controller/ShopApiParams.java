@@ -1,4 +1,4 @@
-package cn.qihangerp.api.controller.tao;
+package cn.qihangerp.open.tao.controller;
 
 public class ShopApiParams {
     private String appKey;

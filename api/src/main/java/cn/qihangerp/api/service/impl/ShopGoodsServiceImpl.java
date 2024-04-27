@@ -2,7 +2,7 @@ package cn.qihangerp.api.service.impl;
 
 import java.util.List;
 import cn.qihangerp.common.utils.DateUtils;
-import cn.qihangerp.api.domain.Shop;
+import cn.qihangerp.domain.Shop;
 import cn.qihangerp.api.mapper.ShopMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

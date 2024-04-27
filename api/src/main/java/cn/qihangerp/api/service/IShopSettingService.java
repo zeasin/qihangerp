@@ -1,7 +1,7 @@
 package cn.qihangerp.api.service;
 
 import java.util.List;
-import cn.qihangerp.api.domain.ShopSetting;
+import cn.qihangerp.domain.ShopSetting;
 
 /**
  * 第三方平台设置Service接口

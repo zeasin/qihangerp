@@ -4,7 +4,7 @@
 //import java.util.Date;
 //import java.util.List;
 //
-//import cn.qihangerp.api.common.EnumShopType;
+//import cn.qihangerp.common.enums.EnumShopType;
 //import cn.qihangerp.common.ResultVo;
 //import cn.qihangerp.api.controller.tao.OrderImportItem;
 //import cn.qihangerp.api.domain.*;

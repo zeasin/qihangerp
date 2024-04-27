@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import cn.qihangerp.api.mapper.ShopMapper;
-import cn.qihangerp.api.domain.Shop;
+import cn.qihangerp.domain.Shop;
 import cn.qihangerp.api.service.IShopService;
 
 /**

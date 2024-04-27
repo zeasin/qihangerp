@@ -1,37 +1,74 @@
-//package cn.qihangerp.api.controller.tao;
+package cn.qihangerp.open.tao.controller;
+
+
+import cn.qihangerp.common.http.RemoteUtil;
+import cn.qihangerp.common.utils.DateUtil;
+import cn.qihangerp.common.utils.DateUtils;
+import cn.qihangerp.open.tao.apiService.OrderApiService;
+import cn.qihangerp.open.tao.apiService.SignHelper;
+import cn.qihangerp.open.tao.domain.TaoOrder;
+import cn.qihangerp.open.tao.domain.TaoOrderRefund;
+import com.alibaba.fastjson2.JSONObject;
+import org.springframework.util.StringUtils;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.ZoneOffset;
+import java.util.*;
+
+public class TaoBaoOpenOrderUpdHelper {
+    /**
+     * 更新订单（循环分页）
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param sessionKey
+     * @return
+     */
+    public static TaoBaoOpenOrderUpdResult<TaoOrder> updTmallOrder(Long pageNo, Long pageSize, String url, String appKey, String appSecret, String sessionKey) throws IOException {
+        url = "https://api.taobao.com/router/rest"; // 淘宝API的URL
+        appSecret = "368dbbd183a77d551735be13f59bbcda";
+        Map<String,String> params = new HashMap<>();
+        params.put("app_key","12175777");
+        params.put("method","taobao.trades.sold.increment.get");
+        params.put("v","2.0");
+        params.put("session","6102522199aaa4a42a2e6be95d0a5e18657c1576ec563a0351855490");
+//        params.put("sign","56C55BEE9EC638AF54BD7EC3EB3E0308");
+        params.put("timestamp", DateUtil.getCurrentDateTime());
+        params.put("format","json");
+        params.put("sign_method","md5");
+
+        params.put("start_modified","2024-02-01 00:00:00");
+        params.put("page_no","1");
+        params.put("fields","tid,type,status,payment,orders,rx_audit_status");
+        params.put("end_modified","2024-02-01 23:59:59");
+        params.put("use_has_next","true");
+        params.put("page_size","40");
+
+        String sign = SignHelper.signTopRequest(params,appSecret);
+        params.put("sign",sign);
+
+        StringJoiner joiner = new StringJoiner("&");
+        params.forEach((key,value)-> joiner.add(key+"="+value));
+        String urlP = joiner.toString();
+        url=url+"?"+urlP;
+//        WebClient webClient = WebClient.create();
+//        Mono<String> mono = webClient.get().uri(url)
+//                .header("Content-Type", "application/x-www-form-urlencoded;charset=utf-8")
+//                .retrieve().bodyToMono(String.class);
 //
-//import cn.qihangerp.api.common.EnumResultVo;
-//import cn.qihangerp.api.common.EnumTmallOrderStatus;
-//import cn.qihangerp.api.domain.TaoOrder;
-//import cn.qihangerp.api.domain.TaoOrderItem;
-//import cn.qihangerp.api.domain.TaoOrderRefund;
-//import cn.qihangerp.api.utils.DateUtil;
-//import com.taobao.api.ApiException;
-//import com.taobao.api.DefaultTaobaoClient;
-//import com.taobao.api.TaobaoClient;
-//import com.taobao.api.request.RefundsReceiveGetRequest;
-//import com.taobao.api.request.TradesSoldGetRequest;
-//import com.taobao.api.request.TradesSoldIncrementGetRequest;
-//import com.taobao.api.response.RefundsReceiveGetResponse;
-//import com.taobao.api.response.TradesSoldGetResponse;
-//import com.taobao.api.response.TradesSoldIncrementGetResponse;
-//import org.springframework.util.StringUtils;
-//
-//import java.math.BigDecimal;
-//import java.util.ArrayList;
-//import java.util.Date;
-//import java.util.List;
-//
-//public class TaoBaoOpenOrderUpdHelper {
-//    /**
-//     * 更新订单（循环分页）
-//     *
-//     * @param pageNo
-//     * @param pageSize
-//     * @param sessionKey
-//     * @return
-//     */
-//    public static TaoBaoOpenOrderUpdResult<TaoOrder> updTmallOrder(Long pageNo, Long pageSize, String url, String appKey, String appSecret, String sessionKey) throws ApiException {
+//        mono.subscribe(System.out::println);
+
+        String s= "";
+        OrderApiService remoting = RemoteUtil.Remoting(url, OrderApiService.class);
+
+
+        String orderList1 = remoting.getOrderList();
+//        String orderList = (String) orderList1;
+        String ss="";
+
 //        TaobaoClient client = new DefaultTaobaoClient(url, appKey, appSecret);
 //
 //        TradesSoldGetRequest req = new TradesSoldGetRequest();
@@ -133,20 +170,21 @@
 //        }
 //
 //        return new TaoBaoOpenOrderUpdResult(rsp.getTotalResults().intValue(), orderList);
-//    }
-//
-//    /**
-//     * 增量获取淘宝开放平台天猫订单
-//     *
-//     * @param pageNo
-//     * @param pageSize
-//     * @param sessionKey
-//     * @return
-//     * @throws ApiException
-//     */
-//    public static TaoBaoOpenOrderUpdResult<TaoOrder> getIncrementTmallOrder(Long pageNo, Long pageSize,Date startTime, Date endTime,String url,String appKey,String appSecret, String sessionKey) throws ApiException {
-//
-//
+        return null;
+    }
+
+    /**
+     * 增量获取淘宝开放平台天猫订单
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param sessionKey
+     * @return
+     * @throws ApiException
+     */
+    public static TaoBaoOpenOrderUpdResult<TaoOrder> getIncrementTmallOrder(Long pageNo, Long pageSize, Date startTime, Date endTime, String url, String appKey, String appSecret, String sessionKey)  {
+
+
 //        TaobaoClient client = new DefaultTaobaoClient(url, appKey, appSecret);
 //
 //        TradesSoldIncrementGetRequest req = new TradesSoldIncrementGetRequest();
@@ -220,20 +258,21 @@
 //        }
 //
 //        return new TaoBaoOpenOrderUpdResult(rsp.getTotalResults().intValue(), orderList);
-//    }
-//
-//    /**
-//     * 拉取淘系退货订单
-//     * @param pageNo
-//     * @param pageSize
-//     * @param url
-//     * @param appKey
-//     * @param appSecret
-//     * @param sessionKey
-//     * @return
-//     * @throws ApiException
-//     */
-//    public static TaoBaoOpenOrderUpdResult<TaoOrderRefund> updTmallRefunOrder(Long pageNo, Long pageSize, String url, String appKey, String appSecret, String sessionKey) throws ApiException {
+        return null;
+    }
+
+    /**
+     * 拉取淘系退货订单
+     * @param pageNo
+     * @param pageSize
+     * @param url
+     * @param appKey
+     * @param appSecret
+     * @param sessionKey
+     * @return
+     * @throws ApiException
+     */
+    public static TaoBaoOpenOrderUpdResult<TaoOrderRefund> updTmallRefunOrder(Long pageNo, Long pageSize, String url, String appKey, String appSecret, String sessionKey)   {
 //        TaobaoClient client = new DefaultTaobaoClient(url, appKey, appSecret);
 //        List<TaoOrderRefund> list = new ArrayList<>();
 //
@@ -289,5 +328,6 @@
 //            }
 //        }
 //        return new TaoBaoOpenOrderUpdResult(rsp.getTotalResults().intValue(), list);
-//    }
-//}
+        return new TaoBaoOpenOrderUpdResult(0, new ArrayList());
+    }
+}
