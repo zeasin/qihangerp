@@ -307,7 +307,7 @@ export default {
             this.form.goodsList = []
             // 调用全局挂载的方法,关闭当前标签页
             this.$store.dispatch("tagsView/delView", this.$route);
-            this.$router.push('/scm/purchase/order');
+            this.$router.push('/purchase/order');
           });
 
         }

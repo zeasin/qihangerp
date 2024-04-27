@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.qihang</groupId>
-        <artifactId>qihangec-erp</artifactId>
+        <groupId>cn.qihangerp</groupId>
+        <artifactId>qihangerp</artifactId>
         <version>1.4.17</version>
     </parent>
     <artifactId>api</artifactId>
@@ -67,6 +67,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
 
 <!--        <dependency>-->
@@ -88,12 +89,7 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- 引入框架 -->
-        <dependency>
-            <groupId>com.qihang</groupId>
-            <artifactId>system</artifactId>
-            <version>1.4.17</version>
-        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/us.codecraft/webmagic-core -->
         <dependency>
@@ -137,6 +133,19 @@
             <version>1.0</version>
             <scope> system </scope>
             <systemPath>${pom.basedir}/libs/xiaohongshu/com.xiaohongshu.fls.openSdk-1.0.jar </systemPath>
+        </dependency>
+
+        <!-- 引入框架 -->
+        <dependency>
+            <groupId>cn.qihangerp</groupId>
+            <artifactId>system</artifactId>
+            <version>1.4.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.qihangerp</groupId>
+            <artifactId>tao-api</artifactId>
+            <version>1.4.17</version>
         </dependency>
 
     </dependencies>

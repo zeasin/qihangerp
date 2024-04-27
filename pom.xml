@@ -4,22 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-    <groupId>com.qihang</groupId>
-    <artifactId>qihangec-erp</artifactId>
+    <groupId>cn.qihangerp</groupId>
+    <artifactId>qihangerp</artifactId>
     <version>1.4.17</version>
 
-    <name>qihangec-erp</name>
-    <url>http://8.huayiyungou.com</url>
+    <name>qihangerp</name>
+    <url>http://www.qihangerp.cn</url>
     <description>启航电商ERP系统</description>
     <properties>
-        <zhijian.version>0.1.0</zhijian.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>17</java.version>
-        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+<!--        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>-->
 <!--        <druid.version>1.2.16</druid.version>-->
         <bitwalker.version>1.21</bitwalker.version>
-        <swagger.version>3.0.0</swagger.version>
+<!--        <swagger.version>3.0.0</swagger.version>-->
         <kaptcha.version>2.3.3</kaptcha.version>
         <pagehelper.boot.version>1.4.6</pagehelper.boot.version>
         <fastjson.version>2.0.34</fastjson.version>
@@ -29,13 +28,17 @@
         <poi.version>4.1.2</poi.version>
         <velocity.version>2.3</velocity.version>
         <jwt.version>0.9.1</jwt.version>
-        <spring-boot.version>2.7.3</spring-boot.version>
+        <javax.servlet.version>4.0.1</javax.servlet.version>
+        <mysql.version>8.0.33</mysql.version>
+<!--        <spring-boot.version>2.7.3</spring-boot.version>-->
+        <spring-boot.version>3.0.13</spring-boot.version>
     </properties>
     <modules>
-        <module>system</module>
+<!--        <module>system</module>-->
         <module>api</module>
         <module>commons</module>
-<!--        <module>core</module>-->
+        <module>apis</module>
+        <!--        <module>core</module>-->
     </modules>
     <packaging>pom</packaging>
 
@@ -67,7 +70,14 @@
     </build>
 
     <repositories>
-        <repository>
+<!--        <repository>-->
+<!--            <id>aliyun</id>-->
+<!--            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
+<!--        </repository>-->
+
+
+
+                <repository>
             <id>public</id>
             <name>aliyun nexus</name>
             <url>https://maven.aliyun.com/repository/public</url>

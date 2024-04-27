@@ -41,7 +41,7 @@ spring:
   datasource:
     # Mysql数据库
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/qihangerp-xyhz?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://127.0.0.1:3306/qihang-erp?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: Andy_123
 
@@ -58,6 +58,10 @@ spring:
 #nacos:
 #  config:
 #    server-addr: 127.0.0.1:8848
+
+
+
+
 
 #nacos:
 #  config:
@@ -138,7 +142,7 @@ token:
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
-  type-aliases-package: com.qihang.domain;com.qihang.core.domain;com.qihang.erp.api.domain
+  type-aliases-package: cn.qihangerp.api.domain;cn.qihangerp.domain;
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
 #  config-location: classpath:mybatis/mybatis-config.xml

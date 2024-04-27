@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qihang.erp.api.mapper.ErpOrderMapper">
+<mapper namespace="cn.qihangerp.api.mapper.ErpOrderMapper">
     
-    <resultMap type="com.qihang.erp.api.domain.ErpOrder" id="ErpOrderResult">
+    <resultMap type="cn.qihangerp.api.domain.ErpOrder" id="ErpOrderResult">
         <result property="id"    column="id"    />
         <result property="orderNum"    column="order_num"    />
         <result property="shopType"    column="shop_type"    />
@@ -277,7 +277,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </insert>
 
-    <insert id="insertErpOrderItem" parameterType="com.qihang.erp.api.domain.ErpOrderItem" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertErpOrderItem" parameterType="cn.qihangerp.api.domain.ErpOrderItem" useGeneratedKeys="true" keyProperty="id">
         insert into erp_sale_order_item(order_id,supplier_id,order_item_num, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, refund_status, create_time, create_by) values
 
         (#{orderId},#{supplierId},#{orderItemNum}, #{goodsId}, #{specId}, #{goodsTitle}, #{goodsImg}, #{goodsNum}, #{goodsSpec}, #{specNum}, #{goodsPrice}, #{itemAmount}, #{quantity}, #{remark}, #{isGift}, #{refundCount}, #{refundStatus}, #{createTime}, #{createBy})

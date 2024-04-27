@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qihang.erp.api.mapper.GoodsMapper">
+<mapper namespace="cn.qihangerp.api.mapper.GoodsMapper">
     
-    <resultMap type="com.qihang.erp.api.domain.Goods" id="GoodsResult">
+    <resultMap type="cn.qihangerp.api.domain.Goods" id="GoodsResult">
         <result property="id"    column="id"    />
         <result property="name"    column="name"    />
         <result property="image"    column="image"    />
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateBy"    column="update_by"    />
         <result property="updateTime"    column="update_time"    />
     </resultMap>
-    <resultMap type="com.qihang.erp.api.domain.vo.GoodsSpecListVo" id="GoodsSpecListVoResult">
+    <resultMap type="cn.qihangerp.api.domain.vo.GoodsSpecListVo" id="GoodsSpecListVoResult">
         <result property="id"    column="id"    />
         <result property="goodsId"    column="goods_id"    />
         <result property="name"    column="name"    />
@@ -104,7 +104,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
 
-    <select id="searchGoodsSpec" parameterType="com.qihang.erp.api.domain.vo.GoodsSpecListVo" resultMap="GoodsSpecListVoResult">
+    <select id="searchGoodsSpec" parameterType="cn.qihangerp.api.domain.vo.GoodsSpecListVo" resultMap="GoodsSpecListVoResult">
         SELECT spec.id,spec.goods_id,g.number,g.`name`,spec.spec_num,spec.color_value,spec.color_image,spec.size_value,spec.style_value,spec.pur_price
         FROM `erp_goods_spec` as spec
         LEFT JOIN erp_goods as g on g.id = spec.goods_id
