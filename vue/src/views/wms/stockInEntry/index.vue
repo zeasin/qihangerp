@@ -65,9 +65,9 @@
         <el-tag size="small" v-if="scope.row.sourceType ===1 ">采购订单</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="采购订单商品数" align="center" prop="sourceGoodsUnit" />
-      <el-table-column label="采购订单总件数" align="center" prop="sourceSpecUnitTotal" />
-      <el-table-column label="采购订单商品规格数" align="center" prop="sourceSpecUnit" />
+      <el-table-column label="商品数" align="center" prop="sourceGoodsUnit" />
+      <el-table-column label="商品规格数" align="center" prop="sourceSpecUnit" />
+      <el-table-column label="总件数" align="center" prop="sourceSpecUnitTotal" />
       <el-table-column label="备注" align="center" prop="remark" />
 <!--      <el-table-column label="操作入库人id" align="center" prop="stockInOperatorId" />-->
       <el-table-column label="操作入库人" align="center" prop="stockInOperator" />

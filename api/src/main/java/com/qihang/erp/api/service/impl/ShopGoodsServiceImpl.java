@@ -2,6 +2,8 @@ package com.qihang.erp.api.service.impl;
 
 import java.util.List;
 import com.qihang.common.utils.DateUtils;
+import com.qihang.erp.api.domain.Shop;
+import com.qihang.erp.api.mapper.ShopMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class ShopGoodsServiceImpl implements IShopGoodsService
 {
     @Autowired
     private ShopGoodsMapper shopGoodsMapper;
+    @Autowired
+    private ShopMapper shopMapper;
 
     /**
      * 查询店铺商品
@@ -58,6 +62,11 @@ public class ShopGoodsServiceImpl implements IShopGoodsService
     @Override
     public int insertShopGoods(ShopGoods shopGoods)
     {
+        if(shopGoods.getShopId()==null || shopGoods.getShopId() ==0) return 10020;
+        Shop shop = shopMapper.selectShopById(shopGoods.getShopId());
+        if(shop== null) return 10021;
+
+        shopGoods.setShopType(shop.getType());
         shopGoods.setCreateTime(DateUtils.getNowDate());
         int rows = shopGoodsMapper.insertShopGoods(shopGoods);
         insertSShopGoodsSku(shopGoods);

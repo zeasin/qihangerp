@@ -8,10 +8,10 @@
       v-show="showSearch"
       label-width="128px"
     >
-      <el-form-item label="采购订单编号" prop="orderNo">
+      <el-form-item label="采购单号" prop="orderNo">
         <el-input
           v-model="queryParams.orderNo"
-          placeholder="请输入采购订单编号"
+          placeholder="请输入采购单号"
           clearable
           @keyup.enter.native="handleQuery"
         />
@@ -78,19 +78,19 @@
     >
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="采购单ID" align="center" prop="id" />
-      <el-table-column label="采购订单编号" align="center" prop="orderNo" />
+      <el-table-column label="采购单号" align="center" prop="orderNo" />
       <el-table-column
-        label="采购订单商品规格数"
+        label="商品规格数"
         align="center"
         prop="orderSpecUnit"
       />
       <el-table-column
-        label="采购订单商品数"
+        label="商品数"
         align="center"
         prop="orderGoodsUnit"
       />
       <el-table-column
-        label="采购订单总件数"
+        label="总件数"
         align="center"
         prop="orderSpecUnitTotal"
       />
@@ -118,13 +118,13 @@
       <el-table-column label="退回数量" align="center" prop="backCount" />
       <el-table-column label="入库数量" align="center" prop="stockInCount" />
       <el-table-column
-        label="采购订单日期"
+        label="采购下单日期"
         align="center"
         prop="orderDate"
         width="180"
       >
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.orderDate, "{y}-{m}-{d}") }}</span>
+          <span>{{ parseTime(scope.row.orderDate) }}</span>
         </template>
       </el-table-column>
 

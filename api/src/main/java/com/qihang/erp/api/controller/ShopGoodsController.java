@@ -77,7 +77,10 @@ public class ShopGoodsController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody ShopGoods shopGoods)
     {
-        return toAjax(shopGoodsService.insertShopGoods(shopGoods));
+        int result = shopGoodsService.insertShopGoods(shopGoods);
+        if(result==10020) return AjaxResult.error("缺少参数：ShopId");
+        else if(result==10021) return AjaxResult.error("找不到店铺");
+        return toAjax(result);
     }
 
     /**

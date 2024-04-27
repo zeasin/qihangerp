@@ -196,7 +196,12 @@
         </template>
       </el-table-column>
       <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="状态" align="center" prop="status" />
+      <el-table-column label="状态" align="center" prop="status" >
+        <template slot-scope="scope">
+          <el-tag type="info" v-if="scope.row.status === 0">未结算</el-tag>
+          <el-tag type="success" v-if="scope.row.status === 1">已结算</el-tag>
+        </template>
+      </el-table-column>
 <!--      <el-table-column label="长" align="center" prop="length" />-->
 <!--      <el-table-column label="宽" align="center" prop="width" />-->
 <!--      <el-table-column label="高" align="center" prop="height" />-->

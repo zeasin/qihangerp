@@ -9,78 +9,36 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="店铺id" prop="shopId">
-        <el-input
-          v-model="queryParams.shopId"
-          placeholder="请输入店铺id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
+      <el-form-item label="店铺" prop="shopId">
+        <el-select v-model="form.shopId" filterable r placeholder="搜索店铺" >
+          <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id">
+            <span style="float: left">{{ item.name }}</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 1">1688</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 2">视频号小店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 3">京东</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 4">淘系店铺</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 5">拼多多</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 6">抖店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 7">小红书</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 8">快手小店</span>
+            <span style="float: right; color: #8492a6; font-size: 13px"  v-if="item.type === 99">其他</span>
+          </el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="供应商id" prop="supplierId">
-        <el-input
+      <el-form-item label="供应商" prop="supplierId">
+        <el-select
           v-model="queryParams.supplierId"
-          placeholder="请输入供应商id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
+          filterable
+          placeholder="请选择供应商">
+          <el-option
+            v-for="item in supplierList"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="供应商名称" prop="supplierName">
-        <el-input
-          v-model="queryParams.supplierName"
-          placeholder="请输入供应商名称"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="日期" prop="date">
-        <el-date-picker clearable
-          v-model="queryParams.date"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择日期">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="物流公司" prop="shipCompany">
-        <el-input
-          v-model="queryParams.shipCompany"
-          placeholder="请输入物流公司"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="物流单号" prop="shipNo">
-        <el-input
-          v-model="queryParams.shipNo"
-          placeholder="请输入物流单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="应付总金额" prop="amount">
-        <el-input
-          v-model="queryParams.amount"
-          placeholder="请输入应付总金额"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="物流费用" prop="shipAmount">
-        <el-input
-          v-model="queryParams.shipAmount"
-          placeholder="请输入物流费用"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="商品金额" prop="goodsAmount">
-        <el-input
-          v-model="queryParams.goodsAmount"
-          placeholder="请输入商品金额"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -90,35 +48,13 @@
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['fms:agentShip:add']"
-        >新增</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['fms:agentShip:edit']"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
           type="danger"
           plain
           icon="el-icon-delete"
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['fms:agentShip:remove']"
-        >删除</el-button>
+        >结算</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -135,11 +71,15 @@
 
     <el-table v-loading="loading" :data="agentShipList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="${comment}" align="center" prop="id" />
+<!--      <el-table-column label="${comment}" align="center" prop="id" />-->
       <el-table-column label="订单号" align="center" prop="orderNum" />
-      <el-table-column label="店铺id" align="center" prop="shopId" />
-      <el-table-column label="供应商id" align="center" prop="supplierId" />
-      <el-table-column label="供应商名称" align="center" prop="supplierName" />
+      <el-table-column label="店铺" align="center" prop="shopId" >
+        <template slot-scope="scope">
+          <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>
+        </template>
+      </el-table-column>
+<!--      <el-table-column label="供应商" align="center" prop="supplierId" />-->
+      <el-table-column label="供应商" align="center" prop="supplierName" />
       <el-table-column label="日期" align="center" prop="date" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.date, '{y}-{m}-{d}') }}</span>
@@ -151,27 +91,32 @@
       <el-table-column label="物流费用" align="center" prop="shipAmount" />
       <el-table-column label="商品金额" align="center" prop="goodsAmount" />
       <el-table-column label="备注" align="center" prop="remark" />
-      <el-table-column label="状态" align="center" prop="status" />
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-edit"
-            @click="handleUpdate(scope.row)"
-            v-hasPermi="['fms:agentShip:edit']"
-          >修改</el-button>
-          <el-button
-            size="mini"
-            type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['fms:agentShip:remove']"
-          >删除</el-button>
+          <el-tag type="info" v-if="scope.row.status === 0">未结算</el-tag>
+          <el-tag type="success" v-if="scope.row.status === 1">已结算</el-tag>
         </template>
       </el-table-column>
+<!--      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-button-->
+<!--            size="mini"-->
+<!--            type="text"-->
+<!--            icon="el-icon-edit"-->
+<!--            @click="handleUpdate(scope.row)"-->
+<!--            v-hasPermi="['fms:agentShip:edit']"-->
+<!--          >付款</el-button>-->
+<!--          <el-button-->
+<!--            size="mini"-->
+<!--            type="text"-->
+<!--            icon="el-icon-delete"-->
+<!--            @click="handleDelete(scope.row)"-->
+<!--            v-hasPermi="['fms:agentShip:remove']"-->
+<!--          >删除</el-button>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -232,6 +177,8 @@
 
 <script>
 import { listAgentShip, getAgentShip, delAgentShip, addAgentShip, updateAgentShip } from "@/api/fms/agentShip";
+import {listShop} from "@/api/shop/shop";
+import {listSupplier} from "@/api/scm/supplier";
 
 export default {
   name: "AgentShip",
@@ -251,6 +198,8 @@ export default {
       total: 0,
       // 财务管理-应付款-代发账单表格数据
       agentShipList: [],
+      shopList:[],
+      supplierList:[],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -309,6 +258,12 @@ export default {
     };
   },
   created() {
+    listShop({type:this.queryParams.shopType}).then(response => {
+      this.shopList = response.rows;
+    });
+    listSupplier({}).then(response => {
+      this.supplierList = response.rows;
+    });
     this.getList();
   },
   methods: {
@@ -385,32 +340,11 @@ export default {
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.id != null) {
-            updateAgentShip(this.form).then(response => {
-              this.$modal.msgSuccess("修改成功");
-              this.open = false;
-              this.getList();
-            });
-          } else {
-            addAgentShip(this.form).then(response => {
-              this.$modal.msgSuccess("新增成功");
-              this.open = false;
-              this.getList();
-            });
-          }
+
         }
       });
     },
-    /** 删除按钮操作 */
-    handleDelete(row) {
-      const ids = row.id || this.ids;
-      this.$modal.confirm('是否确认删除财务管理-应付款-代发账单编号为"' + ids + '"的数据项？').then(function() {
-        return delAgentShip(ids);
-      }).then(() => {
-        this.getList();
-        this.$modal.msgSuccess("删除成功");
-      }).catch(() => {});
-    },
+
     /** 导出按钮操作 */
     handleExport() {
       this.download('fms/agentShip/export', {

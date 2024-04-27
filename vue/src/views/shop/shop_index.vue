@@ -10,18 +10,12 @@
         />
       </el-form-item>
        <el-form-item label="平台" prop="type">
-        <!-- <el-input
-          v-model="queryParams.name"
-          placeholder="请输入店铺名"
-          clearable
-          @keyup.enter.native="handleQuery"
-        /> -->
         <el-select v-model="queryParams.type" placeholder="请选择平台" clearable>
          <el-option
             v-for="item in typeList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
           </el-option>
         </el-select>
       </el-form-item>
@@ -153,12 +147,12 @@
           <el-input v-model="form.name" placeholder="请输入店铺名" />
         </el-form-item>
         <el-form-item label="平台" prop="type">
-          <el-select v-model="form.type" placeholder="请选择店铺">
+          <el-select v-model="form.type" placeholder="请选择店铺平台">
            <el-option
               v-for="item in typeList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
             </el-option>
           </el-select>
         </el-form-item>
@@ -206,7 +200,7 @@
 </template>
 
 <script>
-import { listShop, getShop, delShop, addShop, updateShop } from "@/api/shop/shop";
+import {listShop, getShop, delShop, addShop, updateShop, listPlatform} from "@/api/shop/shop";
 export default {
   name: "Shop",
   data() {
@@ -225,19 +219,7 @@ export default {
       total: 0,
       // 店铺表格数据
       shopList: [],
-      typeList: [{
-          value: '4',
-          label: '淘宝'
-        }, {
-          value: '5',
-          label: '拼多多'
-        }, {
-          value: '6',
-          label: '抖店'
-        }, {
-          value: '7',
-          label: '小红书'
-        }],
+      typeList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -269,6 +251,10 @@ export default {
     };
   },
   created() {
+    listPlatform().then(res=>{
+      this.typeList = res.rows;
+    })
+
     this.getList();
   },
   methods: {
