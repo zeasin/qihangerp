@@ -2,25 +2,28 @@ package cn.qihangerp.api.kwai.controller;
 
 import cn.qihangerp.api.kwai.bo.PullRequest;
 import cn.qihangerp.common.ApiResult;
+import cn.qihangerp.common.ApiResultEnum;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.utils.DateUtil;
 import com.alibaba.fastjson2.JSONObject;
+import com.kuaishou.merchant.open.api.client.AccessTokenKsMerchantClient;
+import com.kuaishou.merchant.open.api.request.order.OpenOrderCursorListRequest;
+import com.kuaishou.merchant.open.api.response.order.OpenOrderCursorListResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.util.*;
 
 @RequestMapping("/kwai_api")
 @RestController
-public class AjaxOrderKwaiController {
-    private static Logger log = LoggerFactory.getLogger(AjaxOrderKwaiController.class);
+public class OrderApiController {
+    private static Logger log = LoggerFactory.getLogger(OrderApiController.class);
 //    @Autowired
 //    private SysThirdSettingService thirdSettingService;
 //    @Autowired
@@ -79,59 +82,71 @@ long forSize =1;
 
     public ApiResult<Long> pullKwaiOrder(Integer pageIndex,Integer pageSize,String token,Long startTime,Long endTime) {
         String url = "https://openapi.kwaixiaodian.com";
-        String appKey="ks700872692254768517";
+        String appKey = "ks700872692254768517";
         String appSecret = "7Bmb4KSuo3SB9sX7JNUETQ";
         String signSecret = "b690afccbefc07697782cad097e51e40";
+        token = "ChFvYXV0aC5hY2Nlc3NUb2tlbhJAwLbU3YZ0R7tNlyzxSJoWgIkwI_-8xYXIsE9CVIdP4lF7ZB02YVZXN7WVyIYrBRIZrjs02WHXZ4NyJQqXNPxbSBoSj7CN238WSuq-kBNyCQnaCfBmIiAMS3zl83Rrc8iWsHFNmBf8AEaJH1ZtzQrio4rtmKHbCCgFMAE";
         Map<String, String> params = new HashMap<>();
         params.put("appkey", appKey);
         params.put("version", "1");
-        params.put("access_token", "6102522199aaa4a42a2e6be95d0a5e18657c1576ec563a0351855490");
+        params.put("access_token", token);
         params.put("timestamp", DateUtil.getCurrentDateTime());
         params.put("method", "open.order.cursor.list");
         params.put("signMethod", "HMAC_SHA256");
-        params.put("param", "{}");
 
+        Map<String, Object> p = new HashMap<>();
+        p.put("orderViewStatus", 1);
+        p.put("pageSize", 50);
+        p.put("queryType", 2);
+        p.put("beginTime", 1709222400000L);
+        p.put("endTime", 1714297996000L);
+        p.put("cursor", "");
+        String jsonString = JSONObject.toJSONString(p);
+//        String s="%7B%22orderViewStatus%22%3A1%2C%22pageSize%22%3A10%2C%22sort%22%3A1%2C%22queryType%22%3A1%2C%22beginTime%22%3A1543817629000%2C%22endTime%22%3A1543817629000%2C%22cpsType%22%3A1%2C%22cursor%22%3A%22157356441188%5F2021345676543%22%7D";
+        params.put("param", jsonString);
         try {
-            String sign = SignUtil.sign(SignUtil.getSignParam(params),signSecret);
+            String sign = SignUtil.sign(SignUtil.getSignParam(params), signSecret);
             params.put("sign", sign);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         // 组合url参数
         StringJoiner joiner = new StringJoiner("&");
-        params.forEach((key, value) -> joiner.add(key + "=" + value));
+        params.forEach((key, value) -> joiner.add(key + "=" + URLEncoder.encode(value)));
         String urlP = joiner.toString();
         url = url + "?" + urlP;
 
+        String serverUrl = "https://openapi.kwaixiaodian.com";
         // 调用接口
         OrderApiService remoting = RemoteUtil.Remoting(url, OrderApiService.class);
         String resultString = remoting.getOrderList();
-        JSONObject result = JSONObject.parseObject(resultString);
-        return null;
-//        AccessTokenKsMerchantClient tokenKsMerchantClient = new AccessTokenKsMerchantClient(appKey);
-//        KsMerchantOrderListRequest ksMerchantOrderListRequest = new KsMerchantOrderListRequest();
-//
-//        // common param
-//        ksMerchantOrderListRequest.setAccessToken(token);
-//        ksMerchantOrderListRequest.setUid(sellerId);
-//        ksMerchantOrderListRequest.setApiMethodVersion(1);
-//        // business param
-//        ksMerchantOrderListRequest.setType(1);
-//        ksMerchantOrderListRequest.setQueryType(2);
-//        ksMerchantOrderListRequest.setSellerId(sellerId);
-//        ksMerchantOrderListRequest.setCurrentPage(pageIndex);
-//        ksMerchantOrderListRequest.setPageSize(pageSize);
-//        ksMerchantOrderListRequest.setBeginTime(startTime*1000);//时间范围只能24小时
-//        ksMerchantOrderListRequest.setEndTime(endTime*1000);
-//        ksMerchantOrderListRequest.setPcursor("");
-//
-//        // api invoke
-//        try {
-//            KsMerchantOrderListResponse response = tokenKsMerchantClient.execute(ksMerchantOrderListRequest);
-//            if(!StringUtils.isEmpty(response.getErrorMsg()) && response.getResult()==24)return new ApiResult<>(ApiResultEnum.TokenFail.getIndex(), "异常："+response.getErrorMsg());
-//            if(!StringUtils.isEmpty(response.getErrorMsg()) && response.getResult()!=24)return new ApiResult<>(ApiResultEnum.SystemException.getIndex(), "异常："+response.getErrorMsg());
-//            var list= response.getMerchantOrderListData().getOrderInfoList();
-//            for(var obj :list){
+//        JSONObject result = JSONObject.parseObject(resultString);
+
+        AccessTokenKsMerchantClient client = new AccessTokenKsMerchantClient(serverUrl, appKey, signSecret);
+        OpenOrderCursorListRequest request = new OpenOrderCursorListRequest();
+        request.setAccessToken(token);
+        request.setApiMethodVersion(1L);
+
+        request.setOrderViewStatus(1);
+        request.setPageSize(10);
+        request.setSort(1);
+        request.setQueryType(1);
+        request.setBeginTime(1703715200000L);
+        request.setEndTime(1714297996000L);
+        request.setCpsType(1);
+        request.setCursor("");
+        try {
+            OpenOrderCursorListResponse response = client.execute(request);
+            if (response.getResult() == 12)
+                return new ApiResult<>(ApiResultEnum.TokenFail.getIndex(), "异常：Token不能为空");
+            if (!StringUtils.isEmpty(response.getErrorMsg()) && response.getResult() == 24)
+                return new ApiResult<>(ApiResultEnum.TokenFail.getIndex(), "异常：" + response.getErrorMsg());
+            if (response.getResult() == 1) {
+                if (response.getData().getOrderList() == null || response.getData().getOrderList().length == 0) {
+                    return new ApiResult<>(ApiResultEnum.SUCCESS.getIndex(), "成功，没有数据", 0L);
+                } else {
+                    var list = response.getData().getOrderList();
+                    for (var obj : list) {
 //                DcKwaiOrderEntity order= new DcKwaiOrderEntity();
 //                var address = JsonUtil.strToObject(obj.getAddress(),DcKwaiAddressVo.class);
 //                order.setOid(obj.getOid());
@@ -173,11 +188,17 @@ long forSize =1;
 //                order.setItems(items);
 //                var result= kwaiOrderService.editKwaiOrder(order);
 //                log.info(order.getOid()+"更新:"+result.getMsg());
-//            }
-//            return new ApiResult<>(ApiResultEnum.SUCCESS.getIndex(), "成功",response.getMerchantOrderListData().getTotalSize());
-//        } catch (KsMerchantApiException e) {
-//            return new ApiResult<>(ApiResultEnum.Fail.getIndex(), "异常："+e.getErrorMsg());
-//        }
+                    }
+                    return new ApiResult<>(ApiResultEnum.SUCCESS.getIndex(), "成功", 0L);
+//                return new ApiResult<>(ApiResultEnum.SUCCESS.getIndex(), "成功", response.getMerchantOrderListData().getTotalSize());
+                }
+            } else {
+                return new ApiResult<>(ApiResultEnum.SystemException.getIndex(), "异常：" + response.getErrorMsg());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ApiResult<>(ApiResultEnum.Fail.getIndex(), "异常：" + e.getMessage());
+        }
     }
 //    /**
 //     * 订单确认

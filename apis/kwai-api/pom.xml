@@ -25,5 +25,19 @@
             <artifactId>commons</artifactId>
             <version>1.4.17</version>
         </dependency>
+        <dependency>
+            <groupId>kuaishou</groupId>
+            <artifactId>kuaishou</artifactId>
+            <version>1.0.6798</version>
+            <scope> system </scope>
+            <systemPath>${pom.basedir}/libs/kuaishou-merchant-open-sdk-1.0.6798.jar </systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+
     </dependencies>
 </project>

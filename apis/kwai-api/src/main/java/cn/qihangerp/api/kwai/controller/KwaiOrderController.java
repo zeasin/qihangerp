@@ -1,10 +1,4 @@
-package cn.qihangerp.api.kwai.controller;//package com.b2c.oms.controller.kuaishou;
-//import com.b2c.common.third.thymeleaf.PagingResponse;
-//import com.b2c.common.utils.DateUtil;
-//import com.b2c.entity.kwai.DcKwaiOrderEntity;
-//import com.b2c.oms.DataConfigObject;
-//import com.b2c.service.oms.DcKwaiOrderService;
-//import com.b2c.service.oms.ShopService;
+//package cn.qihangerp.api.kwai.controller;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Controller;
 //import org.springframework.ui.Model;
@@ -13,7 +7,6 @@ package cn.qihangerp.api.kwai.controller;//package com.b2c.oms.controller.kuaish
 //import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.RequestParam;
 //
-//import javax.servlet.http.HttpServletRequest;
 //
 ///**
 // * 描述：
