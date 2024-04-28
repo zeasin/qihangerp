@@ -548,6 +548,11 @@ public class TaoOrderServiceImpl implements ITaoOrderService
         return taoOrderMapper.selectShopSettingById(id);
     }
 
+    @Override
+    public void updateShopSessionByShopId(Long shopId, String sessionKey) {
+        taoOrderMapper.updateShopSessionByShopId(shopId,sessionKey);
+    }
+
     /**
      * 新增淘宝订单明细信息
      * 

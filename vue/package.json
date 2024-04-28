@@ -1,6 +1,6 @@
 {
-  "name": "qihang-ecerp",
-  "version": "0.1.1",
+  "name": "qihang-erp",
+  "version": "1.1.1",
   "description": "启航电商ERP系统",
   "author": "qihang",
   "license": "MIT",
@@ -33,7 +33,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/qiliping/zhijian.git"
+    "url": "https://gitee.com/qiliping/qihang-erp"
   },
   "dependencies": {
     "@riophae/vue-treeselect": "^0.4.0",

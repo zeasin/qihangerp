@@ -377,4 +377,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectShopSettingVo"/>
         where id = #{id}
     </select>
+
+
+    <update id="updateShopSessionByShopId" >
+        update s_shop sessionKey = #{sessionKey}
+        where id = #{shopId}
+    </update>
+
 </mapper>

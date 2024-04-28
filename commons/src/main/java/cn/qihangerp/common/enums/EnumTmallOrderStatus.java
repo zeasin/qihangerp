@@ -1,4 +1,4 @@
-package cn.qihangerp.api.common;
+package cn.qihangerp.common.enums;
 
 /**
  * 淘宝开放平台订单状态枚举

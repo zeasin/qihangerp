@@ -49,7 +49,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter
         String url =request.getRequestURI();
         log.info("intercept " + url);
 //        log.info("token: " + token); || request.getRequestURI().equals("/getInfo") || request.getRequestURI().equals("/logout")
-        if(url.equals("/login")||url.equals("/favicon.ico") ||url.contains("/h2-console")){
+        if(url.equals("/login")||url.equals("/favicon.ico") ||url.contains("/taoapi2")){
             // 登录页面，放行
             chain.doFilter(request, response);
 //            return;

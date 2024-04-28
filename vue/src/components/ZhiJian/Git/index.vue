@@ -6,10 +6,10 @@
 
 <script>
 export default {
-  name: 'ZhiJianGit',
+  name: 'QiHangERP',
   data() {
     return {
-      url: 'https://gitee.com/qiliping/zhijian.git'
+      url: 'https://gitee.com/qiliping/qihang-erp'
     }
   },
   methods: {

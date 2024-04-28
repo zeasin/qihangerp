@@ -74,4 +74,5 @@ public interface ITaoOrderService
      * @return 第三方平台设置
      */
     ShopSetting selectShopSettingById(Long id);
+    void updateShopSessionByShopId(Long shopId,String sessionKey);
 }

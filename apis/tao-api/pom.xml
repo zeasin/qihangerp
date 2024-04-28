@@ -23,5 +23,12 @@
             <artifactId>commons</artifactId>
             <version>1.4.17</version>
         </dependency>
+        <dependency>
+            <groupId>cn.qihangerp</groupId>
+            <artifactId>tao-api2</artifactId>
+            <version>1.4.28</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/tao-api2-1.4.28.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>
