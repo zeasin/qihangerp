@@ -1,58 +1,49 @@
-package cn.qihangerp.api.controller.kuaishou;//package com.b2c.oms.controller.kuaishou;
-//import com.b2c.common.api.ApiResult;
-//import com.b2c.common.api.ApiResultEnum;
-//import com.b2c.common.utils.DateUtil;
-//import com.b2c.common.utils.JsonUtil;
-//import com.b2c.entity.DataRow;
-//import com.b2c.entity.kwai.DcKwaiAddressVo;
-//import com.b2c.entity.kwai.DcKwaiOrderEntity;
-//import com.b2c.entity.kwai.DcKwaiOrdersItemEntity;
-//import com.b2c.entity.kwai.EnumKwaiExpressCodeVo;
-//import com.b2c.entity.result.EnumResultVo;
-//import com.b2c.oms.request.OrderConfirmReq;
-//import com.b2c.service.oms.DcKwaiOrderService;
-//import com.b2c.service.oms.ShopService;
-//import com.b2c.service.oms.SysThirdSettingService;
-//import com.kuaishou.merchant.open.api.KsMerchantApiException;
-//import com.kuaishou.merchant.open.api.client.AccessTokenKsMerchantClient;
-//import com.kuaishou.merchant.open.api.request.KsMerchantOrderListRequest;
-//import com.kuaishou.merchant.open.api.request.KsMerchantOrderLogisticsUpdateRequest;
-//import com.kuaishou.merchant.open.api.response.KsMerchantOrderListResponse;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.util.StringUtils;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RestController;
-//import javax.servlet.http.HttpServletRequest;
-//import java.math.BigDecimal;
-//import java.util.*;
-//
-//@RequestMapping("/ajax_kwai")
-//@RestController
-//public class AjaxOrderKwaiController {
-//    private static Logger log = LoggerFactory.getLogger(AjaxOrderKwaiController.class);
+package cn.qihangerp.api.kwai.controller;
+
+import cn.qihangerp.api.kwai.bo.PullRequest;
+import cn.qihangerp.common.ApiResult;
+import cn.qihangerp.common.ResultVoEnum;
+import cn.qihangerp.common.utils.DateUtil;
+import com.alibaba.fastjson2.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.math.BigDecimal;
+import java.util.*;
+
+@RequestMapping("/kwai_api")
+@RestController
+public class AjaxOrderKwaiController {
+    private static Logger log = LoggerFactory.getLogger(AjaxOrderKwaiController.class);
 //    @Autowired
 //    private SysThirdSettingService thirdSettingService;
 //    @Autowired
 //    private DcKwaiOrderService kwaiOrderService;
 //    @Autowired
 //    private ShopService shopService;
-//    private static String appKey="ks701717119425407331";
-//    // 对应授权商家快手账号
-//    private static long  sellerId = 1372638315L;
-//
-//    @RequestMapping(value = "/pull_order", method = RequestMethod.POST)
-//    public ApiResult<Long> getOrderList(@RequestBody DataRow reqData, HttpServletRequest req){
+    private static String appKey="ks701717119425407331";
+    // 对应授权商家快手账号
+    private static long  sellerId = 1372638315L;
+
+    @RequestMapping(value = "/pull_order", method = RequestMethod.POST)
+    public ApiResult<Long> getOrderList(@RequestBody PullRequest req){
+        if (req.getShopId() == null || req.getShopId() <= 0) {
+            return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，没有店铺Id");
+        }
 //        Integer shopId = 13;
 //        var shop = shopService.getShop(shopId);
 //        var settingEntity = thirdSettingService.getEntity(shop.getType());
 //        String accessToken = settingEntity.getAccess_token();
 //        String startDate = reqData.getString("startTime");
 //        String endDate = reqData.getString("endTime");
-//
+
+
 //        Long endTime = System.currentTimeMillis() / 1000;//订单更新结束时间
 //        Long startTime = endTime-(60 * 60 * 24 * 1);//订单更新开始时间
 //
@@ -63,31 +54,60 @@ package cn.qihangerp.api.controller.kuaishou;//package com.b2c.oms.controller.ku
 //
 //        long kaishidaojiesu = endTime - startTime;
 //        long forSize = (kaishidaojiesu % (60 * 60 * 24) == 0) ? kaishidaojiesu / (60 * 60 * 24) : kaishidaojiesu / (60 * 60 * 24) + 1;//计算需要循环的次数
-//
+long forSize =1;
 //        log.info("开始循环更新快手订单。开始时间：" + DateUtil.unixTimeStampToDate(startTime) + "结束时间：" + DateUtil.unixTimeStampToDate(endTime) + "总共循环" + forSize);
-//        int pageIndex = 1;
-//        int pageSize = 50;
-//
-//        ApiResult<Long> result=null;
-//        for (int i = 0; i < forSize; i++) {
+        int pageIndex = 1;
+        int pageSize = 50;
+
+        ApiResult<Long> result=null;
+        for (int i = 0; i < forSize; i++) {
 //            Long startTime1 = startTime + i * 60 * 60 * 24;
 //            Long endTime1 = startTime1 + 60 * 60 * 24;
-//            result = this.editKwaiOrder(pageIndex,pageSize,accessToken, startTime1, endTime1);
-//            if(result.getCode()>0) return new ApiResult<>(result.getCode(), result.getMsg());
-//            //计算总页数
-//            int totalPage = (result.getData().intValue() % pageSize == 0) ? result.getData().intValue() / pageSize : (result.getData().intValue() / pageSize) + 1;
-//
-//            while (pageIndex < totalPage) {
-//                pageIndex++;
-//                result = this.editKwaiOrder(pageIndex,pageSize,accessToken, startTime1, endTime1);
-//            }
-//            pageIndex=1;
-//        }
-//        return result;
-//    }
-//
-//    public ApiResult<Long> editKwaiOrder(Integer pageIndex,Integer pageSize,String token,Long startTime,Long endTime) {
-//
+            result = this.pullKwaiOrder(pageIndex,pageSize,"", 0L, 0L);
+            if(result.getCode()>0) return new ApiResult<>(result.getCode(), result.getMsg());
+            //计算总页数
+            int totalPage = (result.getData().intValue() % pageSize == 0) ? result.getData().intValue() / pageSize : (result.getData().intValue() / pageSize) + 1;
+
+            while (pageIndex < totalPage) {
+                pageIndex++;
+                result = this.pullKwaiOrder(pageIndex,pageSize,"", 0L, 0L);
+            }
+            pageIndex=1;
+        }
+        return result;
+    }
+
+    public ApiResult<Long> pullKwaiOrder(Integer pageIndex,Integer pageSize,String token,Long startTime,Long endTime) {
+        String url = "https://openapi.kwaixiaodian.com";
+        String appKey="ks700872692254768517";
+        String appSecret = "7Bmb4KSuo3SB9sX7JNUETQ";
+        String signSecret = "b690afccbefc07697782cad097e51e40";
+        Map<String, String> params = new HashMap<>();
+        params.put("appkey", appKey);
+        params.put("version", "1");
+        params.put("access_token", "6102522199aaa4a42a2e6be95d0a5e18657c1576ec563a0351855490");
+        params.put("timestamp", DateUtil.getCurrentDateTime());
+        params.put("method", "open.order.cursor.list");
+        params.put("signMethod", "HMAC_SHA256");
+        params.put("param", "{}");
+
+        try {
+            String sign = SignUtil.sign(SignUtil.getSignParam(params),signSecret);
+            params.put("sign", sign);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        // 组合url参数
+        StringJoiner joiner = new StringJoiner("&");
+        params.forEach((key, value) -> joiner.add(key + "=" + value));
+        String urlP = joiner.toString();
+        url = url + "?" + urlP;
+
+        // 调用接口
+        OrderApiService remoting = RemoteUtil.Remoting(url, OrderApiService.class);
+        String resultString = remoting.getOrderList();
+        JSONObject result = JSONObject.parseObject(resultString);
+        return null;
 //        AccessTokenKsMerchantClient tokenKsMerchantClient = new AccessTokenKsMerchantClient(appKey);
 //        KsMerchantOrderListRequest ksMerchantOrderListRequest = new KsMerchantOrderListRequest();
 //
@@ -158,7 +178,7 @@ package cn.qihangerp.api.controller.kuaishou;//package com.b2c.oms.controller.ku
 //        } catch (KsMerchantApiException e) {
 //            return new ApiResult<>(ApiResultEnum.Fail.getIndex(), "异常："+e.getErrorMsg());
 //        }
-//    }
+    }
 //    /**
 //     * 订单确认
 //     * @return
@@ -210,4 +230,4 @@ package cn.qihangerp.api.controller.kuaishou;//package com.b2c.oms.controller.ku
 //             return new ApiResult<>(ApiResultEnum.Fail.getIndex(), "异常："+e.getErrorMsg());
 //        }
 //    }
-//}
+}

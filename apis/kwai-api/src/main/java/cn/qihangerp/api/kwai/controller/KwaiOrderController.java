@@ -1,4 +1,4 @@
-package cn.qihangerp.api.controller.kuaishou;//package com.b2c.oms.controller.kuaishou;
+package cn.qihangerp.api.kwai.controller;//package com.b2c.oms.controller.kuaishou;
 //import com.b2c.common.third.thymeleaf.PagingResponse;
 //import com.b2c.common.utils.DateUtil;
 //import com.b2c.entity.kwai.DcKwaiOrderEntity;

@@ -147,7 +147,11 @@
             <artifactId>tao-api</artifactId>
             <version>1.4.17</version>
         </dependency>
-
+        <dependency>
+            <groupId>cn.qihangerp.api.kwai</groupId>
+            <artifactId>kwai-api</artifactId>
+            <version>0.4.28</version>
+        </dependency>
     </dependencies>
 
     <build>
