@@ -6,11 +6,13 @@
         <artifactId>apis</artifactId>
         <version>1.4.17</version>
     </parent>
+
     <groupId>cn.qihangerp.api</groupId>
-    <artifactId>tao-api</artifactId>
+    <artifactId>pdd-api</artifactId>
+    <version>0.4.28</version>
     <packaging>jar</packaging>
 
-    <name>tao-api</name>
+    <name>pdd-api</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -19,16 +21,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>cn.qihangerp</groupId>
-            <artifactId>commons</artifactId>
-            <version>1.4.17</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.qihangerp</groupId>
-            <artifactId>tao-api2</artifactId>
-            <version>1.4.28</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/tao-api2-1.4.28.jar</systemPath>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -7,7 +7,7 @@
         <version>1.4.17</version>
     </parent>
 
-    <groupId>cn.qihangerp.api.kwai</groupId>
+    <groupId>cn.qihangerp.api</groupId>
     <artifactId>kwai-api</artifactId>
     <version>0.4.28</version>
     <packaging>jar</packaging>

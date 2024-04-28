@@ -143,12 +143,12 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.qihangerp</groupId>
+            <groupId>cn.qihangerp.api</groupId>
             <artifactId>tao-api</artifactId>
             <version>1.4.17</version>
         </dependency>
         <dependency>
-            <groupId>cn.qihangerp.api.kwai</groupId>
+            <groupId>cn.qihangerp.api</groupId>
             <artifactId>kwai-api</artifactId>
             <version>0.4.28</version>
         </dependency>
