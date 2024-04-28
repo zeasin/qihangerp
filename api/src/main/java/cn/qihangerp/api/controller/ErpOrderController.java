@@ -3,7 +3,7 @@ package cn.qihangerp.api.controller;
 import java.util.List;
 import jakarta.servlet.http.HttpServletResponse;
 
-import cn.qihangerp.api.domain.ErpOrder;
+import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.api.service.IErpOrderService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;

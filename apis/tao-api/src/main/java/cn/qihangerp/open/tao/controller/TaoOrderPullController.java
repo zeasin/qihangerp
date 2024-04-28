@@ -46,7 +46,7 @@ public class TaoOrderPullController {
      *
      * @param shopId
      * @return
-     * @throws ApiException
+     * @throws
      */
     public ApiResult<ShopApiParams> checkBefore(Long shopId) {
         log.info("/**************主动更新tao 参数检查****************/");

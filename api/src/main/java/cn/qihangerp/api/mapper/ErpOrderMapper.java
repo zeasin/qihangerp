@@ -1,8 +1,8 @@
 package cn.qihangerp.api.mapper;
 
 import java.util.List;
-import cn.qihangerp.api.domain.ErpOrder;
-import cn.qihangerp.api.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpOrder;
+import cn.qihangerp.domain.ErpOrderItem;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

@@ -1,5 +1,6 @@
 package cn.qihangerp.api.service.impl;
 
+import cn.qihangerp.domain.ErpOrderItem;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

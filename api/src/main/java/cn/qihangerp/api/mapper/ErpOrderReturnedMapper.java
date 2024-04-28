@@ -1,7 +1,7 @@
 package cn.qihangerp.api.mapper;
 
 import java.util.List;
-import cn.qihangerp.api.domain.ErpOrderReturned;
+import cn.qihangerp.domain.ErpOrderReturned;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

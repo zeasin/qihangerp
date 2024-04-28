@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 26/04/2024 15:58:24
+ Date: 28/04/2024 20:32:56
 */
 
 SET NAMES utf8mb4;
@@ -23,13 +23,13 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `erp_goods`;
 CREATE TABLE `erp_goods`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '商品名称',
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片地址',
-  `number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '商品编号',
-  `unit_name` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '单位名称',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '商品名称',
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '商品图片地址',
+  `number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '商品编号',
+  `unit_name` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '单位名称',
   `category_id` int(0) DEFAULT 0 COMMENT '商品分类ID',
-  `bar_code` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '条码',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '备注',
+  `bar_code` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '条码',
+  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '备注',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态1销售中2已下架',
   `length` float NOT NULL DEFAULT 0 COMMENT '衣长/裙长/裤长',
   `height` float NOT NULL DEFAULT 0 COMMENT '高度/袖长',
@@ -39,29 +39,29 @@ CREATE TABLE `erp_goods`  (
   `width3` float NOT NULL DEFAULT 0 COMMENT '臀阔',
   `weight` float NOT NULL DEFAULT 0 COMMENT '重量',
   `disable` tinyint(1) DEFAULT 0 COMMENT '0启用   1禁用',
-  `period` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '保质期',
+  `period` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0' COMMENT '保质期',
   `pur_price` decimal(8, 2) DEFAULT 0.00 COMMENT '预计采购价格',
   `whole_price` decimal(8, 2) DEFAULT 0.00 COMMENT '建议批发价',
   `retail_price` decimal(8, 2) DEFAULT 0.00 COMMENT '建议零售价',
   `unit_cost` decimal(8, 2) DEFAULT NULL COMMENT '单位成本',
   `supplier_id` int(0) DEFAULT 0 COMMENT '供应商id',
   `brand_id` int(0) DEFAULT 0 COMMENT '品牌id',
-  `attr1` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性1：季节',
-  `attr2` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性2：分类',
-  `attr3` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性3：风格',
-  `attr4` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性4：年份',
-  `attr5` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性5：面料',
-  `link_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '外链url',
+  `attr1` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '属性1：季节',
+  `attr2` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '属性2：分类',
+  `attr3` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '属性3：风格',
+  `attr4` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '属性4：年份',
+  `attr5` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '属性5：面料',
+  `link_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '外链url',
   `low_qty` int(0) DEFAULT 0 COMMENT '最低库存（预警）',
   `high_qty` int(0) DEFAULT 0 COMMENT '最高库存（预警）',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `number`(`number`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存管理' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 75 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品库存管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods
@@ -134,10 +134,10 @@ CREATE TABLE `erp_goods_attribute`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `goods_id` bigint(0) DEFAULT 0 COMMENT '商品id',
   `attribute_id` int(0) DEFAULT NULL COMMENT '属性id',
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性名',
-  `value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性值',
+  `name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '属性名',
+  `value` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '属性值',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品属性表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '商品属性表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for erp_goods_attribute_config
@@ -146,10 +146,10 @@ DROP TABLE IF EXISTS `erp_goods_attribute_config`;
 CREATE TABLE `erp_goods_attribute_config`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `category_id` int(0) DEFAULT NULL COMMENT '分类id（0为所有共用）',
-  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性名',
-  `value` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性值',
+  `name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '属性名',
+  `value` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '属性值',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品属性表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '商品属性表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_attribute_config
@@ -163,14 +163,14 @@ INSERT INTO `erp_goods_attribute_config` VALUES (2, 1, '季节', '春季,夏季,
 DROP TABLE IF EXISTS `erp_goods_brand`;
 CREATE TABLE `erp_goods_brand`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '品牌名',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '品牌名',
   `status` int(0) DEFAULT NULL COMMENT '状态',
-  `create_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `create_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `create_time` datetime(0) DEFAULT NULL,
-  `update_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `update_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `update_time` datetime(0) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_brand
@@ -183,20 +183,20 @@ INSERT INTO `erp_goods_brand` VALUES (1, '梦小妮', 1, 'admin', '2023-12-29 13
 DROP TABLE IF EXISTS `erp_goods_category`;
 CREATE TABLE `erp_goods_category`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '分类编码',
-  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '分类名称',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `number` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '分类编码',
+  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '分类名称',
+  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `parent_id` int(0) DEFAULT NULL COMMENT '上架分类id',
-  `path` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '分类路径',
+  `path` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '分类路径',
   `sort` int(0) DEFAULT 0 COMMENT '排序值',
-  `image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '图片',
+  `image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '图片',
   `isDelete` tinyint(1) DEFAULT 0 COMMENT '0正常  1删除',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_category
@@ -243,10 +243,10 @@ CREATE TABLE `erp_goods_category_attribute`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `category_id` int(0) NOT NULL,
   `type` int(0) NOT NULL DEFAULT 0 COMMENT '类型：0属性1规格',
-  `title` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '\'属性名\'',
-  `code` char(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '固定值color颜色size尺码style款式',
+  `title` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '\'属性名\'',
+  `code` char(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '固定值color颜色size尺码style款式',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 117 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 117 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_category_attribute
@@ -262,12 +262,12 @@ DROP TABLE IF EXISTS `erp_goods_category_attribute_value`;
 CREATE TABLE `erp_goods_category_attribute_value`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '主键，属性值id',
   `category_attribute_id` int(0) DEFAULT NULL COMMENT '属性id',
-  `value` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '属性值文本',
-  `sku_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '生成SKU的编码',
+  `value` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '属性值文本',
+  `sku_code` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '生成SKU的编码',
   `orderNum` int(0) DEFAULT 0,
   `isDelete` int(0) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 424 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 424 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_category_attribute_value
@@ -396,12 +396,12 @@ DROP TABLE IF EXISTS `erp_goods_img`;
 CREATE TABLE `erp_goods_img`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
   `goods_id` bigint(0) DEFAULT 0 COMMENT '商品Id',
-  `type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '类型',
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '图片url',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '图片说明',
+  `type` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '类型',
+  `url` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '图片url',
+  `remark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '图片说明',
   `sort` int(0) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for erp_goods_inventory
@@ -410,16 +410,16 @@ DROP TABLE IF EXISTS `erp_goods_inventory`;
 CREATE TABLE `erp_goods_inventory`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `goodsId` int(0) NOT NULL COMMENT '商品id',
-  `goodsNumber` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品编码',
+  `goodsNumber` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
   `specId` int(0) NOT NULL COMMENT '商品规格id',
-  `specNumber` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '规格编码（唯一）',
+  `specNumber` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '规格编码（唯一）',
   `currentQty` bigint(0) NOT NULL DEFAULT 0 COMMENT '当前库存',
   `lockedQty` bigint(0) NOT NULL DEFAULT 0 COMMENT '锁定库存',
   `isDelete` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0正常  1删除',
   `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `createBy` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `createBy` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '创建人',
   `updateTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  `updateBy` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `updateBy` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `specIdIndex`(`specId`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存表' ROW_FORMAT = Dynamic;
@@ -442,12 +442,12 @@ CREATE TABLE `erp_goods_inventory_detail`  (
   `purPrice` double DEFAULT 0 COMMENT '采购价',
   `entryId` bigint(0) NOT NULL COMMENT '入库单id',
   `entryItemId` bigint(0) NOT NULL COMMENT '入库单itemId',
-  `remark` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
   `specId` int(0) NOT NULL COMMENT '规格id',
   `goodsId` int(0) NOT NULL COMMENT '商品id',
   `inLocation` int(0) NOT NULL COMMENT '入库仓位id',
   `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `createBy` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `createBy` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '创建人',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品库存明细表' ROW_FORMAT = Dynamic;
 
@@ -463,21 +463,21 @@ DROP TABLE IF EXISTS `erp_goods_spec`;
 CREATE TABLE `erp_goods_spec`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `goods_id` bigint(0) NOT NULL COMMENT '商品id',
-  `spec_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '规格名',
-  `spec_num` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '规格编码',
+  `spec_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '规格名',
+  `spec_num` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '规格编码',
   `color_id` int(0) DEFAULT 0 COMMENT '颜色id',
-  `color_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '颜色值',
-  `color_image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '颜色图片',
+  `color_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '颜色值',
+  `color_image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '颜色图片',
   `size_id` int(0) DEFAULT 0 COMMENT '尺码id',
-  `size_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '尺码值',
+  `size_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '尺码值',
   `style_id` int(0) DEFAULT 0 COMMENT '款式id',
-  `style_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '款式值',
-  `bar_code` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '库存条形码',
+  `style_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '款式值',
+  `bar_code` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '库存条形码',
   `pur_price` decimal(8, 2) DEFAULT 0.00 COMMENT '预计采购价',
   `whole_price` decimal(8, 2) DEFAULT 0.00 COMMENT '建议批发价',
   `retail_price` decimal(8, 2) DEFAULT 0.00 COMMENT '建议零售价',
   `unit_cost` decimal(8, 2) DEFAULT 0.00 COMMENT '单位成本',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '备注',
+  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '' COMMENT '备注',
   `status` tinyint(1) DEFAULT 1 COMMENT '状态',
   `low_qty` int(0) DEFAULT 0 COMMENT '最低库存（预警）',
   `high_qty` int(0) DEFAULT 0 COMMENT '最高库存（预警）',
@@ -485,7 +485,7 @@ CREATE TABLE `erp_goods_spec`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE,
   INDEX `number`(`spec_num`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1372 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品规格库存管理' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1372 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '商品规格库存管理' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_spec
@@ -1816,14 +1816,14 @@ DROP TABLE IF EXISTS `erp_goods_spec_attr`;
 CREATE TABLE `erp_goods_spec_attr`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `goods_id` int(0) NOT NULL,
-  `type` char(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `k` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type` char(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `k` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `kid` int(0) DEFAULT NULL,
   `vid` int(0) DEFAULT NULL,
-  `v` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `img` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `v` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `img` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 603 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 603 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_goods_spec_attr
@@ -2425,18 +2425,18 @@ INSERT INTO `erp_goods_spec_attr` VALUES (602, 74, 'style', '款式', 116, 412, 
 DROP TABLE IF EXISTS `erp_invoice_img`;
 CREATE TABLE `erp_invoice_img`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '名称',
-  `billNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '单据编号',
-  `type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '类型',
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT 'url',
-  `thumbnailUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '缩略图URL',
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '名称',
+  `billNo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '单据编号',
+  `type` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '类型',
+  `url` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT 'url',
+  `thumbnailUrl` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '缩略图URL',
   `size` int(0) DEFAULT 0 COMMENT '大小',
-  `deleteUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '',
-  `deleteType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '',
+  `deleteUrl` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '',
+  `deleteType` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '',
   `isDelete` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `invId`(`billNo`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for erp_sale_after
@@ -2485,39 +2485,39 @@ CREATE TABLE `erp_sale_after`  (
 DROP TABLE IF EXISTS `erp_sale_order`;
 CREATE TABLE `erp_sale_order`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
-  `order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单编号（来源订单）',
+  `order_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '订单编号（来源订单）',
   `shop_type` int(0) DEFAULT NULL COMMENT '店铺类型',
   `shop_id` int(0) NOT NULL COMMENT '店铺ID',
-  `remark` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单备注',
-  `buyer_memo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家留言信息',
-  `tag` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '标签',
+  `remark` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '订单备注',
+  `buyer_memo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '买家留言信息',
+  `tag` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '标签',
   `refund_status` int(0) NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 5：全部',
   `order_status` int(0) NOT NULL COMMENT '订单状态1：待发货，2：已出库，3：已发货，4：已完成（结算）',
   `goods_amount` double DEFAULT NULL COMMENT '商品金额',
   `discount_amount` double NOT NULL COMMENT '折扣金额',
   `postage` double DEFAULT NULL COMMENT '运费',
   `amount` double NOT NULL COMMENT '支付金额，单位：元，支付金额=商品金额-折扣金额+邮费',
-  `receiver_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人姓名',
-  `receiver_phone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人手机号',
-  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人地址',
-  `country` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '国家/地区',
-  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '省',
-  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '市',
-  `town` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '区',
+  `receiver_name` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '收件人姓名',
+  `receiver_phone` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '收件人手机号',
+  `address` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '收件人地址',
+  `country` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '国家/地区',
+  `province` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '省',
+  `city` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '市',
+  `town` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '区',
   `order_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
   `pay_time` datetime(0) DEFAULT NULL COMMENT '支付时间',
   `confirm_time` datetime(0) DEFAULT NULL COMMENT '订单确认时间',
   `ship_type` int(0) NOT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
   `ship_status` int(0) NOT NULL COMMENT '发货状态（0待备货1备货中2已出库3已发货）',
   `shipping_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
-  `shipping_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递单号',
-  `shipping_company` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司',
-  `shipping_man` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '发货人',
+  `shipping_number` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递单号',
+  `shipping_company` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流公司',
+  `shipping_man` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '发货人',
   `shipping_cost` decimal(10, 2) DEFAULT NULL COMMENT '发货费用',
   `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `length` float DEFAULT 0 COMMENT '长',
   `width` float DEFAULT 0 COMMENT '宽',
   `height` float DEFAULT 0 COMMENT '高',
@@ -2525,7 +2525,7 @@ CREATE TABLE `erp_sale_order`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `order_sn_index`(`order_num`) USING BTREE,
   INDEX `shopid_index`(`shop_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_sale_order
@@ -2546,17 +2546,17 @@ CREATE TABLE `erp_sale_order_item`  (
   `shop_id` int(0) NOT NULL COMMENT '店铺id',
   `goods_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
   `spec_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `goods_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品标题',
-  `goods_img` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片',
-  `goods_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品规格编码',
+  `goods_title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品标题',
+  `goods_img` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片',
+  `goods_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
+  `goods_spec` varchar(5000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格',
+  `spec_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格编码',
   `goods_price` double NOT NULL COMMENT '商品单价',
   `item_amount` double DEFAULT NULL COMMENT '子订单金额',
   `quantity` int(0) NOT NULL COMMENT '商品数量',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
-  `order_item_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '子订单编号(来源订单)',
-  `order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单编号（来源订单）',
+  `remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
+  `order_item_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '子订单编号(来源订单)',
+  `order_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '订单编号（来源订单）',
   `supplier_id` int(0) DEFAULT NULL COMMENT '供应商ID',
   `is_gift` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否赠品0否1是',
   `refund_count` int(0) DEFAULT 0 COMMENT '已退货数量',
@@ -2564,17 +2564,17 @@ CREATE TABLE `erp_sale_order_item`  (
   `ship_type` int(0) NOT NULL COMMENT '发货类型（0仓库发货；1供应商代发）',
   `ship_status` int(0) NOT NULL COMMENT '发货状态（0待备货1备货中2已出库）',
   `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `shipping_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
-  `shipping_number` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递单号',
-  `shipping_company` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司',
-  `shipping_man` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '发货人',
+  `shipping_number` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递单号',
+  `shipping_company` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流公司',
+  `shipping_man` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '发货人',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `goodId_index`(`goods_id`) USING BTREE,
   INDEX `order_id`(`order_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1783417904404250627 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单明细表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1783417904404250626 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_sale_order_item
@@ -2591,33 +2591,33 @@ INSERT INTO `erp_sale_order_item` VALUES (1783417904404250626, 33, 2, 0, 0, '泷
 DROP TABLE IF EXISTS `erp_sale_returned`;
 CREATE TABLE `erp_sale_returned`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `returned_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '退货单号',
+  `returned_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '退货单号',
   `returned_type` int(0) DEFAULT NULL COMMENT '退货类型（1退货2换货）',
   `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
   `shop_type` int(0) DEFAULT NULL COMMENT '店铺类型',
   `order_id` bigint(0) NOT NULL COMMENT '订单id',
-  `order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '源订单号',
+  `order_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '源订单号',
   `order_item_id` bigint(0) NOT NULL COMMENT '子订单id',
   `goods_id` bigint(0) DEFAULT NULL COMMENT '商品id',
   `spec_id` bigint(0) DEFAULT NULL COMMENT '规格id',
-  `goods_num` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品编码',
-  `spec_num` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '规格编码',
-  `goods_name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名称',
-  `goods_spec` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品规格',
-  `goods_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片',
+  `goods_num` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
+  `spec_num` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '规格编码',
+  `goods_name` varchar(55) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品名称',
+  `goods_spec` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格',
+  `goods_image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片',
   `quantity` bigint(0) DEFAULT NULL COMMENT '退货数量',
-  `logistics_company` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司',
-  `logistics_code` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流单号',
+  `logistics_company` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流公司',
+  `logistics_code` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流单号',
   `receive_time` datetime(0) DEFAULT NULL COMMENT '收货时间',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '备注',
-  `contactPerson` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '发货人',
-  `mobile` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '发货人手机号',
-  `address` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '发货地址',
+  `remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '备注',
+  `contactPerson` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '发货人',
+  `mobile` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '发货人手机号',
+  `address` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '发货地址',
   `status` int(0) NOT NULL COMMENT '状态（0待发货1待收货2已收货3已完成）',
   `create_time` datetime(0) NOT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '退换货表' ROW_FORMAT = Dynamic;
 
@@ -2667,9 +2667,9 @@ CREATE TABLE `fms_payable_agent_ship`  (
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
   `status` int(0) NOT NULL COMMENT '状态（0已生成1已结算)',
   `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '财务管理-应付款-代发账单' ROW_FORMAT = Dynamic;
 
@@ -2694,18 +2694,18 @@ CREATE TABLE `fms_payable_ship_fee`  (
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
   `status` int(0) NOT NULL COMMENT '状态（0已生成1已结算)',
   `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `length` float DEFAULT 0 COMMENT '长',
   `width` float DEFAULT 0 COMMENT '宽',
   `height` float DEFAULT 0 COMMENT '高',
   `weight` float DEFAULT NULL COMMENT '重量',
-  `receiver_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人姓名',
-  `receiver_phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人手机号',
-  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '省',
-  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '市',
-  `town` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '区',
+  `receiver_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '收件人姓名',
+  `receiver_phone` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '收件人手机号',
+  `province` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '省',
+  `city` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '市',
+  `town` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '区',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '物流费用应付款' ROW_FORMAT = Dynamic;
 
@@ -2715,27 +2715,724 @@ CREATE TABLE `fms_payable_ship_fee`  (
 INSERT INTO `fms_payable_ship_fee` VALUES (2, '邮政快递包裹', NULL, '121212112', '1773651223045967873', 2, 12.00, '2024-04-26', NULL, 0, '2024-04-26 14:39:49', 'admin', NULL, NULL, 0, 0, 0, 12, '11111111111', '11111111', '浙江省', '温州市', '瓯海区');
 
 -- ----------------------------
+-- Table structure for oms_pdd_goods
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_pdd_goods`;
+CREATE TABLE `oms_pdd_goods`  (
+  `goods_id` bigint(0) NOT NULL COMMENT '商品id',
+  `goods_name` varchar(0) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名称',
+  `goods_type` int(0) DEFAULT NULL COMMENT '商品类型：1-国内普通商品，2-一般贸易，3-保税仓BBC直供，4-海外BC直邮 ,5-流量 ,6-话费 ,7-优惠券 ,8-QQ充值 ,9-加油卡，15-商家卡券，18-海外CC行邮 19-平台卡券',
+  `image_url` varchar(550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品主图',
+  `goods_desc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '商品描述',
+  `detail_gallery_list` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '商品详情图',
+  `invoice_status` int(0) DEFAULT NULL COMMENT '是否支持正品发票；0-不支持、1-支持',
+  `is_folt` int(0) DEFAULT NULL COMMENT '是否支持假一赔十，0-不支持，1-支持',
+  `is_group_pre_sale` int(0) DEFAULT NULL COMMENT '是否成团预售。0：不是；1:是。',
+  `is_pre_sale` int(0) DEFAULT NULL COMMENT '是否预售,1-预售商品，0-非预售商品',
+  `is_refundable` int(0) DEFAULT NULL COMMENT '是否7天无理由退换货，1-支持，0-不支持',
+  `is_sku_pre_sale` int(0) DEFAULT NULL COMMENT '是否sku预售，0：否，1：是',
+  `lack_of_weight_claim` int(0) DEFAULT NULL COMMENT '缺重包退',
+  `market_price` bigint(0) DEFAULT NULL COMMENT '参考价格，单位为分',
+  `order_limit` int(0) DEFAULT NULL COMMENT '单次限量',
+  `out_source_goods_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '第三方商品Id',
+  `out_source_type` int(0) DEFAULT NULL COMMENT '第三方商品来源',
+  `outer_goods_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商家编码（商品维度），同其他接口中的outer_goods_id 、out_goods_id、out_goods_sn、outer_goods_sn 都为商家编码（goods维度）。',
+  `pre_sale_time` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '预售时间',
+  `goods_property_list` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '商品属性列表',
+  `quan_guo_lian_bao` int(0) DEFAULT NULL COMMENT '0：不支持全国联保；1：支持全国联保',
+  `second_hand` int(0) DEFAULT NULL COMMENT '是否二手 1:是 0:否',
+  `shipment_limit_second` bigint(0) DEFAULT NULL COMMENT '承诺发货时间（ 秒）',
+  `size_spec_id` bigint(0) DEFAULT NULL COMMENT '尺码表id',
+  `sku_type` int(0) DEFAULT NULL COMMENT '库存方式（0：普通型，1：日历型）',
+  `status` int(0) DEFAULT NULL COMMENT '商品状态 1:上架，2：下架，3：售罄 4：已删除',
+  `tiny_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '短标题，示例：新包装，保证产品的口感和新鲜度。单颗独立小包装，双重营养，1斤家庭分享装，更实惠新疆一级骏枣夹核桃仁。',
+  `two_pieces_discount` int(0) DEFAULT NULL COMMENT '满2件折扣，可选范围0-100, 0表示取消，95表示95折，设置需先查询规则接口获取实际可填范围',
+  `video_gallery` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品视频',
+  `zhi_huan_bu_xiu` int(0) DEFAULT NULL COMMENT '只换不修的天数，目前只支持0和365',
+  `delivery_one_day` int(0) DEFAULT NULL COMMENT '是否当日发货,0 否，1 是',
+  `delivery_type` int(0) DEFAULT NULL COMMENT '发货方式。0：无物流发货；1：有物流发货。',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`goods_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for oms_pdd_goods_sku
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_pdd_goods_sku`;
+CREATE TABLE `oms_pdd_goods_sku`  (
+  `sku_id` bigint(0) NOT NULL COMMENT 'sku编码',
+  `thumb_url` varchar(355) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku预览图',
+  `goods_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品标题',
+  `goods_id` bigint(0) DEFAULT NULL COMMENT '商品id',
+  `limit_quantity` bigint(0) DEFAULT NULL COMMENT 'sku购买限制',
+  `multi_price` bigint(0) DEFAULT NULL COMMENT '商品团购价格 单位分',
+  `price` bigint(0) DEFAULT NULL COMMENT '商品单买价格 单位分',
+  `out_sku_sn` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商家编码（sku维度），同其他接口中的outer_id 、out_id、out_sku_sn、outer_sku_sn、out_sku_id、outer_sku_id 都为商家编码（sku维度）。',
+  `out_source_sku_id` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '第三方sku Id',
+  `quantity` bigint(0) DEFAULT NULL COMMENT '库存',
+  `reserve_quantity` bigint(0) DEFAULT NULL COMMENT '预扣库存',
+  `sku_pre_sale_time` int(0) DEFAULT NULL COMMENT 'sku预售时间，单位秒',
+  `sku_property_list` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT 'sku属性',
+  `spec` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '商品规格列表',
+  `weight` bigint(0) DEFAULT NULL COMMENT '重量，单位为g',
+  `length` bigint(0) DEFAULT NULL COMMENT 'sku送装参数：长度',
+  `is_onsale` int(0) DEFAULT NULL COMMENT '上下架状态 1：上架 0 ：下架',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`sku_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for oms_tao_goods
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_tao_goods`;
+CREATE TABLE `oms_tao_goods`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT,
+  `iid` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品id',
+  `num_iid` bigint(0) DEFAULT NULL COMMENT '商品数字id',
+  `title` varchar(80) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品标题',
+  `nick` varchar(55) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '卖家昵称',
+  `type` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品类型(fixed:一口价;auction:拍卖)注：取消团购',
+  `cid` bigint(0) DEFAULT NULL COMMENT '商品所属的叶子类目 id',
+  `seller_cids` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品所属的店铺内卖家自定义类目列表',
+  `pic_url` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '主图',
+  `num` int(0) DEFAULT NULL COMMENT '商品数量',
+  `props` varchar(2550) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品属性 格式：pid:vid;pid:vid',
+  `valid_thru` int(0) DEFAULT NULL COMMENT '有效期,7或者14（默认是7天）',
+  `has_discount` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '支持会员打折,true/false',
+  `has_invoice` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '是否有发票,true/false',
+  `has_warranty` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '是否有保修,true/false',
+  `has_showcase` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '橱窗推荐,true/false',
+  `modified` datetime(0) DEFAULT NULL COMMENT '商品修改时间（格式：yyyy-MM-dd HH:mm:ss）',
+  `delist_time` datetime(0) DEFAULT NULL COMMENT '下架时间（格式：yyyy-MM-dd HH:mm:ss）',
+  `postage_id` int(0) DEFAULT NULL COMMENT '宝贝所属的运费模板ID，如果没有返回则说明没有使用运费模板',
+  `outer_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商家外部编码(可与商家外部系统对接)。需要授权才能获取。',
+  `list_time` datetime(0) DEFAULT NULL COMMENT '上架时间（格式：yyyy-MM-dd HH:mm:ss）',
+  `price` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品价格，格式：5.00；单位：元；精确到：分',
+  `remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
+  `is_ex` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '是否在外部网店显示',
+  `is_virtual` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '虚拟商品的状态字段',
+  `is_taobao` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '是否在淘宝显示',
+  `sold_quantity` int(0) DEFAULT 0 COMMENT '商品销量',
+  `is_cspu` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '是否为达尔文挂接成功了的商品',
+  `first_starts_time` datetime(0) DEFAULT NULL COMMENT '商品首次上架时间',
+  `shop_id` int(0) NOT NULL COMMENT '店铺id',
+  `erp_goods_id` int(0) DEFAULT NULL COMMENT 'erp商品id',
+  `create_time` datetime(0) DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1771373196105347078 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '淘宝商品表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oms_tao_goods
+-- ----------------------------
+INSERT INTO `oms_tao_goods` VALUES (1766460237147131906, NULL, 688444892888, '曲美家居现代简约轻奢布艺科技布懒人沙发客厅小户型意式羽绒沙发', '曲美家具官方旗舰店', 'fixed', 50020632, ',1643983800,', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01zyu8s71qQTL2Oj0cD-351855490.jpg', 9, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-20 05:19:19', '2024-03-23 17:41:57', -701091031, '', '2024-03-16 17:41:57', '10288.00', NULL, NULL, NULL, NULL, 54, NULL, NULL, 1, NULL, '2024-03-09 21:45:14');
+INSERT INTO `oms_tao_goods` VALUES (1766460237231017986, NULL, 688910983610, '曲美家居现代极简风岩板可伸缩餐桌椅长方形小户型家用耐脏耐高温', '曲美家具官方旗舰店', 'fixed', 201846803, ',1621549091,1643983800,1621549070,', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01ad6YMl1qQTKrWeCXM-351855490.jpg', 36, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-23 08:44:28', '2024-03-23 17:21:52', -701091031, '', '2024-03-16 17:21:52', '4599.00', NULL, NULL, NULL, NULL, 173, NULL, NULL, 1, NULL, '2024-03-09 21:45:14');
+INSERT INTO `oms_tao_goods` VALUES (1766460237277155330, NULL, 741966844715, '曲美家居北欧风简约现代头层牛皮真皮沙发客厅弯曲木沙发绅士', '曲美家具官方旗舰店', 'fixed', 50020633, '-1', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01v3W5IR1qQTL9CzzK3-351855490.jpg', 152, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-22 23:35:32', '2024-03-23 15:59:02', -701091031, '', '2024-03-16 15:59:02', '10899.00', NULL, NULL, NULL, NULL, 8, NULL, NULL, 1, NULL, '2024-03-09 21:45:14');
+INSERT INTO `oms_tao_goods` VALUES (1766460237340069889, NULL, 746545542225, '曲美家居真皮床简约大气现代头层牛皮床主卧室床梦舟床新品', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN019YI1A61qQTL9BBCYk-351855490.jpg', 224, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 16:38:07', '2024-03-29 19:15:04', -701091031, '', '2024-03-22 19:15:04', '9999.00', NULL, NULL, NULL, NULL, 5, NULL, NULL, 1, NULL, '2024-03-09 21:45:14');
+INSERT INTO `oms_tao_goods` VALUES (1766460237340069894, NULL, 647894947395, '曲美家居轻奢北欧风真皮床大象耳朵现代简约头层牛皮主卧室双人床', '曲美家具官方旗舰店', 'fixed', 50020000, ',1624418656,1621549957,1621549070,1621549084,1623814164,', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN013qIkh41qQTKzAPf6l-351855490.jpg', 266, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-23 02:11:50', '2024-03-29 16:54:42', -701091031, '', '2024-03-22 16:54:42', '10013.00', NULL, NULL, NULL, NULL, 474, NULL, NULL, 1, NULL, '2024-03-09 21:45:14');
+INSERT INTO `oms_tao_goods` VALUES (1766460237407178766, NULL, 609816189489, '曲美家居北欧卧室抽屉柜五斗柜客厅餐厅储物柜收纳柜子09ZC', '曲美家具官方旗舰店', 'fixed', 50015740, ',1624404038,1622774385,', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01gAfiYs1qQTL2U9suf-351855490.jpg', 131, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-23 06:08:06', '2024-03-29 15:33:50', -701091031, '', '2024-03-22 15:33:50', '4259.00', NULL, NULL, NULL, NULL, 470, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237470093317, NULL, 742646592404, '曲美家居北欧简约风岩板餐桌椅现代弯曲木工艺家用耐脏耐高温银河', '曲美家具官方旗舰店', 'fixed', 201846803, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01m5Gseg1qQTKzAUQhA-351855490.jpg', 222, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-22 19:16:56', '2024-03-29 15:29:34', -701091031, '', '2024-03-22 15:29:34', '5999.00', NULL, NULL, NULL, NULL, 59, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237537202179, NULL, 742808696905, '曲美家居现代简约北欧风实木餐桌椅弯曲木工艺餐厅长方形流光餐桌', '曲美家具官方旗舰店', 'fixed', 50001403, '-1', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01vULumo1qQTLAecdfN-351855490.jpg', 292, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 16:23:34', '2024-03-29 15:29:29', -701091031, '', '2024-03-22 15:29:29', '7999.00', NULL, NULL, NULL, NULL, 29, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237604311042, NULL, 742703605071, '曲美家居防螨抑菌天丝面料黄麻乳胶独袋弹簧双面可用尊享森眠床垫', '曲美家具官方旗舰店', 'fixed', 122910003, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01MM2VGH1qQTL3VoKIo-351855490.jpg', 200, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-23 03:03:27', '2024-03-29 15:27:31', -701091031, '', '2024-03-22 15:27:31', '6999.00', NULL, NULL, NULL, NULL, 18, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237604311045, NULL, 559261436131, '曲美家居现代简约双人板式床舒适婚床卧室多功能储物床', '曲美家具官方旗舰店', 'fixed', 50020002, ',1621549086,1622774385,', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01n91Eih1qQTKx1d1ap-351855490.jpg', 464, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-22 22:54:53', '2024-03-29 14:22:34', -701091031, '', '2024-03-22 14:22:34', '12999.00', NULL, NULL, NULL, NULL, 1325, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237738528769, NULL, 688670291121, '曲美家居现代简约豆腐方块森屿沙发奶油风直排沙发客厅大小户型', '曲美家具官方旗舰店', 'fixed', 50020632, ',1643983800,', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01NSlPgG1qQTL4APvyT-351855490.jpg', 72, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-23 10:32:25', '2024-03-29 14:09:58', -701091031, '', '2024-03-22 14:09:58', '16118.00', NULL, NULL, NULL, NULL, 76, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237738528779, NULL, 718995026800, '曲美家居法式奶油风真皮床现代简约风主卧头层真皮床奶油小方新品', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01ga7eav1qQTL00A5IC-351855490.jpg', 2, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-23 08:45:58', '2024-04-05 10:01:58', -701091031, '', '2024-03-22 10:01:58', '6999.00', NULL, NULL, NULL, NULL, 22, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237805637635, NULL, 729110111184, '曲美家居现代轻奢简约床头柜床边高脚储物柜卧室置物储藏柜', '曲美家具官方旗舰店', 'fixed', 50001382, ',1621549957,1624404038,', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01uolzCG1qQTL1WMOKl-351855490.jpg', 2, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-22 20:29:44', '2024-04-05 09:18:36', -701091031, '', '2024-03-22 09:18:36', '659.00', NULL, NULL, NULL, NULL, 111, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237805637640, NULL, 35654302556, '曲美家居现代简约中式实木衣柜家用卧室衣帽柜小户型大容量储物柜', '曲美家具官方旗舰店', 'fixed', 50015744, ',1621549070,1622774385,1621549087,', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01rADSbO1qQTKw2p9xh-351855490.jpg', 2792, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-23 03:06:46', '2024-03-28 20:57:50', -701091031, '', '2024-03-21 20:57:50', '9058.00', NULL, NULL, NULL, NULL, 3674, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237872746504, NULL, 559371554098, '曲美家居简约现代北欧风储物抽屉柜家具四斗五斗柜卧室客厅储物柜', '曲美家具官方旗舰店', 'fixed', 50015740, ',1624404038,', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01jgLKIw1qQTL0tBSKh-351855490.jpg', 405, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-22 14:03:32', '2024-03-28 17:28:32', -701091031, '', '2024-03-21 17:28:32', '4617.00', NULL, NULL, NULL, NULL, 547, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237939855361, NULL, 739001644954, '曲美家居北欧风头层牛皮弯曲木客厅阳台单人沙发懒人沙发椅帆船', '曲美家具官方旗舰店', 'fixed', 50020633, '-1', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01KqcHl51qQTLC0tvKL-351855490.jpg', 662, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-23 07:52:34', '2024-04-04 15:51:40', -701091031, '', '2024-03-21 15:51:40', '5999.00', NULL, NULL, NULL, NULL, 131, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237939855366, NULL, 736632074650, '曲美家居防螨抑菌透气床垫独袋弹簧冰丝凝胶记忆棉晨风床垫', '曲美家具官方旗舰店', 'fixed', 122910003, '-1', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN013yoswa1qQTKzzyXYZ-351855490.jpg', 231, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-22 22:25:11', '2024-03-28 11:36:25', -701091031, '', '2024-03-21 11:36:25', '6499.00', NULL, NULL, NULL, NULL, 19, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460237939855369, NULL, 559372510165, '曲美家居北欧简约风餐边柜多门带抽屉时尚餐厅储物茶水碗橱收纳柜', '曲美家具官方旗舰店', 'fixed', 50008276, ',1621549958,1621549092,', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01Z3REOI1qQTKzvD5ED-351855490.jpg', 485, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-23 10:33:45', '2024-03-27 22:39:39', -701091031, '', '2024-03-20 22:39:39', '6743.00', NULL, NULL, NULL, NULL, 279, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238006964231, NULL, 659131151317, '曲美家居现代简约风布艺床头柜储物抽屉置物柜主卧室大床配套家具', '曲美家具官方旗舰店', 'fixed', 50001382, ',1624404038,1621549073,1622774385,1623814163,', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01PQuICR1qQTLAdDeKZ_!!0-item_pic.jpg', 170, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-23 01:04:10', '2024-03-27 18:19:33', -701091031, '', '2024-03-20 18:19:33', '1747.00', NULL, NULL, NULL, NULL, 673, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238006964235, NULL, 559224240130, '曲美家居现代简约北欧风实木餐桌椅弯曲木工艺餐厅家用长方形饭桌', '曲美家具官方旗舰店', 'fixed', 201855702, ',1621549958,1621549091,', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01Q6SS0G1qQTKw2rZkI-351855490.jpg', 795, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-22 21:42:34', '2024-03-27 15:04:57', -701091031, '', '2024-03-20 15:04:57', '5800.00', NULL, NULL, NULL, NULL, 504, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238078267404, NULL, 744366896880, '曲美家居北欧风简约柔软现代头层牛皮真皮沙发客厅弯曲木沙发银河', '曲美家具官方旗舰店', 'fixed', 50020633, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01nLC2v71qQTLDPN98K-351855490.jpg', 157, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 16:21:57', '2024-03-27 15:02:49', -701091031, '', '2024-03-20 15:02:49', '10999.00', NULL, NULL, NULL, NULL, 3, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238141181963, NULL, 743639320948, '曲美家居现代北欧风轻奢极简弯曲木茶几客厅家用大小户型茶几组合', '曲美家具官方旗舰店', 'fixed', 50001709, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN017iCdLy1qQTL2OsL8e-351855490.jpg', 127, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 17:38:04', '2024-03-27 14:59:49', -701091031, '', '2024-03-20 14:59:49', '5499.00', NULL, NULL, NULL, NULL, 4, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238204096514, NULL, 35211712394, '曲美家居独袋弹簧天然乳胶床垫家用软硬厚床垫保护脊椎舒星床垫', '曲美家具官方旗舰店', 'fixed', 122920001, ',1621549088,1621549070,', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01PgRF4e1qQTL4OxXmv-351855490.jpg', 530, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-23 01:36:44', '2024-03-26 22:01:49', -701091031, '', '2024-03-19 22:01:49', '5999.00', NULL, NULL, NULL, NULL, 7235, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238204096518, NULL, 571110765951, '曲美家居防螨抑菌透气床垫黄麻乳胶独袋弹簧双面可用黑骑士床垫', '曲美家具官方旗舰店', 'fixed', 122920001, ',1621549088,1621549070,', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01igUT941qQTL0seELF-351855490.jpg', 156, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-22 16:49:17', '2024-03-26 21:50:18', -701091031, '', '2024-03-19 21:50:18', '5499.00', NULL, NULL, NULL, NULL, 1636, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238204096521, NULL, 718768125559, '曲美家居意式复古简约真皮床轻奢高级感主卧高脚皮床巧克力床新品', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN016xYPJW1qQTL8RtMUP-351855490.jpg', 239, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-22 17:03:17', '2024-04-02 18:50:37', -701091031, '', '2024-03-19 18:50:37', '5899.00', NULL, NULL, NULL, NULL, 58, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238267011076, NULL, 40929235337, '综合服务费补拍专用链接（综合服务费）', '曲美家具官方旗舰店', 'fixed', 50023725, '-1', 'https://img.alicdn.com/bao/uploaded/i1/T1CbYgFh8eXXXXXXXX_!!0-item_pic.jpg', 97529, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-22 13:16:12', '2024-03-26 17:23:00', 0, 'youfeilianjie', '2024-03-19 17:23:00', '1.00', NULL, NULL, NULL, NULL, 650661, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238267011077, NULL, 736340650617, '曲美家居奶油风云纹岩板茶几电视柜客厅家用简约轻奢现代电视柜', '曲美家具官方旗舰店', 'fixed', 50001709, ',1643983800,1621549072,1622774385,1621549081,', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01u9y1BG1qQTKrWaqUP-351855490.jpg', 31, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-23 08:44:57', '2024-03-26 15:59:12', -701091031, '', '2024-03-19 15:59:12', '4899.00', NULL, NULL, NULL, NULL, 7, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238334119937, NULL, 722065750839, '【曲美lab模块沙发】自由选购组合，配件跟随主品发货 预售50天', '曲美家具官方旗舰店', 'fixed', 50023728, '-1', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01RGeM7D1qQTFG1qh6j_!!0-item_pic.jpg', 899837, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-12 22:38:13', '2024-03-26 10:57:27', 0, '', '2024-03-19 10:57:27', '100.00', NULL, NULL, NULL, NULL, 53473, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238334119938, NULL, 9888033031, '曲美家居现代简约实木衣柜卧室衣帽柜平开门衣橱环保板材储物柜', '曲美家具官方旗舰店', 'fixed', 50015744, ',1622774385,1621549087,', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN0172PV7Z1qQTL3Vzntw-351855490.jpg', 596, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-22 21:33:48', '2024-03-25 21:10:30', -701091031, '', '2024-03-18 21:10:30', '6938.00', NULL, NULL, NULL, NULL, 2047, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238334119948, NULL, 739001644762, '曲美家居现代轻奢北欧风3C钢化玻璃茶几客厅茶几弯曲木工艺摩尔', '曲美家具官方旗舰店', 'fixed', 50001709, ',1621549957,1621549091,', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN017CAT2o1qQTLAdjj0f-351855490.jpg', 43, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-23 07:52:34', '2024-04-01 17:02:11', -701091031, '', '2024-03-18 17:02:11', '5399.00', NULL, NULL, NULL, NULL, 17, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238401228804, NULL, 739470628236, '曲美家居现代极简奶油风水云纱岩板餐桌椅圆形家用耐脏耐高温', '曲美家具官方旗舰店', 'fixed', 201846803, '-1', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01VvP0SL1qQTL004Rf0-351855490.jpg', 10, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 20:16:59', '2024-03-25 15:30:58', -701091031, '', '2024-03-18 15:30:58', '4599.00', NULL, NULL, NULL, NULL, 10, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238401228809, NULL, 743182884130, '曲美家居现代北欧风简约床头柜卧室家用弯曲木工艺储物床头柜云栖', '曲美家具官方旗舰店', 'fixed', 50001382, '-1', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01V6i0qV1qQTKzIrhiq-351855490.jpg', 177, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 20:25:58', '2024-03-25 15:18:13', -701091031, '', '2024-03-18 15:18:13', '2999.00', NULL, NULL, NULL, NULL, 24, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238468337666, NULL, 739640957900, '曲美家居现代北欧风简约石纹板床头柜弯曲木工艺床头储物柜月半湾', '曲美家具官方旗舰店', 'fixed', 50001382, '-1', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN014XGxt51qQTKzIlC7l-351855490.jpg', 52, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 04:38:40', '2024-03-25 14:57:55', -701091031, '', '2024-03-18 14:57:55', '2399.00', NULL, NULL, NULL, NULL, 28, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238468337668, NULL, 739607373347, '曲美家居现代北欧风头层牛皮客厅沙发阳台椅弯曲木休闲单椅四叶草', '曲美家具官方旗舰店', 'fixed', 50015483, '-1', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01EkUNNC1qQTKrWcrQp-351855490.jpg', 193, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-23 03:31:31', '2024-04-01 14:38:16', -701091031, '', '2024-03-18 14:38:16', '4699.00', NULL, NULL, NULL, NULL, 5, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238468337673, NULL, 747230335059, '曲美家居简约实木框架简雅大气现代头层牛皮床主卧室床平川床新品', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN012EO6f91qQTL0pJDIW-351855490.jpg', 265, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 16:06:31', '2024-03-25 13:41:16', -701091031, '', '2024-03-18 13:41:16', '9999.00', NULL, NULL, NULL, NULL, 5, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238531252229, NULL, 746898364904, '曲美家居简约实木框架大气现代进口头层牛皮床主卧室床原野床新品', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01GLKM3y1qQTLA9E8oY-351855490.jpg', 233, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 17:12:59', '2024-03-25 11:20:00', -701091031, '', '2024-03-18 11:20:00', '9999.00', NULL, NULL, NULL, NULL, 7, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238531252236, NULL, 743523103853, '曲美家居现代简约北欧风轻奢头层真皮弯曲木工艺软靠包主卧云栖床', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01iXvoqE1qQTLA9IZaz-351855490.jpg', 393, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-23 05:08:38', '2024-03-25 09:48:59', -701091031, '', '2024-03-18 09:48:59', '15999.00', NULL, NULL, NULL, NULL, 7, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238598361110, NULL, 739038496267, '曲美家居现代简约北欧风头层真皮床轻奢主卧室弯曲木工艺月半湾', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01qJ7EVc1qQTL6KJib4-351855490.jpg', 331, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 18:00:43', '2024-03-24 18:00:55', -701091031, '', '2024-03-17 18:00:55', '10599.00', NULL, NULL, NULL, NULL, 30, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238665469964, NULL, 712677952081, '曲美家居真皮床简约现代法式奶油风猫耳皮床主卧室软萌储物床新品', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01bfZPsg1qQTLAC6qv7-351855490.jpg', 249, NULL, 7, 'false', 'true', 'false', 'false', '2024-03-22 20:19:48', '2024-03-23 23:34:14', -701091031, '', '2024-03-16 23:34:14', '5999.00', NULL, NULL, NULL, NULL, 60, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1766460238728384522, NULL, 713126886887, '曲美家居现代轻奢风真皮床悬浮床主卧室皮艺床钢琴键双人床新品', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01GkZAvB1qQTL0pJ0q9-351855490.jpg', 226, NULL, 7, 'false', 'true', 'true', 'false', '2024-03-23 06:18:37', '2024-03-23 23:29:51', -701091031, '', '2024-03-16 23:29:51', '6999.00', NULL, NULL, NULL, NULL, 18, NULL, NULL, 1, NULL, '2024-03-09 21:45:15');
+INSERT INTO `oms_tao_goods` VALUES (1767527418374955009, NULL, 641634906618, '曲美家居轻奢简约现代床头柜储物双抽床边柜皮质卧室置物储藏柜', '曲美家具官方旗舰店', 'fixed', 50001382, ',1621549957,1624404038,', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01QLsZx71qQTL3VsxUY-351855490.jpg', 1271, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-22 21:08:06', '2024-03-26 15:55:51', -701091031, '', '2024-03-12 15:55:51', '1638.00', NULL, NULL, NULL, NULL, 918, NULL, NULL, 1, NULL, '2024-03-12 20:25:50');
+INSERT INTO `oms_tao_goods` VALUES (1767527418970546178, NULL, 726598043972, '曲美lab折叠餐桌椅现代简约轻奢风可组装收缩餐桌别墅客餐厅桌椅', '曲美家具官方旗舰店', 'fixed', 50001403, ',1621549091,1621549070,', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01sqSUDt1qQTGoaCi0v_!!0-item_pic.jpg', 40, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-19 13:42:47', '2024-03-26 09:40:10', -701091031, '', '2024-03-12 09:40:10', '5350.00', NULL, NULL, NULL, NULL, 2, NULL, NULL, 1, NULL, '2024-03-12 20:25:50');
+INSERT INTO `oms_tao_goods` VALUES (1767527420421775361, NULL, 628280725946, '曲美家居头层真皮床轻奢现代简约方糖皮床主卧室多功能储物大床', '曲美家具官方旗舰店', 'fixed', 50020000, ',1621549070,1622774385,1621549084,', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01Q015PL1qQTKzAWF3a-351855490.jpg', 1412, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-23 04:58:48', '2024-03-25 20:53:16', -701091031, '', '2024-03-11 20:53:16', '11373.00', NULL, NULL, NULL, NULL, 1056, NULL, NULL, 1, NULL, '2024-03-12 20:25:51');
+INSERT INTO `oms_tao_goods` VALUES (1767527423311650818, NULL, 773145098297, '曲美家居头层真皮齐边床轻奢现代皮床主卧室多功能储物大床方糖', '曲美家具官方旗舰店', 'fixed', 50020000, ',1621549070,1622774385,1621549084,', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01sVsuEd1qQTKzv9K5x-351855490.jpg', 510, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-19 18:30:04', '2024-03-25 17:20:53', -701091031, '', '2024-03-11 17:20:53', '8599.00', NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, NULL, '2024-03-12 20:25:51');
+INSERT INTO `oms_tao_goods` VALUES (1767527424439918594, NULL, 773103076901, '曲美家居现代简约悬浮真皮齐边床轻奢简约复古风悬空主卧大床托特', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01Xkvysn1qQTKw2lKi2-351855490.jpg', 219, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-21 13:38:00', '2024-03-25 17:20:53', -701091031, '', '2024-03-11 17:20:53', '8499.00', NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, NULL, '2024-03-12 20:25:52');
+INSERT INTO `oms_tao_goods` VALUES (1767527429259173889, NULL, 714919088244, '曲美家居头层牛皮真皮沙发现代简约轻奢风小户型月牙沙发客厅新品', '曲美家具官方旗舰店', 'fixed', 50020633, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01dMMV8Q1qQTKrWaujV-351855490.jpg', 2, NULL, 14, 'false', 'true', 'false', 'false', '2024-03-23 09:37:05', '2024-03-24 15:57:27', -701091031, '', '2024-03-10 15:57:27', '18999.00', NULL, NULL, NULL, NULL, 21, NULL, NULL, 1, NULL, '2024-03-12 20:25:53');
+INSERT INTO `oms_tao_goods` VALUES (1771057090989010946, NULL, 715387629658, '曲美家居现代轻奢极简茶几电视柜客厅家用大小户型雪山茶几组合', '曲美家具官方旗舰店', 'fixed', 50001709, ',1621549073,', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01iCgmPa1qQTL2m25BB-351855490.jpg', 63, NULL, 14, 'false', 'true', 'false', 'false', '2024-03-22 16:59:32', '2024-03-30 16:38:54', -701091031, '', '2024-03-16 16:38:54', '6599.00', NULL, NULL, NULL, NULL, 59, NULL, NULL, 1, NULL, '2024-03-22 14:11:30');
+INSERT INTO `oms_tao_goods` VALUES (1771057091169366017, NULL, 715554799144, '曲美家居现代意式复古头层真皮床黑色欧包高级侘寂风高脚主卧大床', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01pNSJed1qQTLA9BrRl-351855490.jpg', 223, NULL, 14, 'false', 'true', 'false', 'false', '2024-03-22 17:36:12', '2024-03-30 15:19:09', -701091031, '', '2024-03-16 15:19:09', '5599.00', NULL, NULL, NULL, NULL, 106, NULL, NULL, 1, NULL, '2024-03-22 14:11:30');
+INSERT INTO `oms_tao_goods` VALUES (1771057091307778050, NULL, 718529179488, '曲美家居北欧简约真皮床轻奢高级温柔风主卧高脚左岸花园皮床新品', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01W658Sx1qQTL9BGq5P-351855490.jpg', 453, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-23 01:01:22', '2024-03-29 17:12:40', -701091031, '', '2024-03-15 17:12:40', '6999.00', NULL, NULL, NULL, NULL, 224, NULL, NULL, 1, NULL, '2024-03-22 14:11:30');
+INSERT INTO `oms_tao_goods` VALUES (1771057092666732546, NULL, 717997086993, '曲美家居现代简约悬浮真皮床轻奢简约复古风悬空主卧大床托特新品', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN011xeexK1qQTL9GADbB-351855490.jpg', 243, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-22 23:05:40', '2024-03-28 17:50:47', -701091031, '', '2024-03-14 17:50:47', '6999.00', NULL, NULL, NULL, NULL, 75, NULL, NULL, 1, NULL, '2024-03-22 14:11:30');
+INSERT INTO `oms_tao_goods` VALUES (1771057092746424321, NULL, 770344068923, '曲美lab墩墩沙发现代简约模块布艺真皮沙发别墅客厅沙发自由搭配', '曲美家具官方旗舰店', 'fixed', 50020633, '-1', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN013KNpNn1qQTKgMXdjQ_!!0-item_pic.jpg', 2600, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-22 11:10:12', '2024-03-28 14:40:27', -701091031, '', '2024-03-14 14:40:27', '6500.00', NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, NULL, '2024-03-22 14:11:30');
+INSERT INTO `oms_tao_goods` VALUES (1771057092972916738, NULL, 719802492323, '曲美家居现代轻奢简约床头柜床边储物柜皮质卧室置物储藏柜', '曲美家具官方旗舰店', 'fixed', 50001382, ',1621549957,1624404038,', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN013NbpUI1qQTKzv2wuK-351855490.jpg', 17, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-22 22:05:58', '2024-03-28 14:04:31', 1914167832, '', '2024-03-14 14:04:31', '659.00', NULL, NULL, NULL, NULL, 33, NULL, NULL, 1, NULL, '2024-03-22 14:11:30');
+INSERT INTO `oms_tao_goods` VALUES (1771057093220380674, NULL, 720313574313, '曲美lab墩墩沙发现代简约轻奢风自由模块组合布艺别墅客厅沙发', '曲美家具官方旗舰店', 'fixed', 50020633, '-1', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01Tq3Edj1qQTKhdLLrW_!!0-item_pic.jpg', 243, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-23 06:19:07', '2024-03-28 11:39:41', -701091031, '', '2024-03-14 11:39:41', '3099.00', NULL, NULL, NULL, NULL, 109, NULL, NULL, 1, NULL, '2024-03-22 14:11:30');
+INSERT INTO `oms_tao_goods` VALUES (1771057093396541442, NULL, 766114054268, '曲美lab墩墩沙发现代简约模块布艺真皮沙发别墅客厅沙发门店同款', '曲美家具官方旗舰店', 'fixed', 50020633, '-1', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN013xJQWJ1qQTH1YFmXf_!!0-item_pic.jpg', 194, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-22 13:37:34', '2024-03-28 09:41:43', -701091031, '', '2024-03-14 09:41:43', '3099.00', NULL, NULL, NULL, NULL, 4, NULL, NULL, 1, NULL, '2024-03-22 14:11:30');
+INSERT INTO `oms_tao_goods` VALUES (1771373196038238209, NULL, 776247730099, '曲美家居现代简约北欧风木制餐椅弯曲木工艺百搭铁艺家用餐椅新品', '曲美家具官方旗舰店', 'fixed', 50015482, ',1621549958,1621549091,', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN013pGuOd1qQTLCtLF31_!!0-item_pic.jpg', 690, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-23 09:02:10', '2024-04-05 15:38:49', -701091031, '', '2024-03-22 15:38:49', '799.00', NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, NULL, '2024-03-23 11:07:35');
+INSERT INTO `oms_tao_goods` VALUES (1771373196105347077, NULL, 770416010388, '曲美家居北欧简约真皮床轻奢高级温柔风主卧高脚左岸花园儿童床', '曲美家具官方旗舰店', 'fixed', 50020000, '-1', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01YF0f2P1qQTL6SisjH_!!0-item_pic.jpg', 172, NULL, 14, 'false', 'true', 'true', 'false', '2024-03-23 09:05:45', '2024-04-05 15:38:49', -701091031, '', '2024-03-22 15:38:49', '5999.00', NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, NULL, '2024-03-23 11:07:35');
+
+-- ----------------------------
+-- Table structure for oms_tao_goods_sku
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_tao_goods_sku`;
+CREATE TABLE `oms_tao_goods_sku`  (
+  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `tao_goods_id` bigint(0) DEFAULT NULL COMMENT '外键id',
+  `num_iid` bigint(0) NOT NULL COMMENT 'sku所属商品数字id',
+  `iid` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'sku所属商品id(注意：iid近期即将废弃，请用num_iid参数)',
+  `sku_id` bigint(0) NOT NULL COMMENT '商品skuid，阿里',
+  `properties` varchar(2550) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'sku的销售属性组合字符串（颜色，大小，等等，可通过类目API获取某类目下的销售属性）,格式是p1:v1;p2:v2',
+  `properties_name` varchar(2550) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'sku所对应的销售属性的中文名字串，格式如：pid1:vid1:pid_name1:vid_name1;pid2:vid2:pid_name2:vid_name2……',
+  `quantity` bigint(0) DEFAULT NULL COMMENT '属于这个sku的商品的数量，',
+  `spec` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT 'specId',
+  `price` double DEFAULT NULL COMMENT '属于这个sku的商品的价格 取值范围:0-100000000;精确到2位小数;单位:元。如:200.07，表示:200元7分。',
+  `outer_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商家设置的外部id。',
+  `created` datetime(0) DEFAULT NULL COMMENT 'sku创建日期 时间格式：yyyy-MM-dd HH:mm:ss',
+  `modified` datetime(0) DEFAULT NULL COMMENT 'sku最后修改日期 时间格式：yyyy-MM-dd HH:mm:ss',
+  `status` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'sku状态。	normal',
+  `sku_spec_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '表示SKu上的产品规格信息',
+  `barcode` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品级别的条形码',
+  `o_goods_id` bigint(0) DEFAULT NULL COMMENT '商品id(o_goods外键)',
+  `o_goods_sku_id` bigint(0) DEFAULT NULL COMMENT '商品skuid(o_goods_sku外键)',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1771373199762780167 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '淘宝商品SKU表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of oms_tao_goods_sku
+-- ----------------------------
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195769802753, 1766460237340069889, 746545542225, NULL, 5145967656906, '122216927:77835123;1627207:28404411608;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28404411608:颜色分类:梦舟真皮床-烟灰色;21433:50753444:尺寸:1500mm*2000mm', 58, '', 9999, 'ZH-PC-2-DS-F1-QM23-B4-15', '2023-11-03 19:10:15', '2024-03-22 16:38:07', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195782385665, 1766460237340069889, 746545542225, NULL, 5145967656907, '122216927:77835123;1627207:28404411608;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28404411608:颜色分类:梦舟真皮床-烟灰色;21433:50753460:尺寸:1800mm*2000mm', 58, '', 9999, 'ZH-PC-2-DS-F1-QM23-B4-18', '2023-11-03 19:10:15', '2024-03-21 18:00:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195782385666, 1766460237340069889, 746545542225, NULL, 5155221393263, '122216927:77835123;1627207:28483771618;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28483771618:颜色分类:梦舟真皮床-烟灰色+M1舒星乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 50, '', 10999, 'DS-F1-QM23-B4-15&M1', '2023-11-07 09:31:58', '2023-12-05 09:28:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195782385667, 1766460237340069889, 746545542225, NULL, 5155221393264, '122216927:77835123;1627207:28483771618;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28483771618:颜色分类:梦舟真皮床-烟灰色+M1舒星乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 58, '', 10999, 'DS-F1-QM23-B4-18&M1', '2023-11-07 09:31:58', '2024-03-22 16:38:07', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195845300225, 1766460237340069894, 647894947395, NULL, 4843935635738, '122216927:77835123;1627207:25995524633;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25995524633:颜色分类:大地棕【摔纹头层牛皮+高寒松木实木框架】;21433:50753444:尺寸:1500mm*2000mm', 11, '', 8492, 'ZH-PC-2-DS-F1-QM21-B6-15', '2021-06-11 16:47:26', '2024-02-22 13:34:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195845300226, 1766460237340069894, 647894947395, NULL, 4843935635739, '122216927:77835123;1627207:25995524633;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25995524633:颜色分类:大地棕【摔纹头层牛皮+高寒松木实木框架】;21433:50753460:尺寸:1800mm*2000mm', 18, '', 8904, 'ZH-PC-2-DS-F1-QM21-B6-18', '2021-06-11 16:47:26', '2023-11-10 23:54:55', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195845300227, 1766460237340069894, 647894947395, NULL, 4769643316402, '122216927:77835123;1627207:25995524634;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25995524634:颜色分类:优雅驼【摔纹头层牛皮+高寒松木实木框架】;21433:50753444:尺寸:1500mm*2000mm', 10, '', 9610, 'ZH-PC-2-DS-F2-QM21-B6-15', '2021-11-27 15:45:59', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195845300228, 1766460237340069894, 647894947395, NULL, 4769643316416, '122216927:77835123;1627207:25995524634;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25995524634:颜色分类:优雅驼【摔纹头层牛皮+高寒松木实木框架】;21433:50753460:尺寸:1800mm*2000mm', 5, '', 10013, 'ZH-PC-2-DS-F2-QM21-B6-18', '2021-11-27 15:45:59', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195845300229, 1766460237340069894, 647894947395, NULL, 4769643316399, '122216927:77835123;1627207:28314437997;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28314437997:颜色分类:大地棕-框架单床+黑骑士双面可用床垫;21433:50753444:尺寸:1500mm*2000mm', 13, '', 11466, 'DS-F1-QM21-B6-15&QM23-M2-15', '2021-11-27 15:45:59', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195845300230, 1766460237340069894, 647894947395, NULL, 4769643316413, '122216927:77835123;1627207:28314437997;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28314437997:颜色分类:大地棕-框架单床+黑骑士双面可用床垫;21433:50753460:尺寸:1800mm*2000mm', 18, '', 11987, 'DS-F1-QM21-B6-18&QM23-M2-18', '2021-11-27 15:45:59', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195845300231, 1766460237340069894, 647894947395, NULL, 5179859263803, '122216927:77835123;1627207:28314437998;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28314437998:颜色分类:优雅驼-框架单床+黑骑士双面可用床垫;21433:50753444:尺寸:1500mm*2000mm', 13, '', 11466, 'DS-F2-QM21-B6-15&QM23-M2-15', '2023-05-06 18:22:34', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195908214786, 1766460237340069894, 647894947395, NULL, 5179859263804, '122216927:77835123;1627207:28314437998;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28314437998:颜色分类:优雅驼-框架单床+黑骑士双面可用床垫;21433:50753460:尺寸:1800mm*2000mm', 18, '', 11466, 'DS-F2-QM21-B6-18&QM23-M2-18', '2023-05-06 18:22:34', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195908214787, 1766460237340069894, 647894947395, NULL, 5154219589581, '122216927:77835123;1627207:27837716849;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27837716849:颜色分类:大地棕-箱体款【摔纹头层牛皮+高寒松木实木框架】;21433:50753444:尺寸:1500mm*2000mm', 9, '', 11500, 'ZH-PC-2-DS-F1-QM21-B6-15F', '2023-11-06 15:57:47', '2024-02-27 08:57:14', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195908214788, 1766460237340069894, 647894947395, NULL, 5288429578042, '122216927:77835123;1627207:27837716849;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27837716849:颜色分类:大地棕-箱体款【摔纹头层牛皮+高寒松木实木框架】;21433:50753460:尺寸:1800mm*2000mm', 17, '', 11500, 'ZH-PC-2-DS-F1-QM21-B6-18F', '2023-10-07 14:50:49', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195908214789, 1766460237340069894, 647894947395, NULL, 5288429578041, '122216927:77835123;1627207:27837716850;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27837716850:颜色分类:优雅驼-箱体款【摔纹头层牛皮+高寒松木实木框架】;21433:50753444:尺寸:1500mm*2000mm', 12, '', 11500, 'ZH-PC-2-DS-F2-QM21-B6-15F', '2023-10-07 14:50:49', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195908214790, 1766460237340069894, 647894947395, NULL, 5288429578043, '122216927:77835123;1627207:27837716850;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27837716850:颜色分类:优雅驼-箱体款【摔纹头层牛皮+高寒松木实木框架】;21433:50753460:尺寸:1800mm*2000mm', 10, '', 11500, 'ZH-PC-2-DS-F2-QM21-B6-18F', '2023-10-07 14:50:49', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195908214791, 1766460237340069894, 647894947395, NULL, 5141249444436, '122216927:77835123;1627207:28314437999;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28314437999:颜色分类:大地棕-箱体款单床+黑骑士双面可用床垫;21433:50753444:尺寸:1500mm*2000mm', 14, '', 11500, 'DS-F1-QM21-B6-15F&M2-15', '2023-10-30 16:49:12', '2023-11-10 23:54:55', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195908214792, 1766460237340069894, 647894947395, NULL, 5141249444438, '122216927:77835123;1627207:28314437999;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28314437999:颜色分类:大地棕-箱体款单床+黑骑士双面可用床垫;21433:50753460:尺寸:1800mm*2000mm', 13, '', 11500, 'DS-F1-QM21-B6-18F&M2-18', '2023-10-30 16:49:12', '2024-03-12 14:04:53', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195975323649, 1766460237340069894, 647894947395, NULL, 5141249444437, '122216927:77835123;1627207:28314438000;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28314438000:颜色分类:优雅驼-箱体款单床+黑骑士双面可用床垫;21433:50753444:尺寸:1500mm*2000mm', 15, '', 11500, 'DS-F2-QM21-B6-15F&M2-15', '2023-10-30 16:49:12', '2023-11-10 23:54:55', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195975323650, 1766460237340069894, 647894947395, NULL, 5141249444439, '122216927:77835123;1627207:28314438000;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28314438000:颜色分类:优雅驼-箱体款单床+黑骑士双面可用床垫;21433:50753460:尺寸:1800mm*2000mm', 13, '', 11500, 'DS-F2-QM21-B6-18F&M2-18', '2023-10-30 16:49:12', '2023-11-10 23:54:55', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195975323651, 1766460237340069894, 647894947395, NULL, 5154219589582, '122216927:77835123;1627207:28468120789;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28468120789:颜色分类:大地棕-框架单床+舒星独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 10, '', 10013, 'DS-F1-QM21-B6-15&DS-QM23-M1-15', '2023-11-06 15:57:47', '2023-11-07 16:23:37', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195975323652, 1766460237340069894, 647894947395, NULL, 5154219589584, '122216927:77835123;1627207:28468120789;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28468120789:颜色分类:大地棕-框架单床+舒星独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 10, '', 10013, 'DS-F1-QM21-B6-18&DS-QM23-M1-18', '2023-11-06 15:57:47', '2024-03-18 08:55:06', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195975323653, 1766460237340069894, 647894947395, NULL, 5154219589583, '122216927:77835123;1627207:28468120790;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28468120790:颜色分类:优雅驼-框架单床+舒星独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 19, '', 10013, 'DS-F2-QM21-B6-15&DS-QM23-M1-15', '2023-11-06 15:57:47', '2024-03-17 17:11:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373195975323654, 1766460237340069894, 647894947395, NULL, 5154219589585, '122216927:77835123;1627207:28468120790;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28468120790:颜色分类:优雅驼-框架单床+舒星独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 18, '', 10013, 'DS-F2-QM21-B6-18&DS-QM23-M1-18', '2023-11-06 15:57:47', '2024-03-23 02:11:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238210, 1771373196038238209, 776247730099, NULL, 5306401188522, '1627207:31281497290', '1627207:31281497290:颜色分类:本木色-餐椅 C57N', 50, '', 799, '', '2024-03-22 13:46:33', '2024-03-22 15:50:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238211, 1771373196038238209, 776247730099, NULL, 5476723526908, '1627207:31281497291', '1627207:31281497291:颜色分类:胡桃色-餐椅 C57N', 50, '', 799, '', '2024-03-22 15:33:39', '2024-03-22 15:50:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238212, 1771373196038238209, 776247730099, NULL, 5306401188517, '1627207:31281497292', '1627207:31281497292:颜色分类:本木色-餐椅 C10-K', 50, '', 899, '', '2024-03-22 13:46:33', '2024-03-22 17:18:00', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238213, 1771373196038238209, 776247730099, NULL, 5476723526909, '1627207:31281497293', '1627207:31281497293:颜色分类:棕色-餐椅 C10-K', 50, '', 899, '', '2024-03-22 15:33:39', '2024-03-22 17:18:00', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238214, 1771373196038238209, 776247730099, NULL, 5476723526910, '1627207:31281497294', '1627207:31281497294:颜色分类:黑色-餐椅 C10-K', 50, '', 899, '', '2024-03-22 15:33:39', '2024-03-22 17:18:00', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238215, 1771373196038238209, 776247730099, NULL, 5306401188519, '1627207:31281497295', '1627207:31281497295:颜色分类:本木色-餐椅 C25', 50, '', 799, '', '2024-03-22 13:46:33', '2024-03-22 15:50:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238216, 1771373196038238209, 776247730099, NULL, 5306401188520, '1627207:31281497296', '1627207:31281497296:颜色分类:胡桃色-餐椅 C25', 50, '', 799, '', '2024-03-22 13:46:33', '2024-03-22 15:50:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238217, 1771373196038238209, 776247730099, NULL, 5476723526911, '1627207:31281497297', '1627207:31281497297:颜色分类:黑色-餐椅 C25', 50, '', 799, '', '2024-03-22 15:33:39', '2024-03-22 15:50:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238218, 1771373196038238209, 776247730099, NULL, 5306401188521, '1627207:31281497298', '1627207:31281497298:颜色分类:本木色-餐椅 C54', 50, '', 799, '', '2024-03-22 13:46:33', '2024-03-22 15:50:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238219, 1771373196038238209, 776247730099, NULL, 5476723526912, '1627207:31281497299', '1627207:31281497299:颜色分类:胡桃色-餐椅 C54', 50, '', 799, '', '2024-03-22 15:33:39', '2024-03-22 15:33:39', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196038238220, 1771373196038238209, 776247730099, NULL, 5306401188518, '1627207:31281497300', '1627207:31281497300:颜色分类:本木色-餐椅 C35', 50, '', 799, '', '2024-03-22 13:46:33', '2024-03-22 15:50:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196105347073, 1771373196038238209, 776247730099, NULL, 5476723526913, '1627207:31281497301', '1627207:31281497301:颜色分类:棕色-餐椅 C35', 50, '', 799, '', '2024-03-22 15:33:39', '2024-03-22 15:50:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196105347074, 1771373196038238209, 776247730099, NULL, 5476723526914, '1627207:31281497302', '1627207:31281497302:颜色分类:黑色-餐椅 C35', 50, '', 799, '', '2024-03-22 15:33:39', '2024-03-22 15:50:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196105347075, 1771373196038238209, 776247730099, NULL, 5310067849887, '1627207:31283918465', '1627207:31283918465:颜色分类:本木色软包A-餐椅 C10-K', 20, '', 1099, '', '2024-03-22 17:08:40', '2024-03-22 17:08:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196105347076, 1771373196038238209, 776247730099, NULL, 5310067849890, '1627207:31283918469', '1627207:31283918469:颜色分类:棕色软包B-餐椅 C10-K', 20, '', 1099, '', '2024-03-22 17:08:40', '2024-03-22 17:26:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196105347078, 1771373196105347077, 770416010388, NULL, 5282063945469, '122216927:77835123;1627207:27296795331;21433:50753502', '122216927:77835123:家具结构:框架结构;1627207:27296795331:颜色分类:架子款-浅咖色【进口真皮+双层海绵+松木排骨架】;21433:50753502:尺寸:1200mm*2000mm', 17, '', 4999, 'ZH-PC-2-DS-F1-QM23-B1-12', '2024-02-29 12:02:18', '2024-03-22 17:10:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196105347079, 1771373196105347077, 770416010388, NULL, 5282063945470, '122216927:77835123;1627207:27296795331;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795331:颜色分类:架子款-浅咖色【进口真皮+双层海绵+松木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 8, '', 4999, 'ZH-PC-2-DS-F1-QM23-B1-15', '2024-02-29 12:02:18', '2024-03-22 17:10:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196105347080, 1771373196105347077, 770416010388, NULL, 5282063945472, '122216927:77835123;1627207:27296795332;21433:50753502', '122216927:77835123:家具结构:框架结构;1627207:27296795332:颜色分类:架子款-浅咖色 进口真皮软床+独袋弹簧乳胶床垫;21433:50753502:尺寸:1200mm*2000mm', 13, '', 5999, 'DS-F1-QM23-B1-12&QM23-M1-12', '2024-02-29 12:02:18', '2024-03-22 17:10:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196168261634, 1771373196105347077, 770416010388, NULL, 5282063945473, '122216927:77835123;1627207:27296795332;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795332:颜色分类:架子款-浅咖色 进口真皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 29, '', 4999, 'DS-F1-QM23-B1-15&QM23-M1-15', '2024-02-29 12:02:18', '2024-03-22 17:10:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196168261635, 1771373196105347077, 770416010388, NULL, 5282063945475, '122216927:77835123;1627207:27296795333;21433:50753502', '122216927:77835123:家具结构:框架结构;1627207:27296795333:颜色分类:架子款-奶油白【进口真皮+双层海绵+松木排骨架】;21433:50753502:尺寸:1200mm*2000mm', 34, '', 4999, 'ZH-PC-2-DS-F2-QM23-B1-12', '2024-02-29 12:02:18', '2024-03-22 17:10:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196168261636, 1771373196105347077, 770416010388, NULL, 5282063945476, '122216927:77835123;1627207:27296795333;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795333:颜色分类:架子款-奶油白【进口真皮+双层海绵+松木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 25, '', 4999, 'ZH-PC-2-DS-F2-QM23-B1-15', '2024-02-29 12:02:18', '2024-03-22 17:10:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196168261637, 1771373196105347077, 770416010388, NULL, 5282063945478, '122216927:77835123;1627207:27296795334;21433:50753502', '122216927:77835123:家具结构:框架结构;1627207:27296795334:颜色分类:架子款-奶油白 进口真皮软床+独袋弹簧乳胶床垫;21433:50753502:尺寸:1200mm*2000mm', 22, '', 5999, 'DS-F2-QM23-B1-12&QM23-M1-12', '2024-02-29 12:02:18', '2024-03-22 17:10:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196168261638, 1771373196105347077, 770416010388, NULL, 5282063945479, '122216927:77835123;1627207:27296795334;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795334:颜色分类:架子款-奶油白 进口真皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 24, '', 5999, 'DS-F2-QM23-B1-15&QM23-M1-15', '2024-02-29 12:02:18', '2024-03-22 17:10:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196235370498, 1766460237407178766, 609816189489, NULL, 4429419976428, '1627207:7883098009;29112:97926', '1627207:7883098009:颜色分类:胡桃色+荷花白色;29112:97926:安装方式:组装', 50, '', 4259, 'YW1-09ZC-LB1-G', '2020-08-20 09:45:48', '2024-03-23 06:08:06', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196235370499, 1766460237407178766, 609816189489, NULL, 4429419976425, '1627207:2830349021;29112:97926', '1627207:2830349021:颜色分类:深橡色+荷花白色;29112:97926:安装方式:组装', 53, '', 4259, 'LZF-084-09ZC-LB1-G', '2020-08-20 09:45:48', '2024-03-07 17:22:26', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196235370500, 1766460237407178766, 609816189489, NULL, 4429419976427, '1627207:2444198939;29112:97926', '1627207:2444198939:颜色分类:木本色+荷花白色;29112:97926:安装方式:组装', 28, '', 4259, 'ZQB-09ZC-LB1-G', '2020-08-20 09:45:48', '2024-03-07 17:22:26', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196235370501, 1766460237470093317, 742646592404, NULL, 5125494417111, '1627207:27949364504', '1627207:27949364504:颜色分类:银河合观胡桃色岩板餐桌1.4米（140*85*75）', 21, '', 5999, 'BSYB/HGHT-23E-WQM-DT1-1', '2023-10-12 09:50:26', '2023-11-06 11:18:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196235370502, 1766460237470093317, 742646592404, NULL, 5125494417112, '1627207:27972379457', '1627207:27972379457:颜色分类:银河戈尔浅胡桃岩板餐桌1.4米（140*85*75）', 30, '', 5999, 'BSYB/GRQHT-23E-WQM-DT1-1', '2023-10-12 09:50:26', '2023-11-06 11:18:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196235370503, 1766460237470093317, 742646592404, NULL, 5122554464671, '1627207:27972379459', '1627207:27972379459:颜色分类:银河合观胡桃色岩板餐桌1.6米（160*85*75）', 27, '', 5999, 'BSYB/HGHT-23E-WQM-DT1-2', '2023-10-13 15:06:16', '2023-11-06 11:18:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196298285058, 1766460237470093317, 742646592404, NULL, 5122554464670, '1627207:27949364505', '1627207:27949364505:颜色分类:银河戈尔浅胡桃岩板餐桌1.6米（160*85*75）', 29, '', 5999, 'BSYB/GRQHT-23E-WQM-DT1-2', '2023-10-13 15:06:16', '2023-11-06 11:18:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196298285059, 1766460237470093317, 742646592404, NULL, 5122554464672, '1627207:28809005021', '1627207:28809005021:颜色分类:银河合观胡桃餐椅*2A款', 4, '', 5999, 'HGHT-23E-WQM-D2*2', '2023-10-13 15:06:16', '2024-03-22 19:16:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196298285060, 1766460237470093317, 742646592404, NULL, 5122554464673, '1627207:28809005022', '1627207:28809005022:颜色分类:银河戈尔浅胡桃餐椅*2A款', 10, '', 5999, 'GRQHT-23E-WQM-D2*2', '2023-10-13 15:06:16', '2023-12-07 17:19:11', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196298285061, 1766460237470093317, 742646592404, NULL, 5297476963969, '1627207:28809005023', '1627207:28809005023:颜色分类:银河合观胡桃+奶油白软包餐椅*2', 20, '', 5999, 'F1-HGHT-23E-WQM-D1*2', '2023-10-13 15:47:38', '2023-11-20 17:02:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196298285062, 1766460237470093317, 742646592404, NULL, 5297476963970, '1627207:28809005024', '1627207:28809005024:颜色分类:银河合观胡桃+深灰色软包餐椅*2', 18, '', 5999, 'F2-HGHT-23E-WQM-D1*2', '2023-10-13 15:47:38', '2024-03-22 19:16:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196298285063, 1766460237470093317, 742646592404, NULL, 5297476963971, '1627207:28809005025', '1627207:28809005025:颜色分类:银河戈尔浅胡桃+奶油白软包软包餐椅*2', 30, '', 5999, 'F1-GRQHT-23E-WQM-D1*2', '2023-10-13 15:47:38', '2023-11-20 17:02:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196298285064, 1766460237470093317, 742646592404, NULL, 5297476963972, '1627207:28809005026', '1627207:28809005026:颜色分类:银河戈尔浅胡桃+深灰色软包软包餐椅*2', 26, '', 5999, 'F2-GRQHT-23E-WQM-D1*2', '2023-10-13 15:47:38', '2023-11-20 17:02:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196298285065, 1766460237470093317, 742646592404, NULL, 5302948751839, '1627207:28809005027', '1627207:28809005027:颜色分类:银河合观胡桃餐椅*2 B款', 7, '', 5999, 'HGHT-2017E-C1', '2023-10-19 10:44:05', '2024-01-03 10:39:39', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196298285066, 1766460237470093317, 742646592404, NULL, 5302948751840, '1627207:28809005028', '1627207:28809005028:颜色分类:银河戈尔浅胡桃餐椅*2 B款', 0, '', 5999, 'GRQHT-2017E-C1', '2023-10-19 10:44:05', '2024-01-04 09:52:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196365393922, 1766460237537202179, 742808696905, NULL, 5126544969424, '1627207:27972365422', '1627207:27972365422:颜色分类:流光合观胡桃色餐桌1.4米（140*85*75）', 28, '', 7999, 'HGHT-23E-WQM-DT1-1-M', '2023-10-13 15:06:01', '2023-11-07 16:26:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196365393923, 1766460237537202179, 742808696905, NULL, 5126544969425, '1627207:27972365423', '1627207:27972365423:颜色分类:流光戈尔浅胡桃色餐桌1.4米（140*85*75）', 25, '', 7999, 'GRQHT-23E-WQM-DT1-1-M', '2023-10-13 15:06:01', '2024-02-21 13:04:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196365393924, 1766460237537202179, 742808696905, NULL, 5126544969426, '1627207:27972365424', '1627207:27972365424:颜色分类:流光合观胡桃色餐桌1.6米（160*85*75）', 26, '', 8999, 'HGHT-23E-WQM-DT1-2-M', '2023-10-13 15:06:01', '2023-11-07 16:26:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196365393925, 1766460237537202179, 742808696905, NULL, 5126544969427, '1627207:27972365425', '1627207:27972365425:颜色分类:流光戈尔浅胡桃色餐桌1.6米（160*85*75）', 28, '', 8999, 'GRQHT-23E-WQM-DT1-2-M', '2023-10-13 15:06:01', '2023-11-07 16:26:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196365393926, 1766460237537202179, 742808696905, NULL, 5126575889576, '1627207:28809016455', '1627207:28809016455:颜色分类:流光餐椅合观胡桃奶油白*2', 21, '', 7999, 'F1-HGHT-23E-WQM-D3*2', '2023-10-13 15:45:56', '2023-11-20 17:06:01', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196365393927, 1766460237537202179, 742808696905, NULL, 5126575889577, '1627207:28809016456', '1627207:28809016456:颜色分类:流光餐椅合观胡桃深灰色*2', 28, '', 7999, 'F2-HGHT-23E-WQM-D3*2', '2023-10-13 15:45:56', '2023-11-20 17:06:01', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196428308481, 1766460237537202179, 742808696905, NULL, 5126575889578, '1627207:28809016457', '1627207:28809016457:颜色分类:流光餐椅戈尔浅胡桃奶油白*2', 28, '', 7999, 'F1-GRQHT-23E-WQM-D3*2', '2023-10-13 15:45:56', '2023-11-20 17:06:01', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196428308482, 1766460237537202179, 742808696905, NULL, 5126575889579, '1627207:28809016458', '1627207:28809016458:颜色分类:流光餐椅戈尔浅胡桃深灰色*2', 30, '', 7999, 'F2-GRQHT-23E-WQM-D3*2', '2023-10-13 15:45:56', '2023-11-20 17:06:01', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196428308483, 1766460237537202179, 742808696905, NULL, 5321133498329, '1627207:28809005027', '1627207:28809005027:颜色分类:银河合观胡桃餐椅*2 B款', 38, '', 5999, 'YW1-2017E-C1*2', '2023-11-06 11:14:43', '2023-11-20 17:06:01', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196428308484, 1766460237537202179, 742808696905, NULL, 5321133498330, '1627207:28809005028', '1627207:28809005028:颜色分类:银河戈尔浅胡桃餐椅*2 B款', 40, '', 5999, '084-2017E-C1*2', '2023-11-06 11:14:43', '2023-11-20 17:06:01', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196491223042, 1766460237604311042, 742703605071, NULL, 5295674367438, '21433:50753444;1627207:27931701518', '21433:50753444:尺寸:1500mm*2000mm;1627207:27931701518:颜色分类:【尊享款】独立弹簧双面天丝面料床垫', 106, '', 6999, 'ZH-PTCD-DS-QM23-M4-15', '2023-10-11 11:02:39', '2024-03-06 04:52:22', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196491223043, 1766460237604311042, 742703605071, NULL, 5295674367439, '21433:50753460;1627207:27931701518', '21433:50753460:尺寸:1800mm*2000mm;1627207:27931701518:颜色分类:【尊享款】独立弹簧双面天丝面料床垫', 94, '', 6999, 'ZH-PTCD-DS-QM23-M4-18', '2023-10-11 11:02:39', '2024-03-23 03:03:27', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196491223044, 1766460237604311045, 559261436131, NULL, 4988190157329, '1627207:25327829139;21433:50753444', '1627207:25327829139:颜色分类:木本色-架子床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753444:尺寸:1500mm*2000mm', 12, '', 6599, 'ZQB-2017E-B2-150', '2023-04-07 16:29:15', '2024-03-22 22:54:53', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196491223045, 1766460237604311045, 559261436131, NULL, 4988190157341, '1627207:25327829139;21433:50753460', '1627207:25327829139:颜色分类:木本色-架子床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753460:尺寸:1800mm*2000mm', 6, '', 6899, 'ZQB-2017E-B2-180', '2023-04-07 16:29:15', '2024-03-22 22:54:53', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196491223046, 1766460237604311045, 559261436131, NULL, 4988190157330, '1627207:25327829140;21433:50753444', '1627207:25327829140:颜色分类:深橡色-架子床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753444:尺寸:1500mm*2000mm', 25, '', 6599, '084-2017E-B2-150', '2023-04-07 16:29:15', '2024-02-27 16:16:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196558331905, 1766460237604311045, 559261436131, NULL, 4988190157342, '1627207:25327829140;21433:50753460', '1627207:25327829140:颜色分类:深橡色-架子床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753460:尺寸:1800mm*2000mm', 26, '', 6899, '084-2017E-B2-180', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196558331906, 1766460237604311045, 559261436131, NULL, 4988190157319, '1627207:25327829141;21433:50753444', '1627207:25327829141:颜色分类:胡桃色-架子床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753444:尺寸:1500mm*2000mm', 27, '', 6599, 'YW1-2017E-B2-150', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196558331907, 1766460237604311045, 559261436131, NULL, 4988190157331, '1627207:25327829141;21433:50753460', '1627207:25327829141:颜色分类:胡桃色-架子床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753460:尺寸:1800mm*2000mm', 17, '', 6899, 'YW1-2017E-B2-180', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196558331908, 1766460237604311045, 559261436131, NULL, 4988190157320, '1627207:25327829142;21433:50753444', '1627207:25327829142:颜色分类:木本色架子床+独袋乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 12, '', 12999, 'ZQB-2017E-B2-150&DS-QM23-M1-15', '2023-04-07 16:29:15', '2024-02-27 16:16:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196558331909, 1766460237604311045, 559261436131, NULL, 4988190157332, '1627207:25327829142;21433:50753460', '1627207:25327829142:颜色分类:木本色架子床+独袋乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 23, '', 12999, 'ZQB-2017E-B2-180&DS-QM23-M1-18', '2023-04-07 16:29:15', '2024-02-20 15:09:38', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196558331910, 1766460237604311045, 559261436131, NULL, 4988190157321, '1627207:25327829143;21433:50753444', '1627207:25327829143:颜色分类:深橡色架子床+独袋乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 19, '', 12999, '084-2017E-B2-150&DS-QM23-M1-15', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196558331911, 1766460237604311045, 559261436131, NULL, 4988190157333, '1627207:25327829143;21433:50753460', '1627207:25327829143:颜色分类:深橡色架子床+独袋乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 18, '', 12999, '084-2017E-B2-180&DS-QM23-M1-18', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196558331912, 1766460237604311045, 559261436131, NULL, 4988190157322, '1627207:25327829144;21433:50753444', '1627207:25327829144:颜色分类:胡桃色架子床+独袋乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 11, '', 12999, 'YW1-2017E-B2-150&DS-QM23-M1-15', '2023-04-07 16:29:15', '2024-02-20 15:09:38', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196558331913, 1766460237604311045, 559261436131, NULL, 4988190157334, '1627207:25327829144;21433:50753460', '1627207:25327829144:颜色分类:胡桃色架子床+独袋乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 17, '', 12999, 'YW1-2017E-B2-180&DS-QM23-M1-18', '2023-04-07 16:29:15', '2024-01-16 17:51:39', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052162, 1766460237604311045, 559261436131, NULL, 4988190157323, '1627207:25327829145;21433:50753444', '1627207:25327829145:颜色分类:木本色-箱体储物床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753444:尺寸:1500mm*2000mm', 18, '', 12999, 'ZQB-2017E-B2-150F', '2023-04-07 16:29:15', '2023-12-17 17:10:13', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052163, 1766460237604311045, 559261436131, NULL, 4988190157335, '1627207:25327829145;21433:50753460', '1627207:25327829145:颜色分类:木本色-箱体储物床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753460:尺寸:1800mm*2000mm', 20, '', 12999, 'ZQB-2017E-B2-180F', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052164, 1766460237604311045, 559261436131, NULL, 4988190157324, '1627207:25327829146;21433:50753444', '1627207:25327829146:颜色分类:深橡色-箱体储物床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753444:尺寸:1500mm*2000mm', 19, '', 12999, '084-2017E-B2-150F', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052165, 1766460237604311045, 559261436131, NULL, 4988190157336, '1627207:25327829146;21433:50753460', '1627207:25327829146:颜色分类:深橡色-箱体储物床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753460:尺寸:1800mm*2000mm', 18, '', 12999, '084-2017E-B2-180F', '2023-04-07 16:29:15', '2024-02-19 15:09:26', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052166, 1766460237604311045, 559261436131, NULL, 4988190157325, '1627207:25327829147;21433:50753444', '1627207:25327829147:颜色分类:胡桃色-箱体储物床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753444:尺寸:1500mm*2000mm', 18, '', 12999, 'YW1-2017E-B2-150F', '2023-04-07 16:29:15', '2024-02-12 10:52:14', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052167, 1766460237604311045, 559261436131, NULL, 4988190157337, '1627207:25327829147;21433:50753460', '1627207:25327829147:颜色分类:胡桃色-箱体储物床【E0级环保板材+定制五金+人体工学设计床头】;21433:50753460:尺寸:1800mm*2000mm', 20, '', 12999, 'YW1-2017E-B2-180F', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052168, 1766460237604311045, 559261436131, NULL, 4988190157326, '1627207:25327829148;21433:50753444', '1627207:25327829148:颜色分类:木本色储物床+独袋乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 27, '', 12999, 'ZQB-2017E-B2-150F&DS-QM23-M1-15', '2023-04-07 16:29:15', '2023-12-03 20:45:47', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052169, 1766460237604311045, 559261436131, NULL, 4988190157338, '1627207:25327829148;21433:50753460', '1627207:25327829148:颜色分类:木本色储物床+独袋乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 24, '', 12999, 'ZQB-2017E-B2-180F&DS-QM23-M1-18', '2023-04-07 16:29:15', '2023-12-03 20:45:47', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052170, 1766460237604311045, 559261436131, NULL, 4988190157327, '1627207:25327829149;21433:50753444', '1627207:25327829149:颜色分类:深橡色储物床+独袋乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 24, '', 12999, '084-2017E-B2-150F&DS-QM23-M1-15', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196617052171, 1766460237604311045, 559261436131, NULL, 4988190157339, '1627207:25327829149;21433:50753460', '1627207:25327829149:颜色分类:深橡色储物床+独袋乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 23, '', 12999, '084-2017E-B2-180F&DS-QM23-M1-18', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196679966721, 1766460237604311045, 559261436131, NULL, 4988190157328, '1627207:25327829150;21433:50753444', '1627207:25327829150:颜色分类:胡桃色储物床+独袋乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 20, '', 12999, 'YW1-2017E-B2-150F&DS-QM23-M1-15', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196679966722, 1766460237604311045, 559261436131, NULL, 4988190157340, '1627207:25327829150;21433:50753460', '1627207:25327829150:颜色分类:胡桃色储物床+独袋乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 20, '', 12999, 'YW1-2017E-B2-180F&DS-QM23-M1-18', '2023-04-07 16:29:15', '2023-11-07 14:17:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196679966723, 1766460237738528769, 688670291121, NULL, 5078874099957, '1627207:27972480525', '1627207:27972480525:颜色分类:三人位双扶手-奶茶棕-皮-2.2米', 0, '', 12999, '0ZH-SPSF-DS-F2-QM23-S6-3ZP', '2022-10-18 15:40:39', '2024-03-23 03:48:16', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196679966724, 1766460237738528769, 688670291121, NULL, 5078874099959, '1627207:27972480526', '1627207:27972480526:颜色分类:三人位双扶手-伯爵黑-皮-2.2米', 0, '', 12999, '0ZH-SPSF-DS-F3-QM23-S6-3ZP', '2022-10-18 15:40:39', '2024-03-07 17:42:41', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196747075586, 1766460237738528769, 688670291121, NULL, 5078874099962, '1627207:27972480528', '1627207:27972480528:颜色分类:小直排组合-奶茶棕-皮-2.85米', 2, '', 16118, 'ZH-SPSF-DS-F2-QM23-S6-XZP', '2022-10-18 15:40:39', '2024-03-23 03:48:16', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196751269890, 1766460237738528769, 688670291121, NULL, 5078874099963, '1627207:27972480529', '1627207:27972480529:颜色分类:小直排组合-伯爵黑-皮-2.85米', 0, '', 16118, '0ZH-SPSF-DS-F3-QM23-S6-XZP', '2022-10-18 15:40:39', '2024-03-23 03:48:16', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196759658497, 1766460237738528769, 688670291121, NULL, 5297401695428, '1627207:27972480531', '1627207:27972480531:颜色分类:大直排组合-奶茶棕-皮-3.2米', 3, '', 20999, 'ZH-SPSF-DS-F2-QM23-S6-DZP', '2023-10-13 14:09:04', '2024-01-04 10:24:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196759658498, 1766460237738528769, 688670291121, NULL, 5297401695429, '1627207:27972480532', '1627207:27972480532:颜色分类:大直排组合-伯爵黑-皮-3.2米', 2, '', 20999, 'ZH-SPSF-DS-F3-QM23-S6-DZP', '2023-10-13 14:09:04', '2024-03-23 03:48:16', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196759658499, 1766460237738528769, 688670291121, NULL, 5078874099956, '1627207:27972480524', '1627207:27972480524:颜色分类:三人位双扶手-卡其色-猫抓布-2.2米', 26, '', 16118, 'ZH-SPSF-DS-F1-QM23-S6-3ZP', '2022-10-18 15:40:39', '2024-03-23 03:48:16', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196759658500, 1766460237738528769, 688670291121, NULL, 5078874099960, '1627207:27972480527', '1627207:27972480527:颜色分类:小直排组合-卡其色-猫抓布-2.85米', 24, '', 16118, 'ZH-SPSF-DS-F1-QM23-S6-XZP', '2022-10-18 15:40:39', '2024-03-23 03:48:16', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196759658501, 1766460237738528769, 688670291121, NULL, 5130882985970, '1627207:27972480530', '1627207:27972480530:颜色分类:大直排组合-卡其色-猫抓布-3.2米', 15, '', 16118, 'ZH-SPSF-DS-F1-QM23-S6-DZP', '2023-10-18 09:37:11', '2023-11-07 13:20:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196805795842, 1766460237738528779, 718995026800, NULL, 5010706308423, '122216927:77835123;1627207:25326567650;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25326567650:颜色分类:奶油白【进口荔枝纹头层牛皮+碳素钢木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 0, '', 6999, 'ZH-PC-2-DS-F1-QM23-B3-15', '2023-05-16 16:17:39', '2023-12-23 01:11:08', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196805795843, 1766460237738528779, 718995026800, NULL, 5010706308424, '122216927:77835123;1627207:25326567650;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25326567650:颜色分类:奶油白【进口荔枝纹头层牛皮+碳素钢木排骨架】;21433:50753460:尺寸:1800mm*2000mm', 2, '', 6999, 'ZH-PC-2-DS-F1-QM23-B3-18', '2023-05-16 16:17:39', '2024-03-22 20:24:44', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196805795844, 1766460237805637635, 729110111184, NULL, 5222928542208, '1627207:1286410009;29112:97926', '1627207:1286410009:颜色分类:象牙白-左;29112:97926:安装方式:组装', 0, '', 659, 'ZH-SF-04-DS-F2-QM23-NT2(L)', '2023-07-13 15:12:11', '2024-03-22 20:29:44', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196872904706, 1766460237805637635, 729110111184, NULL, 5222928542209, '1627207:1286410008;29112:97926', '1627207:1286410008:颜色分类:象牙白-右;29112:97926:安装方式:组装', 0, '', 659, 'ZH-SF-04-DS-F2-QM23-NT2(R)', '2023-07-13 15:12:11', '2024-03-22 20:29:44', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196872904707, 1766460237805637635, 729110111184, NULL, 5222928542210, '1627207:26044337847;29112:97926', '1627207:26044337847:颜色分类:石墨黑-左;29112:97926:安装方式:组装', 2, '', 659, 'ZH-SF-04-DS-F1-QM23-NT2(L)', '2023-07-13 15:12:11', '2024-03-22 20:29:44', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196872904708, 1766460237805637635, 729110111184, NULL, 5222928542211, '1627207:26044337848;29112:97926', '1627207:26044337848:颜色分类:石墨黑-右;29112:97926:安装方式:组装', 0, '', 659, 'ZH-SF-04-DS-F1-QM23-NT2(R)', '2023-07-13 15:12:11', '2024-03-22 20:29:44', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196872904709, 1766460237805637640, 35654302556, NULL, 4642975799278, '1627207:2830349021;13744110:11555292;122582666:97926', '1627207:2830349021:颜色分类:深橡色+荷花白色;13744110:11555292:门数量:2门;122582666:97926:是否组装:组装', 510, '', 4963, 'LZF-084-09ZC-WG1', '2020-10-08 16:58:41', '2023-06-12 18:19:08', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196872904710, 1766460237805637640, 35654302556, NULL, 4642975799279, '1627207:2830349021;13744110:37462894;122582666:97926', '1627207:2830349021:颜色分类:深橡色+荷花白色;13744110:37462894:门数量:3门;122582666:97926:是否组装:组装', 523, '', 7540, 'LZF-084-09ZC-WG3', '2020-10-08 16:58:41', '2024-03-23 03:06:46', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196872904711, 1766460237805637640, 35654302556, NULL, 4642975799277, '1627207:2830349021;13744110:10136241;122582666:97926', '1627207:2830349021:颜色分类:深橡色+荷花白色;13744110:10136241:门数量:4门;122582666:97926:是否组装:组装', 107, '', 9058, 'LZF-084-09ZC-WG2-G', '2020-10-08 16:58:41', '2024-03-23 03:06:46', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196940013569, 1766460237805637640, 35654302556, NULL, 4642975799269, '1627207:2444198939;13744110:11555292;122582666:97926', '1627207:2444198939:颜色分类:木本色+荷花白色;13744110:11555292:门数量:2门;122582666:97926:是否组装:组装', 17, '', 4963, 'ZQB/5-09ZC-WG1', '2020-10-08 16:58:41', '2024-03-23 03:06:46', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196940013570, 1766460237805637640, 35654302556, NULL, 4642975799270, '1627207:2444198939;13744110:37462894;122582666:97926', '1627207:2444198939:颜色分类:木本色+荷花白色;13744110:37462894:门数量:3门;122582666:97926:是否组装:组装', 55, '', 7540, 'ZQB/5-09ZC-WG3', '2020-10-08 16:58:41', '2024-03-07 18:37:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196940013571, 1766460237805637640, 35654302556, NULL, 4642975799268, '1627207:2444198939;13744110:10136241;122582666:97926', '1627207:2444198939:颜色分类:木本色+荷花白色;13744110:10136241:门数量:4门;122582666:97926:是否组装:组装', 49, '', 9058, 'ZQB/5-09ZC-WG2-G', '2020-10-08 16:58:41', '2024-03-23 03:06:46', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196940013572, 1766460237805637640, 35654302556, NULL, 4642975799272, '1627207:7883098009;13744110:11555292;122582666:97926', '1627207:7883098009:颜色分类:胡桃色+荷花白色;13744110:11555292:门数量:2门;122582666:97926:是否组装:组装', 519, '', 4963, 'YW1/5-09ZC-WG1', '2020-10-08 16:58:41', '2023-07-10 14:24:33', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196940013573, 1766460237805637640, 35654302556, NULL, 4642975799273, '1627207:7883098009;13744110:37462894;122582666:97926', '1627207:7883098009:颜色分类:胡桃色+荷花白色;13744110:37462894:门数量:3门;122582666:97926:是否组装:组装', 521, '', 7540, 'YW1/5-09ZC-WG3', '2020-10-08 16:58:41', '2023-10-19 09:11:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373196940013574, 1766460237805637640, 35654302556, NULL, 4642975799271, '1627207:7883098009;13744110:10136241;122582666:97926', '1627207:7883098009:颜色分类:胡桃色+荷花白色;13744110:10136241:门数量:4门;122582666:97926:是否组装:组装', 491, '', 9058, 'YW1/5-09ZC-WG2-G', '2020-10-08 16:58:41', '2023-07-10 14:24:33', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197007122433, 1766460237872746504, 559371554098, NULL, 4432860913938, '1627207:10176065348;29112:97926', '1627207:10176065348:颜色分类:四斗柜 胡桃色+荷花白;29112:97926:安装方式:组装', 71, '', 3417, 'YW1/5-N2017E-LB2-G', '2020-08-19 11:23:07', '2024-02-16 12:08:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197007122434, 1766460237872746504, 559371554098, NULL, 4432860913933, '1627207:10176065344;29112:97926', '1627207:10176065344:颜色分类:四斗柜 深橡色+荷花白;29112:97926:安装方式:组装', 93, '', 3417, '084/5-N2017E-LB2-G', '2020-08-19 11:23:07', '2023-06-12 18:11:47', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197007122435, 1766460237872746504, 559371554098, NULL, 4432860913935, '1627207:10176065355;29112:97926', '1627207:10176065355:颜色分类:四斗柜 木本色+荷花白;29112:97926:安装方式:组装', 68, '', 3417, 'ZQB/5-N2017E-LB2-G', '2020-08-19 11:23:07', '2023-09-13 12:44:29', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197007122436, 1766460237872746504, 559371554098, NULL, 4432860913930, '1627207:10176065354;29112:97926', '1627207:10176065354:颜色分类:五斗柜 木本色+荷花白;29112:97926:安装方式:组装', 66, '', 4617, 'ZQB/5-N2017E-LB1-G', '2020-08-19 11:23:07', '2023-06-12 18:11:47', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197007122437, 1766460237872746504, 559371554098, NULL, 4432860913934, '1627207:10176065349;29112:97926', '1627207:10176065349:颜色分类:五斗柜 深橡色+荷花白;29112:97926:安装方式:组装', 71, '', 4617, '084/5-N2017E-LB1-G', '2020-08-19 11:23:07', '2023-06-12 18:11:47', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197007122438, 1766460237872746504, 559371554098, NULL, 4432860913931, '1627207:10176065351;29112:97926', '1627207:10176065351:颜色分类:五斗柜 胡桃色+荷花白;29112:97926:安装方式:组装', 36, '', 4617, 'YW1/5-N2017E-LB1-G', '2020-08-19 11:23:07', '2023-07-10 13:40:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197007122439, 1766460237939855361, 739001644954, NULL, 5098209312069, '1627207:27451779460', '1627207:27451779460:颜色分类:烟雨灰：1人位（头层牛皮）', 167, '', 5999, 'F1-HGHT-23E-WQM-C1', '2023-09-15 13:26:53', '2024-03-23 07:52:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197074231298, 1766460237939855361, 739001644954, NULL, 5098209312070, '1627207:27451779461', '1627207:27451779461:颜色分类:砂砾白：1人位（头层牛皮）', 143, '', 5999, 'F2-HGHT-23E-WQM-C1', '2023-09-15 13:26:53', '2024-03-23 07:52:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197074231299, 1766460237939855361, 739001644954, NULL, 5275960415307, '1627207:27451779462', '1627207:27451779462:颜色分类:奶油白：1人位（生态皮）', 181, '', 4999, 'F3-HGHT-23E-WQM-C1', '2023-09-18 13:59:34', '2024-02-20 15:37:54', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197074231300, 1766460237939855361, 739001644954, NULL, 5275960415308, '1627207:27451779463', '1627207:27451779463:颜色分类:深灰色：1人位（生态皮）', 171, '', 4999, 'F4-HGHT-23E-WQM-C1', '2023-09-18 13:59:34', '2024-03-23 07:52:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197074231301, 1766460237939855366, 736632074650, NULL, 5089940705377, '21433:50753444;1627207:27034160867', '21433:50753444:尺寸:1500mm*2000mm;1627207:27034160867:颜色分类:【升级款】独袋弹簧冰丝记忆棉床垫', 116, '', 6499, 'ZH-PTCD-DS-QM23-M3-15', '2023-08-31 11:29:13', '2024-03-22 22:25:11', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197074231302, 1766460237939855366, 736632074650, NULL, 5089940705378, '21433:50753460;1627207:27034160867', '21433:50753460:尺寸:1800mm*2000mm;1627207:27034160867:颜色分类:【升级款】独袋弹簧冰丝记忆棉床垫', 115, '', 6499, 'ZH-PTCD-DS-QM23-M3-18', '2023-08-31 11:29:13', '2024-03-22 22:25:11', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197137145857, 1766460237939855369, 559372510165, NULL, 4428770372775, '1627207:13701110947;13744110:37462894', '1627207:13701110947:颜色分类:胡桃色+荷花白 餐边柜;13744110:37462894:门数量:3门', 73, '', 5891, 'YW1/5-N2017E-DB1-1-G', '2020-08-19 11:40:55', '2023-06-05 15:54:55', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197137145858, 1766460237939855369, 559372510165, NULL, 4428770372774, '1627207:13701110947;13744110:10136241', '1627207:13701110947:颜色分类:胡桃色+荷花白 餐边柜;13744110:10136241:门数量:4门', 88, '', 6743, 'YW1/5-N2017E-DB1-3-G', '2020-08-19 11:40:55', '2023-09-13 12:44:29', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197137145859, 1766460237939855369, 559372510165, NULL, 4428770372777, '1627207:13701110948;13744110:37462894', '1627207:13701110948:颜色分类:深橡色+ 荷花白 餐边柜;13744110:37462894:门数量:3门', 83, '', 5891, '084/5-N2017E-DB1-1-G', '2020-08-19 11:40:55', '2024-02-09 13:41:00', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197137145860, 1766460237939855369, 559372510165, NULL, 4428770372776, '1627207:13701110948;13744110:10136241', '1627207:13701110948:颜色分类:深橡色+ 荷花白 餐边柜;13744110:10136241:门数量:4门', 86, '', 6743, '084/5-N2017E-DB1-3-G', '2020-08-19 11:40:55', '2023-06-05 15:54:55', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197137145861, 1766460237939855369, 559372510165, NULL, 4428770372773, '1627207:13701110949;13744110:37462894', '1627207:13701110949:颜色分类:致趣本+荷花白 餐边柜;13744110:37462894:门数量:3门', 75, '', 5891, 'ZQB/5-N2017E-DB1-1-G', '2020-08-19 11:40:55', '2023-07-21 13:48:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197137145862, 1766460237939855369, 559372510165, NULL, 4428770372772, '1627207:13701110949;13744110:10136241', '1627207:13701110949:颜色分类:致趣本+荷花白 餐边柜;13744110:10136241:门数量:4门', 80, '', 6743, 'ZQB/5-N2017E-DB1-3-G', '2020-08-19 11:40:55', '2023-07-21 13:48:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197200060418, 1766460238006964231, 659131151317, NULL, 5129480852960, '1627207:28103489342;29112:97926', '1627207:28103489342:颜色分类:皓月床头柜-奶油黄;29112:97926:安装方式:组装', 83, '', 1747, 'ZH-SF-04-DS-F1-QM21A-NT10', '2023-10-20 14:48:19', '2024-03-23 01:04:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197200060419, 1766460238006964231, 659131151317, NULL, 5129480852961, '1627207:28103489343;29112:97926', '1627207:28103489343:颜色分类:皓月床头柜-巧克力白;29112:97926:安装方式:组装', 86, '', 1747, 'ZH-SF-04-DS-F2-QM21A-NT10', '2023-10-20 14:48:19', '2024-03-23 01:04:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197200060420, 1766460238006964231, 659131151317, NULL, 5236824236458, '1627207:29941076277;29112:97926', '1627207:29941076277:颜色分类:皓月床头柜-提拉米苏黄-老款;29112:97926:安装方式:组装', 1, '', 1747, 'ZH-SF-04-F5-QM21-NT10', '2024-01-02 09:41:13', '2024-03-23 01:04:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169282, 1766460238006964235, 559224240130, NULL, 4553797961602, '1627207:25665705962', '1627207:25665705962:颜色分类:本木色_餐桌（1300*850*730）', 63, '', 5800, 'ZQB-2017E-DT2-1', '2021-01-05 09:06:09', '2024-03-19 18:58:27', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169283, 1766460238006964235, 559224240130, NULL, 4553797961596, '1627207:23669884582', '1627207:23669884582:颜色分类:深橡色_餐桌（1300*850*730）', 84, '', 5800, '084-2017E-DT2-1', '2021-01-05 09:06:09', '2024-03-22 21:42:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169284, 1766460238006964235, 559224240130, NULL, 4553797961598, '1627207:23669884583', '1627207:23669884583:颜色分类:胡桃色_餐桌（ 1300*850*730）', 95, '', 5800, 'YW1-2017E-DT2-1', '2021-01-05 09:06:09', '2023-11-04 17:09:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169285, 1766460238006964235, 559224240130, NULL, 4553797961601, '1627207:25665705963', '1627207:25665705963:颜色分类:本木色_餐桌（1400*850*730）', 77, '', 5800, 'ZQB-2017E-DT2-2', '2021-01-05 09:06:09', '2024-02-19 13:45:46', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169286, 1766460238006964235, 559224240130, NULL, 4553797961600, '1627207:23669884585', '1627207:23669884585:颜色分类:深橡色_餐桌（1400*850*730）', 83, '', 5800, '084-2017E-DT2-2', '2021-01-05 09:06:09', '2023-09-13 12:44:15', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169287, 1766460238006964235, 559224240130, NULL, 4553797961599, '1627207:23669884586', '1627207:23669884586:颜色分类:胡桃色_餐桌（1400*850*730）', 91, '', 5800, 'YW1-2017E-DT2-2', '2021-01-05 09:06:09', '2023-09-13 12:44:15', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169288, 1766460238006964235, 559224240130, NULL, 4553797961595, '1627207:25665705964', '1627207:25665705964:颜色分类:本木色_餐桌（1600*900*730）', 77, '', 6200, 'ZQB-2017E-DT2-3', '2021-01-05 09:06:09', '2023-09-13 12:44:15', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169289, 1766460238006964235, 559224240130, NULL, 4553797961594, '1627207:23669884588', '1627207:23669884588:颜色分类:胡桃色_餐桌（1600*900*730）', 96, '', 6200, 'YW1-2017E-DT2-3', '2021-01-05 09:06:09', '2023-09-13 12:44:15', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169290, 1766460238006964235, 559224240130, NULL, 4553797961597, '1627207:23669884589', '1627207:23669884589:颜色分类:深橡色_餐桌（1600*900*730）', 90, '', 6200, '084-2017E-DT2-3', '2021-01-05 09:06:09', '2023-09-13 12:44:15', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169291, 1766460238006964235, 559224240130, NULL, 5107358571814, '1627207:28809071319', '1627207:28809071319:颜色分类:木本色_餐椅*2', 5, '', 2900, 'ZQB-2017E-C1*2', '2022-12-14 11:47:53', '2024-01-06 19:34:23', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197267169292, 1766460238006964235, 559224240130, NULL, 5107358571813, '1627207:28809071320', '1627207:28809071320:颜色分类:深橡色_餐椅*2', 9, '', 2900, '084-2017E-C1*2', '2022-12-14 11:47:53', '2024-03-22 21:42:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197334278146, 1766460238006964235, 559224240130, NULL, 5107358571812, '1627207:28809071321', '1627207:28809071321:颜色分类:胡桃色_餐椅*2', 16, '', 2900, 'YW1-2017E-C1*2', '2022-12-14 11:47:53', '2024-02-20 13:18:57', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197334278147, 1766460238006964235, 559224240130, NULL, 5212979407425, '1627207:25674371129', '1627207:25674371129:颜色分类:本木色-1.4m餐桌+餐椅*4', 5, '', 5599, 'ZQB-2017E-DT2-2&ZQB-2017E-C1*4', '2023-06-25 18:25:37', '2024-02-19 13:45:46', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197334278148, 1766460238006964235, 559224240130, NULL, 5212979407426, '1627207:25674371130', '1627207:25674371130:颜色分类:深橡色-1.4m餐桌+餐椅*4', 2, '', 5599, '084-2017E-DT2-2&084-2017E-C1*4', '2023-06-25 18:25:37', '2024-03-22 21:42:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197334278149, 1766460238006964235, 559224240130, NULL, 5212979407427, '1627207:25674371131', '1627207:25674371131:颜色分类:胡桃色-1.4m餐桌+餐椅*4', 2, '', 5599, 'YW1-2017E-DT2-2&YW1-2017E-C1*4', '2023-06-25 18:25:37', '2023-09-09 20:12:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197334278150, 1766460238078267404, 744366896880, NULL, 5133232600845, '1627207:28166188764', '1627207:28166188764:颜色分类:合观胡桃+月光白-3人位-2.2M（雪尼尔布）', 8, '', 10999, 'F1-HGHT-23E-WQM-S2-3', '2023-10-23 19:44:49', '2024-03-15 21:35:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197334278151, 1766460238078267404, 744366896880, NULL, 5133232600846, '1627207:28166188765', '1627207:28166188765:颜色分类:合观胡桃+天青蓝-3人位-2.2M（雪尼尔布）', 10, '', 10999, 'F3-HGHT-23E-WQM-S2-3', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197334278152, 1766460238078267404, 744366896880, NULL, 5133232600847, '1627207:28166188766', '1627207:28166188766:颜色分类:合观胡桃+砂砾白-3人位-2.2M（头层牛皮）', 10, '', 12999, 'F4-HGHT-23E-WQM-S2-3', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197334278153, 1766460238078267404, 744366896880, NULL, 5133232600848, '1627207:28166188767', '1627207:28166188767:颜色分类:合观胡桃+烟雨灰-3人位-2.2M（头层牛皮）', 10, '', 12999, 'F5-HGHT-23E-WQM-S2-3', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387010, 1766460238078267404, 744366896880, NULL, 5133232600849, '1627207:28166188768', '1627207:28166188768:颜色分类:戈尔浅胡桃+月光白-3人位-2.2M（雪尼尔布）', 10, '', 10999, 'F1-GRQHT-23E-WQM-S2-3', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387011, 1766460238078267404, 744366896880, NULL, 5133232600850, '1627207:28166188769', '1627207:28166188769:颜色分类:戈尔浅胡桃+天青蓝-3人位-2.2M（雪尼尔布）', 10, '', 10999, 'F3-GRQHT-23E-WQM-S2-3', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387012, 1766460238078267404, 744366896880, NULL, 5133232600851, '1627207:28166188770', '1627207:28166188770:颜色分类:戈尔浅胡桃+砂砾白-3人位-2.2M（头层牛皮）', 10, '', 12999, 'F4-GRQHT-23E-WQM-S2-3', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387013, 1766460238078267404, 744366896880, NULL, 5133232600852, '1627207:28166188771', '1627207:28166188771:颜色分类:戈尔浅胡桃+烟雨灰-3人位-2.2M（头层牛皮）', 10, '', 12999, 'F5-GRQHT-23E-WQM-S2-3', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387014, 1766460238078267404, 744366896880, NULL, 5133232600853, '1627207:28166188772', '1627207:28166188772:颜色分类:合观胡桃+月光白-组合位-2.73M（雪尼尔布）', 10, '', 13999, 'F1-HGHT-23E-WQM-S2-ZH1', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387015, 1766460238078267404, 744366896880, NULL, 5133232600854, '1627207:28166188773', '1627207:28166188773:颜色分类:合观胡桃+天青蓝-组合位-2.73M（雪尼尔布）', 10, '', 13999, 'F3-HGHT-23E-WQM-S2-ZH1', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387016, 1766460238078267404, 744366896880, NULL, 5133232600855, '1627207:28166188774', '1627207:28166188774:颜色分类:合观胡桃+砂砾白-组合位-2.73M（头层牛皮）', 10, '', 16999, 'F4-HGHT-23E-WQM-S2-ZH1', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387017, 1766460238078267404, 744366896880, NULL, 5133232600856, '1627207:28166188775', '1627207:28166188775:颜色分类:合观胡桃+烟雨灰-组合位-2.73M（头层牛皮）', 10, '', 16999, 'F5-HGHT-23E-WQM-S2-ZH1', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387018, 1766460238078267404, 744366896880, NULL, 5133232600857, '1627207:28166188776', '1627207:28166188776:颜色分类:戈尔浅胡桃+月光白-组合位-2.73M（雪尼尔布）', 9, '', 13999, 'F1-GRQHT-23E-WQM-S2-ZH1', '2023-10-23 19:44:49', '2023-12-17 20:50:06', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197401387019, 1766460238078267404, 744366896880, NULL, 5133232600858, '1627207:28166188777', '1627207:28166188777:颜色分类:戈尔浅胡桃+天青蓝-组合位-2.73M（雪尼尔布）', 10, '', 13999, 'F3-GRQHT-23E-WQM-S2-ZH1', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197464301569, 1766460238078267404, 744366896880, NULL, 5133232600859, '1627207:28166188778', '1627207:28166188778:颜色分类:戈尔浅胡桃+砂砾白-组合位-2.73M（头层牛皮）', 10, '', 16999, 'F4-GRQHT-23E-WQM-S2-ZH1', '2023-10-23 19:44:49', '2023-11-07 16:31:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197464301570, 1766460238078267404, 744366896880, NULL, 5133232600860, '1627207:28166188779', '1627207:28166188779:颜色分类:戈尔浅胡桃+烟雨灰-组合位-2.73M（头层牛皮）', 10, '', 16999, 'F5-GRQHT-23E-WQM-S2-ZH1', '2023-10-23 19:44:49', '2023-11-11 18:03:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197464301571, 1766460238141181963, 743639320948, NULL, 5128321864433, '1627207:28084090002', '1627207:28084090002:颜色分类:绅士茶几-合观胡桃（120mm*59mm*40）', 20, '', 4999, 'HGHT-23E-WQM-TT4', '2023-10-19 15:00:54', '2023-11-07 17:01:02', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197464301572, 1766460238141181963, 743639320948, NULL, 5128321864434, '1627207:28084090003', '1627207:28084090003:颜色分类:绅士茶几-戈尔浅胡桃（120mm*59mm*40）', 20, '', 4999, 'GRQHT-23E-WQM-TT4', '2023-10-19 15:00:54', '2023-11-07 17:01:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197464301573, 1766460238141181963, 743639320948, NULL, 5128321864435, '1627207:28084090004', '1627207:28084090004:颜色分类:绅士茶几-合观胡桃（130mm*64mm*40）', 19, '', 5499, 'HGHT-23E-WQM-TT4-1', '2023-10-19 15:00:54', '2023-11-07 17:01:02', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197464301574, 1766460238141181963, 743639320948, NULL, 5128321864436, '1627207:28084090005', '1627207:28084090005:颜色分类:绅士茶几-戈尔浅胡桃（130mm*64mm*40）', 30, '', 5499, 'GRQHT-23E-WQM-TT4-1', '2023-10-19 15:00:54', '2023-11-06 11:18:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197464301575, 1766460238141181963, 743639320948, NULL, 5128321864437, '1627207:28084090006', '1627207:28084090006:颜色分类:绅士边几-合观胡桃', 18, '', 1799, 'HGHT-23E-WQM-TT3', '2023-10-19 15:00:54', '2024-03-22 17:38:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197531410434, 1766460238141181963, 743639320948, NULL, 5128321864438, '1627207:28084090007', '1627207:28084090007:颜色分类:绅士边几-戈尔浅胡桃', 20, '', 1799, 'GRQHT-23E-WQM-TT3', '2023-10-19 15:00:54', '2023-11-13 17:18:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197531410435, 1766460238204096514, 35211712394, NULL, 5195672626945, '21433:50753502;1627207:24748967650', '21433:50753502:尺寸:1200mm*2000mm;1627207:24748967650:颜色分类:【升级款】独袋弹簧乳胶床垫', 167, '', 2799, 'ZH-PTCD-DS-QM23-M1-12', '2023-06-06 18:12:32', '2024-03-22 21:06:20', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197531410436, 1766460238204096514, 35211712394, NULL, 5465996851470, '21433:50753502;1627207:31047913332', '21433:50753502:尺寸:1200mm*2000mm;1627207:31047913332:颜色分类:床垫+浅咖色头层真皮软床左岸花园', 20, '', 5999, 'DS-F1-QM23-B1-12&QM23-M1-12', '2024-03-13 14:55:46', '2024-03-13 14:56:48', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197531410437, 1766460238204096514, 35211712394, NULL, 5023489177232, '21433:50753444;1627207:24748967650', '21433:50753444:尺寸:1500mm*2000mm;1627207:24748967650:颜色分类:【升级款】独袋弹簧乳胶床垫', 100, '', 2799, 'ZH-PTCD-DS-QM23-M1-15', '2023-05-30 10:49:47', '2024-03-22 21:06:20', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197531410438, 1766460238204096514, 35211712394, NULL, 5465996851466, '21433:50753444;1627207:31047913332', '21433:50753444:尺寸:1500mm*2000mm;1627207:31047913332:颜色分类:床垫+浅咖色头层真皮软床左岸花园', 20, '', 5999, 'DS-F1-QM23-B1-15&QM23-M1-15', '2024-03-13 14:55:46', '2024-03-13 14:56:48', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197531410439, 1766460238204096514, 35211712394, NULL, 5465996851467, '21433:50753444;1627207:31047913333', '21433:50753444:尺寸:1500mm*2000mm;1627207:31047913333:颜色分类:床垫+奶油白头层真皮软床方糖', 20, '', 5999, 'DS-F2-19-B12A-15&M1', '2024-03-13 14:55:46', '2024-03-13 14:56:48', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197590130690, 1766460238204096514, 35211712394, NULL, 5023489177233, '21433:50753460;1627207:24748967650', '21433:50753460:尺寸:1800mm*2000mm;1627207:24748967650:颜色分类:【升级款】独袋弹簧乳胶床垫', 163, '', 2799, 'ZH-PTCD-DS-QM23-M1-18', '2023-05-30 10:49:47', '2024-03-22 21:06:20', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197590130691, 1766460238204096514, 35211712394, NULL, 5465996851468, '21433:50753460;1627207:31047913332', '21433:50753460:尺寸:1800mm*2000mm;1627207:31047913332:颜色分类:床垫+浅咖色头层真皮软床左岸花园', 20, '', 5999, 'DS-F1-QM23-B1-18&QM23-M1-18', '2024-03-13 14:55:46', '2024-03-13 14:56:48', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197598519297, 1766460238204096514, 35211712394, NULL, 5465996851469, '21433:50753460;1627207:31047913333', '21433:50753460:尺寸:1800mm*2000mm;1627207:31047913333:颜色分类:床垫+奶油白头层真皮软床方糖', 20, '', 5999, 'DS-F2-19-B12A-18&M1', '2024-03-13 14:55:46', '2024-03-13 14:56:48', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197615296513, 1766460238204096518, 571110765951, NULL, 5182018783834, '21433:50753444;1627207:24986290489', '21433:50753444:尺寸:1500mm*2000mm;1627207:24986290489:颜色分类:【升级款】独袋乳胶黄麻双面床垫', 82, '', 5499, 'ZH-PTCD-DS-QM23-M2-15', '2023-05-09 17:50:34', '2024-03-22 16:49:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197615296514, 1766460238204096518, 571110765951, NULL, 5182018783835, '21433:50753460;1627207:24986290489', '21433:50753460:尺寸:1800mm*2000mm;1627207:24986290489:颜色分类:【升级款】独袋乳胶黄麻双面床垫', 74, '', 5499, 'ZH-PTCD-DS-QM23-M2-18', '2023-05-09 17:50:34', '2024-03-22 16:49:17', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197657239553, 1766460238204096521, 718768125559, NULL, 5014823921786, '122216927:77835123;1627207:25326538369;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25326538369:颜色分类:奥利奥黑-【进口细腻皮胚+升级致密排骨条+全实木床框】;21433:50753460:尺寸:1800mm*2000mm', 8, '', 5899, 'ZH-PC-2-DS-F2-QM23-B11-18', '2023-05-16 10:32:23', '2024-03-22 17:01:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197657239554, 1766460238204096521, 718768125559, NULL, 5010509864780, '122216927:77835123;1627207:25326538370;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25326538370:颜色分类:太妃糖棕-【进口细腻皮胚+升级致密排骨条+全实木床框】;21433:50753460:尺寸:1800mm*2000mm', 31, '', 5899, 'ZH-PC-2-DS-F1-QM23-B11-18', '2023-05-16 11:00:44', '2024-03-22 17:01:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197657239555, 1766460238204096521, 718768125559, NULL, 5474824410685, '122216927:77835123;1627207:31201250454;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:31201250454:颜色分类:23cm独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 200, '', 2999, '垫 ZH-PTCD-DS-QM23-M1-18', '2024-03-21 13:12:01', '2024-03-21 13:22:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197724348418, 1766460238267011077, 736340650617, NULL, 5088967609029, '1627207:27007133868;29112:97926', '1627207:27007133868:颜色分类:茶几-奶油白;29112:97926:安装方式:组装', 9, '', 4999, 'ZH-TT-01-DS-QM23-TD2', '2023-08-29 15:52:55', '2024-03-19 22:47:41', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197724348419, 1766460238267011077, 736340650617, NULL, 5088967609030, '1627207:27007133869;29112:97926', '1627207:27007133869:颜色分类:电视柜-奶油白;29112:97926:安装方式:组装', 13, '', 4899, 'ZH-TV-01-DS-QM23-GF2', '2023-08-29 15:52:55', '2024-03-13 17:30:53', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197724348420, 1766460238267011077, 736340650617, NULL, 5088967609031, '1627207:27007133870;29112:97926', '1627207:27007133870:颜色分类:茶几-奶油白+电视柜-奶油白;29112:97926:安装方式:组装', 9, '', 8699, 'DS-QM23-GF2&QM23-TD2', '2023-08-29 15:52:55', '2024-03-19 22:49:39', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197724348421, 1766460238334119938, 9888033031, NULL, 4600898994639, '1627207:9650172724;13744110:11555292;122582666:97926', '1627207:9650172724:颜色分类:木本色衣柜;13744110:11555292:门数量:2门;122582666:97926:是否组装:组装', 20, '', 3847, 'ZQB-2011C-WG1', '2020-08-19 15:32:28', '2023-06-19 20:37:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197812428801, 1766460238334119938, 9888033031, NULL, 4600898994640, '1627207:9650172724;13744110:37462894;122582666:97926', '1627207:9650172724:颜色分类:木本色衣柜;13744110:37462894:门数量:3门;122582666:97926:是否组装:组装', 19, '', 5746, 'ZQB-2011C-WG2-G', '2020-08-19 15:32:28', '2023-11-29 17:28:37', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197812428802, 1766460238334119938, 9888033031, NULL, 4600898994638, '1627207:9650172724;13744110:10136241;122582666:97926', '1627207:9650172724:颜色分类:木本色衣柜;13744110:10136241:门数量:4门;122582666:97926:是否组装:组装', 21, '', 6938, 'ZQB-2011C-WG3-G', '2020-08-19 15:32:28', '2023-12-05 21:30:06', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197812428803, 1766460238334119938, 9888033031, NULL, 4600898994633, '1627207:9650172723;13744110:11555292;122582666:97926', '1627207:9650172723:颜色分类:深橡色衣柜;13744110:11555292:门数量:2门;122582666:97926:是否组装:组装', 86, '', 3847, '084-2011C-WG1', '2020-08-19 15:32:28', '2024-03-22 21:33:48', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197812428804, 1766460238334119938, 9888033031, NULL, 4600898994634, '1627207:9650172723;13744110:37462894;122582666:97926', '1627207:9650172723:颜色分类:深橡色衣柜;13744110:37462894:门数量:3门;122582666:97926:是否组装:组装', 89, '', 5746, '0841-2011C-WG2-G', '2020-08-19 15:32:28', '2023-11-04 17:43:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197812428805, 1766460238334119938, 9888033031, NULL, 4600898994632, '1627207:9650172723;13744110:10136241;122582666:97926', '1627207:9650172723:颜色分类:深橡色衣柜;13744110:10136241:门数量:4门;122582666:97926:是否组装:组装', 88, '', 6938, '084-2011C-WG3-G', '2020-08-19 15:32:28', '2023-11-06 22:40:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197858566146, 1766460238334119938, 9888033031, NULL, 4600898994636, '1627207:942616409;13744110:11555292;122582666:97926', '1627207:942616409:颜色分类:胡桃色衣柜;13744110:11555292:门数量:2门;122582666:97926:是否组装:组装', 94, '', 3847, 'YW1-2011C-WG1', '2020-08-19 15:32:28', '2023-07-10 14:17:07', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197858566147, 1766460238334119938, 9888033031, NULL, 4600898994637, '1627207:942616409;13744110:37462894;122582666:97926', '1627207:942616409:颜色分类:胡桃色衣柜;13744110:37462894:门数量:3门;122582666:97926:是否组装:组装', 95, '', 5746, 'YW1-2011C-WG2-G', '2020-08-19 15:32:28', '2023-07-10 14:17:07', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197858566148, 1766460238334119938, 9888033031, NULL, 4600898994635, '1627207:942616409;13744110:10136241;122582666:97926', '1627207:942616409:颜色分类:胡桃色衣柜;13744110:10136241:门数量:4门;122582666:97926:是否组装:组装', 84, '', 6938, 'YW1-2011C-WG3-G', '2020-08-19 15:32:28', '2023-11-04 17:43:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197858566149, 1766460238334119948, 739001644762, NULL, 5100996660108, '1627207:27455051557', '1627207:27455051557:颜色分类:合观胡桃茶几（1200*750*380mm）', 27, '', 5399, 'HGHT/CBL-23E-WQM-TT2', '2023-09-18 16:57:05', '2024-03-23 07:52:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197858566150, 1766460238334119948, 739001644762, NULL, 5303298139295, '1627207:28085106694', '1627207:28085106694:颜色分类:摩尔茶几+帆船单椅（头层牛皮-烟雨灰）', 8, '', 8999, 'HGHT/CBL-23E-WQM-TT2&F1-C1', '2023-10-19 17:31:56', '2024-03-23 07:52:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197925675010, 1766460238334119948, 739001644762, NULL, 5303298139296, '1627207:28085106695', '1627207:28085106695:颜色分类:摩尔茶几+帆船单椅（头层牛皮-砂砾白）', 8, '', 8999, 'HGHT/CBL-23E-WQM-TT2&F2-C1', '2023-10-19 17:31:56', '2024-03-23 07:52:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197925675011, 1766460238401228804, 739470628236, NULL, 5100929608962, '1627207:27453447298', '1627207:27453447298:颜色分类:奶油白-餐桌', 10, '', 4599, 'ZH-CZ-01-DS-QM23-T2', '2023-09-18 15:30:08', '2023-10-08 10:14:07', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197925675012, 1766460238401228804, 739470628236, NULL, 5100929608963, '1627207:27453447299', '1627207:27453447299:颜色分类:麦冬色餐椅*2', 0, '', 2599, 'ZH-HZCY-DS-QM23-Y2*2', '2023-09-18 15:30:08', '2024-03-22 20:16:59', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197925675013, 1766460238401228804, 739470628236, NULL, 5100929608964, '1627207:27453447300', '1627207:27453447300:颜色分类:奶油白-餐桌+麦冬色餐椅*4', 0, '', 6699, 'DS-QM23-T2&QM23-Y2*4', '2023-09-18 15:30:08', '2024-02-12 12:41:21', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197925675014, 1766460238401228804, 739470628236, NULL, 5100929608965, '1627207:27453447302', '1627207:27453447302:颜色分类:奶油白-餐桌+麦冬色餐椅*6', 0, '', 7499, 'DS-QM23-T2&QM23-Y2*6', '2023-09-18 15:30:08', '2024-03-22 20:16:59', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197988589570, 1766460238401228809, 743182884130, NULL, 5300013979418, '1627207:28027047657', '1627207:28027047657:颜色分类:合观胡桃色（左）', 44, '', 2999, 'HGHT-23E-WQM-NT2L', '2023-10-16 14:54:38', '2023-11-06 11:18:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197988589571, 1766460238401228809, 743182884130, NULL, 5300013979419, '1627207:28027047658', '1627207:28027047658:颜色分类:戈尔浅胡桃（左）', 45, '', 2999, 'GRQHT-23E-WQM-NT2L', '2023-10-16 14:54:38', '2024-03-18 18:42:38', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197988589572, 1766460238401228809, 743182884130, NULL, 5300013979420, '1627207:28027047659', '1627207:28027047659:颜色分类:合观胡桃色（右）', 42, '', 2999, 'HGHT-23E-WQM-NT2R', '2023-10-16 14:54:38', '2024-03-18 18:42:38', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197988589573, 1766460238401228809, 743182884130, NULL, 5300013979421, '1627207:28027047660', '1627207:28027047660:颜色分类:戈尔浅胡桃（右）', 46, '', 2999, 'GRQHT-23E-WQM-NT2R', '2023-10-16 14:54:38', '2024-03-22 20:25:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373197988589574, 1766460238468337666, 739640957900, NULL, 5272442558148, '1627207:28045806912', '1627207:28045806912:颜色分类:合观胡桃+白石纹板床头柜', 52, '', 2399, 'HGHT/BSW-23E-WQM-NT1', '2023-09-18 14:55:53', '2024-02-28 19:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198055698434, 1766460238468337668, 739607373347, NULL, 5100706268747, '1627207:27451779460', '1627207:27451779460:颜色分类:烟雨灰：1人位（头层牛皮）', 58, '', 4699, 'F2-HGHT-23E-WQM-C2', '2023-09-18 10:08:36', '2024-03-23 03:31:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198055698435, 1766460238468337668, 739607373347, NULL, 5100706268748, '1627207:27451779461', '1627207:27451779461:颜色分类:砂砾白：1人位（头层牛皮）', 55, '', 4699, 'F1-HGHT-23E-WQM-C2', '2023-09-18 10:08:36', '2024-03-23 03:31:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198055698436, 1766460238468337668, 739607373347, NULL, 5272427922997, '1627207:27451779462', '1627207:27451779462:颜色分类:奶油白：1人位（生态皮）', 40, '', 4299, 'F3-HGHT-23E-WQM-C2', '2023-09-18 14:37:01', '2023-11-07 07:35:47', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198055698437, 1766460238468337668, 739607373347, NULL, 5272427922998, '1627207:27451779463', '1627207:27451779463:颜色分类:深灰色：1人位（生态皮）', 40, '', 4299, 'F4-HGHT-23E-WQM-C2', '2023-09-18 14:37:01', '2023-11-07 07:35:47', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198055698438, 1766460238468337673, 747230335059, NULL, 5154040641051, '122216927:77835123;1627207:28465266550;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28465266550:颜色分类:藕玉色-平川皮床;21433:50753444:尺寸:1500mm*2000mm', 56, '', 9999, 'ZH-PC-2-DS-F1-QM23-B13-15', '2023-11-06 13:40:31', '2024-03-20 15:04:51', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198118612993, 1766460238468337673, 747230335059, NULL, 5154040641052, '122216927:77835123;1627207:28465266550;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28465266550:颜色分类:藕玉色-平川皮床;21433:50753460:尺寸:1800mm*2000mm', 60, '', 9999, 'ZH-PC-2-DS-F1-QM23-B13-18', '2023-11-06 13:40:31', '2023-11-12 21:18:23', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198118612994, 1766460238468337673, 747230335059, NULL, 5322520198040, '122216927:77835123;1627207:28484185108;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28484185108:颜色分类:藕玉色-平川皮床+M1舒星乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 69, '', 10999, 'DS-F1-QM23-B13-15&M1', '2023-11-07 09:49:12', '2024-03-20 15:04:51', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198118612995, 1766460238468337673, 747230335059, NULL, 5322520198041, '122216927:77835123;1627207:28484185108;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28484185108:颜色分类:藕玉色-平川皮床+M1舒星乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 80, '', 10999, 'DS-F1-QM23-B13-18&M1', '2023-11-07 09:49:12', '2024-03-20 15:04:51', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198118612996, 1766460238531252229, 746898364904, NULL, 5149921492104, '122216927:77835123;1627207:28462338481;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28462338481:颜色分类:（白茶杏+茶咖色）-原野皮床;21433:50753444:尺寸:1500mm*2000mm', 58, '', 9999, 'ZH-PC-2-DS-F1-QM23-B12-15', '2023-11-06 11:19:00', '2024-03-20 15:05:27', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198118612997, 1766460238531252229, 746898364904, NULL, 5149921492105, '122216927:77835123;1627207:28462338481;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28462338481:颜色分类:（白茶杏+茶咖色）-原野皮床;21433:50753460:尺寸:1800mm*2000mm', 66, '', 9999, 'ZH-PC-2-DS-F1-QM23-B12-18', '2023-11-06 11:19:00', '2024-03-22 17:12:59', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198118612998, 1766460238531252229, 746898364904, NULL, 5151312896386, '122216927:77835123;1627207:28484198596;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28484198596:颜色分类:（白茶杏+茶咖色）-原野皮床+M1舒星乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 20, '', 10999, 'DS-F1-QM23-B12-15&M1', '2023-11-07 09:52:24', '2023-12-04 16:55:00', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198118612999, 1766460238531252229, 746898364904, NULL, 5151312896388, '122216927:77835123;1627207:28484198596;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28484198596:颜色分类:（白茶杏+茶咖色）-原野皮床+M1舒星乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 20, '', 10999, 'DS-F1-QM23-B12-18&M1', '2023-11-07 09:52:24', '2023-12-04 16:55:00', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198118613000, 1766460238531252229, 746898364904, NULL, 5151312896387, '122216927:77835123;1627207:28484198597;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28484198597:颜色分类:（白茶杏+茶咖色）-原野皮床+M2黑骑士双面黄麻乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 30, '', 11999, 'DS-F1-QM23-B12-15&M2', '2023-11-07 09:52:24', '2023-12-04 16:55:00', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198118613001, 1766460238531252229, 746898364904, NULL, 5151312896389, '122216927:77835123;1627207:28484198597;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28484198597:颜色分类:（白茶杏+茶咖色）-原野皮床+M2黑骑士双面黄麻乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 39, '', 11999, 'DS-F1-QM23-B12-18&M2', '2023-11-07 09:52:24', '2024-03-20 15:05:27', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198181527554, 1766460238531252236, 743523103853, NULL, 5296286254305, '122216927:77835123;1627207:28021396926;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28021396926:颜色分类:合观胡桃+砂砾白【头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 19, '', 15999, 'F1-HGHT-23E-WQM-B2-150', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198181527555, 1766460238531252236, 743523103853, NULL, 5296286254306, '122216927:77835123;1627207:28021396926;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28021396926:颜色分类:合观胡桃+砂砾白【头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 19, '', 15999, 'F1-HGHT-23E-WQM-B2-180', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198181527556, 1766460238531252236, 743523103853, NULL, 5296286254307, '122216927:77835123;1627207:28021396927;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28021396927:颜色分类:合观胡桃+砂砾白-箱体款【头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 20, '', 17999, 'F1-HGHT-23E-WQM-B2-150F', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198181527557, 1766460238531252236, 743523103853, NULL, 5296286254308, '122216927:77835123;1627207:28021396927;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28021396927:颜色分类:合观胡桃+砂砾白-箱体款【头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 20, '', 17999, 'F1-HGHT-23E-WQM-B2-180F', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198181527558, 1766460238531252236, 743523103853, NULL, 5296286254309, '122216927:77835123;1627207:28021396928;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28021396928:颜色分类:戈尔浅胡桃+砂砾白【头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 19, '', 15999, 'F1-GRQHT-23E-WQM-B2-150', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198181527559, 1766460238531252236, 743523103853, NULL, 5296286254310, '122216927:77835123;1627207:28021396928;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28021396928:颜色分类:戈尔浅胡桃+砂砾白【头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 19, '', 15999, 'F1-GRQHT-23E-WQM-B2-180', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198181527560, 1766460238531252236, 743523103853, NULL, 5296286254311, '122216927:77835123;1627207:28021396929;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28021396929:颜色分类:戈尔浅胡桃+砂砾白-箱体款【头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 20, '', 17999, 'F1-GRQHT-23E-WQM-B2-150F', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198181527561, 1766460238531252236, 743523103853, NULL, 5296286254312, '122216927:77835123;1627207:28021396929;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28021396929:颜色分类:戈尔浅胡桃+砂砾白-箱体款【头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 19, '', 17999, 'F1-GRQHT-23E-WQM-B2-180F', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198181527562, 1766460238531252236, 743523103853, NULL, 5296286254313, '122216927:77835123;1627207:28021396930;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28021396930:颜色分类:合观胡桃+烟雨灰【头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 20, '', 15999, 'F2-HGHT-23E-WQM-B2-150', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636418, 1766460238531252236, 743523103853, NULL, 5296286254314, '122216927:77835123;1627207:28021396930;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28021396930:颜色分类:合观胡桃+烟雨灰【头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 19, '', 15999, 'F2-HGHT-23E-WQM-B2-180', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636419, 1766460238531252236, 743523103853, NULL, 5296286254315, '122216927:77835123;1627207:28021396931;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28021396931:颜色分类:合观胡桃+烟雨灰-箱体款【头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 20, '', 17999, 'F2-HGHT-23E-WQM-B2-150F', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636420, 1766460238531252236, 743523103853, NULL, 5296286254316, '122216927:77835123;1627207:28021396931;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28021396931:颜色分类:合观胡桃+烟雨灰-箱体款【头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 20, '', 17999, 'F2-HGHT-23E-WQM-B2-180F', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636421, 1766460238531252236, 743523103853, NULL, 5296286254317, '122216927:77835123;1627207:28021396932;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28021396932:颜色分类:戈尔浅胡桃+烟雨灰【头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 20, '', 15999, 'F2-GRQHT-23E-WQM-B2-150', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636422, 1766460238531252236, 743523103853, NULL, 5296286254318, '122216927:77835123;1627207:28021396932;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28021396932:颜色分类:戈尔浅胡桃+烟雨灰【头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 20, '', 15999, 'F2-GRQHT-23E-WQM-B2-180', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636423, 1766460238531252236, 743523103853, NULL, 5296286254319, '122216927:77835123;1627207:28021396933;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28021396933:颜色分类:戈尔浅胡桃+烟雨灰-箱体款【头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 20, '', 17999, 'F2-GRQHT-23E-WQM-B2-150F', '2023-10-16 09:47:27', '2023-10-31 13:51:10', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636424, 1766460238531252236, 743523103853, NULL, 5296286254320, '122216927:77835123;1627207:28021396933;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28021396933:颜色分类:戈尔浅胡桃+烟雨灰-箱体款【头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 19, '', 17999, 'F2-GRQHT-23E-WQM-B2-180F', '2023-10-16 09:47:27', '2024-03-23 05:08:38', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636425, 1766460238531252236, 743523103853, NULL, 5132432769122, '122216927:77835123;1627207:28086314613;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28086314613:颜色分类:云栖床床头柜左+右（合观胡桃）;21433:50753444:尺寸:1500mm*2000mm', 20, '', 5999, 'HGHT-23E-WQM-NT2L&NT2R', '2023-10-19 17:19:54', '2023-11-11 19:50:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636426, 1766460238531252236, 743523103853, NULL, 5132432769124, '122216927:77835123;1627207:28086314613;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28086314613:颜色分类:云栖床床头柜左+右（合观胡桃）;21433:50753460:尺寸:1800mm*2000mm', 20, '', 5999, 'HGHT-23E-WQM-NT2L&NT2R', '2023-10-19 17:19:54', '2023-11-11 19:50:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636427, 1766460238531252236, 743523103853, NULL, 5132432769123, '122216927:77835123;1627207:28086314614;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28086314614:颜色分类:云栖床床头柜左+右（戈尔浅胡桃）;21433:50753444:尺寸:1500mm*2000mm', 20, '', 5999, 'GRQHT-23E-WQM-NT2L&NT2R', '2023-10-19 17:19:54', '2023-11-11 19:50:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198248636428, 1766460238531252236, 743523103853, NULL, 5132432769125, '122216927:77835123;1627207:28086314614;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28086314614:颜色分类:云栖床床头柜左+右（戈尔浅胡桃）;21433:50753460:尺寸:1800mm*2000mm', 20, '', 5999, 'GRQHT-23E-WQM-NT2L&NT2R', '2023-10-19 17:19:54', '2023-11-11 19:50:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198315745282, 1766460238598361110, 739038496267, NULL, 5098391736111, '122216927:77835123;1627207:27842278456;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27842278456:颜色分类:砂砾白【进口头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 39, '', 9299, 'F1-HGHT-23E-WQM-B1-150', '2023-09-15 17:40:50', '2023-12-21 11:42:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198315745283, 1766460238598361110, 739038496267, NULL, 5098391736112, '122216927:77835123;1627207:27842278456;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27842278456:颜色分类:砂砾白【进口头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 28, '', 9399, 'F1-HGHT-23E-WQM-B1-180', '2023-09-15 17:40:50', '2024-03-22 18:00:43', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198315745284, 1766460238598361110, 739038496267, NULL, 5098391736113, '122216927:77835123;1627207:27398170031;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27398170031:颜色分类:砂砾白【头层牛皮+智能环绕式感应灯带+进口松木框架】;21433:50753444:尺寸:1500mm*2000mm', 40, '', 10459, 'F1-HGHT-23E-WQM-B1DT-150', '2023-09-15 17:40:50', '2023-12-21 11:42:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198315745285, 1766460238598361110, 739038496267, NULL, 5098391736114, '122216927:77835123;1627207:27398170031;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27398170031:颜色分类:砂砾白【头层牛皮+智能环绕式感应灯带+进口松木框架】;21433:50753460:尺寸:1800mm*2000mm', 27, '', 10599, 'F1-HGHT-23E-WQM-B1DT-180', '2023-09-15 17:40:50', '2024-03-22 18:00:43', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198315745286, 1766460238598361110, 739038496267, NULL, 5098391736115, '122216927:77835123;1627207:27842278457;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27842278457:颜色分类:烟雨灰【进口头层牛皮】;21433:50753444:尺寸:1500mm*2000mm', 39, '', 9299, 'F2-HGHT-23E-WQM-B1-150', '2023-09-15 17:40:50', '2023-12-21 11:42:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198315745287, 1766460238598361110, 739038496267, NULL, 5098391736116, '122216927:77835123;1627207:27842278457;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27842278457:颜色分类:烟雨灰【进口头层牛皮】;21433:50753460:尺寸:1800mm*2000mm', 39, '', 9399, 'F2-HGHT-23E-WQM-B1-180', '2023-09-15 17:40:50', '2023-12-21 11:42:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198315745288, 1766460238598361110, 739038496267, NULL, 5098391736117, '122216927:77835123;1627207:27398170033;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27398170033:颜色分类:烟雨灰【头层牛皮+智能环绕式感应灯带+进口松木框架】;21433:50753444:尺寸:1500mm*2000mm', 40, '', 10459, 'F2-HGHT-23E-WQM-B1DT-150', '2023-09-15 17:40:50', '2023-12-21 11:42:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198315745289, 1766460238598361110, 739038496267, NULL, 5098391736118, '122216927:77835123;1627207:27398170033;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27398170033:颜色分类:烟雨灰【头层牛皮+智能环绕式感应灯带+进口松木框架】;21433:50753460:尺寸:1800mm*2000mm', 40, '', 10599, 'F2-HGHT-23E-WQM-B1DT-180', '2023-09-15 17:40:50', '2023-12-21 11:42:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198315745290, 1766460238598361110, 739038496267, NULL, 5303305015620, '122216927:77835123;1627207:28086566923;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:28086566923:颜色分类:月半湾床头柜*2;21433:50753444:尺寸:1500mm*2000mm', 20, '', 5999, 'HGHT/BSW-23E-WQM-NT1*2', '2023-10-19 17:39:32', '2023-11-07 14:25:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854146, 1766460238598361110, 739038496267, NULL, 5303305015621, '122216927:77835123;1627207:28086566923;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:28086566923:颜色分类:月半湾床头柜*2;21433:50753460:尺寸:1800mm*2000mm', 19, '', 5999, 'HGHT/BSW-23E-WQM-NT1*2', '2023-10-19 17:39:32', '2023-11-07 14:25:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854147, 1766460238665469964, 712677952081, NULL, 5162497294390, '122216927:77835123;1627207:25327224795;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25327224795:颜色分类:米咖色-框架款【抗撕拉摔纹牛皮+升级加密排骨架】;21433:50753444:尺寸:1500mm*2000mm', 1, '', 5999, 'ZH-PC-2-DS-F1-QM23-B2-15', '2023-04-15 21:45:38', '2024-03-21 13:26:09', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854148, 1766460238665469964, 712677952081, NULL, 5162497294391, '122216927:77835123;1627207:25327224795;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25327224795:颜色分类:米咖色-框架款【抗撕拉摔纹牛皮+升级加密排骨架】;21433:50753460:尺寸:1800mm*2000mm', 10, '', 5999, 'ZH-PC-2-DS-F1-QM23-B2-18', '2023-04-15 21:45:38', '2024-03-21 13:26:09', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854149, 1766460238665469964, 712677952081, NULL, 5162497294392, '122216927:77835123;1627207:25327224796;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25327224796:颜色分类:烟灰色-框架款【抗撕拉摔纹牛皮+升级加密排骨架】;21433:50753444:尺寸:1500mm*2000mm', 8, '', 5999, 'ZH-PC-2-DS-F2-QM23-B2-15', '2023-04-15 21:45:38', '2024-03-21 13:26:09', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854150, 1766460238665469964, 712677952081, NULL, 5162497294393, '122216927:77835123;1627207:25327224796;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25327224796:颜色分类:烟灰色-框架款【抗撕拉摔纹牛皮+升级加密排骨架】;21433:50753460:尺寸:1800mm*2000mm', 16, '', 5999, 'ZH-PC-2-DS-F2-QM23-B2-18', '2023-04-15 21:45:38', '2024-03-21 13:26:09', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854151, 1766460238665469964, 712677952081, NULL, 5162497294394, '122216927:77835123;1627207:25327224797;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25327224797:颜色分类:米咖色-储物款【抗撕拉摔纹牛皮+升级加密排骨架】;21433:50753444:尺寸:1500mm*2000mm', 5, '', 6999, 'ZH-PC-2-DS-F1-QM23-B2-15F', '2023-04-15 21:45:38', '2024-03-22 20:19:48', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854152, 1766460238665469964, 712677952081, NULL, 5162497294395, '122216927:77835123;1627207:25327224797;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25327224797:颜色分类:米咖色-储物款【抗撕拉摔纹牛皮+升级加密排骨架】;21433:50753460:尺寸:1800mm*2000mm', 0, '', 6999, 'ZH-PC-2-DS-F1-QM23-B2-18F', '2023-04-15 21:45:38', '2024-03-21 13:26:09', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854153, 1766460238665469964, 712677952081, NULL, 5162497294396, '122216927:77835123;1627207:25327224798;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25327224798:颜色分类:烟灰色-储物款【抗撕拉摔纹牛皮+升级加密排骨架】;21433:50753444:尺寸:1500mm*2000mm', 9, '', 6999, 'ZH-PC-2-DS-F2-QM23-B2-15F', '2023-04-15 21:45:38', '2024-03-21 13:26:09', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854154, 1766460238665469964, 712677952081, NULL, 5162497294397, '122216927:77835123;1627207:25327224798;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25327224798:颜色分类:烟灰色-储物款【抗撕拉摔纹牛皮+升级加密排骨架】;21433:50753460:尺寸:1800mm*2000mm', 0, '', 6999, 'ZH-PC-2-DS-F2-QM23-B2-18F', '2023-04-15 21:45:38', '2024-03-22 20:19:48', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198382854155, 1766460238665469964, 712677952081, NULL, 5308035397314, '122216927:77835123;1627207:31201250454;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:31201250454:颜色分类:23cm独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 100, '', 2999, 'ZH-PTCD-DS-QM23-M1-15', '2024-03-21 13:16:06', '2024-03-22 10:21:11', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198449963009, 1766460238665469964, 712677952081, NULL, 5308035397315, '122216927:77835123;1627207:31201250454;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:31201250454:颜色分类:23cm独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 100, '', 2999, 'ZH-PTCD-DS-QM23-M1-18', '2024-03-21 13:16:06', '2024-03-22 10:21:11', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198458351618, 1766460238728384522, 713126886887, NULL, 4990180352767, '122216927:77835123;1627207:25410756227;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25410756227:颜色分类:海参灰-架子床【新西兰头层牛皮+加宽加厚钢木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 1, '', 5999, 'ZH-PC-2-DS-F1-QM23-B6-15', '2023-04-15 22:16:59', '2024-03-21 13:24:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198458351619, 1766460238728384522, 713126886887, NULL, 4990180352768, '122216927:77835123;1627207:25410756227;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25410756227:颜色分类:海参灰-架子床【新西兰头层牛皮+加宽加厚钢木排骨架】;21433:50753460:尺寸:1800mm*2000mm', 5, '', 5999, 'ZH-PC-2-DS-F1-QM23-B6-18', '2023-04-15 22:16:59', '2024-03-21 13:24:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198458351620, 1766460238728384522, 713126886887, NULL, 4990180352769, '122216927:77835123;1627207:25410756228;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25410756228:颜色分类:布朗橘-架子床【新西兰头层牛皮+加宽加厚钢木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 2, '', 5999, 'ZH-PC-2-DS-F2-QM23-B6-15', '2023-04-15 22:16:59', '2024-03-21 13:24:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198458351621, 1766460238728384522, 713126886887, NULL, 4990180352770, '122216927:77835123;1627207:25410756228;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25410756228:颜色分类:布朗橘-架子床【新西兰头层牛皮+加宽加厚钢木排骨架】;21433:50753460:尺寸:1800mm*2000mm', 4, '', 5999, 'ZH-PC-2-DS-F2-QM23-B6-18', '2023-04-15 22:16:59', '2024-03-23 06:18:37', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198458351622, 1766460238728384522, 713126886887, NULL, 4990180352771, '122216927:77835123;1627207:25410756229;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25410756229:颜色分类:海参灰-悬浮床【新西兰头层牛皮+智能感应灯带+加宽加厚钢木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 3, '', 6999, 'ZH-PC-2-DS-F1-QM23-B6-15X', '2023-04-15 22:16:59', '2024-03-21 13:24:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198458351623, 1766460238728384522, 713126886887, NULL, 4990180352772, '122216927:77835123;1627207:25410756229;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25410756229:颜色分类:海参灰-悬浮床【新西兰头层牛皮+智能感应灯带+加宽加厚钢木排骨架】;21433:50753460:尺寸:1800mm*2000mm', 2, '', 6999, 'ZH-PC-2-DS-F1-QM23-B6-18X', '2023-04-15 22:16:59', '2024-03-21 13:24:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198458351624, 1766460238728384522, 713126886887, NULL, 4990180352773, '122216927:77835123;1627207:25410756230;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25410756230:颜色分类:布朗橘-悬浮床【新西兰头层牛皮+智能感应灯带+加宽加厚钢木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 1, '', 6999, 'ZH-PC-2-DS-F2-QM23-B6-15X', '2023-04-15 22:16:59', '2024-03-23 06:18:37', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198458351625, 1766460238728384522, 713126886887, NULL, 4990180352774, '122216927:77835123;1627207:25410756230;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25410756230:颜色分类:布朗橘-悬浮床【新西兰头层牛皮+智能感应灯带+加宽加厚钢木排骨架】;21433:50753460:尺寸:1800mm*2000mm', 8, '', 6999, 'ZH-PC-2-DS-F2-QM23-B6-18X', '2023-04-15 22:16:59', '2024-03-21 13:24:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198458351626, 1766460238728384522, 713126886887, NULL, 5308037233488, '122216927:77835123;1627207:31201250454;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:31201250454:颜色分类:23cm独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 100, '', 2999, 'ZH-PTCD-DS-QM23-M1-15', '2024-03-21 13:17:32', '2024-03-21 13:24:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198517071874, 1766460238728384522, 713126886887, NULL, 5308037233489, '122216927:77835123;1627207:31201250454;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:31201250454:颜色分类:23cm独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 100, '', 2999, 'ZH-PTCD-DS-QM23-M1-158', '2024-03-21 13:17:32', '2024-03-21 13:24:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198517071875, 1766460237147131906, 688444892888, NULL, 5081083851934, '1627207:29590259282', '1627207:29590259282:颜色分类:3人位-浅灰色【3.1米】', 8, '', 10288, 'ZH-S-01-DS-F1-QM22-S11-3ZP', '2022-10-22 17:38:17', '2024-02-10 12:13:57', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198517071876, 1766460237147131906, 688444892888, NULL, 5081083851940, '1627207:29590259283', '1627207:29590259283:颜色分类:4人右扶手&左转角-浅灰色【3.75米】', 1, '', 12447, 'ZH-S-01-DS-F1-QM22-S11-4ZP(L)', '2022-10-22 17:38:17', '2024-02-02 22:42:30', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198517071877, 1766460237147131906, 688444892888, NULL, 5081083851937, '1627207:29452411629', '1627207:29452411629:颜色分类:皓月沙发墩 浅灰色', 0, '', 2383, 'ZH-S-01-DS-F1-QM22-S11-D', '2022-10-22 17:38:17', '2024-01-04 10:13:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198584180737, 1766460237231017986, 688910983610, NULL, 5172021834097, '1627207:24573371574;148060595:392224432', '1627207:24573371574:颜色分类:雪山白-可伸缩餐桌1.6米;148060595:392224432:尺寸:160x80x76cm', 20, '', 4599, 'ZH-CZ-01-DS-QM23-T1', '2023-04-29 17:16:11', '2024-02-12 12:08:52', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198584180738, 1766460237231017986, 688910983610, NULL, 5172021834098, '1627207:24573371575;148060595:392224432', '1627207:24573371575:颜色分类:雪山白-可伸缩餐桌+4椅;148060595:392224432:尺寸:160x80x76cm', 4, '', 8599, 'DS-QM23-T1&DS-QM23-Y1*4', '2023-04-29 17:16:11', '2024-03-23 08:44:28', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198584180739, 1766460237231017986, 688910983610, NULL, 5172021834099, '1627207:24573371576;148060595:392224432', '1627207:24573371576:颜色分类:雪山白-可伸缩餐桌+6椅;148060595:392224432:尺寸:160x80x76cm', 3, '', 9599, 'DS-QM23-T1&DS-QM23-Y1*6', '2023-04-29 17:16:11', '2024-03-19 19:24:06', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198584180740, 1766460237231017986, 688910983610, NULL, 5002112540396, '1627207:24634651522;148060595:392224432', '1627207:24634651522:颜色分类:意式灰色餐椅*2张;148060595:392224432:尺寸:160x80x76cm', 9, '', 4599, 'DS-QM23-Y1*2', '2023-05-04 10:08:30', '2024-03-23 08:44:28', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198584180741, 1771057090989010946, 715387629658, NULL, 5004111157570, '1627207:24572615264;29112:97926', '1627207:24572615264:颜色分类:茶几-意式灰;29112:97926:安装方式:组装', 4, '', 3999, 'ZH-GL-DS-QM23-TD1', '2023-04-29 16:37:05', '2024-03-22 16:59:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198584180742, 1771057090989010946, 715387629658, NULL, 5004111157571, '1627207:24572615265;29112:97926', '1627207:24572615265:颜色分类:电视柜-意式灰;29112:97926:安装方式:组装', 42, '', 3999, 'ZH-GL-DS-QM23-GF1', '2023-04-29 16:37:05', '2024-03-22 16:59:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198584180743, 1771057090989010946, 715387629658, NULL, 5004111157572, '1627207:24572615266;29112:97926', '1627207:24572615266:颜色分类:电视柜+茶几-意式灰;29112:97926:安装方式:组装', 4, '', 6599, 'DS-QM23-TD1&DS-QM23-GF1', '2023-04-29 16:37:05', '2024-03-22 16:59:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198584180744, 1771057090989010946, 715387629658, NULL, 5004111157573, '1627207:24572615267;29112:97926', '1627207:24572615267:颜色分类:边几-意式灰;29112:97926:安装方式:组装', 13, '', 1599, 'ZH-GL-DS-QM23-TB1', '2023-04-29 16:37:05', '2024-03-22 16:59:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198651289601, 1766460237277155330, 741966844715, NULL, 5117042636887, '1627207:27839195181', '1627207:27839195181:颜色分类:3人位-月光白【雪尼尔布】', 20, '', 10899, 'F1-HGHT-23E-WQM-S1-3', '2023-10-07 15:56:54', '2023-11-06 11:18:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198651289602, 1766460237277155330, 741966844715, NULL, 5117042636888, '1627207:27839195182', '1627207:27839195182:颜色分类:3人位-天青蓝【雪尼尔布】', 20, '', 10899, 'F3-HGHT-23E-WQM-S1-3', '2023-10-07 15:56:54', '2023-11-06 11:18:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198651289603, 1766460237277155330, 741966844715, NULL, 5117042636889, '1627207:27839195183', '1627207:27839195183:颜色分类:3人位-砂砾白【进口头层牛皮】', 17, '', 12899, 'F4-HGHT-23E-WQM-S1-3', '2023-10-07 15:56:54', '2024-03-22 23:35:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198651289604, 1766460237277155330, 741966844715, NULL, 5117042636890, '1627207:27839195184', '1627207:27839195184:颜色分类:3人位-烟雨灰【进口头层牛皮】', 19, '', 12899, 'F5-HGHT-23E-WQM-S1-3', '2023-10-07 15:56:54', '2023-11-06 11:18:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198651289605, 1766460237277155330, 741966844715, NULL, 5117042636891, '1627207:27839195185', '1627207:27839195185:颜色分类:4人位-月光白【雪尼尔布】', 20, '', 13899, 'F1-HGHT-23E-WQM-S1-ZH1', '2023-10-07 15:56:54', '2023-11-06 11:18:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198651289606, 1766460237277155330, 741966844715, NULL, 5117042636892, '1627207:27839195186', '1627207:27839195186:颜色分类:4人位-天青蓝【雪尼尔布】', 20, '', 13899, 'F3-HGHT-23E-WQM-S1-ZH1', '2023-10-07 15:56:54', '2023-11-06 11:18:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198651289607, 1766460237277155330, 741966844715, NULL, 5117042636893, '1627207:27839195187', '1627207:27839195187:颜色分类:4人位-砂砾白【进口头层牛皮】', 17, '', 16899, 'F4-HGHT-23E-WQM-S1-ZH1', '2023-10-07 15:56:54', '2023-11-06 11:18:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198651289608, 1766460237277155330, 741966844715, NULL, 5117042636894, '1627207:27839195188', '1627207:27839195188:颜色分类:4人位-烟雨灰【进口头层牛皮】', 19, '', 16899, 'F5-HGHT-23E-WQM-S1-ZH1', '2023-10-07 15:56:54', '2024-03-22 23:35:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204161, 1771057091169366017, 715554799144, NULL, 5175363035183, '122216927:77835123;1627207:25833035879;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25833035879:颜色分类:曜石黑-【进口全青皮+出口级海绵+全实木加密排骨架】;21433:50753444:尺寸:1500mm*2000mm', 0, '', 5599, '', '2023-04-28 18:51:53', '2024-03-22 17:36:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204162, 1771057091169366017, 715554799144, NULL, 5175363035184, '122216927:77835123;1627207:25833035879;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25833035879:颜色分类:曜石黑-【进口全青皮+出口级海绵+全实木加密排骨架】;21433:50753460:尺寸:1800mm*2000mm', 17, '', 5599, 'ZH-PC-2-DS-F1-QM23-B9-18', '2023-04-28 18:51:53', '2024-03-22 17:36:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204163, 1771057091169366017, 715554799144, NULL, 5184606294985, '122216927:77835123;1627207:25833035880;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25833035880:颜色分类:浅米咖-【进口全青皮+出口级海绵+全实木加密排骨架】;21433:50753444:尺寸:1500mm*2000mm', 3, '', 5599, 'ZH-PC-2-DS-F2-QM23-B9-15', '2023-05-19 11:51:14', '2024-03-22 17:36:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204164, 1771057091169366017, 715554799144, NULL, 5184606294986, '122216927:77835123;1627207:25833035880;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25833035880:颜色分类:浅米咖-【进口全青皮+出口级海绵+全实木加密排骨架】;21433:50753460:尺寸:1800mm*2000mm', 4, '', 5599, 'ZH-PC-2-DS-F2-QM23-B9-18', '2023-05-19 11:51:14', '2024-03-22 17:36:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204165, 1771057091169366017, 715554799144, NULL, 5304648004039, '122216927:77835123;1627207:31201250454;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:31201250454:颜色分类:23cm独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 100, '', 2999, 'ZH-PTCD-DS-QM23-M1-15', '2024-03-21 13:13:38', '2024-03-21 13:23:28', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204166, 1771057091169366017, 715554799144, NULL, 5304648004040, '122216927:77835123;1627207:31201250454;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:31201250454:颜色分类:23cm独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 99, '', 2999, '垫 ZH-PTCD-DS-QM23-M1-18', '2024-03-21 13:13:38', '2024-03-21 13:23:28', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204167, 1771057091307778050, 718529179488, NULL, 5180257158613, '122216927:77835123;1627207:27296795331;21433:50753502', '122216927:77835123:家具结构:框架结构;1627207:27296795331:颜色分类:架子款-浅咖色【进口真皮+双层海绵+松木排骨架】;21433:50753502:尺寸:1200mm*2000mm', 17, '', 6999, 'ZH-PC-2-DS-F1-QM23-B1-12', '2023-05-12 14:08:34', '2024-02-22 11:58:54', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204168, 1771057091307778050, 718529179488, NULL, 5008041840337, '122216927:77835123;1627207:27296795331;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795331:颜色分类:架子款-浅咖色【进口真皮+双层海绵+松木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 7, '', 6999, 'ZH-PC-2-DS-F1-QM23-B1-15', '2023-05-12 13:46:06', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204169, 1771057091307778050, 718529179488, NULL, 5008041840338, '122216927:77835123;1627207:27296795331;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795331:颜色分类:架子款-浅咖色【进口真皮+双层海绵+松木排骨架】;21433:50753460:尺寸:1800mm*2000mm', 11, '', 6999, 'ZH-PC-2-DS-F1-QM23-B1-18', '2023-05-12 13:46:06', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198714204170, 1771057091307778050, 718529179488, NULL, 5024925108638, '122216927:77835123;1627207:27296795332;21433:50753502', '122216927:77835123:家具结构:框架结构;1627207:27296795332:颜色分类:架子款-浅咖色 进口真皮软床+独袋弹簧乳胶床垫;21433:50753502:尺寸:1200mm*2000mm', 12, '', 7999, 'DS-F1-QM23-B1-12&QM23-M1-12', '2023-06-08 17:22:21', '2024-01-28 17:43:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118722, 1771057091307778050, 718529179488, NULL, 5024925108636, '122216927:77835123;1627207:27296795332;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795332:颜色分类:架子款-浅咖色 进口真皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 28, '', 7999, 'DS-F1-QM23-B1-15&QM23-M1-15', '2023-06-08 17:22:21', '2024-02-18 14:03:44', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118723, 1771057091307778050, 718529179488, NULL, 5024925108637, '122216927:77835123;1627207:27296795332;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795332:颜色分类:架子款-浅咖色 进口真皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 9, '', 7999, 'DS-F1-QM23-B1-18&QM23-M1-18', '2023-06-08 17:22:21', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118724, 1771057091307778050, 718529179488, NULL, 5059915352704, '122216927:77835123;1627207:27296795333;21433:50753502', '122216927:77835123:家具结构:框架结构;1627207:27296795333:颜色分类:架子款-奶油白【进口真皮+双层海绵+松木排骨架】;21433:50753502:尺寸:1200mm*2000mm', 34, '', 6999, 'ZH-PC-2-DS-F2-QM23-B1-12', '2023-07-24 16:15:14', '2024-02-18 14:03:44', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118725, 1771057091307778050, 718529179488, NULL, 5059915352700, '122216927:77835123;1627207:27296795333;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795333:颜色分类:架子款-奶油白【进口真皮+双层海绵+松木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 25, '', 6999, 'ZH-PC-2-DS-F2-QM23-B1-15', '2023-07-24 16:15:14', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118726, 1771057091307778050, 718529179488, NULL, 5059915352702, '122216927:77835123;1627207:27296795333;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795333:颜色分类:架子款-奶油白【进口真皮+双层海绵+松木排骨架】;21433:50753460:尺寸:1800mm*2000mm', 9, '', 6999, 'ZH-PC-2-DS-F2-QM23-B1-18', '2023-07-24 16:15:14', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118727, 1771057091307778050, 718529179488, NULL, 5059915352705, '122216927:77835123;1627207:27296795334;21433:50753502', '122216927:77835123:家具结构:框架结构;1627207:27296795334:颜色分类:架子款-奶油白 进口真皮软床+独袋弹簧乳胶床垫;21433:50753502:尺寸:1200mm*2000mm', 21, '', 7999, 'DS-F2-QM23-B1-12&QM23-M1-12', '2023-07-24 16:15:14', '2024-02-27 14:21:20', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118728, 1771057091307778050, 718529179488, NULL, 5059915352701, '122216927:77835123;1627207:27296795334;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795334:颜色分类:架子款-奶油白 进口真皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 23, '', 7999, 'DS-F2-QM23-B1-15&QM23-M1-15', '2023-07-24 16:15:14', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118729, 1771057091307778050, 718529179488, NULL, 5059915352703, '122216927:77835123;1627207:27296795334;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795334:颜色分类:架子款-奶油白 进口真皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 23, '', 7999, 'DS-F2-QM23-B1-18&QM23-M1-18', '2023-07-24 16:15:14', '2024-02-27 14:21:20', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118730, 1771057091307778050, 718529179488, NULL, 5084701932004, '122216927:77835123;1627207:27296795335;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795335:颜色分类:架子款-浅咖色 进口真皮软床+黑骑士M2黄麻乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 20, '', 8999, 'DS-F1-QM23-B1-15&M2', '2023-08-29 10:56:31', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118731, 1771057091307778050, 718529179488, NULL, 5084701932006, '122216927:77835123;1627207:27296795335;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795335:颜色分类:架子款-浅咖色 进口真皮软床+黑骑士M2黄麻乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 17, '', 8999, 'DS-F1-QM23-B1-18&M2', '2023-08-29 10:56:31', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118732, 1771057091307778050, 718529179488, NULL, 5084701932005, '122216927:77835123;1627207:27296795336;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795336:颜色分类:架子款-奶油白 进口真皮软床+黑骑士M2黄麻乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 16, '', 8999, 'DS-F2-QM23-B1-15&M2', '2023-08-29 10:56:31', '2023-12-22 22:02:51', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118733, 1771057091307778050, 718529179488, NULL, 5084701932007, '122216927:77835123;1627207:27296795336;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795336:颜色分类:架子款-奶油白 进口真皮软床+黑骑士M2黄麻乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 15, '', 8999, 'DS-F2-QM23-B1-18&M2', '2023-08-29 10:56:31', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118734, 1771057091307778050, 718529179488, NULL, 5094700576941, '122216927:77835123;1627207:27296795337;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795337:颜色分类:储物款-浅咖色【进口真皮+双层海绵+松木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 17, '', 7999, 'ZH-PC-2-DS-F1-QM23-B1-15-PF', '2023-09-11 13:17:01', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118735, 1771057091307778050, 718529179488, NULL, 5094700576947, '122216927:77835123;1627207:27296795337;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795337:颜色分类:储物款-浅咖色【进口真皮+双层海绵+松木排骨架】;21433:50753460:尺寸:1800mm*2000mm', 16, '', 7999, 'ZH-PC-2-DS-F1-QM23-B1-18-PF', '2023-09-11 13:17:01', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198777118736, 1771057091307778050, 718529179488, NULL, 5149847316919, '122216927:77835123;1627207:27296795338;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795338:颜色分类:储物款-浅咖色 进口真皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 19, '', 9999, 'DS-F1-QM23-B1-15-PF&M1', '2023-11-06 10:02:58', '2023-11-07 14:20:57', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198840033282, 1771057091307778050, 718529179488, NULL, 5149847316920, '122216927:77835123;1627207:27296795338;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795338:颜色分类:储物款-浅咖色 进口真皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 20, '', 9999, 'DS-F1-QM23-B1-18-PF&M1', '2023-11-06 10:02:58', '2023-11-07 14:20:57', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198848421890, 1771057091307778050, 718529179488, NULL, 5094700576943, '122216927:77835123;1627207:27296795339;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795339:颜色分类:储物款-奶油白【进口真皮+双层海绵+松木排骨架】;21433:50753444:尺寸:1500mm*2000mm', 18, '', 7999, 'ZH-PC-2-DS-F2-QM23-B1-15-PF', '2023-09-11 13:17:01', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198848421891, 1771057091307778050, 718529179488, NULL, 5094700576949, '122216927:77835123;1627207:27296795339;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795339:颜色分类:储物款-奶油白【进口真皮+双层海绵+松木排骨架】;21433:50753460:尺寸:1800mm*2000mm', 8, '', 7999, 'ZH-PC-2-DS-F2-QM23-B1-18-PF', '2023-09-11 13:17:01', '2023-12-04 16:43:23', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198856810498, 1771057091307778050, 718529179488, NULL, 5094700576944, '122216927:77835123;1627207:27296795340;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795340:颜色分类:储物款-奶油白 进口真皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 10, '', 8999, 'DS-F2-QM23-B1-15-PF&M1', '2023-09-11 13:17:01', '2023-11-07 14:20:22', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198856810499, 1771057091307778050, 718529179488, NULL, 5094700576950, '122216927:77835123;1627207:27296795340;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795340:颜色分类:储物款-奶油白 进口真皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 9, '', 8999, 'DS-F2-QM23-B1-18-PF&M1', '2023-09-11 13:17:01', '2024-03-15 18:51:44', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198856810500, 1771057091307778050, 718529179488, NULL, 5094700576945, '122216927:77835123;1627207:27296795341;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795341:颜色分类:储物款-浅咖色 进口真皮软床+黑骑士M2黄麻乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 7, '', 9999, 'DS-F1-QM23-B1-15-PF&M2', '2023-09-11 13:17:01', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198865199105, 1771057091307778050, 718529179488, NULL, 5094700576951, '122216927:77835123;1627207:27296795341;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795341:颜色分类:储物款-浅咖色 进口真皮软床+黑骑士M2黄麻乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 15, '', 9999, 'DS-F1-QM23-B1-18-PF&M2', '2023-09-11 13:17:01', '2024-03-22 17:38:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198865199106, 1771057091307778050, 718529179488, NULL, 5094700576946, '122216927:77835123;1627207:27296795343;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:27296795343:颜色分类:储物款-奶油白 进口真皮软床+黑骑士M2黄麻乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 9, '', 9999, 'DS-F2-QM23-B1-15-PF&M2', '2023-09-11 13:17:01', '2024-02-13 09:40:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198873587713, 1771057091307778050, 718529179488, NULL, 5094700576952, '122216927:77835123;1627207:27296795343;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:27296795343:颜色分类:储物款-奶油白 进口真皮软床+黑骑士M2黄麻乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 18, '', 9999, 'DS-F2-QM23-B1-18-PF&M2', '2023-09-11 13:17:01', '2024-03-15 18:51:44', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198873587714, 1771057092666732546, 717997086993, NULL, 5179007574337, '122216927:77835123;1627207:25328329977;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25328329977:颜色分类:托特悬浮床【头层牛皮+智能环绕式感应灯带+进口松木框架】;21433:50753444:尺寸:1500mm*2000mm', 24, '', 6999, 'ZH-PC-2-DS-F1-QM23-B10-15X', '2023-05-10 19:50:19', '2024-03-22 23:05:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142145, 1771057092666732546, 717997086993, NULL, 5179007574338, '122216927:77835123;1627207:25328329977;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25328329977:颜色分类:托特悬浮床【头层牛皮+智能环绕式感应灯带+进口松木框架】;21433:50753460:尺寸:1800mm*2000mm', 19, '', 6999, 'ZH-PC-2-DS-F1-QM23-B10-18X', '2023-05-10 19:50:19', '2024-03-22 23:05:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142146, 1771057092666732546, 717997086993, NULL, 5474827686928, '122216927:77835123;1627207:31201250454;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:31201250454:颜色分类:23cm独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 100, '', 2999, 'ZH-PTCD-DS-QM23-M1-15', '2024-03-21 13:14:35', '2024-03-21 13:23:57', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142147, 1771057092666732546, 717997086993, NULL, 5474827686929, '122216927:77835123;1627207:31201250454;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:31201250454:颜色分类:23cm独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 100, '', 2999, 'ZH-PTCD-DS-QM23-M1-15', '2024-03-21 13:14:35', '2024-03-21 13:23:57', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142148, 1771057092746424321, 770344068923, NULL, 5451881559814, '31480:3236467;1627207:30775080937;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080937:颜色分类:灯芯绒坐包-燕麦白;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3500, 'F1-23E-LAB-ZD1', '2024-02-29 11:42:06', '2024-02-29 17:29:27', 'normal', NULL, NULL, 0, 4919628, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142149, 1771057092746424321, 770344068923, NULL, 5451881559815, '31480:3236467;1627207:30775080937;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080937:颜色分类:灯芯绒坐包-燕麦白;148060595:30775191423:尺寸:96x84x40cm', 100, '', 4500, 'F1-23E-LAB-ZD', '2024-02-29 11:42:06', '2024-02-29 17:29:27', 'normal', NULL, NULL, 0, 4908262, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142150, 1771057092746424321, 770344068923, NULL, 5451881559816, '31480:3236467;1627207:30775080938;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080938:颜色分类:灯芯绒坐包--蔷薇粉;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3500, 'F7-23E-LAB-ZD1', '2024-02-29 11:42:06', '2024-02-29 17:29:27', 'normal', NULL, NULL, 0, 4919572, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142151, 1771057092746424321, 770344068923, NULL, 5451881559817, '31480:3236467;1627207:30775080938;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080938:颜色分类:灯芯绒坐包--蔷薇粉;148060595:30775191423:尺寸:96x84x40cm', 100, '', 4500, 'F7-23E-LAB-ZD', '2024-02-29 11:42:06', '2024-02-29 17:29:27', 'normal', NULL, NULL, 0, 4920560, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142152, 1771057092746424321, 770344068923, NULL, 5451881559818, '31480:3236467;1627207:30775080939;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080939:颜色分类:灯芯绒坐包-奶茶灰;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3500, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142153, 1771057092746424321, 770344068923, NULL, 5451881559819, '31480:3236467;1627207:30775080939;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080939:颜色分类:灯芯绒坐包-奶茶灰;148060595:30775191423:尺寸:96x84x40cm', 100, '', 4500, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142154, 1771057092746424321, 770344068923, NULL, 5451881559820, '31480:3236467;1627207:30775080940;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080940:颜色分类:灯芯绒坐包-焦糖棕;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3500, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142155, 1771057092746424321, 770344068923, NULL, 5451881559821, '31480:3236467;1627207:30775080940;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080940:颜色分类:灯芯绒坐包-焦糖棕;148060595:30775191423:尺寸:96x84x40cm', 100, '', 4500, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198907142156, 1771057092746424321, 770344068923, NULL, 5451881559822, '31480:3236467;1627207:30775080941;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080941:颜色分类:灯芯绒坐包-石墨灰;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3500, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251010, 1771057092746424321, 770344068923, NULL, 5451881559823, '31480:3236467;1627207:30775080941;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080941:颜色分类:灯芯绒坐包-石墨灰;148060595:30775191423:尺寸:96x84x40cm', 100, '', 4500, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251011, 1771057092746424321, 770344068923, NULL, 5451881559824, '31480:3236467;1627207:30775080942;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080942:颜色分类:头层牛皮坐包-岩石灰;148060595:30775191423:尺寸:96x84x40cm', 100, '', 6500, '', '2024-02-29 11:42:06', '2024-02-29 15:21:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251012, 1771057092746424321, 770344068923, NULL, 5451881559825, '31480:3236467;1627207:30775080943;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080943:颜色分类:头层牛皮坐包-冰川灰;148060595:30775191423:尺寸:96x84x40cm', 100, '', 6500, '', '2024-02-29 11:42:06', '2024-02-29 15:21:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251013, 1771057092746424321, 770344068923, NULL, 5451881559826, '31480:3236467;1627207:30775080944;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080944:颜色分类:灯芯绒扶手-燕麦白;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3000, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251014, 1771057092746424321, 770344068923, NULL, 5451881559827, '31480:3236467;1627207:30775080944;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080944:颜色分类:灯芯绒扶手-燕麦白;148060595:30775191423:尺寸:96x84x40cm', 100, '', 3000, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251015, 1771057092746424321, 770344068923, NULL, 5451881559828, '31480:3236467;1627207:30775080945;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080945:颜色分类:灯芯绒扶手--蔷薇粉;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3000, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251016, 1771057092746424321, 770344068923, NULL, 5451881559829, '31480:3236467;1627207:30775080945;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080945:颜色分类:灯芯绒扶手--蔷薇粉;148060595:30775191423:尺寸:96x84x40cm', 100, '', 3000, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251017, 1771057092746424321, 770344068923, NULL, 5451881559830, '31480:3236467;1627207:30775080946;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080946:颜色分类:灯芯绒扶手-奶茶灰;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3000, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251018, 1771057092746424321, 770344068923, NULL, 5451881559831, '31480:3236467;1627207:30775080946;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080946:颜色分类:灯芯绒扶手-奶茶灰;148060595:30775191423:尺寸:96x84x40cm', 100, '', 3000, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251019, 1771057092746424321, 770344068923, NULL, 5451881559832, '31480:3236467;1627207:30775080947;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080947:颜色分类:灯芯绒扶手-焦糖棕;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3000, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251020, 1771057092746424321, 770344068923, NULL, 5451881559833, '31480:3236467;1627207:30775080947;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080947:颜色分类:灯芯绒扶手-焦糖棕;148060595:30775191423:尺寸:96x84x40cm', 100, '', 3000, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251021, 1771057092746424321, 770344068923, NULL, 5451881559834, '31480:3236467;1627207:30775080948;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30775080948:颜色分类:灯芯绒扶手-石墨灰;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3500, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251022, 1771057092746424321, 770344068923, NULL, 5451881559835, '31480:3236467;1627207:30775080948;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080948:颜色分类:灯芯绒扶手-石墨灰;148060595:30775191423:尺寸:96x84x40cm', 100, '', 3000, '', '2024-02-29 11:42:06', '2024-02-29 15:24:34', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251023, 1771057092746424321, 770344068923, NULL, 5451881559836, '31480:3236467;1627207:30775080949;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080949:颜色分类:头层牛皮扶手-岩石灰;148060595:30775191423:尺寸:96x84x40cm', 100, '', 4500, '', '2024-02-29 11:42:06', '2024-02-29 15:21:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251024, 1771057092746424321, 770344068923, NULL, 5451881559837, '31480:3236467;1627207:30775080950;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30775080950:颜色分类:头层牛皮扶手-冰川灰;148060595:30775191423:尺寸:96x84x40cm', 100, '', 4500, '', '2024-02-29 11:42:06', '2024-02-29 15:21:25', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251025, 1771057092746424321, 770344068923, NULL, 5451881559838, '31480:3236467;1627207:30797176500;148060595:2412028747', '31480:3236467:适用人数:组合;1627207:30797176500:颜色分类:【省心福利】咨询客服 省心搭配，兑换更多福利~;148060595:2412028747:尺寸:84x84x40cm', 100, '', 3500, '', '2024-02-29 11:42:06', '2024-03-05 15:07:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251026, 1771057092746424321, 770344068923, NULL, 5449113290608, '31480:3236467;1627207:30797176500;148060595:30775191423', '31480:3236467:适用人数:组合;1627207:30797176500:颜色分类:【省心福利】咨询客服 省心搭配，兑换更多福利~;148060595:30775191423:尺寸:96x84x40cm', 100, '', 6500, '', '2024-02-29 15:02:55', '2024-03-05 15:07:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373198974251027, 1771057092972916738, 719802492323, NULL, 5187574270689, '1627207:25006305809;29112:97926', '1627207:25006305809:颜色分类:太妃糖棕-左;29112:97926:安装方式:组装', 0, '', 659, 'ZH-SF-04-DS-F1-QM23-NT1(L)', '2023-05-24 10:46:40', '2024-03-15 09:20:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199032971266, 1771057092972916738, 719802492323, NULL, 5187574270690, '1627207:25006305810;29112:97926', '1627207:25006305810:颜色分类:太妃糖棕-右;29112:97926:安装方式:组装', 0, '', 659, 'ZH-SF-04-DS-F1-QM23-NT1(R)', '2023-05-24 10:46:40', '2024-03-19 21:34:11', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199032971267, 1771057092972916738, 719802492323, NULL, 5187574270691, '1627207:25006305811;29112:97926', '1627207:25006305811:颜色分类:奥利奥黑-左;29112:97926:安装方式:组装', 9, '', 659, 'ZH-SF-04-DS-F2-QM23-NT1(L)', '2023-05-24 10:46:40', '2024-03-22 22:05:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199032971268, 1771057092972916738, 719802492323, NULL, 5187601170448, '1627207:25006305812;29112:97926', '1627207:25006305812:颜色分类:奥利奥黑-右;29112:97926:安装方式:组装', 8, '', 659, 'ZH-SF-04-DS-F2-QM23-NT1(R)', '2023-05-24 11:27:08', '2024-03-15 09:20:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199032971269, 1771057092972916738, 719802492323, NULL, 5187601170449, '1627207:25006305813;29112:97926', '1627207:25006305813:颜色分类:巧克力白-左;29112:97926:安装方式:组装', 0, '', 659, 'ZH-SF-04-DS-F3-QM23-NT1(L)', '2023-05-24 11:27:08', '2024-03-22 22:05:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199032971270, 1771057092972916738, 719802492323, NULL, 5187601170450, '1627207:25006305814;29112:97926', '1627207:25006305814:颜色分类:巧克力白-右;29112:97926:安装方式:组装', 0, '', 659, 'ZH-SF-04-DS-F3-QM23-NT1(R）', '2023-05-24 11:27:08', '2024-03-22 22:05:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199032971271, 1771057093220380674, 720313574313, NULL, 5015784512500, '31480:3236467;1627207:30265157860', '31480:3236467:适用人数:组合;1627207:30265157860:颜色分类:【适用1-2人】灯芯绒-燕麦白', 9, '', 8999, 'F1-23E-LAB-ZD1*1&F1-23E-LAB-FS1*3', '2023-05-24 20:30:28', '2024-03-23 04:12:19', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199032971272, 1771057093220380674, 720313574313, NULL, 5435508414653, '31480:3236467;1627207:30509094444', '31480:3236467:适用人数:组合;1627207:30509094444:颜色分类:【适用1-2人】灯芯绒-蔷薇粉', 10, '', 8999, 'F7-23E-LAB-ZD1*1&F7-23E-LAB-FS1*3', '2024-02-01 15:27:49', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199032971273, 1771057093220380674, 720313574313, NULL, 5015784512501, '31480:3236467;1627207:30265157861', '31480:3236467:适用人数:组合;1627207:30265157861:颜色分类:【适用1-2人】灯芯绒-奶茶灰', 10, '', 8999, 'F2-23E-LAB-ZD1*1&F2-23E-LAB-FS1*3', '2023-05-24 20:30:28', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199032971274, 1771057093220380674, 720313574313, NULL, 5015802656256, '31480:3236467;1627207:30509094445', '31480:3236467:适用人数:组合;1627207:30509094445:颜色分类:【适用1-2人】灯芯绒-石墨灰', 10, '', 8999, 'F9-23E-LAB-ZD1*1&F9-23E-LAB-FS1*3', '2023-05-24 21:07:58', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080129, 1771057093220380674, 720313574313, NULL, 5015784512504, '31480:3236467;1627207:30509094446', '31480:3236467:适用人数:组合;1627207:30509094446:颜色分类:【适用1-2人】灯芯绒-焦糖棕', 10, '', 8999, 'F8-23E-LAB-ZD1*1&F8-23E-LAB-FS1*3', '2023-05-24 20:30:28', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080130, 1771057093220380674, 720313574313, NULL, 5015802656254, '31480:3236467;1627207:30265157854', '31480:3236467:适用人数:组合;1627207:30265157854:颜色分类:【适用3人】灯芯绒-燕麦白', 9, '', 12999, 'F1-23E-LAB-ZD1*2&F1-23E-LAB-FS1*4', '2023-05-24 21:07:58', '2024-03-08 13:21:08', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080131, 1771057093220380674, 720313574313, NULL, 5015802656255, '31480:3236467;1627207:30509094447', '31480:3236467:适用人数:组合;1627207:30509094447:颜色分类:【适用3人】灯芯绒-蔷薇粉', 10, '', 12999, 'F7-23E-LAB-ZD1*2&F7-23E-LAB-FS1*4', '2023-05-24 21:07:58', '2024-02-25 14:33:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080132, 1771057093220380674, 720313574313, NULL, 5015802656258, '31480:3236467;1627207:30265157855', '31480:3236467:适用人数:组合;1627207:30265157855:颜色分类:【适用3人】灯芯绒-奶茶灰', 9, '', 12999, 'F2-23E-LAB-ZD1*2&F2-23E-LAB-FS1*4', '2023-05-24 21:07:58', '2024-03-08 13:21:08', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080133, 1771057093220380674, 720313574313, NULL, 5015802656263, '31480:3236467;1627207:30509094448', '31480:3236467:适用人数:组合;1627207:30509094448:颜色分类:【适用3人】灯芯绒-石墨灰', 10, '', 12999, 'F9-23E-LAB-ZD1*2&F9-23E-LAB-FS1*4', '2023-05-24 21:07:58', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080134, 1771057093220380674, 720313574313, NULL, 5015802656259, '31480:3236467;1627207:30509094449', '31480:3236467:适用人数:组合;1627207:30509094449:颜色分类:【适用3人】灯芯绒-焦糖棕', 10, '', 12999, 'F8-23E-LAB-ZD1*2&F8-23E-LAB-FS1*4', '2023-05-24 21:07:58', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080135, 1771057093220380674, 720313574313, NULL, 5015802656260, '31480:3236467;1627207:30265157848', '31480:3236467:适用人数:组合;1627207:30265157848:颜色分类:【适用4人】灯芯绒-燕麦白', 8, '', 16999, 'F1-23E-LAB-ZD1*3&F1-23E-LAB-FS1*5', '2023-05-24 21:07:58', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080136, 1771057093220380674, 720313574313, NULL, 5015802656264, '31480:3236467;1627207:30509094450', '31480:3236467:适用人数:组合;1627207:30509094450:颜色分类:【适用4人】灯芯绒-蔷薇粉', 10, '', 16999, 'F7-23E-LAB-ZD1*3&F7-23E-LAB-FS1*5', '2023-05-24 21:07:58', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080137, 1771057093220380674, 720313574313, NULL, 5015802656265, '31480:3236467;1627207:30265157849', '31480:3236467:适用人数:组合;1627207:30265157849:颜色分类:【适用4人】灯芯绒-奶茶灰', 10, '', 16999, 'F2-23E-LAB-ZD1*3&F2-23E-LAB-FS1*5', '2023-05-24 21:07:58', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080138, 1771057093220380674, 720313574313, NULL, 5015802656261, '31480:3236467;1627207:30509094451', '31480:3236467:适用人数:组合;1627207:30509094451:颜色分类:【适用4人】灯芯绒-石墨灰', 10, '', 16999, 'F9-23E-LAB-ZD1*3&F9-23E-LAB-FS1*5', '2023-05-24 21:07:58', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080139, 1771057093220380674, 720313574313, NULL, 5015802656262, '31480:3236467;1627207:30509094452', '31480:3236467:适用人数:组合;1627207:30509094452:颜色分类:【适用4人】灯芯绒-焦糖棕', 10, '', 16999, 'F8-23E-LAB-ZD1*3&F8-23E-LAB-FS1*5', '2023-05-24 21:07:58', '2024-02-19 14:25:31', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080140, 1771057093220380674, 720313574313, NULL, 5435508414654, '31480:3236467;1627207:30509094453', '31480:3236467:适用人数:组合;1627207:30509094453:颜色分类:【4人贵妃躺】灯芯绒-燕麦白', 8, '', 19999, 'F1-23E-LAB-ZD1*4&F1-23E-LAB-FS1*5', '2024-02-01 15:27:49', '2024-03-07 10:55:02', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199100080141, 1771057093220380674, 720313574313, NULL, 5435508414655, '31480:3236467;1627207:30509094454', '31480:3236467:适用人数:组合;1627207:30509094454:颜色分类:【4人贵妃躺】灯芯绒-蔷薇粉', 10, '', 19999, 'F7-23E-LAB-ZD1*4&F7-23E-LAB-FS1*5', '2024-02-01 15:27:49', '2024-02-01 15:27:49', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167188994, 1771057093220380674, 720313574313, NULL, 5435508414656, '31480:3236467;1627207:30509094455', '31480:3236467:适用人数:组合;1627207:30509094455:颜色分类:【4人贵妃躺】灯芯绒-奶茶灰', 10, '', 19999, 'F2-23E-LAB-ZD1*4&F2-23E-LAB-FS1*5', '2024-02-01 15:27:49', '2024-03-18 08:54:11', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167188995, 1771057093220380674, 720313574313, NULL, 5435508414657, '31480:3236467;1627207:30509094456', '31480:3236467:适用人数:组合;1627207:30509094456:颜色分类:【4人贵妃躺】灯芯绒-石墨灰', 10, '', 19999, 'F9-23E-LAB-ZD1*4&F9-23E-LAB-FS1*5', '2024-02-01 15:27:49', '2024-02-01 15:27:49', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167188996, 1771057093220380674, 720313574313, NULL, 5435508414658, '31480:3236467;1627207:30509094457', '31480:3236467:适用人数:组合;1627207:30509094457:颜色分类:【4人贵妃躺】灯芯绒-焦糖棕', 10, '', 19999, 'F8-23E-LAB-ZD1*4&F8-23E-LAB-FS1*5', '2024-02-01 15:27:49', '2024-02-01 15:27:49', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167188997, 1771057093220380674, 720313574313, NULL, 5061095520701, '31480:3236467;1627207:31069764202', '31480:3236467:适用人数:组合;1627207:31069764202:颜色分类:咨询客服，了解更多折扣福利~', 50, '', 3099, '', '2023-07-26 10:39:55', '2024-03-14 14:29:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167188998, 1771057093396541442, 766114054268, NULL, 5268494773110, '31480:3236467;1627207:31149930462', '31480:3236467:适用人数:组合;1627207:31149930462:颜色分类:详询客服享优惠~', 5, '', 3099, '', '2024-02-01 09:38:40', '2024-03-17 19:20:32', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167188999, 1771057093396541442, 766114054268, NULL, 5268494773111, '31480:3236467;1627207:30265157848', '31480:3236467:适用人数:组合;1627207:30265157848:颜色分类:【适用4人】灯芯绒-燕麦白', 10, '', 24538, 'F1-23E-LAB-ZD*3&23E-LAB-FS*5', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167189000, 1771057093396541442, 766114054268, NULL, 5268494773112, '31480:3236467;1627207:30265157849', '31480:3236467:适用人数:组合;1627207:30265157849:颜色分类:【适用4人】灯芯绒-奶茶灰', 10, '', 24538, 'F2-23E-LAB-ZD*3&23E-LAB-FS*5', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167189001, 1771057093396541442, 766114054268, NULL, 5268494773113, '31480:3236467;1627207:30265157850', '31480:3236467:适用人数:组合;1627207:30265157850:颜色分类:【适用4人】硅胶皮-奶油咖', 10, '', 25638, 'F3-23E-LAB-ZD*3&23E-LAB-FS*5', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167189002, 1771057093396541442, 766114054268, NULL, 5268494773114, '31480:3236467;1627207:30265157851', '31480:3236467:适用人数:组合;1627207:30265157851:颜色分类:【适用4人】硅胶皮-蜜糖棕', 10, '', 25638, 'F4-23E-LAB-ZD*3&23E-LAB-FS*5', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167189003, 1771057093396541442, 766114054268, NULL, 5268494773115, '31480:3236467;1627207:30265157852', '31480:3236467:适用人数:组合;1627207:30265157852:颜色分类:【适用4人】头层牛皮-冰川灰', 10, '', 36988, 'F5-23E-LAB-ZD*3&23E-LAB-FS*5', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199167189004, 1771057093396541442, 766114054268, NULL, 5268494773116, '31480:3236467;1627207:30265157853', '31480:3236467:适用人数:组合;1627207:30265157853:颜色分类:【适用4人】头层牛皮-岩石灰', 10, '', 36988, 'F6-23E-LAB-ZD*3&23E-LAB-FS*5', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297858, 1771057093396541442, 766114054268, NULL, 5268494773117, '31480:3236467;1627207:30265157854', '31480:3236467:适用人数:组合;1627207:30265157854:颜色分类:【适用3人】灯芯绒-燕麦白', 10, '', 18888, 'F1-23E-LAB-ZD*2&23E-LAB-FS*4', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297859, 1771057093396541442, 766114054268, NULL, 5268494773118, '31480:3236467;1627207:30265157855', '31480:3236467:适用人数:组合;1627207:30265157855:颜色分类:【适用3人】灯芯绒-奶茶灰', 10, '', 18888, 'F2-23E-LAB-ZD*2&23E-LAB-FS*4', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297860, 1771057093396541442, 766114054268, NULL, 5268494773119, '31480:3236467;1627207:30265157856', '31480:3236467:适用人数:组合;1627207:30265157856:颜色分类:【适用3人】硅胶皮-奶油咖', 10, '', 19738, 'F3-23E-LAB-ZD*2&23E-LAB-FS*4', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297861, 1771057093396541442, 766114054268, NULL, 5268494773120, '31480:3236467;1627207:30265157857', '31480:3236467:适用人数:组合;1627207:30265157857:颜色分类:【适用3人】硅胶皮-蜜糖棕', 10, '', 19738, 'F4-23E-LAB-ZD*2&23E-LAB-FS*4', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297862, 1771057093396541442, 766114054268, NULL, 5268494773121, '31480:3236467;1627207:30265157858', '31480:3236467:适用人数:组合;1627207:30265157858:颜色分类:【适用3人】头层牛皮-冰川灰', 10, '', 29188, 'F5-23E-LAB-ZD*2&23E-LAB-FS*4', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297863, 1771057093396541442, 766114054268, NULL, 5268494773122, '31480:3236467;1627207:30265157859', '31480:3236467:适用人数:组合;1627207:30265157859:颜色分类:【适用3人】头层牛皮-岩石灰', 10, '', 29188, 'F6-23E-LAB-ZD*2&23E-LAB-FS*4', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297864, 1771057093396541442, 766114054268, NULL, 5268494773123, '31480:3236467;1627207:30265157860', '31480:3236467:适用人数:组合;1627207:30265157860:颜色分类:【适用1-2人】灯芯绒-燕麦白', 9, '', 9830, 'F1-23E-LAB-ZD*1&23E-LAB-FS*3', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297865, 1771057093396541442, 766114054268, NULL, 5268494773124, '31480:3236467;1627207:30265157861', '31480:3236467:适用人数:组合;1627207:30265157861:颜色分类:【适用1-2人】灯芯绒-奶茶灰', 10, '', 9830, 'F2-23E-LAB-ZD*1&23E-LAB-FS*3', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297866, 1771057093396541442, 766114054268, NULL, 5268494773125, '31480:3236467;1627207:30265157862', '31480:3236467:适用人数:组合;1627207:30265157862:颜色分类:【适用1-2人】硅胶皮-奶油咖', 10, '', 11050, 'F3-23E-LAB-ZD*1&23E-LAB-FS*3', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297867, 1771057093396541442, 766114054268, NULL, 5268494773126, '31480:3236467;1627207:30265157863', '31480:3236467:适用人数:组合;1627207:30265157863:颜色分类:【适用1-2人】硅胶皮-蜜糖棕', 10, '', 11050, 'F4-23E-LAB-ZD*1&23E-LAB-FS*3', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297868, 1771057093396541442, 766114054268, NULL, 5268494773127, '31480:3236467;1627207:30265157864', '31480:3236467:适用人数:组合;1627207:30265157864:颜色分类:【适用1-2人】头层牛皮-冰川灰', 10, '', 18200, 'F5-23E-LAB-ZD*1&23E-LAB-FS*3', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297869, 1771057093396541442, 766114054268, NULL, 5268494773128, '31480:3236467;1627207:30265157865', '31480:3236467:适用人数:组合;1627207:30265157865:颜色分类:【适用1-2人】头层牛皮-岩石灰', 10, '', 18200, 'F6-23E-LAB-ZD*1&23E-LAB-FS*3', '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297870, 1771057093396541442, 766114054268, NULL, 5268494773129, '31480:3236467;1627207:27151617315', '31480:3236467:适用人数:组合;1627207:27151617315:颜色分类:【私人订制】咨询客服 享专属定制款~', 10, '', 3099, NULL, '2024-02-01 09:38:40', '2024-02-01 09:38:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199234297871, 1771057093396541442, 766114054268, NULL, 5276314981977, '31480:3236467;1627207:4611961095', '31480:3236467:适用人数:组合;1627207:4611961095:颜色分类:咨询客服！享更多优惠', 0, '', 3099, '', '2024-02-22 17:02:46', '2024-02-22 17:02:46', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199297212417, 1767527418374955009, 641634906618, NULL, 4607887356854, '1627207:9748091;29112:97926', '1627207:9748091:颜色分类:清新绿;29112:97926:安装方式:组装', 407, '', 1638, 'ZH-SF-04-DS-F3-QM20A-NT3', '2021-03-30 15:49:19', '2024-03-22 21:08:06', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199297212418, 1767527418374955009, 641634906618, NULL, 4607887356857, '1627207:1003418520;29112:97926', '1627207:1003418520:颜色分类:轻奢黄;29112:97926:安装方式:组装', 436, '', 1638, 'ZH-SF-04-DS-F4-QM20A-NT3', '2021-03-30 15:49:19', '2024-03-22 21:08:06', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199297212419, 1767527418374955009, 641634906618, NULL, 4902529397704, '1627207:7114780;29112:97926', '1627207:7114780:颜色分类:奶油白;29112:97926:安装方式:组装', 428, '', 1638, 'ZH-SF-04-DS-F9-QM20A-NT3', '2022-10-10 14:04:17', '2024-03-22 21:08:06', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199297212420, 1767527418970546178, 726598043972, NULL, 5042904725861, '1627207:25708394594', '1627207:25708394594:颜色分类:折叠餐桌-RLYH(柔光莱茵灰 )', 10, '', 9438, 'RLYH-23E-LAB-DT1', '2023-06-27 14:24:09', '2023-12-21 11:16:53', 'normal', NULL, NULL, 0, 4911520, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199297212421, 1767527418970546178, 726598043972, NULL, 5042904725862, '1627207:25708394595', '1627207:25708394595:颜色分类:折叠餐桌-RLYB(柔光莱茵白 )', 10, '', 9438, 'RLYB-23E-LAB-DT1', '2023-06-27 14:24:09', '2023-12-21 11:16:53', 'normal', NULL, NULL, 0, 4911490, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199297212422, 1767527418970546178, 726598043972, NULL, 5042904725863, '1627207:25708394596', '1627207:25708394596:颜色分类:折叠餐椅-RLYH(柔光莱茵灰 )', 10, '', 5350, 'F1-RLYH-23E-LAB-D1', '2023-06-27 14:24:09', '2023-12-21 11:16:53', 'normal', NULL, NULL, 0, 4911482, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199364321281, 1767527418970546178, 726598043972, NULL, 5042904725864, '1627207:25708394597', '1627207:25708394597:颜色分类:折叠餐椅-RLYB(柔光莱茵白 )', 10, '', 5350, 'F1-RLYB-23E-LAB-D1', '2023-06-27 14:24:09', '2024-01-16 11:33:48', 'normal', NULL, NULL, 0, 4911466, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199364321282, 1767527420421775361, 628280725946, NULL, 5070181490173, '122216927:77835123;1627207:25326372113;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25326372113:颜色分类:奶油白【进口头层牛皮+升级10cm松木排骨条】;21433:50753444:尺寸:1500mm*2000mm', 59, '', 11373, 'ZH-PC-2-DS-F2-QM19-B12A-15', '2022-10-09 13:36:52', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199364321283, 1767527420421775361, 628280725946, NULL, 5070181490181, '122216927:77835123;1627207:25326372113;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25326372113:颜色分类:奶油白【进口头层牛皮+升级10cm松木排骨条】;21433:50753460:尺寸:1800mm*2000mm', 44, '', 11373, 'ZH-PC-2-DS-F2-QM19-B12A-18', '2022-10-09 13:36:52', '2024-03-18 18:30:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199364321284, 1767527420421775361, 628280725946, NULL, 4936435666812, '122216927:77835123;1627207:25326372114;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25326372114:颜色分类:象牙米【进口头层牛皮+升级10cm松木排骨条】;21433:50753444:尺寸:1500mm*2000mm', 49, '', 11373, 'ZH-PC-2-DS-F3-QM19-B12A-15', '2021-11-16 13:46:04', '2024-02-03 21:47:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199364321285, 1767527420421775361, 628280725946, NULL, 4936435666814, '122216927:77835123;1627207:25326372114;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25326372114:颜色分类:象牙米【进口头层牛皮+升级10cm松木排骨条】;21433:50753460:尺寸:1800mm*2000mm', 26, '', 11373, 'ZH-PC-2-DS-F3-QM19-B12A-18', '2021-11-16 13:46:04', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199364321286, 1767527420421775361, 628280725946, NULL, 4936435666813, '122216927:77835123;1627207:25326372115;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25326372115:颜色分类:清新绿【进口头层牛皮+升级10cm松木排骨条】;21433:50753444:尺寸:1500mm*2000mm', 43, '', 11373, 'ZH-PC-2-DS-F1-QM19-B12A-15', '2021-11-16 13:46:04', '2024-02-03 21:47:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430145, 1767527420421775361, 628280725946, NULL, 4936435666815, '122216927:77835123;1627207:25326372115;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25326372115:颜色分类:清新绿【进口头层牛皮+升级10cm松木排骨条】;21433:50753460:尺寸:1800mm*2000mm', 22, '', 11373, 'ZH-PC-2-DS-F1-QM19-B12A-18', '2021-11-16 13:46:04', '2024-02-18 13:28:21', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430146, 1767527420421775361, 628280725946, NULL, 5070181490175, '122216927:77835123;1627207:25406749650;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749650:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 40, '', 12246, 'DS-F2-19-B12A-15&M1', '2022-10-09 13:36:52', '2023-11-03 17:10:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430147, 1767527420421775361, 628280725946, NULL, 5070181490183, '122216927:77835123;1627207:25406749650;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749650:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 35, '', 12246, 'DS-F2-19-B12A-18&M1', '2022-10-09 13:36:52', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430148, 1767527420421775361, 628280725946, NULL, 4804328073223, '122216927:77835123;1627207:25406749651;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749651:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 39, '', 12246, 'DS-F3-19-B12A-15&M1', '2022-01-04 16:41:41', '2023-11-03 17:10:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430149, 1767527420421775361, 628280725946, NULL, 4804328073226, '122216927:77835123;1627207:25406749651;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749651:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 35, '', 12246, 'DS-F3-19-B12A-18&M1', '2022-01-04 16:41:41', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430150, 1767527420421775361, 628280725946, NULL, 4804328073221, '122216927:77835123;1627207:25406749652;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749652:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 44, '', 12246, 'DS-F1-19-B12A-15&M1', '2022-01-04 16:41:41', '2023-11-03 17:10:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430151, 1767527420421775361, 628280725946, NULL, 4804328073224, '122216927:77835123;1627207:25406749652;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749652:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 46, '', 12246, 'DS-F1-19-B12A-18&M1', '2022-01-04 16:41:41', '2024-02-03 21:47:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430152, 1767527420421775361, 628280725946, NULL, 5070181490177, '122216927:77835123;1627207:25406749653;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749653:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753444:尺寸:1500mm*2000mm', 41, '', 12599, 'DS-F2-QM19-B12A-15&M1&QM20A*1', '2022-10-09 13:36:52', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430153, 1767527420421775361, 628280725946, NULL, 5070181490185, '122216927:77835123;1627207:25406749653;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749653:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753460:尺寸:1800mm*2000mm', 37, '', 12599, 'DS-F2-QM19-B12A-18&M1&QM20A*1', '2022-10-09 13:36:52', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430154, 1767527420421775361, 628280725946, NULL, 5070181490179, '122216927:77835123;1627207:25406749654;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749654:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753444:尺寸:1500mm*2000mm', 42, '', 13599, 'DS-F2-QM19-B12A-15&M1&QM20A*2', '2022-10-09 13:36:52', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430155, 1767527420421775361, 628280725946, NULL, 5070181490187, '122216927:77835123;1627207:25406749654;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749654:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753460:尺寸:1800mm*2000mm', 36, '', 13599, 'DS-F2-QM19-B12A-18&M1&QM20A*2', '2022-10-09 13:36:52', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430156, 1767527420421775361, 628280725946, NULL, 4868386341324, '122216927:77835123;1627207:25406749655;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749655:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753444:尺寸:1500mm*2000mm', 43, '', 12599, 'DS-F3-QM19-B12A-15&M1&QM20A*1', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430157, 1767527420421775361, 628280725946, NULL, 4868386341340, '122216927:77835123;1627207:25406749655;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749655:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753460:尺寸:1800mm*2000mm', 40, '', 12599, 'DS-F3-QM19-B12A-18&M1&QM20A*1', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430158, 1767527420421775361, 628280725946, NULL, 4868386341326, '122216927:77835123;1627207:25406749656;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749656:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753444:尺寸:1500mm*2000mm', 42, '', 13599, 'DS-F3-QM19-B12A-15&M1&QM20A*2', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430159, 1767527420421775361, 628280725946, NULL, 4868386341342, '122216927:77835123;1627207:25406749656;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749656:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753460:尺寸:1800mm*2000mm', 35, '', 13599, 'DS-F3-QM19-B12A-18&M1&QM20A*2', '2022-07-01 15:33:39', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199431430160, 1767527420421775361, 628280725946, NULL, 4868386341322, '122216927:77835123;1627207:25406749657;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749657:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753444:尺寸:1500mm*2000mm', 38, '', 12599, 'DS-F1-QM19-B12A-15&M1&QM20A*1', '2022-07-01 15:33:39', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539009, 1767527420421775361, 628280725946, NULL, 4868386341338, '122216927:77835123;1627207:25406749657;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749657:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753460:尺寸:1800mm*2000mm', 41, '', 12599, 'DS-F1-QM19-B12A-18&M1&QM20A*1', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539010, 1767527420421775361, 628280725946, NULL, 4973863633508, '122216927:77835123;1627207:25406749658;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749658:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753444:尺寸:1500mm*2000mm', 41, '', 13599, 'DS-F1-QM19-B12A-15&M1&QM20A*2', '2023-03-14 16:49:30', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539011, 1767527420421775361, 628280725946, NULL, 4973863633510, '122216927:77835123;1627207:25406749658;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749658:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753460:尺寸:1800mm*2000mm', 41, '', 13599, 'DS-F1-QM19-B12A-18&M1&QM20A*2', '2023-03-14 16:49:30', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539012, 1767527420421775361, 628280725946, NULL, 5070181490174, '122216927:77835124;1627207:25326372113;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25326372113:颜色分类:奶油白【进口头层牛皮+升级10cm松木排骨条】;21433:50753444:尺寸:1500mm*2000mm', 37, '', 13373, 'ZH-PC-2-DS-F2-QM19-B12A-15F', '2022-10-09 13:36:52', '2024-01-27 18:33:45', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539013, 1767527420421775361, 628280725946, NULL, 5070181490182, '122216927:77835124;1627207:25326372113;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25326372113:颜色分类:奶油白【进口头层牛皮+升级10cm松木排骨条】;21433:50753460:尺寸:1800mm*2000mm', 29, '', 13373, 'ZH-PC-2-DS-F2-QM19-B12A-18F', '2022-10-09 13:36:52', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539014, 1767527420421775361, 628280725946, NULL, 4459415916434, '122216927:77835124;1627207:25326372114;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25326372114:颜色分类:象牙米【进口头层牛皮+升级10cm松木排骨条】;21433:50753444:尺寸:1500mm*2000mm', 38, '', 13373, 'ZH-PC-2-DS-F3-QM19-B12A-15F', '2020-09-28 20:37:42', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539015, 1767527420421775361, 628280725946, NULL, 4459415916435, '122216927:77835124;1627207:25326372114;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25326372114:颜色分类:象牙米【进口头层牛皮+升级10cm松木排骨条】;21433:50753460:尺寸:1800mm*2000mm', 36, '', 13373, 'ZH-PC-2-DS-F3-QM19-B12A-18F', '2020-09-28 20:37:42', '2024-02-03 21:47:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539016, 1767527420421775361, 628280725946, NULL, 4459415916436, '122216927:77835124;1627207:25326372115;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25326372115:颜色分类:清新绿【进口头层牛皮+升级10cm松木排骨条】;21433:50753444:尺寸:1500mm*2000mm', 39, '', 13373, 'ZH-PC-2-DS-F1-QM19-B12A-15F', '2020-09-28 20:37:42', '2024-02-18 13:28:21', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539017, 1767527420421775361, 628280725946, NULL, 4459415916437, '122216927:77835124;1627207:25326372115;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25326372115:颜色分类:清新绿【进口头层牛皮+升级10cm松木排骨条】;21433:50753460:尺寸:1800mm*2000mm', 35, '', 13373, 'ZH-PC-2-DS-F1-QM19-B12A-18F', '2020-09-28 20:37:42', '2023-12-02 22:54:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539018, 1767527420421775361, 628280725946, NULL, 5070181490176, '122216927:77835124;1627207:25406749650;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749650:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 38, '', 14475, 'DS-F2-19-B12A-15F&M1', '2022-10-09 13:36:52', '2024-02-03 21:47:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539019, 1767527420421775361, 628280725946, NULL, 5070181490184, '122216927:77835124;1627207:25406749650;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749650:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 39, '', 14475, 'DS-F2-19-B12A-18F&M1', '2022-10-09 13:36:52', '2023-11-03 17:10:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539020, 1767527420421775361, 628280725946, NULL, 4729152984509, '122216927:77835124;1627207:25406749651;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749651:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 41, '', 14475, 'DS-F3-19-B12A-15F&M1', '2021-09-18 09:37:48', '2023-11-03 17:10:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539021, 1767527420421775361, 628280725946, NULL, 4729152984511, '122216927:77835124;1627207:25406749651;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749651:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 40, '', 14475, 'DS-F3-19-B12A-18F&M1', '2021-09-18 09:37:48', '2024-03-22 21:35:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539022, 1767527420421775361, 628280725946, NULL, 4729152984508, '122216927:77835124;1627207:25406749652;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749652:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 40, '', 14475, 'DS-F1-19-B12A-15F&M1', '2021-09-18 09:37:48', '2024-02-03 21:47:56', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539023, 1767527420421775361, 628280725946, NULL, 4729152984510, '122216927:77835124;1627207:25406749652;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749652:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 41, '', 14475, 'DS-F1-19-B12A-18F&M1', '2021-09-18 09:37:48', '2023-11-03 17:10:40', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199498539024, 1767527420421775361, 628280725946, NULL, 5070181490178, '122216927:77835124;1627207:25406749653;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749653:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753444:尺寸:1500mm*2000mm', 0, '', 15999, 'DS-F2-QM19-B12A-15F&M1&QM20A*1', '2022-10-09 13:36:52', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453570, 1767527420421775361, 628280725946, NULL, 5070181490186, '122216927:77835124;1627207:25406749653;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749653:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753460:尺寸:1800mm*2000mm', 0, '', 15999, 'DS-F2-QM19-B12A-18F&M1&QM20A*1', '2022-10-09 13:36:52', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453571, 1767527420421775361, 628280725946, NULL, 5070181490180, '122216927:77835124;1627207:25406749654;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749654:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753444:尺寸:1500mm*2000mm', 0, '', 18999, 'DS-F2-QM19-B12A-15F&M1&QM20A*2', '2022-10-09 13:36:52', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453572, 1767527420421775361, 628280725946, NULL, 5070181490188, '122216927:77835124;1627207:25406749654;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749654:颜色分类:奶油白-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753460:尺寸:1800mm*2000mm', 0, '', 18999, 'DS-F2-QM19-B12A-18F&M1&QM20A*2', '2022-10-09 13:36:52', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453573, 1767527420421775361, 628280725946, NULL, 4868386341325, '122216927:77835124;1627207:25406749655;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749655:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753444:尺寸:1500mm*2000mm', 0, '', 15999, 'DS-F3-QM19-B12A-15F&M1&QM20A*1', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453574, 1767527420421775361, 628280725946, NULL, 4868386341341, '122216927:77835124;1627207:25406749655;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749655:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753460:尺寸:1800mm*2000mm', 0, '', 15999, 'DS-F3-QM19-B12A-18F&M1&QM20A*1', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453575, 1767527420421775361, 628280725946, NULL, 4868386341327, '122216927:77835124;1627207:25406749656;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749656:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753444:尺寸:1500mm*2000mm', 0, '', 18999, 'DS-F3-QM19-B12A-15F&M1&QM20A*2', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453576, 1767527420421775361, 628280725946, NULL, 4868386341343, '122216927:77835124;1627207:25406749656;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749656:颜色分类:象牙米-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753460:尺寸:1800mm*2000mm', 0, '', 18999, 'DS-F3-QM19-B12A-18F&M1&QM20A*2', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453577, 1767527420421775361, 628280725946, NULL, 4868386341323, '122216927:77835124;1627207:25406749657;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749657:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753444:尺寸:1500mm*2000mm', 0, '', 15999, 'DS-F1-QM19-B12A-15F&M1&QM20A*1', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453578, 1767527420421775361, 628280725946, NULL, 4868386341339, '122216927:77835124;1627207:25406749657;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749657:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753460:尺寸:1800mm*2000mm', 0, '', 15999, 'DS-F1-QM19-B12A-18F&M1&QM20A*1', '2022-07-01 15:33:39', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453579, 1767527420421775361, 628280725946, NULL, 4973863633509, '122216927:77835124;1627207:25406749658;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749658:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753444:尺寸:1500mm*2000mm', 0, '', 18999, 'DS-F1-QM19-B12A-15F&M1&QM20A*2', '2023-03-14 16:49:30', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199561453580, 1767527420421775361, 628280725946, NULL, 4973863633511, '122216927:77835124;1627207:25406749658;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749658:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753460:尺寸:1800mm*2000mm', 0, '', 18999, 'DS-F1-QM19-B12A-18F&M1&QM20A*2', '2023-03-14 16:49:30', '2024-02-29 11:06:58', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562434, 1767527423311650818, 773145098297, NULL, 5294059273516, '122216927:77835123;1627207:25326372115;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25326372115:颜色分类:清新绿【进口头层牛皮+升级10cm松木排骨条】;21433:50753444:尺寸:1500mm*2000mm', 43, '', 6999, 'ZH-PC-2-DS-F1-QM19-B12A-15', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562435, 1767527423311650818, 773145098297, NULL, 5294059273517, '122216927:77835123;1627207:25326372115;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25326372115:颜色分类:清新绿【进口头层牛皮+升级10cm松木排骨条】;21433:50753460:尺寸:1800mm*2000mm', 22, '', 6999, 'ZH-PC-2-DS-F1-QM19-B12A-18', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562436, 1767527423311650818, 773145098297, NULL, 5294059273522, '122216927:77835123;1627207:25406749652;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749652:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 44, '', 7599, 'DS-F1-19-B12A-15&M1', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562437, 1767527423311650818, 773145098297, NULL, 5294059273523, '122216927:77835123;1627207:25406749652;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749652:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 46, '', 7599, 'DS-F1-19-B12A-18&M1', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562438, 1767527423311650818, 773145098297, NULL, 5294059273532, '122216927:77835123;1627207:25406749657;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749657:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753444:尺寸:1500mm*2000mm', 38, '', 7999, 'DS-F1-QM19-B12A-15&M1&QM20A*1', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562439, 1767527423311650818, 773145098297, NULL, 5294059273533, '122216927:77835123;1627207:25406749657;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749657:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753460:尺寸:1800mm*2000mm', 41, '', 7999, 'DS-F1-QM19-B12A-18&M1&QM20A*1', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562440, 1767527423311650818, 773145098297, NULL, 5294059273534, '122216927:77835123;1627207:25406749658;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25406749658:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753444:尺寸:1500mm*2000mm', 41, '', 8599, 'DS-F1-QM19-B12A-15&M1&QM20A*2', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562441, 1767527423311650818, 773145098297, NULL, 5294059273535, '122216927:77835123;1627207:25406749658;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25406749658:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753460:尺寸:1800mm*2000mm', 41, '', 8599, 'DS-F1-QM19-B12A-18&M1&QM20A*2', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562442, 1767527423311650818, 773145098297, NULL, 5294059273540, '122216927:77835124;1627207:25326372115;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25326372115:颜色分类:清新绿【进口头层牛皮+升级10cm松木排骨条】;21433:50753444:尺寸:1500mm*2000mm', 38, '', 7599, 'ZH-PC-2-DS-F1-QM19-B12A-15F', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562443, 1767527423311650818, 773145098297, NULL, 5294059273541, '122216927:77835124;1627207:25326372115;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25326372115:颜色分类:清新绿【进口头层牛皮+升级10cm松木排骨条】;21433:50753460:尺寸:1800mm*2000mm', 35, '', 7599, 'ZH-PC-2-DS-F1-QM19-B12A-18F', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562444, 1767527423311650818, 773145098297, NULL, 5294059273546, '122216927:77835124;1627207:25406749652;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749652:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 40, '', 8599, 'DS-F1-19-B12A-15F&M1', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199628562445, 1767527423311650818, 773145098297, NULL, 5294059273547, '122216927:77835124;1627207:25406749652;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749652:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 41, '', 8599, 'DS-F1-19-B12A-18F&M1', '2024-03-11 14:59:45', '2024-03-11 17:19:04', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199695671298, 1767527423311650818, 773145098297, NULL, 5294059273556, '122216927:77835124;1627207:25406749657;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749657:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753444:尺寸:1500mm*2000mm', 10, '', 8999, 'DS-F1-QM19-B12A-15F&M1&QM20A*1', '2024-03-11 14:59:45', '2024-03-11 17:28:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199695671299, 1767527423311650818, 773145098297, NULL, 5294059273557, '122216927:77835124;1627207:25406749657;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749657:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜;21433:50753460:尺寸:1800mm*2000mm', 10, '', 8999, 'DS-F1-QM19-B12A-18F&M1&QM20A*1', '2024-03-11 14:59:45', '2024-03-11 17:28:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199695671300, 1767527423311650818, 773145098297, NULL, 5294059273558, '122216927:77835124;1627207:25406749658;21433:50753444', '122216927:77835124:家具结构:箱框结构;1627207:25406749658:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753444:尺寸:1500mm*2000mm', 10, '', 9599, 'DS-F1-QM19-B12A-15F&M1&QM20A*2', '2024-03-11 14:59:45', '2024-03-11 17:28:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199695671301, 1767527423311650818, 773145098297, NULL, 5294059273559, '122216927:77835124;1627207:25406749658;21433:50753460', '122216927:77835124:家具结构:箱框结构;1627207:25406749658:颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫+床头柜*2;21433:50753460:尺寸:1800mm*2000mm', 10, '', 9599, 'DS-F1-QM19-B12A-18F&M1&QM20A*2', '2024-03-11 14:59:45', '2024-03-11 17:28:03', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199695671302, 1767527424439918594, 773103076901, NULL, 5294064861463, '122216927:77835123;1627207:25328329977;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:25328329977:颜色分类:托特悬浮床【头层牛皮+智能环绕式感应灯带+进口松木框架】;21433:50753444:尺寸:1500mm*2000mm', 55, '', 6999, 'ZH-PC-2-DS-F2-QM23-B10-15X', '2024-03-11 15:05:40', '2024-03-11 16:52:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199695671303, 1767527424439918594, 773103076901, NULL, 5294064861464, '122216927:77835123;1627207:25328329977;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:25328329977:颜色分类:托特悬浮床【头层牛皮+智能环绕式感应灯带+进口松木框架】;21433:50753460:尺寸:1800mm*2000mm', 59, '', 6999, 'ZH-PC-2-DS-F2-QM23-B10-18X', '2024-03-11 15:05:40', '2024-03-11 16:52:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199695671304, 1767527424439918594, 773103076901, NULL, 5294064861465, '122216927:77835123;1627207:30755793421;21433:50753444', '122216927:77835123:家具结构:框架结构;1627207:30755793421:颜色分类:托特悬浮床+23cm独袋乳胶床垫;21433:50753444:尺寸:1500mm*2000mm', 55, '', 8499, 'DS-F2-QM23-B10-15X&QM23-M1-15', '2024-03-11 15:05:40', '2024-03-11 17:27:54', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199695671305, 1767527424439918594, 773103076901, NULL, 5294064861466, '122216927:77835123;1627207:30755793421;21433:50753460', '122216927:77835123:家具结构:框架结构;1627207:30755793421:颜色分类:托特悬浮床+23cm独袋乳胶床垫;21433:50753460:尺寸:1800mm*2000mm', 50, '', 8499, 'DS-F2-QM23-B10-18X&QM23-M1-18', '2024-03-11 15:05:40', '2024-03-11 16:52:50', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199762780161, 1767527429259173889, 714919088244, NULL, 5297511215246, '31480:3236467;1627207:27973772368', '31480:3236467:适用人数:组合;1627207:27973772368:颜色分类:3人位-温柔浅咖色', 0, '', 15999, '', '2023-10-13 16:35:35', '2024-01-04 10:10:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199762780162, 1767527429259173889, 714919088244, NULL, 5297511215247, '31480:3236467;1627207:27973772369', '31480:3236467:适用人数:组合;1627207:27973772369:颜色分类:4人位-温柔浅咖色', 0, '', 18999, '', '2023-10-13 16:35:35', '2024-01-04 10:10:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199762780163, 1767527429259173889, 714919088244, NULL, 5297511215248, '31480:3236467;1627207:27973772370', '31480:3236467:适用人数:组合;1627207:27973772370:颜色分类:脚凳-温柔浅咖色', 0, '', 4099, '', '2023-10-13 16:35:35', '2024-01-04 10:10:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199762780164, 1767527429259173889, 714919088244, NULL, 5297511215249, '31480:3236467;1627207:27973772371', '31480:3236467:适用人数:组合;1627207:27973772371:颜色分类:3人位-清新灰绿色', 0, '', 15999, 'ZH-SPSF-DS-F2-QM23-S2A-3ZP', '2023-10-13 16:35:35', '2023-11-22 14:09:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199762780165, 1767527429259173889, 714919088244, NULL, 5297511215250, '31480:3236467;1627207:27973772372', '31480:3236467:适用人数:组合;1627207:27973772372:颜色分类:4人位-清新灰绿色', 2, '', 18999, 'ZH-SPSF-DS-F2-QM23-S2A-4ZP', '2023-10-13 16:35:35', '2023-11-22 14:09:24', 'normal', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_tao_goods_sku` VALUES (1771373199762780166, 1767527429259173889, 714919088244, NULL, 5297511215251, '31480:3236467;1627207:27973772373', '31480:3236467:适用人数:组合;1627207:27973772373:颜色分类:脚凳-清新灰绿色', 0, '', 4099, '', '2023-10-13 16:35:35', '2024-01-04 10:10:12', 'normal', NULL, NULL, NULL, NULL, NULL);
+
+-- ----------------------------
 -- Table structure for s_dou_order
 -- ----------------------------
 DROP TABLE IF EXISTS `s_dou_order`;
 CREATE TABLE `s_dou_order`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '订单id，自增',
-  `order_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '抖音订单id',
+  `order_id` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '抖音订单id',
   `shop_id` bigint(0) NOT NULL COMMENT '订单所属商户id',
-  `user_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家用户名',
+  `user_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家用户名',
   `post_addr` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '邮寄地址 (展开为省市区json, 格式参考 订单-获取订单列表 返回示例)',
-  `post_code` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '邮政编码',
-  `post_receiver` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人姓名',
-  `post_tel` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人电话',
+  `post_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '邮政编码',
+  `post_receiver` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人姓名',
+  `post_tel` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人电话',
   `buyer_words` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家备注',
   `seller_words` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '卖家备注',
   `logistics_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司id',
-  `logistics_code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流单号',
-  `logistics_company` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司',
+  `logistics_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流单号',
+  `logistics_company` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司',
   `logistics_time` datetime(0) DEFAULT NULL COMMENT '发货时间',
   `receipt_time` bigint(0) DEFAULT 0 COMMENT '收货时间',
   `order_status` int(0) NOT NULL COMMENT '订单状态1 待确认/待支付（订单创建完毕）105 已支付 2 备货中 101 部分发货 3 已发货（全部发货）4 已取消5 已完成（已收货）',
-  `order_status_str` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
+  `order_status_str` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '',
   `order_create_time` datetime(0) NOT NULL COMMENT '订单创建时间',
   `exp_ship_time` datetime(0) DEFAULT NULL COMMENT '最晚发货时间',
   `cancel_reason` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单取消原因',
@@ -2759,20 +3456,20 @@ CREATE TABLE `s_dou_order`  (
   `send_status` int(0) NOT NULL DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
   `send_time` datetime(0) DEFAULT NULL COMMENT '发货时间（仓库真实发货时间）',
   `auditStatus` int(0) NOT NULL DEFAULT 0 COMMENT '订单审核状态（0待审核1已审核）',
-  `encryptDetail` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '加密地址详情',
+  `encryptDetail` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '加密地址详情',
   `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `town` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `street` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `ship_time` bigint(0) DEFAULT 0 COMMENT '发货时间',
   `trade_type` int(0) DEFAULT 0 COMMENT '0、普通 1、拼团 2、定金预售 3、订金找贷 4、拍卖 5、0元单 6、回收 7、寄卖',
-  `encrypt_post_tel` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '加密电话',
-  `encrypt_post_receiver` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '加密联系人',
+  `encrypt_post_tel` varchar(5000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '加密电话',
+  `encrypt_post_receiver` varchar(5000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '加密联系人',
   `result` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '打单结果',
   `print_status` tinyint(1) DEFAULT 0 COMMENT '打印状态（0：未打印1已取号2已打印3已回收4已取消）',
   `print_time` datetime(0) DEFAULT NULL COMMENT '打印日期',
-  `phoneKey` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '号码检索串',
-  `addressKey` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '地址检索串',
+  `phoneKey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '号码检索串',
+  `addressKey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '地址检索串',
   `author_id` bigint(0) DEFAULT 0 COMMENT '达人id',
   `author_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `settlement_status` int(0) DEFAULT 0 COMMENT '是否结算（0:未结算1：已结算,2.已退款）',
@@ -2997,27 +3694,27 @@ CREATE TABLE `s_kwai_order`  (
   `discountFee` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '折扣价格',
   `expressFee` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '运费',
   `num` int(0) NOT NULL COMMENT 'sku数量',
-  `consignee` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '收件人姓名',
-  `mobile` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '收件人手机号',
+  `consignee` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '收件人姓名',
+  `mobile` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '收件人手机号',
   `payTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '支付时间',
-  `buyerRemark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家备注',
-  `sellerRemark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '卖家备注',
+  `buyerRemark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '买家备注',
+  `sellerRemark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '卖家备注',
   `status` int(0) NOT NULL DEFAULT 0 COMMENT '订单状态',
   `refund` int(0) NOT NULL DEFAULT 0 COMMENT '是否退款 0未退款 1该订单申请过退款',
   `totalFee` decimal(10, 2) NOT NULL COMMENT '子订单商品总价',
-  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '省',
-  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '市',
-  `district` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '区',
-  `address` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '详细地址',
-  `logisticsCompany` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递公司',
-  `logisticsCompanyCode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递公司编码',
-  `logisticsCode` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递单号',
+  `province` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '省',
+  `city` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '市',
+  `district` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '区',
+  `address` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '详细地址',
+  `logisticsCompany` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递公司',
+  `logisticsCompanyCode` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递公司编码',
+  `logisticsCode` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递单号',
   `auditStatus` int(0) NOT NULL DEFAULT 0 COMMENT '订单审核状态（0待审核1已审核）',
   `createOn` bigint(0) NOT NULL DEFAULT 0 COMMENT '创建时间',
   `sendStatus` int(0) DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
   `sendTime` bigint(0) DEFAULT NULL COMMENT '发货时间（仓库真实发货时间）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '快手订单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '快手订单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for s_kwai_orders_item
@@ -3029,19 +3726,19 @@ CREATE TABLE `s_kwai_orders_item`  (
   `orderId` bigint(0) NOT NULL COMMENT '订单ID',
   `erpGoodsId` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
   `erpGoodsSpecId` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `itemTitle` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '商品名称',
-  `itemPicUrl` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片',
-  `goodsNum` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '商品编码',
-  `goodsSpec` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '商品规格',
-  `skuNick` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '商品规格编码',
+  `itemTitle` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '商品名称',
+  `itemPicUrl` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片',
+  `goodsNum` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '商品编码',
+  `goodsSpec` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '商品规格',
+  `skuNick` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '商品规格编码',
   `price` double NOT NULL COMMENT '商品单价',
   `num` int(0) NOT NULL COMMENT '商品数量',
   `refundId` bigint(0) NOT NULL COMMENT '退货Id',
   `refundStatus` int(0) NOT NULL COMMENT '退货状态',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `isGift` int(0) NOT NULL DEFAULT 0 COMMENT '是否赠品0:否1:是',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for s_pdd_order
@@ -4179,27 +4876,27 @@ CREATE TABLE `s_pdd_order_refund`  (
 DROP TABLE IF EXISTS `s_shop`;
 CREATE TABLE `s_shop`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺名',
-  `nickName` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺别名',
-  `ename` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '标识',
-  `company` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺主题',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '店铺名',
+  `nickName` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '店铺别名',
+  `ename` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '标识',
+  `company` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '店铺主题',
   `type` int(0) NOT NULL COMMENT '对应第三方平台Id',
-  `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺url',
+  `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '店铺url',
   `orderNum` int(0) NOT NULL DEFAULT 9 COMMENT '排序',
   `isDelete` int(0) NOT NULL DEFAULT 0 COMMENT '是否删除0否1是',
   `isShow` int(0) DEFAULT 0 COMMENT '是否显示(0：是1否）',
   `modify_on` bigint(0) NOT NULL COMMENT '更新时间',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '描述',
+  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '描述',
   `sellerUserId` bigint(0) NOT NULL DEFAULT 0 COMMENT '第三方平台店铺id，淘宝天猫开放平台使用',
-  `sellerUserIdStr` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '卖家userId',
-  `sessionKey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '第三方平台sessionKey（access_token）',
-  `appkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Appkey',
-  `appSercet` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Appsercet',
+  `sellerUserIdStr` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '卖家userId',
+  `sessionKey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '第三方平台sessionKey（access_token）',
+  `appkey` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Appkey',
+  `appSercet` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'Appsercet',
   `expires_in` bigint(0) DEFAULT NULL COMMENT '到期',
   `access_token_begin` bigint(0) DEFAULT NULL COMMENT 'access_token开始时间',
-  `refresh_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '刷新token',
+  `refresh_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '刷新token',
   `refresh_token_timeout` bigint(0) DEFAULT NULL COMMENT '刷新token过期时间',
-  `api_request_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '请求url',
+  `api_request_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '请求url',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '数据中心-店铺' ROW_FORMAT = Dynamic;
 
@@ -4225,20 +4922,20 @@ CREATE TABLE `s_shop_goods`  (
   `erp_goods_id` int(0) DEFAULT NULL,
   `shopId` int(0) NOT NULL,
   `shopType` int(0) NOT NULL,
-  `goodsNum` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品货号，erp系统商品编码',
-  `goodsName` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `price` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '参考价格，返回价格区间，可能为空',
-  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品标题',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `thumbUrl` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '主图',
-  `imageUrl` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片json',
+  `goodsNum` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品货号，erp系统商品编码',
+  `goodsName` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `price` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '参考价格，返回价格区间，可能为空',
+  `title` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品标题',
+  `remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `thumbUrl` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '主图',
+  `imageUrl` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片json',
   `isMoreSku` int(0) DEFAULT NULL,
   `isOnsale` int(0) DEFAULT NULL,
   `totalSales` int(0) DEFAULT 0 COMMENT '累计销量',
   `publishTime` datetime(0) DEFAULT NULL COMMENT '发布日期',
   `createTime` datetime(0) DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_shop_goods
@@ -4354,22 +5051,22 @@ CREATE TABLE `s_shop_goods_sku`  (
   `shop_goods_id` bigint(0) NOT NULL COMMENT '外键id',
   `goodsId` bigint(0) NOT NULL COMMENT '商品id，阿里productID',
   `skuId` bigint(0) NOT NULL COMMENT '商品skuid，阿里',
-  `spec` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT 'specId',
+  `spec` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT 'specId',
   `erp_goods_spec_id` int(0) DEFAULT NULL,
   `erp_goods_id` int(0) DEFAULT NULL,
-  `erp_goods_spec_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `erp_goods_spec_code` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `skuQuantity` bigint(0) DEFAULT NULL,
   `consignPrice` double DEFAULT NULL COMMENT '分销基准价。代销场景均使用该价格。无SKU商品查看saleInfo中的consignPrice',
-  `outerId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku编码',
-  `outerGoodsId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'spu编码',
+  `outerId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'sku编码',
+  `outerGoodsId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'spu编码',
   `price` double DEFAULT NULL COMMENT '报价时该规格的单价，国际站注意要点：含有SKU属性的在线批发产品设定具体价格时使用此值，若设置阶梯价格则使用priceRange',
   `retailPrice` double DEFAULT NULL COMMENT '建议零售价',
   `amountOnSale` int(0) DEFAULT NULL COMMENT '可销售数量',
   `isSkuOnsale` int(0) DEFAULT NULL,
-  `cargoNumber` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '指定规格的货号,对应ERP系统商品specNumber',
-  `attributes` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SKU属性值json',
+  `cargoNumber` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '指定规格的货号,对应ERP系统商品specNumber',
+  `attributes` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'SKU属性值json',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2282 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2282 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_shop_goods_sku
@@ -6978,20 +7675,20 @@ INSERT INTO `s_shop_pull_logs` VALUES (1782655845054566401, 2, 2, 'GOODS', '主�
 DROP TABLE IF EXISTS `s_shop_setting`;
 CREATE TABLE `s_shop_setting`  (
   `id` int(0) NOT NULL COMMENT '主键',
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '配置名',
-  `app_key` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'appKey',
-  `app_secret` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'appSecret',
-  `access_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '阿里access token',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '配置名',
+  `app_key` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'appKey',
+  `app_secret` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT 'appSecret',
+  `access_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '阿里access token',
   `expires_in` bigint(0) DEFAULT NULL COMMENT '到期',
   `access_token_begin` bigint(0) DEFAULT NULL COMMENT 'access_token开始时间',
-  `refresh_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '刷新token',
+  `refresh_token` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '刷新token',
   `refresh_token_timeout` bigint(0) DEFAULT NULL COMMENT '刷新token过期时间',
   `modify_on` bigint(0) NOT NULL COMMENT '更新时间',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '描述',
-  `request_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '请求url',
-  `third_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '第三方店铺id',
+  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '描述',
+  `request_url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '请求url',
+  `third_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '第三方店铺id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '第三方平台设置' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '第三方平台设置' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_shop_setting
@@ -7014,42 +7711,42 @@ CREATE TABLE `s_tao_order`  (
   `id` bigint(0) NOT NULL COMMENT '订单id（天猫订单id）',
   `shopId` int(0) NOT NULL DEFAULT 0 COMMENT '店铺id',
   `orderSource` int(0) DEFAULT 1 COMMENT '订单来源0天猫1淘宝',
-  `buyerName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '买家昵称',
+  `buyerName` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '买家昵称',
   `totalAmount` decimal(10, 2) NOT NULL COMMENT '应付款总金额，totalAmount = ∑itemAmount + shippingFee，单位为元',
   `shippingFee` decimal(5, 2) NOT NULL DEFAULT 0.00 COMMENT '运费',
   `discountAmount` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '优惠金额',
   `payAmount` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '实际支付金额',
-  `discountRemark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '优惠描述',
+  `discountRemark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '优惠描述',
   `orderCreateTime` datetime(0) NOT NULL COMMENT '订单创建时间',
   `orderModifyTime` datetime(0) DEFAULT NULL COMMENT '订单修改时间',
   `payTime` datetime(0) DEFAULT NULL COMMENT '付款时间，如果有多次付款，这里返回的是首次付款时间',
   `confirmedTime` datetime(0) DEFAULT NULL COMMENT '确认时间',
   `deliveredTime` datetime(0) DEFAULT NULL COMMENT '发货时间',
   `completeTime` datetime(0) DEFAULT NULL COMMENT '完成时间',
-  `sellerMemo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '卖家备忘信息',
-  `buyerFeedback` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家留言，不超过500字',
-  `closeReason` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '关闭原因。buyerCancel:买家取消订单，sellerGoodsLack:卖家库存不足，other:其它',
+  `sellerMemo` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '卖家备忘信息',
+  `buyerFeedback` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '买家留言，不超过500字',
+  `closeReason` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '关闭原因。buyerCancel:买家取消订单，sellerGoodsLack:卖家库存不足，other:其它',
   `receivingTime` datetime(0) DEFAULT NULL COMMENT '收货时间，这里返回的是完全收货时间',
-  `statusStr` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '订单状态',
+  `statusStr` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '订单状态',
   `status` int(0) NOT NULL DEFAULT 0 COMMENT '交易状态，waitbuyerpay:等待买家付款;waitsellersend:等待卖家发货;waitlogisticstakein:等待物流公司揽件;waitbuyerreceive:等待买家收货;waitbuyersign:等待买家签收;signinsuccess:买家已签收;confirm_goods:已收货;success:交易成功;cancel:交易取消;terminated:交易终止;未枚举:其他状态',
-  `logisticsCompany` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递公司',
-  `logisticsCompanyCode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递公司编码',
-  `logisticsCode` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递单号',
-  `refundId` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退款单ID',
+  `logisticsCompany` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递公司',
+  `logisticsCompanyCode` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递公司编码',
+  `logisticsCode` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递单号',
+  `refundId` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '退款单ID',
   `refundAmount` decimal(10, 2) DEFAULT NULL COMMENT '退款金额，单位为元',
-  `refundStatus` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单的售中退款状态，等待卖家同意：waitselleragree ，待买家修改：waitbuyermodify，等待买家退货：waitbuyersend，等待卖家确认收货：waitsellerreceive，退款成功：refundsuccess，退款失败：refundclose',
+  `refundStatus` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '订单的售中退款状态，等待卖家同意：waitselleragree ，待买家修改：waitbuyermodify，等待买家退货：waitbuyersend，等待卖家确认收货：waitsellerreceive，退款成功：refundsuccess，退款失败：refundclose',
   `auditStatus` int(0) NOT NULL COMMENT '订单审核状态（0待审核1已审核）',
   `auditTime` datetime(0) DEFAULT NULL COMMENT '订单审核时间',
   `sendStatus` int(0) DEFAULT 0 COMMENT '发货状态（0待出库1拣货中2已拣货3已出库4已发货）',
   `sendTime` datetime(0) DEFAULT NULL COMMENT '仓库发货时间',
-  `tag` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '标签(1：实售2：淘宝客3：刷单4：返现)',
-  `remark` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `tag` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '标签(1：实售2：淘宝客3：刷单4：返现)',
+  `remark` varchar(2000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
   `is_comment` tinyint(1) DEFAULT 0 COMMENT '是否评价',
   `is_merge` tinyint(1) DEFAULT 0 COMMENT '是否合并发货(0:否1:是)',
   `createTime` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `createBy` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `createBy` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `updateTime` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `updateBy` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `updateBy` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝订单表' ROW_FORMAT = Dynamic;
 
@@ -7210,15 +7907,15 @@ DROP TABLE IF EXISTS `s_tao_order_address`;
 CREATE TABLE `s_tao_order_address`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `orderId` bigint(0) NOT NULL COMMENT '订单id',
-  `contactPerson` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `mobile` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `province` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `city` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `area` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `areaCode` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `town` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `townCode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `address` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contactPerson` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `mobile` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `province` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `city` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `area` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `areaCode` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `town` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `townCode` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `address` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 122 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝订单地址表' ROW_FORMAT = Dynamic;
 
@@ -7355,29 +8052,29 @@ CREATE TABLE `s_tao_order_item`  (
   `itemAmount` decimal(10, 2) DEFAULT NULL COMMENT '明细总金额',
   `discount_fee` decimal(10, 2) DEFAULT NULL COMMENT '优惠金额',
   `adjust_fee` decimal(10, 2) DEFAULT NULL COMMENT '手工调整金额',
-  `goodsTitle` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品标题',
-  `goodsNumber` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品货号，对应系统商品编码',
-  `productImgUrl` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品主图',
-  `productUrl` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品链接',
+  `goodsTitle` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品标题',
+  `goodsNumber` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品货号，对应系统商品编码',
+  `productImgUrl` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品主图',
+  `productUrl` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品链接',
   `productId` bigint(0) DEFAULT NULL COMMENT '天猫的商品Id',
   `skuId` bigint(0) DEFAULT NULL COMMENT '天猫的SKUID',
-  `specNumber` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '单品货号，对应系统sku编码',
-  `skuInfo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SKU字符串',
+  `specNumber` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '单品货号，对应系统sku编码',
+  `skuInfo` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'SKU字符串',
   `price` decimal(10, 2) DEFAULT NULL COMMENT '实际单价',
   `quantity` decimal(4, 0) DEFAULT NULL COMMENT '数量',
-  `status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '子订单状态',
-  `statusStr` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '子订单状态',
+  `status` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '子订单状态',
+  `statusStr` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '子订单状态',
   `refundStatus` int(0) NOT NULL DEFAULT 0 COMMENT '退款状态0无售后1售后中',
-  `refundStatusStr` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'NO_REFUND' COMMENT '退款状态',
+  `refundStatusStr` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT 'NO_REFUND' COMMENT '退款状态',
   `refundAmount` decimal(4, 0) DEFAULT NULL COMMENT '退款金额',
   `refundId` bigint(0) DEFAULT NULL COMMENT '退款单id',
   `logisticsStatus` int(0) DEFAULT NULL COMMENT '1 未发货 2 已发货 3 已收货 4 已经退货 5 部分发货 8 还未创建物流订单',
   `new_spec_id` int(0) NOT NULL DEFAULT 0 COMMENT '确认订单最新规格id',
-  `new_spec_number` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '确认订单最新规格编码',
+  `new_spec_number` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '确认订单最新规格编码',
   `after_sale_state` int(0) DEFAULT 0 COMMENT '售后状态0未申请售后1售后申请中(退款待审核)2同意退货(退款待收货)3买家已发货，待收货(待收货)4已收货（待退款）5退款退货成功(退款完成)6退款拒绝7已确认收货，正在退款中 8退款取消',
   `erpGoodsId` int(0) DEFAULT 0 COMMENT 'erp系统商品id',
   `erpGoodsSpecId` int(0) DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `isGift` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否礼品0否1是',
   `isSwap` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否换货(0:否1:是)',
   PRIMARY KEY (`id`) USING BTREE
@@ -7586,7 +8283,7 @@ INSERT INTO `s_tao_order_item` VALUES (195, 2093298529448455063, 209329852944845
 DROP TABLE IF EXISTS `s_tao_order_refund`;
 CREATE TABLE `s_tao_order_refund`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `refund_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退款id',
+  `refund_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '退款id',
   `after_sales_type` int(0) NOT NULL COMMENT '类型（1退货3换货）',
   `shopId` int(0) NOT NULL COMMENT '店铺id',
   `tid` bigint(0) DEFAULT NULL COMMENT '淘宝交易单号（订单号）',
@@ -7595,14 +8292,14 @@ CREATE TABLE `s_tao_order_refund`  (
   `created` bigint(0) DEFAULT NULL COMMENT '退款申请时间',
   `modified` bigint(0) DEFAULT NULL COMMENT '更新时间',
   `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退款状态。可选值WAIT_SELLER_AGREE(买家已经申请退款，等待卖家同意) WAIT_BUYER_RETURN_GOODS(卖家已经同意退款，等待买家退货) WAIT_SELLER_CONFIRM_GOODS(买家已经退货，等待卖家确认收货) SELLER_REFUSE_BUYER(卖家拒绝退款) CLOSED(退款关闭) SUCCESS(退款成功)',
-  `good_status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '货物状态。可选值BUYER_NOT_RECEIVED (买家未收到货) BUYER_RECEIVED (买家已收到货) BUYER_RETURNED_GOODS (买家已退货)',
+  `good_status` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '货物状态。可选值BUYER_NOT_RECEIVED (买家未收到货) BUYER_RECEIVED (买家已收到货) BUYER_RETURNED_GOODS (买家已退货)',
   `num` bigint(0) NOT NULL DEFAULT 0 COMMENT '退货数量',
   `has_good_return` int(0) DEFAULT NULL COMMENT '买家是否需要退货。可选值:true(是),false(否)',
-  `reason` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退款原因',
-  `remark` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退款说明',
-  `logisticsCompany` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司',
-  `logisticsCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流单号',
-  `send_time` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家发货时间',
+  `reason` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '退款原因',
+  `remark` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '退款说明',
+  `logisticsCompany` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流公司',
+  `logisticsCode` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流单号',
+  `send_time` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '买家发货时间',
   `auditStatus` int(0) NOT NULL DEFAULT 0 COMMENT '2已签收9供应商已退款',
   `auditTime` datetime(0) DEFAULT NULL COMMENT '处理时间',
   `receivedTime` datetime(0) DEFAULT NULL COMMENT '收货时间',
@@ -7610,15 +8307,15 @@ CREATE TABLE `s_tao_order_refund`  (
   `erpGoodsSpecId` int(0) DEFAULT 0,
   `productId` bigint(0) DEFAULT NULL COMMENT '天猫的商品Id',
   `skuId` bigint(0) DEFAULT NULL COMMENT '天猫的SKUID',
-  `goodsTitle` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品标题',
-  `goodsNumber` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品货号，对应系统商品编码',
-  `specNumber` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'sku编号',
-  `productImgUrl` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品主图',
-  `skuInfo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'SKU字符串',
-  `refund_phase` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '退款阶段，可选值：onsale/aftersale',
+  `goodsTitle` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品标题',
+  `goodsNumber` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品货号，对应系统商品编码',
+  `specNumber` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'sku编号',
+  `productImgUrl` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品主图',
+  `skuInfo` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'SKU字符串',
+  `refund_phase` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '退款阶段，可选值：onsale/aftersale',
   `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '淘宝退款订单表' ROW_FORMAT = Dynamic;
@@ -7629,7 +8326,7 @@ CREATE TABLE `s_tao_order_refund`  (
 DROP TABLE IF EXISTS `s_xhs_order`;
 CREATE TABLE `s_xhs_order`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键id（自增长）',
-  `orderId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '订单号（第三方平台orderId）',
+  `orderId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '订单号（第三方平台orderId）',
   `shopType` int(0) NOT NULL DEFAULT 0 COMMENT '订单来源（dc_sys_third_setting表id）',
   `shopId` int(0) NOT NULL DEFAULT 0 COMMENT '店铺ID（dc_shop表id）',
   `orderType` int(0) NOT NULL DEFAULT 0 COMMENT '订单类型：（小红书：订单类型，1普通 2定金预售 3全款预售 4延迟发货 5换货补发）',
@@ -7643,20 +8340,20 @@ CREATE TABLE `s_xhs_order`  (
   `orderCancelTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '订单取消时间 单位ms',
   `orderFinishTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '订单完成时间 单位ms',
   `promiseLastDeliveryTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '承诺最晚发货时间 单位ms',
-  `customerRemark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '用户备注',
-  `sellerRemark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '商家标记备注',
+  `customerRemark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '用户备注',
+  `sellerRemark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '商家标记备注',
   `sellerRemarkFlag` int(0) NOT NULL DEFAULT 0 COMMENT '商家标记优先级，ark订单列表展示旗子颜色 1灰旗 2红旗 3黄旗 4绿旗 5蓝旗 6紫旗',
   `presaleDeliveryStartTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '预售最早发货时间 单位ms',
   `presaleDeliveryEndTime` bigint(0) NOT NULL DEFAULT 0 COMMENT '预售最晚发货时间 单位ms',
-  `originalPackageId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '原始关联订单号(退换订单的原订单)',
+  `originalPackageId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '原始关联订单号(退换订单的原订单)',
   `totalPayAmount` int(0) NOT NULL DEFAULT 0 COMMENT '订单实付金额(包含运费) 单位分',
   `totalShippingFree` int(0) NOT NULL DEFAULT 0 COMMENT '订单运费 单位分',
-  `expressTrackingNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '快递单号',
-  `expressCompanyCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '快递公司编码',
-  `openAddressId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '收件人姓名+手机+地址等计算得出，用来查询收件人详情',
-  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '省',
-  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '市',
-  `district` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '区',
+  `expressTrackingNo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '快递单号',
+  `expressCompanyCode` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '快递公司编码',
+  `openAddressId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '收件人姓名+手机+地址等计算得出，用来查询收件人详情',
+  `province` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '省',
+  `city` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '市',
+  `district` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '区',
   `auditStatus` int(0) DEFAULT 0 COMMENT '订单审核状态（0待审核1已审核）',
   `auditTime` datetime(0) DEFAULT NULL COMMENT '订单审核时间',
   `settleStatus` smallint(0) NOT NULL DEFAULT 0 COMMENT '结算状态0未结算1已结算',
@@ -7790,12 +8487,12 @@ DROP TABLE IF EXISTS `s_xhs_order_item`;
 CREATE TABLE `s_xhs_order_item`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `orderId` bigint(0) NOT NULL COMMENT '订单id',
-  `itemId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品id',
-  `itemName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名称',
-  `erpcode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商家编码(若为组合品，暂不支持组合品的商家编码，但skulist会返回子商品商家编码)',
+  `itemId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品id',
+  `itemName` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品名称',
+  `erpcode` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商家编码(若为组合品，暂不支持组合品的商家编码，但skulist会返回子商品商家编码)',
   `itemSpecCode` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '规格编码',
-  `itemSpec` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '规格',
-  `itemImage` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片url',
+  `itemSpec` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '规格',
+  `itemImage` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片url',
   `price` double(10, 2) DEFAULT NULL COMMENT '单价',
   `quantity` int(0) NOT NULL COMMENT '数量',
   `totalPaidAmount` bigint(0) NOT NULL DEFAULT 0 COMMENT '总支付金额（考虑总件数）商品总实付',
@@ -7928,13 +8625,13 @@ DROP TABLE IF EXISTS `s_xhs_order_receiver`;
 CREATE TABLE `s_xhs_order_receiver`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `orderId` bigint(0) NOT NULL DEFAULT 0 COMMENT '外键',
-  `receiver` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人',
-  `phone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '电话',
-  `country` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '中国' COMMENT '国家',
-  `province` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '省',
-  `city` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '市',
-  `district` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '区',
-  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '详细地址',
+  `receiver` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '收件人',
+  `phone` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '电话',
+  `country` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '中国' COMMENT '国家',
+  `province` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '省',
+  `city` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '市',
+  `district` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '区',
+  `address` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '详细地址',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 107 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单收件人信息' ROW_FORMAT = Dynamic;
 
@@ -8041,12 +8738,12 @@ INSERT INTO `s_xhs_order_receiver` VALUES (105, 0, '丁辰', '13863151151', '中
 DROP TABLE IF EXISTS `s_xhs_order_settle`;
 CREATE TABLE `s_xhs_order_settle`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `orderNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单号',
-  `afterSaleNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '售后单号',
+  `orderNo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '订单号',
+  `afterSaleNo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '售后单号',
   `orderCreateTime` datetime(0) NOT NULL COMMENT '订单创建时间',
   `orderSettleTime` datetime(0) NOT NULL COMMENT '结算时间',
-  `transactionType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '交易类型',
-  `settleAccount` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '结算账户',
+  `transactionType` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '交易类型',
+  `settleAccount` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '结算账户',
   `amount` decimal(6, 2) NOT NULL DEFAULT 0.00 COMMENT '动账金额',
   `settleAmount` decimal(6, 2) NOT NULL DEFAULT 0.00 COMMENT '结算金额',
   `goodsAmount` decimal(6, 2) NOT NULL DEFAULT 0.00 COMMENT '商品实付/实退',
@@ -8058,10 +8755,10 @@ CREATE TABLE `s_xhs_order_settle`  (
   `paymentChannelFee` decimal(6, 2) NOT NULL COMMENT '支付渠道费',
   `distributionCommission` decimal(6, 2) NOT NULL COMMENT '分销佣金',
   `huabeiFee` decimal(6, 2) NOT NULL COMMENT '花呗手续费',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '备注',
+  `remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '备注',
   `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书店铺订单结算明细' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '小红书店铺订单结算明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of s_xhs_order_settle
@@ -8128,20 +8825,20 @@ INSERT INTO `s_xhs_order_settle` VALUES (55, 'P651745605368708111', '-', '2022-0
 DROP TABLE IF EXISTS `s_xhs_refund`;
 CREATE TABLE `s_xhs_refund`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `returnsId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '小红书店铺售后id',
+  `returnsId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '小红书店铺售后id',
   `returnType` int(0) NOT NULL COMMENT '退货类型 1-退货退款, 2-换货, 3:仅退款(old) 4:仅退款(new) 理论上不会有3出现 5:未发货仅退款',
   `reasonId` int(0) DEFAULT NULL COMMENT '售后原因id',
   `shopId` int(0) NOT NULL,
-  `reason` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '售后原因说明',
+  `reason` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '售后原因说明',
   `status` int(0) NOT NULL COMMENT '售后状态 1:待审核 2:待用户寄回 3:待收货 4:完成 5:取消 6:关闭 9:拒绝 9999:删除',
   `subStatus` int(0) DEFAULT NULL COMMENT '售后子状态 301-待审核 302-快递已签收 304-收货异常',
   `receiveAbnormalType` int(0) DEFAULT NULL COMMENT '收货异常类型',
-  `packageId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单id',
-  `exchangePackageId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '换货订单id',
+  `packageId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '订单id',
+  `exchangePackageId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '换货订单id',
   `createdTime` bigint(0) NOT NULL DEFAULT 0,
-  `returnExpressNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '0',
-  `returnExpressCompany` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '0',
-  `returnAddress` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '0',
+  `returnExpressNo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '0',
+  `returnExpressCompany` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '0',
+  `returnAddress` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '0',
   `shipNeeded` int(0) NOT NULL DEFAULT 0 COMMENT '是否需要寄回 1-需要 0-不需要',
   `refunded` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否已退款',
   `refundStatus` int(0) NOT NULL DEFAULT 0 COMMENT '退款状态 108触发退款 1退款中 3退款失败 2退款成功 401已取消 101已创建 201待审核 301审核通过 302审核不通过 402自动关闭',
@@ -8155,7 +8852,7 @@ CREATE TABLE `s_xhs_refund`  (
   `autoReceiveDeadline` bigint(0) NOT NULL DEFAULT 0 COMMENT '自动确认收货时间',
   `updateTime` bigint(0) NOT NULL DEFAULT 0,
   `erpSendStatus` int(0) NOT NULL DEFAULT 0 COMMENT 'erp系统发货状态（判断是否出库是否需要拦截）0未处理2已出库',
-  `returnExpressCompanyCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '退货快递公司编号',
+  `returnExpressCompanyCode` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '0' COMMENT '退货快递公司编号',
   `createOn` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modifyOn` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
@@ -8174,20 +8871,20 @@ DROP TABLE IF EXISTS `s_xhs_refund_item`;
 CREATE TABLE `s_xhs_refund_item`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `refundId` bigint(0) NOT NULL COMMENT '外键',
-  `itemId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '商品id',
-  `itemName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名',
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `itemId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '商品id',
+  `itemName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品名',
+  `image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `price` double DEFAULT NULL,
   `boughtCount` int(0) DEFAULT NULL,
   `appliedCount` int(0) DEFAULT NULL,
   `returnedCount` int(0) DEFAULT NULL,
   `refundedCount` int(0) DEFAULT NULL,
   `returnPrice` int(0) DEFAULT NULL,
-  `exchangeItemId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `exchangeItemName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `exchangeItemImage` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `skucode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `exchangeSkucode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `exchangeItemId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `exchangeItemName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `exchangeItemImage` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `skucode` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `exchangeSkucode` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '小红书订单退款明细表' ROW_FORMAT = Dynamic;
 
@@ -8198,13 +8895,13 @@ DROP TABLE IF EXISTS `scm_purchase_contract`;
 CREATE TABLE `scm_purchase_contract`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `contact_id` bigint(0) DEFAULT NULL COMMENT '供应商id',
-  `bill_no` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '单据编号',
-  `contractNo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bill_no` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '单据编号',
+  `contractNo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `billDate` date DEFAULT NULL COMMENT '单据日期',
   `userId` smallint(0) DEFAULT 0 COMMENT '制单人id',
-  `userName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '制单人',
-  `transType` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '交易类型:BUY购货 BUYR退货 SALE销售 SALER退销 OTHER其他入库',
-  `transTypeName` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '交易类型名称',
+  `userName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '制单人',
+  `transType` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '0' COMMENT '交易类型:BUY购货 BUYR退货 SALE销售 SALER退销 OTHER其他入库',
+  `transTypeName` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '交易类型名称',
   `totalAmount` decimal(10, 2) DEFAULT NULL COMMENT '购货总金额',
   `disRate` double DEFAULT 0 COMMENT '整单折扣率',
   `disAmount` double DEFAULT 0 COMMENT '整单折扣金额',
@@ -8216,11 +8913,11 @@ CREATE TABLE `scm_purchase_contract`  (
   `rpAmount` double DEFAULT 0 COMMENT '本次付款',
   `arrears` double DEFAULT 0 COMMENT '本次欠款',
   `freight` double DEFAULT 0 COMMENT '运费',
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
-  `billType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'PO采购订单 OI其他入库 PUR采购入库 BAL初期余额',
+  `description` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
+  `billType` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT 'PO采购订单 OI其他入库 PUR采购入库 BAL初期余额',
   `billStatus` tinyint(1) DEFAULT 0 COMMENT '订单状态 0待审核1正常2已作废3已入库 11已验货',
   `isDelete` tinyint(1) DEFAULT 0 COMMENT '1删除  0正常',
-  `checkName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '采购单审核人',
+  `checkName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '采购单审核人',
   `checked` tinyint(1) DEFAULT 0 COMMENT '采购单审核状态0待审核1已审核',
   `createTime` bigint(0) DEFAULT NULL COMMENT '创建时间',
   `modifyTime` bigint(0) DEFAULT NULL COMMENT '更新时间',
@@ -8229,24 +8926,24 @@ CREATE TABLE `scm_purchase_contract`  (
   `hxStateCode` tinyint(0) DEFAULT 0 COMMENT '核销状态 0未付款  1部分付款  2全部付款',
   `hxAmount` double DEFAULT 0 COMMENT '本次核销金额',
   `payment` double DEFAULT 0 COMMENT '本次预收款',
-  `srcOrderNo` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '订单编号',
-  `srcOrderId` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单id',
-  `logisticsNo` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '快递物流单号（）',
-  `logisticsCompany` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司',
-  `logisticsCompanyCode` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司代码',
-  `logisticsNumber` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流单号',
-  `locationId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '仓库id多个,分割',
-  `inLocationId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '调入仓库ID多个,分割',
-  `outLocationId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '调出仓库ID多个,分割',
-  `serialno` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '序列号',
-  `checkoutName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '检验人',
+  `srcOrderNo` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '订单编号',
+  `srcOrderId` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '订单id',
+  `logisticsNo` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '快递物流单号（）',
+  `logisticsCompany` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流公司',
+  `logisticsCompanyCode` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流公司代码',
+  `logisticsNumber` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流单号',
+  `locationId` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '仓库id多个,分割',
+  `inLocationId` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '调入仓库ID多个,分割',
+  `outLocationId` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '调出仓库ID多个,分割',
+  `serialno` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '序列号',
+  `checkoutName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '检验人',
   `checkoutTime` bigint(0) DEFAULT 0 COMMENT '检验时间',
   `checkoutStatus` int(0) DEFAULT 0 COMMENT '0 未检验  1已检验',
   `qualifiedStatus` int(0) DEFAULT 0 COMMENT '0为合格数量为0,1为合格数量不为0',
-  `stockInName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '入库人',
+  `stockInName` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '入库人',
   `stockInTime` bigint(0) DEFAULT 0 COMMENT '入库时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for scm_purchase_order
@@ -8255,25 +8952,25 @@ DROP TABLE IF EXISTS `scm_purchase_order`;
 CREATE TABLE `scm_purchase_order`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `contact_id` bigint(0) NOT NULL COMMENT '供应商id',
-  `order_no` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '订单编号',
+  `order_no` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '订单编号',
   `order_date` date NOT NULL COMMENT '订单日期',
   `order_time` bigint(0) NOT NULL COMMENT '订单创建时间',
   `order_amount` decimal(10, 2) NOT NULL COMMENT '订单总金额',
   `ship_amount` decimal(6, 2) NOT NULL COMMENT '物流费用',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '订单状态 0待审核1已审核101供应商已确认102供应商已发货2已收货3已入库',
-  `audit_user` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '采购单审核人',
+  `audit_user` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '采购单审核人',
   `audit_time` bigint(0) DEFAULT 0 COMMENT '审核时间',
   `supplier_confirm_time` datetime(0) DEFAULT NULL COMMENT '供应商确认时间',
   `supplier_delivery_time` datetime(0) DEFAULT NULL COMMENT '供应商发货时间',
   `received_time` datetime(0) DEFAULT NULL COMMENT '收货时间',
   `stock_in_time` datetime(0) DEFAULT NULL COMMENT '入库时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 469 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购订单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 469 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购订单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_purchase_order
@@ -8322,20 +9019,20 @@ DROP TABLE IF EXISTS `scm_purchase_order_item`;
 CREATE TABLE `scm_purchase_order_item`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `order_id` bigint(0) DEFAULT 0 COMMENT '订单id',
-  `order_no` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '订单编号',
-  `transType` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '0' COMMENT '150501采购 150502退货',
+  `order_no` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '订单编号',
+  `transType` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '0' COMMENT '150501采购 150502退货',
   `amount` double DEFAULT 0 COMMENT '购货金额',
   `order_date` date DEFAULT NULL COMMENT '订单日期',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '备注',
   `goods_id` bigint(0) DEFAULT 0 COMMENT '商品ID',
-  `goods_num` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品编码',
-  `goods_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名称',
+  `goods_num` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
+  `goods_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品名称',
   `spec_id` bigint(0) DEFAULT 0 COMMENT '商品规格id',
-  `spec_num` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品规格编码',
-  `color_value` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '颜色',
-  `color_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '图片',
-  `size_value` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '尺码',
-  `style_value` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '款式',
+  `spec_num` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格编码',
+  `color_value` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '颜色',
+  `color_image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '图片',
+  `size_value` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '尺码',
+  `style_value` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '款式',
   `price` decimal(8, 2) DEFAULT 0.00 COMMENT '单价',
   `dis_amount` decimal(8, 2) DEFAULT 0.00 COMMENT '折扣额',
   `dis_rate` decimal(8, 2) DEFAULT 0.00 COMMENT '折扣率',
@@ -8351,7 +9048,7 @@ CREATE TABLE `scm_purchase_order_item`  (
   INDEX `transType`(`transType`) USING BTREE,
   INDEX `iid`(`order_id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1965 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购订单明细' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1965 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '采购订单明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of scm_purchase_order_item
@@ -8376,9 +9073,9 @@ CREATE TABLE `scm_purchase_order_payable`  (
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
   `status` int(0) NOT NULL COMMENT '状态（0已生成1已结算)',
   `create_time` datetime(0) DEFAULT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '采购单应付款' ROW_FORMAT = Dynamic;
 
@@ -8489,11 +9186,11 @@ CREATE TABLE `scm_supplier_agent_shipping`  (
   `order_date` datetime(0) NOT NULL COMMENT '订单日期',
   `goods_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
   `spec_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `goods_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品标题',
-  `goods_img` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片',
-  `goods_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品规格编码',
+  `goods_title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品标题',
+  `goods_img` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片',
+  `goods_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
+  `goods_spec` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格',
+  `spec_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格编码',
   `goods_price` double NOT NULL COMMENT '商品单价',
   `quantity` int(0) NOT NULL COMMENT '商品数量',
   `item_amount` double DEFAULT NULL COMMENT '子订单金额',
@@ -8739,7 +9436,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status`) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 139 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -8815,6 +9512,60 @@ INSERT INTO `sys_logininfor` VALUES (126, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (127, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 15:31:15');
 INSERT INTO `sys_logininfor` VALUES (128, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 15:54:38');
 INSERT INTO `sys_logininfor` VALUES (129, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 15:57:58');
+INSERT INTO `sys_logininfor` VALUES (130, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-26 20:21:13');
+INSERT INTO `sys_logininfor` VALUES (131, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 10:43:36');
+INSERT INTO `sys_logininfor` VALUES (132, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 10:52:28');
+INSERT INTO `sys_logininfor` VALUES (133, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:01:30');
+INSERT INTO `sys_logininfor` VALUES (134, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '退出成功', '2024-04-28 11:02:03');
+INSERT INTO `sys_logininfor` VALUES (135, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:02:11');
+INSERT INTO `sys_logininfor` VALUES (136, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '退出成功', '2024-04-28 11:02:20');
+INSERT INTO `sys_logininfor` VALUES (137, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:02:51');
+INSERT INTO `sys_logininfor` VALUES (138, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:11:52');
+INSERT INTO `sys_logininfor` VALUES (139, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:23:38');
+INSERT INTO `sys_logininfor` VALUES (140, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:24:49');
+INSERT INTO `sys_logininfor` VALUES (141, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:27:25');
+INSERT INTO `sys_logininfor` VALUES (142, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:28:14');
+INSERT INTO `sys_logininfor` VALUES (143, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:30:03');
+INSERT INTO `sys_logininfor` VALUES (144, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:31:08');
+INSERT INTO `sys_logininfor` VALUES (145, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:32:31');
+INSERT INTO `sys_logininfor` VALUES (146, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:35:24');
+INSERT INTO `sys_logininfor` VALUES (147, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:36:15');
+INSERT INTO `sys_logininfor` VALUES (148, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:38:15');
+INSERT INTO `sys_logininfor` VALUES (149, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:40:16');
+INSERT INTO `sys_logininfor` VALUES (150, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:44:32');
+INSERT INTO `sys_logininfor` VALUES (151, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 11:50:14');
+INSERT INTO `sys_logininfor` VALUES (152, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 13:18:02');
+INSERT INTO `sys_logininfor` VALUES (153, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 13:31:33');
+INSERT INTO `sys_logininfor` VALUES (154, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 14:30:07');
+INSERT INTO `sys_logininfor` VALUES (155, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 14:31:50');
+INSERT INTO `sys_logininfor` VALUES (156, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 14:35:18');
+INSERT INTO `sys_logininfor` VALUES (157, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 15:04:04');
+INSERT INTO `sys_logininfor` VALUES (158, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 16:02:40');
+INSERT INTO `sys_logininfor` VALUES (159, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 16:06:43');
+INSERT INTO `sys_logininfor` VALUES (160, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 16:11:08');
+INSERT INTO `sys_logininfor` VALUES (161, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 16:13:58');
+INSERT INTO `sys_logininfor` VALUES (162, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 16:17:07');
+INSERT INTO `sys_logininfor` VALUES (163, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 16:49:32');
+INSERT INTO `sys_logininfor` VALUES (164, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 16:53:19');
+INSERT INTO `sys_logininfor` VALUES (165, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 16:57:12');
+INSERT INTO `sys_logininfor` VALUES (166, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:03:52');
+INSERT INTO `sys_logininfor` VALUES (167, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:10:17');
+INSERT INTO `sys_logininfor` VALUES (168, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:16:21');
+INSERT INTO `sys_logininfor` VALUES (169, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:19:30');
+INSERT INTO `sys_logininfor` VALUES (170, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:21:04');
+INSERT INTO `sys_logininfor` VALUES (171, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:25:44');
+INSERT INTO `sys_logininfor` VALUES (172, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:37:46');
+INSERT INTO `sys_logininfor` VALUES (173, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:40:46');
+INSERT INTO `sys_logininfor` VALUES (174, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:43:35');
+INSERT INTO `sys_logininfor` VALUES (175, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:45:28');
+INSERT INTO `sys_logininfor` VALUES (176, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:51:09');
+INSERT INTO `sys_logininfor` VALUES (177, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:56:22');
+INSERT INTO `sys_logininfor` VALUES (178, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:57:52');
+INSERT INTO `sys_logininfor` VALUES (179, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 17:59:51');
+INSERT INTO `sys_logininfor` VALUES (180, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 18:04:14');
+INSERT INTO `sys_logininfor` VALUES (181, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 18:13:59');
+INSERT INTO `sys_logininfor` VALUES (182, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 18:15:05');
+INSERT INTO `sys_logininfor` VALUES (183, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-04-28 18:17:24');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -8991,7 +9742,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type`) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status`) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 350 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 363 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -9358,7 +10109,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-26 15:57:59', 'admin', '2023-08-07 19:31:37', '', '2024-04-26 15:57:58', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-04-28 18:17:25', 'admin', '2023-08-07 19:31:37', '', '2024-04-28 18:17:24', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 
@@ -9563,21 +10314,21 @@ CREATE TABLE `wms_goods_bad_stock`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `goodsId` int(0) NOT NULL COMMENT '商品id',
   `specId` int(0) NOT NULL COMMENT '商品规格id',
-  `specNumber` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '规格编码（唯一）',
-  `sourceId` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '来源ID（type==1时 order_send_return主键id）',
+  `specNumber` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '规格编码（唯一）',
+  `sourceId` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '来源ID（type==1时 order_send_return主键id）',
   `type` int(0) NOT NULL COMMENT '类型（1退货报损3待退还供应商）',
   `locationId` int(0) NOT NULL DEFAULT 0 COMMENT '仓位',
   `quantity` int(0) NOT NULL DEFAULT 0 COMMENT '数量',
   `lossAmount` double NOT NULL DEFAULT 0 COMMENT '损失金额（最大成本）',
   `isDelete` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0正常  1删除',
-  `result` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '处理结果',
+  `result` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '处理结果',
   `resultTime` datetime(0) DEFAULT NULL COMMENT '处理时间',
-  `reason` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '理由',
+  `reason` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '理由',
   `status` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否处理0未处理1已处理',
   `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `modifyTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '不良品库存' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '不良品库存' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_goods_bad_stock
@@ -9599,10 +10350,10 @@ CREATE TABLE `wms_goods_bad_stock_log`  (
   `locationId` int(0) NOT NULL COMMENT '所在仓位',
   `type` int(0) NOT NULL COMMENT '类型1入库2出库',
   `quantity` bigint(0) NOT NULL DEFAULT 0 COMMENT '数量',
-  `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
   `createTime` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '不良品库存日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '不良品库存日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_goods_bad_stock_log
@@ -9627,11 +10378,11 @@ CREATE TABLE `wms_order_shipping`  (
   `order_date` datetime(0) NOT NULL COMMENT '订单日期',
   `goods_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
   `spec_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `goods_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品标题',
-  `goods_img` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片',
-  `goods_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品规格编码',
+  `goods_title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品标题',
+  `goods_img` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片',
+  `goods_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
+  `goods_spec` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格',
+  `spec_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格编码',
   `quantity` int(0) NOT NULL COMMENT '商品数量',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '说明',
   `ship_company` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司',
@@ -9655,24 +10406,24 @@ CREATE TABLE `wms_order_shipping`  (
 DROP TABLE IF EXISTS `wms_stock_in_entry`;
 CREATE TABLE `wms_stock_in_entry`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `stock_in_num` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '入库单据编号',
-  `source_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '来源单号',
+  `stock_in_num` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '入库单据编号',
+  `source_no` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '来源单号',
   `source_id` bigint(0) DEFAULT NULL COMMENT '来源单id',
   `source_type` int(0) NOT NULL COMMENT '来源类型（1采购订单2退货订单）',
   `source_goods_unit` int(0) DEFAULT NULL COMMENT '采购订单商品数',
   `source_spec_unit_total` int(0) DEFAULT NULL COMMENT '采购订单总件数',
   `source_spec_unit` int(0) DEFAULT NULL COMMENT '采购订单商品规格数',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
   `stock_in_operator_id` int(0) DEFAULT NULL COMMENT '操作入库人id',
-  `stock_in_operator` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '操作入库人',
+  `stock_in_operator` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '操作入库人',
   `stock_in_time` datetime(0) DEFAULT NULL COMMENT '入库时间',
   `status` int(0) NOT NULL DEFAULT 0 COMMENT '状态（0待入库1部分入库2全部入库）',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '入库单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '入库单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_in_entry
@@ -9690,27 +10441,27 @@ CREATE TABLE `wms_stock_in_entry_item`  (
   `source_id` bigint(0) DEFAULT NULL COMMENT '来源单id',
   `source_item_id` bigint(0) NOT NULL COMMENT '来源单itemId',
   `goods_id` bigint(0) NOT NULL COMMENT '商品id',
-  `goods_num` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品编码',
-  `goods_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名称',
+  `goods_num` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
+  `goods_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品名称',
   `spec_id` bigint(0) NOT NULL COMMENT '商品规格id',
-  `spec_num` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品规格编码',
-  `color_value` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '颜色',
-  `color_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '图片',
-  `size_value` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '尺码',
-  `style_value` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '款式',
+  `spec_num` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格编码',
+  `color_value` varchar(55) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '颜色',
+  `color_image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '图片',
+  `size_value` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '尺码',
+  `style_value` varchar(55) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '款式',
   `original_quantity` bigint(0) DEFAULT NULL COMMENT '原始数量',
   `in_quantity` bigint(0) NOT NULL COMMENT '入库数量',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '备注',
   `location_id` int(0) DEFAULT NULL COMMENT '入库仓位',
-  `location_num` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '入库仓位编码',
+  `location_num` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '入库仓位编码',
   `status` int(0) DEFAULT 0 COMMENT '状态（0待入库1部分入库2全部入库）',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `specIndex`(`spec_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '入库单明细' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '入库单明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_in_entry_item
@@ -9732,9 +10483,9 @@ CREATE TABLE `wms_stock_location`  (
   `address` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '地址',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
   `isDelete` int(0) NOT NULL DEFAULT 0 COMMENT '0正常  1删除',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
   `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '仓库货架表' ROW_FORMAT = Dynamic;
@@ -9769,27 +10520,27 @@ INSERT INTO `wms_stock_location` VALUES (20, 'A01-1-16', 'A01-1-16', 2, 3, 1, 2,
 DROP TABLE IF EXISTS `wms_stock_out_entry`;
 CREATE TABLE `wms_stock_out_entry`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `stock_out_num` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '出库单编号',
-  `source_num` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '来源单据号',
+  `stock_out_num` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '出库单编号',
+  `source_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '来源单据号',
   `source_id` bigint(0) DEFAULT NULL COMMENT '来源单据Id',
   `stock_out_type` int(0) NOT NULL DEFAULT 1 COMMENT '出库类型1订单拣货出库2采购退货出库3盘点出库4报损出库',
   `goods_unit` int(0) NOT NULL COMMENT '商品数',
   `spec_unit` int(0) NOT NULL COMMENT '商品规格数',
   `spec_unit_total` int(0) NOT NULL COMMENT '总件数',
-  `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '备注',
+  `remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
   `status` int(0) NOT NULL COMMENT '状态：0待出库1部分出库2全部出库',
   `print_status` int(0) NOT NULL COMMENT '打印状态：是否打印1已打印0未打印',
   `print_time` datetime(0) DEFAULT NULL COMMENT '打印时间',
   `out_time` datetime(0) DEFAULT NULL COMMENT '出库时间',
   `complete_time` datetime(0) DEFAULT NULL COMMENT '完成出库时间',
   `operator_id` int(0) DEFAULT 0 COMMENT '出库操作人userid',
-  `operator_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '出库操作人',
+  `operator_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '出库操作人',
   `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
-  `create_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_by` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
-  `update_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_by` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1783708162622738433 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_out_entry
@@ -9806,10 +10557,10 @@ CREATE TABLE `wms_stock_out_entry_item`  (
   `entry_id` bigint(0) NOT NULL COMMENT '出库单id（外键）',
   `source_order_id` bigint(0) NOT NULL COMMENT '来源订单id',
   `source_order_item_id` bigint(0) NOT NULL COMMENT '来源订单itemId出库对应的itemId，如：order_item表id、invoice_info表id',
-  `source_order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '来源订单号',
+  `source_order_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '来源订单号',
   `goods_id` int(0) NOT NULL COMMENT '商品id',
   `spec_id` int(0) NOT NULL COMMENT '商品规格id',
-  `spec_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '规格编码',
+  `spec_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '规格编码',
   `original_quantity` bigint(0) NOT NULL COMMENT '总数量',
   `out_quantity` bigint(0) NOT NULL DEFAULT 0 COMMENT '已出库数量',
   `complete_time` datetime(0) DEFAULT NULL COMMENT '完成出库时间',
@@ -9819,7 +10570,7 @@ CREATE TABLE `wms_stock_out_entry_item`  (
   `update_time` datetime(0) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `specIndex`(`spec_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单明细' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1783708162694041603 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_out_entry_item
@@ -9841,7 +10592,7 @@ CREATE TABLE `wms_stock_out_entry_item_detail`  (
   `quantity` bigint(0) NOT NULL DEFAULT 0 COMMENT '出库数量',
   `location_id` int(0) DEFAULT NULL COMMENT '出库仓位ID',
   `operator_id` int(0) DEFAULT 0 COMMENT '出库操作人userid',
-  `operator_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '出库操作人',
+  `operator_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '出库操作人',
   `out_time` datetime(0) DEFAULT NULL COMMENT '出库时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `goods_stock_info_item_id_index`(`goods_inventory_detail_id`) USING BTREE

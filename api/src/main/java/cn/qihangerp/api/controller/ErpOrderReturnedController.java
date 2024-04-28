@@ -15,7 +15,7 @@ import cn.qihangerp.common.annotation.Log;
 import cn.qihangerp.core.controller.BaseController;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.common.enums.BusinessType;
-import cn.qihangerp.api.domain.ErpOrderReturned;
+import cn.qihangerp.domain.ErpOrderReturned;
 import cn.qihangerp.api.service.IErpOrderReturnedService;
 import cn.qihangerp.common.utils.poi.ExcelUtil;
 import cn.qihangerp.core.page.TableDataInfo;

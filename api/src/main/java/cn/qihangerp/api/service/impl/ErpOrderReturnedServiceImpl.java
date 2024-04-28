@@ -5,7 +5,7 @@ import cn.qihangerp.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import cn.qihangerp.api.mapper.ErpOrderReturnedMapper;
-import cn.qihangerp.api.domain.ErpOrderReturned;
+import cn.qihangerp.domain.ErpOrderReturned;
 import cn.qihangerp.api.service.IErpOrderReturnedService;
 
 /**

@@ -8,6 +8,8 @@ import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.api.domain.*;
 import cn.qihangerp.api.mapper.*;
 import cn.qihangerp.common.utils.DateUtils;
+import cn.qihangerp.domain.ErpOrder;
+import cn.qihangerp.domain.ErpOrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;

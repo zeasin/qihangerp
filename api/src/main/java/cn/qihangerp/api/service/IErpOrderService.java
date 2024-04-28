@@ -1,7 +1,7 @@
 package cn.qihangerp.api.service;
 
 import java.util.List;
-import cn.qihangerp.api.domain.ErpOrder;
+import cn.qihangerp.domain.ErpOrder;
 
 /**
  * 订单Service接口

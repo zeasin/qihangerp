@@ -2,7 +2,7 @@ package cn.qihangerp.api.service;
 
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
-import cn.qihangerp.api.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpOrderItem;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

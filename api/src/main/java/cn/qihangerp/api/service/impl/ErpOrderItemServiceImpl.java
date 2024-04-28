@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
-import cn.qihangerp.api.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpOrderItem;
 import cn.qihangerp.api.mapper.ErpOrderMapper;
 import cn.qihangerp.api.service.ErpOrderItemService;
 import cn.qihangerp.api.mapper.ErpOrderItemMapper;
