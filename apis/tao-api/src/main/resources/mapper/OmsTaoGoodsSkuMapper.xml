@@ -35,4 +35,27 @@
         erp_goods_id,erp_goods_sku_id,erp_supplier_id,
         create_time
     </sql>
+
+
+    <resultMap type="cn.qihangerp.open.tao.domain.vo.ErpGoodsSpecVo" id="GoodsSpecResult">
+        <result property="id"    column="id"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="supplierId"    column="supplier_id"    />
+        <result property="specNum"    column="spec_num"    />
+        <result property="colorValue"    column="color_value"    />
+        <result property="colorImage"    column="color_image"    />
+        <result property="sizeValue"    column="size_value"    />
+        <result property="styleValue"    column="style_value"    />
+    </resultMap>
+
+    <sql id="selectGoodsSpecVo">
+        select id, goods_id, spec_num, color_value, color_image, size_value, style_value,g.supplier_id
+        from erp_goods_spec gs
+        left join erp_goods g on g.id = gs.goods_id
+    </sql>
+
+    <select id="selectGoodsSpecBySpecNum" parameterType="String" resultMap="GoodsSpecResult">
+        <include refid="selectGoodsSpecVo"/>
+        where spec_num = #{specNum}
+    </select>
 </mapper>

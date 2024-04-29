@@ -1,16 +1,17 @@
 package cn.qihangerp.open.tao.mapper;
 
 import cn.qihangerp.open.tao.domain.OmsTaoGoodsSku;
+import cn.qihangerp.open.tao.domain.vo.ErpGoodsSpecVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
 * @author TW
 * @description 针对表【oms_tao_goods_sku(淘宝商品SKU表)】的数据库操作Mapper
-* @createDate 2024-04-29 09:58:56
+* @createDate 2024-04-29 19:56:59
 * @Entity cn.qihangerp.open.tao.domain.OmsTaoGoodsSku
 */
 public interface OmsTaoGoodsSkuMapper extends BaseMapper<OmsTaoGoodsSku> {
-
+    ErpGoodsSpecVo selectGoodsSpecBySpecNum(String specNum);
 }
 
 

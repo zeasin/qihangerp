@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
 * @author TW
 * @description 针对表【oms_tao_goods_sku(淘宝商品SKU表)】的数据库操作Service实现
-* @createDate 2024-04-29 09:58:56
+* @createDate 2024-04-29 19:56:59
 */
 @Service
 public class OmsTaoGoodsSkuServiceImpl extends ServiceImpl<OmsTaoGoodsSkuMapper, OmsTaoGoodsSku>

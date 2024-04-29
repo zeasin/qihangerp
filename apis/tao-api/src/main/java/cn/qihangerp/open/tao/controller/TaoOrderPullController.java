@@ -40,7 +40,7 @@ public class TaoOrderPullController {
 //    @Autowired
 //    private IShopService shopService;
     @Autowired
-    private ServerConfig serverConfig;
+    private ApiPullHelper apiPullHelper;
     /**
      * 更新前的检查
      *
@@ -48,77 +48,7 @@ public class TaoOrderPullController {
      * @return
      * @throws
      */
-    public ApiResult<ShopApiParams> checkBefore(Long shopId) {
-        log.info("/**************主动更新tao 参数检查****************/");
-        var shop = tmallOrderService.selectShopById(shopId);
 
-        if (shop == null) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，没有找到店铺");
-
-        if (shop.getType().intValue() != EnumShopType.TAO.getIndex())
-            return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，店铺不是淘系店铺");
-
-        if(!StringUtils.hasText(shop.getAppkey())) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到AppKey");
-        if(!StringUtils.hasText(shop.getAppSercet())) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到AppSercet");
-        if(!StringUtils.hasText(shop.getApiRequestUrl())) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到ApiRequestUrl");
-        if(shop.getSellerUserId()==null || shop.getSellerUserId()<=0) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到SellerUserId");
-
-        ShopApiParams params = new ShopApiParams();
-        params.setAppKey(shop.getAppkey());
-        params.setAppSecret(shop.getAppSercet());
-        params.setAccessToken(shop.getSessionKey());
-        params.setTokenRequestUrl(serverConfig.getUrl()+"/taoapi2/tao_oauth");
-        params.setApiRequestUrl(shop.getApiRequestUrl());
-        if (!StringUtils.hasText(shop.getSessionKey()))
-            return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "Token已过期，请重新授权",params);
-
-        String sessionKey = shop.getSessionKey();
-
-        var thirdConfig = tmallOrderService.selectShopSettingById(shop.getType());
-        if (thirdConfig == null) return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，没有找到第三方平台的配置信息");
-        else if (StringUtils.isEmpty(thirdConfig.getAppKey()))
-            return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少appkey");
-        else if (StringUtils.isEmpty(thirdConfig.getAppSecret()))
-            return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少appSecret");
-        else if (StringUtils.isEmpty(thirdConfig.getRequestUrl()))
-            return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少request_url");
-
-//        thirdConfig.setAccessToken(sessionKey);
-
-//        String url = thirdConfig.getRequestUrl();
-//        String appkey = thirdConfig.getAppKey();
-//        String secret = thirdConfig.getAppSecret();
-        String url = shop.getApiRequestUrl();
-        String appkey = shop.getAppkey();
-        String secret = shop.getAppSercet();
-
-        /****************先查询卖家对不对***************/
-//        TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
-//        UserSellerGetRequest reqSeller = new UserSellerGetRequest();
-//        reqSeller.setFields("nick,user_id");
-//        UserSellerGetResponse rsp = client.execute(reqSeller, sessionKey);
-//        if(StringUtils.hasText(rsp.getErrorCode())){
-//            if(rsp.getErrorCode().equals("27")){
-//                return new ApiResult<>(EnumResultVo.TokenFail.getIndex(), "Token已过期，请重新授权",params);
-//            }
-//            else if(rsp.getErrorCode().equals("11")){
-//                if(rsp.getSubCode().equals("isv.permission-api-package-limit"))
-//                    return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), "请检查淘宝用户API：taobao.user.seller.get是否具有访问权限",params);
-//                return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), rsp.getSubCode(),params);
-//            }
-//            else if(rsp.getErrorCode().equals("25")){
-//                return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), "无效签名！请检查SessionKey、appKey、appSecret是否匹配",params);
-//            } else
-//                return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), "参数错误！"+(StringUtils.hasText(rsp.getSubMsg()) ? rsp.getSubMsg(): rsp.getMsg()));
-//        }
-//        if(rsp.getUser() == null || rsp.getUser().getUserId() == null){
-//            return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), "参数错误！请设置店铺SellerUserId值！",params);
-//        }
-//        else if (shop.getSellerUserId().longValue() != rsp.getUser().getUserId().longValue()) {
-//            return new ApiResult<>(EnumResultVo.TokenFail.getIndex(), "当前用户是：" + rsp.getUser().getNick() + "，请重新授权",params);
-//        }
-
-        return new ApiResult<>(ResultVoEnum.SUCCESS.getIndex(), "", params);
-    }
 
     /**
      * 拉取天猫订单
@@ -134,7 +64,7 @@ public class TaoOrderPullController {
         if (req.getShopId() == null || req.getShopId() <= 0) {
             return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，没有店铺Id");
         }
-        var checkResult = this.checkBefore(req.getShopId());
+        var checkResult = apiPullHelper.checkBefore(req.getShopId());
         if (checkResult.getCode() != ResultVoEnum.SUCCESS.getIndex()) {
             return new ApiResult<>(checkResult.getCode(), checkResult.getMsg(),checkResult.getData());
         }
@@ -143,35 +73,6 @@ public class TaoOrderPullController {
         String appKey = checkResult.getData().getAppKey();
         String appSecret = checkResult.getData().getAppSecret();
 
-//        var shop = shopService.getShop(req.getShopId());
-//        if (shop == null) return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), "参数错误，没有找到店铺");
-//        else if (shop.getType().intValue() != EnumShopType.Tmall.getIndex())
-//            return new ApiResult<>(EnumResultVo.ParamsError.getIndex(), "参数错误，店铺不是淘系店铺");
-//        else if (StringUtils.isEmpty(shop.getSessionKey()))
-//            return new ApiResult<>(EnumResultVo.TokenFail.getIndex(), "Token已过期，请重新授权");
-//
-//        String sessionKey = shop.getSessionKey();
-//
-//        var thirdConfig = thirdSettingService.getEntity(shop.getType());
-//        if (thirdConfig == null) return new ApiResult<>(EnumResultVo.SystemException.getIndex(), "系统错误，没有找到第三方平台的配置信息");
-//        else if (StringUtils.isEmpty(thirdConfig.getAppKey())) return new ApiResult<>(EnumResultVo.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少appkey");
-//        else if (StringUtils.isEmpty(thirdConfig.getAppSecret())) return new ApiResult<>(EnumResultVo.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少appSecret");
-//        else if (StringUtils.isEmpty(thirdConfig.getRequest_url())) return new ApiResult<>(EnumResultVo.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少request_url");
-//
-//
-//        String url = thirdConfig.getRequest_url();
-//        String appkey = thirdConfig.getAppKey();
-//        String secret = thirdConfig.getAppSecret();
-//
-//        /****************先查询卖家对不对***************/
-//        TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
-//        UserSellerGetRequest reqSeller = new UserSellerGetRequest();
-//        reqSeller.setFields("nick,user_id");
-//        UserSellerGetResponse rsp = client.execute(reqSeller, sessionKey);
-////        System.out.println(rsp.getBody());
-//        if (shop.getSellerUserId().longValue() != rsp.getUser().getUserId().longValue()) {
-//            return new ApiResult<>(EnumResultVo.TokenFail.getIndex(), "当前用户是：" + rsp.getUser().getNick() + "，请重新授权");
-//        }
 
         log.info("/**************主动更新tao订单，条件判断完成，开始更新。。。。。。****************/");
         Long pageSize = 50l;
@@ -249,7 +150,7 @@ public class TaoOrderPullController {
      * @param model
      * @param request
      * @return
-     * @throws ApiException
+     * @throws
      */
     @RequestMapping("/order/pull_order_by_num")
     @ResponseBody
@@ -263,7 +164,7 @@ public class TaoOrderPullController {
         }
 
         Long shopId = taoRequest.getShopId();
-        var checkResult = this.checkBefore(shopId);
+        var checkResult = apiPullHelper.checkBefore(shopId);
 
         if (checkResult.getCode() != ResultVoEnum.SUCCESS.getIndex()) {
             return new ApiResult<>(checkResult.getCode(), checkResult.getMsg());
@@ -348,7 +249,7 @@ public class TaoOrderPullController {
      * @param model
      * @param request
      * @return
-     * @throws ApiException
+     * @throws
      */
     @RequestMapping("/refund/pull_refund_order")
     @ResponseBody
@@ -358,7 +259,7 @@ public class TaoOrderPullController {
             return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，没有店铺Id");
         }
         Long shopId = taoRequest.getShopId();
-        var checkResult = this.checkBefore(shopId);
+        var checkResult = apiPullHelper.checkBefore(shopId);
 
         if (checkResult.getCode() != ResultVoEnum.SUCCESS.getIndex()) {
             return new ApiResult<>(checkResult.getCode(), checkResult.getMsg());
@@ -443,7 +344,7 @@ public class TaoOrderPullController {
      * @param model
      * @param request
      * @return
-     * @throws ApiException
+     * @throws
      */
     @RequestMapping("/refund/pull_refund_order_by_num")
     @ResponseBody
@@ -457,7 +358,7 @@ public class TaoOrderPullController {
         }
 
         Long shopId = taoRequest.getShopId();
-        var checkResult = this.checkBefore(shopId);
+        var checkResult = apiPullHelper.checkBefore(shopId);
 
         if (checkResult.getCode() != ResultVoEnum.SUCCESS.getIndex()) {
             return new ApiResult<>(checkResult.getCode(), checkResult.getMsg());

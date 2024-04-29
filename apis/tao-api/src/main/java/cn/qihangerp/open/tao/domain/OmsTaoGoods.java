@@ -2,6 +2,9 @@ package cn.qihangerp.open.tao.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 /**
@@ -43,7 +46,7 @@ public class OmsTaoGoods implements Serializable {
     /**
      * 商品所属的叶子类目 id
      */
-    private Long cid;
+    private Integer cid;
 
     /**
      * 商品所属的店铺内卖家自定义类目列表
@@ -158,12 +161,12 @@ public class OmsTaoGoods implements Serializable {
     /**
      * 店铺id
      */
-    private Integer shopId;
+    private Long shopId;
 
     /**
      * erp商品id
      */
-    private Integer erpGoodsId;
+    private Long erpGoodsId;
 
     /**
      * erp系统供应商ID
@@ -174,6 +177,9 @@ public class OmsTaoGoods implements Serializable {
      * 创建时间
      */
     private Date createTime;
+
+    @TableField(exist = false)
+    private List<OmsTaoGoodsSku> skuList;
 
     private static final long serialVersionUID = 1L;
 }
