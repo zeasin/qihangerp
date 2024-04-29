@@ -161,15 +161,21 @@ A[录入退款退货] -->B(仅退款)
 
 #### 2.1 配置启动MySQL
 
-+ 创建数据库`qihang-erp`并导入sql脚本`docs\sql\qihang-erp.sql`
++ 创建数据库`qihang-erp`并导入sql脚本`docs\qihang-erp.sql`
 
 
 
-#### 2.2 启动minio（可选）
-+ minio文件存储
+#### 2.3 启动Redis
+项目开发采用Redis7
+
+#### 2.4 启动Nacos
+项目开发采用Nacos2.2.0
+
 
 #### 2.3 启动后端api
-+ 修改`api`项目中的配置文件`application.yml`配置`MySQL`数据库相关。
++ 修改`api`项目中的配置文件`application.yml`配置`Nacos`相关。
++ Nacos新建dataId:`ecerp-dev`配置项，配置内容在`docs\NacosConfig\ecerp-dev.txt`文件中。
++ IDE启动项目
 
 
 #### 2.4 启动前端 `vue`
