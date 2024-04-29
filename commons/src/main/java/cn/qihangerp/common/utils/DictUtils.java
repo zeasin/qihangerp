@@ -3,9 +3,11 @@ package cn.qihangerp.common.utils;
 import java.util.List;
 
 import cn.qihangerp.common.constant.CacheConstants;
-import cn.qihangerp.core.CaffeineUtil;
+//import cn.qihangerp.core.CaffeineUtil;
+import cn.qihangerp.common.utils.spring.SpringUtils;
+import cn.qihangerp.core.redis.RedisCache;
 import cn.qihangerp.domain.SysDictData;
-//import com.zhijian.common.core.redis.RedisCache;
+import com.alibaba.fastjson2.JSONArray;
 
 
 /**
@@ -28,8 +30,8 @@ public class DictUtils
      */
     public static void setDictCache(String key, List<SysDictData> dictDatas)
     {
-//        SpringUtils.getBean(RedisCache.class).setCacheObject(getCacheKey(key), dictDatas);
-        CaffeineUtil.put(getCacheKey(key), dictDatas);
+        SpringUtils.getBean(RedisCache.class).setCacheObject(getCacheKey(key), dictDatas);
+//        CaffeineUtil.put(getCacheKey(key), dictDatas);
     }
 
     /**
@@ -40,15 +42,15 @@ public class DictUtils
      */
     public static List<SysDictData> getDictCache(String key)
     {
-        var dicts = (List<SysDictData>)CaffeineUtil.get(getCacheKey(key));
-        return dicts;
-//        JSONArray arrayCache = SpringUtils.getBean(RedisCache.class).getCacheObject(getCacheKey(key));
+//        var dicts = (List<SysDictData>)CaffeineUtil.get(getCacheKey(key));
+//        return dicts;
+        JSONArray arrayCache = SpringUtils.getBean(RedisCache.class).getCacheObject(getCacheKey(key));
 //        JSONArray arrayCache = (JSONArray)CaffeineUtil.get(getCacheKey(key));
-//        if (StringUtils.isNotNull(arrayCache))
-//        {
-//            return arrayCache.toList(SysDictData.class);
-//        }
-//        return null;
+        if (StringUtils.isNotNull(arrayCache))
+        {
+            return arrayCache.toList(SysDictData.class);
+        }
+        return null;
     }
 
     /**
@@ -165,8 +167,8 @@ public class DictUtils
      */
     public static void removeDictCache(String key)
     {
-//        SpringUtils.getBean(RedisCache.class).deleteObject(getCacheKey(key));
-        CaffeineUtil.remove(getCacheKey(key));
+        SpringUtils.getBean(RedisCache.class).deleteObject(getCacheKey(key));
+//        CaffeineUtil.remove(getCacheKey(key));
     }
 
     /**

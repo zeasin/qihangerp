@@ -1,6 +1,7 @@
 package cn.qihangerp.core.web.service;
 
-import cn.qihangerp.core.CaffeineUtil;
+
+import cn.qihangerp.core.redis.RedisCache;
 import cn.qihangerp.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,6 @@ import cn.qihangerp.common.constant.Constants;
 import cn.qihangerp.common.constant.UserConstants;
 import cn.qihangerp.domain.SysUser;
 import cn.qihangerp.domain.model.RegisterBody;
-//import com.zhijian.common.core.redis.RedisCache;
 import cn.qihangerp.common.exception.user.CaptchaException;
 import cn.qihangerp.common.exception.user.CaptchaExpireException;
 import cn.qihangerp.common.utils.MessageUtils;
@@ -33,8 +33,8 @@ public class SysRegisterService
     @Autowired
     private ISysConfigService configService;
 
-//    @Autowired
-//    private RedisCache redisCache;
+    @Autowired
+    private RedisCache redisCache;
 
     /**
      * 注册
@@ -102,10 +102,10 @@ public class SysRegisterService
     public void validateCaptcha(String username, String code, String uuid)
     {
         String verifyKey = CacheConstants.CAPTCHA_CODE_KEY + StringUtils.nvl(uuid, "");
-//        String captcha = redisCache.getCacheObject(verifyKey);
-        String captcha = (String) CaffeineUtil.get(verifyKey);
-//        redisCache.deleteObject(verifyKey);
-        CaffeineUtil.remove(verifyKey);
+        String captcha = redisCache.getCacheObject(verifyKey);
+//        String captcha = (String) CaffeineUtil.get(verifyKey);
+        redisCache.deleteObject(verifyKey);
+//        CaffeineUtil.remove(verifyKey);
         if (captcha == null)
         {
             throw new CaptchaExpireException();
