@@ -120,19 +120,25 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/doudian/doudian-sdk-java-1.1.0-20240217120650.jar</systemPath>
         </dependency>
-        <dependency>
-            <groupId>pinduoduo</groupId>
-            <artifactId>pop-sdk-all</artifactId>
-            <version>1.11.8</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/pinduoduo/pop-sdk-all-1.11.8.jar</systemPath>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>pinduoduo</groupId>-->
+<!--            <artifactId>pop-sdk-all</artifactId>-->
+<!--            <version>1.11.8</version>-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${project.basedir}/libs/pinduoduo/pop-sdk-all-1.11.8.jar</systemPath>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>xiaohongshu</groupId>
             <artifactId>com.xiaohongshu.fls.openSdk</artifactId>
             <version>1.0</version>
             <scope> system </scope>
             <systemPath>${pom.basedir}/libs/xiaohongshu/com.xiaohongshu.fls.openSdk-1.0.jar </systemPath>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.109.Final</version>
         </dependency>
 
         <!-- 引入框架 -->
@@ -152,6 +158,8 @@
             <artifactId>kwai-api</artifactId>
             <version>0.4.28</version>
         </dependency>
+
+
     </dependencies>
 
     <build>

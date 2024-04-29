@@ -44,13 +44,13 @@ public class TaoOrderServiceImpl implements ITaoOrderService
     private TaoOrderMapper taoOrderMapper;
     @Autowired
     private TaoOrderAddressMapper addressMapper;
-    @Autowired
-    private ErpOrderMapper erpOrderMapper;
-
-    @Autowired
-    private GoodsMapper goodsMapper;
-    @Autowired
-    private GoodsSpecMapper goodsSpecMapper;
+//    @Autowired
+//    private ErpOrderMapper erpOrderMapper;
+//
+//    @Autowired
+//    private GoodsMapper goodsMapper;
+//    @Autowired
+//    private GoodsSpecMapper goodsSpecMapper;
 
     /**
      * 查询淘宝订单
@@ -140,145 +140,145 @@ public class TaoOrderServiceImpl implements ITaoOrderService
             return -4;
         }
 
-        TaoOrder original = taoOrderMapper.selectTaoOrderById(taoOrder.getId());
-        if(original.getAuditStatus() != 0) return -1;
-        ErpOrder erpOrder = erpOrderMapper.selectErpOrderByNum(taoOrder.getId());
-        if(erpOrder!=null) return -2;
-
-        // 新增ErpOrder
-        // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
-        ErpOrder so = new ErpOrder();
-        so.setOrderNum(original.getId());
-        so.setShopId(original.getShopId().intValue());
-        so.setShopType(EnumShopType.TAO.getIndex());
-        so.setRemark(original.getRemark());
-        so.setBuyerMemo(original.getBuyerFeedback());
-        so.setTag(original.getTag());
-        so.setRefundStatus(1);
-        so.setOrderStatus(1);
-        so.setShipStatus(0);
-        so.setShipType(taoOrder.getShipType());
-
-        so.setGoodsAmount(original.getTotalAmount().subtract(original.getShippingFee()).doubleValue());
-        so.setDiscountAmount(original.getDiscountAmount());
-        so.setAmount(original.getTotalAmount().doubleValue());
-        so.setPostage(original.getShippingFee());
-
-        so.setPayTime(original.getPayTime());
-        so.setConfirmTime(new Date());
-        so.setCreateTime(new Date());
-        so.setCreateBy(taoOrder.getUpdateBy());
-
-        TaoOrderAddress addr = addressMapper.selectTaoOrderAddressByOrderId(taoOrder.getId());
-        so.setReceiverName(addr.getContactPerson());
-        so.setReceiverPhone(addr.getMobile());
-        so.setAddress(addr.getAddress());
-        so.setCountry("中国");
-        so.setProvince(addr.getProvince());
-        so.setCity(addr.getCity());
-        so.setTown(addr.getArea());
-
-        erpOrderMapper.insertErpOrder(so);
-        // 新增ErpOrderItem
-        List<TaoOrderItem> taoOrderItems = taoOrderMapper.selectOrderItemByOrderId(taoOrder.getId());
-        List<ErpOrderItem> items = new ArrayList<>();
-        for (var i:taoOrderItems) {
-            if(StringUtils.isEmpty(i.getSpecNumber())) {
-                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                return -11;
-            }
-            GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNumber());
-            if (spec == null) {
-                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                return -11;
-            }
-            Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-            if(goods == null){
-                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                return -12;
-            }
-
-            ErpOrderItem item = new ErpOrderItem();
-            item.setShipStatus(0);
-            item.setShipType(taoOrder.getShipType());
-            item.setShopId(original.getShopId().intValue());
-            item.setOrderId(so.getId());
-            item.setOrderNum(original.getId());
-            item.setOrderItemNum(i.getSubItemId());
-            item.setSupplierId(goods.getSupplierId().intValue());
-            item.setGoodsId(spec.getGoodsId());
-            item.setSpecId(spec.getId());
-            item.setGoodsTitle(i.getGoodsTitle());
-            item.setGoodsImg(i.getProductImgUrl());
-            item.setGoodsNum(i.getGoodsNumber());
-            item.setSpecNum(i.getSpecNumber());
-            item.setGoodsSpec(i.getSkuInfo());
-            item.setGoodsPrice(i.getPrice().doubleValue());
-//            item.setGoodsPurPrice(spec.getPurPrice());
-            item.setItemAmount(i.getItemAmount().doubleValue());
-            item.setQuantity(i.getQuantity());
-            item.setIsGift(i.getIsGift().intValue());
-            item.setRefundCount(0);
-            item.setRefundStatus(1);
-            item.setCreateBy(taoOrder.getUpdateBy());
-            item.setCreateTime(new Date());
-            items.add(item);
-        }
-        // 添加了赠品
-        if(taoOrder.getTaoOrderItemList()!=null && !taoOrder.getTaoOrderItemList().isEmpty()){
-            for (var g:taoOrder.getTaoOrderItemList()) {
-                if(StringUtils.isEmpty(g.getSpecNumber())) {
-                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                    return -11;
-                }
-                GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(g.getSpecNumber());
-                if (spec == null) {
-                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                    return -11;
-                }
-                Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-                if(goods == null) {
-                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                    return -12;
-                }
-
-                ErpOrderItem item = new ErpOrderItem();
-                item.setShipStatus(0);
-                item.setShipType(taoOrder.getShipType());
-                item.setShopId(original.getShopId().intValue());
-                item.setOrderId(so.getId());
-                item.setOrderNum(original.getId());
-                item.setOrderItemNum(original.getId()+"_");
-                item.setSupplierId(goods.getSupplierId().intValue());
-                item.setGoodsId(spec.getGoodsId());
-                item.setSpecId(spec.getId());
-                item.setGoodsTitle(g.getGoodsTitle());
-                item.setGoodsImg(g.getProductImgUrl());
-                item.setGoodsNum(g.getGoodsNumber());
-                item.setSpecNum(g.getSpecNumber());
-                item.setGoodsSpec(g.getSkuInfo());
-                item.setGoodsPrice(g.getPrice().doubleValue());
-//                item.setGoodsPurPrice(spec.getPurPrice());
-                item.setItemAmount(g.getItemAmount().doubleValue());
-                item.setQuantity(g.getQuantity());
-                item.setIsGift(1);
-                item.setRefundCount(0);
-                item.setRefundStatus(1);
-                item.setCreateBy(taoOrder.getUpdateBy());
-                item.setCreateTime(new Date());
-                items.add(item);
-            }
-        }
-        erpOrderMapper.batchErpOrderItem(items);
-
-        //更新自己
-        TaoOrder update = new TaoOrder();
-        update.setId(original.getId());
-        update.setAuditStatus(1L);
-        update.setAuditTime(new Date());
-        update.setUpdateBy(taoOrder.getUpdateBy());
-        update.setUpdateTime(new Date());
-        taoOrderMapper.updateTaoOrder(update);
+//        TaoOrder original = taoOrderMapper.selectTaoOrderById(taoOrder.getId());
+//        if(original.getAuditStatus() != 0) return -1;
+//        ErpOrder erpOrder = erpOrderMapper.selectErpOrderByNum(taoOrder.getId());
+//        if(erpOrder!=null) return -2;
+//
+//        // 新增ErpOrder
+//        // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
+//        ErpOrder so = new ErpOrder();
+//        so.setOrderNum(original.getId());
+//        so.setShopId(original.getShopId().intValue());
+//        so.setShopType(EnumShopType.TAO.getIndex());
+//        so.setRemark(original.getRemark());
+//        so.setBuyerMemo(original.getBuyerFeedback());
+//        so.setTag(original.getTag());
+//        so.setRefundStatus(1);
+//        so.setOrderStatus(1);
+//        so.setShipStatus(0);
+//        so.setShipType(taoOrder.getShipType());
+//
+//        so.setGoodsAmount(original.getTotalAmount().subtract(original.getShippingFee()).doubleValue());
+//        so.setDiscountAmount(original.getDiscountAmount());
+//        so.setAmount(original.getTotalAmount().doubleValue());
+//        so.setPostage(original.getShippingFee());
+//
+//        so.setPayTime(original.getPayTime());
+//        so.setConfirmTime(new Date());
+//        so.setCreateTime(new Date());
+//        so.setCreateBy(taoOrder.getUpdateBy());
+//
+//        TaoOrderAddress addr = addressMapper.selectTaoOrderAddressByOrderId(taoOrder.getId());
+//        so.setReceiverName(addr.getContactPerson());
+//        so.setReceiverPhone(addr.getMobile());
+//        so.setAddress(addr.getAddress());
+//        so.setCountry("中国");
+//        so.setProvince(addr.getProvince());
+//        so.setCity(addr.getCity());
+//        so.setTown(addr.getArea());
+//
+//        erpOrderMapper.insertErpOrder(so);
+//        // 新增ErpOrderItem
+//        List<TaoOrderItem> taoOrderItems = taoOrderMapper.selectOrderItemByOrderId(taoOrder.getId());
+//        List<ErpOrderItem> items = new ArrayList<>();
+//        for (var i:taoOrderItems) {
+//            if(StringUtils.isEmpty(i.getSpecNumber())) {
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                return -11;
+//            }
+//            GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNumber());
+//            if (spec == null) {
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                return -11;
+//            }
+//            Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
+//            if(goods == null){
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                return -12;
+//            }
+//
+//            ErpOrderItem item = new ErpOrderItem();
+//            item.setShipStatus(0);
+//            item.setShipType(taoOrder.getShipType());
+//            item.setShopId(original.getShopId().intValue());
+//            item.setOrderId(so.getId());
+//            item.setOrderNum(original.getId());
+//            item.setOrderItemNum(i.getSubItemId());
+//            item.setSupplierId(goods.getSupplierId().intValue());
+//            item.setGoodsId(spec.getGoodsId());
+//            item.setSpecId(spec.getId());
+//            item.setGoodsTitle(i.getGoodsTitle());
+//            item.setGoodsImg(i.getProductImgUrl());
+//            item.setGoodsNum(i.getGoodsNumber());
+//            item.setSpecNum(i.getSpecNumber());
+//            item.setGoodsSpec(i.getSkuInfo());
+//            item.setGoodsPrice(i.getPrice().doubleValue());
+////            item.setGoodsPurPrice(spec.getPurPrice());
+//            item.setItemAmount(i.getItemAmount().doubleValue());
+//            item.setQuantity(i.getQuantity());
+//            item.setIsGift(i.getIsGift().intValue());
+//            item.setRefundCount(0);
+//            item.setRefundStatus(1);
+//            item.setCreateBy(taoOrder.getUpdateBy());
+//            item.setCreateTime(new Date());
+//            items.add(item);
+//        }
+//        // 添加了赠品
+//        if(taoOrder.getTaoOrderItemList()!=null && !taoOrder.getTaoOrderItemList().isEmpty()){
+//            for (var g:taoOrder.getTaoOrderItemList()) {
+//                if(StringUtils.isEmpty(g.getSpecNumber())) {
+//                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                    return -11;
+//                }
+//                GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(g.getSpecNumber());
+//                if (spec == null) {
+//                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                    return -11;
+//                }
+//                Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
+//                if(goods == null) {
+//                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                    return -12;
+//                }
+//
+//                ErpOrderItem item = new ErpOrderItem();
+//                item.setShipStatus(0);
+//                item.setShipType(taoOrder.getShipType());
+//                item.setShopId(original.getShopId().intValue());
+//                item.setOrderId(so.getId());
+//                item.setOrderNum(original.getId());
+//                item.setOrderItemNum(original.getId()+"_");
+//                item.setSupplierId(goods.getSupplierId().intValue());
+//                item.setGoodsId(spec.getGoodsId());
+//                item.setSpecId(spec.getId());
+//                item.setGoodsTitle(g.getGoodsTitle());
+//                item.setGoodsImg(g.getProductImgUrl());
+//                item.setGoodsNum(g.getGoodsNumber());
+//                item.setSpecNum(g.getSpecNumber());
+//                item.setGoodsSpec(g.getSkuInfo());
+//                item.setGoodsPrice(g.getPrice().doubleValue());
+////                item.setGoodsPurPrice(spec.getPurPrice());
+//                item.setItemAmount(g.getItemAmount().doubleValue());
+//                item.setQuantity(g.getQuantity());
+//                item.setIsGift(1);
+//                item.setRefundCount(0);
+//                item.setRefundStatus(1);
+//                item.setCreateBy(taoOrder.getUpdateBy());
+//                item.setCreateTime(new Date());
+//                items.add(item);
+//            }
+//        }
+//        erpOrderMapper.batchErpOrderItem(items);
+//
+//        //更新自己
+//        TaoOrder update = new TaoOrder();
+//        update.setId(original.getId());
+//        update.setAuditStatus(1L);
+//        update.setAuditTime(new Date());
+//        update.setUpdateBy(taoOrder.getUpdateBy());
+//        update.setUpdateTime(new Date());
+//        taoOrderMapper.updateTaoOrder(update);
         return 1;
     }
 

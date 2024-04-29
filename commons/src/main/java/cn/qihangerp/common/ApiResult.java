@@ -1,20 +1,35 @@
 package cn.qihangerp.common;
 
+import java.io.Serializable;
+
 /**
  * 描述：
  *
  * @author qlp
  * @date 2019-01-07 11:53 AM
  */
-public class ApiResult<T> {
+public class ApiResult<T> implements Serializable {
     private int code;
     private String msg;
     private T data;
 
-//    public ApiResult() {
+    public ApiResult() {
 //        this.code = ApiResultEnum.SUCCESS.getIndex();
 //        msg = "SUCCESS";
-//    }
+    }
+    public static <T> ApiResult<T> success(){
+        ApiResult<T> result = new ApiResult<>();
+        result.setCode(ApiResultEnum.SUCCESS.getIndex());
+        result.setMsg("SUCCESS");
+        return result;
+    }
+    public static <T> ApiResult<T> success(T data){
+        ApiResult<T> result = new ApiResult<>();
+        result.setCode(ApiResultEnum.SUCCESS.getIndex());
+        result.setMsg("SUCCESS");
+        result.setData(data);
+        return result;
+    }
 
     public ApiResult(ApiResultEnum result, String msg) {
         this.code = result.getIndex();

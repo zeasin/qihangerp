@@ -36,6 +36,7 @@
             <result property="firstStartsTime" column="first_starts_time" jdbcType="TIMESTAMP"/>
             <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
             <result property="erpGoodsId" column="erp_goods_id" jdbcType="INTEGER"/>
+            <result property="erpSupplierId" column="erp_supplier_id" jdbcType="BIGINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
@@ -50,6 +51,6 @@
         price,remark,is_ex,
         is_virtual,is_taobao,sold_quantity,
         is_cspu,first_starts_time,shop_id,
-        erp_goods_id,create_time
+        erp_goods_id,erp_supplier_id,create_time
     </sql>
 </mapper>

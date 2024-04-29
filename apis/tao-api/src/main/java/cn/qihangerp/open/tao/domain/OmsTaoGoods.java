@@ -166,6 +166,11 @@ public class OmsTaoGoods implements Serializable {
     private Integer erpGoodsId;
 
     /**
+     * erp系统供应商ID
+     */
+    private Long erpSupplierId;
+
+    /**
      * 创建时间
      */
     private Date createTime;

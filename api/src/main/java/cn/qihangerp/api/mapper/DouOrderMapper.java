@@ -3,7 +3,6 @@ package cn.qihangerp.api.mapper;
 import java.util.List;
 import cn.qihangerp.api.domain.DouOrder;
 import cn.qihangerp.api.domain.DouOrderItem;
-import cn.qihangerp.api.domain.PddOrderItem;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

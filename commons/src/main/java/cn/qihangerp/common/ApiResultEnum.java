@@ -1,5 +1,7 @@
 package cn.qihangerp.common;
 
+import java.io.Serializable;
+
 /**
  * 描述：
  * 结果枚举
@@ -7,7 +9,7 @@ package cn.qihangerp.common;
  * @author qlp
  * @date 2019-04-10 10:31
  */
-public enum ApiResultEnum {
+public enum ApiResultEnum implements Serializable {
     SUCCESS("成功", 200),
     NotFound("NotFound", 404),//没有找到
     Unable("Unable", 403),//无法处理

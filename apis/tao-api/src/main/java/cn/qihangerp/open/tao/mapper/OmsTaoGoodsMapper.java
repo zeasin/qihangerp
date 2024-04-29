@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 /**
 * @author TW
 * @description 针对表【oms_tao_goods(淘宝商品表)】的数据库操作Mapper
-* @createDate 2024-04-28 20:36:51
+* @createDate 2024-04-29 09:58:56
 * @Entity cn.qihangerp.open.tao.domain.OmsTaoGoods
 */
 public interface OmsTaoGoodsMapper extends BaseMapper<OmsTaoGoods> {

@@ -1,18 +1,23 @@
 package cn.qihangerp.open.tao.controller;
 
+import cn.qihangerp.common.ApiRequest;
+import cn.qihangerp.common.ApiResult;
 import cn.qihangerp.common.annotation.Log;
 import cn.qihangerp.common.enums.BusinessType;
 import cn.qihangerp.common.utils.poi.ExcelUtil;
 import cn.qihangerp.core.controller.BaseController;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.core.page.TableDataInfo;
+import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.open.tao.domain.TaoOrder;
+import cn.qihangerp.open.tao.server.SimpleClientHandler;
 import cn.qihangerp.open.tao.service.ITaoOrderService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -28,14 +33,29 @@ public class TaoOrderController extends BaseController
     @Autowired
     private ITaoOrderService taoOrderService;
 
+    @Autowired
+    private SimpleClientHandler simpleClientHandler;
 
     /**
      * 查询淘宝订单列表
      */
     @PreAuthorize("@ss.hasPermi('tao:order:list')")
     @GetMapping("/list")
-    public TableDataInfo list(TaoOrder taoOrder)
-    {
+    public TableDataInfo list(TaoOrder taoOrder) throws IOException, InterruptedException {
+        ErpOrder erpOrder = new ErpOrder();
+        erpOrder.setAddress("aaaaaaaaaaaaa");
+//        nettyClientHandler.sendEntity(erpOrder);
+        ApiRequest<ErpOrder> req = new ApiRequest<>();
+        req.setType(102);
+        req.setData(erpOrder);
+
+        ApiResult s = simpleClientHandler.sendRequestAndWaitForResponse(req);
+
+
+//        ErpOrderReturned erpOrderReturned = new ErpOrderReturned();
+//        erpOrderReturned.setAddress("bbbbbbbbbbbbb");
+//        nettyClientHandler.sendEntity(erpOrderReturned);
+//        nettyClientHandler.sendMessageToServer("你好我是TAO订单");
         startPage();
         List<TaoOrder> list = taoOrderService.selectTaoOrderList(taoOrder);
 

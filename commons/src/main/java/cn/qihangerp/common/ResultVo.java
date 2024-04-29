@@ -2,6 +2,7 @@ package cn.qihangerp.common;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  * @date 2018-12-26 5:20 PM
  */
 @Data
-public class ResultVo<T> {
+public class ResultVo<T> implements Serializable {
     private int code;
     private String msg;
     private T data;

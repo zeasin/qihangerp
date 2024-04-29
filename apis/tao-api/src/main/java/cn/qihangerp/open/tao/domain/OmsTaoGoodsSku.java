@@ -16,11 +16,6 @@ public class OmsTaoGoodsSku implements Serializable {
     private Long id;
 
     /**
-     * 外键id
-     */
-    private Long taoGoodsId;
-
-    /**
      * sku所属商品数字id
      */
     private Long numIid;
@@ -93,12 +88,17 @@ public class OmsTaoGoodsSku implements Serializable {
     /**
      * 商品id(o_goods外键)
      */
-    private Long oGoodsId;
+    private Long erpGoodsId;
 
     /**
      * 商品skuid(o_goods_sku外键)
      */
-    private Long oGoodsSkuId;
+    private Long erpGoodsSkuId;
+
+    /**
+     * erp系统供应商ID
+     */
+    private Long erpSupplierId;
 
     /**
      * 创建时间
