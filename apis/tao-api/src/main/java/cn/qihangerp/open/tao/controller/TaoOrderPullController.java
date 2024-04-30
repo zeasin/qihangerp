@@ -5,11 +5,16 @@ import cn.qihangerp.common.ApiResult;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.core.config.ServerConfig;
+import cn.qihangerp.open.tao.OrderApiHelper;
 import cn.qihangerp.open.tao.bo.TaoRequest;
+import cn.qihangerp.open.tao.common.ApiResultVo;
+import cn.qihangerp.open.tao.domain.OmsTaoOrder;
 import cn.qihangerp.open.tao.domain.TaoOrder;
 import cn.qihangerp.open.tao.domain.TaoOrderRefund;
+import cn.qihangerp.open.tao.model.TradeList;
 import cn.qihangerp.open.tao.service.ITaoOrderRefundService;
 import cn.qihangerp.open.tao.service.ITaoOrderService;
+import cn.qihangerp.open.tao.service.OmsTaoOrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +46,9 @@ public class TaoOrderPullController {
 //    private IShopService shopService;
     @Autowired
     private ApiPullHelper apiPullHelper;
-    /**
-     * 更新前的检查
-     *
-     * @param shopId
-     * @return
-     * @throws
-     */
+    @Autowired
+    private OmsTaoOrderService orderService;
+
 
 
     /**
@@ -75,72 +76,44 @@ public class TaoOrderPullController {
 
 
         log.info("/**************主动更新tao订单，条件判断完成，开始更新。。。。。。****************/");
-        Long pageSize = 50l;
-        Long pageIndex = 1l;
+
 
         //第一次获取
-        TaoBaoOpenOrderUpdResult<TaoOrder> upResult = TaoBaoOpenOrderUpdHelper.updTmallOrder(pageIndex, pageSize, url, appKey, appSecret, sessionKey);
+//        TaoBaoOpenOrderUpdResult<TaoOrder> upResult = TaoBaoOpenOrderUpdHelper.updTmallOrder(appKey, appSecret, sessionKey);
+        ApiResultVo<TradeList> tradeBeanApiResultVo = OrderApiHelper.pullTradeList(appKey, appSecret, sessionKey);
+        if (tradeBeanApiResultVo.getCode()== ResultVoEnum.SUCCESS.getIndex()){
+            log.info("/**************主动更新tao订单：第一次获取结果：总记录数" + tradeBeanApiResultVo.getTotalRecords() + "****************/");
+            int insertSuccess = 0;//新增成功的订单
+            int totalError = 0;
+            int hasExistOrder = 0;//已存在的订单数
 
-        if (upResult.getCode().intValue() != 0) {
-            log.info("/**************主动更新tao订单：第一次获取结果失败：" + upResult.getMsg() + "****************/");
-            if(upResult.getCode().intValue() == ResultVoEnum.TokenFail.getIndex()){
-                return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "Token已过期，请重新授权",checkResult.getData());
-            }
-            return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), upResult.getMsg());
-        }
-
-        log.info("/**************主动更新tao订单：第一次获取结果：总记录数" + upResult.getTotalRecords() + "****************/");
-        int insertSuccess = 0;//新增成功的订单
-        int totalError = 0;
-        int hasExistOrder = 0;//已存在的订单数
-
-        //循环插入订单数据到数据库
-        for (var order : upResult.getList()) {
-
-            //插入订单数据
-            var result = tmallOrderService.updateTmallOrderForOpenTaobao(req.getShopId(), order);
-            if (result.getCode() == ResultVoEnum.DataExist.getIndex()) {
-                //已经存在
-                log.info("/**************主动更新tao订单：开始更新数据库：" + order.getId() + "存在、更新****************/");
-                hasExistOrder++;
-            } else if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
-                log.info("/**************主动更新tao订单：开始更新数据库：" + order.getId() + "不存在、新增****************/");
-                insertSuccess++;
-            } else {
-                log.info("/**************主动更新tao订单：开始更新数据库：" + order.getId() + "报错****************/");
-                totalError++;
-            }
-        }
-
-        //计算总页数
-        int totalPage = (upResult.getTotalRecords() % pageSize == 0) ? upResult.getTotalRecords() / pageSize.intValue() : (upResult.getTotalRecords() / pageSize.intValue()) + 1;
-        pageIndex++;
-
-        while (pageIndex <= totalPage) {
-
-            TaoBaoOpenOrderUpdResult<TaoOrder> upResult1 = TaoBaoOpenOrderUpdHelper.updTmallOrder(pageIndex, pageSize, url, appKey, appSecret, sessionKey);
             //循环插入订单数据到数据库
-            for (var order : upResult1.getList()) {
+            for (var trade : tradeBeanApiResultVo.getList()) {
+                OmsTaoOrder order = OrderAssembleHelper.assembleOrder(trade);
                 //插入订单数据
-                var result = tmallOrderService.updateTmallOrderForOpenTaobao(req.getShopId(), order);
+                var result = orderService.saveOrder(req.getShopId(), order);
                 if (result.getCode() == ResultVoEnum.DataExist.getIndex()) {
                     //已经存在
                     log.info("/**************主动更新tao订单：开始更新数据库：" + order.getId() + "存在、更新****************/");
+
                     hasExistOrder++;
                 } else if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
                     log.info("/**************主动更新tao订单：开始更新数据库：" + order.getId() + "不存在、新增****************/");
+
                     insertSuccess++;
                 } else {
                     log.info("/**************主动更新tao订单：开始更新数据库：" + order.getId() + "报错****************/");
                     totalError++;
                 }
             }
-            pageIndex++;
-        }
-        String msg = "成功，总共找到：" + upResult.getTotalRecords() + "条订单，新增：" + insertSuccess + "条，添加错误：" + totalError + "条，更新：" + hasExistOrder + "条";
-        log.info("/**************主动更新tao订单：END：" + msg + "****************/");
-        return new ApiResult<>(ResultVoEnum.SUCCESS.getIndex(), msg);
 
+            String msg = "成功，总共找到：" + tradeBeanApiResultVo.getTotalRecords() + "条订单，新增：" + insertSuccess + "条，添加错误：" + totalError + "条，更新：" + hasExistOrder + "条";
+            log.info("/**************主动更新tao订单：END：" + msg + "****************/");
+            return new ApiResult<>(ResultVoEnum.SUCCESS.getIndex(), msg);
+
+        }else{
+            return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), tradeBeanApiResultVo.getMsg());
+        }
     }
 
     /**

@@ -4,6 +4,7 @@ import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.enums.EnumTmallOrderStatus;
 import cn.qihangerp.open.tao.OrderApiHelper;
 import cn.qihangerp.open.tao.common.ApiResultVo;
+import cn.qihangerp.open.tao.domain.OmsTaoOrder;
 import cn.qihangerp.open.tao.domain.TaoOrder;
 import cn.qihangerp.open.tao.domain.TaoOrderItem;
 import cn.qihangerp.open.tao.domain.TaoOrderRefund;
@@ -16,87 +17,88 @@ import java.util.*;
 public class TaoBaoOpenOrderUpdHelper {
 
 
-    /**
-     * 更新订单（循环分页）
-     *
-     * @param pageNo
-     * @param pageSize
-     * @param sessionKey
-     * @return
-     */
-    public static TaoBaoOpenOrderUpdResult<TaoOrder> updTmallOrder(Long pageNo, Long pageSize, String url, String appKey, String appSecret, String sessionKey) throws IOException {
-        ApiResultVo<TradeList> tradeBeanApiResultVo = OrderApiHelper.pullTradeList(appKey, appSecret, sessionKey);
-       if (tradeBeanApiResultVo.getCode()== ResultVoEnum.SUCCESS.getIndex()){
-           //组合的订单列表
-           List<TaoOrder> orderList = new ArrayList<>();
-
-           //有数据
-           for (var trade : tradeBeanApiResultVo.getList()) {
-               try {
-                   TaoOrder order = new TaoOrder();
-                   order.setId(trade.getTid().toString());
-//                   order.setOrderCreateTime(trade.getCreated());
-//                   order.setOrderModifyTime(trade.getModified());
-//                   order.setPayTime(trade.getPay_time());
-                   order.setTotalAmount(BigDecimal.valueOf(Double.parseDouble(trade.getPayment())));
-//                   order.setShippingFee(BigDecimal.valueOf(Double.parseDouble(trade.getPostFee())));
-                   order.setPayAmount(BigDecimal.valueOf(Double.parseDouble(trade.getPayment())));
-//                   order.setBuyerName(trade.getBuyerNick());
-//                   order.setSellerMemo(trade.getSellerMemo());
-//                   order.setProvince(trade.getReceiverState());
-//                   order.setCity(trade.getReceiverCity());
-//                   order.setDistrict(trade.getReceiverDistrict());
-                   order.setStatus(EnumTmallOrderStatus.getStatus(trade.getStatus()));
-                   order.setStatusStr(trade.getStatus());
-//                   order.setReceiver(trade.getReceiverName());
-//                   order.setProvince(trade.getReceiverState());
-//                   order.setCity(trade.getReceiverCity());
-//                   order.setDistrict(trade.getReceiverDistrict());
-//                   order.setAddress(trade.getReceiverAddress());
-//                   order.setPhone(trade.getReceiverMobile());
-                   List<TaoOrderItem> items = new ArrayList<>();
-                   for (var item : trade.getOrders()) {
-                       TaoOrderItem orderItem = new TaoOrderItem();
-                       orderItem.setOrderId(order.getId());
-                       orderItem.setSubItemId(item.getOid().toString());
-                       Long refundStatus = -1L;
-                       if(item.getRefund_status().equals("NO_REFUND")){
-                           refundStatus = 0L;
-                       }else {
-                           refundStatus = 1L;
-                       }
-                       orderItem.setRefundStatus(refundStatus);
-//                       orderItem.setProductId(item.getNumIid());
-//                       orderItem.setSkuId(Long.parseLong(item.getSkuId()));
-//                       orderItem.setSpecNumber(item.getOuterSkuId());
-//                       orderItem.setGoodsNumber(item.getOuterIid());
-//                       orderItem.setProductImgUrl(item.getPicPath());
-                       orderItem.setGoodsTitle(item.getTitle());
-                       orderItem.setPrice(BigDecimal.valueOf(Double.parseDouble(item.getPrice())));
-//                       orderItem.setQuantity(item.getNum());
-//                       orderItem.setSkuInfo(item.getSkuPropertiesName());
-                       orderItem.setItemAmount(BigDecimal.valueOf(Double.parseDouble(item.getPayment())));
-//                       orderItem.setDiscountFee(new BigDecimal(item.getDiscountFee()));
-//                       orderItem.setAdjustFee(new BigDecimal(item.getAdjustFee()));
-//                       orderItem.setRefundStatusStr(item.getRefundStatus());
-
-                       orderItem.setNewSpecId(0L);
-                       orderItem.setIsGift(0);
-                       orderItem.setIsSwap(0);
-                       items.add(orderItem);
-                   }
-                   order.setTaoOrderItemList(items);
-
-                   orderList.add(order);
-               } catch (Exception e) {
-               }
-           }
-
-           return new TaoBaoOpenOrderUpdResult(tradeBeanApiResultVo.getTotalRecords(), orderList);
-       }else{
-           return new TaoBaoOpenOrderUpdResult(tradeBeanApiResultVo.getCode(), tradeBeanApiResultVo.getMsg());
-       }
-    }
+//    /**
+//     * 更新订单（循环分页）
+//     *
+//     * @param pageNo
+//     * @param pageSize
+//     * @param sessionKey
+//     * @return
+//     */
+//    public static TaoBaoOpenOrderUpdResult<TaoOrder> updTmallOrder(String appKey, String appSecret, String sessionKey) throws IOException {
+//        ApiResultVo<TradeList> tradeBeanApiResultVo = OrderApiHelper.pullTradeList(appKey, appSecret, sessionKey);
+//       if (tradeBeanApiResultVo.getCode()== ResultVoEnum.SUCCESS.getIndex()){
+//           //组合的订单列表
+//           List<TaoOrder> orderList = new ArrayList<>();
+//
+//           //有数据
+//           for (var trade : tradeBeanApiResultVo.getList()) {
+//               OmsTaoOrder omsTaoOrder = OrderAssembleHelper.assembleOrder(trade);
+//               try {
+//                   TaoOrder order = new TaoOrder();
+//                   order.setId(trade.getTid().toString());
+////                   order.setOrderCreateTime(trade.getCreated());
+////                   order.setOrderModifyTime(trade.getModified());
+////                   order.setPayTime(trade.getPay_time());
+//                   order.setTotalAmount(BigDecimal.valueOf(Double.parseDouble(trade.getPayment())));
+////                   order.setShippingFee(BigDecimal.valueOf(Double.parseDouble(trade.getPostFee())));
+//                   order.setPayAmount(BigDecimal.valueOf(Double.parseDouble(trade.getPayment())));
+////                   order.setBuyerName(trade.getBuyerNick());
+////                   order.setSellerMemo(trade.getSellerMemo());
+////                   order.setProvince(trade.getReceiverState());
+////                   order.setCity(trade.getReceiverCity());
+////                   order.setDistrict(trade.getReceiverDistrict());
+//                   order.setStatus(EnumTmallOrderStatus.getStatus(trade.getStatus()));
+//                   order.setStatusStr(trade.getStatus());
+////                   order.setReceiver(trade.getReceiverName());
+////                   order.setProvince(trade.getReceiverState());
+////                   order.setCity(trade.getReceiverCity());
+////                   order.setDistrict(trade.getReceiverDistrict());
+////                   order.setAddress(trade.getReceiverAddress());
+////                   order.setPhone(trade.getReceiverMobile());
+//                   List<TaoOrderItem> items = new ArrayList<>();
+//                   for (var item : trade.getOrders()) {
+//                       TaoOrderItem orderItem = new TaoOrderItem();
+//                       orderItem.setOrderId(order.getId());
+//                       orderItem.setSubItemId(item.getOid().toString());
+//                       Long refundStatus = -1L;
+//                       if(item.getRefund_status().equals("NO_REFUND")){
+//                           refundStatus = 0L;
+//                       }else {
+//                           refundStatus = 1L;
+//                       }
+//                       orderItem.setRefundStatus(refundStatus);
+////                       orderItem.setProductId(item.getNumIid());
+////                       orderItem.setSkuId(Long.parseLong(item.getSkuId()));
+////                       orderItem.setSpecNumber(item.getOuterSkuId());
+////                       orderItem.setGoodsNumber(item.getOuterIid());
+////                       orderItem.setProductImgUrl(item.getPicPath());
+//                       orderItem.setGoodsTitle(item.getTitle());
+//                       orderItem.setPrice(BigDecimal.valueOf(Double.parseDouble(item.getPrice())));
+////                       orderItem.setQuantity(item.getNum());
+////                       orderItem.setSkuInfo(item.getSkuPropertiesName());
+//                       orderItem.setItemAmount(BigDecimal.valueOf(Double.parseDouble(item.getPayment())));
+////                       orderItem.setDiscountFee(new BigDecimal(item.getDiscountFee()));
+////                       orderItem.setAdjustFee(new BigDecimal(item.getAdjustFee()));
+////                       orderItem.setRefundStatusStr(item.getRefundStatus());
+//
+//                       orderItem.setNewSpecId(0L);
+//                       orderItem.setIsGift(0);
+//                       orderItem.setIsSwap(0);
+//                       items.add(orderItem);
+//                   }
+//                   order.setTaoOrderItemList(items);
+//
+//                   orderList.add(order);
+//               } catch (Exception e) {
+//               }
+//           }
+//
+//           return new TaoBaoOpenOrderUpdResult(tradeBeanApiResultVo.getTotalRecords(), orderList);
+//       }else{
+//           return new TaoBaoOpenOrderUpdResult(tradeBeanApiResultVo.getCode(), tradeBeanApiResultVo.getMsg());
+//       }
+//    }
 
 
     /**
