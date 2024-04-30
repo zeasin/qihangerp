@@ -4,6 +4,7 @@ import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.ResultVo;
 import cn.qihangerp.open.tao.bo.TaoOrderBo;
+import cn.qihangerp.open.tao.bo.TaoOrderConfirmBo;
 import cn.qihangerp.open.tao.domain.OmsTaoOrder;
 import cn.qihangerp.open.tao.domain.TaoOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -25,5 +26,5 @@ public interface OmsTaoOrderService extends IService<OmsTaoOrder> {
 
     OmsTaoOrder queryDetailById(Long id);
 
-    int confirmOrder(OmsTaoOrder taoOrder) throws InterruptedException;
+    int confirmOrder(TaoOrderConfirmBo taoOrder) throws InterruptedException;
 }

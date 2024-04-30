@@ -248,141 +248,7 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改淘宝订单对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="1100px" append-to-body :close-on-click-modal="false">
-      <el-form ref="form" :model="form" :rules="rules" label-width="180px" inline>
-        <el-form-item label="淘宝订单ID" prop="id">
-          <el-input v-model.number="form.id" placeholder="请输入淘宝订单ID" style="width:250px" :disabled="isAudit"/>
-        </el-form-item>
-        <el-form-item label="店铺" prop="shopId">
-          <!-- <el-input v-model="form.shopId" placeholder="请输入订单所属商户id" /> -->
-          <el-select v-model="form.shopId" placeholder="请选择店铺" style="width:250px" :disabled="isAudit">
-           <el-option style="width:250px"
-              v-for="item in shopList"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id" >
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="订单来源" prop="orderSource">
-          <!-- <el-input v-model="form.orderSource" placeholder="请输入订单来源0天猫1淘宝" /> -->
-          <el-select v-model="form.orderSource" placeholder="订单来源0天猫1淘宝" style="width:250px" :disabled="isAudit">
-           <el-option label="淘宝" value="1"></el-option>
-           <el-option label="天猫" value="0"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="订单创建时间" prop="orderCreateTime">
-          <el-date-picker clearable style="width:250px"
-            v-model="form.orderCreateTime"
-            type="datetime"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            placeholder="请选择订单创建时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="收件人姓名" prop="receiver">
-          <el-input v-model="form.receiver" placeholder="请输入收件人姓名" style="width:250px"/>
-        </el-form-item>
-        <el-form-item label="收件人电话" prop="phone">
-          <el-input v-model="form.phone" placeholder="请输入收件人电话" style="width:250px"/>
-        </el-form-item>
-        <el-form-item label="省市区" prop="provinces">
-          <el-cascader style="width:250px"
-            size="large"
-            :options="pcaTextArr"
-            v-model="form.provinces">
-          </el-cascader>
-        </el-form-item>
-        <el-form-item label="详细地址" prop="postAddr">
-          <el-input v-model="form.address" placeholder="请输入详细地址" style="width:250px" />
-        </el-form-item>
-        <el-form-item label="卖家备忘信息" prop="sellerMemo">
-          <el-input type="textarea" v-model="form.sellerMemo" placeholder="请输入卖家备忘信息" style="width:250px" />
-        </el-form-item>
-        <el-form-item label="买家留言" prop="buyerFeedback">
-          <el-input type="textarea" v-model="form.buyerFeedback" placeholder="买家留言，不超过500字" style="width:250px"/>
-        </el-form-item>
 
-        <!-- <el-form-item label="订单状态" prop="statusStr">
-          <el-input v-model="form.statusStr" placeholder="请输入订单状态" />
-        </el-form-item> -->
-
-        <el-form-item label="标签" prop="tag">
-          <el-input v-model="form.tag" placeholder="请输入标签(1：实售2：淘宝客3：刷单4：返现)" style="width:250px" />
-        </el-form-item>
-        <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" style="width:250px" />
-        </el-form-item>
-
-        <el-divider content-position="center">订单商品</el-divider>
-        <el-row :gutter="10" class="mb8">
-          <el-col :span="1.5">
-            <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAddTaoOrderItem">添加</el-button>
-          </el-col>
-          <el-col :span="1.5">
-            <el-button type="danger" icon="el-icon-delete" size="mini" @click="handleDeleteTaoOrderItem">删除</el-button>
-          </el-col>
-        </el-row>
-        <el-table :data="taoOrderItemList" :row-class-name="rowTaoOrderItemIndex" @selection-change="handleTaoOrderItemSelectionChange" ref="taoOrderItem" style="margin-bottom: 10px;">
-          <el-table-column type="selection" width="50" align="center" />
-          <el-table-column label="序号" align="center" prop="index" width="50"/>
-          <el-table-column label="商品" prop="erpGoodsId" width="350" v-if="!isAudit" >
-            <template slot-scope="scope">
-              <el-select v-model="scope.row.erpGoodsSpecId" filterable remote reserve-keyword placeholder="搜索商品" style="width: 330px;"
-                :remote-method="searchSku" :loading="skuListLoading" @change="skuChanage(scope.row)">
-                <el-option v-for="item in skuList" :key="item.id"
-                  :label="item.name + ' - ' + item.colorValue + ' ' + item.sizeValue + ' ' + item.styleValue"
-                  :value="item.id">
-                </el-option>
-              </el-select>
-            </template>
-          </el-table-column>
-          <el-table-column label="商品图片" prop="productImgUrl" >
-            <template slot-scope="scope">
-              <el-image style="width: 70px; height: 70px" :src="scope.row.productImgUrl"></el-image>
-            </template>
-          </el-table-column>
-
-          <el-table-column label="sku编码" prop="specNumber" width="100">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.specNumber" placeholder="请输入单品货号，对应系统sku编码" disabled/>
-            </template>
-          </el-table-column>
-          <el-table-column label="单价" prop="price">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.price" placeholder="请输入单价" disabled/>
-            </template>
-          </el-table-column>
-          <el-table-column label="数量" prop="quantity">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.quantity" placeholder="请输入数量"  @input="qtyChange(scope.row)" :disabled="isAudit" />
-            </template>
-          </el-table-column>
-          <el-table-column label="总金额" prop="itemAmount">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.itemAmount" placeholder="请输入明细总金额" disabled/>
-            </template>
-          </el-table-column>
-
-        </el-table>
-        <el-form-item label="商品总金额" prop="totalAmount">
-          <el-input v-model="form.totalAmount" placeholder="请输入商品总金额" style="width:250px"/>
-        </el-form-item>
-        <el-form-item label="运费" prop="shippingFee">
-          <el-input v-model="form.shippingFee" placeholder="请输入运费" style="width:250px"/>
-        </el-form-item>
-        <el-form-item label="优惠金额" prop="discountAmount">
-          <el-input v-model="form.discountAmount" placeholder="请输入优惠金额" style="width:250px"/>
-        </el-form-item>
-        <!-- <el-form-item label="实际支付金额" prop="payAmount">
-          <el-input v-model="form.payAmount" placeholder="请输入实际支付金额" style="width:250px"/>
-        </el-form-item> -->
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
-      </div>
-    </el-dialog>
 
     <!-- 导入淘宝订单 -->
     <el-dialog title="导入淘宝主订单" :visible.sync="importOrderOpen" width="400px" append-to-body>
@@ -416,7 +282,7 @@
     <!-- 订单详情对话框 -->
     <el-dialog :title="detailTitle" :visible.sync="detailOpen" width="1100px" append-to-body>
 
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px" inline>
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px" inline>
         <el-descriptions title="订单信息">
             <el-descriptions-item label="订单号">{{form.id}}</el-descriptions-item>
             <el-descriptions-item label="来源">
@@ -436,12 +302,7 @@
                 placeholder="请选择订单创建时间">
               </el-date-picker> -->
             </el-descriptions-item>
-            <el-descriptions-item label="标签">
-              <el-tag size="small" v-if="form.tag ==='1' ">实售</el-tag>
-              <el-tag size="small" v-if="form.tag ==='2' ">淘宝客</el-tag>
-              <el-tag size="small" v-if="form.tag ==='3' ">刷单</el-tag>
-              <el-tag size="small" v-if="form.tag ==='4' ">返现</el-tag>
-            </el-descriptions-item>
+
             <el-descriptions-item label="卖家备忘信息">
               {{form.sellerMemo}}
             </el-descriptions-item>
@@ -475,12 +336,12 @@
           <!-- <el-table-column type="selection" width="50" align="center" /> -->
           <el-table-column label="序号" align="center" type="index" width="50"/>
 
-          <el-table-column label="商品图片" prop="productImgUrl" width="80">
+          <el-table-column label="商品图片" prop="picPath" width="80">
             <template slot-scope="scope">
-              <el-image style="width: 70px; height: 70px" :src="scope.row.productImgUrl"></el-image>
+              <el-image style="width: 70px; height: 70px" :src="scope.row.picPath"></el-image>
             </template>
           </el-table-column>
-          <el-table-column label="商品标题" prop="goodsTitle" ></el-table-column>
+          <el-table-column label="商品标题" prop="title" ></el-table-column>
           <el-table-column label="SKU" prop="skuInfo" width="150"></el-table-column>
           <el-table-column label="sku编码" prop="specNumber"></el-table-column>
           <el-table-column label="单价" prop="price"></el-table-column>
@@ -538,13 +399,17 @@
           </el-table-column>
 
         </el-table>
-         <el-form-item label="发货方式" prop="shipType" v-if="isAudit">
-          <!-- <el-input v-model="form.orderSource" placeholder="请输入订单来源0天猫1淘宝" /> -->
-          <el-select v-model="form.shipType" placeholder="发货类型0仓库发货1供应商代发" style="width:250px">
-           <el-option label="供应商代发" value="1"></el-option>
-           <el-option label="仓库发货" value="0"></el-option>
-          </el-select>
+        <el-form-item label="收件人姓名" prop="receiverName" v-if="isAudit">
+          <el-input v-model="form.receiverName" placeholder="请输入收件人姓名" style="width:250px" />
         </el-form-item>
+        <el-form-item label="收件人电话" prop="receiverMobile" v-if="isAudit">
+          <el-input v-model="form.receiverMobile" placeholder="请输入收件人电话" style="width:250px" />
+        </el-form-item>
+
+        <el-form-item label="详细地址" prop="receiverAddress" v-if="isAudit">
+          <el-input v-model="form.receiverAddress" placeholder="请输入收件地址" style="width:250px" />
+        </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer" v-if="isAudit">
         <el-button type="primary" @click="submitConfirmForm">确 定</el-button>
@@ -732,53 +597,10 @@ export default {
         afterSalesType: [{ required: true, message: "不能为空", trigger: "change" }],
       },
       rules: {
-        id: [
-          { required: true, message: "请输入淘宝订单ID", trigger: "blur" }
-        ],
-        shopId: [
-          { required: true, message: "请选择店铺", trigger: "blur" }
-        ],
-        orderSource: [
-          { required: true, message: "请选择订单来源", trigger: "blur" }
-        ],
-        orderCreateTime: [
-          { required: true, message: "订单创建时间不能为空", trigger: "blur" }
-        ],
-
-        receiver: [
-          { required: true, message: "请填写收件人姓名", trigger: "blur" }
-        ],
-        phone: [
-          { required: true, message: "请填写收件人手机号", trigger: "blur" }
-        ],
-        provinces: [
-          { required: true, message: "请选择省市区", trigger: "blur" }
-        ],
-        address: [
-          { required: true, message: "请填写详细地址", trigger: "change" }
-        ],
-        totalAmount: [
-          { required: true, message: "应付款总金额，totalAmount = ∑itemAmount + shippingFee，单位为元不能为空", trigger: "blur" }
-        ],
-        shippingFee: [
-          { required: true, message: "运费不能为空", trigger: "blur" }
-        ],
-        discountAmount: [
-          { required: true, message: "优惠金额不能为空", trigger: "blur" }
-        ],
-        payAmount: [
-          { required: true, message: "实际支付金额不能为空", trigger: "blur" }
-        ],
-
-        status: [
-          { required: true, message: "交易状态，waitbuyerpay:等待买家付款;waitsellersend:等待卖家发货;waitlogisticstakein:等待物流公司揽件;waitbuyerreceive:等待买家收货;waitbuyersign:等待买家签收;signinsuccess:买家已签收;confirm_goods:已收货;success:交易成功;cancel:交易取消;terminated:交易终止;未枚举:其他状态不能为空", trigger: "change" }
-        ],
-        auditStatus: [
-          { required: true, message: "订单审核状态不能为空", trigger: "change" }
-        ],
-        shipType: [
-          { required: true, message: "请选择发货类型", trigger: "blur" }
-        ],
+        id: [{ required: true, message: "请输入淘宝订单ID", trigger: "blur" }],
+        receiverName: [{ required: true, message: "请填写收件人姓名", trigger: "blur" }],
+        receiverMobile: [{ required: true, message: "请填写收件人手机号", trigger: "blur" }],
+        receiverAddress: [{ required: true, message: "请填写详细地址", trigger: "change" }],
       }
     };
   },
@@ -971,7 +793,7 @@ export default {
       const id = row.id || this.ids
       getOrder(id).then(response => {
         this.form = response.data;
-        this.goodsList = response.data.taoOrderItemList;
+        this.goodsList = response.data.items;
         this.detailOpen = true;
         this.detailTitle = "订单详情";
       });

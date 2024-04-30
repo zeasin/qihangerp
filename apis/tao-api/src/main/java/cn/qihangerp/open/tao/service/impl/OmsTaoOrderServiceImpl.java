@@ -5,6 +5,7 @@ import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.domain.ErpOrderItem;
 import cn.qihangerp.open.tao.bo.TaoOrderBo;
+import cn.qihangerp.open.tao.bo.TaoOrderConfirmBo;
 import cn.qihangerp.open.tao.common.TaoOrderStateEnum;
 import cn.qihangerp.open.tao.domain.OmsTaoGoodsSku;
 import cn.qihangerp.open.tao.domain.OmsTaoOrderItem;
@@ -136,12 +137,12 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
 
     /**
      * 确认订单
-     * @param taoOrder
+     * @param bo
      * @return
      */
     @Transactional
     @Override
-    public int confirmOrder(OmsTaoOrder taoOrder) throws InterruptedException {
+    public int confirmOrder(TaoOrderConfirmBo bo) throws InterruptedException {
 //        if(cn.qihangerp.common.utils.StringUtils.isNull(taoOrder.getShipType())){
 //            return -3;
 //        }
@@ -151,7 +152,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
 //        }
 
 //        TaoOrder original = taoOrderMapper.selectTaoOrderById(taoOrder.getId());
-        OmsTaoOrder original = mapper.selectById(taoOrder.getId());;
+        OmsTaoOrder original = mapper.selectById(bo.getId());;
         if(original.getAuditStatus()!=null &&  original.getAuditStatus() != 0) return -1;//无需审核
 
 //        ErpOrder erpOrder = erpOrderMapper.selectErpOrderByNum(taoOrder.getId());
@@ -168,7 +169,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
 //        so.setBuyerMemo(original.getBuyerFeedback());
 //        so.setTag(original.getTag());
         // 状态
-        int orderStatus = TaoOrderStateEnum.getIndex(taoOrder.getStatus());
+        int orderStatus = TaoOrderStateEnum.getIndex(original.getStatus());
         if (orderStatus == 11) {
             so.setRefundStatus(2);
         } else if (orderStatus == -1) {
@@ -178,19 +179,19 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
         }
         so.setOrderStatus(orderStatus);
         so.setShipStatus(0);
-//        so.setShipType(taoOrder.getShipType());
-        so.setGoodsAmount(taoOrder.getTotalFee());
-        so.setPostage(taoOrder.getPostFee());
-        so.setAmount(taoOrder.getPayment().doubleValue());
+//        so.setShipType(bo.getShipType());
+        so.setGoodsAmount(original.getTotalFee());
+        so.setPostage(original.getPostFee());
+        so.setAmount(original.getPayment().doubleValue());
         so.setDiscountAmount(original.getDiscountFee());
 //        so.setPayment(taoOrder.getPayment().doubleValue());
         so.setPayTime(original.getPayTime());
         so.setConfirmTime(new Date());
         so.setCreateTime(new Date());
-        so.setCreateBy(taoOrder.getUpdateBy());
-        so.setReceiverName(original.getReceiverName());
-        so.setReceiverPhone(original.getReceiverMobile());
-        so.setAddress(original.getReceiverAddress());
+        so.setCreateBy(bo.getUpdateBy());
+        so.setReceiverName(bo.getReceiverName());
+        so.setReceiverPhone(bo.getReceiverMobile());
+        so.setAddress(bo.getReceiverAddress());
         so.setCountry("中国");
         so.setProvince(original.getReceiverState());
         so.setCity(original.getReceiverCity());
@@ -253,7 +254,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
                 // 状态
                 int orderStatus1 = TaoOrderStateEnum.getIndex(i.getStatus());
                 item.setOrderStatus(orderStatus1);
-                item.setCreateBy(taoOrder.getUpdateBy());
+                item.setCreateBy(bo.getUpdateBy());
                 item.setCreateTime(new Date());
                 items.add(item);
             }
@@ -318,8 +319,11 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
             update.setId(original.getId());
             update.setAuditStatus(1);
             update.setAuditTime(new Date());
-            update.setUpdateBy(taoOrder.getUpdateBy());
+            update.setUpdateBy(bo.getUpdateBy());
             update.setUpdateTime(new Date());
+            update.setReceiverAddress(bo.getReceiverAddress());
+            update.setReceiverMobile(bo.getReceiverMobile());
+            update.setReceiverName(bo.getReceiverName());
             mapper.updateById(update);
         }
         return 1;

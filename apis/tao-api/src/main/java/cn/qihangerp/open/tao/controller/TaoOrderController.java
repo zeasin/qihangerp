@@ -12,6 +12,7 @@ import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.core.page.TableDataInfo;
 import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.open.tao.bo.TaoOrderBo;
+import cn.qihangerp.open.tao.bo.TaoOrderConfirmBo;
 import cn.qihangerp.open.tao.domain.OmsTaoOrder;
 import cn.qihangerp.open.tao.domain.OmsTaoOrderItem;
 import cn.qihangerp.open.tao.domain.TaoOrder;
@@ -87,9 +88,9 @@ public class TaoOrderController extends BaseController
 
     @Log(title = "淘宝订单", businessType = BusinessType.UPDATE)
     @PostMapping("/confirmOrder")
-    public AjaxResult confirmOrder(@RequestBody OmsTaoOrder taoOrder) throws InterruptedException {
-        taoOrder.setUpdateBy(getUsername());
-        int result = orderService.confirmOrder(taoOrder);
+    public AjaxResult confirmOrder(@RequestBody TaoOrderConfirmBo bo) throws InterruptedException {
+        bo.setUpdateBy(getUsername());
+        int result = orderService.confirmOrder(bo);
         if(result == -1) return new AjaxResult(501,"已确认过了！请勿重复确认！");
         else if(result == -2) return new AjaxResult(502,"订单已存在！请勿重复确认！");
         else if(result == -3) return new AjaxResult(503,"请指定发货方式！");

@@ -335,9 +335,9 @@ public class ErpOrderServiceImpl implements IErpOrderService
 //            addOrderItem(update.getId(), taoOrder.getTid());
             for (ErpOrderItem erpOrderItem : order.getItemList())
             {
-                erpOrderItem.setOrderId(order.getId());
-                erpOrderItem.setShopId(order.getShopId());
-                erpOrderItem.setCreateBy(order.getCreateBy());
+                erpOrderItem.setOrderId(erpOrder.getId());
+                erpOrderItem.setShopId(erpOrder.getShopId());
+                erpOrderItem.setCreateBy("手动确认");
                 erpOrderItem.setCreateTime(new Date());
 //                list.add(erpOrderItem);
             }
