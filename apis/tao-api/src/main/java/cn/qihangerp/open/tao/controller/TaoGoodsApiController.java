@@ -3,6 +3,8 @@ package cn.qihangerp.open.tao.controller;
 
 import cn.qihangerp.common.ApiResult;
 import cn.qihangerp.common.ResultVoEnum;
+import cn.qihangerp.common.utils.DateUtil;
+import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.core.controller.BaseController;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.open.tao.GoodsApiHelper;
@@ -10,6 +12,7 @@ import cn.qihangerp.open.tao.bo.TaoRequest;
 import cn.qihangerp.open.tao.common.ApiResultVo;
 import cn.qihangerp.open.tao.common.ApiResultVoEnum;
 import cn.qihangerp.open.tao.domain.OmsTaoGoods;
+import cn.qihangerp.open.tao.domain.OmsTaoGoodsSku;
 import cn.qihangerp.open.tao.model.GoodsItem;
 import cn.qihangerp.open.tao.service.GoodsApiService;
 import cn.qihangerp.open.tao.service.OmsTaoGoodsService;
@@ -21,10 +24,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import cn.qihangerp.common.constant.HttpStatus;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Log
-@RequestMapping("/taoapi")
+@RequestMapping("/tao-api")
 @RestController
 @AllArgsConstructor
 public class TaoGoodsApiController extends BaseController {
@@ -79,7 +85,35 @@ public class TaoGoodsApiController extends BaseController {
                     goods.setValidThru(g.getValid_thru());
                     goods.setHasDiscount(g.isHas_discount()+"");
                     goods.setHasInvoice(g.isHas_invoice()+"");
-
+                    goods.setHasWarranty(g.isHas_warranty()+"");
+                    goods.setHasShowcase(g.isHas_showcase()+"");
+                    goods.setModified(DateUtil.stringtoDate(g.getModified()));
+                    goods.setDelistTime(StringUtils.isEmpty(g.getDelist_time())?null:DateUtil.stringtoDate(g.getDelist_time()));
+                    goods.setPostageId(g.getPostage_id());
+                    goods.setOuterId(g.getOuter_id());
+                    goods.setListTime(StringUtils.isEmpty(g.getList_time())?null:DateUtil.stringtoDate(g.getList_time()));
+                    goods.setPrice(g.getPrice());
+                    goods.setSoldQuantity(g.getSold_quantity());
+                    goods.setShopId(req.getShopId());
+                    List<OmsTaoGoodsSku> skuList = new ArrayList<>();
+                    for (var s:g.getSkuList()) {
+                        OmsTaoGoodsSku sku = new OmsTaoGoodsSku();
+                        sku.setNumIid(s.getNum_iid());
+                        sku.setIid(s.getIid());
+                        sku.setSkuId(s.getSku_id());
+                        sku.setProperties(s.getProperties());
+                        sku.setPropertiesName(s.getProperties_name());
+                        sku.setQuantity(s.getQuantity());
+                        sku.setSkuSpecId(s.getSku_spec_id()+"");
+                        sku.setPrice(StringUtils.isEmpty(s.getPrice())?null:Double.parseDouble(s.getPrice()));
+                        sku.setOuterId(s.getOuter_id());
+                        sku.setCreated(StringUtils.isEmpty(s.getCreated())?null:DateUtil.stringtoDate(s.getCreated()));
+                        sku.setModified(StringUtils.isEmpty(s.getModified())?null:DateUtil.stringtoDate(s.getModified()));
+                        sku.setStatus(s.getStatus());
+                        sku.setCreateTime(new Date());
+                        skuList.add(sku);
+                    }
+                    goods.setSkuList(skuList);
 
                     int result = goodsService.saveAndUpdateGoods(req.getShopId(), goods);
                     if (result == ResultVoEnum.DataExist.getIndex()) {

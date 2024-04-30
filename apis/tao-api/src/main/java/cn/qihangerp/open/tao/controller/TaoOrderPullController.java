@@ -28,7 +28,7 @@ import java.util.List;
  * 淘系订单更新
  */
 @RestController
-@RequestMapping("/taoapi")
+@RequestMapping("/tao-api")
 public class TaoOrderPullController {
     private static Logger log = LoggerFactory.getLogger(TaoOrderPullController.class);
 //    @Autowired

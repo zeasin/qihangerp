@@ -27,7 +27,7 @@ import java.util.List;
  * @date 2024-01-03
  */
 @RestController
-@RequestMapping("/tao/order")
+@RequestMapping("/tao-api/order")
 public class TaoOrderController extends BaseController
 {
     @Autowired

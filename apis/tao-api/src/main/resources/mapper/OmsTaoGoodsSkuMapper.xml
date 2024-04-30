@@ -36,6 +36,17 @@
         create_time
     </sql>
 
+    <select id="selectSkuPageList" resultType="cn.qihangerp.open.tao.domain.vo.TaoGoodsSkuListVo">
+        SELECT sku.*,g.title,g.pic_url FROM oms_tao_goods_sku sku
+        LEFT JOIN oms_tao_goods g on g.num_iid = sku.num_iid
+        WHERE 1=1
+        <if test="shopId != null and shopId != ''">
+            AND g.shop_id = #{shopId}
+        </if>
+        <if test="numIid != null and numIid != ''">
+            AND sku.num_iid = #{numIid}
+        </if>
+    </select>
 
     <resultMap type="cn.qihangerp.open.tao.domain.vo.ErpGoodsSpecVo" id="GoodsSpecResult">
         <result property="id"    column="id"    />
@@ -49,7 +60,7 @@
     </resultMap>
 
     <sql id="selectGoodsSpecVo">
-        select id, goods_id, spec_num, color_value, color_image, size_value, style_value,g.supplier_id
+        select gs.id, goods_id, spec_num, color_value, color_image, size_value, style_value,g.supplier_id
         from erp_goods_spec gs
         left join erp_goods g on g.id = gs.goods_id
     </sql>
