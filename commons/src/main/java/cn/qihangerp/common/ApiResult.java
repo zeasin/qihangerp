@@ -30,6 +30,12 @@ public class ApiResult<T> implements Serializable {
         result.setData(data);
         return result;
     }
+    public static <T> ApiResult<T> error(String msg){
+        ApiResult<T> result = new ApiResult<>();
+        result.setCode(ApiResultEnum.SystemException.getIndex());
+        result.setMsg(msg);
+        return result;
+    }
 
     public ApiResult(ApiResultEnum result, String msg) {
         this.code = result.getIndex();

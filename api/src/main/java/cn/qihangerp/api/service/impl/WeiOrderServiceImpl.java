@@ -284,7 +284,7 @@ public class WeiOrderServiceImpl extends ServiceImpl<WeiOrderMapper, WeiOrder>
             item.setOrderItemNum(i.getId().toString());
             //TODO:未处理商品信息
 //            item.setSupplierId(goods.getSupplierId().intValue());
-            item.setSupplierId(0);
+            item.setSupplierId(0L);
 //            item.setGoodsId(spec.getGoodsId());
             item.setGoodsId(0L);
 //            item.setSpecId(spec.getId());
@@ -297,7 +297,7 @@ public class WeiOrderServiceImpl extends ServiceImpl<WeiOrderMapper, WeiOrder>
             item.setGoodsPrice(i.getSalePrice().doubleValue()/100);
 //            item.setGoodsPurPrice(spec.getPurPrice());
             item.setItemAmount(i.getRealPrice().doubleValue()/100);
-            item.setQuantity(i.getSkuCnt().longValue());
+            item.setQuantity(i.getSkuCnt());
             item.setIsGift(0);
             item.setRefundCount(0);
             item.setRefundStatus(1);

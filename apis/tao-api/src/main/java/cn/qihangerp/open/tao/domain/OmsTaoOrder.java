@@ -17,7 +17,7 @@ public class OmsTaoOrder implements Serializable {
     /**
      * 主键id
      */
-    private Long id;
+    private String id;
 
     /**
      * 店铺id
@@ -413,6 +413,8 @@ public class OmsTaoOrder implements Serializable {
      * 天猫商家使用，订单使用的红包信息
      */
     private Long tmallCouponFee;
+    private Integer auditStatus;
+    private Date auditTime;
 
     @TableField(exist = false)
     private List<OmsTaoOrderItem> items;

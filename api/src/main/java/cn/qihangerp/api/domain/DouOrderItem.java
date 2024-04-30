@@ -60,7 +60,7 @@ public class DouOrderItem extends BaseEntity
 
     /** 该子订单所购买的sku的数量 */
     @Excel(name = "该子订单所购买的sku的数量")
-    private Long comboNum;
+    private Integer comboNum;
 
     /** 邮费金额 (单位: 分) */
     @Excel(name = "邮费金额 (单位: 分)")
@@ -209,12 +209,12 @@ public class DouOrderItem extends BaseEntity
     {
         return goodsSpec;
     }
-    public void setComboNum(Long comboNum) 
+    public void setComboNum(Integer comboNum)
     {
         this.comboNum = comboNum;
     }
 
-    public Long getComboNum() 
+    public Integer getComboNum()
     {
         return comboNum;
     }

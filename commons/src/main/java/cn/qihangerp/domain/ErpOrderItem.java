@@ -72,7 +72,7 @@ public class ErpOrderItem implements Serializable {
     /**
      * 商品数量
      */
-    private Long quantity;
+    private Integer quantity;
 
     /**
      * 备注
@@ -88,7 +88,7 @@ public class ErpOrderItem implements Serializable {
     /**
      * 供应商ID
      */
-    private Integer supplierId;
+    private Long supplierId;
 
     /**
      * 是否赠品0否1是
@@ -131,6 +131,7 @@ public class ErpOrderItem implements Serializable {
     private String shippingNumber;
     private String shippingCompany;
     private String shippingMan;
+    private Integer orderStatus;
 
     private static final long serialVersionUID = 1L;
 }

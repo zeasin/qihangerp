@@ -162,7 +162,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
         so.setAmount(payAmount.doubleValue());
         so.setPostage(shipFee);
         try {
-            so.setPayTime(new Date(original.getOrderPaidTime()));
+            so.setPayTime(DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss",new Date(original.getOrderPaidTime())));
         }catch (Exception e){}
 
 //        XhsOrderReceiver receiver = receiverMapper.selectXhsOrderReceiverByOrderId(original.getId());
@@ -204,7 +204,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
             item.setOrderId(so.getId());
             item.setOrderNum(original.getOrderId());
             item.setOrderItemNum(i.getId()+"");
-            item.setSupplierId(goods.getSupplierId().intValue());
+            item.setSupplierId(goods.getSupplierId());
             item.setGoodsId(spec.getGoodsId());
             item.setSpecId(spec.getId());
             item.setGoodsTitle(i.getItemName());
@@ -248,7 +248,7 @@ public class XhsOrderServiceImpl implements IXhsOrderService
                 item.setOrderId(so.getId());
                 item.setOrderNum(original.getOrderId());
                 item.setOrderItemNum(original.getOrderId()+"_");
-                item.setSupplierId(goods.getSupplierId().intValue());
+                item.setSupplierId(goods.getSupplierId());
                 item.setGoodsId(spec.getGoodsId());
                 item.setSpecId(spec.getId());
                 item.setGoodsTitle(i.getItemName());

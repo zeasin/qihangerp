@@ -46,7 +46,7 @@ public class XhsOrderItem extends BaseEntity
     private BigDecimal price;
     /** 数量 */
     @Excel(name = "数量")
-    private Long quantity;
+    private Integer quantity;
 
     /** 总支付金额（考虑总件数）商品总实付 */
     @Excel(name = "总支付金额", readConverterExp = "考=虑总件数")
@@ -175,12 +175,12 @@ public class XhsOrderItem extends BaseEntity
     {
         return itemImage;
     }
-    public void setQuantity(Long quantity) 
+    public void setQuantity(Integer quantity)
     {
         this.quantity = quantity;
     }
 
-    public Long getQuantity() 
+    public Integer getQuantity()
     {
         return quantity;
     }

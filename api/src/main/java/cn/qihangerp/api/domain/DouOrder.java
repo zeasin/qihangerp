@@ -110,7 +110,7 @@ public class DouOrder extends BaseEntity
     /** 支付时间 (pay_type为0货到付款时, 此字段为空) */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Excel(name = "支付时间 (pay_type为0货到付款时, 此字段为空)", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date payTime;
+    private String payTime;
 
     /** 邮费金额 (单位: 分) */
     @Excel(name = "邮费金额 (单位: 分)")
@@ -457,12 +457,12 @@ public class DouOrder extends BaseEntity
     {
         return payTypeName;
     }
-    public void setPayTime(Date payTime) 
+    public void setPayTime(String payTime)
     {
         this.payTime = payTime;
     }
 
-    public Date getPayTime() 
+    public String getPayTime()
     {
         return payTime;
     }

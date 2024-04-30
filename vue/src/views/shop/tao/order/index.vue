@@ -35,13 +35,14 @@
         </el-date-picker>
       </el-form-item>
 
-      <el-form-item label="订单状态" prop="statusStr">
-        <el-input
-          v-model="queryParams.statusStr"
-          placeholder="请输入订单状态"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
+      <el-form-item label="订单状态" prop="status">
+        <el-select v-model="queryParams.status" placeholder="请选择状态" clearable @change="handleQuery">
+          <el-option label="等待卖家发货" value="WAIT_SELLER_SEND_GOODS" ></el-option>
+          <el-option label="等待买家确认收货" value="WAIT_BUYER_CONFIRM_GOODS"></el-option>
+          <el-option label="交易成功" value="TRADE_FINISHED"> </el-option>
+          <el-option label="交易自动关闭" value="TRADE_CLOSED"></el-option>
+          <el-option label="卖家或买家主动关闭交易" value="TRADE_CLOSED_BY_TAOBAO"></el-option>
+        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -121,40 +122,34 @@
         </template>
       </el-table-column>
       <el-table-column label="商品" width="350">
-          <template slot-scope="scope">
-            <el-row v-for="item in scope.row.taoOrderItemList" :key="item.id" :gutter="20">
+        <template slot-scope="scope">
+          <el-row v-for="item in scope.row.items" :key="item.id" :gutter="20">
 
             <div style="float: left;display: flex;align-items: center;" >
-              <el-image  style="width: 70px; height: 70px;" :src="item.productImgUrl"></el-image>
+              <el-image  style="width: 70px; height: 70px;" :src="item.picPath"></el-image>
               <div style="margin-left:10px">
-              <p>{{item.goodsTitle}}</p>
-              <p>{{item.skuInfo}}&nbsp;
-                <el-tag size="small">x {{item.quantity}}</el-tag>
+                <p>{{item.title}}</p>
+                <p>{{item.skuPropertiesName}}&nbsp;
+                  <el-tag size="small">x {{item.num}}</el-tag>
                 </p>
                 <p v-if="scope.row.refundStatus === 0">
                   <el-button type="text" size="mini" round @click="handleRefund(scope.row,item)">售后</el-button>
                 </p>
               </div>
             </div>
-            </el-row>
-          </template>
+          </el-row>
+        </template>
       </el-table-column>
-      <el-table-column label="总金额" align="center" prop="totalAmount" />
-      <el-table-column label="运费" align="center" prop="shippingFee" />
+      <el-table-column label="总金额" align="center" prop="payment" :formatter="amountFormatter" />
+      <el-table-column label="订单创建时间" align="center" prop="orderCreateTime" width="180">
+        <template slot-scope="scope">
+          <span>{{ parseTime(scope.row.created, '{y}-{m}-{d} {h}:{m}:{s}') }}</span>
+        </template>
+      </el-table-column>
+<!--      <el-table-column label="运费" align="center" prop="shippingFee" />-->
       <!-- <el-table-column label="优惠金额" align="center" prop="discountAmount" /> -->
       <!-- <el-table-column label="实际支付金额" align="center" prop="payAmount" /> -->
       <!-- <el-table-column label="优惠描述" align="center" prop="discountRemark" /> -->
-      <el-table-column label="订单创建时间" align="center" prop="orderCreateTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.orderCreateTime) }}</span>
-        </template>
-      </el-table-column>
-      <!-- <el-table-column label="订单修改时间" align="center" prop="orderModifyTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.orderModifyTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
- -->
      <!--  <el-table-column label="发货时间" align="center" prop="deliveredTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.deliveredTime, '{y}-{m}-{d}') }}</span>
@@ -173,16 +168,20 @@
       <el-table-column label="订单状态" align="center" prop="status" >
          <template slot-scope="scope">
 
-          <el-tag size="small" v-if="scope.row.status === 1"> 待支付</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 2"> 待发货</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 3"> 已发货</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 4"> 已取消</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 5"> 已完成</el-tag>
+           <el-tag size="small" v-if="scope.row.status === 'WAIT_BUYER_PAY'"> 等待买家付款</el-tag>
+           <el-tag size="small" v-if="scope.row.status === 'SELLER_CONSIGNED_PART'"> 卖家部分发货</el-tag>
+           <el-tag size="small" v-if="scope.row.status === 'WAIT_SELLER_SEND_GOODS'"> 等待卖家发货</el-tag>
+           <el-tag size="small" v-if="scope.row.status === 'WAIT_BUYER_CONFIRM_GOODS'"> 等待买家确认收货</el-tag>
+           <el-tag size="small" v-if="scope.row.status === 'TRADE_FINISHED'"> 交易成功</el-tag>
+           <el-tag size="small" v-if="scope.row.status === 'TRADE_CLOSED'"> 交易自动关闭</el-tag>
+           <el-tag size="small" v-if="scope.row.status === 'TRADE_CLOSED_BY_TAOBAO'"> 卖家或买家主动关闭交易</el-tag>
+           <el-tag size="small" v-if="scope.row.status === 'PAID_FORBID_CONSIGN'"> 禁止发货</el-tag>
           <span></span>
+          <br />
+          <el-tag size="small" v-if="!scope.row.auditStatus||scope.row.auditStatus === 0" style="margin-top: 5px;"> 待确认</el-tag>
+          <el-tag size="small" v-if="scope.row.auditStatus === 1" style="margin-top: 5px;"> 已确认</el-tag>
 
-          <el-tag size="small" v-if="scope.row.auditStatus === 0" style="margin-top: 5px;"> 待确认</el-tag>
-          <!-- <el-tag size="small" v-if="scope.row.auditStatus === 1" style="margin-top: 5px;"> 已确认</el-tag>
-          <el-tag size="small" v-if="scope.row.auditStatus === 2" style="margin-top: 5px;"> 已拦截</el-tag> -->
+           <!-- <el-tag size="small" v-if="scope.row.auditStatus === 2" style="margin-top: 5px;"> 已拦截</el-tag> -->
 
         </template>
       </el-table-column>
@@ -223,7 +222,7 @@
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
-          v-if="scope.row.auditStatus === 0"
+          v-if="!scope.row.auditStatus||scope.row.auditStatus === 0"
             size="mini"
             type="success"
             icon="el-icon-success"
@@ -1087,7 +1086,7 @@ export default {
       const id = row.id || this.ids
       getOrder(id).then(response => {
         this.form = response.data;
-        this.goodsList = response.data.taoOrderItemList;
+        this.goodsList = response.data.items;
         this.form.provinces = []
         this.form.provinces.push(response.data.province)
         this.form.provinces.push(response.data.city)

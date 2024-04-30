@@ -152,6 +152,7 @@
           <el-tag v-if="scope.row.orderStatus === 2" style="margin-bottom: 6px;">已出库</el-tag>
           <el-tag v-if="scope.row.orderStatus === 3" style="margin-bottom: 6px;">已发货</el-tag>
           <el-tag v-if="scope.row.orderStatus === 4" style="margin-bottom: 6px;">已完成</el-tag>
+          <el-tag v-if="scope.row.orderStatus === 11" style="margin-bottom: 6px;">已取消</el-tag>
           <br />
            <!-- 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 -->
            <el-tag v-if="scope.row.refundStatus === 1">无售后或售后关闭</el-tag>

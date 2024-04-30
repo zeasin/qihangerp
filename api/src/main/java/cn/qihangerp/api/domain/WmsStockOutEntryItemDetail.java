@@ -38,7 +38,7 @@ public class WmsStockOutEntryItemDetail implements Serializable {
     /**
      * 出库数量
      */
-    private Long quantity;
+    private Integer quantity;
 
     /**
      * 出库仓位ID

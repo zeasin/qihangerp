@@ -59,7 +59,7 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
                     item.setSpecId(erpOrderItem.getSpecId());
                     item.setSpecNum(erpOrderItem.getSpecNum());
                     item.setOriginalQuantity(erpOrderItem.getQuantity());
-                    item.setOutQuantity(0L);
+                    item.setOutQuantity(0);
                     item.setStatus(0);
                     item.setCreateTime(new Date());
                     items.add(item);

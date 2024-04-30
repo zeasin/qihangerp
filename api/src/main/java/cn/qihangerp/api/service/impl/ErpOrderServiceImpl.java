@@ -6,9 +6,12 @@ import java.util.List;
 
 import cn.qihangerp.api.domain.*;
 import cn.qihangerp.api.mapper.FmsPayableShipFeeMapper;
+import cn.qihangerp.common.ResultVo;
+import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.domain.ErpOrderItem;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -270,5 +273,79 @@ public class ErpOrderServiceImpl implements IErpOrderService
                 erpOrderMapper.batchErpOrderItem(list);
             }
         }
+    }
+
+    @Transactional
+    @Override
+    public ResultVo<Integer> taoOrderMessage(ErpOrder order) {
+        System.out.println("Tao订单消息处理"+order.getOrderNum());
+        if(order == null) {
+            // 没有找到订单信息
+            return ResultVo.error(ResultVoEnum.ParamsError,"参数数据不能为空：");
+        }
+
+
+        ErpOrder erpOrder = erpOrderMapper.selectErpOrderByNum(order.getOrderNum());
+        if(erpOrder == null) {
+            // 新增订单
+            order.setCreateBy("手动确认订单");
+            order.setCreateTime(DateUtils.getNowDate());
+            int rows = erpOrderMapper.insertErpOrder(order);
+//            insertErpOrderItem(erpOrder);
+//            List<ErpOrderItem> list = new ArrayList<ErpOrderItem>();
+            //插入orderItem
+            for (ErpOrderItem erpOrderItem : order.getItemList())
+            {
+                erpOrderItem.setOrderId(order.getId());
+                erpOrderItem.setShopId(order.getShopId());
+                erpOrderItem.setCreateBy(order.getCreateBy());
+                erpOrderItem.setCreateTime(new Date());
+//                list.add(erpOrderItem);
+            }
+            if (order.getItemList().size() > 0)
+            {
+                erpOrderMapper.batchErpOrderItem(order.getItemList());
+            }
+        }else {
+            // 修改订单 (修改：)
+            ErpOrder update = new ErpOrder();
+            update.setId(erpOrder.getId());
+            // 状态
+//            int orderStatus = TaoOrderStateEnum.getIndex(taoOrder.getStatus());
+//            if (orderStatus == 11) {
+//                update.setRefundStatus(2);
+//            } else if (orderStatus == -1) {
+//                update.setRefundStatus(-1);
+//            } else {
+//                update.setRefundStatus(1);
+//            }
+            update.setReceiverName(order.getReceiverName());
+            update.setReceiverPhone(order.getReceiverPhone());
+            update.setAddress(order.getAddress());
+            update.setOrderStatus(order.getOrderStatus());
+            update.setRefundStatus(order.getRefundStatus());
+            update.setUpdateTime(new Date());
+            update.setUpdateBy("ORDER_MESSAGE");
+//            orderMapper.updateById(update);
+            erpOrderMapper.updateErpOrder(update);
+            // 删除orderItem
+//            orderItemMapper.delete(new LambdaQueryWrapper<OOrderItem>().eq(OOrderItem::getOrderId, update.getId()));
+            erpOrderMapper.deleteErpOrderItemByOrderId(erpOrder.getId());
+            // 插入orderItem
+//            addOrderItem(update.getId(), taoOrder.getTid());
+            for (ErpOrderItem erpOrderItem : order.getItemList())
+            {
+                erpOrderItem.setOrderId(order.getId());
+                erpOrderItem.setShopId(order.getShopId());
+                erpOrderItem.setCreateBy(order.getCreateBy());
+                erpOrderItem.setCreateTime(new Date());
+//                list.add(erpOrderItem);
+            }
+            if (order.getItemList().size() > 0)
+            {
+                erpOrderMapper.batchErpOrderItem(order.getItemList());
+            }
+        }
+        return ResultVo.success();
     }
 }

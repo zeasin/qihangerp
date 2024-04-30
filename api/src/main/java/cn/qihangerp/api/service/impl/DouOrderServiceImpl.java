@@ -176,7 +176,7 @@ public class DouOrderServiceImpl implements IDouOrderService
             item.setOrderId(so.getId());
             item.setOrderNum(i.getOrderId());
             item.setOrderItemNum(i.getId()+"");
-            item.setSupplierId(goods.getSupplierId().intValue());
+            item.setSupplierId(goods.getSupplierId());
             item.setGoodsId(spec.getGoodsId());
             item.setSpecId(spec.getId());
             item.setGoodsTitle(i.getProductName());
@@ -220,7 +220,7 @@ public class DouOrderServiceImpl implements IDouOrderService
                 item.setOrderId(so.getId());
                 item.setOrderNum(i.getOrderId());
                 item.setOrderItemNum(original.getOrderId()+"_");
-                item.setSupplierId(goods.getSupplierId().intValue());
+                item.setSupplierId(goods.getSupplierId());
                 item.setGoodsId(spec.getGoodsId());
                 item.setSpecId(spec.getId());
                 item.setGoodsTitle(i.getProductName());

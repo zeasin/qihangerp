@@ -10,7 +10,7 @@ public class StockOutBo {
     private Long specId;
     /** 库存详情id**/
     private Long inventoryDetailId;
-    private Long outQty;
+    private Integer outQty;
 
     private Long operatorId;
     private String operatorName;
@@ -64,11 +64,11 @@ public class StockOutBo {
     }
 
 
-    public Long getOutQty() {
+    public Integer getOutQty() {
         return outQty;
     }
 
-    public void setOutQty(Long outQty) {
+    public void setOutQty(Integer outQty) {
         this.outQty = outQty;
     }
 }

@@ -1,4 +1,4 @@
-package com.qihang.tao.domain.bo;
+package cn.qihangerp.open.tao.bo;
 
 import lombok.Data;
 

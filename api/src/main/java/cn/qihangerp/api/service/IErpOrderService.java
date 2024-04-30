@@ -1,6 +1,8 @@
 package cn.qihangerp.api.service;
 
 import java.util.List;
+
+import cn.qihangerp.common.ResultVo;
 import cn.qihangerp.domain.ErpOrder;
 
 /**
@@ -60,4 +62,6 @@ public interface IErpOrderService
      * @return 结果
      */
     public int deleteErpOrderById(Long id);
+
+    ResultVo<Integer> taoOrderMessage(ErpOrder order);
 }
