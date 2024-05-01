@@ -75,7 +75,7 @@
           :disabled="multiple"
           @click="handleSelection"
           v-hasPermi="['xhs:orderReceiver:remove']"
-        >生成拣货单</el-button>
+        >仓库发货</el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
