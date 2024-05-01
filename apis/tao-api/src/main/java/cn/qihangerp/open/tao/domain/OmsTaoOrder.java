@@ -27,7 +27,7 @@ public class OmsTaoOrder implements Serializable {
     /**
      * 交易编号 (父订单的交易编号)
      */
-    private Long tid;
+    private String tid;
 
     /**
      * 交易标题，以店铺名作为此标题的值。

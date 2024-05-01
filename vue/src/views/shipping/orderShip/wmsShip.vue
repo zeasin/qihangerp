@@ -66,16 +66,16 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
+
       <el-col :span="1.5">
         <el-button
-          type="danger"
+          type="success"
           plain
-          icon="el-icon-document-copy"
+          icon="el-icon-data-analysis"
           size="mini"
           :disabled="multiple"
-          @click="handleSelection"
-          v-hasPermi="['xhs:orderReceiver:remove']"
-        >生成拣货单</el-button>
+          @click="handleSupplierShip"
+        >发货</el-button>
       </el-col>
       <el-col :span="1.5">
       <el-button
@@ -111,15 +111,6 @@
           <span>{{ shopList.find(x=>x.id === scope.row.shopId).name  }}</span>
         </template>
       </el-table-column>
-      <!-- <el-table-column label="店铺平台" align="center" prop="shopType" >
-         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.shopType === 4">淘宝</el-tag>
-          <el-tag size="small" v-if="scope.row.shopType === 5">拼多多</el-tag>
-          <el-tag size="small" v-if="scope.row.shopType === 6">抖店</el-tag>
-          <el-tag size="small" v-if="scope.row.shopType === 7">小红书</el-tag>
-         </template>
-      </el-table-column> -->
-
       <!-- <el-table-column label="子订单编号" align="center" prop="orderItemId" /> -->
 <!--      <el-table-column label="订单日期" align="center" prop="orderDate" width="180">-->
 <!--        <template slot-scope="scope">-->
@@ -131,55 +122,18 @@
               <el-image  style="width: 70px; height: 70px;" :src="scope.row.goodsImg"></el-image>
         </template>
       </el-table-column>
-<!--      <el-table-column label="商品" >-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-row :gutter="20">-->
-<!--            <div style="float: left;display: flex;align-items: center;" >-->
-<!--              <el-image  style="width: 70px; height: 70px;" :src="scope.row.goodsImg"></el-image>-->
-<!--              <div style="margin-left:10px">-->
-<!--              <p>{{scope.row.goodsTitle}}</p>-->
-<!--              <p>{{scope.row.goodsSpec}}&nbsp;-->
-<!--&lt;!&ndash;                <el-tag size="small">x {{scope.row.quantity}}</el-tag>&ndash;&gt;-->
-<!--                </p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            </el-row>-->
-<!--          </template>-->
-<!--      </el-table-column>-->
       <el-table-column label="商品标题" align="center" prop="goodsTitle" />
       <el-table-column label="规格" align="center" prop="goodsSpec" />
       <el-table-column label="规格编码" align="center" prop="specNum" />
-      <!-- <el-table-column label="erp系统商品id" align="center" prop="goodsId" />
-      <el-table-column label="erp系统商品规格id" align="center" prop="specId" />
-      <el-table-column label="商品标题" align="center" prop="goodsTitle" />
-      <el-table-column label="商品图片" align="center" prop="goodsImg" />
-      <el-table-column label="商品编码" align="center" prop="goodsNum" />
-      <el-table-column label="商品规格" align="center" prop="goodsSpec" />
-      <el-table-column label="商品规格编码" align="center" prop="specNum" /> -->
+      <el-table-column label="erp商品id" align="center" prop="goodsId" />
+      <el-table-column label="erp商品SkuId" align="center" prop="specId" />
+      <el-table-column label="商品Sku编码" align="center" prop="specNum" />
        <el-table-column label="商品数量" align="center" prop="quantity" >
          <template slot-scope="scope">
          <el-tag size="small">{{scope.row.quantity}}</el-tag>
          </template>
        </el-table-column>
-      <!-- <el-table-column label="备注" align="center" prop="remark" /> -->
-      <!-- <el-table-column label="物流公司" align="center" prop="shipCompany" /> -->
-<!--      <el-table-column label="物流单号" align="center" prop="shipNo" />-->
-<!--      <el-table-column label="运费" align="center" prop="shipCost" />-->
-<!--      <el-table-column label="发货时间" align="center" prop="shipTime" width="180">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ parseTime(scope.row.shipTime, '{y}-{m}-{d}') }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--      <el-table-column label="出库人" align="center" prop="outOperator" />-->
-<!--      <el-table-column label="出库仓位" align="center" prop="outPosition" />-->
-<!--      <el-table-column label="出库时间" align="center" prop="outTime" width="180">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span>{{ parseTime(scope.row.outTime, '{y}-{m}-{d}') }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-
-
-      <el-table-column label="仓库库存" align="center" prop="inventory" />
+<!--      <el-table-column label="仓库库存" align="center" prop="inventory" />-->
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
           <el-tag size="small" v-if="scope.row.shipStatus === 0">待备货</el-tag>
@@ -187,24 +141,17 @@
           <el-tag size="small" v-if="scope.row.shipStatus === 2">已出库</el-tag>
         </template>
       </el-table-column>
-<!--      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">-->
-<!--        <template slot-scope="scope">-->
-<!--          <el-button-->
-<!--            size="mini"-->
-<!--            type="text"-->
-<!--            icon="el-icon-edit"-->
-<!--            @click="handleUpdate(scope.row)"-->
-<!--            v-hasPermi="['wms:shipping:edit']"-->
-<!--          >修改</el-button>-->
-<!--          <el-button-->
-<!--            size="mini"-->
-<!--            type="text"-->
-<!--            icon="el-icon-delete"-->
-<!--            @click="handleDelete(scope.row)"-->
-<!--            v-hasPermi="['wms:shipping:remove']"-->
-<!--          >删除</el-button>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
+            <el-table-column label="操作" align="center" >
+              <template slot-scope="scope">
+                <el-button
+                  v-if="!scope.row.specId||scope.row.specId === 0"
+                  size="mini"
+                  type="primary"
+                  icon="el-icon-edit"
+                  @click="handleUpdateLink(scope.row)"
+                >修改商品关联</el-button>
+              </template>
+            </el-table-column>
     </el-table>
 
     <pagination
@@ -251,14 +198,75 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
+    <!-- 分配供应商发货对话框 -->
+    <el-dialog title="分配供应商发货" :visible.sync="supplierShipOpen" width="800px" append-to-body>
+      <el-form ref="form1" :model="form1" :rules="rules1" label-width="80px" inline>
+        <el-form-item label="供应商" prop="supplierId" >
+          <el-select
+            v-model="form1.supplierId"
+            filterable
+            placeholder="请选择供应商">
+            <el-option
+              v-for="item in supplierList"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-divider content-position="center" >待发货商品清单</el-divider>
+        <el-table :data="skuList" :row-class-name="rowItemIndex" ref="skuItem">
+          <el-table-column label="序号" align="center" prop="index" width="50"/>
+          <el-table-column label="商品图片" prop="goodsImg" >
+            <template slot-scope="scope">
+              <el-image style="width: 70px; height: 70px" :src="scope.row.goodsImg"></el-image>
+            </template>
+          </el-table-column>
+          <el-table-column label="商品标题" prop="goodsTitle" ></el-table-column>
+          <el-table-column label="规格" prop="goodsSpec" ></el-table-column>
+          <el-table-column label="sku编码" prop="specNum" ></el-table-column>
+          <el-table-column label="数量" prop="quantity"></el-table-column>
+        </el-table>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitSupplierShipForm">分配供应商发货</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- 修改skuid对话框 -->
+    <el-dialog title="修改SkuId" :visible.sync="skuIdUpdateOpen" width="500px" append-to-body>
+      <el-form ref="form2" :model="form2" :rules="rules2" label-width="120px" inline>
+<!--        <el-form-item label="ERP商品ID" prop="erpGoodsId" >-->
+<!--          <el-input v-model="form2.erpGoodsId" disabled placeholder="请输入ERP商品ID" />-->
+<!--        </el-form-item>-->
+        <el-form-item label="ERP商品SkuId" prop="erpGoodsSpecId" >
+          <el-input type="number" v-model="form2.erpGoodsSpecId" placeholder="请输入ERP商品SkuId" />
+        </el-form-item>
+
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitSkuIdUpdateForm">分配供应商发货</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
-import {listShipping, getShipping, generateStockOutEntry} from "@/api/wms/shipping";
+import {listShipping, getShipping, generateStockOutEntry, orderItemSpecIdUpdate} from "@/api/wms/shipping";
 import { listShop } from "@/api/shop/shop";
+import supplier from "@/views/scm/supplier/index.vue";
+import {listSupplier} from "@/api/scm/supplier";
 export default {
-  name: "wmsStocking",
+  name: "wsmShip",
+  computed: {
+    supplier() {
+      return supplier
+    }
+  },
   data() {
     return {
       // 遮罩层
@@ -279,6 +287,8 @@ export default {
       title: "",
       // 是否显示弹出层
       open: false,
+      supplierShipOpen: false,
+      skuIdUpdateOpen: false,
       isGen:true,
       // 查询参数
       queryParams: {
@@ -296,8 +306,15 @@ export default {
       form: {
         orderItemIds:[]
       },
+      form1: {
+        orderItemIds:[]
+      },
+      form2: {
+        orderItemId:null
+      },
       shopList: [],
       skuList:[],
+      supplierList:[],
       statusList: [
         {
           value: '0',
@@ -312,21 +329,17 @@ export default {
       ],
       // 表单校验
       rules: {
-        stockOutNum: [
-          { required: true, message: "单号不能为空", trigger: "blur" }
-        ],
-        createTime: [
-          { required: true, message: "生成时间不能为空", trigger: "blur" }
-        ],
-        goodsId: [
-          { required: true, message: "erp系统商品id不能为空", trigger: "blur" }
-        ],
-        specId: [
-          { required: true, message: "erp系统商品规格id不能为空", trigger: "blur" }
-        ],
-        quantity: [
-          { required: true, message: "商品数量不能为空", trigger: "blur" }
-        ],
+        stockOutNum: [{ required: true, message: "单号不能为空", trigger: "blur" }],
+        createTime: [{ required: true, message: "生成时间不能为空", trigger: "blur" }],
+        goodsId: [{ required: true, message: "erp系统商品id不能为空", trigger: "blur" }],
+        specId: [{ required: true, message: "erp系统商品规格id不能为空", trigger: "blur" }],
+        quantity: [{ required: true, message: "商品数量不能为空", trigger: "blur" }],
+      },
+      rules1: {
+        supplierId: [{ required: true, message: "请选择供应商", trigger: "blur" }],
+      },
+      rules2: {
+        erpGoodsSpecId: [{ required: true, message: "请选择填写ERP商品SkuId", trigger: "blur" }],
       }
     };
   },
@@ -359,7 +372,10 @@ export default {
     },
     // 取消按钮
     cancel() {
+      this.skuList = []
       this.open = false;
+      this.supplierShipOpen = false;
+      this.skuIdUpdateOpen = false;
     },
     /** 搜索按钮操作 */
     handleQuery() {
@@ -462,12 +478,86 @@ export default {
       //   this.getList();
       //   this.$modal.msgSuccess("删除成功");
       // }).catch(() => {});
+
     },
     /** 导出按钮操作 */
     handleExport() {
       this.download('wms/shipping/export', {
         ...this.queryParams
       }, `shipping_${new Date().getTime()}.xlsx`)
+    },
+    /** 分配供应商发货 */
+    handleSupplierShip(row){
+      const ids = row.id || this.ids;
+      // console.log("=====生成出库单=====",ids)
+      if(!ids && ids.length===0){
+        this.$modal.msgError("请选选择发货的商品");
+        return
+      }else{
+        listSupplier({}).then(response => {
+          this.supplierList = response.rows;
+          ids.forEach(id=>{
+            const obj = this.shippingList.find(y=>y.id === id)
+            const has = this.skuList.find(y=>y.specId === obj.specId)
+            if(has){
+              // 增加数量即可
+              has.quantity = has.quantity + obj.quantity
+              has.ids.push(id)
+            }else{
+              // 新增数据
+              const ids1 =[]
+              ids1.push(id);
+              this.skuList.push({
+                ids:ids1,
+                specId:obj.specId,
+                goodsImg:obj.goodsImg,
+                goodsNum:obj.goodsNum,
+                goodsTitle:obj.goodsTitle,
+                goodsSpec:obj.goodsSpec,
+                specNum:obj.specNum,
+                quantity:obj.quantity,
+                inventory:obj.inventory
+              })
+            }
+          })
+          this.supplierShipOpen = true
+        });
+
+      }
+    },
+    submitSupplierShipForm() {
+      this.$refs["form1"].validate(valid => {
+        if (valid) {
+          if(!this.skuList || this.skuList.length === 0){
+            this.$modal.msgError("请选择代发货商品");
+          }
+          this.form.orderItemIds = this.ids;
+          // generateStockOutEntry(this.form).then(response => {
+          //   this.$modal.msgSuccess("拣货单生成成功");
+          //   this.open = false;
+          //   this.getList();
+          // });
+
+        }
+      });
+    },
+    handleUpdateLink(row){
+      console.log("修改商品关联")
+      this.skuIdUpdateOpen = true
+      this.form2.orderItemId = row.id
+      // this.$modal.msgError("修改商品关联");
+    },
+    submitSkuIdUpdateForm(){
+      this.$refs["form2"].validate(valid => {
+        if (valid) {
+          orderItemSpecIdUpdate(this.form2).then(response => {
+            this.$modal.msgSuccess("SkuId修改成功");
+            this.skuIdUpdateOpen = false;
+            this.getList();
+          });
+
+        }
+      });
     }
   }
 };

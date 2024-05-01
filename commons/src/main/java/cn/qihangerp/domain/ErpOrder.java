@@ -95,7 +95,7 @@ public class ErpOrder extends BaseEntity
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "支付时间", width = 30, dateFormat = "yyyy-MM-dd")
     private String payTime;
-    private Date orderTime;
+    private String orderTime;
 
     /** 订单确认时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -427,11 +427,11 @@ public class ErpOrder extends BaseEntity
         this.itemList = itemList;
     }
 
-    public Date getOrderTime() {
+    public String getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Date orderTime) {
+    public void setOrderTime(String orderTime) {
         this.orderTime = orderTime;
     }
 }

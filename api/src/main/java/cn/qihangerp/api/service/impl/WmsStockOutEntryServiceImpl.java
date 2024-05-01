@@ -1,5 +1,6 @@
 package cn.qihangerp.api.service.impl;
 
+import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.domain.ErpOrderItem;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -32,12 +33,19 @@ import java.util.stream.Collectors;
 public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMapper, WmsStockOutEntry>
     implements WmsStockOutEntryService{
     private final ErpOrderItemMapper orderItemMapper;
+    private final ErpOrderMapper orderMapper;
+    private final ErpShipOrderMapper shipOrderMapper;
     private final WmsStockOutEntryMapper entryMapper;
     private final WmsStockOutEntryItemMapper entryItemMapper;
     private final WmsStockOutEntryItemService entryItemService;
     private final WmsStockOutEntryItemDetailMapper stockOutEntryItemDetailMapper;
     private final ErpGoodsInventoryMapper erpGoodsInventoryMapper;
 
+    /**
+     * 生成拣货单
+     * @param bo
+     * @return
+     */
     @Transactional
     @Override
     public int generateStockOutEntryForOrderItem(StockOutEntryGenerateBo bo) {
@@ -50,6 +58,7 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
             ErpOrderItem erpOrderItem = orderItemMapper.selectById(id);
             if(erpOrderItem!=null){
                 if(erpOrderItem.getRefundCount() ==0 && erpOrderItem.getShipStatus() == 0){
+                    if(erpOrderItem.getSpecId()== null || erpOrderItem.getSpecId()==0) return -1002;
                     WmsStockOutEntryItem item = new WmsStockOutEntryItem();
                     item.setStockOutType(1);
                     item.setSourceOrderId(erpOrderItem.getOrderId());
@@ -77,6 +86,7 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
         // 添加主表
         Map<Long, List<WmsStockOutEntryItem>> goodsGroup = items.stream().collect(Collectors.groupingBy(x -> x.getGoodsId()));
         Map<Long, List<WmsStockOutEntryItem>> specGroup = items.stream().collect(Collectors.groupingBy(x -> x.getSpecId()));
+        // 拣货单主表
         WmsStockOutEntry entry = new WmsStockOutEntry();
         entry.setStockOutNum(bo.getStockOutNum());
         entry.setStockOutType(1);
@@ -88,9 +98,11 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
         entry.setCreateTime(new Date());
         entry.setCreateBy("生成拣货单");
         entryMapper.insert(entry);
-        // 添加子表
+        // 添加子表（拣货单子表）
         items.forEach(e->e.setEntryId(entry.getId()));
         entryItemService.saveBatch(items);
+
+        // 更新订单子表及主表出库状态
         for (var item:items) {
             ErpOrderItem orderItem = new ErpOrderItem();
             orderItem.setId(item.getSourceOrderItemId().toString());
@@ -98,7 +110,49 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
             orderItem.setUpdateTime(new Date());
             orderItem.setUpdateBy("生成拣货单");
             orderItemMapper.updateById(orderItem);
+            // 更新订单主表
+
+            // 查询是否全部出库中
+            List<ErpOrderItem> erpOrderItems = orderMapper.selectOrderItemByOrderId(item.getSourceOrderId());
+            List<ErpOrderItem> waitShipList = erpOrderItems.stream().filter(x -> (x.getShipStatus()==null||x.getShipStatus() == 0)&& Long.parseLong(x.getId())!=item.getSourceOrderItemId()).collect(Collectors.toList());
+            if(waitShipList==null || waitShipList.size()==0) {
+                // 全部不是待备货状态，更新主表状态
+                ErpOrder orderUpdate = new ErpOrder();
+                orderUpdate.setId(item.getSourceOrderId());
+                orderUpdate.setShipStatus(1);
+                orderUpdate.setUpdateTime(new Date());
+                orderUpdate.setUpdateBy("生成拣货单");
+                orderMapper.updateErpOrder(orderUpdate);
+            }
+            ErpOrder erpOrder = orderMapper.selectErpOrderById(item.getSourceOrderId());
+            // 添加到发货记录表
+            ErpShipOrder shipOrder = new ErpShipOrder();
+            shipOrder.setShopId(erpOrder.getShopId());
+            shipOrder.setShopType(erpOrder.getShopType());
+            shipOrder.setOrderNum(erpOrder.getOrderNum());
+            shipOrder.setOrderTime(erpOrder.getOrderTime());
+            shipOrder.setErpOrderId(item.getSourceOrderId());
+            shipOrder.setErpOrderItemId(item.getSourceOrderItemId());
+            shipOrder.setGoodsId(item.getGoodsId());
+            shipOrder.setSpecId(item.getSpecId());
+            shipOrder.setSpecNum(item.getSpecNum());
+            shipOrder.setQuantity(item.getOriginalQuantity());
+            shipOrder.setShipType(0);
+            shipOrder.setShipStatus(1);
+            shipOrder.setReceiverName(erpOrder.getReceiverName());
+            shipOrder.setReceiverPhone(erpOrder.getReceiverPhone());
+            shipOrder.setCountry(erpOrder.getCountry());
+            shipOrder.setProvince(erpOrder.getProvince());
+            shipOrder.setCity(erpOrder.getCity());
+            shipOrder.setTown(erpOrder.getTown());
+            shipOrder.setAddress(erpOrder.getAddress());
+            shipOrder.setCreateBy("生成拣货单");
+            shipOrder.setCreateTime(new Date());
+            shipOrderMapper.insert(shipOrder);
         }
+
+
+
         return 0;
     }
 

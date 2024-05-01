@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 查询仓库订单发货列表
+// 查询订单发货列表（备货清单）
 export function listShipping(query) {
   return request({
     url: '/shipping/stock_ship_list',
@@ -9,46 +9,20 @@ export function listShipping(query) {
   })
 }
 
-// 查询仓库订单发货详细
-export function getShipping(id) {
+export function orderItemSpecIdUpdate(data) {
   return request({
-    url: '/wms/shipping/' + id,
-    method: 'get'
-  })
-}
-
-// 生成出库单
-export function generateStockOutEntry(data) {
-  return request({
-    url: '/shipping/generate_stock_out_entry',
+    url: '/shipping/order_item_spec_id_update',
     method: 'post',
     data: data
   })
 }
 
-// 修改仓库订单发货
-export function updateShipping(data) {
+// 生成出库单（备货清单生成出库单）
+export function generateStockOutEntry(data) {
   return request({
-    url: '/wms/shipping',
-    method: 'put',
+    url: '/shipping/generate_stock_out_entry',
+    method: 'post',
     data: data
-  })
-}
-
-// 删除仓库订单发货
-export function delShipping(id) {
-  return request({
-    url: '/wms/shipping/' + id,
-    method: 'delete'
-  })
-}
-
-// 查询供应商订单发货列表
-export function listShippingSupplier(query) {
-  return request({
-    url: '/shipping/supplier_ship_list',
-    method: 'get',
-    params: query
   })
 }
 

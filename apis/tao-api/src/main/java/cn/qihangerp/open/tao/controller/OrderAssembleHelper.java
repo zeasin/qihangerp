@@ -19,7 +19,7 @@ public class OrderAssembleHelper {
     public static OmsTaoOrder assembleOrder(TradeList trade) {
 
         OmsTaoOrder order = new OmsTaoOrder();
-        order.setTid(Long.parseLong(trade.getTid()));
+        order.setTid(trade.getTid());
         order.setTitle(trade.getTitle());
         order.setType(trade.getType());
         order.setSellerFlag(trade.getSeller_flag() + "");

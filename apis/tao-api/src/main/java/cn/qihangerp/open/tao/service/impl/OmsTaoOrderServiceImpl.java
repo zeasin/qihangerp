@@ -162,7 +162,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
         // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
         ErpOrder so = new ErpOrder();
         so.setOrderNum(original.getTid().toString());
-        so.setOrderTime(original.getCreateTime());
+        so.setOrderTime(original.getCreated());
         so.setShopId(original.getShopId().intValue());
         so.setShopType(EnumShopType.TAO.getIndex());
 //        so.setRemark(original.getRemark());
@@ -252,8 +252,8 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
                     item.setRefundCount(0);
                 }
                 // 状态
-                int orderStatus1 = TaoOrderStateEnum.getIndex(i.getStatus());
-                item.setOrderStatus(orderStatus1);
+//                int orderStatus1 = TaoOrderStateEnum.getIndex(i.getStatus());
+                item.setOrderStatus(orderStatus);
                 item.setCreateBy(bo.getUpdateBy());
                 item.setCreateTime(new Date());
                 items.add(item);

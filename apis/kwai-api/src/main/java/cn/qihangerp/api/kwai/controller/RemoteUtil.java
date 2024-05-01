@@ -12,7 +12,7 @@ public class RemoteUtil {
      * @param serviceType 返回的类型
      */
     public static <S> S Remoting(String url, Class<S> serviceType){
-        WebClient client = WebClient.builder().defaultHeader("Content-type","application/json").baseUrl(url).build();
+        WebClient client = WebClient.builder().defaultHeader("Content-type","application/x-www-form-urlencoded").baseUrl(url).build();
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();
         return factory.createClient(serviceType);
     }

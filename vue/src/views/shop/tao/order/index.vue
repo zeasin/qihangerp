@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="订单号" prop="id">
+      <el-form-item label="订单号" prop="tid">
         <el-input
-          v-model="queryParams.id"
+          v-model="queryParams.tid"
           placeholder="请输入订单号"
           clearable
           @keyup.enter.native="handleQuery"
@@ -115,7 +115,7 @@
 
     <el-table v-loading="loading" :data="orderList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="订单号" align="center" prop="id" />
+      <el-table-column label="订单号" align="center" prop="tid" />
       <el-table-column label="店铺" align="center" prop="shopId" >
        <template slot-scope="scope">
          <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>

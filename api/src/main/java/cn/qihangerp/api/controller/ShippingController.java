@@ -1,7 +1,9 @@
 package cn.qihangerp.api.controller;
 
+import cn.qihangerp.api.domain.bo.OrderItemSpecIdUpdateBo;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
+import cn.qihangerp.common.enums.ErpOrderStatusEnum;
 import cn.qihangerp.core.controller.BaseController;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.core.page.TableDataInfo;
@@ -23,18 +25,7 @@ public class ShippingController extends BaseController {
     private final ErpOrderItemService erpOrderItemService;
     private final WmsStockOutEntryService stockOutEntryService;
     private final WmsStockOutEntryItemService stockOutEntryItemService;
-    /**
-     * 备货中-供应商代发
-     * @param bo
-     * @param pageQuery
-     * @return
-     */
-    @GetMapping("/supplier_ship_list")
-    public TableDataInfo supplierShipList(ErpOrderItem bo, PageQuery pageQuery)
-    {
-        PageResult<ErpOrderItem> list = erpOrderItemService.queryPageList(1,0,bo, pageQuery);
-        return getDataTable(list);
-    }
+
 
     /**
      * 备货中-仓库发货
@@ -45,7 +36,7 @@ public class ShippingController extends BaseController {
     @GetMapping("/stock_ship_list")
     public TableDataInfo stockShipList(ErpOrderItem bo, PageQuery pageQuery)
     {
-        PageResult<ErpOrderItem> list = erpOrderItemService.queryPageList(0,0,bo, pageQuery);
+        PageResult<ErpOrderItem> list = erpOrderItemService.queryPageList(ErpOrderStatusEnum.WAIT_SELLER_SEND_GOODS,0,bo, pageQuery);
         return getDataTable(list);
     }
 
@@ -53,43 +44,34 @@ public class ShippingController extends BaseController {
      * 新增出库单
      */
     @PostMapping("/generate_stock_out_entry")
-    public AjaxResult add(@RequestBody StockOutEntryGenerateBo bo)
+    public AjaxResult generateStockOutEntry(@RequestBody StockOutEntryGenerateBo bo)
     {
         int result = stockOutEntryService.generateStockOutEntryForOrderItem(bo);
         if(result == -1) return AjaxResult.error("参数错误：orderItemIds为空");
         if(result == -2) return AjaxResult.error("参数错误：没有要添加的");
         else if(result == -1001) return AjaxResult.error("存在错误的orderItemId：状态不对不能生成出库单");
+        else if(result == -1002) return AjaxResult.error("存在错误的订单数据：名单明细中没有skuId请修改！");
         //wmsStockOutEntryService.insertWmsStockOutEntry(wmsStockOutEntry)
         return toAjax(1);
     }
 
     /**
-     * 订单待出库出库单list
+     * 修改订单明细specId
      * @param bo
-     * @param pageQuery
      * @return
      */
-    @GetMapping("/order_stock_out_entry_list")
-    public TableDataInfo stockOutEntryList(WmsStockOutEntry bo, PageQuery pageQuery)
+    @PostMapping("/order_item_spec_id_update")
+    public AjaxResult orderItemSpecIdUpdate(@RequestBody OrderItemSpecIdUpdateBo bo)
     {
-        bo.setStockOutType(1);
-        bo.setStatus(0);
-        PageResult<WmsStockOutEntry> list = stockOutEntryService.queryPageList(bo, pageQuery);
-        return getDataTable(list);
+        if(bo.getOrderItemId()==null || bo.getOrderItemId() ==0) return AjaxResult.error("参数错误：orderItemId为空");
+        if(bo.getErpGoodsSpecId()==null || bo.getErpGoodsSpecId() ==0) return AjaxResult.error("参数错误：ErpGoodsSpecId为空");
+
+        int result = erpOrderItemService.orderItemSpecIdUpdate(bo);
+        if(result == -1) return AjaxResult.error("参数错误：orderItemId错误");
+        else if(result == -2) return AjaxResult.error("参数错误：找不到ErpGoodsSpec");
+
+        return toAjax(1);
     }
 
-    /**
-     * 订单待出库明细list
-     * @param bo
-     * @param pageQuery
-     * @return
-     */
-    @GetMapping("/order_stock_out_entry_item_list")
-    public TableDataInfo stockOutEntryItemList(WmsStockOutEntryItem bo, PageQuery pageQuery)
-    {
-        bo.setStockOutType(1);
-        bo.setStatus(0);
-        PageResult<WmsStockOutEntryItem> list = stockOutEntryItemService.queryPageList(bo, pageQuery);
-        return getDataTable(list);
-    }
+
 }

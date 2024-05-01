@@ -1,5 +1,9 @@
 package cn.qihangerp.api.service.impl;
 
+import cn.qihangerp.api.domain.GoodsSpec;
+import cn.qihangerp.api.domain.bo.OrderItemSpecIdUpdateBo;
+import cn.qihangerp.api.mapper.GoodsSpecMapper;
+import cn.qihangerp.common.enums.ErpOrderStatusEnum;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -12,6 +16,8 @@ import cn.qihangerp.api.mapper.ErpOrderItemMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
 * @author TW
 * @description 针对表【erp_order_item(订单明细表)】的数据库操作Service实现
@@ -23,33 +29,36 @@ public class ErpOrderItemServiceImpl extends ServiceImpl<ErpOrderItemMapper, Erp
     implements ErpOrderItemService{
     private final ErpOrderItemMapper mapper;
     private final ErpOrderMapper orderMapper;
+    private final GoodsSpecMapper specMapper;
     @Override
-    public PageResult<ErpOrderItem> queryPageList(Integer shipType, Integer status, ErpOrderItem bo, PageQuery pageQuery) {
-//        List<Long> ids = null;
-//        if(shipType!=null|| status!= null){
-////            LambdaQueryWrapper<ErpOrder> qw = new LambdaQueryWrapper<ErpOrder>()
-////                    .eq(shipType!=null,ErpOrder::getShipType,shipType)
-////                    .eq(status!=null,ErpOrder::getOrderStatus,status);
-////            List<ErpOrder> erpOrders = orderMapper.selectList(qw);
-//            ErpOrder qw = new ErpOrder();
-//            qw.setShipType(shipType);
-//            qw.setOrderStatus(status);
-//            List<ErpOrder> erpOrders = orderMapper.selectErpOrderList(qw);
-//            if(erpOrders!=null&&erpOrders.size()>0) {
-//                ids = erpOrders.stream().map(m -> m.getId()).collect(Collectors.toList());
-//            }
-//        }
-//        if(ids == null) return PageResult.build();
-
+    public PageResult<ErpOrderItem> queryPageList(ErpOrderStatusEnum status,Integer shipStatus, ErpOrderItem bo, PageQuery pageQuery) {
         LambdaQueryWrapper<ErpOrderItem> queryWrapper = new LambdaQueryWrapper<ErpOrderItem>()
                 .eq(org.springframework.util.StringUtils.hasText(bo.getOrderNum()),ErpOrderItem::getOrderNum,bo.getOrderNum())
                 .eq(org.springframework.util.StringUtils.hasText(bo.getSpecNum()),ErpOrderItem::getSpecNum,bo.getSpecNum())
-                .eq(ErpOrderItem::getShipType,shipType)
-                .eq(ErpOrderItem::getShipStatus,status)
+                .eq(ErpOrderItem::getOrderStatus, status.WAIT_SELLER_SEND_GOODS.getIndex())
+                .eq(ErpOrderItem::getShipStatus,shipStatus)
                 ;
         Page<ErpOrderItem> pages = mapper.selectPage(pageQuery.build(), queryWrapper);
 
         return PageResult.build(pages);
+    }
+
+    @Override
+    public int orderItemSpecIdUpdate(OrderItemSpecIdUpdateBo bo) {
+        ErpOrderItem erpOrderItem = mapper.selectById(bo.getOrderItemId());
+        if(erpOrderItem == null )return -1;
+        GoodsSpec goodsSpec = specMapper.selectGoodsSpecById(bo.getErpGoodsSpecId());
+        if(goodsSpec== null) return -2;
+
+        ErpOrderItem update = new ErpOrderItem();
+        update.setId(bo.getOrderItemId().toString());
+        update.setGoodsId(goodsSpec.getGoodsId());
+        update.setSpecId(goodsSpec.getId());
+        update.setSpecNum(goodsSpec.getSpecNum());
+        update.setUpdateBy("手动修改SkuId");
+        update.setUpdateTime(new Date());
+        mapper.updateById(update);
+        return 0;
     }
 }
 

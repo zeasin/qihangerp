@@ -47,7 +47,7 @@ public class NettyClientConfig {
                         })
                         .option(ChannelOption.SO_KEEPALIVE, true);
 
-                ChannelFuture future = bootstrap.connect("localhost", 8888).sync();
+                ChannelFuture future = bootstrap.connect("localhost", 9999).sync();
                 future.channel().closeFuture().sync();
             } catch (InterruptedException e) {
                 e.printStackTrace();

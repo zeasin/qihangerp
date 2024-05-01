@@ -49,7 +49,7 @@ public class QiHangRpcServerConfig {
                         .option(ChannelOption.SO_BACKLOG, 128)
                         .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-                ChannelFuture future = serverBootstrap.bind(8888).sync();
+                ChannelFuture future = serverBootstrap.bind(9999).sync();
                 future.channel().closeFuture().sync();
             } catch (InterruptedException e) {
                 e.printStackTrace();
