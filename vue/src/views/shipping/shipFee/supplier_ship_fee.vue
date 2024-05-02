@@ -181,7 +181,7 @@ import {listShop} from "@/api/shop/shop";
 import {listSupplier} from "@/api/scm/supplier";
 
 export default {
-  name: "AgentShip",
+  name: "supplierShipFee",
   data() {
     return {
       // 遮罩层

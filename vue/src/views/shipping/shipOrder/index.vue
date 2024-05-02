@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import supplierShip  from "@/views/shipping/orderShip/supplierShip.vue";
-import wmsShip  from "@/views/shipping/orderShip/wmsShip.vue";
+import supplierShip  from "@/views/shipping/shipOrder/supplierShip.vue";
+import wmsShip  from "@/views/shipping/shipOrder/wmsShip.vue";
 
 export default {
   name: "stocking",

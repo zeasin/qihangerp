@@ -311,7 +311,7 @@
 import { listShipFee, getShipFee, delShipFee, addShipFee, updateShipFee } from "@/api/fms/shipFee";
 
 export default {
-  name: "ShipFee",
+  name: "shipLogisticsFee",
   data() {
     return {
       // 遮罩层
