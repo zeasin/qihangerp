@@ -95,15 +95,12 @@
             <version>1.9.20</version>
             <scope>runtime</scope>
         </dependency>
-
-
-
-        <!-- https://mvnrepository.com/artifact/us.codecraft/webmagic-core -->
-        <dependency>
-            <groupId>us.codecraft</groupId>
-            <artifactId>webmagic-core</artifactId>
-            <version>0.10.0</version>
-        </dependency>
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/us.codecraft/webmagic-core &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>us.codecraft</groupId>-->
+<!--            <artifactId>webmagic-core</artifactId>-->
+<!--            <version>0.10.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -113,29 +110,6 @@
 <!--            <groupId>com.h2database</groupId>-->
 <!--            <artifactId>h2</artifactId>-->
 <!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>doudian</groupId>-->
-<!--            <artifactId>doudian-sdk-java</artifactId>-->
-<!--            <version>1.1.0-20240217120650</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/libs/doudian/doudian-sdk-java-1.1.0-20240217120650.jar</systemPath>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>pinduoduo</groupId>-->
-<!--            <artifactId>pop-sdk-all</artifactId>-->
-<!--            <version>1.11.8</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/libs/pinduoduo/pop-sdk-all-1.11.8.jar</systemPath>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>xiaohongshu</groupId>
-            <artifactId>com.xiaohongshu.fls.openSdk</artifactId>
-            <version>1.0</version>
-            <scope> system </scope>
-            <systemPath>${pom.basedir}/libs/xiaohongshu/com.xiaohongshu.fls.openSdk-1.0.jar </systemPath>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
@@ -162,6 +136,11 @@
         <dependency>
             <groupId>cn.qihangerp.api</groupId>
             <artifactId>dou-api</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.qihangerp.api</groupId>
+            <artifactId>wei-api</artifactId>
             <version>2.0.2</version>
         </dependency>
         <dependency>
