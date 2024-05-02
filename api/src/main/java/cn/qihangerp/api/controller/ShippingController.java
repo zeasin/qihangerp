@@ -1,6 +1,7 @@
 package cn.qihangerp.api.controller;
 
 import cn.qihangerp.api.domain.bo.OrderItemSpecIdUpdateBo;
+import cn.qihangerp.api.domain.bo.SupplierShipDistBo;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.enums.ErpOrderStatusEnum;
@@ -52,6 +53,18 @@ public class ShippingController extends BaseController {
         else if(result == -1001) return AjaxResult.error("存在错误的orderItemId：状态不对不能生成出库单");
         else if(result == -1002) return AjaxResult.error("存在错误的订单数据：名单明细中没有skuId请修改！");
         //wmsStockOutEntryService.insertWmsStockOutEntry(wmsStockOutEntry)
+        return toAjax(1);
+    }
+
+    @PostMapping("/supplier_ship_dist")
+    public AjaxResult SupplierShipDist(@RequestBody SupplierShipDistBo bo)
+    {
+        int result = erpOrderItemService.distributeSupplierShip(bo);
+        if(result == -1) return AjaxResult.error("参数错误：orderItemIds为空");
+        if(result == -2) return AjaxResult.error("参数错误：存在错误的orderItemId");
+        else if(result == -1001) return AjaxResult.error("存在错误的orderItemId：状态不对不能分配发货");
+        else if(result == -1002) return AjaxResult.error("存在错误的订单数据：名单明细中没有supplierId请修改！");
+
         return toAjax(1);
     }
 

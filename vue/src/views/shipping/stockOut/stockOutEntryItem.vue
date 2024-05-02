@@ -105,26 +105,26 @@
     <!-- 添加或修改出库单对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="1000px" append-to-body :close-on-click-modal="false">
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-descriptions title="出库单详情">
-          <el-descriptions-item label="单号">{{form.stockOutNum}}</el-descriptions-item>
-          <el-descriptions-item label="来源">
-            <el-tag size="small" v-if="form.stockOutType === 1">订单拣货出库</el-tag>
-            <el-tag size="small" v-if="form.stockOutType === 2">采购退货出库</el-tag>
-            <el-tag size="small" v-if="form.stockOutType === 3">盘点出库</el-tag>
-            <el-tag size="small" v-if="form.stockOutType === 4">报损出库</el-tag>
-          </el-descriptions-item>
-          <el-descriptions-item label="备注">{{form.remark}}</el-descriptions-item>
-          <el-descriptions-item label="商品数">{{form.goodsUnit}}</el-descriptions-item>
-          <el-descriptions-item label="规格数">{{form.specUnit}}</el-descriptions-item>
-          <el-descriptions-item label="总件数">{{form.specUnitTotal}}</el-descriptions-item>
-<!--          <el-descriptions-item label="店铺">-->
-<!--            <span v-if="form.shopId==6">梦小妮牛仔裤</span>-->
+<!--        <el-descriptions title="出库单详情">-->
+<!--          <el-descriptions-item label="单号">{{form.stockOutNum}}</el-descriptions-item>-->
+<!--          <el-descriptions-item label="来源">-->
+<!--            <el-tag size="small" v-if="form.stockOutType === 1">订单拣货出库</el-tag>-->
+<!--            <el-tag size="small" v-if="form.stockOutType === 2">采购退货出库</el-tag>-->
+<!--            <el-tag size="small" v-if="form.stockOutType === 3">盘点出库</el-tag>-->
+<!--            <el-tag size="small" v-if="form.stockOutType === 4">报损出库</el-tag>-->
 <!--          </el-descriptions-item>-->
-        </el-descriptions>
+<!--          <el-descriptions-item label="备注">{{form.remark}}</el-descriptions-item>-->
+<!--          <el-descriptions-item label="商品数">{{form.goodsUnit}}</el-descriptions-item>-->
+<!--          <el-descriptions-item label="规格数">{{form.specUnit}}</el-descriptions-item>-->
+<!--          <el-descriptions-item label="总件数">{{form.specUnitTotal}}</el-descriptions-item>-->
+<!--&lt;!&ndash;          <el-descriptions-item label="店铺">&ndash;&gt;-->
+<!--&lt;!&ndash;            <span v-if="form.shopId==6">梦小妮牛仔裤</span>&ndash;&gt;-->
+<!--&lt;!&ndash;          </el-descriptions-item>&ndash;&gt;-->
+<!--        </el-descriptions>-->
 
 
         <el-divider content-position="center">出库商品明细</el-divider>
-        <el-table :data="wmsStockOutEntryItemList" :row-class-name="rowWmsStockOutEntryItemIndex" ref="wmsStockOutEntryItem">
+        <el-table :data="items" :row-class-name="rowWmsStockOutEntryItemIndex" ref="wmsStockOutEntryItem">
 <!--          <el-table-column type="selection" width="50" align="center" />-->
           <el-table-column label="序号" align="center" prop="index" width="50"/>
           <el-table-column label="商品图片" prop="colorImage" >
@@ -180,6 +180,7 @@
 <script>
 
 import {listOrderStockOutEntryItem} from "@/api/wms/shipping";
+import {getStockOutEntryItem} from "@/api/wms/stockOutEntry";
 export default {
   name: "StockOutEntryItem",
   data() {
@@ -201,7 +202,7 @@ export default {
       // 出库单表格数据
       stockOutEntryList: [],
       // 出库单明细表格数据
-      wmsStockOutEntryItemList: [],
+      items: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -278,7 +279,7 @@ export default {
         specUnit: null,
         specUnitTotal: null
       };
-      this.wmsStockOutEntryItemList = [];
+      this.items = [];
       this.resetForm("form");
     },
     /** 搜索按钮操作 */
@@ -301,9 +302,9 @@ export default {
     handleStockOut(row) {
       this.reset();
       const id = row.id || this.ids
-      getStockOutEntry(id).then(response => {
-        this.form = response.data;
-        this.wmsStockOutEntryItemList = response.data.wmsStockOutEntryItemList;
+      getStockOutEntryItem(id).then(response => {
+        // this.form = response.data;
+        this.items.push(response. data);
         // this.wmsStockOutEntryItemList.forEach(x=>{
         //   x.inventoryId = null;
         //   x.outQty = null

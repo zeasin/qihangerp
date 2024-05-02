@@ -2,6 +2,8 @@ package cn.qihangerp.api.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 /**
@@ -13,7 +15,7 @@ public class WmsStockOutEntryItem implements Serializable {
     /**
      * 主键ID
      */
-    private Long id;
+    private String id;
 
     /**
      * 出库类型1订单拣货出库2采购退货出库3盘点出库4报损出库
@@ -89,6 +91,9 @@ public class WmsStockOutEntryItem implements Serializable {
      * 
      */
     private Date updateTime;
+
+    @TableField(exist = false)
+    private Long supplierId;
 
     private static final long serialVersionUID = 1L;
 }

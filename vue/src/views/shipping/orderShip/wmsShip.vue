@@ -256,12 +256,12 @@
 </template>
 
 <script>
-import {listShipping, getShipping, generateStockOutEntry, orderItemSpecIdUpdate} from "@/api/wms/shipping";
+import {listShipOrder} from "@/api/shipping/shipOrder";
 import { listShop } from "@/api/shop/shop";
 import supplier from "@/views/scm/supplier/index.vue";
 import {listSupplier} from "@/api/scm/supplier";
 export default {
-  name: "wsmShip",
+  name: "wsmShipOrder",
   computed: {
     supplier() {
       return supplier
@@ -293,14 +293,13 @@ export default {
       // 查询参数
       queryParams: {
         pageNum: 1,
-        pageSize: 100,
+        pageSize: 10,
         shopId: null,
         goodsId: null,
         specId: null,
-        goodsNum: null,
-        goodsSpec: null,
-        specNum: null,
-        status: null,
+        shipType: 0,
+        shipStatus: 1,
+        specNum: null
       },
       // 表单参数
       form: {
@@ -350,11 +349,7 @@ export default {
     listShop({}).then(response => {
         this.shopList = response.rows;
       });
-    if(this.$route.query.status){
-      this.queryParams.status = this.$route.query.status
-    }else {
-      this.queryParams.status = '0'
-    }
+
     this.getList();
   },
   methods: {
@@ -364,7 +359,7 @@ export default {
     /** 查询仓库订单发货列表 */
     getList() {
       this.loading = true;
-      listShipping(this.queryParams).then(response => {
+      listShipOrder(this.queryParams).then(response => {
         this.shippingList = response.rows;
         this.total = response.total;
         this.loading = false;

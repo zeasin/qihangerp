@@ -2,6 +2,9 @@ package cn.qihangerp.api.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 /**
@@ -109,6 +112,9 @@ public class WmsStockOutEntry implements Serializable {
      * 更新人
      */
     private String updateBy;
+
+    @TableField(exist = false)
+    private List<WmsStockOutEntryItem> items;
 
     private static final long serialVersionUID = 1L;
 }

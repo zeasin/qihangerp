@@ -17,6 +17,13 @@ export function getStockOutEntry(id) {
   })
 }
 
+export function getStockOutEntryItem(id) {
+  return request({
+    url: '/wms/stockOutEntry/item/' + id,
+    method: 'get'
+  })
+}
+
 // 出库
 export function stockOut(data) {
   return request({

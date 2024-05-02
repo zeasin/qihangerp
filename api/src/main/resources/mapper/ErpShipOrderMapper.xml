@@ -8,6 +8,7 @@
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
             <result property="shopType" column="shop_type" jdbcType="INTEGER"/>
+            <result property="supplierId" column="supplier_id" jdbcType="INTEGER"/>
             <result property="orderNum" column="order_num" jdbcType="VARCHAR"/>
             <result property="erpOrderId" column="erp_order_id" jdbcType="BIGINT"/>
             <result property="erpOrderItemId" column="erp_order_item_id" jdbcType="BIGINT"/>
@@ -49,18 +50,18 @@
 
     <sql id="Base_Column_List">
         id,shop_id,shop_type,
-        order_num,erp_order_id,erp_order_item_id,
-        order_time,goods_id,spec_id,
-        spec_num,quantity,remark,
-        logistics_company,ewaybill_code,logistics_fee,
-        ship_time,ship_man,out_operator,
-        out_position,out_time,ship_type,
-        ship_status,package_weight,package_length,
-        package_width,package_height,packsge_operator,
-        packsge_time,packages,receiver_name,
-        receiver_phone,address,country,
-        province,city,town,
-        create_time,create_by,update_time,
-        update_by
+        supplier_id,order_num,erp_order_id,
+        erp_order_item_id,order_time,goods_id,
+        spec_id,spec_num,quantity,
+        remark,logistics_company,ewaybill_code,
+        logistics_fee,ship_time,ship_man,
+        out_operator,out_position,out_time,
+        ship_type,ship_status,package_weight,
+        package_length,package_width,package_height,
+        packsge_operator,packsge_time,packages,
+        receiver_name,receiver_phone,address,
+        country,province,city,
+        town,create_time,create_by,
+        update_time,update_by
     </sql>
 </mapper>

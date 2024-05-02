@@ -245,11 +245,10 @@
 </template>
 
 <script>
-import { listAgentShipping, getAgentShipping, delAgentShipping, addAgentShipping, updateAgentShipping } from "@/api/scm/agentShipping";
+import {listShipOrder} from "@/api/shipping/shipOrder";
 import { listSupplier} from "@/api/scm/supplier";
 import { listShop } from "@/api/shop/shop";
 import {listLogistics} from "@/api/shipping/logistics";
-import {listShippingSupplier} from "@/api/wms/shipping";
 export default {
   name: "supplierShip",
   data() {
@@ -277,10 +276,11 @@ export default {
         pageNum: 1,
         pageSize: 10,
         shopId: null,
-        shopType: null,
-        supplierId: null,
-        orderNum: null,
-        orderItemId: null
+        goodsId: null,
+        specId: null,
+        shipType: 1,
+        shipStatus: 1,
+        specNum: null
       },
       shopList: [],
       logisticsList:[],
@@ -327,7 +327,7 @@ export default {
     /** 查询供应商代发货列表 */
     getList() {
       this.loading = true;
-      listShippingSupplier(this.queryParams).then(response => {
+      listShipOrder(this.queryParams).then(response => {
         this.agentShippingList = response.rows;
         this.total = response.total;
         this.loading = false;

@@ -1,6 +1,7 @@
 package cn.qihangerp.api.service;
 
 import cn.qihangerp.api.domain.bo.OrderItemSpecIdUpdateBo;
+import cn.qihangerp.api.domain.bo.SupplierShipDistBo;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.enums.ErpOrderStatusEnum;
@@ -16,4 +17,11 @@ public interface ErpOrderItemService extends IService<ErpOrderItem> {
     PageResult<ErpOrderItem> queryPageList(ErpOrderStatusEnum status, Integer shipStatus, ErpOrderItem bo, PageQuery pageQuery);
 
     int orderItemSpecIdUpdate(OrderItemSpecIdUpdateBo bo);
+
+    /**
+     * 分配给供应商发货
+     * @param bo
+     * @return
+     */
+    int distributeSupplierShip(SupplierShipDistBo bo);
 }

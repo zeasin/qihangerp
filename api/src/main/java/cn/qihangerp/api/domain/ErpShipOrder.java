@@ -26,6 +26,11 @@ public class ErpShipOrder implements Serializable {
     private Integer shopType;
 
     /**
+     * erp系统商品id
+     */
+    private Long supplierId;
+
+    /**
      * 订单编号
      */
     private String orderNum;
@@ -38,7 +43,7 @@ public class ErpShipOrder implements Serializable {
     /**
      * erp子订单ID
      */
-    private Long erpOrderItemId;
+    private String erpOrderItemId;
 
     /**
      * 订单日期

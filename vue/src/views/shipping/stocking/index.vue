@@ -211,19 +211,19 @@
     <!-- 分配供应商发货对话框 -->
     <el-dialog title="分配供应商发货" :visible.sync="supplierShipOpen" width="800px" append-to-body>
       <el-form ref="form1" :model="form1" :rules="rules1" label-width="80px" inline>
-        <el-form-item label="供应商" prop="supplierId" >
-          <el-select
-            v-model="form1.supplierId"
-            filterable
-            placeholder="请选择供应商">
-            <el-option
-              v-for="item in supplierList"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id">
-            </el-option>
-          </el-select>
-        </el-form-item>
+<!--        <el-form-item label="供应商" prop="supplierId" >-->
+<!--          <el-select-->
+<!--            v-model="form1.supplierId"-->
+<!--            filterable-->
+<!--            placeholder="请选择供应商">-->
+<!--            <el-option-->
+<!--              v-for="item in supplierList"-->
+<!--              :key="item.id"-->
+<!--              :label="item.name"-->
+<!--              :value="item.id">-->
+<!--            </el-option>-->
+<!--          </el-select>-->
+<!--        </el-form-item>-->
 
         <el-divider content-position="center" >待发货商品清单</el-divider>
         <el-table :data="skuList" :row-class-name="rowItemIndex" ref="skuItem">
@@ -237,6 +237,11 @@
           <el-table-column label="规格" prop="goodsSpec" ></el-table-column>
           <el-table-column label="sku编码" prop="specNum" ></el-table-column>
           <el-table-column label="数量" prop="quantity"></el-table-column>
+          <el-table-column label="供应商" prop="supplierId">
+            <template slot-scope="scope">
+              <span v-if="scope.row.supplierId">{{ supplierList.find(x=>x.id === scope.row.supplierId).name  }}</span>
+            </template>
+          </el-table-column>
         </el-table>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -266,7 +271,7 @@
 </template>
 
 <script>
-import {listShipping, getShipping, generateStockOutEntry, orderItemSpecIdUpdate} from "@/api/wms/shipping";
+import {listShipping, distributeSupplierShip, generateStockOutEntry, orderItemSpecIdUpdate} from "@/api/wms/shipping";
 import { listShop } from "@/api/shop/shop";
 import supplier from "@/views/scm/supplier/index.vue";
 import {listSupplier} from "@/api/scm/supplier";
@@ -542,11 +547,11 @@ export default {
             this.$modal.msgError("请选择代发货商品");
           }
           this.form.orderItemIds = this.ids;
-          // generateStockOutEntry(this.form).then(response => {
-          //   this.$modal.msgSuccess("拣货单生成成功");
-          //   this.open = false;
-          //   this.getList();
-          // });
+          distributeSupplierShip(this.form).then(response => {
+            this.$modal.msgSuccess("分配成功");
+            this.supplierShipOpen = false;
+            this.getList();
+          });
 
         }
       });

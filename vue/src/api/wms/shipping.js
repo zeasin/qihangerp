@@ -26,6 +26,14 @@ export function generateStockOutEntry(data) {
   })
 }
 
+// 分配给供应商发货
+export function distributeSupplierShip(data) {
+  return request({
+    url: '/shipping/supplier_ship_dist',
+    method: 'post',
+    data: data
+  })
+}
 
 // 订单待出库列表
 export function listOrderStockOutEntry(query) {

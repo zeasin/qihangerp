@@ -217,11 +217,13 @@
       </el-form>
 
     </el-dialog>
+
+
   </div>
 </template>
 
 <script>
-// import { listStockOutEntry, getStockOutEntry, delStockOutEntry, addStockOutEntry, stockOut } from "@/api/wms/stockOutEntry";
+import { listStockOutEntry, getStockOutEntry, delStockOutEntry, addStockOutEntry, stockOut } from "@/api/wms/stockOutEntry";
 import {listOrderStockOutEntry} from "@/api/wms/shipping";
 export default {
   name: "StockOutEntry",
@@ -346,7 +348,7 @@ export default {
       const id = row.id || this.ids
       getStockOutEntry(id).then(response => {
         this.form = response.data;
-        this.wmsStockOutEntryItemList = response.data.wmsStockOutEntryItemList;
+        this.wmsStockOutEntryItemList = response.data.items;
         // this.wmsStockOutEntryItemList.forEach(x=>{
         //   x.inventoryId = null;
         //   x.outQty = null

@@ -18,4 +18,5 @@ public interface WmsStockOutEntryService extends IService<WmsStockOutEntry> {
     PageResult<WmsStockOutEntry> queryPageList(WmsStockOutEntry bo, PageQuery pageQuery);
 
     int stockOut(StockOutBo bo);
+    WmsStockOutEntry selectById(Long id);
 }

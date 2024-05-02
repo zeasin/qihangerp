@@ -71,6 +71,7 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
                     item.setOutQuantity(0);
                     item.setStatus(0);
                     item.setCreateTime(new Date());
+                    item.setSupplierId(erpOrderItem.getSupplierId());
                     items.add(item);
 
                     total += erpOrderItem.getQuantity();
@@ -106,6 +107,7 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
         for (var item:items) {
             ErpOrderItem orderItem = new ErpOrderItem();
             orderItem.setId(item.getSourceOrderItemId().toString());
+            orderItem.setShipType(0);
             orderItem.setShipStatus(1);
             orderItem.setUpdateTime(new Date());
             orderItem.setUpdateBy("生成拣货单");
@@ -120,6 +122,7 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
                 ErpOrder orderUpdate = new ErpOrder();
                 orderUpdate.setId(item.getSourceOrderId());
                 orderUpdate.setShipStatus(1);
+                orderUpdate.setShipType(0);
                 orderUpdate.setUpdateTime(new Date());
                 orderUpdate.setUpdateBy("生成拣货单");
                 orderMapper.updateErpOrder(orderUpdate);
@@ -129,10 +132,11 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
             ErpShipOrder shipOrder = new ErpShipOrder();
             shipOrder.setShopId(erpOrder.getShopId());
             shipOrder.setShopType(erpOrder.getShopType());
+            shipOrder.setSupplierId(item.getSupplierId());
             shipOrder.setOrderNum(erpOrder.getOrderNum());
             shipOrder.setOrderTime(erpOrder.getOrderTime());
             shipOrder.setErpOrderId(item.getSourceOrderId());
-            shipOrder.setErpOrderItemId(item.getSourceOrderItemId());
+            shipOrder.setErpOrderItemId(item.getSourceOrderItemId().toString());
             shipOrder.setGoodsId(item.getGoodsId());
             shipOrder.setSpecId(item.getSpecId());
             shipOrder.setSpecNum(item.getSpecNum());
@@ -197,7 +201,7 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
         // 第一步：新增 wms_stock_out_entry_item_detail
         WmsStockOutEntryItemDetail itemDetail = new WmsStockOutEntryItemDetail();
         itemDetail.setEntryId(Long.parseLong(item.getEntryId()));
-        itemDetail.setEntryItemId(item.getId());
+        itemDetail.setEntryItemId(Long.parseLong(item.getId()));
         itemDetail.setGoodsInventoryId(detail.getInventoryId());
         itemDetail.setGoodsInventoryDetailId(detail.getId());
         itemDetail.setQuantity(bo.getOutQty());
@@ -277,6 +281,15 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
 //            }
 //        }
         return 1;
+    }
+
+    @Override
+    public WmsStockOutEntry selectById(Long id) {
+        WmsStockOutEntry wmsStockOutEntry = entryMapper.selectById(id);
+        if(wmsStockOutEntry!=null) {
+            wmsStockOutEntry.setItems(entryItemMapper.selectList(new LambdaQueryWrapper<WmsStockOutEntryItem>().eq(WmsStockOutEntryItem::getEntryId,wmsStockOutEntry.getId())));
+        }
+        return wmsStockOutEntry;
     }
 }
 

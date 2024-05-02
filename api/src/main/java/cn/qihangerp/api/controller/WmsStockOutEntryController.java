@@ -1,5 +1,7 @@
 package cn.qihangerp.api.controller;
 
+import cn.qihangerp.api.domain.WmsStockOutEntryItem;
+import cn.qihangerp.api.service.WmsStockOutEntryItemService;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.api.domain.bo.StockOutBo;
 import cn.qihangerp.api.service.WmsStockOutEntryService;
@@ -31,6 +33,8 @@ public class WmsStockOutEntryController extends BaseController
 {
     @Autowired
     private WmsStockOutEntryService wmsStockOutEntryService;
+    @Autowired
+    private WmsStockOutEntryItemService wmsStockOutEntryItemService;
 
     /**
      * 查询出库单列表
@@ -63,9 +67,19 @@ public class WmsStockOutEntryController extends BaseController
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
-        return success(wmsStockOutEntryService.getById(id));
-    }
+//        WmsStockOutEntry entry = wmsStockOutEntryService.selectById(id);
 
+        return success(wmsStockOutEntryService.selectById(id));
+    }
+    /**
+     * 获取出库明细详情详细信息
+     */
+
+    @GetMapping(value = "/item/{id}")
+    public AjaxResult getItemInfo(@PathVariable("id") Long id)
+    {
+        return success(wmsStockOutEntryItemService.getById(id));
+    }
     /**
      * 出库操作
      * @param bo

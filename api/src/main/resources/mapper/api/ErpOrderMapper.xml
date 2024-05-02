@@ -219,6 +219,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="tag != null">tag = #{tag},</if>
             <if test="refundStatus != null">refund_status = #{refundStatus},</if>
             <if test="orderStatus != null">order_status = #{orderStatus},</if>
+            <if test="shipStatus != null">ship_status = #{shipStatus},</if>
+            <if test="shipType != null">ship_type = #{shipType},</if>
             <if test="goodsAmount != null">goods_amount = #{goodsAmount},</if>
             <if test="discountAmount != null">discount_amount = #{discountAmount},</if>
             <if test="postage != null">postage = #{postage},</if>
