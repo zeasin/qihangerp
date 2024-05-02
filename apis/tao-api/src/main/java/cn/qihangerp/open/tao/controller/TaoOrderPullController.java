@@ -26,7 +26,9 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -74,13 +76,12 @@ public class TaoOrderPullController {
         String appKey = checkResult.getData().getAppKey();
         String appSecret = checkResult.getData().getAppSecret();
 
-
         log.info("/**************主动更新tao订单，条件判断完成，开始更新。。。。。。****************/");
+        LocalDateTime entTime = LocalDateTime.now();
+        LocalDateTime currTime = entTime.minusDays(1);
 
-
-        //第一次获取
-//        TaoBaoOpenOrderUpdResult<TaoOrder> upResult = TaoBaoOpenOrderUpdHelper.updTmallOrder(appKey, appSecret, sessionKey);
-        ApiResultVo<TradeList> tradeBeanApiResultVo = OrderApiHelper.pullTradeList(appKey, appSecret, sessionKey);
+        // 从接口获取订单数据
+        ApiResultVo<TradeList> tradeBeanApiResultVo = OrderApiHelper.pullTradeList(currTime,entTime,appKey, appSecret, sessionKey);
         if (tradeBeanApiResultVo.getCode()== ResultVoEnum.SUCCESS.getIndex()){
             log.info("/**************主动更新tao订单：第一次获取结果：总记录数" + tradeBeanApiResultVo.getTotalRecords() + "****************/");
             int insertSuccess = 0;//新增成功的订单
