@@ -1,11 +1,11 @@
 package cn.qihangerp.api.pdd.controller;
 
-
-import cn.qihangerp.api.service.IShopService;
+import cn.qihangerp.api.pdd.service.IPddOrderService;
 import cn.qihangerp.core.config.ServerConfig;
 import com.pdd.pop.sdk.http.PopAccessTokenClient;
 import com.pdd.pop.sdk.http.token.AccessTokenResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import org.checkerframework.checker.units.qual.A;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.io.IOException;
 @Controller
 public class PddOAuthController {
     @Autowired
-    private IShopService shopService;
+    private IPddOrderService pddOrderService;
     @Autowired
     private ServerConfig serverConfig;
     private static Logger log = LoggerFactory.getLogger(PddOAuthController.class);
@@ -28,7 +28,7 @@ public class PddOAuthController {
     @RequestMapping("/oauth")
     public String oauth(HttpServletRequest req) {
         String returnUrl = serverConfig.getUrl() + "/pdd_api/getToken&state="+req.getParameter("shopId");
-        var shop = shopService.selectShopById(Long.parseLong(req.getParameter("shopId")));
+        var shop = pddOrderService.selectShopById(Long.parseLong(req.getParameter("shopId")));
 
         String appKey = shop.getAppkey();
         String appSercet = shop.getAppSercet();
@@ -43,7 +43,7 @@ public class PddOAuthController {
         String code = req.getParameter("code");
 
         Long shopId =Long.parseLong(req.getParameter("state"));
-        var shop = shopService.selectShopById(shopId);
+        var shop = pddOrderService.selectShopById(shopId);
         String appKey = shop.getAppkey();
         String appSercet = shop.getAppSercet();
         PopAccessTokenClient accessTokenClient = new PopAccessTokenClient(appKey, appSercet);
@@ -57,7 +57,7 @@ public class PddOAuthController {
                 //保存accessToken
                 System.out.println(shopId +"--token:" + response.getAccessToken()+",thirdId:"+response.getOwnerId()+",shopId:"+shopId);
 
-                shopService.updateSessionKey(shopId,Long.parseLong(response.getOwnerId()),response.getAccessToken());
+                pddOrderService.updateShopSessionByShopId(shopId,response.getAccessToken());
 
 //                thirdSettingService.updateEntity(shopId, response.getAccessToken(), response.getRefreshToken(), response.getExpiresIn(),response.getOwnerId());
                 return "redirect:/pdd/getTokenSuccess?mallId="+response.getOwnerId();
@@ -86,7 +86,7 @@ public class PddOAuthController {
      */
     @RequestMapping("/getTokenSuccess")
     public String getTokeSuccess(HttpServletRequest req, @RequestParam Long mallId, Model model){
-        var shop = shopService.selectShopById(mallId);
+        var shop = pddOrderService.selectShopById(mallId);
         model.addAttribute("shop",shop);
         model.addAttribute("shopId",shop.getId());
         return "get_token_success";

@@ -56,7 +56,7 @@ public class TaoOrderPullController {
      *
      * @param req
      * @return
-     * @throws ApiException
+     * @throws
      */
     @GetMapping("/order/pull_order")
     @ResponseBody

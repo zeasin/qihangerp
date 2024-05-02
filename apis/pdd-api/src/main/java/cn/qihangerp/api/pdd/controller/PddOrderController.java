@@ -1,7 +1,7 @@
 package cn.qihangerp.api.pdd.controller;
 
-import cn.qihangerp.api.domain.PddOrder;
-import cn.qihangerp.api.service.IPddOrderService;
+import cn.qihangerp.api.pdd.domain.PddOrder;
+import cn.qihangerp.api.pdd.service.IPddOrderService;
 import cn.qihangerp.common.annotation.Log;
 import cn.qihangerp.common.enums.BusinessType;
 import cn.qihangerp.common.utils.poi.ExcelUtil;

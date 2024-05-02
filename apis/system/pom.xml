@@ -5,7 +5,7 @@
     <parent>
         <groupId>cn.qihangerp</groupId>
         <artifactId>apis</artifactId>
-        <version>1.4.17</version>
+        <version>2.0.1</version>
 
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -82,57 +82,8 @@
         <dependency>
             <groupId>cn.qihangerp</groupId>
             <artifactId>commons</artifactId>
-            <version>1.4.17</version>
+            <version>2.0.1</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.qihang</groupId>-->
-<!--            <artifactId>core</artifactId>-->
-<!--            <version>0.4.13</version>-->
-<!--        </dependency>-->
-
-
-        <!-- 定时任务-->
-<!--        <dependency>-->
-<!--            <groupId>com.zhijian</groupId>-->
-<!--            <artifactId>zhijian-quartz</artifactId>-->
-<!--        </dependency>-->
-
-        <!-- 代码生成-->
-<!--        <dependency>-->
-<!--            <groupId>com.zhijian</groupId>-->
-<!--            <artifactId>zhijian-generator</artifactId>-->
-<!--        </dependency>-->
-
     </dependencies>
-
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                <version>2.1.1.RELEASE</version>-->
-<!--                <configuration>-->
-<!--                    <fork>true</fork> &lt;!&ndash; 如果没有该配置，devtools不会生效 &ndash;&gt;-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>repackage</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-<!--            <plugin>   -->
-<!--                <groupId>org.apache.maven.plugins</groupId>   -->
-<!--                <artifactId>maven-war-plugin</artifactId>   -->
-<!--                <version>3.1.0</version>   -->
-<!--                <configuration>-->
-<!--                    <failOnMissingWebXml>false</failOnMissingWebXml>-->
-<!--                    <warName>${project.artifactId}</warName>-->
-<!--                </configuration>   -->
-<!--           </plugin>   -->
-<!--        </plugins>-->
-<!--        <finalName>${project.artifactId}</finalName>-->
-<!--    </build>-->
 
 </project>

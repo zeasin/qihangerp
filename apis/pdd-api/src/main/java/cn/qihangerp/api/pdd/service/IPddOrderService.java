@@ -75,4 +75,6 @@ public interface IPddOrderService
     ShopSetting selectShopSettingById(Long id);
 
     void updateShopSessionByShopId(Long shopId,String sessionKey);
+
+
 }

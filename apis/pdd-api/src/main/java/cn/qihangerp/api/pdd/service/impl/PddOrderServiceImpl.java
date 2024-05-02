@@ -35,12 +35,12 @@ public class PddOrderServiceImpl implements IPddOrderService
 {
     @Autowired
     private PddOrderMapper pddOrderMapper;
-    @Autowired
-    private ErpOrderMapper erpOrderMapper;
-    @Autowired
-    private GoodsMapper goodsMapper;
-    @Autowired
-    private GoodsSpecMapper goodsSpecMapper;
+//    @Autowired
+//    private ErpOrderMapper erpOrderMapper;
+//    @Autowired
+//    private GoodsMapper goodsMapper;
+//    @Autowired
+//    private GoodsSpecMapper goodsSpecMapper;
     /**
      * 查询拼多多订单
      * 
@@ -143,143 +143,143 @@ public class PddOrderServiceImpl implements IPddOrderService
             // 1 供应商发货 0 仓库发货
             return -5;
         }
-        // 判断是否存在
-        ErpOrder erpo = erpOrderMapper.selectErpOrderByNum(original.getOrderSn());
-        if(erpo !=null ) return -4;
-
-        // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
-        ErpOrder so = new ErpOrder();
-        so.setOrderNum(original.getOrderSn());
-        so.setShopId(original.getShopId().intValue());
-        so.setShopType(EnumShopType.Pdd.getIndex());
-        so.setShipType(pddOrder.getShipType());
-        so.setRemark(original.getRemark());
-        so.setBuyerMemo(original.getBuyerMemo());
-        so.setTag(original.getTag());
-        so.setRefundStatus(1);
-        so.setOrderStatus(1);
-        so.setShipStatus(0);
-        so.setGoodsAmount(original.getGoodsAmount());
-        so.setDiscountAmount(BigDecimal.valueOf(original.getDiscountAmount()));
-        so.setAmount(original.getPayAmount());
-        so.setPostage(BigDecimal.valueOf(original.getPostage()));
-        try {
-            //2022-07-17 17:10:57
-            Date payDate = DateUtils.dateTime("yyyy-MM-dd HH:mm:ss", original.getPayTime());
-            so.setPayTime(payDate);
-        }catch (Exception e){}
-
-        so.setReceiverName(original.getReceiverName1());
-        so.setReceiverPhone(original.getReceiverPhone1());
-        so.setAddress(original.getReceiverAddress1());
-        so.setCountry("中国");
-        so.setProvince(original.getProvince());
-        so.setCity(original.getCity());
-        so.setTown(original.getTown());
-        so.setConfirmTime(new Date());
-        so.setCreateTime(new Date());
-        so.setCreateBy(pddOrder.getUpdateBy());
-        erpOrderMapper.insertErpOrder(so);
-
-        // 添加Erp_order_item
-        List<PddOrderItem> orderItems = pddOrderMapper.selectOrderItemByOrderId(pddOrder.getId());
-        List<ErpOrderItem> items = new ArrayList<>();
-        for (var i:orderItems) {
-            if(StringUtils.isEmpty(i.getSpecNum())){
-                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                return -11;
-            }
-            GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNum());
-            if (spec == null) {
-                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                return -11;
-            }
-            Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-            if(goods == null) {
-                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                return -12;
-            }
-
-            ErpOrderItem item = new ErpOrderItem();
-            item.setShipStatus(0);
-            item.setShipType(pddOrder.getShipType());
-            item.setShopId(original.getShopId().intValue());
-            item.setOrderId(so.getId());
-            item.setOrderNum(original.getOrderSn());
-            item.setOrderItemNum(i.getId()+"");
-            item.setSupplierId(goods.getSupplierId().intValue());
-            item.setGoodsId(spec.getGoodsId());
-            item.setSpecId(spec.getId());
-            item.setGoodsTitle(i.getGoodsName());
-            item.setGoodsImg(i.getGoodsImage());
-            item.setGoodsNum(i.getGoodsNum());
-            item.setSpecNum(i.getSpecNum());
-            item.setGoodsSpec(i.getGoodsSpec());
-            item.setGoodsPrice(i.getGoodsPrice());
-//            item.setGoodsPurPrice(spec.getPurPrice());
-            item.setItemAmount(i.getItemAmount());
-            item.setQuantity(i.getQuantity());
-            item.setIsGift(i.getIsGift().intValue());
-            item.setRefundCount(0);
-            item.setRefundStatus(1);
-            item.setCreateBy(pddOrder.getUpdateBy());
-            item.setCreateTime(new Date());
-            items.add(item);
-        }
-        // 添加了赠品
-        if(pddOrder.getPddOrderItemList()!=null && !pddOrder.getPddOrderItemList().isEmpty()) {
-            for (var i : pddOrder.getPddOrderItemList()) {
-                if(StringUtils.isEmpty(i.getSpecNum())) {
-                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                    return -11;
-                }
-                GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNum());
-                if (spec == null) {
-                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                    return -11;
-                }
-                Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-                if(goods == null) {
-                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-                    return -12;
-                }
-
-                ErpOrderItem item = new ErpOrderItem();
-                item.setShipStatus(0);
-                item.setShipType(pddOrder.getShipType());
-                item.setShopId(original.getShopId().intValue());
-                item.setOrderNum(original.getOrderSn());
-                item.setOrderId(so.getId());
-                item.setOrderItemNum(pddOrder.getId()+"_");
-                item.setSupplierId(goods.getSupplierId().intValue());
-                item.setGoodsId(spec.getGoodsId());
-                item.setSpecId(spec.getId());
-                item.setGoodsTitle(i.getGoodsName());
-                item.setGoodsImg(i.getGoodsImage());
-                item.setGoodsNum(i.getGoodsNum());
-                item.setSpecNum(i.getSpecNum());
-                item.setGoodsSpec(i.getGoodsSpec());
-                item.setGoodsPrice(i.getGoodsPrice());
-//                item.setGoodsPurPrice(spec.getPurPrice());
-                item.setItemAmount(i.getItemAmount());
-                item.setQuantity(i.getQuantity());
-                item.setIsGift(1);
-                item.setRefundCount(0);
-                item.setRefundStatus(1);
-                item.setCreateBy(pddOrder.getUpdateBy());
-                item.setCreateTime(new Date());
-                items.add(item);
-            }
-        }
-        erpOrderMapper.batchErpOrderItem(items);
-
-        //更新自己
-        PddOrder po =new PddOrder();
-        po.setId(original.getId());
-        po.setAuditStatus(1L);
-        po.setUpdateBy(pddOrder.getUpdateBy());
-        po.setUpdateTime(new Date());
-        pddOrderMapper.updatePddOrder(po);
+//        // 判断是否存在
+//        ErpOrder erpo = erpOrderMapper.selectErpOrderByNum(original.getOrderSn());
+//        if(erpo !=null ) return -4;
+//
+//        // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
+//        ErpOrder so = new ErpOrder();
+//        so.setOrderNum(original.getOrderSn());
+//        so.setShopId(original.getShopId().intValue());
+//        so.setShopType(EnumShopType.Pdd.getIndex());
+//        so.setShipType(pddOrder.getShipType());
+//        so.setRemark(original.getRemark());
+//        so.setBuyerMemo(original.getBuyerMemo());
+//        so.setTag(original.getTag());
+//        so.setRefundStatus(1);
+//        so.setOrderStatus(1);
+//        so.setShipStatus(0);
+//        so.setGoodsAmount(original.getGoodsAmount());
+//        so.setDiscountAmount(BigDecimal.valueOf(original.getDiscountAmount()));
+//        so.setAmount(original.getPayAmount());
+//        so.setPostage(BigDecimal.valueOf(original.getPostage()));
+//        try {
+//            //2022-07-17 17:10:57
+//            Date payDate = DateUtils.dateTime("yyyy-MM-dd HH:mm:ss", original.getPayTime());
+//            so.setPayTime(payDate);
+//        }catch (Exception e){}
+//
+//        so.setReceiverName(original.getReceiverName1());
+//        so.setReceiverPhone(original.getReceiverPhone1());
+//        so.setAddress(original.getReceiverAddress1());
+//        so.setCountry("中国");
+//        so.setProvince(original.getProvince());
+//        so.setCity(original.getCity());
+//        so.setTown(original.getTown());
+//        so.setConfirmTime(new Date());
+//        so.setCreateTime(new Date());
+//        so.setCreateBy(pddOrder.getUpdateBy());
+//        erpOrderMapper.insertErpOrder(so);
+//
+//        // 添加Erp_order_item
+//        List<PddOrderItem> orderItems = pddOrderMapper.selectOrderItemByOrderId(pddOrder.getId());
+//        List<ErpOrderItem> items = new ArrayList<>();
+//        for (var i:orderItems) {
+//            if(StringUtils.isEmpty(i.getSpecNum())){
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                return -11;
+//            }
+//            GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNum());
+//            if (spec == null) {
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                return -11;
+//            }
+//            Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
+//            if(goods == null) {
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                return -12;
+//            }
+//
+//            ErpOrderItem item = new ErpOrderItem();
+//            item.setShipStatus(0);
+//            item.setShipType(pddOrder.getShipType());
+//            item.setShopId(original.getShopId().intValue());
+//            item.setOrderId(so.getId());
+//            item.setOrderNum(original.getOrderSn());
+//            item.setOrderItemNum(i.getId()+"");
+//            item.setSupplierId(goods.getSupplierId().intValue());
+//            item.setGoodsId(spec.getGoodsId());
+//            item.setSpecId(spec.getId());
+//            item.setGoodsTitle(i.getGoodsName());
+//            item.setGoodsImg(i.getGoodsImage());
+//            item.setGoodsNum(i.getGoodsNum());
+//            item.setSpecNum(i.getSpecNum());
+//            item.setGoodsSpec(i.getGoodsSpec());
+//            item.setGoodsPrice(i.getGoodsPrice());
+////            item.setGoodsPurPrice(spec.getPurPrice());
+//            item.setItemAmount(i.getItemAmount());
+//            item.setQuantity(i.getQuantity());
+//            item.setIsGift(i.getIsGift().intValue());
+//            item.setRefundCount(0);
+//            item.setRefundStatus(1);
+//            item.setCreateBy(pddOrder.getUpdateBy());
+//            item.setCreateTime(new Date());
+//            items.add(item);
+//        }
+//        // 添加了赠品
+//        if(pddOrder.getPddOrderItemList()!=null && !pddOrder.getPddOrderItemList().isEmpty()) {
+//            for (var i : pddOrder.getPddOrderItemList()) {
+//                if(StringUtils.isEmpty(i.getSpecNum())) {
+//                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                    return -11;
+//                }
+//                GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNum());
+//                if (spec == null) {
+//                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                    return -11;
+//                }
+//                Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
+//                if(goods == null) {
+//                    TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                    return -12;
+//                }
+//
+//                ErpOrderItem item = new ErpOrderItem();
+//                item.setShipStatus(0);
+//                item.setShipType(pddOrder.getShipType());
+//                item.setShopId(original.getShopId().intValue());
+//                item.setOrderNum(original.getOrderSn());
+//                item.setOrderId(so.getId());
+//                item.setOrderItemNum(pddOrder.getId()+"_");
+//                item.setSupplierId(goods.getSupplierId().intValue());
+//                item.setGoodsId(spec.getGoodsId());
+//                item.setSpecId(spec.getId());
+//                item.setGoodsTitle(i.getGoodsName());
+//                item.setGoodsImg(i.getGoodsImage());
+//                item.setGoodsNum(i.getGoodsNum());
+//                item.setSpecNum(i.getSpecNum());
+//                item.setGoodsSpec(i.getGoodsSpec());
+//                item.setGoodsPrice(i.getGoodsPrice());
+////                item.setGoodsPurPrice(spec.getPurPrice());
+//                item.setItemAmount(i.getItemAmount());
+//                item.setQuantity(i.getQuantity());
+//                item.setIsGift(1);
+//                item.setRefundCount(0);
+//                item.setRefundStatus(1);
+//                item.setCreateBy(pddOrder.getUpdateBy());
+//                item.setCreateTime(new Date());
+//                items.add(item);
+//            }
+//        }
+//        erpOrderMapper.batchErpOrderItem(items);
+//
+//        //更新自己
+//        PddOrder po =new PddOrder();
+//        po.setId(original.getId());
+//        po.setAuditStatus(1L);
+//        po.setUpdateBy(pddOrder.getUpdateBy());
+//        po.setUpdateTime(new Date());
+//        pddOrderMapper.updatePddOrder(po);
         return 1;
     }
 

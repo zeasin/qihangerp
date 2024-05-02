@@ -4,7 +4,7 @@
     <parent>
         <groupId>cn.qihangerp</groupId>
         <artifactId>apis</artifactId>
-        <version>1.4.17</version>
+        <version>2.0.1</version>
     </parent>
 
     <groupId>cn.qihangerp.api</groupId>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>cn.qihangerp</groupId>
             <artifactId>commons</artifactId>
-            <version>1.4.17</version>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>kuaishou</groupId>
