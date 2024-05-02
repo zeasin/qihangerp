@@ -2,7 +2,6 @@ package cn.qihangerp.api.service;
 
 import java.util.List;
 
-import cn.qihangerp.api.domain.DouOrder;
 import cn.qihangerp.api.domain.XhsOrder;
 
 /**

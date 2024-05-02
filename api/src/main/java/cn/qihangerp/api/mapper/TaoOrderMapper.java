@@ -2,7 +2,7 @@
 //
 //import java.util.List;
 //
-//import cn.qihangerp.api.domain.DouOrderItem;
+//import cn.qihangerp.api.dou.domain.DouOrderItem;
 //import cn.qihangerp.api.domain.TaoOrder;
 //import cn.qihangerp.api.domain.TaoOrderItem;
 //import org.apache.ibatis.annotations.Mapper;
