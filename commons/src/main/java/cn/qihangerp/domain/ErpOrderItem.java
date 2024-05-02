@@ -127,10 +127,10 @@ public class ErpOrderItem implements Serializable {
 
     private Integer shipType;
     private Integer shipStatus;
-    private Date shippingTime;
-    private String shippingNumber;
-    private String shippingCompany;
-    private String shippingMan;
+    private String shipTime;
+    private String logisticsCode;
+    private String logisticsCompany;
+    private String shipMan;
     private Integer orderStatus;
 
     private static final long serialVersionUID = 1L;

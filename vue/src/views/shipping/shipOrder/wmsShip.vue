@@ -136,8 +136,7 @@
 <!--      <el-table-column label="仓库库存" align="center" prop="inventory" />-->
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.shipStatus === 0">待备货</el-tag>
-          <el-tag size="small" v-if="scope.row.shipStatus === 1">备货中</el-tag>
+          <el-tag size="small" v-if="scope.row.shipStatus === 1">出库中</el-tag>
           <el-tag size="small" v-if="scope.row.shipStatus === 2">已出库</el-tag>
         </template>
       </el-table-column>

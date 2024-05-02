@@ -13,7 +13,7 @@ public class ErpShipOrder implements Serializable {
     /**
      * 主键ID
      */
-    private Long id;
+    private String id;
 
     /**
      * 店铺ID
@@ -83,17 +83,17 @@ public class ErpShipOrder implements Serializable {
     /**
      * 物流单号
      */
-    private String ewaybillCode;
+    private String logisticsCode;
 
     /**
      * 运费
      */
-    private Integer logisticsFee;
+    private Float logisticsFee;
 
     /**
      * 发货时间
      */
-    private Date shipTime;
+    private String shipTime;
 
     /**
      * 发货人

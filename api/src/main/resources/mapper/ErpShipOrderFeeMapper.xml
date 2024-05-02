@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.api.mapper.ErpShipOrderFeeMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.api.domain.ErpShipOrderFee">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="logisticsCompany" column="logistics_company" jdbcType="VARCHAR"/>
+            <result property="logisticsCompanyId" column="logistics_company_id" jdbcType="VARCHAR"/>
+            <result property="logisticsNum" column="logistics_num" jdbcType="VARCHAR"/>
+            <result property="orderNum" column="order_num" jdbcType="VARCHAR"/>
+            <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
+            <result property="amount" column="amount" jdbcType="DECIMAL"/>
+            <result property="date" column="date" jdbcType="DATE"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="length" column="length" jdbcType="FLOAT"/>
+            <result property="width" column="width" jdbcType="FLOAT"/>
+            <result property="height" column="height" jdbcType="FLOAT"/>
+            <result property="weight" column="weight" jdbcType="FLOAT"/>
+            <result property="receiverName" column="receiver_name" jdbcType="VARCHAR"/>
+            <result property="receiverPhone" column="receiver_phone" jdbcType="VARCHAR"/>
+            <result property="province" column="province" jdbcType="VARCHAR"/>
+            <result property="city" column="city" jdbcType="VARCHAR"/>
+            <result property="town" column="town" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,logistics_company,logistics_company_id,
+        logistics_num,order_num,shop_id,
+        amount,date,remark,
+        status,create_time,create_by,
+        update_time,update_by,length,
+        width,height,weight,
+        receiver_name,receiver_phone,province,
+        city,town
+    </sql>
+</mapper>

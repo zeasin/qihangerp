@@ -5,13 +5,15 @@ import java.util.Date;
 import java.util.List;
 
 import cn.qihangerp.api.domain.*;
-import cn.qihangerp.api.mapper.FmsPayableShipFeeMapper;
+import cn.qihangerp.api.mapper.ErpShipOrderFeeMapper;
+import cn.qihangerp.api.mapper.ErpShipOrderMapper;
 import cn.qihangerp.common.ResultVo;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.domain.ErpOrderItem;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -34,7 +36,9 @@ public class ErpOrderServiceImpl implements IErpOrderService
 //    @Autowired
 //    private FmsReceivableOrderMapper fmsReceivableOrderMapper;
     @Autowired
-    private FmsPayableShipFeeMapper fmsPayableShipFeeMapper;
+    private ErpShipOrderFeeMapper shipOrderFeeMapper;
+    @Autowired
+    private ErpShipOrderMapper shipOrderMapper;
 
     /**
      * 查询订单
@@ -123,7 +127,7 @@ public class ErpOrderServiceImpl implements IErpOrderService
             return -3;//发货状态不对
         }
         else if(order.getOrderStatus() != 1 && order.getOrderStatus() != 2) return -2;//状态不对
-        // 发货
+        // 更新订单表状态
         ErpOrder update = new ErpOrder();
         update.setId(order.getId());
         update.setUpdateTime(new Date());
@@ -139,11 +143,12 @@ public class ErpOrderServiceImpl implements IErpOrderService
         update.setLength(erpOrder.getLength());
         update.setOrderStatus(3);
         erpOrderMapper.updateErpOrder(update);
+         // 更新订单子表状态
 
         // 更新 wms_order_shipping
-//        WmsOrderShipping select = new WmsOrderShipping();
-//        select.setErpOrderId(order.getId());
-//        List<WmsOrderShipping> shipList = wmsOrderShippingMapper.selectWmsOrderShippingList(select);
+//        ErpShipOrder shipOrder = new ErpShipOrder();
+//        shipOrder.setErpOrderId(order.getId());
+//        List<ErpShipOrder> shipList = shipOrderMapper.selectWmsOrderShippingList(select);
 //        if(shipList!=null){
 //            for (WmsOrderShipping ship:shipList) {
 //                WmsOrderShipping up = new WmsOrderShipping();
@@ -155,36 +160,16 @@ public class ErpOrderServiceImpl implements IErpOrderService
 //            }
 //        }
 
-        // 生成订单收入fms_receivable_order
-//        List<ErpOrderItem> erpOrderItems = erpOrderMapper.selectOrderItemByOrderId(erpOrder.getId());
-//        for (ErpOrderItem item : erpOrderItems) {
-//            FmsReceivableOrder fro = new FmsReceivableOrder();
-//            fro.setDate(new Date());
-//            fro.setOrderNum(order.getOrderNum());
-//            fro.setOrderId(order.getId());
-//            fro.setOrderItemId(item.getId());
-//            fro.setGoodsId(item.getGoodsId());
-//            fro.setGoodsName(item.getGoodsTitle());
-//            fro.setSpecId(item.getSpecId());
-//            fro.setSpecName(item.getGoodsSpec());
-//            fro.setPrice(item.getGoodsPrice());
-//            fro.setQuantity(item.getQuantity().longValue());
-//            fro.setAmount(item.getItemAmount());
-//            fro.setStatus(0L);
-//            fro.setCreateTime(new Date());
-//            fro.setCreateBy(erpOrder.getUpdateBy());
-//            fmsReceivableOrderMapper.insertFmsReceivableOrder(fro);
-//        }
 
         // 生成物流费用 fms_payable_ship_fee
-        FmsPayableShipFee sf = new FmsPayableShipFee();
+        ErpShipOrderFee sf = new ErpShipOrderFee();
         sf.setDate(new Date());
         sf.setOrderNum(order.getOrderNum());
-        sf.setShopId(order.getShopId().longValue());
+        sf.setShopId(order.getShopId());
         sf.setLogisticsCompany(erpOrder.getShippingCompany());
         sf.setLogisticsNum(erpOrder.getShippingNumber());
         sf.setAmount(erpOrder.getShippingCost());
-        sf.setStatus(0L);
+        sf.setStatus(0);
         sf.setCreateTime(new Date());
         sf.setCreateBy(erpOrder.getUpdateBy());
         sf.setWidth(erpOrder.getWidth());
@@ -197,7 +182,7 @@ public class ErpOrderServiceImpl implements IErpOrderService
         sf.setCity(order.getCity());
         sf.setTown(order.getTown());
 
-        fmsPayableShipFeeMapper.insertFmsPayableShipFee(sf);
+        shipOrderFeeMapper.insert(sf);
         return 1;
     }
 

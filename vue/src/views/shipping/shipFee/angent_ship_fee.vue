@@ -78,18 +78,22 @@
           <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>
         </template>
       </el-table-column>
-<!--      <el-table-column label="供应商" align="center" prop="supplierId" />-->
-      <el-table-column label="供应商" align="center" prop="supplierName" />
-      <el-table-column label="日期" align="center" prop="date" width="180">
+      <el-table-column label="供应商" align="center" prop="supplierId" >
+        <template slot-scope="scope">
+          <span>{{ supplierList.find(x=>x.id === scope.row.supplierId)?supplierList.find(x=>x.id === scope.row.supplierId).name :'' }}</span>
+        </template>
+      </el-table-column>
+<!--      <el-table-column label="供应商" align="center" prop="supplierName" />-->
+      <el-table-column label="账单日期" align="center" prop="date" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.date, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="物流公司" align="center" prop="shipCompany" />
-      <el-table-column label="物流单号" align="center" prop="shipNo" />
-      <el-table-column label="应付总金额" align="center" prop="amount" />
-      <el-table-column label="物流费用" align="center" prop="shipAmount" />
+      <el-table-column label="物流公司" align="center" prop="logisticsCompany" />
+      <el-table-column label="物流单号" align="center" prop="logisticsCode" />
       <el-table-column label="商品金额" align="center" prop="goodsAmount" />
+      <el-table-column label="物流费用" align="center" prop="shipAmount" />
+      <el-table-column label="总金额" align="center" prop="totalAmount" />
       <el-table-column label="备注" align="center" prop="remark" />
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
@@ -125,53 +129,7 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改财务管理-应付款-代发账单对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="订单号" prop="orderNum">
-          <el-input v-model="form.orderNum" placeholder="请输入订单号" />
-        </el-form-item>
-        <el-form-item label="店铺id" prop="shopId">
-          <el-input v-model="form.shopId" placeholder="请输入店铺id" />
-        </el-form-item>
-        <el-form-item label="供应商id" prop="supplierId">
-          <el-input v-model="form.supplierId" placeholder="请输入供应商id" />
-        </el-form-item>
-        <el-form-item label="供应商名称" prop="supplierName">
-          <el-input v-model="form.supplierName" placeholder="请输入供应商名称" />
-        </el-form-item>
-        <el-form-item label="日期" prop="date">
-          <el-date-picker clearable
-            v-model="form.date"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择日期">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="物流公司" prop="shipCompany">
-          <el-input v-model="form.shipCompany" placeholder="请输入物流公司" />
-        </el-form-item>
-        <el-form-item label="物流单号" prop="shipNo">
-          <el-input v-model="form.shipNo" placeholder="请输入物流单号" />
-        </el-form-item>
-        <el-form-item label="应付总金额" prop="amount">
-          <el-input v-model="form.amount" placeholder="请输入应付总金额" />
-        </el-form-item>
-        <el-form-item label="物流费用" prop="shipAmount">
-          <el-input v-model="form.shipAmount" placeholder="请输入物流费用" />
-        </el-form-item>
-        <el-form-item label="商品金额" prop="goodsAmount">
-          <el-input v-model="form.goodsAmount" placeholder="请输入商品金额" />
-        </el-form-item>
-        <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" placeholder="请输入备注" />
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
-      </div>
-    </el-dialog>
+
   </div>
 </template>
 
@@ -181,7 +139,7 @@ import {listShop} from "@/api/shop/shop";
 import {listSupplier} from "@/api/scm/supplier";
 
 export default {
-  name: "supplierShipFee",
+  name: "agentShipFee",
   data() {
     return {
       // 遮罩层

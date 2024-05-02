@@ -6,7 +6,7 @@
 
       </el-tab-pane>
       <el-tab-pane label="供应商代发货账单" name="supplierShip" lazy>
-        <supplier-ship-fee></supplier-ship-fee>
+        <agent-ship-fee></agent-ship-fee>
       </el-tab-pane>
     </el-tabs>
 
@@ -14,12 +14,11 @@
 </template>
 
 <script>
-import supplierShipFee  from "@/views/shipping/shipFee/supplier_ship_fee.vue";
+import agentShipFee  from "@/views/shipping/shipFee/angent_ship_fee.vue";
 import shipLogisticsFee  from "@/views/shipping/shipFee/ship_logistics_fee.vue";
-
 export default {
   name: "shipFeeIndex",
-  components:{supplierShipFee,shipLogisticsFee},
+  components:{agentShipFee,shipLogisticsFee},
   data() {
     return {
       activeName: 'stockShip'

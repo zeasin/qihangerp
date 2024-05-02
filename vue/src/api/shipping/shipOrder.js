@@ -8,3 +8,19 @@ export function listShipOrder(query) {
     params: query
   })
 }
+
+export function getShipOrderItemList(id) {
+  return request({
+    url: '/shipping/ship_order/' + id,
+    method: 'get'
+  })
+}
+
+export function supplierShipOrder(data) {
+  return request({
+    url: '/shipping/ship_order/supplier_ship',
+    method: 'post',
+    data: data
+  })
+}
+

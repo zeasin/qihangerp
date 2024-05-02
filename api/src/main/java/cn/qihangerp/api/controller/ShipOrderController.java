@@ -1,6 +1,8 @@
 package cn.qihangerp.api.controller;
 
 import cn.qihangerp.api.domain.ErpShipOrder;
+import cn.qihangerp.api.domain.bo.ShipOrderSupplierShipBo;
+import cn.qihangerp.api.domain.bo.StockOutEntryGenerateBo;
 import cn.qihangerp.api.mapper.ErpShipOrderMapper;
 import cn.qihangerp.api.service.ErpShipOrderService;
 import cn.qihangerp.common.PageQuery;
@@ -8,11 +10,12 @@ import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.enums.ErpOrderStatusEnum;
 import cn.qihangerp.core.controller.BaseController;
 import cn.qihangerp.core.page.TableDataInfo;
+import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.domain.ErpOrderItem;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -30,5 +33,33 @@ public class ShipOrderController extends BaseController {
     {
         PageResult<ErpShipOrder> list = shipOrderService.queryPageList(bo, pageQuery);
         return getDataTable(list);
+    }
+
+    /**
+     * 查询同订单itemList
+     * @param id
+     * @return
+     */
+    @GetMapping("/ship_order/{id}")
+    public TableDataInfo stockShipInfo(@PathVariable("id") Long id)
+    {
+        List<ErpShipOrder> list = shipOrderService.queryOrderListById(id);
+        return getDataTable(list);
+    }
+
+
+
+    @PostMapping("/ship_order/supplier_ship")
+    public AjaxResult supplierShip(@RequestBody ShipOrderSupplierShipBo bo)
+    {
+        int result = shipOrderService.supplierShip(bo);
+        if(result == -1) return AjaxResult.error("参数错误：shipOrderId为空");
+        else if(result == -2) return AjaxResult.error("参数错误：erpOrderId为空");
+        else if(result == -3) return AjaxResult.error("参数错误：erpOrderId找不到数据");
+        else if(result == -1001) return AjaxResult.error("存在错误的shipOrderId：找不到数据");
+        else if(result == -1002) return AjaxResult.error("存在错误的shipOrder数据：不是供应商发货！");
+        else if(result == -1003) return AjaxResult.error("存在错误的shipOrder数据：发货状态不正确！");
+        //wmsStockOutEntryService.insertWmsStockOutEntry(wmsStockOutEntry)
+        return toAjax(1);
     }
 }

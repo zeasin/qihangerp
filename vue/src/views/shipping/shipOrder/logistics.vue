@@ -103,18 +103,13 @@
 <!--      <el-table-column type="selection" width="55" align="center" />-->
 <!--      <el-table-column label="订单ID" align="center" prop="id" />-->
       <el-table-column label="订单号" align="center" prop="orderNum" />
-       <el-table-column label="物流公司" align="center" prop="shippingCompany" />
-       <el-table-column label="物流单号" align="center" prop="shippingNumber" />
-       <el-table-column label="发货时间" align="center" prop="shippingTime" />
+       <el-table-column label="物流公司" align="center" prop="logisticsCompany" />
+       <el-table-column label="物流单号" align="center" prop="logisticsCode" />
+       <el-table-column label="发货时间" align="center" prop="shipTime" />
+       <el-table-column label="运费" align="center" prop="logisticsFee" />
        <el-table-column label="发货人" align="center" prop="shippingMan" />
 
-      <!-- <el-table-column label="售后状态" align="center" prop="refundStatus" /> -->
-      <!-- <el-table-column label="订单状态" align="center" prop="orderStatus" /> -->
-      <!-- <el-table-column label="邮费，单位：元" align="center" prop="postage" /> -->
-      <!-- <el-table-column label="折扣金额(元)" align="center" prop="discountAmount" /> -->
-      <!-- <el-table-column label="商品金额(元)" align="center" prop="goodsAmount" /> -->
-<!--      <el-table-column label="支付金额" align="center" prop="amount" />-->
-      <!-- <el-table-column label="支付时间" align="center" prop="payTime" /> -->
+
       <el-table-column label="收件信息" align="center" prop="receiverName" >
         <template slot-scope="scope">
           {{scope.row.receiverName}}   {{scope.row.receiverPhone}}<br />
@@ -177,7 +172,7 @@
 </template>
 
 <script>
-import { listOrder, getOrder, shipOrder } from "@/api/shop/order";
+import {listShipOrder} from "@/api/shipping/shipOrder";
 import { listShop } from "@/api/shop/shop";
 import { listLogistics } from "@/api/shipping/logistics";
 export default {
@@ -212,18 +207,7 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        orderNum: null,
-        shopId: null,
-        tag: null,
-        refundStatus: null,
-        orderStatus: 3,
-        receiverName: null,
-        receiverPhone: null,
-        town: null,
-        city: null,
-        province: null,
-        shippingTime: null,
-        shippingNumber: null,
+        shipStatus: 3
       },
       logisticsList:[],
       // 表单参数
@@ -251,7 +235,7 @@ export default {
     /** 查询店铺订单列表 */
     getList() {
       this.loading = true;
-      listOrder(this.queryParams).then(response => {
+      listShipOrder(this.queryParams).then(response => {
         this.orderList = response.rows;
         this.total = response.total;
         this.loading = false;

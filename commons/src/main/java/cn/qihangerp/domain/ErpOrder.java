@@ -133,7 +133,7 @@ public class ErpOrder extends BaseEntity
     /** 物流公司 */
     @Excel(name = "物流公司")
     private String shippingCompany;
-    private BigDecimal shippingCost;
+    private Float shippingCost;
     private String shippingMan;
     private Float length;
     private Float width;
@@ -144,11 +144,11 @@ public class ErpOrder extends BaseEntity
     private List<ErpOrderItem> itemList;
     private List<ErpOrderItem> erpOrderItemList;
 
-    public BigDecimal getShippingCost() {
+    public Float getShippingCost() {
         return shippingCost;
     }
 
-    public void setShippingCost(BigDecimal shippingCost) {
+    public void setShippingCost(Float shippingCost) {
         this.shippingCost = shippingCost;
     }
 
