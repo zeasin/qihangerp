@@ -81,7 +81,7 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          v-if="scope.row.auditStatus === 0"
+
           type="primary"
           plain
           icon="el-icon-refresh"
@@ -131,7 +131,7 @@
 <!--      <el-table-column label="订单来源" align="center" prop="shopType" />-->
       <!-- <el-table-column label="店铺" align="center" prop="shopId" /> -->
 <!--      <el-table-column label="订单类型" align="center" prop="orderType" />-->
-<el-table-column label="实付金额" align="center" prop="totalPayAmount" />
+      <el-table-column label="实付金额" align="center" prop="totalPayAmount" />
       <el-table-column label="运费" align="center" prop="totalShippingFree" />
       <el-table-column label="小红书订单状态" align="center" prop="orderStatus" >
         <!-- 小红书订单状态，1已下单待付款 2已支付处理中 3清关中 4待发货 5部分发货 6待收货 7已完成 8已关闭 9已取消 10换货申请中 -->
@@ -237,174 +237,7 @@
     />
 
     <!-- 添加或修改小红书订单对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="1100px" append-to-body :close-on-click-modal="false">
-      <el-form ref="form" :model="form" :rules="rules" label-width="180px" inline>
-        <el-form-item label="订单号" prop="orderId">
-          <el-input v-model="form.orderId" placeholder="请输入订单号"  style="width:250px" :disabled="isAudit"/>
-        </el-form-item>
-        <el-form-item label="店铺" prop="shopId">
-          <!-- <el-input v-model="form.shopId" placeholder="请输入店铺ID" /> -->
-          <el-select v-model="form.shopId" placeholder="请选择店铺" style="width:250px" :disabled="isAudit">
-           <el-option style="width:250px"
-              v-for="item in shopList"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id" >
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="下单时间" prop="createTime">
-          <!-- <el-input v-model="form.orderCreatedTime" placeholder="请输入订单创建时间 单位ms" /> -->
-           <el-date-picker clearable style="width:250px"
-            v-model="form.createTime"
-            type="datetime"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            placeholder="请选择下单时间">
-          </el-date-picker>
-        </el-form-item>
 
-        <el-form-item label="用户备注" prop="customerRemark">
-          <el-input v-model="form.customerRemark" type="textarea" placeholder="请输入用户备注" style="width:250px"/>
-        </el-form-item>
-
-
-
-
-        <!-- <el-form-item label="收件人姓名+手机+地址等计算得出，用来查询收件人详情" prop="openAddressId">
-          <el-input v-model="form.openAddressId" placeholder="请输入收件人姓名+手机+地址等计算得出，用来查询收件人详情" />
-        </el-form-item>
-        <el-form-item label="省" prop="province">
-          <el-input v-model="form.province" placeholder="请输入省" />
-        </el-form-item>
-        <el-form-item label="市" prop="city">
-          <el-input v-model="form.city" placeholder="请输入市" />
-        </el-form-item>
-        <el-form-item label="区县" prop="district">
-          <el-input v-model="form.district" placeholder="请输入区县" />
-        </el-form-item>
-     -->
-        <el-form-item label="收件人姓名" prop="receiver">
-          <el-input v-model="form.receiver" placeholder="请输入收件人姓名" style="width:250px"/>
-        </el-form-item>
-        <el-form-item label="收件人电话" prop="phone">
-          <el-input v-model="form.phone" placeholder="请输入收件人电话" style="width:250px"/>
-        </el-form-item>
-        <el-form-item label="省市区" prop="provinces">
-          <el-cascader style="width:250px"
-            size="large"
-            :options="pcaTextArr"
-            v-model="form.provinces">
-          </el-cascader>
-        </el-form-item>
-        <el-form-item label="详细地址" prop="address">
-          <el-input v-model="form.address" placeholder="请输入详细地址" style="width:250px" />
-        </el-form-item>
-      <el-form-item label="商家标记备注" prop="sellerRemark">
-          <el-input v-model="form.sellerRemark" type="textarea" placeholder="请输入商家标记备注" style="width:250px"/>
-        </el-form-item>
-        <el-divider content-position="center">小红书订单明细信息</el-divider>
-        <el-row :gutter="10" class="mb8">
-          <el-col :span="1.5">
-            <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAddXhsOrderItem">添加</el-button>
-          </el-col>
-          <el-col :span="1.5">
-            <el-button type="danger" icon="el-icon-delete" size="mini" @click="handleDeleteXhsOrderItem">删除</el-button>
-          </el-col>
-        </el-row>
-        <el-table :data="xhsOrderItemList" :row-class-name="rowXhsOrderItemIndex" @selection-change="handleXhsOrderItemSelectionChange" ref="xhsOrderItem" style="margin-bottom: 10px;">
-          <el-table-column type="selection" width="50" align="center" />
-          <el-table-column label="序号" align="center" prop="index" width="50"/>
-          <el-table-column label="商品" prop="erpGoodsId" width="350" v-if="!isAudit" >
-            <template slot-scope="scope">
-              <el-select v-model="scope.row.erpGoodsSpecId" filterable remote reserve-keyword placeholder="搜索商品" style="width: 330px;"
-                :remote-method="searchSku" :loading="skuListLoading" @change="skuChanage(scope.row)">
-                <el-option v-for="item in skuList" :key="item.id"
-                  :label="item.name + ' - ' + item.colorValue + ' ' + item.sizeValue + ' ' + item.styleValue"
-                  :value="item.id">
-                </el-option>
-              </el-select>
-            </template>
-          </el-table-column>
-          <el-table-column label="商品图片" prop="itemImage" >
-            <template slot-scope="scope">
-              <el-image style="width: 70px; height: 70px" :src="scope.row.itemImage"></el-image>
-            </template>
-          </el-table-column>
-          <!-- <el-table-column label="商品id" prop="itemId" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.itemId" placeholder="请输入商品id" />
-            </template>
-          </el-table-column> -->
-          <!-- <el-table-column label="商品名称" prop="itemName" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.itemName" placeholder="请输入商品名称" />
-            </template>
-          </el-table-column>
-          <el-table-column label="商家编码" prop="erpcode" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.erpcode" placeholder="请输入商家编码(若为组合品，暂不支持组合品的商家编码，但skulist会返回子商品商家编码)" />
-            </template>
-          </el-table-column>
-          <el-table-column label="规格" prop="itemSpec" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.itemSpec" placeholder="请输入规格" />
-            </template>
-          </el-table-column> -->
-          <el-table-column label="SKU编码" prop="itemSpecCode" width="100">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.itemSpecCode" placeholder="请输入规格" />
-            </template>
-          </el-table-column>
-          <el-table-column label="单价" prop="price">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.price" placeholder="请输入单价" disabled/>
-            </template>
-          </el-table-column>
-          <el-table-column label="数量" prop="quantity" >
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.quantity" placeholder="请输入数量"  @input="qtyChange(scope.row)" :disabled="isAudit"/>
-            </template>
-          </el-table-column>
-          <el-table-column label="总金额" prop="itemAmount">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.itemAmount" placeholder="请输入总金额" disabled/>
-            </template>
-          </el-table-column>
-          <!-- <el-table-column label="商家承担总优惠" prop="totalMerchantDiscount" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.totalMerchantDiscount" placeholder="请输入商家承担总优惠" />
-            </template>
-          </el-table-column>
-          <el-table-column label="平台承担总优惠" prop="totalRedDiscount" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.totalRedDiscount" placeholder="请输入平台承担总优惠" />
-            </template>
-          </el-table-column>
-          <el-table-column label="是否赠品，1 赠品 0 普通商品" prop="itemTag" width="150">
-            <template slot-scope="scope">
-              <el-input v-model="scope.row.itemTag" placeholder="请输入是否赠品，1 赠品 0 普通商品" />
-            </template>
-          </el-table-column>
-          <el-table-column label="ERP发货状态0待处理1出库中2已出库3已发货" prop="erpSendStatus" width="150">
-            <template slot-scope="scope">
-              <el-select v-model="scope.row.erpSendStatus" placeholder="请选择ERP发货状态0待处理1出库中2已出库3已发货">
-                <el-option label="请选择字典生成" value="" />
-              </el-select>
-            </template>
-          </el-table-column> -->
-        </el-table>
-         <el-form-item label="商品金额" prop="goodsAmount">
-          <el-input v-model="form.goodsAmount" placeholder="请输入商品总金额" />
-        </el-form-item>
-        <el-form-item label="订单运费" prop="shippingFree">
-          <el-input v-model="form.shippingFree" placeholder="请输入运费" />
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
-      </div>
-    </el-dialog>
 
     <!-- 确认订单、订单详情对话框 -->
     <el-dialog :title="detailTitle" :visible.sync="detailOpen" width="1100px" append-to-body :close-on-click-modal="false">
