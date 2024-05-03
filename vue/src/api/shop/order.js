@@ -26,29 +26,5 @@ export function addOrder(data) {
   })
 }
 
-export function shipOrder(data) {
-  return request({
-    url: '/api/order/ship',
-    method: 'post',
-    data: data
-  })
-}
 
 
-
-// 修改店铺订单
-export function updateOrder(data) {
-  return request({
-    url: '/api/order',
-    method: 'put',
-    data: data
-  })
-}
-
-// 删除店铺订单
-export function delOrder(id) {
-  return request({
-    url: '/api/order/' + id,
-    method: 'delete'
-  })
-}

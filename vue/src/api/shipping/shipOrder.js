@@ -24,3 +24,11 @@ export function supplierShipOrder(data) {
   })
 }
 
+export function wmsShipOrder(data) {
+  return request({
+    url: '/shipping/ship_order/wms_ship',
+    method: 'post',
+    data: data
+  })
+}
+

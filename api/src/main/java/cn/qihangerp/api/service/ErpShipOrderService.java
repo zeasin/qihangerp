@@ -24,4 +24,5 @@ public interface ErpShipOrderService extends IService<ErpShipOrder> {
      * @return
      */
     int supplierShip(ShipOrderSupplierShipBo bo);
+    int wmsShip(ShipOrderSupplierShipBo bo);
 }

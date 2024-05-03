@@ -13,6 +13,7 @@
             <result property="goodsUnit" column="goods_unit" jdbcType="INTEGER"/>
             <result property="specUnit" column="spec_unit" jdbcType="INTEGER"/>
             <result property="specUnitTotal" column="spec_unit_total" jdbcType="INTEGER"/>
+            <result property="outTotal" column="out_total" jdbcType="INTEGER"/>
             <result property="remark" column="remark" jdbcType="VARCHAR"/>
             <result property="status" column="status" jdbcType="INTEGER"/>
             <result property="printStatus" column="print_status" jdbcType="INTEGER"/>
@@ -30,7 +31,7 @@
     <sql id="Base_Column_List">
         id,stock_out_num,source_num,
         source_id,stock_out_type,goods_unit,
-        spec_unit,spec_unit_total,remark,
+        spec_unit,spec_unit_total,out_total,remark,
         status,print_status,print_time,
         out_time,complete_time,operator_id,
         operator_name,create_time,create_by,

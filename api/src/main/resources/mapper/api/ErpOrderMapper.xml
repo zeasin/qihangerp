@@ -160,6 +160,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="province != null">province,</if>
             <if test="city != null">city,</if>
             <if test="town != null">town,</if>
+            <if test="orderTime != null">order_time,</if>
             <if test="payTime != null">pay_time,</if>
             <if test="shipType != null">ship_type,</if>
             <if test="shipStatus != null">ship_status,</if>
@@ -193,6 +194,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="province != null">#{province},</if>
             <if test="city != null">#{city},</if>
             <if test="town != null">#{town},</if>
+            <if test="orderTime != null">#{orderTime},</if>
             <if test="payTime != null">#{payTime},</if>
             <if test="shipType != null">#{shipType},</if>
             <if test="shipStatus != null">#{shipStatus},</if>

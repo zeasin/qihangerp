@@ -36,7 +36,8 @@ public interface IErpOrderService
      * @return 结果
      */
     public int insertErpOrder(ErpOrder erpOrder);
-    public int shipErpOrder(ErpOrder erpOrder);
+    // 发货操作移动到erpShipOrder中
+//    public int shipErpOrder(ErpOrder erpOrder);
 
 
     /**

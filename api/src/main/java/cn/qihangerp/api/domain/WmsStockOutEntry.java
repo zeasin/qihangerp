@@ -52,6 +52,7 @@ public class WmsStockOutEntry implements Serializable {
      * 总件数
      */
     private Integer specUnitTotal;
+    private int outTotal;
 
     /**
      * 备注
@@ -86,7 +87,7 @@ public class WmsStockOutEntry implements Serializable {
     /**
      * 出库操作人userid
      */
-    private Integer operatorId;
+    private Long operatorId;
 
     /**
      * 出库操作人

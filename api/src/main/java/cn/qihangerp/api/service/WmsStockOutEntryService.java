@@ -19,4 +19,6 @@ public interface WmsStockOutEntryService extends IService<WmsStockOutEntry> {
 
     int stockOut(StockOutBo bo);
     WmsStockOutEntry selectById(Long id);
+
+    WmsStockOutEntry selectOutEntryItemInventoryDetailsByEntryId(Long entryId);
 }

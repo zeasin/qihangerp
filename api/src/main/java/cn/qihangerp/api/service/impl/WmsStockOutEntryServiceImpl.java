@@ -41,6 +41,7 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
     private final WmsStockOutEntryItemDetailMapper stockOutEntryItemDetailMapper;
     private final ErpGoodsInventoryMapper erpGoodsInventoryMapper;
 
+
     /**
      * 生成拣货单
      * @param bo
@@ -184,14 +185,15 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
     @Transactional
     @Override
     public int stockOut(StockOutBo bo) {
+        if(bo.getOutQty()== null || bo.getOutQty()==0) return -5;
 //        WmsStockOutEntryItem item = wmsStockOutEntryMapper.selectWmsStockOutEntryItemById(bo.getEntryItemId());
-        WmsStockOutEntryItem item = entryItemMapper.selectById(bo.getEntryItemId());
-        if(item==null) return -1;
-        else if(item.getStatus().intValue() ==2) return -2;
-        else if(item.getOriginalQuantity() == item.getOutQuantity()) return -3;
-        else if(item.getOriginalQuantity() - item.getOutQuantity() < bo.getOutQty()) return -4;
-        // 库存判断
+        WmsStockOutEntryItem originalItem = entryItemMapper.selectById(bo.getEntryItemId());
+        if(originalItem==null) return -1;
+        else if(originalItem.getStatus().intValue() ==2) return -2;
+        else if(originalItem.getOriginalQuantity() == originalItem.getOutQuantity()) return -3;
+        else if(originalItem.getOriginalQuantity() - originalItem.getOutQuantity() < bo.getOutQty()) return -4;
 
+        // 库存判断
         ErpGoodsInventoryDetail detail = erpGoodsInventoryMapper.selectErpGoodsInventoryDetailById(bo.getInventoryDetailId());
         if(detail == null) return -11;
         else if(detail.getCurrentQty() < bo.getOutQty()) return -12;
@@ -200,8 +202,8 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
         // 开始出库
         // 第一步：新增 wms_stock_out_entry_item_detail
         WmsStockOutEntryItemDetail itemDetail = new WmsStockOutEntryItemDetail();
-        itemDetail.setEntryId(Long.parseLong(item.getEntryId()));
-        itemDetail.setEntryItemId(Long.parseLong(item.getId()));
+        itemDetail.setEntryId(Long.parseLong(originalItem.getEntryId()));
+        itemDetail.setEntryItemId(Long.parseLong(originalItem.getId()));
         itemDetail.setGoodsInventoryId(detail.getInventoryId());
         itemDetail.setGoodsInventoryDetailId(detail.getId());
         itemDetail.setQuantity(bo.getOutQty());
@@ -211,16 +213,17 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
         itemDetail.setOutTime(new Date());
 //        stockOutEntryItemDetailMapper.insertWmsStockOutEntryItemDetail(itemDetail);
         stockOutEntryItemDetailMapper.insert(itemDetail);
+
         // 第二步：更新 wms_stock_out_entry_item
         WmsStockOutEntryItem entryItem = new WmsStockOutEntryItem();
-        entryItem.setId(item.getId());
-        entryItem.setOutQuantity(item.getOutQuantity()+bo.getOutQty());
-        if(item.getOutQuantity()==0){
+        entryItem.setId(originalItem.getId());
+        entryItem.setOutQuantity(originalItem.getOutQuantity()+bo.getOutQty());
+        if(originalItem.getOutQuantity()==0){
             // 证明是刚开始出库
             entryItem.setPickedTime(new Date());
         }
         // 更新状态
-        if(item.getOutQuantity()+ bo.getOutQty() == item.getOriginalQuantity()){
+        if(originalItem.getOutQuantity()+ bo.getOutQty() == originalItem.getOriginalQuantity()){
             // 出库完成了
             entryItem.setCompleteTime(new Date());
             entryItem.setStatus(2);
@@ -229,6 +232,32 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
         }
 //        wmsStockOutEntryMapper.updateWmsStockOutEntryItem(entryItem);
         entryItemMapper.updateById(entryItem);
+
+        /***更新出库单状态***/
+        //状态：0待出库1部分出库2全部出库
+        WmsStockOutEntry wmsStockOutEntry = entryMapper.selectById(originalItem.getEntryId());
+        if(wmsStockOutEntry!=null){
+            int outTotal = wmsStockOutEntry.getOutTotal();
+            outTotal+= bo.getOutQty();
+            int status = 1;
+            if(outTotal == wmsStockOutEntry.getSpecUnitTotal()){
+                status = 2;
+            }
+            WmsStockOutEntry entryUpdate = new WmsStockOutEntry();
+            entryUpdate.setId(wmsStockOutEntry.getId());
+            entryUpdate.setOutTotal(outTotal);
+            entryUpdate.setStatus(status);
+            entryUpdate.setOutTime(new Date());
+            if(status==2){
+                entryUpdate.setCompleteTime(new Date());
+            }
+            entryUpdate.setOperatorId(bo.getOperatorId());
+            entryUpdate.setOperatorName(bo.getOperatorName());
+            entryUpdate.setUpdateBy("出库");
+            entryUpdate.setUpdateTime(new Date());
+            entryMapper.updateById(entryUpdate);
+        }
+
 
         // 第三步：减库存
         ErpGoodsInventoryDetail inventoryDetailUpdate = new ErpGoodsInventoryDetail();
@@ -243,43 +272,53 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
         inventoryUpdate.setUpdateTime(new Date());
         erpGoodsInventoryMapper.updateErpGoodsInventory(inventoryUpdate);
 
-        // 第四步：更新wms_order_shipping状态
-//        if(entryItem.getStatus()!=null && entryItem.getStatus() ==2) {
-//            WmsOrderShipping shippingUpdate = new WmsOrderShipping();
-//            shippingUpdate.setErpOrderItemId(item.getSourceOrderItemId());
-//            shippingUpdate.setStatus(2L);
-//            shippingUpdate.setOutOperator(bo.getOperatorName());
-//            shippingUpdate.setOutPosition(detail.getInLocation().toString());
-//            shippingUpdate.setOutTime(new Date());
-//            shippingUpdate.setUpdateBy(bo.getOperatorName());
-//            shippingUpdate.setUpdateTime(new Date());
-//
-//            orderShippingMapper.updateWmsOrderShippingStatusByErpOrderItemId(shippingUpdate);
-//            WmsOrderShipping select = new WmsOrderShipping();
-//            select.setErpOrderId(item.getSourceOrderId());
-//            // 查询 同orderId所有数据状态
-//            List<WmsOrderShipping> shipList = orderShippingMapper.selectWmsOrderShippingList(select);
-//            // 循环
-//            if(shipList!=null){
-//                int allTotal = shipList.size();
-//                int outTotal = 0;
-//                for (WmsOrderShipping s:shipList) {
-//                    if(s.getStatus().intValue() == 2){
-//                        outTotal +=1;
+        // 第四步：更新erp_ship_order状态 （更新为出库中）
+        if(entryItem.getStatus()!=null && entryItem.getStatus() ==2) {
+            // 查出erp_ship_order数据（根据 wms_stock_in_entry_item 的 source_order_item_id）
+            List<ErpShipOrder> erpShipOrders = shipOrderMapper.selectList(new LambdaQueryWrapper<ErpShipOrder>().eq(ErpShipOrder::getErpOrderItemId, originalItem.getSourceOrderItemId()));
+            if(erpShipOrders!=null&& erpShipOrders.size()>0){
+                // 更新erp_ship_order状态为出库中
+                ErpShipOrder shippingUpdate = new ErpShipOrder();
+                shippingUpdate.setId(erpShipOrders.get(0).getId());
+                shippingUpdate.setShipStatus(2);//已出库
+                shippingUpdate.setOutOperator(bo.getOperatorName());
+                shippingUpdate.setOutPosition(detail.getInLocation().toString());
+                shippingUpdate.setOutTime(new Date());
+                shippingUpdate.setUpdateBy(bo.getOperatorName());
+                shippingUpdate.setUpdateTime(new Date());
+
+                shipOrderMapper.updateById(shippingUpdate);
+                // 更新erp_order表出库状态（2.0版本已经放弃这个偶尔）
+//                WmsOrderShipping select = new WmsOrderShipping();
+//                select.setErpOrderId(item.getSourceOrderId());
+//                // 查询 同orderId所有数据状态
+//                List<WmsOrderShipping> shipList = orderShippingMapper.selectWmsOrderShippingList(select);
+//                // 循环
+//                if(shipList!=null){
+//                    int allTotal = shipList.size();
+//                    int outTotal = 0;
+//                    for (WmsOrderShipping s:shipList) {
+//                        if(s.getStatus().intValue() == 2){
+//                            outTotal +=1;
+//                        }
+//                    }
+//                    //是否全部出库
+//                    if(allTotal == outTotal){
+//                        // 订单下面的所有子订单已出库 更新订单状态
+//                        ErpOrder erpOrder = new ErpOrder();
+//                        erpOrder.setId(item.getSourceOrderId());
+//                        erpOrder.setOrderStatus(2);
+//                        erpOrder.setUpdateBy(bo.getOperatorName());
+//                        erpOrder.setUpdateTime(new Date());
+//                        erpOrderMapper.updateErpOrder(erpOrder);
 //                    }
 //                }
-//                //是否全部出库
-//                if(allTotal == outTotal){
-//                    // 订单下面的所有子订单已出库 更新订单状态
-//                    ErpOrder erpOrder = new ErpOrder();
-//                    erpOrder.setId(item.getSourceOrderId());
-//                    erpOrder.setOrderStatus(2);
-//                    erpOrder.setUpdateBy(bo.getOperatorName());
-//                    erpOrder.setUpdateTime(new Date());
-//                    erpOrderMapper.updateErpOrder(erpOrder);
-//                }
-//            }
-//        }
+
+
+            }
+
+
+        }
         return 1;
     }
 
@@ -288,6 +327,25 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
         WmsStockOutEntry wmsStockOutEntry = entryMapper.selectById(id);
         if(wmsStockOutEntry!=null) {
             wmsStockOutEntry.setItems(entryItemMapper.selectList(new LambdaQueryWrapper<WmsStockOutEntryItem>().eq(WmsStockOutEntryItem::getEntryId,wmsStockOutEntry.getId())));
+        }
+        return wmsStockOutEntry;
+    }
+
+    /**
+     * 获取出库单详情（包括出库单明细及明细库存详情）
+     * @param entryId
+     * @return
+     */
+    @Override
+    public WmsStockOutEntry selectOutEntryItemInventoryDetailsByEntryId(Long entryId) {
+        WmsStockOutEntry wmsStockOutEntry = entryMapper.selectById(entryId);
+        if(wmsStockOutEntry!=null) {
+            List<WmsStockOutEntryItem> entryItems = entryItemMapper.selectList(new LambdaQueryWrapper<WmsStockOutEntryItem>().eq(WmsStockOutEntryItem::getEntryId, wmsStockOutEntry.getId()));
+            for (WmsStockOutEntryItem item : entryItems){
+                List<ErpGoodsInventoryDetail> erpGoodsInventoryDetails = erpGoodsInventoryMapper.selectErpGoodsInventoryDetailBySpecId(item.getSpecId());
+                item.setInventoryDetails(erpGoodsInventoryDetails);
+            }
+            wmsStockOutEntry.setItems(entryItems);
         }
         return wmsStockOutEntry;
     }

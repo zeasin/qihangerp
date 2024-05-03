@@ -113,78 +113,7 @@ public class ErpOrderServiceImpl implements IErpOrderService
         return rows;
     }
 
-    /**
-     * 发货
-     * @param erpOrder
-     * @return
-     */
-    @Transactional
-    @Override
-    public int shipErpOrder(ErpOrder erpOrder) {
-        ErpOrder order = erpOrderMapper.selectErpOrderById(erpOrder.getId());
-        if (order==null) return -1;// 订单不存在
-        else if (order.getShipStatus()!=null && order.getShipStatus()==3) {
-            return -3;//发货状态不对
-        }
-        else if(order.getOrderStatus() != 1 && order.getOrderStatus() != 2) return -2;//状态不对
-        // 更新订单表状态
-        ErpOrder update = new ErpOrder();
-        update.setId(order.getId());
-        update.setUpdateTime(new Date());
-        update.setUpdateBy(erpOrder.getUpdateBy());
-        update.setShippingTime(new Date());
-        update.setShippingMan(erpOrder.getShippingMan());
-        update.setShippingCompany(erpOrder.getShippingCompany());
-        update.setShippingNumber(erpOrder.getShippingNumber());
-        update.setShippingCost(erpOrder.getShippingCost());
-        update.setWidth(erpOrder.getWidth());
-        update.setWeight(erpOrder.getWeight());
-        update.setHeight(erpOrder.getHeight());
-        update.setLength(erpOrder.getLength());
-        update.setOrderStatus(3);
-        erpOrderMapper.updateErpOrder(update);
-         // 更新订单子表状态
 
-        // 更新 wms_order_shipping
-//        ErpShipOrder shipOrder = new ErpShipOrder();
-//        shipOrder.setErpOrderId(order.getId());
-//        List<ErpShipOrder> shipList = shipOrderMapper.selectWmsOrderShippingList(select);
-//        if(shipList!=null){
-//            for (WmsOrderShipping ship:shipList) {
-//                WmsOrderShipping up = new WmsOrderShipping();
-//                up.setId(ship.getId());
-//                up.setStatus(3L);
-//                up.setUpdateTime(new Date());
-//                up.setUpdateBy(erpOrder.getUpdateBy());
-//                wmsOrderShippingMapper.updateWmsOrderShipping(up);
-//            }
-//        }
-
-
-        // 生成物流费用 fms_payable_ship_fee
-        ErpShipOrderFee sf = new ErpShipOrderFee();
-        sf.setDate(new Date());
-        sf.setOrderNum(order.getOrderNum());
-        sf.setShopId(order.getShopId());
-        sf.setLogisticsCompany(erpOrder.getShippingCompany());
-        sf.setLogisticsNum(erpOrder.getShippingNumber());
-        sf.setAmount(erpOrder.getShippingCost());
-        sf.setStatus(0);
-        sf.setCreateTime(new Date());
-        sf.setCreateBy(erpOrder.getUpdateBy());
-        sf.setWidth(erpOrder.getWidth());
-        sf.setWeight(erpOrder.getWeight());
-        sf.setHeight(erpOrder.getHeight());
-        sf.setLength(erpOrder.getLength());
-        sf.setReceiverName(order.getReceiverName());
-        sf.setReceiverPhone(order.getReceiverPhone());
-        sf.setProvince(order.getProvince());
-        sf.setCity(order.getCity());
-        sf.setTown(order.getTown());
-
-        shipOrderFeeMapper.insert(sf);
-        return 1;
-    }
 
     /**
      * 修改订单

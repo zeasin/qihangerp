@@ -128,7 +128,7 @@
             size="mini"
             type="primary"
             icon="el-icon-s-promotion"
-            @click="handleUpdate(scope.row)"
+            @click="handleShip(scope.row)"
             v-hasPermi="['scm:agentShipping:edit']"
           >发货</el-button>
         </template>
@@ -312,35 +312,11 @@ export default {
     },
     // 表单重置
     reset() {
-      this.form = {
-        id: null,
-        shopId: null,
-        shopType: null,
-        supplierId: null,
-        orderNum: null,
-        orderItemId: null,
-        orderDate: null,
-        goodsId: null,
-        specId: null,
-        goodsTitle: null,
-        goodsImg: null,
-        goodsNum: null,
-        goodsSpec: null,
-        specNum: null,
-        goodsPrice: null,
-        quantity: null,
-        remark: null,
-        shipCompany: null,
-        shipNo: null,
-        shipCost: null,
-        shipTime: null,
-        status: null,
-        itemAmount: null,
-        createTime: null,
-        createBy: null,
-        updateBy: null,
-        updateTime: null
-      };
+      this.form.erpOrderId = null
+      this.form.orderNum = null
+      this.form.orderTime = null
+      this.form.itemList = []
+
       this.resetForm("form");
     },
     /** 搜索按钮操作 */
@@ -359,8 +335,8 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
-    /** 修改按钮操作 */
-    handleUpdate(row) {
+    /** 发货按钮操作 */
+    handleShip(row) {
       this.reset();
       const id = row.id || this.ids
       getShipOrderItemList(id).then(response => {

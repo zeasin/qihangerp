@@ -83,20 +83,20 @@ public class ErpOrderController extends BaseController
     }
 
     /**
-     * 订单发货
+     * 订单发货(发货操作移到erpShipOrder中)
      * @param order
      * @return
      */
-    @Log(title = "店铺订单", businessType = BusinessType.UPDATE)
-    @PostMapping("/ship")
-    public AjaxResult ship(@RequestBody ErpOrder order)
-    {
-        order.setUpdateBy(getUsername());
-        int result = orderService.shipErpOrder(order);
-        if(result == -1) return new AjaxResult(501,"订单不存在！");
-        else if(result == -2) return new AjaxResult(502,"订单状态不对！无法发货！");
-        else if(result == -3) return new AjaxResult(502,"订单发货状态不对！无法发货！");
-        return toAjax(result);
-    }
+//    @Log(title = "店铺订单", businessType = BusinessType.UPDATE)
+//    @PostMapping("/ship")
+//    public AjaxResult ship(@RequestBody ErpOrder order)
+//    {
+//        order.setUpdateBy(getUsername());
+//        int result = orderService.shipErpOrder(order);
+//        if(result == -1) return new AjaxResult(501,"订单不存在！");
+//        else if(result == -2) return new AjaxResult(502,"订单状态不对！无法发货！");
+//        else if(result == -3) return new AjaxResult(502,"订单发货状态不对！无法发货！");
+//        return toAjax(result);
+//    }
 
 }

@@ -11,7 +11,7 @@
  Target Server Version : 80200
  File Encoding         : 65001
 
- Date: 02/05/2024 15:25:44
+ Date: 03/05/2024 11:39:44
 */
 
 SET NAMES utf8mb4;
@@ -435,7 +435,7 @@ CREATE TABLE `erp_goods_inventory`  (
 -- ----------------------------
 -- Records of erp_goods_inventory
 -- ----------------------------
-INSERT INTO `erp_goods_inventory` VALUES (6, 9, 'HN8026', 32, '2720210080260105', 8, 0, 0, '2024-01-16 14:51:50', 'admin', '2024-01-16 15:05:44', 'admin');
+INSERT INTO `erp_goods_inventory` VALUES (6, 9, 'HN8026', 32, '2720210080260105', 6, 0, 0, '2024-01-16 14:51:50', 'admin', '2024-05-03 10:56:38', 'admin');
 
 -- ----------------------------
 -- Table structure for erp_goods_inventory_detail
@@ -462,7 +462,7 @@ CREATE TABLE `erp_goods_inventory_detail`  (
 -- ----------------------------
 -- Records of erp_goods_inventory_detail
 -- ----------------------------
-INSERT INTO `erp_goods_inventory_detail` VALUES (7, 6, 10, 0, 8, NULL, 8, 4, NULL, 32, 9, 20, '2024-01-16 14:51:50', 'admin');
+INSERT INTO `erp_goods_inventory_detail` VALUES (7, 6, 10, 0, 6, NULL, 8, 4, NULL, 32, 9, 20, '2024-01-16 14:51:50', 'admin');
 
 -- ----------------------------
 -- Table structure for erp_goods_spec
@@ -2541,13 +2541,14 @@ CREATE TABLE `erp_sale_order`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `order_sn_index`(`order_num`) USING BTREE,
   INDEX `shopid_index`(`shop_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 40 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of erp_sale_order
 -- ----------------------------
 INSERT INTO `erp_sale_order` VALUES (38, '2055782964491095876', 4, 6, NULL, NULL, NULL, 1, 1, 14475, 3000, 0, 4789, '胥**', '*******8279', '高*街道江苏省高邮市北**村**幢***室', '中国', '江苏省', '扬州市', '高邮市', '2024-02-01 11:39:21', NULL, '2024-05-01 16:27:07', 0, 0, NULL, NULL, NULL, NULL, NULL, '2024-05-01 16:27:07', '手动确认订单', '2024-05-01 22:24:23', '生成拣货单', 0, 0, 0, NULL);
 INSERT INTO `erp_sale_order` VALUES (39, '3763030608986745044', 4, 6, NULL, NULL, NULL, 1, 1, 3999, 510, 0, 999, '张**', '*******4678', '大*镇*城**路下段泰舂小吃', '中国', '云南省', '大理白族自治州', '大理市', '2024-01-31 10:42:58', NULL, '2024-05-01 16:30:18', 1, 3, '2024-05-02 15:12:17', '11111', '菜鸟速递', NULL, 11.00, '2024-05-01 16:30:18', '手动确认订单', '2024-05-02 10:01:48', '分配给供应商发货', 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (41, '2137984935735126281', 4, 6, NULL, NULL, NULL, 1, 1, 12999, 620, 0, 3378, '刘**', '*******6949', '东**街道湖南省社会**院**栋***', '中国', '湖南省', '长沙市', '开福区', '2024-05-02 12:47:02', '2024-05-02 12:47:22', '2024-05-03 09:22:35', 1, 3, '2024-05-03 11:32:15', 'JD903989932', '京东快递', NULL, 5.00, '2024-05-03 09:22:35', '手动确认订单', '2024-05-03 09:23:09', '生成拣货单', 0, 0, 0, NULL);
 
 -- ----------------------------
 -- Table structure for erp_sale_order_item
@@ -2588,13 +2589,14 @@ CREATE TABLE `erp_sale_order_item`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `goodId_index`(`goods_id`) USING BTREE,
   INDEX `order_id`(`order_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1785224647526539267 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单明细表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1785584827112509444 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单明细表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of erp_sale_order_item
 -- ----------------------------
 INSERT INTO `erp_sale_order_item` VALUES (442, 38, 6, NULL, 9, 23, '曲美家居头层真皮床轻奢现代简约方糖皮床主卧室多功能储物大床', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01ivyFLo1qQTFXkMjy7_!!351855490.jpg', NULL, '家具结构:箱框结构;颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;尺寸:1800mm*2000mm', '2720210080260001', 14475, 7789, 1, NULL, '2055782964492095876', '2055782964491095876', 0, 0, 1, 1, NULL, 1, NULL, NULL, NULL, NULL, '2024-05-01 16:27:07', '手动确认订单', '2024-05-01 22:24:23', '生成拣货单');
 INSERT INTO `erp_sale_order_item` VALUES (443, 39, 6, 26, 9, 23, '【年货价】曲美家居独袋弹簧天然乳胶床垫家用软硬厚床垫保护脊椎舒星床垫', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01fpUhZz1qQTEwEVc7J_!!351855490.jpg', NULL, '尺寸:1800mm*2000mm;颜色分类:【升级款】独袋弹簧乳胶床垫', '2720210080260001', 3999, 1509, 1, NULL, '3763030608987745044', '3763030608986745044', 0, 0, 1, 1, 1, 1, NULL, NULL, NULL, NULL, '2024-05-01 16:30:18', '手动确认订单', '2024-05-02 10:01:48', '分配给供应商发货');
+INSERT INTO `erp_sale_order_item` VALUES (1785584827112509446, 41, 6, 26, 9, 32, '曲美家居现代简约双人板式床舒适婚床卧室多功能储物床', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01mynRp01qQTEysAMKu_!!351855490.jpg', NULL, '颜色分类:木本色架子床+独袋乳胶床垫;尺寸:1500mm*2000mm', '2720210080260105', 12999, 3998, 1, NULL, '2137984935736126281', '2137984935735126281', 0, 0, 1, 1, 0, 1, NULL, NULL, NULL, NULL, '2024-05-03 09:22:35', '手动确认订单', '2024-05-03 09:23:09', '生成拣货单');
 
 -- ----------------------------
 -- Table structure for erp_sale_returned
@@ -2710,13 +2712,14 @@ CREATE TABLE `erp_ship_order`  (
   `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单发货表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1785852155209383938 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单发货表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of erp_ship_order
 -- ----------------------------
 INSERT INTO `erp_ship_order` VALUES (1785676692335767553, 6, 4, 0, '2055782964491095876', 38, 442, '2024-02-01 11:39:21', 9, 23, '2720210080260001', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '胥**', '*******8279', '高*街道江苏省高邮市北**村**幢***室', '中国', '江苏省', '扬州市', '高邮市', '2024-05-01 22:24:34', '生成拣货单', NULL, NULL);
 INSERT INTO `erp_ship_order` VALUES (1785852155209383937, 6, 4, 26, '3763030608986745044', 39, 443, '2024-01-31 10:42:58', 9, 23, '2720210080260001', 1, NULL, '菜鸟速递', '11111', 11.00, '2024-05-02 15:12:17', NULL, NULL, NULL, NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '张**', '*******4678', '大*镇*城**路下段泰舂小吃', '中国', '云南省', '大理白族自治州', '大理市', '2024-05-02 10:01:48', '分配给供应商发货', '2024-05-02 15:12:36', '发货');
+INSERT INTO `erp_ship_order` VALUES (1786204816567873538, 6, 4, 26, '2137984935735126281', 41, 1785584827112509446, '2024-05-02 12:47:02', 9, 32, '2720210080260105', 1, NULL, '京东快递', 'JD903989932', 5.00, '2024-05-03 11:32:15', NULL, 'admin', '20', '2024-05-03 10:56:43', 0, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '刘**', '*******6949', '东**街道湖南省社会**院**栋***', '中国', '湖南省', '长沙市', '开福区', '2024-05-03 09:23:09', '生成拣货单', '2024-05-03 11:38:48', '发货');
 
 -- ----------------------------
 -- Table structure for erp_ship_order_agent_fee
@@ -2782,7 +2785,7 @@ CREATE TABLE `erp_ship_order_fee`  (
 -- ----------------------------
 -- Records of erp_ship_order_fee
 -- ----------------------------
-INSERT INTO `erp_ship_order_fee` VALUES (2, '邮政快递包裹aa', NULL, '121212112', '1773651223045967873', 2, 12.00, '2024-04-26', NULL, 0, '2024-04-26 14:39:49', 'admin', NULL, NULL, 0, 0, 0, 12, '11111111111', '11111111', '浙江省', '温州市', '瓯海区');
+INSERT INTO `erp_ship_order_fee` VALUES (1786238985318604801, '京东快递', NULL, 'JD903989932', '2137984935735126281', 6, 5.00, '2024-05-03', NULL, 0, '2024-05-03 11:38:54', '发货', NULL, NULL, 0, 0, 0, NULL, '刘**', '*******6949', '湖南省', '长沙市', '开福区');
 
 -- ----------------------------
 -- Table structure for oms_pdd_goods
@@ -3584,6 +3587,19 @@ CREATE TABLE `oms_tao_order`  (
 -- ----------------------------
 INSERT INTO `oms_tao_order` VALUES (1785197391936688130, 6, 2055782964491095876, '曲美家具官方旗舰店', 'fixed', '0', 'false', NULL, NULL, NULL, 'AAHkHVMUAAJ_dKyzaDVargQd', NULL, '徐**', NULL, NULL, NULL, 14475, 0, 0.00, 3000.00, 4789.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-01 11:39:21', '2024-02-01 11:40:03', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'WAIT_SELLER_SEND_GOODS', NULL, NULL, NULL, 0, '2024-04-30 14:40:00', '2024-05-01 16:27:07', 'admin', '14wSuQEB4GiaeRKP0KGRGVScqSQib5ibAp5gck23GEfGyWLyeoicFz3fCHSDztR8STVP6xHZCo', NULL, NULL, '江苏省', '扬州市', '高邮市', '高邮街道', '高*街道江苏省高邮市北**村**幢***室', NULL, '胥**', '*******8279', NULL, NULL, NULL, '0', NULL, '2024020122001137671417195725', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2055782964491095876', NULL, 1, '2024-05-01 16:27:07');
 INSERT INTO `oms_tao_order` VALUES (1785197435754582018, 6, 3763030608986745044, '曲美家具官方旗舰店', 'fixed', '0', 'false', NULL, NULL, NULL, 'AAE5HVMUAAJ_dKyzaDWeZBdl', NULL, 'z**', NULL, NULL, NULL, 3999, 0, 0.00, 510.00, 999.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-31 10:42:58', '2024-02-01 10:43:02', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'TRADE_CLOSED_BY_TAOBAO', NULL, NULL, NULL, 0, '2024-04-30 14:40:11', '2024-05-01 16:30:18', 'admin', '1UXZGiaRxt6XeAtTPeFIXjcz7eHvSAh2Dq4L93p5eRTVOhXFh0AvZYvDQyYguov7VrIyAz8', NULL, NULL, '云南省', '大理白族自治州', '大理市', '大理镇', '大*镇*城**路下段泰舂小吃', NULL, '张**', '*******4678', NULL, NULL, NULL, '0', NULL, '2024013122001193751438191795', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '3763030608986745044', NULL, 1, '2024-05-01 16:30:18');
+INSERT INTO `oms_tao_order` VALUES (1785992377725304834, 6, 2136955262006787584, '曲美家具官方旗舰店', 'fixed', '0', 'false', '2599.00', NULL, NULL, 'AAFVHVMUAAJ_dKyzaDUpiYxc', NULL, 'c**', NULL, NULL, NULL, 6999, 0, 0.00, 500.00, 2599.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-30 20:08:22', '2024-05-02 17:19:45', '2024-04-30 20:08:34', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'WAIT_BUYER_CONFIRM_GOODS', NULL, NULL, NULL, 0, '2024-05-02 19:19:00', NULL, NULL, '12Wv164JibJ2SsxoXwicial6tPY6emTp99ntcp5iaLeaUJjhYRaL7Qn98pX9dP2iTVcRruXjkEQ', NULL, NULL, '山东省', '泰安市', '泰山区', '财源街道', '财*街道**路**号第四**所西**号楼', NULL, '牛**', '*******9987', NULL, NULL, NULL, '0', NULL, '2024043022001114471434584854', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2136955262006787584', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992378329284609, 6, 3872027378637687617, '曲美家具官方旗舰店', 'fixed', '0', 'false', NULL, NULL, NULL, 'AAEOHVMUAAJ_dKyzaDU1eA8X', NULL, 'm**', NULL, NULL, NULL, 4617, 0, 0.00, 420.00, 2179.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-02 13:37:16', '2024-05-02 16:57:49', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'TRADE_CLOSED_BY_TAOBAO', NULL, NULL, NULL, 0, '2024-05-02 19:19:00', NULL, NULL, '1D4aCeW34TjLXDjx2wp51ylSslmY0UPuup5sWu0zMicTVxqZAcxia3a6oibouD74hqVZwbhod', NULL, NULL, '四川省', '成都市', '郫都区', '犀浦街道', '犀*街道**路***号万科**园****单元****', NULL, '曾**', '*******0932', NULL, NULL, NULL, '0', NULL, '2024050222001141131447585767', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '3872027378637687617', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992378782269441, 6, 2133437161838640694, '曲美家具官方旗舰店', 'fixed', '0', 'false', '8824.92', NULL, NULL, 'AAHeHVMUAAJ_dKyzaDU4gNKZ', NULL, 'l**', NULL, NULL, NULL, 23712, 0, 0.00, 1320.00, 8831.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-27 11:44:30', '2024-05-02 16:39:01', '2024-04-27 11:45:21', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'WAIT_BUYER_CONFIRM_GOODS', NULL, NULL, NULL, 0, '2024-05-02 19:19:00', NULL, NULL, '1lWK8WQRzJgg7JQibvwdqg1A4f85rtVTrkEw4p5vMYKNS3IxbcohDtTVo4v5MEcbhnvlINu', NULL, NULL, '北京', '北京市', '朝阳区', '望京街道', '望*街道花家**街方**小**号楼****', NULL, '李**', '*******9317', NULL, NULL, NULL, '0', NULL, '2024042722001179791420413512', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2133437161838640694', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992379382054913, 6, 2123447448429680054, '曲美家具官方旗舰店', 'fixed', '0', 'false', '4768.20', NULL, NULL, 'AAEFHVMUAAJ_dKyzaDUyt-J_', NULL, 'l**', NULL, NULL, NULL, 15498, 0, 0.00, 529.80, 4768.20, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-19 09:17:06', '2024-05-02 16:38:09', '2024-04-19 09:17:12', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'WAIT_BUYER_CONFIRM_GOODS', NULL, NULL, NULL, 0, '2024-05-02 19:19:00', NULL, NULL, '1d5Jf9yEe4ecdkmfq9VCNUqjp5L33wjy71dPLGeTegkTU7TVpsDdJ63PoV22eFdCE7FNm1', NULL, NULL, '北京', '北京市', '朝阳区', '来广营乡', '来**乡清河营东**号福**道北区**号**单元***', NULL, '李**', '*******6858', NULL, NULL, NULL, '0', NULL, '2024041922001150241433265992', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2123447448429680054', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992380174778370, 6, 3840586093012844206, '曲美家具官方旗舰店', 'fixed', '0', 'false', NULL, NULL, NULL, 'AAG3HVMUAAJ_dKyzaDVRqZ3l', NULL, 't**', NULL, NULL, NULL, 4259, 0, 0.00, 329.85, 1869.15, 1869.15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-07 09:10:47', '2024-05-02 15:35:10', '2024-04-07 09:10:56', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'TRADE_FINISHED', NULL, NULL, NULL, 0, '2024-05-02 19:19:00', NULL, NULL, '11jrH4EibR6aNicQ64dbWzN5JrxZjZj0pTbibca0ys41lgJDkUp5O7icLic8TVQhfibccibVtKYk5', NULL, NULL, '内蒙古自治区', '赤峰市', '松山区', '全宁街道', '全*街道百合**大厦', NULL, '祝**', '*******0576', NULL, NULL, NULL, '0', NULL, '2024040722001185911423959937', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '3840586093012844206', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992380774563842, 6, 2103517886483780362, '曲美家具官方旗舰店', 'fixed', '4', 'false', '5669.06', NULL, NULL, 'AAESHVMUAAJ_dKyzaDVeVuc8', NULL, 'b**', NULL, NULL, NULL, 14906, 0, 0.00, 1226.94, 5669.06, 5669.06, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-30 17:17:11', '2024-05-02 15:34:07', '2024-03-30 17:21:25', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'TRADE_FINISHED', NULL, NULL, NULL, 0, '2024-05-02 19:19:00', NULL, NULL, '1ETLJfnyLZ3CcV5pIf4kM718Ptp5Qj3nMZbATV6XjJBicFBaiaqYZbib9Yev7B1tALYiabxKPd', NULL, NULL, '江苏省', '南京市', '六合区', '雄州街道', '雄*街道 **路南门**小区***单元***', NULL, '白**', '*******1777', NULL, NULL, NULL, '0', NULL, '2024033022001196941438407286', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2103517886483780362', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992381567287298, 6, 2137583318982027357, '曲美家具官方旗舰店', 'fixed', '0', 'false', NULL, NULL, NULL, 'AAHvHVMUAAJ_dKyzaDVA5kTK', NULL, 'b**', NULL, NULL, NULL, 33744, 0, 0.00, 1460.00, 8936.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-01 15:33:48', '2024-05-02 15:33:55', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'TRADE_CLOSED_BY_TAOBAO', NULL, NULL, NULL, 0, '2024-05-02 19:19:01', NULL, NULL, '1cfPleywyuKJ5yhqqicV7f9coz66t4aqsswtjU3o859p5kM1TVChJPx1Px7u0k8Iq1IJmibX', NULL, NULL, '北京', '北京市', '海淀区', '花园路街道', '花**街道海淀区**路北京航空**大学西区**楼*****单元***门', NULL, '白**', '*******1971', NULL, NULL, NULL, '0', NULL, '2024050122001189301446127793', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2137583318982027357', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992382288707586, 6, 3592116642310695742, '曲美家具官方旗舰店', 'fixed', '4', 'false', NULL, NULL, NULL, 'AAGkHVMUAAJ_dKyzaDUjJ4kW', NULL, 'i**', NULL, NULL, NULL, 5900, 0, 0.00, 800.00, 1299.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-10-31 20:05:41', '2024-05-02 15:30:46', '2023-10-31 20:05:45', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'WAIT_BUYER_CONFIRM_GOODS', NULL, NULL, NULL, 0, '2024-05-02 19:19:01', NULL, NULL, '1ibFia20bibHr3ypPKy4B7EBc6ibHjGKVRq7EKibROp5jRa0BtLTVuVEl3GIedK4j9M4HST1uXk', NULL, NULL, '江西省', '南昌市', '西湖区', '南站街道', '南*街道解**路**号天佑国际公**号楼*座****室', NULL, '阿**', '*******2552', NULL, NULL, NULL, '0', NULL, '2023103122001129801405682553', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '3592116642310695742', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992382750081026, 6, 3833238279880096107, '曲美家具官方旗舰店', 'fixed', '4', 'false', NULL, NULL, NULL, 'AAHoHVMUAAJ_dKyzaDVzNtau', NULL, 'q**', NULL, NULL, NULL, 25056, 0, 0.00, 1783.91, 8272.09, 8272.09, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-31 11:29:32', '2024-05-02 15:20:44', '2024-03-31 11:29:51', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'TRADE_FINISHED', NULL, NULL, NULL, 0, '2024-05-02 19:19:01', NULL, NULL, '1c9qwGyQo9to84JO6WQwV8SfiaYuVrjaYwiaHCxt7I0p5FiahGFqTjrFclhTVrNktkEBy6qDV', NULL, NULL, '河北省', '秦皇岛市', '海港区', '西港镇', '西*镇横**路与秦皇**街交叉口西南***米兴龙紫云府一区', NULL, '陈**', '*******1517', NULL, NULL, NULL, '0', NULL, '2024033122001104921449092082', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '3833238279880096107', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992383416975361, 6, 2138459558207027357, '曲美家具官方旗舰店', 'fixed', '0', 'false', NULL, NULL, NULL, 'AAHvHVMUAAJ_dKyzaDVA5kTK', NULL, 'b**', NULL, NULL, NULL, 15845, 0, 0.00, 1580.00, 9715.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-02 15:18:33', '2024-05-02 15:18:33', NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'WAIT_BUYER_PAY', NULL, NULL, NULL, 0, '2024-05-02 19:19:01', NULL, NULL, '1cfPleywyuKJ5yhqqicV7f9coz66t4aqsswtjU3o859p5kM1TVChJPx1Px7u0k8Iq1IJmibX', NULL, NULL, '北京', '北京市', '海淀区', '花园路街道', '花**街道海淀区**路北京航空**大学西区**楼*****单元***门', NULL, '白**', '*******1971', NULL, NULL, NULL, '0', NULL, '2024050222001189301451552478', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2138459558207027357', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992383937069058, 6, 2122586933708652172, '曲美家具官方旗舰店', 'fixed', '0', 'false', NULL, NULL, NULL, 'AAEVHVMUAAJ_dKyzaDUFL0Ti', NULL, 't**', NULL, NULL, NULL, 1747, 0, 0.00, 119.71, 679.29, 679.29, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-17 20:03:05', '2024-05-02 13:22:16', '2024-04-17 20:03:13', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'TRADE_FINISHED', NULL, NULL, NULL, 0, '2024-05-02 19:19:01', NULL, NULL, '1d5J6s4gx4gL53xv3UCVDvywp5k6LBLFghiaU7iagiblvQTV9jekttPGRrqcktnuOx6tzYUjr', NULL, NULL, '四川省', '成都市', '武侯区', '火车南站街道', '火车**街道科华南**号**小区', NULL, '咸**', '*******6875', NULL, NULL, NULL, '0', NULL, '2024041722001158001433677123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2122586933708652172', NULL, NULL, NULL);
+INSERT INTO `oms_tao_order` VALUES (1785992384469745666, 6, 2137984935735126281, '曲美家具官方旗舰店', 'fixed', '0', 'false', NULL, NULL, NULL, 'AAH3HVMUAAJ_dKyzaDW__rrF', NULL, '阿**', NULL, NULL, NULL, 12999, 0, 0.00, 620.00, 3378.00, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-05-02 12:47:02', '2024-05-02 12:47:38', '2024-05-02 12:47:22', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'WAIT_SELLER_SEND_GOODS', NULL, NULL, NULL, 0, '2024-05-02 19:19:01', '2024-05-03 09:22:35', 'admin', '1buIoX4LXibwHfelPNqsbk4IYSHHc1ib0mXolPmJ3Qp5PE5fVj4InCrKYQLaVqaTVmzslWNs', NULL, NULL, '湖南省', '长沙市', '开福区', '东风路街道', '东**街道湖南省社会**院**栋***', NULL, '刘**', '*******6949', NULL, NULL, NULL, '0', NULL, '2024050222001159611448938999', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2137984935735126281', NULL, 1, '2024-05-03 09:22:35');
+INSERT INTO `oms_tao_order` VALUES (1785992384864010242, 6, 2101145844611966371, '曲美家具官方旗舰店', 'fixed', '0', 'false', NULL, NULL, NULL, 'AAEoHVMUAAJ_dKyzaDU42cAc', NULL, '我**', NULL, NULL, NULL, 4963, 0, 0.00, 440.58, 2258.42, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-28 21:26:03', '2024-05-02 12:01:03', '2024-03-28 21:26:10', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 'WAIT_BUYER_CONFIRM_GOODS', NULL, NULL, NULL, 0, '2024-05-02 19:19:01', NULL, NULL, '1s1Bg40ZyoQXnQTSp511uOXBK3OticgfNicXKKUqOxPJ7TiaMHhsbf1xrGaEETVONJcm5p92H', NULL, NULL, '云南省', '昆明市', '西山区', '前卫街道', '前*街道**路复地云**栋****', NULL, '何**', '*******0885', NULL, NULL, NULL, '0', NULL, '2024032822001108541446694440', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', NULL, NULL, '2101145844611966371', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oms_tao_order_item
@@ -3637,6 +3653,27 @@ CREATE TABLE `oms_tao_order_item`  (
 -- ----------------------------
 INSERT INTO `oms_tao_order_item` VALUES (1785197392498724866, 2055782964491095876, 2055782964492095876, 7789.00, 6686.00, 0.00, NULL, 3000, 0, '曲美家居头层真皮床轻奢现代简约方糖皮床主卧室多功能储物大床', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01ivyFLo1qQTFXkMjy7_!!351855490.jpg', 14475.00, 628280725946, '4729152984510', NULL, 'DS-F1-19-B12A-18F&M1', '家具结构:箱框结构;颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;尺寸:1800mm*2000mm', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50020000, NULL, '2024-02-01 11:39:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TRADE_CLOSED_BY_TAOBAO', 'NO_REFUND', NULL, NULL);
 INSERT INTO `oms_tao_order_item` VALUES (1785197435939131393, 3763030608986745044, 3763030608987745044, 1509.00, 2490.00, 0.00, NULL, 510, 0, '【年货价】曲美家居独袋弹簧天然乳胶床垫家用软硬厚床垫保护脊椎舒星床垫', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01fpUhZz1qQTEwEVc7J_!!351855490.jpg', 3999.00, 35211712394, '5023489177233', NULL, 'ZH-PTCD-DS-QM23-M1-18', '尺寸:1800mm*2000mm;颜色分类:【升级款】独袋弹簧乳胶床垫', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 122920001, NULL, '2024-02-01 10:43:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TRADE_CLOSED_BY_TAOBAO', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992377926631426, 2136955262006787584, 2136955262007787584, 3099.00, 3900.00, 0.00, 2599, 500, 2599, '曲美家居防螨抑菌天丝面料黄麻乳胶独袋弹簧双面可用尊享森眠床垫', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01upmriJ1qQTHi7tIn4_!!351855490.jpg', 6999.00, 742703605071, '5295674367439', NULL, 'ZH-PTCD-DS-QM23-M4-18', '尺寸:1800mm*2000mm;颜色分类:【尊享款】独立弹簧双面天丝面料床垫', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 122910003, NULL, NULL, NULL, NULL, '2024-05-01 08:49:06', 'free', '平安达腾飞快递新业务', '908869012669', NULL, 'WAIT_BUYER_CONFIRM_GOODS', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992378463502338, 3872027378637687617, 3872027378638687617, 2599.00, 2018.00, 0.00, NULL, 420, 0, '曲美家居简约现代北欧风储物抽屉柜家具四斗五斗柜卧室客厅储物柜', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01ptC1FX1qQTEPhn0BC_!!351855490.jpg', 4617.00, 559371554098, '4432860913931', NULL, 'YW1/5-N2017E-LB1-G', '颜色分类:五斗柜 胡桃色+荷花白;安装方式:组装', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50015740, NULL, '2024-05-02 13:48:03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TRADE_CLOSED_BY_TAOBAO', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992378916487169, 2133437161838640694, 2133437161839640694, 4498.00, 7748.00, 0.00, 3913.1, 584.9, 3913.1, '【活动价】曲美家居头层真皮床轻奢现代简约方糖皮床主卧室多功能储物大床', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01egopvS1qQTFdRm15q_!!351855490.jpg', 12246.00, 628280725946, '4804328073224', NULL, 'DS-F1-19-B12A-18&M1', '家具结构:框架结构;颜色分类:清新绿-头层牛皮软床+独袋弹簧乳胶床垫;尺寸:1800mm*2000mm', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50020000, NULL, NULL, NULL, NULL, '2024-04-28 10:24:56', 'free', '平安达腾飞快递新业务', '908869012647', NULL, 'WAIT_BUYER_CONFIRM_GOODS', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992378983596034, 2133437161838640694, 2133437161840640694, 5653.00, 5813.00, 0.00, 4917.9, 735.1, 4917.9, '曲美家居轻奢北欧风真皮床大象耳朵现代简约头层牛皮主卧室双人床', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN018Fl1oW1qQTEzQaFAn_!!351855490.jpg', 11466.00, 647894947395, '5179859263804', NULL, 'DS-F2-QM21-B6-18&QM23-M2-18', '家具结构:框架结构;颜色分类:优雅驼-框架单床+黑骑士双面可用床垫;尺寸:1800mm*2000mm', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50020000, NULL, NULL, NULL, NULL, '2024-04-28 10:24:56', 'free', '平安达腾飞快递新业务', '908869012647', NULL, 'WAIT_BUYER_CONFIRM_GOODS', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992379579187202, 2123447448429680054, 2123447448430680054, 1799.00, 3700.00, 0.00, 1619.1, 179.9, 1619.1, '曲美家居防螨抑菌透气床垫黄麻乳胶独袋弹簧双面可用黑骑士床垫', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01nceveE1qQTEwAljF6_!!351855490.jpg', 5499.00, 571110765951, '5182018783834', NULL, 'ZH-PTCD-DS-QM23-M2-15', '尺寸:1500mm*2000mm;颜色分类:【升级款】独袋乳胶黄麻双面床垫', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 122920001, NULL, NULL, NULL, NULL, '2024-04-28 10:14:06', 'free', '平安达腾飞快递新业务', '908869012645', NULL, 'WAIT_BUYER_CONFIRM_GOODS', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992379780513793, 2123447448429680054, 2123447448431680054, 3499.00, 6500.00, 0.00, 3149.1, 349.9, 3149.1, '曲美家居简约实木框架简雅大气现代头层牛皮床主卧室床平川床新品', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01J6Ve9b1qQTIO9soWc_!!351855490.jpg', 9999.00, 747230335059, '5154040641051', NULL, 'ZH-PC-2-DS-F1-QM23-B13-15', '家具结构:框架结构;颜色分类:藕玉色-平川皮床;尺寸:1500mm*2000mm', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50020000, NULL, NULL, NULL, NULL, '2024-04-28 10:14:06', 'free', '平安达腾飞快递新业务', '908869012645', NULL, 'WAIT_BUYER_CONFIRM_GOODS', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992380308996097, 3840586093012844206, 3840586093013844206, 2199.00, 2060.00, 0.00, 1869.15, 329.85, 1869.15, '曲美家居北欧卧室抽屉柜五斗柜客厅餐厅储物柜收纳柜子09ZC', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01tBPFGh1qQT3xD5HmC_!!351855490.jpg', 4259.00, 609816189489, '4429419976427', NULL, 'ZQB-09ZC-LB1-G', '颜色分类:木本色+荷花白色;安装方式:组装', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50015740, NULL, '2024-05-02 15:35:11', NULL, NULL, '2024-04-22 15:35:06', 'free', '平安达腾飞快递新业务', '908862725707', NULL, 'TRADE_FINISHED', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992380971696130, 2103517886483780362, 2103517886484780362, 1998.00, 3600.00, 0.00, 1685.09, 312.91, 1685.09, '【家装节价】曲美家居独袋弹簧天然乳胶床垫家用软硬厚床垫保护脊椎舒星床垫', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01S61ytB1qQTEmeWbQa_!!351855490.jpg', 2799.00, 35211712394, '5023489177232', NULL, 'ZH-PTCD-DS-QM23-M1-15', '尺寸:1500mm*2000mm;颜色分类:【升级款】独袋弹簧乳胶床垫', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'B', 122920001, NULL, '2024-05-02 11:40:15', NULL, NULL, '2024-04-22 11:40:07', 'express', ' 平安达腾飞快递新业务', '908869012635', NULL, 'TRADE_FINISHED', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992381105913858, 2103517886483780362, 2103517886485780362, 2999.00, 2892.00, 0.00, 2439.35, 559.65, 2439.35, '【家装节价】曲美家居北欧简约风餐边柜多门带抽屉时尚餐厅储物茶水碗橱收纳柜', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01sjZyCo1qQTLHcayVh-351855490.jpg', 5891.00, 559372510165, '4428770372777', NULL, '084/5-N2017E-DB1-1-G', '颜色分类:深橡色+ 荷花白 餐边柜;门数量:3门', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50008276, NULL, '2024-05-02 15:34:08', NULL, NULL, '2024-04-22 15:34:05', 'express', ' 平安达腾飞快递新业务', '908862725708', NULL, 'TRADE_FINISHED', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992381231742978, 2103517886483780362, 2103517886486780362, 1899.00, 1518.00, 0.00, 1544.62, 354.38, 1544.62, '【家装节价】曲美家居简约现代北欧风储物抽屉柜家具四斗五斗柜卧室客厅储物柜', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01HqhlK01qQT1C9XSrw_!!351855490.jpg', 3417.00, 559371554098, '4432860913933', NULL, '084/5-N2017E-LB2-G', '颜色分类:四斗柜 深橡色+荷花白;安装方式:组装', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50015740, NULL, '2024-05-02 15:34:08', NULL, NULL, '2024-04-22 15:34:05', 'express', ' 平安达腾飞快递新业务', '908862725708', NULL, 'TRADE_FINISHED', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992381688922113, 2137583318982027357, 2137583318983027357, 3598.00, 7400.00, 0.00, NULL, 505.3, 0, '曲美家居防螨抑菌透气床垫黄麻乳胶独袋弹簧双面可用黑骑士床垫', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01nceveE1qQTEwAljF6_!!351855490.jpg', 5499.00, 571110765951, '5182018783834', NULL, 'ZH-PTCD-DS-QM23-M2-15', '尺寸:1500mm*2000mm;颜色分类:【升级款】独袋乳胶黄麻双面床垫', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'B', 122920001, NULL, '2024-05-02 15:33:55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TRADE_CLOSED_BY_TAOBAO', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992381756030978, 2137583318982027357, 2137583318984027357, 6798.00, 15948.00, 0.00, NULL, 954.7, 0, '曲美家居头层真皮床轻奢现代简约方糖皮床主卧室多功能储物大床', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01IltHBF1qQTEdMfBjY_!!351855490.jpg', 11373.00, 628280725946, '5070181490173', NULL, 'ZH-PC-2-DS-F2-QM19-B12A-15', '家具结构:框架结构;颜色分类:奶油白【进口头层牛皮+升级10cm松木排骨条】;尺寸:1500mm*2000mm', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'B', 50020000, NULL, '2024-05-02 15:33:55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TRADE_CLOSED_BY_TAOBAO', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992382422925314, 3592116642310695742, 3592116642311695742, 2099.00, 3801.00, 0.00, 1299, 800, 1299, '曲美家居法式轻奢花瓣床北欧简约奶油系磨砂布艺床主卧双人床', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN01Hq53S51qQTEpxFCeI_!!351855490.jpg', 5900.00, 695167572432, '5106620966752', NULL, 'ZH-PC-2-DS-F1-QM22-B13-18', '家具结构:组装式架子床;颜色分类:奶油白-花瓣床【可拆卸靠包+进口落叶松实木框架】;尺寸:1800mm*2000mm', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50019999, NULL, NULL, NULL, NULL, '2024-04-29 16:21:06', 'free', '平安达腾飞快递新业务', '908869012665', NULL, 'WAIT_BUYER_CONFIRM_GOODS', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992382884298754, 3833238279880096107, 3833238279881096107, 1259.00, 1740.00, 0.00, 1068.7, 190.3, 1068.7, '【家装节价】曲美家居现代北欧风简约床头柜卧室家用弯曲木工艺储物床头柜云栖', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01hX02Tp1qQTHwxGNVp_!!351855490.jpg', 2999.00, 743182884130, '5300013979421', NULL, 'GRQHT-23E-WQM-NT2R', '颜色分类:戈尔浅胡桃（右）', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50001382, NULL, '2024-05-02 15:20:44', NULL, NULL, '2024-04-22 15:20:36', 'express', ' 平安达腾飞快递新业务', '908862725710', NULL, 'TRADE_FINISHED', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992382951407617, 3833238279880096107, 3833238279882096107, 3998.00, 9001.00, 0.00, 3273.75, 724.25, 3273.75, '【家装节价】曲美家居现代简约双人板式床舒适婚床卧室多功能储物床', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01KAiENT1qQTEwSRXkf_!!351855490.jpg', 12999.00, 559261436131, '4988190157322', NULL, 'YW1-2017E-B2-150&DS-QM23-M1-15', '颜色分类:胡桃色架子床+独袋乳胶床垫;尺寸:1500mm*2000mm', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50020002, NULL, '2024-05-02 11:38:07', NULL, NULL, '2024-04-22 11:38:05', 'express', ' 平安达腾飞快递新业务', '908869012634', NULL, 'TRADE_FINISHED', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992383085625345, 3833238279880096107, 3833238279883096107, 4799.00, 4259.00, 0.00, 3929.64, 869.36, 3929.64, '【家装节价】曲美家居现代简约中式实木衣柜家用卧室衣帽柜小户型大容量储物柜', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01E0dOGF1qQT9HgKnSB_!!351855490.jpg', 9058.00, 35654302556, '4642975799271', NULL, 'YW1/5-09ZC-WG2-G', '颜色分类:胡桃色+荷花白色;门数量:4门;是否组装:组装', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50015744, NULL, '2024-05-02 15:20:44', NULL, NULL, '2024-04-22 15:20:36', 'express', ' 平安达腾飞快递新业务', '908862725710', NULL, 'TRADE_FINISHED', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992383546998785, 2138459558207027357, 2138459558208027357, 2499.00, 1348.00, 0.00, NULL, 349.57, 0, '曲美家居现代简约实木衣柜卧室衣帽柜平开门衣橱环保板材储物柜', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01SlVur51qQT8cHjEUm_!!351855490.jpg', 3847.00, 9888033031, '4600898994639', NULL, 'ZQB-2011C-WG1', '颜色分类:木本色衣柜;门数量:2门;是否组装:组装', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50015744, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WAIT_BUYER_PAY', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992383614107649, 2138459558207027357, 2138459558209027357, 8796.00, 3202.00, 0.00, NULL, 1230.43, 0, '曲美家居独袋弹簧天然乳胶床垫家用软硬厚床垫保护脊椎舒星床垫', 'https://img.alicdn.com/bao/uploaded/i1/351855490/O1CN01tdN5nW1qQTKr1dgy6_!!351855490.jpg', 5999.00, 35211712394, '5465996851467', NULL, 'DS-F2-19-B12A-15&M1', '尺寸:1500mm*2000mm;颜色分类:床垫+奶油白头层真皮软床方糖', NULL, NULL, 2, NULL, NULL, NULL, NULL, 'B', 122920001, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WAIT_BUYER_PAY', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992384067092482, 2122586933708652172, 2122586933709652172, 799.00, 948.00, 0.00, 679.29, 119.71, 679.29, '【活动价】曲美家居现代简约风布艺床头柜储物抽屉置物柜主卧室大床配套家具', 'https://img.alicdn.com/bao/uploaded/i3/351855490/O1CN01p64bTO1qQTI1j0r30_!!351855490.jpg', 1747.00, 659131151317, '5129480852960', NULL, 'ZH-SF-04-DS-F1-QM21A-NT10', '颜色分类:皓月床头柜-奶油黄;安装方式:组装', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50001382, NULL, '2024-05-02 13:22:17', NULL, NULL, '2024-04-22 13:22:05', 'free', '平安达腾飞快递新业务', '908869012637', NULL, 'TRADE_FINISHED', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992384603963393, 2137984935735126281, 2137984935736126281, 3998.00, 9001.00, 0.00, 3378, 620, 3378, '曲美家居现代简约双人板式床舒适婚床卧室多功能储物床', 'https://img.alicdn.com/bao/uploaded/i4/351855490/O1CN01mynRp01qQTEysAMKu_!!351855490.jpg', 12999.00, 559261436131, '4988190157320', NULL, 'ZQB-2017E-B2-150&DS-QM23-M1-15', '颜色分类:木本色架子床+独袋乳胶床垫;尺寸:1500mm*2000mm', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50020002, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'WAIT_SELLER_SEND_GOODS', 'NO_REFUND', NULL, NULL);
+INSERT INTO `oms_tao_order_item` VALUES (1785992385006616577, 2101145844611966371, 2101145844612966371, 2699.00, 2264.00, 0.00, 2258.42, 440.58, 2258.42, '【家装节价】曲美家居现代简约中式实木衣柜家用卧室衣帽柜小户型大容量储物柜', 'https://img.alicdn.com/bao/uploaded/i2/351855490/O1CN016X7OBv1qQT9EZzEnM_!!351855490.jpg', 4963.00, 35654302556, '4642975799269', NULL, 'ZQB/5-09ZC-WG1', '颜色分类:木本色+荷花白色;门数量:2门;是否组装:组装', NULL, NULL, 1, NULL, NULL, NULL, NULL, 'B', 50015744, NULL, NULL, NULL, NULL, '2024-04-22 16:02:06', 'free', '平安达腾飞快递新业务', '908862725705', NULL, 'WAIT_BUYER_CONFIRM_GOODS', 'NO_REFUND', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for oms_tao_order_promotion
@@ -9965,7 +10002,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status`) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 222 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 230 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -10141,6 +10178,11 @@ INSERT INTO `sys_logininfor` VALUES (226, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (227, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-02 08:46:44');
 INSERT INTO `sys_logininfor` VALUES (228, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-02 11:37:15');
 INSERT INTO `sys_logininfor` VALUES (229, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-02 14:47:41');
+INSERT INTO `sys_logininfor` VALUES (230, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-02 16:48:23');
+INSERT INTO `sys_logininfor` VALUES (231, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-02 18:22:03');
+INSERT INTO `sys_logininfor` VALUES (232, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-02 19:16:53');
+INSERT INTO `sys_logininfor` VALUES (233, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-03 08:59:04');
+INSERT INTO `sys_logininfor` VALUES (234, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-03 10:05:00');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -10316,7 +10358,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type`) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status`) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 369 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 381 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -10513,6 +10555,14 @@ INSERT INTO `sys_oper_log` VALUES (377, '菜单管理', 2, 'cn.qihangerp.api.con
 INSERT INTO `sys_oper_log` VALUES (378, '菜单管理', 2, 'cn.qihangerp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"shipping/shipFee\",\"createTime\":\"2024-01-12 18:35:31\",\"icon\":\"money\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2063,\"menuName\":\"发货费用\",\"menuType\":\"C\",\"orderNum\":5,\"params\":{},\"parentId\":6,\"path\":\"ship_fee\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-02 10:50:58', 8);
 INSERT INTO `sys_oper_log` VALUES (379, '菜单管理', 3, 'cn.qihangerp.api.controller.system.SysMenuController.remove()', 'DELETE', 1, 'admin', NULL, '/system/menu/2062', '127.0.0.1', '内网IP', '{}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-02 10:57:59', 10);
 INSERT INTO `sys_oper_log` VALUES (380, '菜单管理', 2, 'cn.qihangerp.api.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', NULL, '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"scm/purchase/bill\",\"createTime\":\"2024-04-24 17:03:07\",\"icon\":\"money\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2085,\"menuName\":\"采购账单管理\",\"menuType\":\"C\",\"orderNum\":4,\"params\":{},\"parentId\":4,\"path\":\"bill\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-02 10:59:08', 7);
+INSERT INTO `sys_oper_log` VALUES (381, '淘宝订单', 2, 'cn.qihangerp.open.tao.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao-api/order/confirmOrder', '127.0.0.1', '内网IP', '{\"id\":\"1785992384469745666\",\"receiverAddress\":\"东**街道湖南省社会**院**栋***\",\"receiverMobile\":\"*******6949\",\"receiverName\":\"刘**\",\"updateBy\":\"admin\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-03 09:12:10', 93);
+INSERT INTO `sys_oper_log` VALUES (382, '淘宝订单', 2, 'cn.qihangerp.open.tao.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao-api/order/confirmOrder', '127.0.0.1', '内网IP', '{\"id\":\"1785992384469745666\",\"receiverAddress\":\"东**街道湖南省社会**院**栋***\",\"receiverMobile\":\"*******6949\",\"receiverName\":\"刘**\",\"updateBy\":\"admin\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-03 09:20:19', 76);
+INSERT INTO `sys_oper_log` VALUES (383, '淘宝订单', 2, 'cn.qihangerp.open.tao.controller.TaoOrderController.confirmOrder()', 'POST', 1, 'admin', NULL, '/tao-api/order/confirmOrder', '127.0.0.1', '内网IP', '{\"id\":\"1785992384469745666\",\"receiverAddress\":\"东**街道湖南省社会**院**栋***\",\"receiverMobile\":\"*******6949\",\"receiverName\":\"刘**\",\"updateBy\":\"admin\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-03 09:22:34', 24);
+INSERT INTO `sys_oper_log` VALUES (384, '出库单', 1, 'cn.qihangerp.api.controller.WmsStockOutEntryController.stockOut()', 'POST', 1, 'admin', NULL, '/wms/stockOutEntry/stockOut', '127.0.0.1', '内网IP', '{\"entryId\":1786204816504958978,\"entryItemId\":1786204816504958979,\"inventoryDetailId\":7,\"operatorId\":1,\"operatorName\":\"admin\",\"specId\":32}', NULL, 1, 'Cannot invoke \"java.lang.Integer.intValue()\" because the return value of \"cn.qihangerp.api.domain.bo.StockOutBo.getOutQty()\" is null', '2024-05-03 10:24:35', 231923);
+INSERT INTO `sys_oper_log` VALUES (385, '出库单', 1, 'cn.qihangerp.api.controller.WmsStockOutEntryController.stockOut()', 'POST', 1, 'admin', NULL, '/wms/stockOutEntry/stockOut', '127.0.0.1', '内网IP', '{\"entryId\":1786204816504958978,\"entryItemId\":1786204816504958979,\"inventoryDetailId\":7,\"operatorId\":1,\"operatorName\":\"admin\",\"specId\":32}', '{\"msg\":\"参数错误！请填写出库数量！\",\"code\":500}', 0, NULL, '2024-05-03 10:25:01', 9);
+INSERT INTO `sys_oper_log` VALUES (386, '出库单', 1, 'cn.qihangerp.api.controller.WmsStockOutEntryController.stockOut()', 'POST', 1, 'admin', NULL, '/wms/stockOutEntry/stockOut', '127.0.0.1', '内网IP', '{\"entryId\":1786204816504958978,\"entryItemId\":1786204816504958979,\"inventoryDetailId\":7,\"operatorId\":1,\"operatorName\":\"admin\",\"outQty\":1,\"specId\":32}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-03 10:39:34', 843876);
+INSERT INTO `sys_oper_log` VALUES (387, '出库单', 1, 'cn.qihangerp.api.controller.WmsStockOutEntryController.stockOut()', 'POST', 1, 'admin', NULL, '/wms/stockOutEntry/stockOut', '127.0.0.1', '内网IP', '{\"entryId\":1786204816504958978,\"entryItemId\":1786204816504958979,\"inventoryDetailId\":7,\"operatorId\":1,\"operatorName\":\"admin\",\"specId\":32}', '{\"msg\":\"参数错误！请填写出库数量！\",\"code\":500}', 0, NULL, '2024-05-03 10:56:13', 10);
+INSERT INTO `sys_oper_log` VALUES (388, '出库单', 1, 'cn.qihangerp.api.controller.WmsStockOutEntryController.stockOut()', 'POST', 1, 'admin', NULL, '/wms/stockOutEntry/stockOut', '127.0.0.1', '内网IP', '{\"entryId\":1786204816504958978,\"entryItemId\":1786204816504958979,\"inventoryDetailId\":7,\"operatorId\":1,\"operatorName\":\"admin\",\"outQty\":1,\"specId\":32}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-03 10:56:47', 30782);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -10704,7 +10754,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-02 14:47:41', 'admin', '2023-08-07 19:31:37', '', '2024-05-02 14:47:41', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-03 10:05:01', 'admin', '2023-08-07 19:31:37', '', '2024-05-03 10:05:00', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 
@@ -11090,6 +11140,7 @@ CREATE TABLE `wms_stock_out_entry`  (
   `goods_unit` int NOT NULL COMMENT '商品数',
   `spec_unit` int NOT NULL COMMENT '商品规格数',
   `spec_unit_total` int NOT NULL COMMENT '总件数',
+  `out_total` int NULL DEFAULT NULL COMMENT '已出库数量',
   `remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '备注',
   `status` int NOT NULL COMMENT '状态：0待出库1部分出库2全部出库',
   `print_status` int NOT NULL COMMENT '打印状态：是否打印1已打印0未打印',
@@ -11103,12 +11154,13 @@ CREATE TABLE `wms_stock_out_entry`  (
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `update_by` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1783708162622738434 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1785676644348735491 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of wms_stock_out_entry
 -- ----------------------------
-INSERT INTO `wms_stock_out_entry` VALUES (1785676644348735490, '202405012220056', NULL, NULL, 1, 1, 1, 1, NULL, 0, 0, NULL, NULL, NULL, 0, NULL, '2024-05-01 22:24:23', '生成拣货单', '2024-05-01 22:24:22', NULL);
+INSERT INTO `wms_stock_out_entry` VALUES (1785676644348735490, '202405012220056', NULL, NULL, 1, 1, 1, 1, NULL, NULL, 0, 0, NULL, NULL, NULL, 0, NULL, '2024-05-01 22:24:23', '生成拣货单', '2024-05-01 22:24:22', NULL);
+INSERT INTO `wms_stock_out_entry` VALUES (1786204816504958978, '202405030923075', NULL, NULL, 1, 1, 1, 1, 1, NULL, 2, 0, NULL, '2024-05-03 10:56:33', '2024-05-03 10:56:33', 1, 'admin', '2024-05-03 09:23:09', '生成拣货单', '2024-05-03 10:56:34', '出库');
 
 -- ----------------------------
 -- Table structure for wms_stock_out_entry_item
@@ -11133,12 +11185,13 @@ CREATE TABLE `wms_stock_out_entry_item`  (
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `specIndex`(`spec_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1783708162694041603 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单明细' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1785676644373901315 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单明细' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of wms_stock_out_entry_item
 -- ----------------------------
 INSERT INTO `wms_stock_out_entry_item` VALUES (1785676644373901314, 1, 1785676644348735490, 38, 442, '2055782964491095876', 9, 23, '2720210080260001', 1, 0, NULL, NULL, 0, '2024-05-01 22:24:23', NULL);
+INSERT INTO `wms_stock_out_entry_item` VALUES (1786204816504958979, 1, 1786204816504958978, 41, 1785584827112509446, '2137984935735126281', 9, 32, '2720210080260105', 1, 1, '2024-05-03 10:56:27', '2024-05-03 10:56:26', 2, '2024-05-03 09:23:09', NULL);
 
 -- ----------------------------
 -- Table structure for wms_stock_out_entry_item_detail
@@ -11162,5 +11215,7 @@ CREATE TABLE `wms_stock_out_entry_item_detail`  (
 -- ----------------------------
 -- Records of wms_stock_out_entry_item_detail
 -- ----------------------------
+INSERT INTO `wms_stock_out_entry_item_detail` VALUES (1786220616376844290, 1786204816504958978, 1786204816504958979, 6, 7, 1, 20, 1, 'admin', '2024-05-03 10:25:55');
+INSERT INTO `wms_stock_out_entry_item_detail` VALUES (1786228283631636481, 1786204816504958978, 1786204816504958979, 6, 7, 1, 20, 1, 'admin', '2024-05-03 10:56:24');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -78,10 +78,10 @@
       </el-table-column>
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.status === 0">待拣货</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 1">拣货中</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 2">拣货完成</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 3">已出库</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 0">待出库</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 1">部分出库</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 2">已出库</el-tag>
+
         </template>
       </el-table-column>
       <el-table-column label="是否打印" align="center" prop="printStatus" >
@@ -90,22 +90,22 @@
           <el-tag size="small" v-if="scope.row.printStatus === 1">已打印</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="打印时间" align="center" prop="printTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.printTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="打印时间" align="center" prop="printTime" width="180">-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ parseTime(scope.row.printTime, '{y}-{m}-{d}') }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
       <el-table-column label="创建日期" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.createTime)}}</span>
         </template>
       </el-table-column>
 <!--      <el-table-column label="创建人" align="center" prop="createBy" />-->
-      <el-table-column label="更新时间" align="center" prop="updateTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.updateTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="更新时间" align="center" prop="updateTime" width="180">-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ parseTime(scope.row.updateTime, '{y}-{m}-{d}') }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 <!--      <el-table-column label="更新人" align="center" prop="updateBy" />-->
       <el-table-column label="完成时间" align="center" prop="completeTime" width="180">
         <template slot-scope="scope">

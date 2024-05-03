@@ -69,7 +69,7 @@ public class WmsStockOutEntryController extends BaseController
     {
 //        WmsStockOutEntry entry = wmsStockOutEntryService.selectById(id);
 
-        return success(wmsStockOutEntryService.selectById(id));
+        return success(wmsStockOutEntryService.selectOutEntryItemInventoryDetailsByEntryId(id));
     }
     /**
      * 获取出库明细详情详细信息
@@ -92,7 +92,8 @@ public class WmsStockOutEntryController extends BaseController
         bo.setOperatorId(getUserId());
         bo.setOperatorName(getUsername());
         int result = wmsStockOutEntryService.stockOut(bo);
-        if(result == -1) return new AjaxResult(501,"数据错误！");
+        if(result == -5) return new AjaxResult(500,"参数错误！请填写出库数量！");
+        else if(result == -1) return new AjaxResult(501,"数据错误！");
         else if(result == -2) return new AjaxResult(502,"状态错误！");
         else if(result == -3) return new AjaxResult(503,"已全部出库！");
         else if(result == -4) return new AjaxResult(504,"出库数量超出！");

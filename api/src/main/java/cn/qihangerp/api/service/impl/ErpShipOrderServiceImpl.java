@@ -1,11 +1,10 @@
 package cn.qihangerp.api.service.impl;
 
 import cn.qihangerp.api.domain.ErpShipOrderAgentFee;
+import cn.qihangerp.api.domain.ErpShipOrderFee;
 import cn.qihangerp.api.domain.bo.ShipOrderSupplierShipBo;
 import cn.qihangerp.api.domain.bo.ShipOrderSupplierShipItemBo;
-import cn.qihangerp.api.mapper.ErpOrderItemMapper;
-import cn.qihangerp.api.mapper.ErpOrderMapper;
-import cn.qihangerp.api.mapper.ErpShipOrderAgentFeeMapper;
+import cn.qihangerp.api.mapper.*;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.utils.DateUtil;
@@ -17,7 +16,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.qihangerp.api.domain.ErpShipOrder;
 import cn.qihangerp.api.service.ErpShipOrderService;
-import cn.qihangerp.api.mapper.ErpShipOrderMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +37,7 @@ public class ErpShipOrderServiceImpl extends ServiceImpl<ErpShipOrderMapper, Erp
     private final ErpOrderItemMapper orderItemMapper;
     private final ErpOrderMapper orderMapper;
     private final ErpShipOrderAgentFeeMapper agentFeeMapper;
+    private final ErpShipOrderFeeMapper shipOrderFeeMapper;
     @Override
     public PageResult<ErpShipOrder> queryPageList(ErpShipOrder bo, PageQuery pageQuery) {
         LambdaQueryWrapper<ErpShipOrder> queryWrapper = new LambdaQueryWrapper<ErpShipOrder>()
@@ -144,6 +143,160 @@ public class ErpShipOrderServiceImpl extends ServiceImpl<ErpShipOrderMapper, Erp
 
         return 0;
     }
+
+
+    @Transactional
+    @Override
+    public int wmsShip(ShipOrderSupplierShipBo bo) {
+        // 判断数据完整性
+        if(bo.getErpOrderId()==null||bo.getErpOrderId()==0) return -2;
+        ErpOrder erpOrder = orderMapper.selectErpOrderById(bo.getErpOrderId());
+        if(erpOrder==null)return -3;
+
+        Float singleFee =  bo.getLogisticsFee()/bo.getItemList().size();
+        for (int i=0;i<bo.getItemList().size();i++) {
+            ShipOrderSupplierShipItemBo item = bo.getItemList().get(i);
+            if (item.getId() == null || item.getId() == 0) return -1;
+            ErpShipOrder shipOrder = mapper.selectById(item.getId());
+            if (shipOrder == null) return -1001;
+            if (shipOrder.getShipType() != 0) return -1002;
+            if (shipOrder.getShipStatus() != 2) return -1003;
+
+            // 更新自己 更新erp_ship_order
+            ErpShipOrder update = new ErpShipOrder();
+            update.setId(item.getId().toString());
+            update.setShipStatus(3);
+            update.setUpdateBy("发货");
+            update.setUpdateTime(new Date());
+            update.setShipTime(bo.getShipTime());
+            update.setLogisticsCompany(bo.getLogisticsCompany());
+            update.setLogisticsCode(bo.getLogisticsCode());
+            update.setLogisticsFee(i == bo.getItemList().size() - 1 ? (bo.getLogisticsFee() - singleFee * (bo.getItemList().size() - 1)) : singleFee);
+            mapper.updateById(update);
+
+            // 更新erp_sale_order_item
+            ErpOrderItem orderItem = new ErpOrderItem();
+            orderItem.setShipType(1);
+            orderItem.setShipStatus(3);
+            orderItem.setShipTime(bo.getShipTime());
+            orderItem.setLogisticsCompany(bo.getLogisticsCompany());
+            orderItem.setLogisticsCode(bo.getLogisticsCode());
+            orderItemMapper.updateById(orderItem);
+
+            // 生成物流费用 fms_payable_ship_fee
+            ErpShipOrderFee sf = new ErpShipOrderFee();
+            sf.setDate(new Date());
+            sf.setOrderNum(shipOrder.getOrderNum());
+            sf.setShopId(shipOrder.getShopId());
+            sf.setLogisticsCompany(bo.getLogisticsCompany());
+            sf.setLogisticsNum(bo.getLogisticsCode());
+            sf.setAmount(bo.getLogisticsFee());
+            sf.setStatus(0);
+            sf.setCreateTime(new Date());
+            sf.setCreateBy("发货");
+//            sf.setWidth(erpOrder.getWidth());
+//            sf.setWeight(erpOrder.getWeight());
+//            sf.setHeight(erpOrder.getHeight());
+//            sf.setLength(erpOrder.getLength());
+            sf.setReceiverName(shipOrder.getReceiverName());
+            sf.setReceiverPhone(shipOrder.getReceiverPhone());
+            sf.setProvince(shipOrder.getProvince());
+            sf.setCity(shipOrder.getCity());
+            sf.setTown(shipOrder.getTown());
+
+            shipOrderFeeMapper.insert(sf);
+
+        }
+
+        // 更新订单状态 erp_sale_order
+        ErpOrder orderUpdate = new ErpOrder();
+        orderUpdate.setId(erpOrder.getId());
+        orderUpdate.setShipType(1);
+        orderUpdate.setShipStatus(3);
+        try {
+            orderUpdate.setShippingTime(StringUtils.hasText(bo.getShipTime())? DateUtils.dateTime("yyyy-MM-dd HH:mm:ss",bo.getShipTime()):new Date());
+        }catch (Exception e){}
+        orderUpdate.setShippingCompany(bo.getLogisticsCompany());
+        orderUpdate.setShippingNumber(bo.getLogisticsCode());
+        orderUpdate.setShippingCost(bo.getLogisticsFee());
+        orderMapper.updateErpOrder(orderUpdate);
+
+        return 0;
+    }
+
+
+    /**
+     * 发货
+     * @param erpOrder
+     * @return
+     */
+//    @Transactional
+//    @Override
+//    public int shipErpOrder(ErpOrder erpOrder) {
+//        ErpOrder order = erpOrderMapper.selectErpOrderById(erpOrder.getId());
+//        if (order==null) return -1;// 订单不存在
+//        else if (order.getShipStatus()!=null && order.getShipStatus()==3) {
+//            return -3;//发货状态不对
+//        }
+//        else if(order.getOrderStatus() != 1 && order.getOrderStatus() != 2) return -2;//状态不对
+//        // 更新订单表状态
+//        ErpOrder update = new ErpOrder();
+//        update.setId(order.getId());
+//        update.setUpdateTime(new Date());
+//        update.setUpdateBy(erpOrder.getUpdateBy());
+//        update.setShippingTime(new Date());
+//        update.setShippingMan(erpOrder.getShippingMan());
+//        update.setShippingCompany(erpOrder.getShippingCompany());
+//        update.setShippingNumber(erpOrder.getShippingNumber());
+//        update.setShippingCost(erpOrder.getShippingCost());
+//        update.setWidth(erpOrder.getWidth());
+//        update.setWeight(erpOrder.getWeight());
+//        update.setHeight(erpOrder.getHeight());
+//        update.setLength(erpOrder.getLength());
+//        update.setOrderStatus(3);
+//        erpOrderMapper.updateErpOrder(update);
+//        // 更新订单子表状态
+//
+//        // 更新 wms_order_shipping
+////        ErpShipOrder shipOrder = new ErpShipOrder();
+////        shipOrder.setErpOrderId(order.getId());
+////        List<ErpShipOrder> shipList = shipOrderMapper.selectWmsOrderShippingList(select);
+////        if(shipList!=null){
+////            for (WmsOrderShipping ship:shipList) {
+////                WmsOrderShipping up = new WmsOrderShipping();
+////                up.setId(ship.getId());
+////                up.setStatus(3L);
+////                up.setUpdateTime(new Date());
+////                up.setUpdateBy(erpOrder.getUpdateBy());
+////                wmsOrderShippingMapper.updateWmsOrderShipping(up);
+////            }
+////        }
+//
+//
+//        // 生成物流费用 fms_payable_ship_fee
+//        ErpShipOrderFee sf = new ErpShipOrderFee();
+//        sf.setDate(new Date());
+//        sf.setOrderNum(order.getOrderNum());
+//        sf.setShopId(order.getShopId());
+//        sf.setLogisticsCompany(erpOrder.getShippingCompany());
+//        sf.setLogisticsNum(erpOrder.getShippingNumber());
+//        sf.setAmount(erpOrder.getShippingCost());
+//        sf.setStatus(0);
+//        sf.setCreateTime(new Date());
+//        sf.setCreateBy(erpOrder.getUpdateBy());
+//        sf.setWidth(erpOrder.getWidth());
+//        sf.setWeight(erpOrder.getWeight());
+//        sf.setHeight(erpOrder.getHeight());
+//        sf.setLength(erpOrder.getLength());
+//        sf.setReceiverName(order.getReceiverName());
+//        sf.setReceiverPhone(order.getReceiverPhone());
+//        sf.setProvince(order.getProvince());
+//        sf.setCity(order.getCity());
+//        sf.setTown(order.getTown());
+//
+//        shipOrderFeeMapper.insert(sf);
+//        return 1;
+//    }
 }
 
 
