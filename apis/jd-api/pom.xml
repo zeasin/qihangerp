@@ -20,6 +20,17 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>cn.qihangerp</groupId>
+            <artifactId>jd-api</artifactId>
+            <version>1.5.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/jd-api-1.5.3.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version> <!-- jd-sdk依赖 -->
+        </dependency>
     </dependencies>
 </project>

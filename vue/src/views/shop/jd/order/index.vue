@@ -66,7 +66,7 @@
       <el-table-column label="订单ID" align="center" prop="orderId" />
       <el-table-column label="店铺" align="center" prop="shopId" >
         <template slot-scope="scope">
-          <el-tag size="small">{{shopList.find(x=>x.id === scope.row.shopId).name}}</el-tag>
+          <el-tag size="small">{{shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name:''}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="商品" width="350">

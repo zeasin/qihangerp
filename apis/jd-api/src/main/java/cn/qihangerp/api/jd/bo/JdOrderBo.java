@@ -1,4 +1,4 @@
-package cn.qihangerp.api.jd;
+package cn.qihangerp.api.jd.bo;
 
 import lombok.Data;
 

@@ -5,8 +5,7 @@
         <order-tao></order-tao>
       </el-tab-pane>
       <el-tab-pane label="京东" name="jdOrder" lazy>
-<!--        <order-jd></order-jd>-->
-        开源版本不支持京东，需要京东接口请联系作者！
+        <order-jd></order-jd>
       </el-tab-pane>
       <el-tab-pane label="拼多多" name="pddOrder" lazy>
         <order-pdd></order-pdd>
