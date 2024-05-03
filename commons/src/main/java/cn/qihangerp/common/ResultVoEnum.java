@@ -19,7 +19,7 @@ public enum ResultVoEnum {
     StatusError("状态不正确", 407),
     DataError("DataError", 500),//数据错误，不能操作
     DataExist("DataExist", 800),//数据已存在，不能操作
-    ParamsError("参数错误", 505),//参数错误
+    ParamsError("参数错误", 1505),//参数错误
     HasAssociatedData("存在关联数据", 501),//存在关联数据
     Exist("已存在相同的数据", 502),//已存在相同的数据
     SystemException("系统异常", 505),//系统异常

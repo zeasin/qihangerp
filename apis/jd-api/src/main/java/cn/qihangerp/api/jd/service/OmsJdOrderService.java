@@ -4,6 +4,7 @@ import cn.qihangerp.api.jd.bo.JdOrderBo;
 import cn.qihangerp.api.jd.domain.OmsJdOrder;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
+import cn.qihangerp.common.ResultVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface OmsJdOrderService extends IService<OmsJdOrder> {
     PageResult<OmsJdOrder> queryPageList(JdOrderBo bo, PageQuery pageQuery);
+    ResultVo<Integer> saveOrder(Long shopId, OmsJdOrder order);
 }

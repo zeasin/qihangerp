@@ -1,6 +1,7 @@
 package cn.qihangerp.api.jd.mapper;
 
 import cn.qihangerp.api.jd.domain.OmsJdGoodsSku;
+import cn.qihangerp.api.jd.domain.vo.ErpGoodsSpecVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -10,7 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity cn.qihangerp.api.jd.domain.OmsJdGoodsSku
 */
 public interface OmsJdGoodsSkuMapper extends BaseMapper<OmsJdGoodsSku> {
-
+    ErpGoodsSpecVo selectGoodsSpecBySpecNum(String specNum);
 }
 
 

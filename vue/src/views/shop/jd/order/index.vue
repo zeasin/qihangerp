@@ -56,7 +56,7 @@
           size="mini"
           :disabled="multiple"
           @click="handlePushOms"
-        >手动将选中订单推送到OMS</el-button>
+        >批量确认订单</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -71,7 +71,7 @@
       </el-table-column>
       <el-table-column label="商品" width="350">
         <template slot-scope="scope">
-          <el-row v-for="item in scope.row.items" :key="item.id" :gutter="20">
+          <el-row v-for="item in scope.row.itemList" :key="item.id" :gutter="20">
 
             <div style="float: left;display: flex;align-items: center;" >
 <!--              <el-image  style="width: 70px; height: 70px;" :src="item.picPath"></el-image>-->
@@ -219,7 +219,10 @@ export default {
         this.pullLoading = true
         pullOrder({shopId:this.queryParams.shopId,updType:0}).then(response => {
           console.log('拉取JD订单接口返回=====',response)
-          if(response.code === 1401) {
+          if(response.code === 200){
+            this.$modal.msgSuccess(JSON.stringify(response));
+          }
+          else if(response.code === 1401) {
             MessageBox.confirm('Token已过期，需要重新授权', '系统提示', { confirmButtonText: '重新授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
               isRelogin.show = false;
               // store.dispatch('LogOut').then(() => {
@@ -231,10 +234,9 @@ export default {
 
             // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
           }else{
-            this.$modal.msgSuccess(JSON.stringify(response));
-            this.pullLoading = false
+            this.$modal.msgError(JSON.stringify(response));
           }
-
+          this.pullLoading = false
         })
       }else{
         this.$modal.msgSuccess("请先选择店铺");

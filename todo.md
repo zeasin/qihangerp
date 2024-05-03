@@ -2,7 +2,7 @@
 + [x] 项目分离：将open-api按平台分离；
 + [ ] 增加平台商品接口
   + [x] tao：关联erp商品
-  + [ ] jd-关联erp商品
+  + [x] jd-关联erp商品
   + [ ] pdd-关联erp商品
   + [ ] dou-关联erp商品
   + [ ] wei-关联erp商品

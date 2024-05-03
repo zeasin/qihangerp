@@ -2,6 +2,9 @@ package cn.qihangerp.api.jd.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 /**
@@ -18,7 +21,7 @@ public class OmsJdOrder implements Serializable {
     /**
      * 店铺id
      */
-    private Integer shopId;
+    private Long shopId;
 
     /**
      * 订单id
@@ -249,6 +252,9 @@ public class OmsJdOrder implements Serializable {
      * 
      */
     private Date createTime;
+
+    @TableField(exist = false)
+    private List<OmsJdOrderItem> itemList;
 
     private static final long serialVersionUID = 1L;
 }

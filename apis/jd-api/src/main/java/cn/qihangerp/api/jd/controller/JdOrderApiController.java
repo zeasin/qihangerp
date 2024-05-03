@@ -1,19 +1,26 @@
 package cn.qihangerp.api.jd.controller;
 
 import cn.qihangerp.api.jd.bo.PullRequest;
+import cn.qihangerp.api.jd.domain.OmsJdOrder;
+import cn.qihangerp.api.jd.domain.OmsJdOrderItem;
+import cn.qihangerp.api.jd.service.OmsJdOrderService;
+import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.constant.HttpStatus;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.open.jd.OrderApiHelper;
 import cn.qihangerp.open.jd.common.ApiResultVo;
 import cn.qihangerp.open.jd.model.OrderInfo;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RequestMapping("/jd-api/order")
 @RestController
@@ -22,7 +29,7 @@ public class JdOrderApiController {
 //    private final ApiCommon apiCommon;
 ////    private final RedisCache redisCache;
 //    private final MqUtils mqUtils;
-//    private final JdOrderService orderService;
+    private final OmsJdOrderService orderService;
 //    private final SysShopPullLasttimeService pullLasttimeService;
 //    private final SysShopPullLogsService pullLogsService;
 
@@ -65,24 +72,34 @@ public class JdOrderApiController {
         LocalDateTime startTime = endTime.minusDays(1);
         //第一次获取
         ApiResultVo<OrderInfo> upResult = OrderApiHelper.pullOrder(startTime,endTime,appKey,appSecret,accessToken);
+        if(upResult.getCode()!=0) return AjaxResult.error(upResult.getMsg());
         int insertSuccess = 0;//新增成功的订单
         int totalError = 0;
         int hasExistOrder = 0;//已存在的订单数
         //循环插入订单数据到数据库
-//        for (var order : upResult.getList()) {
-//            //插入订单数据
-//            var result = orderService.saveOrder(params.getShopId(), order);
-//            if (result.getCode() == ResultVoEnum.DataExist.getIndex()) {
-//                //已经存在
-//                hasExistOrder++;
+        for (var orderInfo : upResult.getList()) {
+            //插入订单数据
+            OmsJdOrder order = new OmsJdOrder();
+            BeanUtils.copyProperties(orderInfo, order);
+            List<OmsJdOrderItem> itemList = new ArrayList<>();
+            for(var orderInfoItem :orderInfo.getItemInfoList()) {
+                OmsJdOrderItem jdOrderItem = new OmsJdOrderItem();
+                BeanUtils.copyProperties(orderInfoItem, jdOrderItem);
+                itemList.add(jdOrderItem);
+            }
+            order.setItemList(itemList);
+            var result = orderService.saveOrder(params.getShopId(), order);
+            if (result.getCode() == ResultVoEnum.DataExist.getIndex()) {
+                //已经存在
+                hasExistOrder++;
 //                mqUtils.sendApiMessage(MqMessage.build(EnumShopType.JD,MqType.ORDER_MESSAGE,order.getOrderId()));
-//            } else if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
-//                insertSuccess++;
+            } else if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
+                insertSuccess++;
 //                mqUtils.sendApiMessage(MqMessage.build(EnumShopType.JD,MqType.ORDER_MESSAGE,order.getOrderId()));
-//            } else {
-//                totalError++;
-//            }
-//        }
+            } else {
+                totalError++;
+            }
+        }
 //        if(lasttime == null){
 //            // 新增
 //            SysShopPullLasttime insertLasttime = new SysShopPullLasttime();
