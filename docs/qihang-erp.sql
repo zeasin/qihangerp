@@ -11,7 +11,7 @@
  Target Server Version : 80200
  File Encoding         : 65001
 
- Date: 03/05/2024 16:42:33
+ Date: 03/05/2024 19:13:52
 */
 
 SET NAMES utf8mb4;
@@ -2900,22 +2900,23 @@ CREATE TABLE `oms_jd_goods`  (
 DROP TABLE IF EXISTS `oms_jd_goods_sku`;
 CREATE TABLE `oms_jd_goods_sku`  (
   `id` bigint NOT NULL,
-  `goods_id` bigint NULL DEFAULT NULL COMMENT '外键（jd_goods表id）',
-  `ware_id` bigint NULL DEFAULT NULL,
-  `sku_id` bigint NULL DEFAULT NULL,
-  `status` int NULL DEFAULT NULL,
+  `shop_id` bigint NULL DEFAULT NULL COMMENT '店铺id',
+  `ware_id` bigint NULL DEFAULT NULL COMMENT '商品id',
+  `sku_id` bigint NULL DEFAULT NULL COMMENT 'skuid',
+  `status` int NULL DEFAULT NULL COMMENT '状态',
   `jd_price` decimal(10, 2) NULL DEFAULT NULL,
   `outer_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `bar_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `sale_attrs` varchar(2550) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `attrs` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'sku属性名称',
   `sku_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `stock_num` int NULL DEFAULT NULL,
   `modified` datetime NULL DEFAULT NULL,
   `created` datetime NULL DEFAULT NULL,
   `currency_spu_id` varchar(0) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `erp_goods_id` bigint NULL DEFAULT NULL COMMENT 'erp商品id',
-  `erp_sku_id` bigint NULL DEFAULT NULL COMMENT 'erp商品sku id',
+  `erp_goods_sku_id` bigint NULL DEFAULT NULL COMMENT 'erp商品sku id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '京东商品SKU表' ROW_FORMAT = DYNAMIC;
 
@@ -3283,7 +3284,7 @@ CREATE TABLE `oms_tao_goods_sku`  (
   `barcode` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '商品级别的条形码',
   `erp_goods_id` bigint NULL DEFAULT NULL COMMENT '商品id(o_goods外键)',
   `erp_goods_sku_id` bigint NULL DEFAULT NULL COMMENT '商品skuid(o_goods_sku外键)',
-  `erp_supplier_id` bigint NULL DEFAULT NULL COMMENT 'erp系统供应商ID',
+  `shop_id` bigint NULL DEFAULT NULL COMMENT '店铺id',
   `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1785146265149358083 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '淘宝商品SKU表' ROW_FORMAT = DYNAMIC;
@@ -10472,6 +10473,7 @@ INSERT INTO `sys_logininfor` VALUES (234, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (235, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-03 12:13:56');
 INSERT INTO `sys_logininfor` VALUES (236, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-03 12:47:51');
 INSERT INTO `sys_logininfor` VALUES (237, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-03 16:35:52');
+INSERT INTO `sys_logininfor` VALUES (238, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-03 18:06:08');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -11043,7 +11045,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-03 16:35:53', 'admin', '2023-08-07 19:31:37', '', '2024-05-03 16:35:52', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-03 18:06:08', 'admin', '2023-08-07 19:31:37', '', '2024-05-03 18:06:08', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 

@@ -59,13 +59,15 @@ public class OmsTaoGoodsServiceImpl extends ServiceImpl<OmsTaoGoodsMapper, OmsTa
             if(goods.getSkuList()!=null) {
                 for (var sku : goods.getSkuList()) {
 //                    sku.setTaoGoodsId(goods.getId());
+                    sku.setShopId(shopId);
                     // 根据OuterId查找ERP系统中的skuid
                     if(StringUtils.isNotEmpty(sku.getOuterId())) {
                         ErpGoodsSpecVo erpGoodsSpecVo = skuMapper.selectGoodsSpecBySpecNum(sku.getOuterId());
                         if(erpGoodsSpecVo!=null ){
+
                             sku.setErpGoodsId(erpGoodsSpecVo.getGoodsId());
                             sku.setErpGoodsSkuId(erpGoodsSpecVo.getId());
-                            sku.setErpSupplierId(erpGoodsSpecVo.getSupplierId());
+//                            sku.setErpSupplierId(erpGoodsSpecVo.getSupplierId());
                         }
                     }
                     skuMapper.insert(sku);
@@ -81,13 +83,14 @@ public class OmsTaoGoodsServiceImpl extends ServiceImpl<OmsTaoGoodsMapper, OmsTa
             if(goods.getSkuList()!=null) {
                 for (var sku : goods.getSkuList()) {
 //                    sku.setTaoGoodsId(goods.getId());
+                    sku.setShopId(shopId);
                     // 根据OuterId查找ERP系统中的skuid
                     if(StringUtils.isNotEmpty(sku.getOuterId())) {
                         ErpGoodsSpecVo erpGoodsSpecVo = skuMapper.selectGoodsSpecBySpecNum(sku.getOuterId());
                         if(erpGoodsSpecVo!=null ){
                             sku.setErpGoodsId(erpGoodsSpecVo.getGoodsId());
                             sku.setErpGoodsSkuId(erpGoodsSpecVo.getId());
-                            sku.setErpSupplierId(erpGoodsSpecVo.getSupplierId());
+//                            sku.setErpSupplierId(erpGoodsSpecVo.getSupplierId());
                         }
                     }
                     skuMapper.insert(sku);

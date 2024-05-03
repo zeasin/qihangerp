@@ -212,7 +212,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
                     if(skuList!=null && skuList.size()>0){
                         erpGoodsId = skuList.get(0).getErpGoodsId();
                         erpSkuId = skuList.get(0).getErpGoodsSkuId();
-                        erpSupplierId = skuList.get(0).getErpSupplierId();
+//                        erpSupplierId = skuList.get(0).getErpSupplierId();
                     }
                 }
 

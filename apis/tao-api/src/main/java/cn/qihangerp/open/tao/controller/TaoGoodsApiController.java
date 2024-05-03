@@ -98,6 +98,7 @@ public class TaoGoodsApiController extends BaseController {
                     List<OmsTaoGoodsSku> skuList = new ArrayList<>();
                     for (var s:g.getSkuList()) {
                         OmsTaoGoodsSku sku = new OmsTaoGoodsSku();
+                        sku.setShopId(req.getShopId());
                         sku.setNumIid(s.getNum_iid());
                         sku.setIid(s.getIid());
                         sku.setSkuId(s.getSku_id());

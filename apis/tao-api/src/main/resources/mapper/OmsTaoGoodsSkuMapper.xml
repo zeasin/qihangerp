@@ -22,7 +22,7 @@
             <result property="barcode" column="barcode" jdbcType="VARCHAR"/>
             <result property="erpGoodsId" column="erp_goods_id" jdbcType="BIGINT"/>
             <result property="erpGoodsSkuId" column="erp_goods_sku_id" jdbcType="BIGINT"/>
-            <result property="erpSupplierId" column="erp_supplier_id" jdbcType="BIGINT"/>
+            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
@@ -32,7 +32,7 @@
         quantity,spec,price,
         outer_id,created,modified,
         status,sku_spec_id,barcode,
-        erp_goods_id,erp_goods_sku_id,erp_supplier_id,
+        erp_goods_id,erp_goods_sku_id,shop_id,
         create_time
     </sql>
 

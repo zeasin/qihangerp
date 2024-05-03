@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询淘宝订单列表
 export function listGoodsSku(query) {
   return request({
-    url: '/api/jd-api/goods/skuList',
+    url: '/jd-api/goods/skuList',
     method: 'get',
     params: query
   })
@@ -29,7 +29,7 @@ export function linkErpGoodsSkuId(data) {
 // 接口拉取淘宝商品
 export function pullGoodsList(data) {
   return request({
-    url: '/api/jd-api/goods/pull_goods',
+    url: '/jd-api/goods/pull_goods',
     method: 'post',
     data: data
   })
