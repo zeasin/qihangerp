@@ -72,8 +72,8 @@ public class AjaxOrderPddController {
         if(!StringUtils.hasText(accessToken)) return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "参数错误：accessToken为空",params);
         // 获取店铺信息，判断店铺是否一致
         var shopResult = PddApiUtils.getShopInfo(appKey, appSercet, accessToken);
-        if (shopResult.getCode() != ResultVoEnum.SUCCESS.getIndex())
-            return new ApiResult<>(shopResult.getCode(), shopResult.getMsg(),params);
+        if (shopResult.getResult() != ResultVoEnum.SUCCESS.getIndex())
+            return new ApiResult<>(shopResult.getResult(), shopResult.getMsg(),params);
 
         if (shopResult.getData().getMallId().longValue() != shop.getSellerUserId().longValue()) {
             return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "该店铺不是授权店铺",params);
@@ -136,13 +136,13 @@ public class AjaxOrderPddController {
             log.info("开始循环" + i + "。开始时间：" + DateUtil.unixTimeStampToDate(startTime1) + "结束时间："
                     + DateUtil.unixTimeStampToDate(endTime1) + "。");
             // log.info("开始更新第"+pageIndex+"页");
-            if (result.getCode() == 0) {
+            if (result.getResult() == 0) {
                 updCount += result.getData().getUpdCount();
                 insertCount += result.getData().getAddCount();
                 failCount += result.getData().getFailCount();
                 // log.info("查询到数据:"+result.getData().getTotalRecords());
-            } else if (result.getCode() > 0)
-                return new ApiResult<>(result.getCode(), result.getMsg());
+            } else if (result.getResult() > 0)
+                return new ApiResult<>(result.getResult(), result.getMsg());
             // 计算总页数
             int totalPage = (result.getData().getTotalRecords() % pageSize == 0)
                     ? result.getData().getTotalRecords() / pageSize
@@ -154,7 +154,7 @@ public class AjaxOrderPddController {
                 // log.info("查询到数据:"+result.getData().getTotalRecords());
                 result = this.pullPddOrder(appKey, appSercet, accessToken, pageIndex, pageSize, startTime1,
                         endTime1, shopId);
-                if (result.getCode() == 0) {
+                if (result.getResult() == 0) {
                     updCount += result.getData().getUpdCount();
                     insertCount += result.getData().getAddCount();
                     failCount += result.getData().getFailCount();
@@ -178,10 +178,10 @@ public class AjaxOrderPddController {
          * result.getData().getUpdCount(), updType); } catch (Exception e) {
          * log.info("添加更新日志错误"); }
          */
-        if (result.getCode() == 0)
+        if (result.getResult() == 0)
             return new ApiResult<>(ResultVoEnum.SUCCESS.getIndex(), "SUCCESS", resp);
         else
-            return new ApiResult<>(result.getCode(), result.getMsg());
+            return new ApiResult<>(result.getResult(), result.getMsg());
     }
 
     /**

@@ -111,6 +111,59 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
     }
 
     @Override
+    public ResultVo<Integer> updateOrderStatus(OmsTaoOrder order) {
+        if(order == null ) return ResultVo.error(ResultVoEnum.SystemException);
+        try {
+            List<OmsTaoOrder> taoOrders = mapper.selectList(new LambdaQueryWrapper<OmsTaoOrder>().eq(OmsTaoOrder::getTid, order.getTid()));
+            if (taoOrders != null && taoOrders.size() > 0) {
+                // 存在，修改
+                OmsTaoOrder update = new OmsTaoOrder();
+                update.setId(taoOrders.get(0).getId());
+                update.setReceiverName(order.getReceiverName());
+                update.setReceiverMobile(order.getReceiverMobile());
+                update.setReceiverAddress(order.getReceiverAddress());
+                update.setSid(order.getSid());
+                update.setSellerRate(order.getSellerRate());
+                update.setBuyerRate(order.getBuyerRate());
+                update.setStatus(order.getStatus());
+                update.setModified(order.getModified());
+                update.setEndTime(order.getEndTime());
+                update.setConsignTime(order.getConsignTime());
+                update.setUpdateTime(new Date());
+                update.setReceivedPayment(order.getReceivedPayment());
+                update.setAvailableConfirmFee(order.getAvailableConfirmFee());
+                mapper.updateById(update);
+                // 更新item
+                for (var item : order.getItems()) {
+                    List<OmsTaoOrderItem> taoOrderItems = itemMapper.selectList(new LambdaQueryWrapper<OmsTaoOrderItem>().eq(OmsTaoOrderItem::getOid, item.getOid()));
+                    if (taoOrderItems != null && taoOrderItems.size() > 0) {
+                        // 更新
+                        OmsTaoOrderItem itemUpdate = new OmsTaoOrderItem();
+                        itemUpdate.setId(taoOrderItems.get(0).getId());
+                        itemUpdate.setRefundId(item.getRefundId());
+                        itemUpdate.setRefundStatus(item.getRefundStatus());
+                        itemUpdate.setStatus(item.getStatus());
+                        itemUpdate.setBuyerRate(item.getBuyerRate());
+                        itemUpdate.setSellerRate(item.getSellerRate());
+                        itemUpdate.setEndTime(item.getEndTime());
+                        itemUpdate.setConsignTime(item.getConsignTime());
+                        itemUpdate.setShippingType(item.getShippingType());
+                        itemUpdate.setLogisticsCompany(item.getLogisticsCompany());
+                        itemUpdate.setInvoiceNo(item.getInvoiceNo());
+                        itemMapper.updateById(itemUpdate);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            e.printStackTrace();
+            System.out.println("保存订单数据错误："+e.getMessage());
+            return ResultVo.error(ResultVoEnum.SystemException, "系统异常：" + e.getMessage());
+        }
+        return ResultVo.success();
+    }
+
+    @Override
     public PageResult<OmsTaoOrder> queryPageList(TaoOrderBo bo, PageQuery pageQuery) {
         LambdaQueryWrapper<OmsTaoOrder> queryWrapper = new LambdaQueryWrapper<OmsTaoOrder>()
                 .eq(bo.getShopId()!=null,OmsTaoOrder::getShopId,bo.getShopId())
@@ -313,7 +366,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
         req.setType(102);
         req.setData(so);
         ApiResult s = simpleClientHandler.sendRequestAndWaitForResponse(req);
-        if(s.getCode()==ApiResultEnum.SUCCESS.getIndex()) {
+        if(s.getResult()==ApiResultEnum.SUCCESS.getIndex()) {
             //更新自己
             OmsTaoOrder update = new OmsTaoOrder();
             update.setId(original.getId());

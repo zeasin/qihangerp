@@ -22,6 +22,7 @@ public interface OmsTaoOrderService extends IService<OmsTaoOrder> {
      * @return
      */
     ResultVo<Integer> saveOrder(Long shopId, OmsTaoOrder order);
+    ResultVo<Integer> updateOrderStatus( OmsTaoOrder order);
     PageResult<OmsTaoOrder> queryPageList(TaoOrderBo bo, PageQuery pageQuery);
 
     OmsTaoOrder queryDetailById(Long id);

@@ -58,8 +58,8 @@ public class TaoGoodsApiController extends BaseController {
 //            return ApiResult.build(HttpStatus.PARAMS_ERROR, "参数错误，没有店铺Id");
         }
         var checkResult = apiPullHelper.checkBefore(req.getShopId());
-        if (checkResult.getCode() != ResultVoEnum.SUCCESS.getIndex()) {
-            return AjaxResult.error(checkResult.getCode(), checkResult.getMsg(),checkResult.getData());
+        if (checkResult.getResult() != ResultVoEnum.SUCCESS.getIndex()) {
+            return AjaxResult.error(checkResult.getResult(), checkResult.getMsg(),checkResult.getData());
         }
         String sessionKey = checkResult.getData().getAccessToken();
         String url = checkResult.getData().getApiRequestUrl();

@@ -28,22 +28,22 @@ public class OmsTaoRefund implements Serializable {
     /**
      * 店铺id
      */
-    private Integer shopId;
+    private Long shopId;
 
     /**
      * 淘宝交易单号（订单号）
      */
-    private Long tid;
+    private String tid;
 
     /**
      * 子订单号。如果是单笔交易oid会等于tid
      */
-    private Long oid;
+    private String oid;
 
     /**
      * 支付给卖家的金额(交易总金额-退还给买家的金额)。精确到2位小数;单位:元。如:200.07，表示:200元7分
      */
-    private Double payment;
+    private String payment;
 
     /**
      * 商品价格。
@@ -53,12 +53,12 @@ public class OmsTaoRefund implements Serializable {
     /**
      * 交易总金额。精确到2位小数;单位:元。如:200.07，表示:200元7分
      */
-    private Double totalFee;
+    private String totalFee;
 
     /**
      * 退还金额(退还给买家的金额)。精确到2位小数;单位:元。如:200.07，表示:200元7分
      */
-    private Double refundFee;
+    private String refundFee;
 
     /**
      * 	分账给卖家的钱
@@ -73,12 +73,12 @@ public class OmsTaoRefund implements Serializable {
     /**
      * 退款申请时间。格式:yyyy-MM-dd HH:mm:ss
      */
-    private Date created;
+    private String created;
 
     /**
      * 更新时间。格式:yyyy-MM-dd HH:mm:ss
      */
-    private Date modified;
+    private String modified;
 
     /**
      * 卖家昵称
@@ -128,17 +128,17 @@ public class OmsTaoRefund implements Serializable {
     /**
      * 买家是否需要退货。可选值:true(是),false(否)
      */
-    private Integer hasGoodReturn;
+    private Boolean hasGoodReturn;
 
     /**
      * 申请退款的商品数字编号
      */
-    private Long numIid;
+    private Integer numIid;
 
     /**
      * 退货数量
      */
-    private Long num;
+    private Integer num;
 
     /**
      * 商品外部商家编码
@@ -183,7 +183,7 @@ public class OmsTaoRefund implements Serializable {
     /**
      * 	完结时间。格式:yyyy-MM-dd HH:mm:ss
      */
-    private Date endTime;
+    private String endTime;
 
     /**
      * 商品标题

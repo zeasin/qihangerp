@@ -44,3 +44,10 @@ export function pullOrder(query) {
     params: query
   })
 }
+export function pullOrderDetail(data) {
+  return request({
+    url: '/tao-api/order/pull_order_detail',
+    method: 'post',
+    data: data
+  })
+}

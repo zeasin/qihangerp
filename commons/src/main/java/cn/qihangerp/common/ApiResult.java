@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @date 2019-01-07 11:53 AM
  */
 public class ApiResult<T> implements Serializable {
-    private int code;
+    private int result;
     private String msg;
     private T data;
 
@@ -19,53 +19,53 @@ public class ApiResult<T> implements Serializable {
     }
     public static <T> ApiResult<T> success(){
         ApiResult<T> result = new ApiResult<>();
-        result.setCode(ApiResultEnum.SUCCESS.getIndex());
+        result.setResult(ApiResultEnum.SUCCESS.getIndex());
         result.setMsg("SUCCESS");
         return result;
     }
     public static <T> ApiResult<T> success(T data){
         ApiResult<T> result = new ApiResult<>();
-        result.setCode(ApiResultEnum.SUCCESS.getIndex());
+        result.setResult(ApiResultEnum.SUCCESS.getIndex());
         result.setMsg("SUCCESS");
         result.setData(data);
         return result;
     }
     public static <T> ApiResult<T> error(String msg){
         ApiResult<T> result = new ApiResult<>();
-        result.setCode(ApiResultEnum.SystemException.getIndex());
+        result.setResult(ApiResultEnum.SystemException.getIndex());
         result.setMsg(msg);
         return result;
     }
 
     public ApiResult(ApiResultEnum result, String msg) {
-        this.code = result.getIndex();
+        this.result = result.getIndex();
         this.msg = msg;
     }
 
     public ApiResult(ApiResultEnum result) {
-        this.code = result.getIndex();
+        this.result = result.getIndex();
         this.msg = result.getName();
     }
 
     public ApiResult(ApiResultEnum result, T data) {
-        this.code = result.getIndex();
+        this.result = result.getIndex();
         this.msg = result.getName();
         this.data = data;
     }
 
     public ApiResult(ApiResultEnum result, String msg, T data) {
-        this.code = result.getIndex();
+        this.result = result.getIndex();
         this.msg = msg;
         this.data = data;
     }
 
-    public ApiResult(int code, String msg) {
-        this.code = code;
+    public ApiResult(int result, String msg) {
+        this.result = result;
         this.msg = msg;
     }
 
     public ApiResult(int code, String msg, T data) {
-        this.code = code;
+        this.result = code;
         this.msg = msg;
         this.data = data;
     }
@@ -74,12 +74,12 @@ public class ApiResult<T> implements Serializable {
         return new ApiResult(ApiResultEnum.SUCCESS,"SUCCESS");
     }
 
-    public int getCode() {
-        return code;
+    public int getResult() {
+        return result;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setResult(int result) {
+        this.result = result;
     }
 
     public String getMsg() {

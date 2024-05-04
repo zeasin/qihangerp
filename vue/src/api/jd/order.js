@@ -30,7 +30,7 @@ export function pullOrder(data) {
 
 export function pullOrderDetail(data) {
   return request({
-    url: '/api/jd-api/order/pull_order_detail',
+    url: '/jd-api/order/pull_order_detail',
     method: 'post',
     data: data
   })

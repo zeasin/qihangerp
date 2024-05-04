@@ -17,22 +17,22 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-     
-      <el-form-item label="申请时间" prop="created">
-        <!-- <el-input
-          v-model="queryParams.created"
-          placeholder="请输入退款申请时间。"
-          clearable
-          @keyup.enter.native="handleQuery"
-        /> -->
-        <el-date-picker clearable
-          v-model="queryParams.created"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择退款申请时间">
-        </el-date-picker>
-      </el-form-item>
-      
+
+<!--      <el-form-item label="申请时间" prop="created">-->
+<!--        &lt;!&ndash; <el-input-->
+<!--          v-model="queryParams.created"-->
+<!--          placeholder="请输入退款申请时间。"-->
+<!--          clearable-->
+<!--          @keyup.enter.native="handleQuery"-->
+<!--        /> &ndash;&gt;-->
+<!--        <el-date-picker clearable-->
+<!--          v-model="queryParams.created"-->
+<!--          type="date"-->
+<!--          value-format="yyyy-MM-dd"-->
+<!--          placeholder="请选择退款申请时间">-->
+<!--        </el-date-picker>-->
+<!--      </el-form-item>-->
+
 
       <!-- <el-form-item label="退款原因" prop="reason">
         <el-input
@@ -42,7 +42,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item> -->
-     
+
       <el-form-item label="物流单号" prop="logisticsCode">
         <el-input
           v-model="queryParams.logisticsCode"
@@ -51,7 +51,7 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-     
+
       <el-form-item label="店铺" prop="shopId">
         <!-- <el-input
           v-model="queryParams.shopId"
@@ -68,7 +68,7 @@
           </el-option>
         </el-select>
       </el-form-item>
-     
+
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
         <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
@@ -76,48 +76,48 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <!-- <el-col :span="1.5">
+      <el-col :span="1.5">
         <el-button
           type="primary"
           plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['tao:taoRefund:add']"
-        >新增</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['tao:taoRefund:edit']"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['tao:taoRefund:remove']"
-        >删除</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
+          :loading="pullLoading"
           icon="el-icon-download"
           size="mini"
-          @click="handleExport"
-          v-hasPermi="['tao:taoRefund:export']"
-        >导出</el-button>
-      </el-col> -->
+          @click="handlePull"
+        >API拉取退款</el-button>
+      </el-col>
+      <!--  <el-col :span="1.5">
+         <el-button
+           type="success"
+           plain
+           icon="el-icon-edit"
+           size="mini"
+           :disabled="single"
+           @click="handleUpdate"
+           v-hasPermi="['tao:taoRefund:edit']"
+         >修改</el-button>
+       </el-col>
+       <el-col :span="1.5">
+         <el-button
+           type="danger"
+           plain
+           icon="el-icon-delete"
+           size="mini"
+           :disabled="multiple"
+           @click="handleDelete"
+           v-hasPermi="['tao:taoRefund:remove']"
+         >删除</el-button>
+       </el-col>
+       <el-col :span="1.5">
+         <el-button
+           type="warning"
+           plain
+           icon="el-icon-download"
+           size="mini"
+           @click="handleExport"
+           v-hasPermi="['tao:taoRefund:export']"
+         >导出</el-button>
+       </el-col> -->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -125,62 +125,74 @@
       <!-- <el-table-column type="selection" width="55" align="center" /> -->
       <!-- <el-table-column label="${comment}" align="center" prop="id" /> -->
       <el-table-column label="退款单号" align="center" prop="refundId" />
-      <el-table-column label="类型" align="center" prop="afterSalesType" >
+      <el-table-column label="类型" align="center" prop="disputeType" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.afterSalesType === 1"> 退货</el-tag>
-          <el-tag size="small" v-if="scope.row.afterSalesType === 3"> 换货</el-tag>
+          <el-tag size="small" v-if="scope.row.disputeType === 'REFUND'"> 仅退款</el-tag>
+          <el-tag size="small" v-if="scope.row.disputeType === 'REFUND_AND_RETURN'"> 退货退款</el-tag>
+          <el-tag size="small" v-if="scope.row.disputeType === 'TMALL_EXCHANGE'"> 天猫换货</el-tag>
+          <el-tag size="small" v-if="scope.row.disputeType === 'TAOBAO_EXCHANGE'"> 淘宝换货</el-tag>
+          <el-tag size="small" v-if="scope.row.disputeType === 'REPAIR'"> 维修</el-tag>
+          <el-tag size="small" v-if="scope.row.disputeType === 'RESHIPPING'"> 补寄</el-tag>
+          <el-tag size="small" v-if="scope.row.disputeType === 'OTHERS'"> 其他</el-tag>
+
         </template>
       </el-table-column>
       <el-table-column label="订单号" align="center" prop="tid" />
-      <el-table-column label="商品" width="350">
-          <template slot-scope="scope">
-            <div style="float: left;display: flex;align-items: center;" >
-              <el-image  style="width: 70px; height: 70px;" :src="scope.row.productImgUrl"></el-image>
-              <div style="margin-left:10px">
-              <p>{{scope.row.goodsTitle}}</p>
-              <p>{{scope.row.skuInfo}}</p>
-              </div>
-            </div>
-          </template>
+<!--      <el-table-column label="子订单号" align="center" prop="oid" />-->
+      <el-table-column label="订单状态" align="center" prop="orderStatus" >
+        <template slot-scope="scope">
+        <el-tag size="small" v-if="scope.row.orderStatus === 'WAIT_SELLER_SEND_GOODS'">等待卖家发货</el-tag>
+        <el-tag size="small" v-if="scope.row.orderStatus === 'WAIT_BUYER_CONFIRM_GOODS'">等待买家确认收货</el-tag>
+        <el-tag size="small" v-if="scope.row.orderStatus === 'TRADE_FINISHED'">交易成功</el-tag>
+        <el-tag size="small" v-if="scope.row.orderStatus === 'TRADE_CLOSED'">交易关闭</el-tag>
+        <el-tag size="small" v-if="scope.row.orderStatus === 'TRADE_CLOSED_BY_TAOBAO'">交易被淘宝关闭</el-tag>
+        <el-tag size="small" v-if="scope.row.orderStatus === 'ALL_CLOSED'">交易被淘宝关闭1</el-tag>
+        </template>
       </el-table-column>
+      <el-table-column label="商品" align="center" prop="title" />
+      <el-table-column label="SKU" align="center" prop="sku" />
+
       <el-table-column label="退货数量" align="center" prop="num" />
-      <!-- <el-table-column label="子订单号。如果是单笔交易oid会等于tid" align="center" prop="oid" /> -->
-      <!-- <el-table-column label="买家昵称" align="center" prop="buyerNick" /> -->
-      <!-- <el-table-column label="交易总金额。精确到2位小数;单位:元。如:200.07，表示:200元7分" align="center" prop="totalFee" /> -->
-      <!-- <el-table-column label="支付给卖家的金额(交易总金额-退还给买家的金额)。精确到2位小数;单位:元。如:200.07，表示:200元7分" align="center" prop="payment" /> -->
-      <el-table-column label="退款金额" align="center" prop="refundFee" />
-      <!-- <el-table-column label="退款申请时间。" align="center" prop="created" /> -->
+     <el-table-column label="退款金额" align="center" prop="refundFee" />
+       <el-table-column label="退款申请时间" align="center" prop="created" />
       <!-- <el-table-column label="更新时间。" align="center" prop="modified" /> -->
       <!-- <el-table-column label="退款对应的订单交易状态。" align="center" prop="orderStatus" /> -->
       <!-- <el-table-column label="退款状态" align="center" prop="status" /> -->
-      <!-- <el-table-column label="货物状态。可选值BUYER_NOT_RECEIVED (买家未收到货) BUYER_RECEIVED (买家已收到货) BUYER_RETURNED_GOODS (买家已退货)" align="center" prop="goodStatus" /> -->
-      
-      <!-- <el-table-column label="买家是否需要退货。可选值:true(是),false(否)" align="center" prop="hasGoodReturn" /> -->
-      <el-table-column label="退款原因" align="center" prop="reason" />
-      <!-- <el-table-column label="退款说明" align="center" prop="desc" /> -->
-      <!-- <el-table-column label="物流公司" align="center" prop="logisticsCompany" /> -->
-      <el-table-column label="退货物流" align="center" prop="logisticsCode" />
-      <!-- <el-table-column label="发货时间" align="center" prop="sendTime" /> -->
-      <el-table-column label="处理状态" align="center" prop="auditStatus" >
+       <el-table-column label="货物状态" align="center" prop="goodStatus" >
+         <template slot-scope="scope">
+           <el-tag size="small" v-if="scope.row.goodStatus === 'BUYER_NOT_RECEIVED'">买家未收到货</el-tag>
+           <el-tag size="small" v-if="scope.row.goodStatus === 'BUYER_RECEIVED'">买家已收到货</el-tag>
+           <el-tag size="small" v-if="scope.row.goodStatus === 'BUYER_RETURNED_GOODS'">买家已退货</el-tag>
+         </template>
+       </el-table-column>
+      <el-table-column label="买家是否需要退货" align="center" prop="hasGoodReturn" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.auditStatus === 0"> 未处理</el-tag>
-          <el-tag size="small" v-if="scope.row.auditStatus === 2"> 已签收</el-tag>
-          <el-tag size="small" v-if="scope.row.auditStatus === 9"> 供应商已退款</el-tag>
+          <el-tag size="small" v-if="scope.row.hasGoodReturn">是</el-tag>
+          <el-tag size="small" v-else>否</el-tag>
+
         </template>
       </el-table-column>
-      <!-- <el-table-column label="处理时间" align="center" prop="auditTime" width="180">
+      <el-table-column label="退款状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.auditTime, '{y}-{m}-{d}') }}</span>
+          <el-tag size="small" v-if="scope.row.status === 'WAIT_SELLER_AGREE'">买家已经申请退款，等待卖家同意</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 'WAIT_BUYER_RETURN_GOODS'">卖家已经同意退款，等待买家退货</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 'WAIT_SELLER_CONFIRM_GOODS'">买家已经退货，等待卖家确认收货</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 'SELLER_REFUSE_BUYER'">卖家拒绝退款</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 'SUCCESS'">退款成功</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 'CLOSED'">退款关闭</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="收货时间" align="center" prop="receivedTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.receivedTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column> -->
-      <!-- <el-table-column label="${comment}" align="center" prop="address" /> -->
+
+<!--      <el-table-column label="退款原因" align="center" prop="reason" />-->
+<!--      <el-table-column label="退货物流" align="center" prop="logisticsCode" />-->
+<!--      <el-table-column label="处理状态" align="center" prop="auditStatus" >-->
+<!--        <template slot-scope="scope">-->
+<!--          <el-tag size="small" v-if="scope.row.auditStatus === 0"> 未处理</el-tag>-->
+<!--          <el-tag size="small" v-if="scope.row.auditStatus === 2"> 已签收</el-tag>-->
+<!--          <el-tag size="small" v-if="scope.row.auditStatus === 9"> 供应商已退款</el-tag>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
       <el-table-column label="备注" align="center" prop="remark" />
-      <!-- <el-table-column label="创建时间" align="center" prop="createOn" /> -->
       <el-table-column label="店铺" align="center" prop="shopId" >
         <template slot-scope="scope">
           <span v-if="scope.row.shopId==6">梦小妮牛仔裤</span>
@@ -200,17 +212,17 @@
             @click="handleConfirm(scope.row)"
             v-hasPermi="['tao:taoRefund:edit']"
           >退货确认</el-button>
-          <!-- <el-button
+          <el-button
             size="mini"
             type="text"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.row)"
-            v-hasPermi="['tao:taoRefund:remove']"
-          >删除</el-button> -->
+            :loading="pullLoading"
+            icon="el-icon-refresh"
+            @click="handlePullUpdate(scope.row)"
+          >更新退款</el-button>
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -251,13 +263,13 @@
             placeholder="请选择发货时间">
           </el-date-picker>
         </el-form-item>
-       
+
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
         </el-form-item>
-        
-        
-        
+
+
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -268,8 +280,10 @@
 </template>
 
 <script>
-import { listTaoRefund, getTaoRefund, delTaoRefund, addTaoRefund, updateTaoRefund } from "@/api/tao/taoRefund";
+import {listTaoRefund, getTaoRefund, pullRefund, pullRefundDetail} from "@/api/tao/taoRefund";
 import { listShop } from "@/api/shop/shop";
+import {MessageBox} from "element-ui";
+import {isRelogin} from "@/utils/request";
 export default {
   name: "TaoRefund",
   data() {
@@ -284,6 +298,7 @@ export default {
       multiple: true,
       // 显示搜索条件
       showSearch: true,
+      pullLoading: false,
       // 总条数
       total: 0,
       // 淘宝退款订单表格数据
@@ -370,40 +385,7 @@ export default {
     },
     // 表单重置
     reset() {
-      this.form = {
-        id: null,
-        refundId: null,
-        afterSalesType: null,
-        tid: null,
-        oid: null,
-        buyerNick: null,
-        totalFee: null,
-        payment: null,
-        refundFee: null,
-        created: null,
-        modified: null,
-        orderStatus: null,
-        status: null,
-        goodStatus: null,
-        num: null,
-        hasGoodReturn: null,
-        reason: null,
-        desc: null,
-        logisticsCompany: null,
-        logisticsCode: null,
-        sendTime: null,
-        auditStatus: null,
-        auditTime: null,
-        receivedTime: null,
-        address: null,
-        remark: null,
-        createOn: null,
-        shopId: null,
-        erpGoodsId: null,
-        erpGoodsSpecId: null,
-        specNumber: null,
-        refundPhase: null
-      };
+      this.form = {};
       this.resetForm("form");
     },
     /** 搜索按钮操作 */
@@ -422,40 +404,47 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
-    /** 新增按钮操作 */
-    handleAdd() {
-      this.reset();
-      this.open = true;
-      this.title = "添加淘宝退款订单";
-    },
-    /** 修改按钮操作 */
-    handleConfirm(row) {
-      this.reset();
-      const id = row.id || this.ids
-      getTaoRefund(id).then(response => {
-        this.form = response.data;
-        this.open = true;
-        this.title = "修改淘宝退款订单";
-      });
-    },
-    /** 提交按钮 */
-    submitForm() {
-      this.$refs["form"].validate(valid => {
-        if (valid) {
-            updateTaoRefund(this.form).then(response => {
-              this.$modal.msgSuccess("确认成功");
-              this.open = false;
-              this.getList();
+    handlePull(){
+      if(this.queryParams.shopId){
+        pullRefund({shopId:this.queryParams.shopId,updType:0}).then(response => {
+          console.log('拉取淘宝退款接口返回=====',response)
+          this.pullLoading=true
+          if(response.code === 1401) {
+            MessageBox.confirm('Token已过期，需要重新授权', '系统提示', { confirmButtonText: '重新授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
+              isRelogin.show = false;
+              // store.dispatch('LogOut').then(() => {
+              location.href = response.data.tokenRequestUrl+'?shopId='+this.queryParams.shopId
+              // })
+            }).catch(() => {
+              isRelogin.show = false;
             });
-        }
-      });
+
+            // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
+          }else{
+            this.$modal.msgSuccess(JSON.stringify(response));
+            this.getList();
+          }
+            this.pullLoading = false;
+        })
+      }else{
+        this.$modal.msgSuccess("请先选择店铺");
+      }
     },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('tao/taoRefund/export', {
-        ...this.queryParams
-      }, `taoRefund_${new Date().getTime()}.xlsx`)
-    }
+    handlePullUpdate(row) {
+      // 接口拉取订单并更新
+      this.pullLoading = true
+      pullRefundDetail({shopId:row.shopId,refundId:row.refundId}).then(response => {
+        console.log('拉取淘宝订单接口返回=====',response)
+        if(response.result === 0){
+          this.$modal.msgSuccess(JSON.stringify(response));
+        }else {
+          this.$modal.msgError(JSON.stringify(response.msg));
+        }
+
+        this.pullLoading = false
+      })
+    },
+
   }
 };
 </script>

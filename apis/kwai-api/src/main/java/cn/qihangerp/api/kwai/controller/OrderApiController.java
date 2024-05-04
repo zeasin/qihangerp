@@ -67,7 +67,7 @@ long forSize =1;
 //            Long startTime1 = startTime + i * 60 * 60 * 24;
 //            Long endTime1 = startTime1 + 60 * 60 * 24;
             result = this.pullKwaiOrder(pageIndex,pageSize,"", 0L, 0L);
-            if(result.getCode()>0) return new ApiResult<>(result.getCode(), result.getMsg());
+            if(result.getResult()>0) return new ApiResult<>(result.getResult(), result.getMsg());
             //计算总页数
             int totalPage = (result.getData().intValue() % pageSize == 0) ? result.getData().intValue() / pageSize : (result.getData().intValue() / pageSize) + 1;
 

@@ -110,7 +110,7 @@ public class TaoBaoOpenOrderUpdHelper {
      * @param appSecret
      * @param sessionKey
      * @return
-     * @throws ApiException
+     * @throws
      */
     public static TaoBaoOpenOrderUpdResult<TaoOrderRefund> updTmallRefunOrder(Long pageNo, Long pageSize, String url, String appKey, String appSecret, String sessionKey)   {
 //        TaobaoClient client = new DefaultTaobaoClient(url, appKey, appSecret);
