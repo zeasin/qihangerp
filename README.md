@@ -1,7 +1,7 @@
 # 启航电商ERP系统
 
 
-启航电商ERP系统是一套为中小电商企业构建的一套简单、实用、覆盖全流程的电商系统，本项目采用Java SpringBoot+Vue2前后端分离开发。 
+启航电商ERP系统是一套为中小电商企业构建的一套简单、实用、覆盖全流程的电商系统，本项目采用Java SpringBoot3+Vue2前后端分离开发。 
 
 **Dubbo版本请移步：** 
 
@@ -14,11 +14,23 @@
 
 ![预览](docs/preview.png)
 
+**为方便不是程序员的兄弟们想要看演示效果，本人特地制作了一个windows一键演示包，解压后直接按上面的步骤运行即可，不需要任何额外安装。**
+
+[获取一件演示包](https://mp.weixin.qq.com/s?__biz=MjM5MTM1ODg0Mg==&mid=2447551448&idx=1&sn=53aab9a0123caf912cc89accb5fb226d&chksm=b2a0c1cd85d748dbde1eb7d511e3933d0ebd9df7d4e8f35e4d3eba7624ab5264f10900845b11&payreadticket=HG6PTwxhw0mtKjeOWoMK54fK_2Rt5dawXff5pU1saeoDHSDFQyXoty4iNrbqHQ8IQi1Fk6M#rd)
 
 ## 项目介绍
 **启航电商ERP可以说是我这五年以来的工作经验成果。**
 
 公司从2019年踏入电商以来，一直都是由我组建和带领一帮技术人员从零开始建设了一套完全适应公司业务需要的电商ERP系统，包括WMS仓库系统、OMS订单处理系统、财务系统、直播运营系统等子系统组成。主要功能模块包括：采购模块、出入库模块、订单发货模块、网店订单管理模块、电子面单打印模块。公司ERP对接了批批网、1688、蘑菇街、淘宝天猫、拼多多、抖店、快手小店平台。
+
+### 技术栈
++ Java17
++ SpringBoot3
++ Redis
++ Nacos
++ MyBatis-Plus
++ MySQL8
+
 
 ### 公司应用场景一：抖店直播
 
