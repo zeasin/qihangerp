@@ -16,7 +16,7 @@
 
 **为方便不是程序员的兄弟们想要看演示效果，本人特地制作了一个windows一键演示包，解压后直接按上面的步骤运行即可，不需要任何额外安装。**
 
-[获取一件演示包](https://mp.weixin.qq.com/s?__biz=MjM5MTM1ODg0Mg==&mid=2447551448&idx=1&sn=53aab9a0123caf912cc89accb5fb226d&chksm=b2a0c1cd85d748dbde1eb7d511e3933d0ebd9df7d4e8f35e4d3eba7624ab5264f10900845b11&payreadticket=HG6PTwxhw0mtKjeOWoMK54fK_2Rt5dawXff5pU1saeoDHSDFQyXoty4iNrbqHQ8IQi1Fk6M#rd)
+[获取一件演示包](https://mp.weixin.qq.com/s/3ztMnyRF-FfoDefGloScYw)
 
 ## 项目介绍
 **启航电商ERP可以说是我这五年以来的工作经验成果。**
