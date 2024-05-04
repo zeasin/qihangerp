@@ -3,45 +3,29 @@ package cn.qihangerp.open.tao.controller;
 
 import cn.qihangerp.common.ApiResult;
 import cn.qihangerp.common.ResultVoEnum;
-import cn.qihangerp.common.enums.EnumShopType;
-import cn.qihangerp.core.config.ServerConfig;
-import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.open.tao.OrderApiHelper;
 import cn.qihangerp.open.tao.bo.TaoRequest;
 import cn.qihangerp.open.tao.common.ApiResultVo;
 import cn.qihangerp.open.tao.domain.OmsTaoOrder;
-import cn.qihangerp.open.tao.domain.TaoOrder;
-import cn.qihangerp.open.tao.domain.TaoOrderRefund;
-import cn.qihangerp.open.tao.model.TradeDetail;
 import cn.qihangerp.open.tao.model.TradeDetail1;
 import cn.qihangerp.open.tao.model.TradeList;
-import cn.qihangerp.open.tao.service.ITaoOrderRefundService;
-import cn.qihangerp.open.tao.service.ITaoOrderService;
 import cn.qihangerp.open.tao.service.OmsTaoOrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * 淘系订单更新
  */
 @RestController
 @RequestMapping("/tao-api")
-public class TaoOrderPullController {
-    private static Logger log = LoggerFactory.getLogger(TaoOrderPullController.class);
+public class TaoOrderApiController {
+    private static Logger log = LoggerFactory.getLogger(TaoOrderApiController.class);
 //    @Autowired
 //    private IShopSettingService shopSettingService;
 //    @Autowired

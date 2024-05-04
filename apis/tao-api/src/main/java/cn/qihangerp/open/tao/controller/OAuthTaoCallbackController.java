@@ -18,10 +18,7 @@ import java.io.IOException;
  */
 @Controller
 public class OAuthTaoCallbackController {
-//    @Autowired
-//    private SysThirdSettingService thirdSettingService;
-//    @Autowired
-//    private IShopService shopService;
+
     @Autowired
     private ITaoOrderService taoOrderService;
     private static Logger log = LoggerFactory.getLogger(OAuthTaoCallbackController.class);

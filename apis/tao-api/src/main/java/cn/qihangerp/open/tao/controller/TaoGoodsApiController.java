@@ -134,10 +134,6 @@ public class TaoGoodsApiController extends BaseController {
         }else{
             return AjaxResult.error(goodsItemApiResultVo.getCode(),goodsItemApiResultVo.getMsg());
         }
-
-
-
-
     }
 
 }
