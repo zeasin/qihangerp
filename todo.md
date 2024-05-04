@@ -7,41 +7,25 @@
   + [ ] wei-api
   + [ ] kwai-api
   + [ ] xhs-api
-+ [ ] 网店订单列表拉取接口
-  + [x] tao-批量确认订单（确认订单不需要选择发货方式、确认订单通过内部netty通讯）
-  + [ ] jd-批量确认订单
-  + [ ] pdd-批量确认订单
-  + [ ] dou-批量确认订单
-  + [ ] wei-批量确认订单
-  + [ ] kwai-批量确认订单
-  + [ ] xhs-批量确认订单
-+ [ ] 售后拉取接口
-  + [x] tao
-  + [ ] jd
-  + [ ] pdd
-  + [ ] dou
-  + [ ] wei
-  + [ ] kwai
-  + [ ] xhs
-+ [ ] 内部netty通讯保存erp_order
-  + [x] TAO
-  + [ ] JD
-  + [ ] PDD
-  + [ ] DOU
-  + [ ] WEI
-  + [ ] KWAI
-  + [ ] XHS
++ [ ] 店铺订单列表拉取、详情、确认订单
+  + [x] tao-api
+  + [ ] jd-api
+  + [ ] pdd-api
+  + [ ] dou-api
+  + [ ] wei-api
+  + [ ] kwai-api
+  + [ ] xhs-api
++ [ ] 售后拉取、更新(拉取和更新自动推送到售后统一库)
+  + [x] tao-api
+  + [ ] jd-api
+  + [ ] pdd-api
+  + [ ] dou-api
+  + [ ] wei-api
+  + [ ] kwai-api
+  + [ ] xhs-api
 
-+ [ ] 内部netty通讯保存erp_refund
-  + [ ] TAO
-  + [ ] JD
-  + [ ] PDD
-  + [ ] DOU
-  + [ ] WEI
-  + [ ] KWAI
-  + [ ] XHS
 
 
 
 ## BUG
-+ [ ] TAO订单子表skuid是空的
++ [x] TAO订单子表skuid是空的

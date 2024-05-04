@@ -235,6 +235,8 @@ outer_sku_id	String	123	123
      * 更新时间
      */
     private Date updateTime;
+    private Integer pullStatus;
+    private Date pullTime;
 
     private static final long serialVersionUID = 1L;
 }

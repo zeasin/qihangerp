@@ -1,31 +1,23 @@
 package cn.qihangerp.open.tao.controller;
 
-import cn.qihangerp.common.ApiRequest;
-import cn.qihangerp.common.ApiResult;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.annotation.Log;
 import cn.qihangerp.common.enums.BusinessType;
-import cn.qihangerp.common.utils.poi.ExcelUtil;
 import cn.qihangerp.core.controller.BaseController;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.core.page.TableDataInfo;
-import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.open.tao.bo.TaoOrderBo;
 import cn.qihangerp.open.tao.bo.TaoOrderConfirmBo;
 import cn.qihangerp.open.tao.domain.OmsTaoOrder;
-import cn.qihangerp.open.tao.domain.OmsTaoOrderItem;
-import cn.qihangerp.open.tao.domain.TaoOrder;
 import cn.qihangerp.open.tao.server.SimpleClientHandler;
 import cn.qihangerp.open.tao.service.ITaoOrderService;
 import cn.qihangerp.open.tao.service.OmsTaoOrderService;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * 淘宝订单Controller

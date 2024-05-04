@@ -45,7 +45,7 @@ public class TaoRefundApiController {
      */
     @RequestMapping("/refund/pull_refund")
     @ResponseBody
-    public ApiResult<String> refundOrderPull(@RequestBody TaoRequest taoRequest)  {
+    public ApiResult<String> refundOrderPull(@RequestBody TaoRequest taoRequest) throws InterruptedException {
         log.info("/**************主动更新tao退货订单****************/");
         if (taoRequest.getShopId() == null || taoRequest.getShopId() <= 0) {
             return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，没有店铺Id");
@@ -114,7 +114,7 @@ public class TaoRefundApiController {
      */
     @RequestMapping("/refund/pull_refund_detail")
     @ResponseBody
-    public ApiResult<String> refundOrderPullByNum(@RequestBody TaoRequest taoRequest)  {
+    public ApiResult<String> refundOrderPullByNum(@RequestBody TaoRequest taoRequest) throws InterruptedException {
         log.info("/**************主动更新tao退货订单by number****************/");
         if (taoRequest.getShopId() == null || taoRequest.getShopId() <= 0) {
             return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，没有店铺Id");
@@ -134,7 +134,6 @@ public class TaoRefundApiController {
         String url = checkResult.getData().getApiRequestUrl();
         String appKey = checkResult.getData().getAppKey();
         String appSecret = checkResult.getData().getAppSecret();
-
         ApiResultVo<Refund> refundApiResultVo = RefundApiHelper.pullRefundDetail(taoRequest.getRefundId(), appKey, appSecret, sessionKey);
         if(refundApiResultVo.getCode()==0) {
             OmsTaoRefund taoRefund = new OmsTaoRefund();

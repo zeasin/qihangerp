@@ -15,5 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface OmsTaoRefundService extends IService<OmsTaoRefund> {
     PageResult<OmsTaoRefund> queryPageList(TaoRefundBo bo, PageQuery pageQuery);
-    ResultVo<Integer> saveAndUpdateRefund(Long shopId, OmsTaoRefund refund);
+    ResultVo<Integer> saveAndUpdateRefund(Long shopId, OmsTaoRefund refund) throws InterruptedException;
 }

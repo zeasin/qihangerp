@@ -4,6 +4,8 @@ import cn.qihangerp.common.*;
 import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.mq.MQRequest;
+import cn.qihangerp.mq.MQRequestType;
 import cn.qihangerp.open.tao.bo.TaoOrderBo;
 import cn.qihangerp.open.tao.bo.TaoOrderConfirmBo;
 import cn.qihangerp.open.tao.common.TaoOrderStateEnum;
@@ -19,7 +21,6 @@ import cn.qihangerp.open.tao.domain.OmsTaoOrder;
 import cn.qihangerp.open.tao.service.OmsTaoOrderService;
 import cn.qihangerp.open.tao.mapper.OmsTaoOrderMapper;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -362,8 +363,8 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
 //        erpOrderMapper.batchErpOrderItem(items);
 
         // 远程调用
-        ApiRequest<ErpOrder> req = new ApiRequest<>();
-        req.setType(102);
+        MQRequest<ErpOrder> req = new MQRequest<>();
+        req.setMqRequestType(MQRequestType.ORDER_CONFIRM);
         req.setData(so);
         ApiResult s = simpleClientHandler.sendRequestAndWaitForResponse(req);
         if(s.getResult()==ApiResultEnum.SUCCESS.getIndex()) {

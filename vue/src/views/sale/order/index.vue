@@ -9,6 +9,14 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+      <el-form-item label="快递单号" prop="shippingNumber">
+        <el-input
+          v-model="queryParams.shippingNumber"
+          placeholder="请输入快递单号"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
       <el-form-item label="店铺" prop="shopId">
         <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
          <el-option
@@ -29,58 +37,18 @@
           </el-option>
         </el-select>
       </el-form-item>
-    <!--
-      <el-form-item label="标签" prop="tag">
-        <el-input
-          v-model="queryParams.tag"
-          placeholder="请输入标签"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      -->
-      <el-form-item label="收件人" prop="receiverName">
-        <el-input
-          v-model="queryParams.receiverName"
-          placeholder="请输入收件人"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="手机号" prop="receiverPhone">
-        <el-input
-          v-model="queryParams.receiverPhone"
-          placeholder="请输入手机号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
+
+      <el-form-item label="状态" prop="orderStatus">
+        <el-select v-model="queryParams.orderStatus" placeholder="请选择状态" clearable @change="handleQuery">
+          <el-option label="待发货" value="1" ></el-option>
+          <el-option label="已出库" value="2"></el-option>
+          <el-option label="已发货" value="3"> </el-option>
+          <el-option label="已完成" value="4"></el-option>
+          <el-option label="已取消" value="11"></el-option>
+        </el-select>
       </el-form-item>
 
-     <!--  <el-form-item label="城市" prop="city">
-        <el-input
-          v-model="queryParams.city"
-          placeholder="请输入城市"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="省份" prop="province">
-        <el-input
-          v-model="queryParams.province"
-          placeholder="请输入省份"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item> -->
 
-      <el-form-item label="快递单号" prop="shippingNumber">
-        <el-input
-          v-model="queryParams.shippingNumber"
-          placeholder="请输入快递单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
 
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
