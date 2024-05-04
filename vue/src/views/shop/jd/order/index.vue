@@ -41,7 +41,7 @@
       <el-col :span="1.5">
         <el-button
           :loading="pullLoading"
-          type="success"
+          type="primary"
           plain
           icon="el-icon-edit"
           size="mini"
@@ -50,13 +50,13 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          type="primary"
+          type="success"
           plain
           icon="el-icon-refresh"
           size="mini"
           :disabled="multiple"
           @click="handlePushOms"
-        >批量确认订单</el-button>
+        >确认订单</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -88,20 +88,61 @@
           </el-row>
         </template>
       </el-table-column>
-      <el-table-column label="订单总金额" align="center" prop="orderTotalPrice" />
-      <el-table-column label="收件人" align="center" prop="fullname" />
-      <el-table-column label="手机号" align="center" prop="mobile" />
+      <el-table-column label="订单应付金额" align="center" prop="orderPayment"  :formatter="amountFormatter"/>
+      <el-table-column label="收货信息" align="left" prop="fullname" width="180">
+        <template slot-scope="scope">
+          <span>{{ scope.row.fullname }}</span><br/>
+          <span>{{ scope.row.mobile }}</span><br/>
+          <span>{{ scope.row.fullAddress }}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column label="商家备注" align="center" prop="venderRemark" />
-      <el-table-column label="状态" align="center" prop="orderStateRemark" />
+      <el-table-column label="状态" align="center" prop="orderStateRemark" >
+        <template slot-scope="scope">
+          <el-tag size="small">{{scope.row.orderStateRemark}}</el-tag>
+          <span></span>
+          <br />
+          <el-tag size="small" v-if="!scope.row.auditStatus||scope.row.auditStatus === 0" style="margin-top: 5px;"> 待确认</el-tag>
+          <el-tag size="small" v-if="scope.row.auditStatus === 1" style="margin-top: 5px;"> 已确认</el-tag>
+          <el-tag size="small" v-if="scope.row.auditStatus === 2" style="margin-top: 5px;"> 已拦截</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="下单时间" align="center" prop="orderStartTime" />
+
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
+<!--          <el-button-->
+<!--            size="mini"-->
+<!--            :loading="pullLoading"-->
+<!--            icon="el-icon-refresh"-->
+<!--            @click="handlePullUpdate(scope.row)"-->
+<!--          >更新订单</el-button>-->
           <el-button
             size="mini"
+            type="text"
+            icon="el-icon-view"
+            @click="handleDetail(scope.row)"
+            v-hasPermi="['tao:order:remove']"
+          >详情</el-button>
+          <el-button
+            size="mini"
+            type="text"
             :loading="pullLoading"
             icon="el-icon-refresh"
             @click="handlePullUpdate(scope.row)"
           >更新订单</el-button>
+          <el-row>
+            <el-button
+              v-if="!scope.row.auditStatus||scope.row.auditStatus === 0"
+              size="mini"
+              plain
+              type="success"
+              icon="el-icon-success"
+              @click="handleConfirm(scope.row)"
+              v-hasPermi="['tao:order:edit']"
+            >确认订单</el-button>
+          </el-row>
         </template>
       </el-table-column>
     </el-table>
@@ -165,6 +206,9 @@ export default {
     this.getList();
   },
   methods: {
+    amountFormatter(row, column, cellValue, index) {
+      return '￥' + parseFloat(cellValue).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    },
     /** 查询商品管理列表 */
     getList() {
       this.loading = true;
@@ -248,6 +292,7 @@ export default {
       pullOrderDetail({shopId:row.shopId,orderId:row.orderId}).then(response => {
         console.log('拉取JD订单接口返回=====',response)
         this.$modal.msgSuccess(JSON.stringify(response));
+        this.getList()
         this.pullLoading = false
       })
     }

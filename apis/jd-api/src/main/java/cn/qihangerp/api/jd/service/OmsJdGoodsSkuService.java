@@ -6,6 +6,8 @@ import cn.qihangerp.api.jd.domain.OmsJdOrder;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.ResultVo;
+import cn.qihangerp.domain.Shop;
+import cn.qihangerp.domain.ShopSetting;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -17,4 +19,14 @@ public interface OmsJdGoodsSkuService extends IService<OmsJdGoodsSku> {
     PageResult<OmsJdGoodsSku> queryPageList(OmsJdGoodsSku bo, PageQuery pageQuery);
 
     ResultVo<Integer> saveGoodsSku(Long shopId, OmsJdGoodsSku goodsSku);
+    Shop selectShopById(Long id);
+
+    /**
+     * 查询第三方平台设置
+     *
+     * @param id 第三方平台设置主键
+     * @return 第三方平台设置
+     */
+    ShopSetting selectShopSettingById(Long id);
+    void updateShopSessionByShopId(Long shopId,String sessionKey);
 }

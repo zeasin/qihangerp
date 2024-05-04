@@ -1,14 +1,13 @@
-## TODO
-+ [x] 项目分离：将open-api按平台分离；
-+ [ ] 增加平台商品接口
-  + [x] tao：关联erp商品
-  + [x] jd-关联erp商品
-  + [ ] pdd-关联erp商品
-  + [ ] dou-关联erp商品
-  + [ ] wei-关联erp商品
-  + [ ] kwai-关联erp商品
-  + [ ] xhs-关联erp商品
-+ [ ] 平台订单列表拉取接口
+## 接口处理
++ 1、店铺商品拉取、关联ERP商品
+  + [x] tao-api
+  + [x] jd-api
+  + [ ] pdd-api
+  + [ ] dou-api
+  + [ ] wei-api
+  + [ ] kwai-api
+  + [ ] xhs-api
++ [ ] 网店订单列表拉取接口
   + [x] tao-批量确认订单（确认订单不需要选择发货方式、确认订单通过内部netty通讯）
   + [ ] jd-批量确认订单
   + [ ] pdd-批量确认订单

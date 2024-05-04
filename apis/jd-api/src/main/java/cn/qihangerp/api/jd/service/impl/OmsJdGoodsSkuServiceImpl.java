@@ -6,6 +6,8 @@ import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.ResultVo;
 import cn.qihangerp.common.utils.StringUtils;
+import cn.qihangerp.domain.Shop;
+import cn.qihangerp.domain.ShopSetting;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -66,6 +68,21 @@ public class OmsJdGoodsSkuServiceImpl extends ServiceImpl<OmsJdGoodsSkuMapper, O
         }
         return ResultVo.success();
     }
+
+    @Override
+    public Shop selectShopById(Long id) {
+        return mapper.selectShopById(id);
+    }
+    @Override
+    public ShopSetting selectShopSettingById(Long id) {
+        return mapper.selectShopSettingById(id);
+    }
+
+    @Override
+    public void updateShopSessionByShopId(Long shopId, String sessionKey) {
+        mapper.updateShopSessionByShopId(shopId,sessionKey);
+    }
+
 }
 
 

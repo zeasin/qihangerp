@@ -1,14 +1,18 @@
 package cn.qihangerp.api.jd.controller;
 
 import cn.qihangerp.api.jd.bo.PullRequest;
+import cn.qihangerp.api.jd.common.ApiCommon;
 import cn.qihangerp.api.jd.domain.OmsJdOrder;
 import cn.qihangerp.api.jd.domain.OmsJdOrderItem;
 import cn.qihangerp.api.jd.service.OmsJdOrderService;
+import cn.qihangerp.common.ApiResultEnum;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.constant.HttpStatus;
+import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.open.jd.OrderApiHelper;
 import cn.qihangerp.open.jd.common.ApiResultVo;
+import cn.qihangerp.open.jd.model.OrderDetail;
 import cn.qihangerp.open.jd.model.OrderInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -26,7 +30,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 public class JdOrderApiController {
-//    private final ApiCommon apiCommon;
+    private final ApiCommon apiCommon;
 ////    private final RedisCache redisCache;
 //    private final MqUtils mqUtils;
     private final OmsJdOrderService orderService;
@@ -42,15 +46,15 @@ public class JdOrderApiController {
         Date currDateTime = new Date();
         long beginTime = System.currentTimeMillis();
 
-//        var checkResult = apiCommon.checkBefore(params.getShopId());
-//        if (checkResult.getCode() != HttpStatus.SUCCESS) {
-//            return AjaxResult.error(checkResult.getCode(), checkResult.getMsg(),checkResult.getData());
-//        }
-//        String accessToken = checkResult.getData().getAccessToken();
-//        String serverUrl = checkResult.getData().getServerUrl();
-//        String appKey = checkResult.getData().getAppKey();
-//        String appSecret = checkResult.getData().getAppSecret();
-//
+        var checkResult = apiCommon.checkBefore(params.getShopId());
+        if (checkResult.getResult() != ApiResultEnum.SUCCESS.getIndex()) {
+            return AjaxResult.error(checkResult.getResult(), checkResult.getMsg(),checkResult.getData());
+        }
+        String accessToken = checkResult.getData().getAccessToken();
+        String appKey = checkResult.getData().getAppKey();
+        String appSecret = checkResult.getData().getAppSecret();
+
+
 //        // 获取最后更新时间
 //        LocalDateTime startTime = null;
 //        LocalDateTime  endTime = null;
@@ -65,9 +69,7 @@ public class JdOrderApiController {
 //                endTime = LocalDateTime.now();
 //            }
 //        }
-        String appKey = "";
-        String appSecret ="";
-        String accessToken = "";
+
         LocalDateTime endTime = LocalDateTime.now();
         LocalDateTime startTime = endTime.minusDays(1);
         //第一次获取
@@ -81,6 +83,16 @@ public class JdOrderApiController {
             //插入订单数据
             OmsJdOrder order = new OmsJdOrder();
             BeanUtils.copyProperties(orderInfo, order);
+            order.setFullname(orderInfo.getConsigneeInfo().getFullname());
+            order.setFullAddress(orderInfo.getConsigneeInfo().getFullAddress());
+            order.setTelephone(orderInfo.getConsigneeInfo().getTelephone());
+            order.setMobile(orderInfo.getConsigneeInfo().getMobile());
+            order.setProvince(orderInfo.getConsigneeInfo().getProvince());
+            order.setProvinceId(orderInfo.getConsigneeInfo().getProvinceId());
+            order.setCity(orderInfo.getConsigneeInfo().getCity());
+            order.setCityId(orderInfo.getConsigneeInfo().getCityId());
+            order.setTown(orderInfo.getConsigneeInfo().getTown());
+            order.setTownId(orderInfo.getConsigneeInfo().getTownId());
             List<OmsJdOrderItem> itemList = new ArrayList<>();
             for(var orderInfoItem :orderInfo.getItemInfoList()) {
                 OmsJdOrderItem jdOrderItem = new OmsJdOrderItem();
@@ -92,85 +104,70 @@ public class JdOrderApiController {
             if (result.getCode() == ResultVoEnum.DataExist.getIndex()) {
                 //已经存在
                 hasExistOrder++;
-//                mqUtils.sendApiMessage(MqMessage.build(EnumShopType.JD,MqType.ORDER_MESSAGE,order.getOrderId()));
             } else if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
                 insertSuccess++;
-//                mqUtils.sendApiMessage(MqMessage.build(EnumShopType.JD,MqType.ORDER_MESSAGE,order.getOrderId()));
             } else {
                 totalError++;
             }
         }
-//        if(lasttime == null){
-//            // 新增
-//            SysShopPullLasttime insertLasttime = new SysShopPullLasttime();
-//            insertLasttime.setShopId(params.getShopId());
-//            insertLasttime.setCreateTime(new Date());
-//            insertLasttime.setLasttime(endTime);
-//            insertLasttime.setPullType("ORDER");
-//            pullLasttimeService.save(insertLasttime);
-//
-//        }else {
-//            // 修改
-//            SysShopPullLasttime updateLasttime = new SysShopPullLasttime();
-//            updateLasttime.setId(lasttime.getId());
-//            updateLasttime.setUpdateTime(new Date());
-//            updateLasttime.setLasttime(endTime);
-//            pullLasttimeService.updateById(updateLasttime);
-//        }
-//        String resultStr ="{insertSuccess:"+insertSuccess+",hasExistOrder:"+hasExistOrder+",totalError:"+totalError+"}";
-//        SysShopPullLogs logs = new SysShopPullLogs();
-//        logs.setShopType(EnumShopType.JD.getIndex());
-//        logs.setShopId(params.getShopId());
-//        logs.setPullType("ORDER");
-//        logs.setPullWay("主动拉取");
-//        logs.setPullParams("{startTime:"+startTime+",endTime:"+endTime+"}");
-//        logs.setPullResult(resultStr);
-//        logs.setPullTime(currDateTime);
-//        logs.setDuration(System.currentTimeMillis() - beginTime);
-//        pullLogsService.save(logs);
+
         return AjaxResult.success();
     }
 
-//    /**
-//     * 拉取详情
-//     * @param params
-//     * @return
-//     * @throws Exception
-//     */
-//    @RequestMapping(value = "/pull_order_detail", method = RequestMethod.POST)
-//    public AjaxResult pullDetail(@RequestBody PullRequest params) throws Exception {
-//        if (params.getShopId() == null || params.getShopId() <= 0) {
-//            return AjaxResult.error(HttpStatus.PARAMS_ERROR, "参数错误，没有店铺Id");
-//        }
-//        if (StringUtils.isEmpty(params.getOrderId())) {
-//            return AjaxResult.error(HttpStatus.PARAMS_ERROR, "参数错误，缺少orderId");
-//        }
-//        Date currDateTime = new Date();
-//        long beginTime = System.currentTimeMillis();
-//
-//        var checkResult = apiCommon.checkBefore(params.getShopId());
-//        if (checkResult.getCode() != HttpStatus.SUCCESS) {
-//            return AjaxResult.error(checkResult.getCode(), checkResult.getMsg(),checkResult.getData());
-//        }
-//        String accessToken = checkResult.getData().getAccessToken();
-//        String serverUrl = checkResult.getData().getServerUrl();
-//        String appKey = checkResult.getData().getAppKey();
-//        String appSecret = checkResult.getData().getAppSecret();
-//        ResultVo<JdOrder> upResult = OrderApiHelper.pullOrderDetail(Long.parseLong(params.getOrderId()),serverUrl,appKey,appSecret,accessToken);
-//        if(upResult.getCode() == ResultVoEnum.SUCCESS.getIndex()){
-//            // 更新Order
-//            var result = orderService.saveOrder(params.getShopId(), upResult.getData());
-//            if (result.getCode() == ResultVoEnum.DataExist.getIndex()) {
-//                //已经存在
-//                mqUtils.sendApiMessage(MqMessage.build(EnumShopType.JD,MqType.ORDER_MESSAGE,upResult.getData().getOrderId()));
-//            } else if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
-//                mqUtils.sendApiMessage(MqMessage.build(EnumShopType.JD,MqType.ORDER_MESSAGE,upResult.getData().getOrderId()));
-//            }
-//            return AjaxResult.success();
-//        }else{
-//            return AjaxResult.error();
-//        }
-//    }
+    /**
+     * 拉取详情
+     * @param params
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/pull_order_detail", method = RequestMethod.POST)
+    public AjaxResult pullDetail(@RequestBody PullRequest params) throws Exception {
+        if (params.getShopId() == null || params.getShopId() <= 0) {
+            return AjaxResult.error(HttpStatus.PARAMS_ERROR, "参数错误，没有店铺Id");
+        }
+        if (params.getOrderId()==null || params.getOrderId()==0) {
+            return AjaxResult.error(HttpStatus.PARAMS_ERROR, "参数错误，缺少orderId");
+        }
+        Date currDateTime = new Date();
+        long beginTime = System.currentTimeMillis();
+
+        var checkResult = apiCommon.checkBefore(params.getShopId());
+        if (checkResult.getResult() != HttpStatus.SUCCESS) {
+            return AjaxResult.error(checkResult.getResult(), checkResult.getMsg(),checkResult.getData());
+        }
+        String accessToken = checkResult.getData().getAccessToken();
+        String appKey = checkResult.getData().getAppKey();
+        String appSecret = checkResult.getData().getAppSecret();
+
+        ApiResultVo<OrderDetail> apiResultVo = OrderApiHelper.pullOrderDetail(params.getOrderId(), appKey, appSecret, accessToken);
+        if(apiResultVo.getCode() == 0){
+            OmsJdOrder jdOrder = new OmsJdOrder();
+            BeanUtils.copyProperties(apiResultVo.getData(),jdOrder);
+            jdOrder.setFullname(apiResultVo.getData().getConsigneeInfo().getFullname());
+            jdOrder.setFullAddress(apiResultVo.getData().getConsigneeInfo().getFullAddress());
+            jdOrder.setTelephone(apiResultVo.getData().getConsigneeInfo().getTelephone());
+            jdOrder.setMobile(apiResultVo.getData().getConsigneeInfo().getMobile());
+            jdOrder.setProvince(apiResultVo.getData().getConsigneeInfo().getProvince());
+            jdOrder.setProvinceId(apiResultVo.getData().getConsigneeInfo().getProvinceId());
+            jdOrder.setCity(apiResultVo.getData().getConsigneeInfo().getCity());
+            jdOrder.setCityId(apiResultVo.getData().getConsigneeInfo().getCityId());
+            jdOrder.setTown(apiResultVo.getData().getConsigneeInfo().getTown());
+            jdOrder.setTownId(apiResultVo.getData().getConsigneeInfo().getTownId());
+            List<OmsJdOrderItem> itemList = new ArrayList<>();
+            for(var orderInfoItem :apiResultVo.getData().getItemInfoList()) {
+                OmsJdOrderItem jdOrderItem = new OmsJdOrderItem();
+                BeanUtils.copyProperties(orderInfoItem, jdOrderItem);
+                itemList.add(jdOrderItem);
+            }
+            jdOrder.setItemList(itemList);
+
+            // 更新Order
+            var result = orderService.saveOrder(params.getShopId(), jdOrder);
+            return AjaxResult.success();
+        }else{
+            return AjaxResult.error();
+        }
+    }
 }
 
 

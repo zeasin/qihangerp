@@ -36,6 +36,19 @@ public class ApiResult<T> implements Serializable {
         result.setMsg(msg);
         return result;
     }
+    public static <T> ApiResult<T> error(ApiResultEnum resultEnum,String msg){
+        ApiResult<T> result = new ApiResult<>();
+        result.setResult(resultEnum.getIndex());
+        result.setMsg(msg);
+        return result;
+    }
+    public static <T> ApiResult<T> error(ApiResultEnum resultEnum,String msg,T data){
+        ApiResult<T> result = new ApiResult<>();
+        result.setResult(resultEnum.getIndex());
+        result.setMsg(msg);
+        result.setData(data);
+        return result;
+    }
 
     public ApiResult(ApiResultEnum result, String msg) {
         this.result = result.getIndex();

@@ -20,11 +20,11 @@ public enum ApiResultEnum implements Serializable {
     NumberLess("数量不足", 406),
     DataError("DataError", 500),//数据错误，不能操作
     DataExist("DataExist", 800),//数据已存在，不能操作
-    ParamsError("参数错误", 505),//参数错误
+    PARAMS_ERROR("参数错误", 505),//参数错误
     HasAssociatedData("存在关联数据", 501),//存在关联数据
     Exist("已存在相同的数据", 502),//已存在相同的数据
     SystemException("系统异常", 505),//系统异常
-    TokenFail("token过期", 601),//ali token过期
+    TokenFail("token过期", 1401),//ali token过期
     Fail("失败", 1000);
 
     private String name;

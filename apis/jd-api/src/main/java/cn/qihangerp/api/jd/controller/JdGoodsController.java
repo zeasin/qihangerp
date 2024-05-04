@@ -2,10 +2,12 @@ package cn.qihangerp.api.jd.controller;
 
 import cn.qihangerp.api.jd.bo.JdOrderBo;
 import cn.qihangerp.api.jd.bo.PullRequest;
+import cn.qihangerp.api.jd.common.ApiCommon;
 import cn.qihangerp.api.jd.domain.OmsJdGoodsSku;
 import cn.qihangerp.api.jd.domain.OmsJdOrder;
 import cn.qihangerp.api.jd.service.OmsJdGoodsSkuService;
 import cn.qihangerp.api.jd.service.OmsJdOrderService;
+import cn.qihangerp.common.ApiResultEnum;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.constant.HttpStatus;
@@ -33,7 +35,7 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/jd-api/goods")
 public class JdGoodsController extends BaseController {
-
+    private final ApiCommon apiCommon;
     private final OmsJdGoodsSkuService goodsSkuService;
     //    private final MqUtils mqUtils;
     @RequestMapping(value = "/skuList", method = RequestMethod.GET)
@@ -46,10 +48,15 @@ public class JdGoodsController extends BaseController {
         if (params.getShopId() == null || params.getShopId() <= 0) {
             return AjaxResult.error(HttpStatus.PARAMS_ERROR, "参数错误，没有店铺Id");
         }
-        String appKey = "FB4CC3688E6F9065D4FF510A53BB60FF";
-        String appSecret ="40e8c8b2427f4e6db8f4a39af27d719e";
-        String accessToken = "8abd974c62c34778935b34b5952e6f68izdk";
-        //第一次获取
+        var checkResult = apiCommon.checkBefore(params.getShopId());
+        if (checkResult.getResult() != ApiResultEnum.SUCCESS.getIndex()) {
+            return AjaxResult.error(checkResult.getResult(), checkResult.getMsg(),checkResult.getData());
+        }
+        String accessToken = checkResult.getData().getAccessToken();
+        String appKey = checkResult.getData().getAppKey();
+        String appSecret = checkResult.getData().getAppSecret();
+
+        //获取接口
         ApiResultVo<GoodsSku> upResult = GoodsApiHelper.pullGoods(appKey,appSecret,accessToken);
         int successTotal = 0;//新增成功的订单
         int totalError = 0;

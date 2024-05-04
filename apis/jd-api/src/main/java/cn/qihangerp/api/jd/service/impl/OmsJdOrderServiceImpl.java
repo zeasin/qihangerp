@@ -69,6 +69,16 @@ public class OmsJdOrderServiceImpl extends ServiceImpl<OmsJdOrderMapper, OmsJdOr
                 update.setPaymentConfirmTime(order.getPaymentConfirmTime());
                 update.setWaybill(order.getWaybill());
                 update.setLogisticsId(order.getLogisticsId());
+
+                //临时
+                update.setFullname(order.getFullname());
+                update.setFullAddress(order.getFullAddress());
+                update.setProvince(order.getProvince());
+                update.setCity(order.getCity());
+                update.setTown(order.getTown());
+                update.setMobile(order.getMobile());
+                update.setTelephone(order.getTelephone());
+
                 mapper.updateById(update);
                 // 更新item
                 for (var item : order.getItemList()) {
