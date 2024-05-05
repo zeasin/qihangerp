@@ -19,6 +19,14 @@
           </el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="下单日期" prop="orderStartTime">
+        <el-date-picker clearable
+                        v-model="queryParams.orderStartTime"
+                        type="date"
+                        value-format="yyyy-MM-dd"
+                        placeholder="请选择订单创建时间">
+        </el-date-picker>
+      </el-form-item>
       <el-form-item label="订单状态" prop="orderState">
         <el-select v-model="queryParams.orderState" placeholder="请选择状态" clearable @change="handleQuery">
           <el-option label="等待出库" value="WAIT_SELLER_STOCK_OUT" ></el-option>
@@ -63,28 +71,28 @@
 
     <el-table v-loading="loading" :data="lists" @selection-change="handleSelectionChange">
        <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="订单ID" align="center" prop="orderId" />
-      <el-table-column label="店铺" align="center" prop="shopId" >
-        <template slot-scope="scope">
-          <el-tag size="small">{{shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name:''}}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="商品" width="350">
+
+        <el-table-column label="订单号" align="left" prop="orderId" width="180px">
+          <template slot-scope="scope">
+            <div>{{scope.row.orderId}}</div>
+            <el-tag size="small">{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</el-tag>
+          </template>
+        </el-table-column>
+
+      <el-table-column label="商品" width="450">
         <template slot-scope="scope">
           <el-row v-for="item in scope.row.itemList" :key="item.id" :gutter="20">
-
-            <div style="float: left;display: flex;align-items: center;" >
-<!--              <el-image  style="width: 70px; height: 70px;" :src="item.picPath"></el-image>-->
               <div style="margin-left:10px">
-                <p>{{item.skuName}}</p>
-                <p>{{item.outerSkuId}}&nbsp;
-                  <el-tag size="small">x {{item.itemTotal}}</el-tag>
+                <p>{{item.skuName}}
+                  （{{item.outerSkuId}}）
+
+                <el-tag size="small">数量：x {{item.itemTotal}}</el-tag>
                 </p>
                 <p v-if="scope.row.refundStatus === 0">
                   <el-button type="text" size="mini" round @click="handleRefund(scope.row,item)">售后</el-button>
                 </p>
               </div>
-            </div>
+
           </el-row>
         </template>
       </el-table-column>
@@ -92,7 +100,6 @@
       <el-table-column label="收货信息" align="left" prop="fullname" width="180">
         <template slot-scope="scope">
           <span>{{ scope.row.fullname }}</span><br/>
-          <span>{{ scope.row.mobile }}</span><br/>
           <span>{{ scope.row.fullAddress }}</span>
         </template>
       </el-table-column>
@@ -154,11 +161,141 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
+
+    <!-- 订单详情对话框 -确认订单 -->
+    <el-dialog :title="detailTitle" :visible.sync="detailOpen" width="1100px" append-to-body>
+
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px" inline>
+        <el-descriptions title="订单信息">
+          <el-descriptions-item label="订单号">{{form.orderId}}</el-descriptions-item>
+
+          <el-descriptions-item label="店铺">
+            <span >{{ shopList.find(x=>x.id === form.shopId)?shopList.find(x=>x.id === form.shopId).name :'' }}</span>
+          </el-descriptions-item>
+          <el-descriptions-item label="下单时间">
+            {{ form.orderStartTime }}
+          </el-descriptions-item>
+
+          <el-descriptions-item label="商家备注">
+            {{form.venderRemark}}
+          </el-descriptions-item>
+          <el-descriptions-item label="买家备注">
+            {{form.orderRemark}}
+          </el-descriptions-item>
+          <el-descriptions-item label="订单状态">
+            <el-tag size="small">{{form.orderStateRemark}}</el-tag>
+          </el-descriptions-item>
+
+        </el-descriptions>
+        <el-descriptions title="付款信息">
+          <el-descriptions-item label="订单总金额">{{ amountFormatter(null,null,parseFloat(form.orderTotalPrice),null)}}</el-descriptions-item>
+          <el-descriptions-item label="订单货款金额">{{amountFormatter(null,null,parseFloat(form.orderSellerPrice),null)}}</el-descriptions-item>
+          <el-descriptions-item label="商家优惠">{{amountFormatter(null,null,parseFloat(form.sellerDiscount),null)}}</el-descriptions-item>
+          <el-descriptions-item label="运费">{{amountFormatter(null,null,parseFloat(form.freightPrice),null)}}</el-descriptions-item>
+          <el-descriptions-item label="买家应付金额">{{amountFormatter(null,null,parseFloat(form.orderPayment),null)}}</el-descriptions-item>
+
+        </el-descriptions>
+
+
+        <el-descriptions title="收货信息">
+          <el-descriptions-item label="收件人姓名">{{form.fullname}}</el-descriptions-item>
+          <el-descriptions-item label="收件人手机号">{{form.mobile}}</el-descriptions-item>
+          <el-descriptions-item label="省市区">{{form.province}}{{form.city}}{{form.county}}</el-descriptions-item>
+          <el-descriptions-item label="详细地址">{{form.fullAddress}}</el-descriptions-item>
+        </el-descriptions>
+
+        <el-divider content-position="center">订单商品</el-divider>
+        <el-table :data="form.itemList"  style="margin-bottom: 10px;">
+          <!-- <el-table-column type="selection" width="50" align="center" /> -->
+          <el-table-column label="序号" align="center" type="index" width="50"/>
+
+<!--          <el-table-column label="商品图片" prop="picPath" width="80">-->
+<!--            <template slot-scope="scope">-->
+<!--              <el-image style="width: 70px; height: 70px" :src="scope.row.picPath"></el-image>-->
+<!--            </template>-->
+<!--          </el-table-column>-->
+          <el-table-column label="商品标题" prop="skuName" ></el-table-column>
+          <el-table-column label="SKU编码" prop="outerSkuId"></el-table-column>
+          <el-table-column label="SkuID" prop="skuId"></el-table-column>
+          <el-table-column label="单价" prop="jdPrice"></el-table-column>
+          <el-table-column label="数量" prop="itemTotal"></el-table-column>
+
+        </el-table>
+
+        <el-row :gutter="10" class="mb8" v-if="isAudit">
+          <el-col :span="1.5">
+            <el-button type="primary" plain icon="el-icon-plus" size="mini" @click="handleAddTaoOrderItem">添加赠品</el-button>
+          </el-col>
+          <el-col :span="1.5">
+            <el-button type="danger" plain icon="el-icon-delete" size="mini" @click="handleDeleteTaoOrderItem">删除</el-button>
+          </el-col>
+        </el-row>
+        <el-table v-if="isAudit" :data="taoOrderItemList" :row-class-name="rowTaoOrderItemIndex" @selection-change="handleTaoOrderItemSelectionChange" ref="taoOrderItem"  style="margin-bottom: 10px;">
+          <el-table-column type="selection" width="50" align="center" />
+          <el-table-column label="序号" align="center" prop="index" width="50"/>
+          <el-table-column label="商品" prop="erpGoodsId" width="350"  >
+            <template slot-scope="scope">
+              <el-select v-model="scope.row.erpGoodsSpecId" filterable remote reserve-keyword placeholder="搜索商品" style="width: 330px;"
+                         :remote-method="searchSku" :loading="skuListLoading" @change="skuChanage(scope.row)">
+                <el-option v-for="item in skuList" :key="item.id"
+                           :label="item.name + ' - ' + item.colorValue + ' ' + item.sizeValue + ' ' + item.styleValue"
+                           :value="item.id">
+                </el-option>
+              </el-select>
+            </template>
+          </el-table-column>
+          <el-table-column label="商品图片" prop="productImgUrl" >
+            <template slot-scope="scope">
+              <el-image style="width: 70px; height: 70px" :src="scope.row.productImgUrl"></el-image>
+            </template>
+          </el-table-column>
+          <el-table-column label="sku编码" prop="specNumber" width="100">
+            <template slot-scope="scope">
+              <el-input v-model="scope.row.specNumber" placeholder="请输入单品货号，对应系统sku编码" disabled/>
+            </template>
+          </el-table-column>
+
+          <el-table-column label="单价" prop="price">
+            <template slot-scope="scope">
+              <el-input v-model="scope.row.price" placeholder="请输入单价" disabled/>
+            </template>
+          </el-table-column>
+          <el-table-column label="数量" prop="quantity">
+            <template slot-scope="scope">
+              <el-input v-model="scope.row.quantity" placeholder="请输入数量"  @input="qtyChange(scope.row)" :disabled="isAudit" />
+            </template>
+          </el-table-column>
+          <el-table-column label="总金额" prop="itemAmount">
+            <template slot-scope="scope">
+              <el-input v-model="scope.row.itemAmount" placeholder="请输入明细总金额" disabled/>
+            </template>
+          </el-table-column>
+
+        </el-table>
+        <el-form-item label="收件人姓名" prop="fullname" v-if="isAudit">
+          <el-input v-model="form.fullname" placeholder="请输入收件人姓名" style="width:250px" />
+        </el-form-item>
+        <el-form-item label="收件人电话" prop="mobile" v-if="isAudit">
+          <el-input v-model="form.mobile" placeholder="请输入收件人电话" style="width:250px" />
+        </el-form-item>
+
+        <el-form-item label="详细地址" prop="fullAddress" v-if="isAudit">
+          <el-input v-model="form.fullAddress" placeholder="请输入收件地址" style="width:250px" />
+        </el-form-item>
+
+      </el-form>
+      <div slot="footer" class="dialog-footer" v-if="isAudit">
+        <el-button type="primary" @click="submitConfirmForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
+
+
   </div>
 </template>
 
 <script>
-import {listOrder, pullOrder, getOrder, pushOms, pullOrderDetail} from "@/api/jd/order";
+import {listOrder, pullOrder, getOrder, confirmOrder, pullOrderDetail} from "@/api/jd/order";
 import { listShop } from "@/api/shop/shop";
 import {MessageBox} from "element-ui";
 import {isRelogin} from "@/utils/request";
@@ -183,6 +320,9 @@ export default {
       lists: [],
       // 弹出层标题
       title: "",
+      isAudit:false,
+      detailTitle:'订单详情',
+      detailOpen:false,
       // 是否显示弹出层
       open: false,
       // 查询参数
@@ -196,7 +336,11 @@ export default {
       form: {},
       shopList: [],
       // 表单校验
-      rules: {}
+      rules: {
+        fullname: [{ required: true, message: "请填写收件人姓名", trigger: "blur" }],
+        mobile: [{ required: true, message: "请填写收件人手机号", trigger: "blur" }],
+        fullAddress: [{ required: true, message: "请填写详细地址", trigger: "change" }],
+      }
     };
   },
   created() {
@@ -264,6 +408,7 @@ export default {
         pullOrder({shopId:this.queryParams.shopId,updType:0}).then(response => {
           console.log('拉取JD订单接口返回=====',response)
           if(response.code === 200){
+            this.getList()
             this.$modal.msgSuccess(JSON.stringify(response));
           }
           else if(response.code === 1401) {
@@ -278,6 +423,7 @@ export default {
 
             // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
           }else{
+
             this.$modal.msgError(JSON.stringify(response));
           }
           this.pullLoading = false
@@ -295,7 +441,47 @@ export default {
         this.getList()
         this.pullLoading = false
       })
-    }
+    },
+    handleDetail(row) {
+      this.reset();
+      const id = row.id || this.ids
+      getOrder(id).then(response => {
+        this.form = response.data;
+        // this.goodsList = response.data.items;
+        this.detailOpen = true;
+        this.detailTitle = "订单详情";
+      });
+      this.isAudit = false
+    },
+    handleConfirm(row) {
+      this.reset();
+      const id = row.id || this.ids
+      getOrder(id).then(response => {
+        this.form = response.data;
+        // this.goodsList = response.data.items;
+        this.form.provinces = []
+        this.form.provinces.push(response.data.province)
+        this.form.provinces.push(response.data.city)
+        this.form.provinces.push(response.data.town)
+        this.isAudit = true
+        this.detailOpen = true;
+        this.detailTitle = "确认订单";
+      });
+    },
+    /** 确认订单按钮 */
+    submitConfirmForm(){
+      console.log('====确认订单=====',this.form,this.taoOrderItemList)
+      this.$refs["form"].validate(valid => {
+        if (valid) {
+          this.form.taoOrderItemList = this.taoOrderItemList;
+          confirmOrder(this.form).then(response => {
+            this.$modal.msgSuccess("确认成功");
+            this.detailOpen = false;
+            this.getList();
+          });
+        }
+      })
+    },
   }
 };
 </script>

@@ -210,7 +210,7 @@ import {listReturned, addExchange, shipAgainComplete} from "@/api/afterSale/retu
 import {listShop} from "@/api/shop/shop";
 
 export default {
-  name: "Returned",
+  name: "ReturnedAfter",
   data() {
     return {
       // 遮罩层

@@ -53,8 +53,6 @@ public class JdOrderApiController {
         String accessToken = checkResult.getData().getAccessToken();
         String appKey = checkResult.getData().getAppKey();
         String appSecret = checkResult.getData().getAppSecret();
-
-
 //        // 获取最后更新时间
 //        LocalDateTime startTime = null;
 //        LocalDateTime  endTime = null;

@@ -12,7 +12,7 @@ export function listOrder(query) {
 // 查询订单详细
 export function getOrder(id) {
   return request({
-    url: '/api/jd-api/order/' + id,
+    url: '/jd-api/order/' + id,
     method: 'get'
   })
 }
@@ -37,9 +37,14 @@ export function pullOrderDetail(data) {
 }
 
 
-export function pushOms(data) {
+
+
+
+
+// 确认订单
+export function confirmOrder(data) {
   return request({
-    url: '/api/jd-api/order/push_oms',
+    url: '/jd-api/order/confirmOrder',
     method: 'post',
     data: data
   })

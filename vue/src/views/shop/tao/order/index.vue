@@ -140,7 +140,6 @@
       </el-table-column>
       <el-table-column label="订单状态" align="center" prop="status" >
          <template slot-scope="scope">
-
            <el-tag size="small" v-if="scope.row.status === 'WAIT_BUYER_PAY'"> 等待买家付款</el-tag>
            <el-tag size="small" v-if="scope.row.status === 'SELLER_CONSIGNED_PART'"> 卖家部分发货</el-tag>
            <el-tag size="small" v-if="scope.row.status === 'WAIT_SELLER_SEND_GOODS'"> 等待卖家发货</el-tag>
@@ -238,7 +237,7 @@
             <el-descriptions-item label="店铺">
               <span >{{ shopList.find(x=>x.id === form.shopId)?shopList.find(x=>x.id === form.shopId).name :'' }}</span>
             </el-descriptions-item>
-            <el-descriptions-item label="下单日期">
+            <el-descriptions-item label="下单时间">
               {{ parseTime(form.created)}}
             </el-descriptions-item>
 
@@ -251,8 +250,17 @@
             <el-descriptions-item label="备注">
               {{form.remark}}
             </el-descriptions-item>
-<!--            <el-descriptions-item label="关闭原因">{{form.closeReason}}</el-descriptions-item>-->
-<!--            <el-descriptions-item label="订单状态">{{form.statusStr}}</el-descriptions-item>-->
+
+            <el-descriptions-item label="订单状态">
+              <el-tag size="small" v-if="form.status === 'WAIT_BUYER_PAY'"> 等待买家付款</el-tag>
+              <el-tag size="small" v-if="form.status === 'SELLER_CONSIGNED_PART'"> 卖家部分发货</el-tag>
+              <el-tag size="small" v-if="form.status === 'WAIT_SELLER_SEND_GOODS'"> 等待卖家发货</el-tag>
+              <el-tag size="small" v-if="form.status === 'WAIT_BUYER_CONFIRM_GOODS'"> 等待买家确认收货</el-tag>
+              <el-tag size="small" v-if="form.status === 'TRADE_FINISHED'"> 交易成功</el-tag>
+              <el-tag size="small" v-if="form.status === 'TRADE_CLOSED'"> 交易自动关闭</el-tag>
+              <el-tag size="small" v-if="form.status === 'TRADE_CLOSED_BY_TAOBAO'"> 卖家或买家主动关闭交易</el-tag>
+              <el-tag size="small" v-if="form.status === 'PAID_FORBID_CONSIGN'"> 禁止发货</el-tag>
+            </el-descriptions-item>
 
         </el-descriptions>
         <el-descriptions title="付款信息">
@@ -475,7 +483,7 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        shopId: 6,
+        shopId: null,
         orderSource: '1',
         totalAmount: null,
         shippingFee: null,
@@ -731,7 +739,7 @@ export default {
         }
       })
     },
-    /** 删除按钮操作 */
+    /** 详情 */
     handleDetail(row) {
       this.reset();
       const id = row.id || this.ids

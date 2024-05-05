@@ -16,7 +16,7 @@ public class OmsJdOrder implements Serializable {
     /**
      * 
      */
-    private Long id;
+    private String id;
 
     /**
      * 店铺id
@@ -252,6 +252,8 @@ public class OmsJdOrder implements Serializable {
      * 
      */
     private Date createTime;
+    private Integer auditStatus;
+    private Date auditTime;
 
     @TableField(exist = false)
     private List<OmsJdOrderItem> itemList;

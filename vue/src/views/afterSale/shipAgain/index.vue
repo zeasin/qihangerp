@@ -239,7 +239,7 @@ import {list, addShipAgain, shipAgainComplete} from "@/api/afterSale/shipAgain";
 import {listShop} from "@/api/shop/shop";
 
 export default {
-  name: "Returned",
+  name: "ShipAgainAfter",
   data() {
     return {
       // 遮罩层

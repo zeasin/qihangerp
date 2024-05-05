@@ -1,6 +1,7 @@
 package cn.qihangerp.api.jd.service;
 
 import cn.qihangerp.api.jd.bo.JdOrderBo;
+import cn.qihangerp.api.jd.bo.JdOrderConfirmBo;
 import cn.qihangerp.api.jd.domain.OmsJdOrder;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
@@ -15,4 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface OmsJdOrderService extends IService<OmsJdOrder> {
     PageResult<OmsJdOrder> queryPageList(JdOrderBo bo, PageQuery pageQuery);
     ResultVo<Integer> saveOrder(Long shopId, OmsJdOrder order);
+    OmsJdOrder queryDetailById(Long id);
+
+    int confirmOrder(JdOrderConfirmBo taoOrder) throws InterruptedException;
 }

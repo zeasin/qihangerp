@@ -81,14 +81,19 @@
     </el-row>
 
     <el-table v-loading="loading" :data="orderList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="订单ID" align="center" prop="id" />
-      <el-table-column label="订单编号" align="center" prop="orderNum" />
-      <el-table-column label="店铺" align="center" prop="shopId" >
+<!--      <el-table-column type="selection" width="55" align="center" />-->
+<!--      <el-table-column label="订单ID" align="center" prop="id" />-->
+      <el-table-column label="订单号" align="left" prop="orderNum" >
         <template slot-scope="scope">
-          <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>
+          <div>{{scope.row.orderNum}}</div>
+          <el-tag size="small">{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</el-tag>
         </template>
       </el-table-column>
+<!--      <el-table-column label="店铺" align="center" prop="shopId" >-->
+<!--        <template slot-scope="scope">-->
+<!--          <span>{{ shopList.find(x=>x.id === scope.row.shopId)?shopList.find(x=>x.id === scope.row.shopId).name :'' }}</span>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
       <el-table-column label="商品" width="350">
           <template slot-scope="scope">
@@ -134,12 +139,13 @@
       <!-- <el-table-column label="邮费，单位：元" align="center" prop="postage" /> -->
       <!-- <el-table-column label="折扣金额(元)" align="center" prop="discountAmount" /> -->
       <!-- <el-table-column label="商品金额(元)" align="center" prop="goodsAmount" /> -->
-      <el-table-column label="支付金额" align="center" prop="amount" />
+      <el-table-column label="支付金额" align="center" prop="amount"  :formatter="amountFormatter" />
       <!-- <el-table-column label="支付时间" align="center" prop="payTime" /> -->
       <el-table-column label="收件信息" align="center" prop="receiverName" >
         <template slot-scope="scope">
           {{scope.row.receiverName}}<br />
-          {{scope.row.province}} {{scope.row.city}} {{scope.row.town}}
+          {{scope.row.province}} {{scope.row.city}} {{scope.row.town}}<br/>
+          <el-tag v-if="scope.row.shippingNumber">{{scope.row.shippingNumber}}</el-tag>
         </template>
       </el-table-column>
       <!-- <el-table-column label="手机号" align="center" prop="receiverPhone" /> -->
@@ -147,8 +153,8 @@
       <!-- <el-table-column label="${comment}" align="center" prop="town" /> -->
       <!-- <el-table-column label="省" align="center" prop="province" /> -->
       <!-- <el-table-column label="市" align="center" prop="city" /> -->
-      <el-table-column label="发货时间" align="center" prop="shippingTime" />
-      <el-table-column label="快递单号" align="center" prop="shippingNumber" />
+<!--      <el-table-column label="发货时间" align="center" prop="shippingTime" />-->
+<!--      <el-table-column label="快递单号" align="center" prop="shippingNumber" />-->
       <!-- <el-table-column label="物流公司" align="center" prop="shippingCompany" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -342,6 +348,9 @@ export default {
     this.getList();
   },
   methods: {
+    amountFormatter(row, column, cellValue, index) {
+      return '￥' + cellValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    },
     /** 查询店铺订单列表 */
     getList() {
       this.loading = true;

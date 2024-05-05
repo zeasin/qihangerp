@@ -250,7 +250,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
         so.setProvince(original.getReceiverState());
         so.setCity(original.getReceiverCity());
         so.setTown(original.getReceiverDistrict());
-
+        so.setShipStatus(0);
 //        erpOrderMapper.insertErpOrder(so);
         // 新增ErpOrderItem
 //        List<OmsTaoOrderItem> taoOrderItems = taoOrderMapper.selectOrderItemByOrderId(taoOrder.getId());

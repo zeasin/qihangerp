@@ -15,9 +15,9 @@ public class OmsJdOrderItem implements Serializable {
     private Long id;
 
     /**
-     * 外键id（jd_order表id）
+     * 平台订单id（）
      */
-    private Long orderId;
+    private String orderId;
 
     /**
      * 京东内部SKU的ID
