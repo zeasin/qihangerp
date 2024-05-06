@@ -343,7 +343,7 @@ import { listShop } from "@/api/shop/shop";
 import { searchSku } from "@/api/goods/goods";
 import {MessageBox} from "element-ui";
 import {isRelogin} from "../../../../utils/request";
-import {listOrder,getOrder,confirmOrder,pullOrder} from "@/api/wei/order";
+import {listOrder,getOrder,confirmOrder,pullOrder,pullOrderDetail} from "@/api/wei/order";
 import {pcaTextArr} from "element-china-area-data";
 
 export default {
