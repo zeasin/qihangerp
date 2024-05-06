@@ -50,8 +50,7 @@ public class WeiApiCommon {
         params.setAccessToken(shop.getSessionKey());
         params.setApiRequestUrl(shop.getApiRequestUrl());
 //        params.setServerUrl(platform.getServerUrl());
-        params.setAppKey("wx62136b9e9b09930b");
-        params.setAppSecret("8021ff6362f6173766ef46370e9a833b");
+
         params.setSellerId(shop.getSellerUserId().toString());
         if (!StringUtils.hasText(params.getAccessToken())) {
             ApiResultVo<Token> token1 = TokenApiHelper.getToken(params.getAppKey(), params.getAppSecret());
