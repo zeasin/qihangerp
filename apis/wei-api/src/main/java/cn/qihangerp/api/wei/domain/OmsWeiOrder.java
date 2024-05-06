@@ -9,10 +9,10 @@ import lombok.Data;
 
 /**
  * 
- * @TableName wei_order
+ * @TableName oms_wei_order
  */
 @Data
-public class WeiOrder implements Serializable {
+public class OmsWeiOrder implements Serializable {
     /**
      * 
      */
@@ -21,7 +21,7 @@ public class WeiOrder implements Serializable {
     /**
      * 店铺id
      */
-    private Integer shopId;
+    private Long shopId;
 
     /**
      * 订单号
@@ -186,24 +186,7 @@ public class WeiOrder implements Serializable {
     private Date erpSendTime;
 
     @TableField(exist = false)
-    private List<WeiOrderItem> items;
-
-    @TableField(exist = false)
-    private Integer shipType;
-
-    @TableField(exist = false)
-    private String receiver;
-    @TableField(exist = false)
-    private String phone;
-    @TableField(exist = false)
-    private String province;
-    @TableField(exist = false)
-    private String city;
-    @TableField(exist = false)
-    private String district;
-    @TableField(exist = false)
-    private String address;
-
+    private List<OmsWeiOrderItem> items;
 
     private static final long serialVersionUID = 1L;
 }

@@ -1,7 +1,8 @@
 package cn.qihangerp.api.wei.controller;
 
-import cn.qihangerp.api.wei.domain.WeiOrder;
-import cn.qihangerp.api.wei.service.WeiOrderService;
+
+import cn.qihangerp.api.wei.domain.OmsWeiOrder;
+import cn.qihangerp.api.wei.service.OmsWeiOrderService;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.core.controller.BaseController;
@@ -14,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/wei-api/order")
 public class WeiOrderController extends BaseController {
-    private final WeiOrderService orderService;
+    private final OmsWeiOrderService orderService;
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public TableDataInfo orderList(WeiOrder bo, PageQuery pageQuery) {
-        PageResult<WeiOrder> result = orderService.queryPageList(bo, pageQuery);
+    public TableDataInfo orderList(OmsWeiOrder bo, PageQuery pageQuery) {
+        PageResult<OmsWeiOrder> result = orderService.queryPageList(bo, pageQuery);
 
         return getDataTable(result);
     }
@@ -41,7 +42,7 @@ public class WeiOrderController extends BaseController {
 //    }
 
     @PostMapping("/confirmOrder")
-    public AjaxResult confirmOrder(@RequestBody WeiOrder bo)
+    public AjaxResult confirmOrder(@RequestBody OmsWeiOrder bo)
     {
         int result = orderService.confirmOrder(bo);
         if(result == -1) return new AjaxResult(501,"已确认过了！请勿重复确认！");

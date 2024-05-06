@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.qihangerp.api.wei.mapper.WeiOrderMapper">
+<mapper namespace="cn.qihangerp.api.wei.mapper.OmsWeiOrderMapper">
 
-    <resultMap id="BaseResultMap" type="cn.qihangerp.api.wei.domain.WeiOrder">
+    <resultMap id="BaseResultMap" type="cn.qihangerp.api.wei.domain.OmsWeiOrder">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
             <result property="orderId" column="order_id" jdbcType="VARCHAR"/>

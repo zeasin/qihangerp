@@ -5,19 +5,25 @@ import lombok.Data;
 
 /**
  * 
- * @TableName wei_order_item
+ * @TableName oms_wei_order_item
  */
 @Data
-public class WeiOrderItem implements Serializable {
+public class OmsWeiOrderItem implements Serializable {
     /**
      * 
      */
     private Long id;
 
+
     /**
-     * 外键id
+     * 店铺id
      */
-    private Long weiOrderId;
+    private Long shopId;
+
+    /**
+     * 订单id（平台订单id）
+     */
+    private String orderId;
 
     /**
      * 商品spuid

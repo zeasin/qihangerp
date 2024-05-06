@@ -343,10 +343,8 @@ import { listShop } from "@/api/shop/shop";
 import { searchSku } from "@/api/goods/goods";
 import {MessageBox} from "element-ui";
 import {isRelogin} from "../../../../utils/request";
-import {listOrder,getOrder,confirmOrder} from "@/api/wei/order";
+import {listOrder,getOrder,confirmOrder,pullOrder} from "@/api/wei/order";
 import {pcaTextArr} from "element-china-area-data";
-
-// import {listShopOrder, pullOrder, orderConfirm, pullOrderDetail} from "@/api/shop/shop_order";
 
 export default {
   name: "OrderWei",
@@ -454,6 +452,7 @@ export default {
           console.log('拉取订单接口返回=====',response)
             this.$modal.msgSuccess(JSON.stringify(response));
             this.pullLoading = false
+            this.getList()
         })
       }else{
         this.$modal.msgSuccess("请先选择店铺");
