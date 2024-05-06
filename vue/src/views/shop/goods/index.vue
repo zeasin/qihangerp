@@ -15,7 +15,7 @@
         <goods-dou></goods-dou>
       </el-tab-pane>
       <el-tab-pane label="视频号" name="weiGoods" lazy>
-        开发中
+        <goods-wei></goods-wei>
       </el-tab-pane>
       <el-tab-pane label="快手小店" name="kwaiGoods" lazy>
         开发中
@@ -33,9 +33,10 @@ import GoodsTao  from "@/views/shop/tao/goods/index";
 import GoodsJd  from "@/views/shop/jd/goods/index";
 import GoodsDou  from "@/views/shop/dou/goods/index";
 import GoodsPdd  from "@/views/shop/pdd/goods/index";
+import GoodsWei  from "@/views/shop/wei/goods/index";
 export default {
   name: "ShopGoods",
-  components:{GoodsTao,GoodsJd,GoodsDou,GoodsPdd},
+  components:{GoodsTao,GoodsJd,GoodsDou,GoodsPdd,GoodsWei},
   data() {
     return {
       activeName: 'taoGoods'

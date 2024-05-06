@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 查询淘宝订单列表
+// 查询列表
 export function listGoodsSku(query) {
   return request({
     url: '/tao-api/goods/skuList',

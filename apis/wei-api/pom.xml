@@ -20,7 +20,13 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>cn.qihangerp</groupId>
+            <artifactId>wei-api</artifactId>
+            <version>1.5.6</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/wei-api-1.5.6.jar</systemPath>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>com.baomidou</groupId>-->
 <!--            <artifactId>mybatis-plus-core</artifactId>-->

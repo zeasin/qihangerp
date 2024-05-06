@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/wei/order")
+@RequestMapping("/wei-api/order")
 public class WeiOrderController extends BaseController {
     private final WeiOrderService orderService;
     @RequestMapping(value = "/list", method = RequestMethod.GET)
