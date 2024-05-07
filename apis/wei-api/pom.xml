@@ -23,9 +23,9 @@
         <dependency>
             <groupId>cn.qihangerp</groupId>
             <artifactId>wei-api</artifactId>
-            <version>1.5.6</version>
+            <version>1.5.7</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/libs/wei-api-1.5.6.jar</systemPath>
+            <systemPath>${project.basedir}/libs/wei-api-1.5.7.jar</systemPath>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>com.baomidou</groupId>-->
