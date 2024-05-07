@@ -30,15 +30,12 @@
         <jwt.version>0.9.1</jwt.version>
         <javax.servlet.version>4.0.1</javax.servlet.version>
         <mysql.version>8.0.33</mysql.version>
-<!--        <spring-boot.version>2.7.3</spring-boot.version>-->
         <spring-boot.version>3.0.13</spring-boot.version>
     </properties>
     <modules>
-<!--        <module>system</module>-->
         <module>api</module>
         <module>commons</module>
         <module>apis</module>
-        <!--        <module>core</module>-->
     </modules>
     <packaging>pom</packaging>
 
