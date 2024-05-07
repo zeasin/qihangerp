@@ -67,13 +67,17 @@ public class WeiApiCommon {
 //                params.setAccessToken(tokenApiResultVo.getData().getAccess_token());
 //                skuService.updateShopSessionByShopId(shopId, params.getAccessToken());
                 return ResultVo.success(params);
-            }else{
+            }else {
+                String appId = "wx62136b9e9b09930b";
+                String secret = "8021ff6362f6173766ef46370e9a833b";
+                params.setAppKey(appId);
+                params.setAppSecret(secret);
                 ApiResultVo<Token> token2 = TokenApiHelper.getToken(params.getAppKey(), params.getAppSecret());
-                if(token2.getCode()==0){
+                if (token2.getCode() == 0) {
                     params.setAccessToken(token2.getData().getAccess_token());
                     skuService.updateShopSessionByShopId(shopId, params.getAccessToken());
                     return ResultVo.success(params);
-                }else{
+                } else {
                     return ResultVo.error(HttpStatus.PARAMS_ERROR, token2.getMsg());
                 }
             }
