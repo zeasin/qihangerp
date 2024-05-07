@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 06/05/2024 19:56:31
+ Date: 07/05/2024 15:41:27
 */
 
 SET NAMES utf8mb4;
@@ -3804,6 +3804,12 @@ CREATE TABLE `oms_wei_refund`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '视频号小店退款' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of oms_wei_refund
+-- ----------------------------
+INSERT INTO `oms_wei_refund` VALUES (1787746259370975234, 2, '2000000461361268', 'MERCHANT_REFUND_SUCCESS', 'oTci56-6X4j_LA4RkNHDIwcf-Ftg', NULL, '10000114346861', '2239632777', 1, 'true', 4, 9990, '', '', '', '{\"reject_reason\":\"\",\"refund_certificates\":[]}', 1714881502, 1714881513, '10000000', '不想要了', 'REFUND', '3719631864896819456', '{\"desc\":\"\",\"receive_product\":false,\"prove_imgs\":[],\"tel_number\":\"15337124753\",\"media_id_list\":[]}', '0', '{\"code\":\"\",\"ret\":0,\"message\":\"\"}', NULL, NULL);
+INSERT INTO `oms_wei_refund` VALUES (1787746259496804354, 2, '2000000461410155', 'MERCHANT_REFUND_SUCCESS', 'oTci56xFJpSZmNaWM1w_o2Z6nPUc', NULL, '10000114346861', '2239632777', 1, 'true', 4, 9990, '', '', '', '{\"reject_reason\":\"\",\"refund_certificates\":[]}', 1714881120, 1714881142, '10000059', '拍错/少用优惠', 'REFUND', '3719632099131658496', '{\"desc\":\"\",\"receive_product\":false,\"prove_imgs\":[],\"tel_number\":\"19951926061\",\"media_id_list\":[]}', '0', '{\"code\":\"\",\"ret\":0,\"message\":\"\"}', NULL, NULL);
+
+-- ----------------------------
 -- Table structure for s_dou_order
 -- ----------------------------
 DROP TABLE IF EXISTS `s_dou_order`;
@@ -5296,7 +5302,7 @@ CREATE TABLE `s_shop`  (
 -- Records of s_shop
 -- ----------------------------
 INSERT INTO `s_shop` VALUES (1, '其他渠道', NULL, NULL, NULL, 99, NULL, 9, 0, 0, 1704416716, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `s_shop` VALUES (2, '视频号店铺-测试', '拼多多-梦小妮', 'wei', '煜梦服饰', 2, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '80_PNucbchLXqo_9DNw7u3ViGT7Z8PiaIQ2819F_iepwnobBuN5M9szYQ5Cv2qnD3feUQSFx6koMr_Mxo9ISgA92nGO6foulD08wuDu_cl9QFv9OkDrFy0vDS9GdggXXRdAGAEEY', 'd332', '332ss', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `s_shop` VALUES (2, '视频号店铺-测试', '拼多多-梦小妮', 'wei', '煜梦服饰', 2, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '80_PitIs279n8RADDp-UHwFWcKdB3-BR35vPLzqXRoor2mf2faHMSXdWASV2IYfcmPziOLUiQ9_YaQN2UW2tBnOIzv_d5sSDjFCljv_aofNC1yCYBYFPf-tzRsvaiEVUGhAGANMY', 'd332', '332ss', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `s_shop` VALUES (3, '测试京东', '拼多多-梦小妮', 'jd', '煜梦服饰', 3, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `s_shop` VALUES (5, '梦小妮潮流女装', '拼多多-梦小妮', 'pdd', '煜梦服饰', 5, NULL, 99, 0, 1, 1680698886, 'pdd10006159121', 100061591, '', '87f8044d2a5f45a489aa3a952785b0d35e61788a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `s_shop` VALUES (6, '梦小妮牛仔裤', '淘宝-梦小妮', 'taobao', '煜梦服饰', 4, '', 98, 0, 1, 0, '', 2200787809358, '0', '610140071d1070a37cecea89f1c1f3d6e5d19bf4b58dd942200787809358', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', NULL, NULL, NULL, NULL, 'http://gw.api.taobao.com/router/rest');
@@ -9817,7 +9823,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status`) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 249 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 250 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -10014,6 +10020,7 @@ INSERT INTO `sys_logininfor` VALUES (247, 'admin', '127.0.0.1', '内网IP', 'Chr
 INSERT INTO `sys_logininfor` VALUES (248, 'admin', '127.0.0.1', '内网IP', 'Chrome 12', 'Windows 10', '0', '登录成功', '2024-05-05 19:56:46');
 INSERT INTO `sys_logininfor` VALUES (249, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-05-06 16:22:52');
 INSERT INTO `sys_logininfor` VALUES (250, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-05-06 19:19:17');
+INSERT INTO `sys_logininfor` VALUES (251, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-05-07 14:57:58');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -10250,7 +10257,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type`) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status`) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 415 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 414 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -10703,7 +10710,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-06 19:19:18', 'admin', '2023-08-07 19:31:37', '', '2024-05-06 19:19:17', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-07 14:57:58', 'admin', '2023-08-07 19:31:37', '', '2024-05-07 14:57:58', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 
