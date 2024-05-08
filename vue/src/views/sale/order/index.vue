@@ -59,6 +59,16 @@
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
+          type="success"
+          plain
+          icon="el-icon-plus"
+          size="mini"
+          @click="handlePull"
+          v-hasPermi="['shop:order:add']"
+        >拉取店铺订单</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
           type="primary"
           plain
           icon="el-icon-plus"
@@ -379,6 +389,9 @@ export default {
     /** 新增按钮操作 */
     handleAdd() {
       this.$router.push('/sale/order/create');
+    },
+    handlePull(){
+      this.$router.push('/sale/shop_order');
     },
     /** 导出按钮操作 */
     handleExport() {

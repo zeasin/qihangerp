@@ -30,8 +30,8 @@
             <result property="details" column="details" jdbcType="VARCHAR"/>
             <result property="complaintId" column="complaint_id" jdbcType="VARCHAR"/>
             <result property="refundResp" column="refund_resp" jdbcType="VARCHAR"/>
-            <result property="confirmStatus" column="confirm_status" jdbcType="INTEGER"/>
-            <result property="confirmTime" column="confirm_time" jdbcType="TIMESTAMP"/>
+            <result property="pullStatus" column="pull_status" jdbcType="INTEGER"/>
+            <result property="pullTime" column="pull_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -43,6 +43,6 @@
         merchant_upload_info,create_time,update_time,
         reason,reason_text,type,
         order_id,details,complaint_id,
-        refund_resp,confirm_status,confirm_time
+        refund_resp,pull_status,pull_time
     </sql>
 </mapper>

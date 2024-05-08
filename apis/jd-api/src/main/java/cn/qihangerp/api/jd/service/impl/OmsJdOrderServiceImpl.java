@@ -168,7 +168,7 @@ public class OmsJdOrderServiceImpl extends ServiceImpl<OmsJdOrderMapper, OmsJdOr
         ErpOrder insert = new ErpOrder();
         insert.setOrderNum(original.getOrderId());
         insert.setOrderTime(original.getOrderStartTime());
-        insert.setShopId(original.getShopId().intValue());
+        insert.setShopId(original.getShopId());
         insert.setShopType(EnumShopType.JD.getIndex());
         insert.setRemark(original.getVenderRemark());
         insert.setBuyerMemo(original.getOrderRemark());

@@ -50,7 +50,7 @@ public class WeiRefundApiController extends BaseController {
         String appSecret = checkResult.getData().getAppSecret();
 
         // 获取最后更新时间
-        LocalDateTime endTime = LocalDateTime.now().minusHours(36);
+        LocalDateTime endTime = LocalDateTime.now();
         LocalDateTime startTime = endTime.minusDays(1);
 
         int insertSuccess = 0;//新增成功的订单

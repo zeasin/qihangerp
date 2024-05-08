@@ -35,10 +35,8 @@
             <result property="shipDoneTime" column="ship_done_time" jdbcType="INTEGER"/>
             <result property="ewaybillOrderCode" column="ewaybill_order_code" jdbcType="VARCHAR"/>
             <result property="settleInfo" column="settle_info" jdbcType="VARCHAR"/>
-            <result property="confirmStatus" column="confirm_status" jdbcType="INTEGER"/>
-            <result property="confirmTime" column="confirm_time" jdbcType="TIMESTAMP"/>
-            <result property="erpSendStatus" column="erp_send_status" jdbcType="INTEGER"/>
-            <result property="erpSendTime" column="erp_send_time" jdbcType="TIMESTAMP"/>
+            <result property="auditStatus" column="audit_status" jdbcType="INTEGER"/>
+            <result property="auditTime" column="audit_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -52,7 +50,7 @@
         house_number,virtual_order_tel_number,tel_number_ext_info,
         use_tel_number,hash_code,delivery_product_info,
         ship_done_time,ewaybill_order_code,settle_info,
-        confirm_status,confirm_time,erp_send_status,
-        erp_send_time
+        audit_status,audit_time
+
     </sql>
 </mapper>

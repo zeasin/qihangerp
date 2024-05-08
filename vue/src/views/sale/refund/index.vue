@@ -55,16 +55,16 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <!-- <el-col :span="1.5">
+      <el-col :span="1.5">
         <el-button
           type="primary"
           plain
           icon="el-icon-plus"
           size="mini"
-          @click="handleAdd"
+          @click="handlePull"
           v-hasPermi="['api:returned:add']"
-        >新增</el-button>
-      </el-col> -->
+        >拉取店铺售后</el-button>
+      </el-col>
       <el-col :span="1.5">
         <el-button
           type="danger"
@@ -421,7 +421,9 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
-
+    handlePull(){
+      this.$router.push('/saleafter/shop_refund');
+    },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();

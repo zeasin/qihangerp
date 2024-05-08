@@ -1,5 +1,6 @@
 package cn.qihangerp.api.wei.service;
 
+import cn.qihangerp.api.wei.bo.WeiOrderConfirmBo;
 import cn.qihangerp.api.wei.domain.OmsWeiOrder;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
@@ -15,5 +16,5 @@ public interface OmsWeiOrderService extends IService<OmsWeiOrder> {
     PageResult<OmsWeiOrder> queryPageList(OmsWeiOrder bo, PageQuery pageQuery);
     ResultVo<Integer> saveOrder(Long shopId, OmsWeiOrder order);
     OmsWeiOrder queryDetailById(Long id);
-    int confirmOrder(OmsWeiOrder bo);
+    int confirmOrder(WeiOrderConfirmBo bo) throws InterruptedException;
 }

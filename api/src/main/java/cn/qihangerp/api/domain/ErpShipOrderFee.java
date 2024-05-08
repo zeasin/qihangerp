@@ -39,7 +39,7 @@ public class ErpShipOrderFee implements Serializable {
     /**
      * 店铺id
      */
-    private Integer shopId;
+    private Long shopId;
 
     /**
      * 应付金额

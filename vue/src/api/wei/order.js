@@ -39,7 +39,7 @@ export function pullOrderDetail(data) {
 
 export function confirmOrder(data) {
   return request({
-    url: '/wei/order/confirmOrder',
+    url: '/wei-api/order/confirmOrder',
     method: 'post',
     data: data
   })

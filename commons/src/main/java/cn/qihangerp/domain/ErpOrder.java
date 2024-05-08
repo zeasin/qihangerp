@@ -29,7 +29,7 @@ public class ErpOrder extends BaseEntity
 
     /** 店铺ID */
     @Excel(name = "店铺ID")
-    private Integer shopId;
+    private Long shopId;
 
     /** 买家留言信息 */
     @Excel(name = "买家留言信息")
@@ -227,12 +227,12 @@ public class ErpOrder extends BaseEntity
     {
         return shopType;
     }
-    public void setShopId(Integer shopId) 
+    public void setShopId(Long shopId)
     {
         this.shopId = shopId;
     }
 
-    public Integer getShopId() 
+    public Long getShopId()
     {
         return shopId;
     }

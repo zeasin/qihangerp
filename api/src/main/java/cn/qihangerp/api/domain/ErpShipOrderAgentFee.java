@@ -24,7 +24,7 @@ public class ErpShipOrderAgentFee implements Serializable {
     /**
      * 店铺id
      */
-    private Integer shopId;
+    private Long shopId;
 
     /**
      * 供应商id

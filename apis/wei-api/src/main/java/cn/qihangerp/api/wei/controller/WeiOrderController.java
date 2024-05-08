@@ -1,6 +1,7 @@
 package cn.qihangerp.api.wei.controller;
 
 
+import cn.qihangerp.api.wei.bo.WeiOrderConfirmBo;
 import cn.qihangerp.api.wei.domain.OmsWeiOrder;
 import cn.qihangerp.api.wei.service.OmsWeiOrderService;
 import cn.qihangerp.common.PageQuery;
@@ -42,8 +43,7 @@ public class WeiOrderController extends BaseController {
 //    }
 
     @PostMapping("/confirmOrder")
-    public AjaxResult confirmOrder(@RequestBody OmsWeiOrder bo)
-    {
+    public AjaxResult confirmOrder(@RequestBody WeiOrderConfirmBo bo) throws InterruptedException {
         int result = orderService.confirmOrder(bo);
         if(result == -1) return new AjaxResult(501,"已确认过了！请勿重复确认！");
         else if(result == -2) return new AjaxResult(502,"订单已存在！请勿重复确认！");

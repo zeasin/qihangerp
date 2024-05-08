@@ -51,7 +51,7 @@
           :loading="pullLoading"
           type="primary"
           plain
-          icon="el-icon-edit"
+          icon="el-icon-download"
           size="mini"
           @click="handlePull"
         >API拉取订单</el-button>
@@ -60,7 +60,7 @@
         <el-button
           type="success"
           plain
-          icon="el-icon-refresh"
+          icon="el-icon-success"
           size="mini"
           :disabled="multiple"
           @click="handlePushOms"

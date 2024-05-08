@@ -136,14 +136,14 @@ public class OmsWeiRefund implements Serializable {
     private String refundResp;
 
     /**
-     * 确认状态9退货已签收8已拦截
+     * 推送状态（0未推送；1推送成功；2推送失败）
      */
-    private Integer confirmStatus;
+    private Integer pullStatus;
 
     /**
      * 确认时间
      */
-    private Date confirmTime;
+    private Date pullTime;
 
     private static final long serialVersionUID = 1L;
 }

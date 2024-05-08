@@ -22,7 +22,7 @@ public class ErpOrderItem implements Serializable {
      * 订单ID
      */
     private Long orderId;
-    private Integer shopId;
+    private Long shopId;
 
     /**
      * erp系统商品id

@@ -18,7 +18,7 @@ public class ErpShipOrder implements Serializable {
     /**
      * 店铺ID
      */
-    private Integer shopId;
+    private Long shopId;
 
     /**
      * 店铺平台

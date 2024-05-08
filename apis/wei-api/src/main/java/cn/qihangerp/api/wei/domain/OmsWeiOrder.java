@@ -168,22 +168,14 @@ public class OmsWeiOrder implements Serializable {
     /**
      * 订单确认状态（0未确认1已确认）
      */
-    private Integer confirmStatus;
+    private Integer auditStatus;
 
     /**
      * 确认时间
      */
-    private Date confirmTime;
+    private Date auditTime;
 
-    /**
-     * erp发货状态
-     */
-    private Integer erpSendStatus;
-
-    /**
-     * ERP发货时间
-     */
-    private Date erpSendTime;
+    
 
     @TableField(exist = false)
     private List<OmsWeiOrderItem> items;

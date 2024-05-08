@@ -217,7 +217,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
         ErpOrder so = new ErpOrder();
         so.setOrderNum(original.getTid().toString());
         so.setOrderTime(original.getCreated());
-        so.setShopId(original.getShopId().intValue());
+        so.setShopId(original.getShopId());
         so.setShopType(EnumShopType.TAO.getIndex());
 //        so.setRemark(original.getRemark());
 //        so.setBuyerMemo(original.getBuyerFeedback());
@@ -273,7 +273,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
                 ErpOrderItem item = new ErpOrderItem();
                 item.setShipStatus(0);
 //                item.setShipType(taoOrder.getShipType());
-                item.setShopId(original.getShopId().intValue());
+                item.setShopId(original.getShopId());
                 item.setOrderId(so.getId());
                 item.setOrderNum(original.getTid().toString());
                 item.setOrderItemNum(i.getOid().toString());

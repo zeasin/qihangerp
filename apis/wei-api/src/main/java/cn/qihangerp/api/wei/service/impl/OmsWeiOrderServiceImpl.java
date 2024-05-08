@@ -1,11 +1,17 @@
 package cn.qihangerp.api.wei.service.impl;
 
+import cn.qihangerp.api.wei.bo.WeiOrderConfirmBo;
+import cn.qihangerp.api.wei.domain.OmsWeiGoodsSku;
 import cn.qihangerp.api.wei.domain.OmsWeiOrderItem;
+import cn.qihangerp.api.wei.mapper.OmsWeiGoodsSkuMapper;
 import cn.qihangerp.api.wei.mapper.OmsWeiOrderItemMapper;
-import cn.qihangerp.common.PageQuery;
-import cn.qihangerp.common.PageResult;
-import cn.qihangerp.common.ResultVo;
-import cn.qihangerp.common.ResultVoEnum;
+import cn.qihangerp.common.*;
+import cn.qihangerp.common.enums.EnumShopType;
+import cn.qihangerp.domain.ErpOrder;
+import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.mq.MQRequest;
+import cn.qihangerp.mq.MQRequestType;
+import cn.qihangerp.mq.client.MQClientService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -18,6 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.util.StringUtils;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +40,8 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
     implements OmsWeiOrderService{
     private final OmsWeiOrderMapper mapper;
     private final OmsWeiOrderItemMapper itemMapper;
+    private final OmsWeiGoodsSkuMapper goodsSkuMapper;
+    private final MQClientService mqClientService;
 
     @Override
     public PageResult<OmsWeiOrder> queryPageList(OmsWeiOrder bo, PageQuery pageQuery) {
@@ -111,96 +122,131 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
 
     @Transactional
     @Override
-    public int confirmOrder(OmsWeiOrder bo) {
+    public int confirmOrder(WeiOrderConfirmBo bo) throws InterruptedException {
+        OmsWeiOrder original = mapper.selectById(bo.getId());;
+        if(original.getAuditStatus()!=null &&  original.getAuditStatus() != 0) return -1;//无需审核
 
-//        ErpOrder erpOrder = erpOrderMapper.selectErpOrderByNum(original.getOrderId());
-//        if(erpOrder!=null) return -2;
-//
-//        // 新增ErpOrder
-//        // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
-//        ErpOrder so = new ErpOrder();
-//        so.setOrderNum(original.getId());
-//        so.setShopId(original.getShopId().intValue());
-//        so.setShopType(EnumShopType.WEI.getIndex());
-////        so.setRemark(original.getRemark());
-////        so.setBuyerMemo(original.getBuyerFeedback());
-////        so.setTag(original.getTag());
-//        so.setRefundStatus(1);
-//        so.setOrderStatus(1);
-//        so.setShipStatus(0);
+
+        // 新增ErpOrder
+        // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
+        ErpOrder so = new ErpOrder();
+        so.setOrderNum(original.getOrderId());
+        so.setShopId(original.getShopId());
+        so.setShopType(EnumShopType.WEI.getIndex());
+//        so.setRemark(original.getRemark());
+//        so.setBuyerMemo(original.getBuyerFeedback());
+//        so.setTag(original.getTag());
+        Integer orderStatus;
+        Integer refundStatus;
+        //状态 10	待付款；20	待发货；21	部分发货；30	待收货；100	完成；200	全部商品售后之后，订单取消；250	未付款用户主动取消或超时未付款订单自动取消；
+        if(original.getStatus() == 10){
+            so.setRefundStatus(1);
+            so.setOrderStatus(21);//订单状态1：待发货，2：已发货，3：已完成，11已取消；21待付款
+            orderStatus = 21;
+            refundStatus = 1;
+        } else if (original.getStatus() == 20 || original.getStatus() == 21) {
+            so.setRefundStatus(1);
+            so.setOrderStatus(1);
+            orderStatus = 1;
+            refundStatus = 1;
+        } else if (original.getStatus() == 30) {
+            so.setRefundStatus(1);
+            so.setOrderStatus(2);
+            orderStatus = 2;
+            refundStatus = 1;
+        } else if (original.getStatus() == 100) {
+            so.setRefundStatus(1);
+            so.setOrderStatus(3);
+            orderStatus = 3;
+            refundStatus = 1;
+        }else if (original.getStatus() == 200 || original.getStatus() == 250) {
+            so.setRefundStatus(4);
+            so.setOrderStatus(11);
+            orderStatus = 11;
+            refundStatus = 4;
+        }
+
+        so.setShipStatus(0);
 //        so.setShipType(bo.getShipType());
-//        so.setGoodsAmount(original.getProductPrice().doubleValue() /100);
-//        if(original.getDiscountedPrice()!=null) {
-//            so.setDiscountAmount(BigDecimal.valueOf(original.getDiscountedPrice().doubleValue() / 100));
-//        }else{
-//            so.setDiscountAmount(BigDecimal.ZERO);
-//        }
-//        so.setAmount(original.getOrderPrice().doubleValue()/100);
-//        so.setPostage(BigDecimal.valueOf(original.getFreight()/100));
-//
-////        so.setPayTime(original.getPayTime());
-//        so.setConfirmTime(new Date());
-//        so.setCreateTime(new Date());
-//        so.setCreateBy("确认订单");
-//        so.setReceiverName(bo.getReceiver());
-//        so.setReceiverPhone(bo.getPhone());
-//        so.setAddress(bo.getAddress());
-//        so.setCountry("中国");
-//        so.setProvince(bo.getProvince());
-//        so.setCity(bo.getCity());
-//        so.setTown(bo.getDistrict());
-//
-//        erpOrderMapper.insertErpOrder(so);
-//        // 新增ErpOrderItem
-//        List<WeiOrderItem> weiOrderItems = itemMapper.selectList(new LambdaQueryWrapper<WeiOrderItem>().eq(WeiOrderItem::getWeiOrderId, original.getId()));
-//
-//        List<ErpOrderItem> items = new ArrayList<>();
-//        for (var i:weiOrderItems) {
-////            if(com.qihang.common.utils.StringUtils.isEmpty(i.getSkuCode())) {
-////                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-////                return -11;
-////            }
-////            GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNumber());
-////            if (spec == null) {
-////                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-////                return -11;
-////            }
-////            Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
-////            if(goods == null){
-////                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-////                return -12;
-////            }
-//
-//            ErpOrderItem item = new ErpOrderItem();
-//            item.setShipStatus(0);
+        so.setGoodsAmount(original.getProductPrice().doubleValue() /100);
+        if(original.getDiscountedPrice()!=null) {
+            so.setDiscountAmount(BigDecimal.valueOf(original.getDiscountedPrice().doubleValue() / 100));
+        }else{
+            so.setDiscountAmount(BigDecimal.ZERO);
+        }
+        so.setAmount(original.getOrderPrice().doubleValue()/100);
+        so.setPostage(BigDecimal.valueOf(original.getFreight()/100));
+
+//        so.setPayTime(original.getPayTime());
+        so.setConfirmTime(new Date());
+        so.setCreateTime(new Date());
+        so.setCreateBy("确认订单");
+        so.setReceiverName(bo.getUserName());
+        so.setReceiverPhone(bo.getTelNumber());
+        so.setAddress(bo.getDetailInfo());
+        so.setCountry("中国");
+        so.setProvince(original.getProvinceName());
+        so.setCity(original.getCityName());
+        so.setTown(original.getCountyName());
+
+        // 新增ErpOrderItem
+        List<OmsWeiOrderItem> weiOrderItems = itemMapper.selectList(new LambdaQueryWrapper<OmsWeiOrderItem>().eq(OmsWeiOrderItem::getOrderId, original.getOrderId()));
+
+        if(weiOrderItems!=null && weiOrderItems.size()>0) {
+            List<ErpOrderItem> items = new ArrayList<>();
+
+            for (var i : weiOrderItems) {
+//            if(com.qihang.common.utils.StringUtils.isEmpty(i.getSkuCode())) {
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                return -11;
+//            }
+//            GoodsSpec spec = goodsSpecMapper.selectGoodsSpecBySpecNum(i.getSpecNumber());
+//            if (spec == null) {
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                return -11;
+//            }
+//            Goods goods = goodsMapper.selectGoodsById(spec.getGoodsId());
+//            if(goods == null){
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//                return -12;
+//            }
+
+                ErpOrderItem item = new ErpOrderItem();
+                item.setShipStatus(0);
 //            item.setShipType(bo.getShipType());
-//            item.setShopId(original.getShopId());
-//            item.setOrderId(so.getId());
-//            item.setOrderNum(original.getOrderId());
-//            item.setOrderItemNum(i.getId().toString());
-//            //TODO:未处理商品信息
-////            item.setSupplierId(goods.getSupplierId().intValue());
-//            item.setSupplierId(0L);
-////            item.setGoodsId(spec.getGoodsId());
-//            item.setGoodsId(0L);
-////            item.setSpecId(spec.getId());
-//            item.setSpecId(0L);
-//            item.setGoodsTitle(i.getTitle());
-//            item.setGoodsImg(i.getThumbImg());
-//            item.setGoodsNum(i.getProductId());
-//            item.setSpecNum(i.getSkuCode());
-//            item.setGoodsSpec(i.getSkuAttrs());
-//            item.setGoodsPrice(i.getSalePrice().doubleValue()/100);
-////            item.setGoodsPurPrice(spec.getPurPrice());
-//            item.setItemAmount(i.getRealPrice().doubleValue()/100);
-//            item.setQuantity(i.getSkuCnt());
-//            item.setIsGift(0);
-//            item.setRefundCount(0);
-//            item.setRefundStatus(1);
-//            item.setCreateBy("确认订单");
-//            item.setCreateTime(new Date());
-//            items.add(item);
-//        }
+                item.setShopId(original.getShopId());
+                item.setOrderId(so.getId());
+                item.setOrderNum(original.getOrderId());
+                item.setOrderItemNum(i.getId().toString());
+
+                Long erpGoodsId = 0L;
+                Long erpSkuId = 0L;
+
+                List<OmsWeiGoodsSku> weiGoodsSkus = goodsSkuMapper.selectList(new LambdaQueryWrapper<OmsWeiGoodsSku>().eq(OmsWeiGoodsSku::getSkuId, i.getSkuId()));
+                if (weiGoodsSkus != null && !weiGoodsSkus.isEmpty()) {
+                    erpGoodsId = weiGoodsSkus.get(0).getErpGoodsId();
+                    erpSkuId = weiGoodsSkus.get(0).getErpGoodsSkuId();
+                }
+                item.setGoodsId(erpGoodsId);
+                item.setSpecId(erpSkuId);
+                item.setGoodsTitle(i.getTitle());
+                item.setGoodsImg(i.getThumbImg());
+                item.setGoodsNum(i.getProductId());
+                item.setSpecNum(i.getSkuCode());
+                item.setGoodsSpec(i.getSkuAttrs());
+                item.setGoodsPrice(i.getSalePrice().doubleValue() / 100);
+//            item.setGoodsPurPrice(spec.getPurPrice());
+                item.setItemAmount(i.getRealPrice().doubleValue() / 100);
+                item.setQuantity(i.getSkuCnt());
+                item.setIsGift(0);
+                item.setRefundCount(0);
+                item.setRefundStatus(1);
+                item.setCreateBy("确认订单");
+                item.setCreateTime(new Date());
+                items.add(item);
+            }
+            so.setItemList(items);
+        }
 //        // 添加了赠品
 ////        if(taoOrder.getTaoOrderItemList()!=null && !taoOrder.getTaoOrderItemList().isEmpty()){
 ////            for (var g:taoOrder.getTaoOrderItemList()) {
@@ -247,16 +293,24 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
 ////            }
 ////        }
 //        erpOrderMapper.batchErpOrderItem(items);
-//
-//        //更新自己
-//        WeiOrder update = new WeiOrder();
-//        update.setId(original.getId());
-//        update.setConfirmStatus(1);
-//        update.setConfirmTime(new Date());
-////        update.setUpdateBy("确认订单");
-//        Long ut = (System.currentTimeMillis()/1000);
-//        update.setUpdateTime(ut.intValue());
-//        mapper.updateById(update);
+        // 远程调用
+        MQRequest<ErpOrder> req = new MQRequest<>();
+        req.setMqRequestType(MQRequestType.ORDER_CONFIRM);
+        req.setData(so);
+        ApiResult s = mqClientService.confirmOrder(req);
+        if(s.getResult()==ApiResultEnum.SUCCESS.getIndex()) {
+            //更新自己
+            OmsWeiOrder update = new OmsWeiOrder();
+            update.setId(original.getId());
+            update.setAuditStatus(1);
+            update.setAuditTime(new Date());
+            update.setUserName(bo.getUserName());
+            update.setTelNumber(bo.getTelNumber());
+            update.setDetailInfo(bo.getDetailInfo());
+            Long ut = (System.currentTimeMillis() / 1000);
+            update.setUpdateTime(ut.intValue());
+            mapper.updateById(update);
+        }
         return 1;
     }
 }
