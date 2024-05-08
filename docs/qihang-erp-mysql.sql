@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 07/05/2024 20:28:25
+ Date: 08/05/2024 13:25:11
 */
 
 SET NAMES utf8mb4;
@@ -388,20 +388,6 @@ INSERT INTO `erp_goods_category_attribute_value` VALUES (420, 116, '单裤', 'D'
 INSERT INTO `erp_goods_category_attribute_value` VALUES (421, 116, '加绒', 'R', 0, 0);
 INSERT INTO `erp_goods_category_attribute_value` VALUES (422, 116, '长裤加绒', 'CR', 65, 0);
 INSERT INTO `erp_goods_category_attribute_value` VALUES (423, 116, '加长裤加绒', 'JCR', 67, 0);
-
--- ----------------------------
--- Table structure for erp_goods_img
--- ----------------------------
-DROP TABLE IF EXISTS `erp_goods_img`;
-CREATE TABLE `erp_goods_img`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT,
-  `goods_id` bigint(0) DEFAULT 0 COMMENT '商品Id',
-  `type` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '类型',
-  `url` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '图片url',
-  `remark` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '图片说明',
-  `sort` int(0) DEFAULT NULL COMMENT '排序',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for erp_goods_inventory
@@ -2591,42 +2577,6 @@ CREATE TABLE `erp_sale_order_item`  (
   INDEX `goodId_index`(`goods_id`) USING BTREE,
   INDEX `order_id`(`order_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1785584827112509447 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单明细表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for erp_sale_returned
--- ----------------------------
-DROP TABLE IF EXISTS `erp_sale_returned`;
-CREATE TABLE `erp_sale_returned`  (
-  `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `returned_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '退货单号',
-  `returned_type` int(0) DEFAULT NULL COMMENT '退货类型（1退货2换货）',
-  `shop_id` int(0) DEFAULT NULL COMMENT '店铺id',
-  `shop_type` int(0) DEFAULT NULL COMMENT '店铺类型',
-  `order_id` bigint(0) NOT NULL COMMENT '订单id',
-  `order_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '源订单号',
-  `order_item_id` bigint(0) NOT NULL COMMENT '子订单id',
-  `goods_id` bigint(0) DEFAULT NULL COMMENT '商品id',
-  `spec_id` bigint(0) DEFAULT NULL COMMENT '规格id',
-  `goods_num` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
-  `spec_num` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '规格编码',
-  `goods_name` varchar(55) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品名称',
-  `goods_spec` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格',
-  `goods_image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片',
-  `quantity` bigint(0) DEFAULT NULL COMMENT '退货数量',
-  `logistics_company` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流公司',
-  `logistics_code` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '物流单号',
-  `receive_time` datetime(0) DEFAULT NULL COMMENT '收货时间',
-  `remark` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '备注',
-  `contactPerson` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '发货人',
-  `mobile` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '发货人手机号',
-  `address` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '' COMMENT '发货地址',
-  `status` int(0) NOT NULL COMMENT '状态（0待发货1待收货2已收货3已完成）',
-  `create_time` datetime(0) NOT NULL COMMENT '订单创建时间',
-  `create_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
-  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '退换货表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for erp_ship_logistics
@@ -8780,47 +8730,6 @@ INSERT INTO `scm_supplier` VALUES (31, '中山市金客隆服饰有限公司', '
 INSERT INTO `scm_supplier` VALUES (33, '中山裤豪', 'ZSKH', 0, 0, 0, 0, NULL, '', '', NULL, '', NULL, NULL, NULL, '中山市沙溪镇水牛城三区二楼35-38卡', '', 0, 0, NULL, '2023-12-29 11:01:04');
 
 -- ----------------------------
--- Table structure for scm_supplier_agent_shipping
--- ----------------------------
-DROP TABLE IF EXISTS `scm_supplier_agent_shipping`;
-CREATE TABLE `scm_supplier_agent_shipping`  (
-  `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `shop_id` int(0) NOT NULL COMMENT '店铺ID',
-  `shop_type` int(0) NOT NULL COMMENT '店铺平台',
-  `supplier_id` int(0) NOT NULL COMMENT '供应商ID',
-  `erp_order_id` bigint(0) NOT NULL COMMENT 'erp订单ID',
-  `erp_order_item_id` bigint(0) NOT NULL COMMENT '子订单ID',
-  `order_num` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '订单编号',
-  `order_date` datetime(0) NOT NULL COMMENT '订单日期',
-  `goods_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品id',
-  `spec_id` bigint(0) NOT NULL DEFAULT 0 COMMENT 'erp系统商品规格id',
-  `goods_title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品标题',
-  `goods_img` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片',
-  `goods_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格',
-  `spec_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格编码',
-  `goods_price` double NOT NULL COMMENT '商品单价',
-  `quantity` int(0) NOT NULL COMMENT '商品数量',
-  `item_amount` double DEFAULT NULL COMMENT '子订单金额',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '说明',
-  `ship_company` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流公司',
-  `ship_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '物流单号',
-  `ship_cost` decimal(6, 0) DEFAULT NULL COMMENT '运费',
-  `ship_time` datetime(0) DEFAULT NULL COMMENT '运送时间',
-  `status` int(0) DEFAULT NULL COMMENT '状态（0未发货1已发货2已结算）',
-  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
-  `create_by` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '创建人',
-  `update_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
-  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '供应商代发货表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of scm_supplier_agent_shipping
--- ----------------------------
-INSERT INTO `scm_supplier_agent_shipping` VALUES (1, 6, 4, 26, 17, 14, '1635222253871665598', '2022-08-05 18:48:51', 9, 40, '8026牛仔短裤', 'https://cbu01.alicdn.com/img/ibank/O1CN01PHFmsX2FOyB14fPie_!!2208857268871-0-cib.jpg', '272021008026', '浅蓝色,L', '2720210080260303', 16, 1, 29.92, NULL, '菜鸟速递', 'CN52500021', 2, '2024-01-28 00:00:00', 1, '2024-01-28 19:55:37', 'admin', 'admin', '2024-01-28 21:06:44');
-
--- ----------------------------
 -- Table structure for sys_config
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_config`;
@@ -9045,6 +8954,11 @@ CREATE TABLE `sys_logininfor`  (
   INDEX `idx_sys_logininfor_s`(`status`) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 250 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_logininfor
+-- ----------------------------
+INSERT INTO `sys_logininfor` VALUES (254, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-05-08 11:36:40');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -9427,7 +9341,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-07 17:10:48', 'admin', '2023-08-07 19:31:37', '', '2024-05-07 17:10:48', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-08 11:36:41', 'admin', '2023-08-07 19:31:37', '', '2024-05-08 11:36:40', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 
