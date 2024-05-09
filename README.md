@@ -3,10 +3,7 @@
 
 启航电商ERP系统是一套为中小电商企业构建的一套简单、实用、覆盖全流程的电商系统，本项目采用Java SpringBoot3+Vue2前后端分离开发。 
 
-**Dubbo版本请移步：** 
 
-[gitee](https://gitee.com/qiliping/qihangerp-dubbo)
-[github](https://github.com/zeasin/qihangerp-dubbo)
 
 支持供应商一件代发和仓库发货两种发货方式，功能覆盖采购、网店订单处理、供应商一件代发、仓库发货、网店售后、网店商品管理、仓库出入库、采购结算、代发结算等功能，基本上覆盖了电商日常业务。 
 
@@ -16,7 +13,7 @@
 
 **为方便不是程序员的兄弟们想要看演示效果，本人特地制作了一个windows一键演示包，解压后直接按上面的步骤运行即可，不需要任何额外安装。**
 
-[获取一件演示包](https://mp.weixin.qq.com/s/3ztMnyRF-FfoDefGloScYw)
+[获取一件演示包](https://mp.weixin.qq.com/s/MtXFijnq0Ti461hO5Sulhw)
 
 ## 项目介绍
 **启航电商ERP可以说是我这五年以来的工作经验成果。**
@@ -243,13 +240,10 @@ A[录入拦截] -->B(通知仓库)
 
 
 ### 4.1 有偿服务
-+ 提供部署服务
-+ 提供演示包服务
-+ 提供定制化开发服务
-+ 提供系统培训服务
-+ 提供版本商业化支持服务
++ [提供本地部署服务](https://mp.weixin.qq.com/s/8U4NvMiAP0vDsTDBzlHJbw)
++ [提供一键演示包](https://mp.weixin.qq.com/s/MtXFijnq0Ti461hO5Sulhw)
++ [提供定制化开发服务](https://mp.weixin.qq.com/s/U-1FKfa84Dfz17WL9GHyqw)
 + 提供电商系统软著代申请服务（文档、源代码）
-+ 提供电商平台appkey申请协助服务
 
 
 ### 4.2 更多服务
