@@ -243,7 +243,7 @@ A[录入拦截] -->B(通知仓库)
 + [提供本地部署服务](https://mp.weixin.qq.com/s/8U4NvMiAP0vDsTDBzlHJbw)
 + [提供一键演示包](https://mp.weixin.qq.com/s/MtXFijnq0Ti461hO5Sulhw)
 + [提供定制化开发服务](https://mp.weixin.qq.com/s/U-1FKfa84Dfz17WL9GHyqw)
-+ 提供电商系统软著代申请服务（文档、源代码）
++ [提供电商系统软著代申请服务（文档、源代码）](https://mp.weixin.qq.com/s/8N1PeNHw9jCBR__AsSjeqg)
 
 
 ### 4.2 更多服务
