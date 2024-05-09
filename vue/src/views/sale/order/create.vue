@@ -266,7 +266,7 @@ export default {
         row.isGift = '0'
         row.quantity = 1
         row.itemAmount = row.goodsPrice * row.quantity
-
+        row.supplierId = spec.supplierId
         // 计算总金额
         let goodsAmount = this.form.goodsAmount ? this.form.goodsAmount:0.0
         goodsAmount += row.itemAmount
@@ -320,6 +320,7 @@ export default {
     /** ${subTable.functionName}添加按钮操作 */
     handleAddSShopOrderItem() {
       let obj = {};
+      obj.supplierId = "";
       obj.goodsId = "";
       obj.specId = "";
       obj.goodsTitle = "";
@@ -366,19 +367,25 @@ export default {
           this.form.town = this.form.provinces[2]
 
           if(this.form.itemList && this.form.itemList.length >0){
-            this.form.itemList.forEach(x=>{
-              if(!x.goodsId || !x.quantity){
+            for(var i=0;i<this.form.itemList.length;i++){
+              if(!this.form.itemList[i].goodsId || !this.form.itemList[i].quantity){
                 this.$modal.msgError("请完善商品信息");
                 return
               }
-            })
+            }
+            // this.form.itemList.forEach(x=>{
+            //   if(!x.goodsId || !x.quantity){
+            //     this.$modal.msgError("请完善商品信息");
+            //     return
+            //   }
+            // })
 
             console.log('======创建订单=====',this.form)
             addOrder(this.form).then(response => {
               this.$modal.msgSuccess("订单创建成功");
               // 调用全局挂载的方法,关闭当前标签页
               this.$store.dispatch("tagsView/delView", this.$route);
-              this.$router.push('/sale/order/list');
+              this.$router.push('/sale/order_list');
             });
 
         }else{

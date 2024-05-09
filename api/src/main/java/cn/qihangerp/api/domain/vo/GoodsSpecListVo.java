@@ -7,6 +7,7 @@ public class GoodsSpecListVo {
 
     private Long id;
     private Long goodsId;
+    private Long supplierId;
 
     /** 商品名称 */
     private String name;
@@ -20,6 +21,14 @@ public class GoodsSpecListVo {
     private String sizeValue;
     private String styleValue;
     private BigDecimal purPrice;
+
+    public Long getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
+    }
 
     public Long getId() {
         return id;

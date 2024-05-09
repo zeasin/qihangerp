@@ -85,7 +85,14 @@ public class ErpOrderServiceImpl implements IErpOrderService
 //        int rows = erpOrderMapper.insertErpOrder(erpOrder);
 //        insertErpOrderItem(erpOrder);
 //        return rows;
-        if(erpOrder.getItemList() == null || erpOrder.getItemList().size() == 0) return -1;
+        if(erpOrder.getItemList() == null || erpOrder.getItemList().size() == 0) return -2;
+        else{
+            // 循环查找是否缺少specId
+            for (ErpOrderItem erpOrderItem : erpOrder.getItemList())
+            {
+                if(erpOrderItem.getSpecId()==null || erpOrderItem.getSpecId()<=0) return -3;
+            }
+        }
 
         if(erpOrder.getShopId() == 1) erpOrder.setShopType(99);
         else if(erpOrder.getShopId() == 5) erpOrder.setShopType(5);
@@ -93,9 +100,10 @@ public class ErpOrderServiceImpl implements IErpOrderService
         else if(erpOrder.getShopId() == 13) erpOrder.setShopType(13);
         else if(erpOrder.getShopId() == 21) erpOrder.setShopType(7);
         else if(erpOrder.getShopId() == 22) erpOrder.setShopType(6);
-
+        erpOrder.setShipStatus(0);
         erpOrder.setOrderStatus(1);
         erpOrder.setRefundStatus(1);
+        erpOrder.setOrderTime(DateUtils.getTime());
         if(erpOrder.getPostage() == null) erpOrder.setPostage(BigDecimal.ZERO);
         if(erpOrder.getDiscountAmount() == null) erpOrder.setDiscountAmount(BigDecimal.ZERO);
 
@@ -171,16 +179,27 @@ public class ErpOrderServiceImpl implements IErpOrderService
         if (StringUtils.isNotNull(erpOrderItemList))
         {
             List<ErpOrderItem> list = new ArrayList<ErpOrderItem>();
-            for (ErpOrderItem erpOrderItem : erpOrderItemList)
-            {
-
-
+            for (int i = 0; i < erpOrderItemList.size(); i++) {
+                ErpOrderItem erpOrderItem = erpOrderItemList.get(i);
+                erpOrderItem.setOrderNum(erpOrder.getOrderNum());
+                if(erpOrderItemList.size()==1) {
+                    erpOrderItem.setOrderItemNum(erpOrder.getOrderNum());
+                }else{
+                    erpOrderItem.setOrderItemNum(erpOrder.getOrderNum()+i);
+                }
+                erpOrderItem.setOrderStatus(erpOrder.getOrderStatus());
+                erpOrderItem.setShopId(erpOrder.getShopId());
                 erpOrderItem.setOrderId(id);
                 erpOrderItem.setRefundCount(0);
                 erpOrderItem.setRefundStatus(1);
+                erpOrderItem.setShipStatus(0);
                 erpOrderItem.setCreateBy(erpOrder.getCreateBy());
                 erpOrderItem.setCreateTime(new Date());
                 list.add(erpOrderItem);
+            }
+            for (ErpOrderItem erpOrderItem : erpOrderItemList)
+            {
+
             }
             if (list.size() > 0)
             {

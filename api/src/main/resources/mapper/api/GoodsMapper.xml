@@ -45,6 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <resultMap type="cn.qihangerp.api.domain.vo.GoodsSpecListVo" id="GoodsSpecListVoResult">
         <result property="id"    column="id"    />
         <result property="goodsId"    column="goods_id"    />
+        <result property="supplierId"    column="supplier_id"    />
         <result property="name"    column="name"    />
         <result property="number"    column="number"    />
         <result property="specNum"    column="spec_num"    />
@@ -105,7 +106,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="searchGoodsSpec" parameterType="cn.qihangerp.api.domain.vo.GoodsSpecListVo" resultMap="GoodsSpecListVoResult">
-        SELECT spec.id,spec.goods_id,g.number,g.`name`,spec.spec_num,spec.color_value,spec.color_image,spec.size_value,spec.style_value,spec.pur_price
+        SELECT spec.id,spec.goods_id,g.number,g.`name`,spec.spec_num,spec.color_value,spec.color_image,spec.size_value,spec.style_value,spec.pur_price,g.supplier_id
         FROM `erp_goods_spec` as spec
         LEFT JOIN erp_goods as g on g.id = spec.goods_id
         <where>

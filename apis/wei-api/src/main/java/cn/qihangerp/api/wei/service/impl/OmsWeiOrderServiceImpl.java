@@ -7,6 +7,7 @@ import cn.qihangerp.api.wei.mapper.OmsWeiGoodsSkuMapper;
 import cn.qihangerp.api.wei.mapper.OmsWeiOrderItemMapper;
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.enums.EnumShopType;
+import cn.qihangerp.common.utils.DateUtil;
 import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.domain.ErpOrderItem;
 import cn.qihangerp.mq.MQRequest;
@@ -131,13 +132,14 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
         // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
         ErpOrder so = new ErpOrder();
         so.setOrderNum(original.getOrderId());
+        so.setOrderTime(DateUtil.stampToDateTime(original.getCreateTime().longValue()));
         so.setShopId(original.getShopId());
         so.setShopType(EnumShopType.WEI.getIndex());
 //        so.setRemark(original.getRemark());
 //        so.setBuyerMemo(original.getBuyerFeedback());
 //        so.setTag(original.getTag());
-        Integer orderStatus;
-        Integer refundStatus;
+        Integer orderStatus = null;
+        Integer refundStatus = null;
         //状态 10	待付款；20	待发货；21	部分发货；30	待收货；100	完成；200	全部商品售后之后，订单取消；250	未付款用户主动取消或超时未付款订单自动取消；
         if(original.getStatus() == 10){
             so.setRefundStatus(1);
@@ -240,7 +242,8 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
                 item.setQuantity(i.getSkuCnt());
                 item.setIsGift(0);
                 item.setRefundCount(0);
-                item.setRefundStatus(1);
+                item.setRefundStatus(refundStatus);
+                item.setOrderStatus(orderStatus);
                 item.setCreateBy("确认订单");
                 item.setCreateTime(new Date());
                 items.add(item);

@@ -76,9 +76,12 @@ public class ErpOrderController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody ErpOrder order)
     {
+        if(order.getGoodsAmount()==null)return new AjaxResult(1503,"请填写商品价格！");
         order.setCreateBy(getUsername());
         int result = orderService.insertErpOrder(order);
         if(result == -1) return new AjaxResult(501,"订单号已存在！");
+        if(result == -2) return new AjaxResult(502,"请添加订单商品！");
+        if(result == -3) return new AjaxResult(503,"请选择订单商品规格！");
         return toAjax(result);
     }
 
