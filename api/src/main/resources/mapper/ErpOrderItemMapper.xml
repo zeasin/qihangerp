@@ -20,8 +20,9 @@
             <result property="itemAmount" column="item_amount" jdbcType="DOUBLE"/>
             <result property="quantity" column="quantity" jdbcType="INTEGER"/>
             <result property="remark" column="remark" jdbcType="VARCHAR"/>
-            <result property="orderItemNum" column="order_item_num" jdbcType="VARCHAR"/>
-            <result property="orderNum" column="order_num" jdbcType="VARCHAR"/>
+            <result property="originalOrderItemId" column="original_order_item_id" jdbcType="VARCHAR"/>
+            <result property="originalOrderId" column="original_order_id" jdbcType="VARCHAR"/>
+            <result property="originalSkuId" column="original_sku_id" jdbcType="VARCHAR"/>
             <result property="isGift" column="is_gift" jdbcType="TINYINT"/>
             <result property="refundCount" column="refund_count" jdbcType="INTEGER"/>
             <result property="refundStatus" column="refund_status" jdbcType="INTEGER"/>
@@ -43,7 +44,7 @@
         spec_id,goods_title,goods_img,
         goods_num,goods_spec,spec_num,
         goods_price,item_amount,quantity,
-        remark,order_item_num,order_num,
+        remark,original_order_item_id,original_order_id,original_sku_id,
         is_gift,refund_count,refund_status,order_status,ship_type,ship_status,
         ship_time,logistics_code,logistics_company,ship_man,
         create_time,create_by,update_time,

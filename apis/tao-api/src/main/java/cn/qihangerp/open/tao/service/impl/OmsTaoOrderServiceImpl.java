@@ -219,8 +219,10 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
         so.setOrderTime(original.getCreated());
         so.setShopId(original.getShopId());
         so.setShopType(EnumShopType.TAO.getIndex());
+
 //        so.setRemark(original.getRemark());
-//        so.setBuyerMemo(original.getBuyerFeedback());
+        so.setBuyerMemo(original.getBuyerMemo());
+        so.setSellerMemo(original.getSellerMemo());
 //        so.setTag(original.getTag());
         // 状态
         int orderStatus = TaoOrderStateEnum.getIndex(original.getStatus());
@@ -275,8 +277,9 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
 //                item.setShipType(taoOrder.getShipType());
                 item.setShopId(original.getShopId());
                 item.setOrderId(so.getId());
-                item.setOrderNum(original.getTid().toString());
-                item.setOrderItemNum(i.getOid().toString());
+                item.setOriginalOrderId(original.getTid().toString());
+                item.setOriginalOrderItemId(i.getOid().toString());
+                item.setOriginalSkuId(i.getSkuId());
                 item.setSupplierId(erpSupplierId);
                 item.setGoodsId(erpGoodsId);
                 item.setSpecId(erpSkuId);

@@ -41,7 +41,7 @@ public class ErpOrderItemServiceImpl extends ServiceImpl<ErpOrderItemMapper, Erp
     @Override
     public PageResult<ErpOrderItem> queryPageList(ErpOrderStatusEnum status,Integer shipStatus, ErpOrderItem bo, PageQuery pageQuery) {
         LambdaQueryWrapper<ErpOrderItem> queryWrapper = new LambdaQueryWrapper<ErpOrderItem>()
-                .eq(org.springframework.util.StringUtils.hasText(bo.getOrderNum()),ErpOrderItem::getOrderNum,bo.getOrderNum())
+                .eq(org.springframework.util.StringUtils.hasText(bo.getOriginalOrderId()),ErpOrderItem::getOriginalOrderId,bo.getOriginalOrderId())
                 .eq(org.springframework.util.StringUtils.hasText(bo.getSpecNum()),ErpOrderItem::getSpecNum,bo.getSpecNum())
                 .eq(ErpOrderItem::getOrderStatus, status.WAIT_SELLER_SEND_GOODS.getIndex())
                 .eq(ErpOrderItem::getShipStatus,shipStatus)

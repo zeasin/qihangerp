@@ -170,8 +170,9 @@ public class OmsJdOrderServiceImpl extends ServiceImpl<OmsJdOrderMapper, OmsJdOr
         insert.setOrderTime(original.getOrderStartTime());
         insert.setShopId(original.getShopId());
         insert.setShopType(EnumShopType.JD.getIndex());
-        insert.setRemark(original.getVenderRemark());
+//        insert.setRemark(original.getVenderRemark());
         insert.setBuyerMemo(original.getOrderRemark());
+        insert.setSellerMemo(original.getVenderRemark());
 //        so.setTag(original.getTag());
         // 状态
         int orderStatus = JdOrderStateEnum.getIndex(original.getOrderState());
@@ -206,8 +207,9 @@ public class OmsJdOrderServiceImpl extends ServiceImpl<OmsJdOrderMapper, OmsJdOr
             for (var item : jdOrderItems) {
                 ErpOrderItem orderItem = new ErpOrderItem();
                 orderItem.setOrderId(insert.getId());
-                orderItem.setOrderNum(original.getOrderId());
-                orderItem.setOrderItemNum(item.getId().toString());
+                orderItem.setOriginalOrderId(original.getOrderId());
+                orderItem.setOriginalOrderItemId(item.getId().toString());
+                orderItem.setOriginalSkuId(item.getSkuId());
                 orderItem.setShipStatus(0);
                 // TODO：这里将订单商品skuid转换成erp系统的skuid
                 Long erpGoodsId = 0L;

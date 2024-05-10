@@ -82,8 +82,9 @@ public class ErpOrderItem implements Serializable {
     /**
      * 子订单编号(来源订单)
      */
-    private String orderItemNum;
-    private String orderNum;
+    private String originalOrderItemId;
+    private String originalOrderId;
+    private String originalSkuId;
 
     /**
      * 供应商ID

@@ -181,12 +181,13 @@ public class ErpOrderServiceImpl implements IErpOrderService
             List<ErpOrderItem> list = new ArrayList<ErpOrderItem>();
             for (int i = 0; i < erpOrderItemList.size(); i++) {
                 ErpOrderItem erpOrderItem = erpOrderItemList.get(i);
-                erpOrderItem.setOrderNum(erpOrder.getOrderNum());
+                erpOrderItem.setOriginalOrderId(erpOrder.getOrderNum());
                 if(erpOrderItemList.size()==1) {
-                    erpOrderItem.setOrderItemNum(erpOrder.getOrderNum());
+                    erpOrderItem.setOriginalOrderItemId(erpOrder.getOrderNum());
                 }else{
-                    erpOrderItem.setOrderItemNum(erpOrder.getOrderNum()+i);
+                    erpOrderItem.setOriginalOrderItemId(erpOrder.getOrderNum()+i);
                 }
+                erpOrderItem.setOriginalSkuId("");
                 erpOrderItem.setOrderStatus(erpOrder.getOrderStatus());
                 erpOrderItem.setShopId(erpOrder.getShopId());
                 erpOrderItem.setOrderId(id);

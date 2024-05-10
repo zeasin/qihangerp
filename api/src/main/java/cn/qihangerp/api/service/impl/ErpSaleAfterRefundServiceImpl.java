@@ -40,8 +40,8 @@ public class ErpSaleAfterRefundServiceImpl extends ServiceImpl<ErpSaleAfterRefun
         // 查询ERP订单
         ErpOrderItem orderItem = null;
         List<ErpOrderItem> oOrderItems = orderItemMapper.selectList(new LambdaQueryWrapper<ErpOrderItem>()
-                .eq(ErpOrderItem::getOrderNum, refund.getOriginalOrderId())
-                .eq(ErpOrderItem::getOrderItemNum, refund.getOriginalOrderItemId()));
+                .eq(ErpOrderItem::getOriginalOrderId, refund.getOriginalOrderId())
+                .eq(ErpOrderItem::getOriginalOrderItemId, refund.getOriginalOrderItemId()));
         if (oOrderItems != null && oOrderItems.size() > 0) {
             orderItem = oOrderItems.get(0);
         }

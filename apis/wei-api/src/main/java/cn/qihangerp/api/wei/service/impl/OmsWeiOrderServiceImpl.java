@@ -218,8 +218,9 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
 //            item.setShipType(bo.getShipType());
                 item.setShopId(original.getShopId());
                 item.setOrderId(so.getId());
-                item.setOrderNum(original.getOrderId());
-                item.setOrderItemNum(i.getId().toString());
+                item.setOriginalOrderId(original.getOrderId());
+                item.setOriginalOrderItemId(i.getId().toString());
+                item.setOriginalSkuId(i.getSkuId());
 
                 Long erpGoodsId = 0L;
                 Long erpSkuId = 0L;

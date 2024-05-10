@@ -141,6 +141,8 @@ public class TaoOrderApiController {
         if(apiResultVo.getCode()!=0) return ApiResult.error(apiResultVo.getMsg());
         else {
             OmsTaoOrder order = new OmsTaoOrder();
+//            OmsTaoOrder order = OrderAssembleHelper.assembleOrder(trade);
+            // TODO:这里将获取到的TAO订单详情转换成数据库实体，未经过测试
             BeanUtils.copyProperties(apiResultVo.getData(),order);
             var result = orderService.updateOrderStatus(order);
             if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
