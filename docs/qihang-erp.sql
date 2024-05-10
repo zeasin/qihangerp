@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 08/05/2024 16:14:44
+ Date: 10/05/2024 11:12:19
 */
 
 SET NAMES utf8mb4;
@@ -2482,7 +2482,7 @@ CREATE TABLE `erp_sale_after_refund`  (
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1786735505566502914 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '售后退款表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1788119148154740738 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '售后退款表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_sale_after_refund
@@ -2500,7 +2500,8 @@ CREATE TABLE `erp_sale_order`  (
   `shop_type` int(0) DEFAULT NULL COMMENT '店铺类型',
   `shop_id` int(0) NOT NULL COMMENT '店铺ID',
   `remark` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '订单备注',
-  `buyer_memo` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '买家留言信息',
+  `buyer_memo` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '买家留言信息',
+  `seller_memo` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '卖家留言',
   `tag` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '标签',
   `refund_status` int(0) NOT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 5：全部',
   `order_status` int(0) NOT NULL COMMENT '订单状态1：待发货，2：已发货，3：已完成，11已取消；21待付款',
@@ -2536,12 +2537,17 @@ CREATE TABLE `erp_sale_order`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `order_sn_index`(`order_num`) USING BTREE,
   INDEX `shopid_index`(`shop_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_sale_order
 -- ----------------------------
-INSERT INTO `erp_sale_order` VALUES (42, '1787451058756751361', 2, 2, NULL, NULL, NULL, 1, 2, 99.9, 0, 0, 99.9, '胡**', '188****9606', '****', '中国', '湖北省', '武汉市', '青山区', NULL, NULL, '2024-05-08 15:22:43', NULL, 0, NULL, NULL, NULL, NULL, NULL, '2024-05-08 15:22:43', '手动确认订单', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (42, '1787451058756751361', 2, 2, NULL, NULL, NULL, NULL, 1, 2, 99.9, 0, 0, 99.9, '胡**', '188****9606', '****', '中国', '湖北省', '武汉市', '青山区', NULL, NULL, '2024-05-08 15:22:43', NULL, 0, NULL, NULL, NULL, NULL, NULL, '2024-05-08 15:22:43', '手动确认订单', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (47, 'AD580023566000', 99, 1, NULL, NULL, NULL, NULL, 1, 1, 21, 0, 0, 21, '启航', '1382023320', '实际广场23309', NULL, '广东省', '深圳市', '南山区', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2024-05-09 09:47:54', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (48, 'A135822662000012', 99, 1, NULL, NULL, NULL, NULL, 1, 1, 21, 0, 0, 21, '启航', '136982222', '阿迪达斯打发打发', NULL, '上海市', '市辖区', '黄浦区', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2024-05-09 10:04:50', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (49, 'AD3702565220', 99, 1, NULL, NULL, NULL, NULL, 1, 1, 54, 0, 0, 54, 'Q', '13822033320', 'SAFADSFASDAFASDF', NULL, '天津市', '市辖区', '和平区', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2024-05-09 10:10:48', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (50, 'SF137003620200', 99, 1, NULL, NULL, NULL, NULL, 1, 1, 21, 0, 0, 21, 'A', '136000000', 'aaddfd', NULL, '山西省', '大同市', '平城区', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2024-05-09 10:12:21', 'admin', NULL, NULL, 0, 0, 0, NULL);
+INSERT INTO `erp_sale_order` VALUES (51, 'A13885020023320', 99, 1, NULL, NULL, NULL, NULL, 1, 1, 66, 0, 0, 66, 'Q', '13582202330', 'AAAA', NULL, '河北省', '邯郸市', '复兴区', '2024-05-09 10:19:20', NULL, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, '2024-05-09 10:19:29', 'admin', '2024-05-09 10:20:04', '生成拣货单', 0, 0, 0, NULL);
 
 -- ----------------------------
 -- Table structure for erp_sale_order_item
@@ -2557,14 +2563,15 @@ CREATE TABLE `erp_sale_order_item`  (
   `goods_title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品标题',
   `goods_img` varchar(300) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品图片',
   `goods_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品编码',
-  `goods_spec` varchar(800) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格',
+  `goods_spec` varchar(2550) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格',
   `spec_num` varchar(35) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '商品规格编码',
   `goods_price` double DEFAULT NULL COMMENT '商品单价',
   `item_amount` double DEFAULT NULL COMMENT '子订单金额',
   `quantity` int(0) NOT NULL COMMENT '商品数量',
   `remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '备注',
-  `order_item_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '子订单编号(来源订单)',
-  `order_num` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '订单编号（来源订单）',
+  `original_order_item_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '子订单编号(来源订单)',
+  `original_order_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '订单编号（来源订单）',
+  `original_sku_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '原始订单skuid',
   `is_gift` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否赠品0否1是',
   `refund_count` int(0) DEFAULT 0 COMMENT '已退货数量',
   `refund_status` int(0) DEFAULT NULL COMMENT '售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 ',
@@ -2582,12 +2589,17 @@ CREATE TABLE `erp_sale_order_item`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `goodId_index`(`goods_id`) USING BTREE,
   INDEX `order_id`(`order_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1785584827112509448 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单明细表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1785584827112509453 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '订单明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_sale_order_item
 -- ----------------------------
-INSERT INTO `erp_sale_order_item` VALUES (1785584827112509447, 42, 2, NULL, 0, 0, '大山金黄苦荞 专用麦香形冲饮谷物 黄苦荞500g/罐', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/662de0600005f6c31d2d67512006bd1e000000a000004f50', '10000113792713', '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍1发3=到手3罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天试喝及运费险\"}]', '', 99.9, 99.9, 1, NULL, '1787451058773528578', '3719517651511152896', 0, 0, 1, NULL, NULL, 0, NULL, NULL, NULL, NULL, '2024-05-08 15:22:43', '手动确认订单', NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1785584827112509447, 42, 2, NULL, 0, 0, '大山金黄苦荞 专用麦香形冲饮谷物 黄苦荞500g/罐', 'https://store.mp.video.tencent-cloud.com/161/20304/snscosdownload/SH/reserved/662de0600005f6c31d2d67512006bd1e000000a000004f50', '10000113792713', '[{\"attr_key\":\"净含量\",\"attr_value\":\"拍1发3=到手3罐\"},{\"attr_key\":\"主播承诺\",\"attr_value\":\"7天试喝及运费险\"}]', '', 99.9, 99.9, 1, NULL, '1787451058773528578', '3719517651511152896', NULL, 0, 0, 1, 1, NULL, 0, NULL, NULL, NULL, NULL, '2024-05-08 15:22:43', '手动确认订单', NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1785584827112509448, 47, 1, NULL, 439, 439, 'HNP182弹力紧身贴标牛仔短裤女ins', 'https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg', 'HNP182', '浅蓝色 2XL ', 'HNP1825005', 21, 21, 1, '', 'AD580023566000', 'AD580023566000', NULL, 0, 0, 1, 1, NULL, 0, NULL, NULL, NULL, NULL, '2024-05-09 09:47:54', 'admin', NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1785584827112509449, 48, 1, NULL, 439, 439, 'HNP182弹力紧身贴标牛仔短裤女ins', 'https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg', 'HNP182', '浅蓝色 2XL ', 'HNP1825005', 21, 21, 1, '', 'A135822662000012', 'A135822662000012', NULL, 0, 0, 1, 1, NULL, 0, NULL, NULL, NULL, NULL, '2024-05-09 10:04:50', 'admin', NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1785584827112509450, 49, 1, NULL, 1229, 1229, 'GZYYZ7277复古显瘦灯芯绒a字半身裙', 'https://cbu01.alicdn.com/img/ibank/O1CN01nPrwCh1p3HVouHmtq_!!2214743335304-0-cib.jpg', 'GZYYZ7277', '墨绿色 均码 ', 'GZYYZ72776200', 54, 54, 1, '', 'AD3702565220', 'AD3702565220', NULL, 0, 0, 1, 1, NULL, 0, NULL, NULL, NULL, NULL, '2024-05-09 10:10:48', 'admin', NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1785584827112509451, 50, 1, 26, 439, 439, 'HNP182弹力紧身贴标牛仔短裤女ins', 'https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg', 'HNP182', '浅蓝色 2XL ', 'HNP1825005', 21, 21, 1, '', 'SF137003620200', 'SF137003620200', NULL, 0, 0, 1, 1, NULL, 0, NULL, NULL, NULL, NULL, '2024-05-09 10:12:21', 'admin', NULL, NULL);
+INSERT INTO `erp_sale_order_item` VALUES (1785584827112509452, 51, 1, 32, 1228, 1228, 'GZYYZ7277复古显瘦灯芯绒a字半身裙', 'https://cbu01.alicdn.com/img/ibank/O1CN01kneLsV1p3HVu8u1xi_!!2214743335304-0-cib.jpg', 'GZYYZ7277', '咖啡色 均码 ', 'GZYYZ72773100', 54, 54, 1, '', 'A13885020023320', 'A13885020023320', NULL, 0, 0, 1, 1, 0, 1, NULL, NULL, NULL, NULL, '2024-05-09 10:19:29', 'admin', '2024-05-09 10:20:04', '生成拣货单');
 
 -- ----------------------------
 -- Table structure for erp_ship_logistics
@@ -2663,7 +2675,7 @@ CREATE TABLE `erp_ship_order`  (
   `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1786204816567873539 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单发货表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1788393466931580931 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单发货表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_ship_order
@@ -2671,6 +2683,7 @@ CREATE TABLE `erp_ship_order`  (
 INSERT INTO `erp_ship_order` VALUES (1785676692335767553, 6, 4, 0, '2055782964491095876', 38, 442, '2024-02-01 11:39:21', 9, 23, '2720210080260001', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '胥**', '*******8279', '高*街道江苏省高邮市北**村**幢***室', '中国', '江苏省', '扬州市', '高邮市', '2024-05-01 22:24:34', '生成拣货单', NULL, NULL);
 INSERT INTO `erp_ship_order` VALUES (1785852155209383937, 6, 4, 26, '3763030608986745044', 39, 443, '2024-01-31 10:42:58', 9, 23, '2720210080260001', 1, NULL, '菜鸟速递', '11111', 11.00, '2024-05-02 15:12:17', NULL, NULL, NULL, NULL, 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '张**', '*******4678', '大*镇*城**路下段泰舂小吃', '中国', '云南省', '大理白族自治州', '大理市', '2024-05-02 10:01:48', '分配给供应商发货', '2024-05-02 15:12:36', '发货');
 INSERT INTO `erp_ship_order` VALUES (1786204816567873538, 6, 4, 26, '2137984935735126281', 41, 1785584827112509446, '2024-05-02 12:47:02', 9, 32, '2720210080260105', 1, NULL, '京东快递', 'JD903989932', 5.00, '2024-05-03 11:32:15', NULL, 'admin', '20', '2024-05-03 10:56:43', 0, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '刘**', '*******6949', '东**街道湖南省社会**院**栋***', '中国', '湖南省', '长沙市', '开福区', '2024-05-03 09:23:09', '生成拣货单', '2024-05-03 11:38:48', '发货');
+INSERT INTO `erp_ship_order` VALUES (1788393466931580930, 1, 99, 32, 'A13885020023320', 51, 1785584827112509452, '2024-05-09 10:19:20', 1228, 1228, 'GZYYZ72773100', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Q', '13582202330', 'AAAA', NULL, '河北省', '邯郸市', '复兴区', '2024-05-09 10:20:04', '生成拣货单', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for erp_ship_order_agent_fee
@@ -7566,6 +7579,7 @@ CREATE TABLE `s_shop_pull_lasttime`  (
 -- ----------------------------
 -- Records of s_shop_pull_lasttime
 -- ----------------------------
+INSERT INTO `s_shop_pull_lasttime` VALUES (-1130930175, 6, 'ORDER', '2024-05-10 10:27:38', '2024-05-10 10:23:23', '2024-05-10 10:27:38');
 INSERT INTO `s_shop_pull_lasttime` VALUES (1, 1, 'ORDER', '2024-04-09 16:23:00', '2024-03-23 15:56:13', '2024-04-09 16:23:00');
 INSERT INTO `s_shop_pull_lasttime` VALUES (2, 1, 'REFUND', '2024-04-09 17:43:00', '2024-03-24 13:03:54', '2024-04-09 17:43:00');
 INSERT INTO `s_shop_pull_lasttime` VALUES (3, 2, 'ORDER', '2024-04-09 19:44:00', '2024-03-10 13:00:07', '2024-04-09 19:44:00');
@@ -7864,6 +7878,8 @@ INSERT INTO `s_shop_pull_logs` VALUES (1778265231816261634, 2, 2, 'REFUND', '主
 INSERT INTO `s_shop_pull_logs` VALUES (1778265709430046722, 2, 2, 'REFUND', '主动拉取', '{ApplyTimeBegin:2024-04-09 23:35:56,ApplyTimeEnd:2024-04-10 23:35:56,PageIndex:1,PageSize:100}', '{total:0,hasExist:52,totalError:0}', '2024-04-11 11:35:56', 2283);
 INSERT INTO `s_shop_pull_logs` VALUES (1782655076842622978, 2, 2, 'GOODS', '主动拉取', '{WareStatusValue:8,PageNo:1,PageSize:100}', '{successTotal:57}', '2024-04-23 14:17:20', 24615);
 INSERT INTO `s_shop_pull_logs` VALUES (1782655845054566401, 2, 2, 'GOODS', '主动拉取', '{WareStatusValue:8,PageNo:1,PageSize:100}', '{successTotal:57}', '2024-04-23 14:20:29', 19615);
+INSERT INTO `s_shop_pull_logs` VALUES (1788757037599379458, 6, 4, 'ORDER', '主动拉取', '{startTime:2024-05-10T09:23:35,endTime:2024-05-10T10:24:44.572747600}', '{insert:0,update:0,fail:0}', '2024-05-10 10:24:45', 1375);
+INSERT INTO `s_shop_pull_logs` VALUES (1788757759770447874, 6, 4, 'ORDER', '主动拉取', '{startTime:2024-05-10T09:24:45,endTime:2024-05-10T10:27:37.879946200}', '{insert:0,update:0,fail:0}', '2024-05-10 10:27:38', 234);
 
 -- ----------------------------
 -- Table structure for s_shop_setting
@@ -8963,7 +8979,7 @@ CREATE TABLE `sys_logininfor`  (
   PRIMARY KEY (`info_id`) USING BTREE,
   INDEX `idx_sys_logininfor_s`(`status`) USING BTREE,
   INDEX `idx_sys_logininfor_lt`(`login_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 256 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 259 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -8971,6 +8987,8 @@ CREATE TABLE `sys_logininfor`  (
 INSERT INTO `sys_logininfor` VALUES (254, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-05-08 11:36:40');
 INSERT INTO `sys_logininfor` VALUES (255, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-05-08 14:50:27');
 INSERT INTO `sys_logininfor` VALUES (256, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-05-08 16:02:13');
+INSERT INTO `sys_logininfor` VALUES (257, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-05-09 09:24:16');
+INSERT INTO `sys_logininfor` VALUES (258, 'admin', '127.0.0.1', '内网IP', 'Chrome 11', 'Windows 10', '0', '登录成功', '2024-05-09 15:59:59');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -9183,12 +9201,25 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type`) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status`) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 416 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 429 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
 -- ----------------------------
 INSERT INTO `sys_oper_log` VALUES (415, '店铺订单', 5, 'cn.qihangerp.api.controller.ErpOrderController.export()', 'POST', 1, 'admin', NULL, '/api/order/export', '127.0.0.1', '内网IP', '{\"pageSize\":\"10\",\"pageNum\":\"1\"}', NULL, 0, NULL, '2024-05-08 14:50:58', 2385);
+INSERT INTO `sys_oper_log` VALUES (416, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"福田路1903实际广场A栋89层8903房\",\"amount\":null,\"city\":\"深圳市\",\"createBy\":\"admin\",\"discountAmount\":0,\"goodsAmount\":null,\"itemList\":[{\"goodsImg\":\"\",\"goodsNum\":\"\",\"goodsPrice\":null,\"goodsSpec\":\"\",\"goodsTitle\":\"\",\"itemAmount\":null,\"remark\":\"\",\"specNum\":\"\"}],\"orderNum\":\"A451220036332\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382222220\",\"refundStatus\":1,\"shopId\":1,\"shopType\":99,\"town\":\"福田区\"}', NULL, 1, 'Cannot invoke \"java.lang.Double.doubleValue()\" because the return value of \"cn.qihangerp.domain.ErpOrder.getGoodsAmount()\" is null', '2024-05-09 09:25:50', 46);
+INSERT INTO `sys_oper_log` VALUES (417, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"福田路1903实际广场A栋89层8903房\",\"amount\":null,\"city\":\"深圳市\",\"createBy\":\"admin\",\"discountAmount\":0,\"goodsAmount\":null,\"itemList\":[{\"goodsImg\":\"\",\"goodsNum\":\"\",\"goodsPrice\":null,\"goodsSpec\":\"\",\"goodsTitle\":\"\",\"itemAmount\":null,\"remark\":\"\",\"specNum\":\"\"}],\"orderNum\":\"A451220036332\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382222220\",\"refundStatus\":1,\"shopId\":1,\"shopType\":99,\"town\":\"福田区\"}', NULL, 1, 'Cannot invoke \"java.lang.Double.doubleValue()\" because the return value of \"cn.qihangerp.domain.ErpOrder.getGoodsAmount()\" is null', '2024-05-09 09:34:10', 451017);
+INSERT INTO `sys_oper_log` VALUES (418, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"福田路1903实际广场A栋89层8903房\",\"amount\":null,\"city\":\"深圳市\",\"goodsAmount\":null,\"itemList\":[{\"goodsImg\":\"\",\"goodsNum\":\"\",\"goodsPrice\":null,\"goodsSpec\":\"\",\"goodsTitle\":\"\",\"itemAmount\":null,\"remark\":\"\",\"specNum\":\"\"}],\"orderNum\":\"A451220036332\",\"params\":{},\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382222220\",\"shopId\":1,\"town\":\"福田区\"}', '{\"msg\":\"请填写商品价格！\",\"code\":1503}', 0, NULL, '2024-05-09 09:34:40', 38);
+INSERT INTO `sys_oper_log` VALUES (419, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"福田路1903实际广场A栋89层8903房\",\"amount\":21.0,\"city\":\"深圳市\",\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:35:41\",\"discountAmount\":0,\"goodsAmount\":21.0,\"itemList\":[{\"goodsId\":439,\"goodsImg\":\"https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg\",\"goodsNum\":\"HNP182\",\"goodsPrice\":21.0,\"goodsSpec\":\"浅蓝色 2XL \",\"goodsTitle\":\"HNP182弹力紧身贴标牛仔短裤女ins\",\"isGift\":0,\"itemAmount\":21.0,\"quantity\":1,\"remark\":\"\",\"specId\":439,\"specNum\":\"HNP1825005\"}],\"orderNum\":\"A451220036332\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382222220\",\"refundStatus\":1,\"shopId\":1,\"shopType\":99,\"town\":\"福田区\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLException: Field \'ship_status\' doesn\'t have a default value\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve cn.qihangerp.api.mapper.ErpOrderMapper.insertErpOrder-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_sale_order          ( order_num,             shop_type,             shop_id,                                                    refund_status,             order_status,             goods_amount,             discount_amount,             postage,             amount,             receiver_name,             receiver_phone,             address,                          province,             city,             town,                                                                                                                                  create_time,             create_by )           values ( ?,             ?,             ?,                                                    ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,             ?,                          ?,             ?,             ?,                                                                                                                                  ?,             ? )\r\n### Cause: java.sql.SQLException: Field \'ship_status\' doesn\'t have a default value\n; Field \'ship_status\' doesn\'t have a default value', '2024-05-09 09:35:49', 39515);
+INSERT INTO `sys_oper_log` VALUES (420, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"福田路1903实际广场A栋89层8903房\",\"amount\":21.0,\"city\":\"深圳市\",\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:37:14\",\"discountAmount\":0,\"goodsAmount\":21.0,\"id\":43,\"itemList\":[{\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:37:15.161\",\"goodsId\":439,\"goodsImg\":\"https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg\",\"goodsNum\":\"HNP182\",\"goodsPrice\":21.0,\"goodsSpec\":\"浅蓝色 2XL \",\"goodsTitle\":\"HNP182弹力紧身贴标牛仔短裤女ins\",\"id\":\"1788382692918120449\",\"isGift\":0,\"itemAmount\":21.0,\"orderId\":43,\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"remark\":\"\",\"specId\":439,\"specNum\":\"HNP1825005\"}],\"orderNum\":\"A451220036332\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382222220\",\"refundStatus\":1,\"shipStatus\":0,\"shopId\":1,\"shopType\":99,\"town\":\"福田区\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column \'shop_id\' cannot be null\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_sale_order_item(shop_id,order_id,supplier_id,ship_type,ship_status,order_num,order_item_num, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, order_status,refund_status, create_time, create_by, update_time, update_by) values                  ( ?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Column \'shop_id\' cannot be null\n; Column \'shop_id\' cannot be null', '2024-05-09 09:37:21', 21750);
+INSERT INTO `sys_oper_log` VALUES (421, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"福田路1903实际广场A栋89层8903房\",\"amount\":21.0,\"city\":\"深圳市\",\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:41:47\",\"discountAmount\":0,\"goodsAmount\":21.0,\"id\":44,\"itemList\":[{\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:41:47.788\",\"goodsId\":439,\"goodsImg\":\"https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg\",\"goodsNum\":\"HNP182\",\"goodsPrice\":21.0,\"goodsSpec\":\"浅蓝色 2XL \",\"goodsTitle\":\"HNP182弹力紧身贴标牛仔短裤女ins\",\"id\":\"1788383836272807937\",\"isGift\":0,\"itemAmount\":21.0,\"orderId\":44,\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"remark\":\"\",\"specId\":439,\"specNum\":\"HNP1825005\"}],\"orderNum\":\"A451220036332\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382222220\",\"refundStatus\":1,\"shipStatus\":0,\"shopId\":1,\"shopType\":99,\"town\":\"福田区\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column \'shop_id\' cannot be null\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_sale_order_item(shop_id,order_id,supplier_id,ship_type,ship_status,order_num,order_item_num, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, order_status,refund_status, create_time, create_by, update_time, update_by) values                  ( ?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Column \'shop_id\' cannot be null\n; Column \'shop_id\' cannot be null', '2024-05-09 09:41:47', 102728);
+INSERT INTO `sys_oper_log` VALUES (422, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"实际广场23309\",\"amount\":null,\"city\":\"深圳市\",\"goodsAmount\":null,\"itemList\":[{\"goodsImg\":\"\",\"goodsNum\":\"\",\"goodsPrice\":null,\"goodsSpec\":\"\",\"goodsTitle\":\"\",\"itemAmount\":null,\"remark\":\"\",\"specNum\":\"\"}],\"orderNum\":\"AD580023566000\",\"params\":{},\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382023320\",\"shopId\":1,\"town\":\"南山区\"}', '{\"msg\":\"请填写商品价格！\",\"code\":1503}', 0, NULL, '2024-05-09 09:43:00', 34);
+INSERT INTO `sys_oper_log` VALUES (423, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"实际广场23309\",\"amount\":21.0,\"city\":\"深圳市\",\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:43:18\",\"discountAmount\":0,\"goodsAmount\":21.0,\"id\":45,\"itemList\":[{\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:43:18.06\",\"goodsId\":439,\"goodsImg\":\"https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg\",\"goodsNum\":\"HNP182\",\"goodsPrice\":21.0,\"goodsSpec\":\"浅蓝色 2XL \",\"goodsTitle\":\"HNP182弹力紧身贴标牛仔短裤女ins\",\"id\":\"1788384214921965569\",\"isGift\":0,\"itemAmount\":21.0,\"orderId\":45,\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"remark\":\"\",\"shopId\":1,\"specId\":439,\"specNum\":\"HNP1825005\"}],\"orderNum\":\"AD580023566000\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382023320\",\"refundStatus\":1,\"shipStatus\":0,\"shopId\":1,\"shopType\":99,\"town\":\"南山区\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column \'ship_status\' cannot be null\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_sale_order_item(shop_id,order_id,supplier_id,ship_type,ship_status,order_num,order_item_num, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, order_status,refund_status, create_time, create_by, update_time, update_by) values                  ( ?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Column \'ship_status\' cannot be null\n; Column \'ship_status\' cannot be null', '2024-05-09 09:43:18', 9190);
+INSERT INTO `sys_oper_log` VALUES (424, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"实际广场23309\",\"amount\":21.0,\"city\":\"深圳市\",\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:44:15\",\"discountAmount\":0,\"goodsAmount\":21.0,\"id\":46,\"itemList\":[{\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:44:16.002\",\"goodsId\":439,\"goodsImg\":\"https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg\",\"goodsNum\":\"HNP182\",\"goodsPrice\":21.0,\"goodsSpec\":\"浅蓝色 2XL \",\"goodsTitle\":\"HNP182弹力紧身贴标牛仔短裤女ins\",\"id\":\"1788384457944158210\",\"isGift\":0,\"itemAmount\":21.0,\"orderId\":46,\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"remark\":\"\",\"shipStatus\":0,\"shopId\":1,\"specId\":439,\"specNum\":\"HNP1825005\"}],\"orderNum\":\"AD580023566000\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382023320\",\"refundStatus\":1,\"shipStatus\":0,\"shopId\":1,\"shopType\":99,\"town\":\"南山区\"}', NULL, 1, '\r\n### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column \'order_num\' cannot be null\r\n### The error may exist in file [D:\\dev\\projects\\qihang.ecom.erp\\api\\target\\classes\\mapper\\api\\ErpOrderMapper.xml]\r\n### The error may involve defaultParameterMap\r\n### The error occurred while setting parameters\r\n### SQL: insert into erp_sale_order_item(shop_id,order_id,supplier_id,ship_type,ship_status,order_num,order_item_num, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, order_status,refund_status, create_time, create_by, update_time, update_by) values                  ( ?,?,?,?,?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\r\n### Cause: java.sql.SQLIntegrityConstraintViolationException: Column \'order_num\' cannot be null\n; Column \'order_num\' cannot be null', '2024-05-09 09:44:16', 4471);
+INSERT INTO `sys_oper_log` VALUES (425, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"实际广场23309\",\"amount\":21.0,\"city\":\"深圳市\",\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:47:54\",\"discountAmount\":0,\"goodsAmount\":21.0,\"id\":47,\"itemList\":[{\"createBy\":\"admin\",\"createTime\":\"2024-05-09 09:47:54.252\",\"goodsId\":439,\"goodsImg\":\"https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg\",\"goodsNum\":\"HNP182\",\"goodsPrice\":21.0,\"goodsSpec\":\"浅蓝色 2XL \",\"goodsTitle\":\"HNP182弹力紧身贴标牛仔短裤女ins\",\"id\":\"1785584827112509448\",\"isGift\":0,\"itemAmount\":21.0,\"orderId\":47,\"orderItemNum\":\"AD580023566000\",\"orderNum\":\"AD580023566000\",\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"remark\":\"\",\"shipStatus\":0,\"shopId\":1,\"specId\":439,\"specNum\":\"HNP1825005\"}],\"orderNum\":\"AD580023566000\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"广东省\",\"receiverName\":\"启航\",\"receiverPhone\":\"1382023320\",\"refundStatus\":1,\"shipStatus\":0,\"shopId\":1,\"shopType\":99,\"town\":\"南山区\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-09 09:47:54', 4051);
+INSERT INTO `sys_oper_log` VALUES (426, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"阿迪达斯打发打发\",\"amount\":21.0,\"city\":\"市辖区\",\"createBy\":\"admin\",\"createTime\":\"2024-05-09 10:04:50\",\"discountAmount\":0,\"goodsAmount\":21.0,\"id\":48,\"itemList\":[{\"createBy\":\"admin\",\"createTime\":\"2024-05-09 10:04:50.233\",\"goodsId\":439,\"goodsImg\":\"https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg\",\"goodsNum\":\"HNP182\",\"goodsPrice\":21.0,\"goodsSpec\":\"浅蓝色 2XL \",\"goodsTitle\":\"HNP182弹力紧身贴标牛仔短裤女ins\",\"id\":\"1785584827112509449\",\"isGift\":0,\"itemAmount\":21.0,\"orderId\":48,\"orderItemNum\":\"A135822662000012\",\"orderNum\":\"A135822662000012\",\"orderStatus\":1,\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"remark\":\"\",\"shipStatus\":0,\"shopId\":1,\"specId\":439,\"specNum\":\"HNP1825005\"}],\"orderNum\":\"A135822662000012\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"上海市\",\"receiverName\":\"启航\",\"receiverPhone\":\"136982222\",\"refundStatus\":1,\"shipStatus\":0,\"shopId\":1,\"shopType\":99,\"town\":\"黄浦区\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-09 10:04:50', 178217);
+INSERT INTO `sys_oper_log` VALUES (427, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"aaddfd\",\"amount\":21.0,\"city\":\"大同市\",\"createBy\":\"admin\",\"createTime\":\"2024-05-09 10:12:21\",\"discountAmount\":0,\"goodsAmount\":21.0,\"id\":50,\"itemList\":[{\"createBy\":\"admin\",\"createTime\":\"2024-05-09 10:12:21.375\",\"goodsId\":439,\"goodsImg\":\"https://cbu01.alicdn.com/img/ibank/O1CN01yp4pfJ2FOyGRQhOVF_!!2208857268871-0-cib.jpg\",\"goodsNum\":\"HNP182\",\"goodsPrice\":21.0,\"goodsSpec\":\"浅蓝色 2XL \",\"goodsTitle\":\"HNP182弹力紧身贴标牛仔短裤女ins\",\"id\":\"1785584827112509451\",\"isGift\":0,\"itemAmount\":21.0,\"orderId\":50,\"orderItemNum\":\"SF137003620200\",\"orderNum\":\"SF137003620200\",\"orderStatus\":1,\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"remark\":\"\",\"shipStatus\":0,\"shopId\":1,\"specId\":439,\"specNum\":\"HNP1825005\",\"supplierId\":26}],\"orderNum\":\"SF137003620200\",\"orderStatus\":1,\"params\":{},\"postage\":0,\"province\":\"山西省\",\"receiverName\":\"A\",\"receiverPhone\":\"136000000\",\"refundStatus\":1,\"shipStatus\":0,\"shopId\":1,\"shopType\":99,\"town\":\"平城区\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-09 10:12:21', 34870);
+INSERT INTO `sys_oper_log` VALUES (428, '店铺订单', 1, 'cn.qihangerp.api.controller.ErpOrderController.add()', 'POST', 1, 'admin', NULL, '/api/order', '127.0.0.1', '内网IP', '{\"address\":\"AAAA\",\"amount\":66.0,\"city\":\"邯郸市\",\"createBy\":\"admin\",\"createTime\":\"2024-05-09 10:19:28\",\"discountAmount\":0,\"goodsAmount\":66.0,\"id\":51,\"itemList\":[{\"createBy\":\"admin\",\"createTime\":\"2024-05-09 10:19:28.933\",\"goodsId\":1228,\"goodsImg\":\"https://cbu01.alicdn.com/img/ibank/O1CN01kneLsV1p3HVu8u1xi_!!2214743335304-0-cib.jpg\",\"goodsNum\":\"GZYYZ7277\",\"goodsPrice\":54.0,\"goodsSpec\":\"咖啡色 均码 \",\"goodsTitle\":\"GZYYZ7277复古显瘦灯芯绒a字半身裙\",\"id\":\"1785584827112509452\",\"isGift\":0,\"itemAmount\":54.0,\"orderId\":51,\"orderItemNum\":\"A13885020023320\",\"orderNum\":\"A13885020023320\",\"orderStatus\":1,\"quantity\":1,\"refundCount\":0,\"refundStatus\":1,\"remark\":\"\",\"shipStatus\":0,\"shopId\":1,\"specId\":1228,\"specNum\":\"GZYYZ72773100\",\"supplierId\":32}],\"orderNum\":\"A13885020023320\",\"orderStatus\":1,\"orderTime\":\"2024-05-09 10:19:20\",\"params\":{},\"postage\":0,\"province\":\"河北省\",\"receiverName\":\"Q\",\"receiverPhone\":\"13582202330\",\"refundStatus\":1,\"shipStatus\":0,\"shopId\":1,\"shopType\":99,\"town\":\"复兴区\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2024-05-09 10:19:29', 22863);
 
 -- ----------------------------
 -- Table structure for sys_oss
@@ -9358,7 +9389,7 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-08 16:02:14', 'admin', '2023-08-07 19:31:37', '', '2024-05-08 16:02:13', '管理员');
+INSERT INTO `sys_user` VALUES (1, 100, 'admin', '启航', '00', '280645618@qq.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2024-05-10 11:03:08', 'admin', '2023-08-07 19:31:37', '', '2024-05-10 11:03:08', '管理员');
 INSERT INTO `sys_user` VALUES (2, 101, 'qihang', 'qihang', '00', 'qihang@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2023-08-07 19:31:37', 'admin', '2023-08-07 19:31:37', 'admin', '2024-01-05 18:29:55', '测试员');
 INSERT INTO `sys_user` VALUES (100, NULL, 'admin11', 'aa', '00', '', '', '1', '', '$2a$10$VD49q2rn1ATpQDZJJrmJjuG52b4EkOTTZ0MPbRRmcqEYLmB5mAMsG', '0', '2', '', NULL, 'admin', '2024-04-24 11:06:27', '', NULL, NULL);
 
@@ -9593,13 +9624,14 @@ CREATE TABLE `wms_stock_out_entry`  (
   `update_time` datetime(0) DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   `update_by` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1786204816504958979 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1788393466709282819 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_out_entry
 -- ----------------------------
 INSERT INTO `wms_stock_out_entry` VALUES (1785676644348735490, '202405012220056', NULL, NULL, 1, 1, 1, 1, NULL, NULL, 0, 0, NULL, NULL, NULL, 0, NULL, '2024-05-01 22:24:23', '生成拣货单', '2024-05-01 22:24:22', NULL);
 INSERT INTO `wms_stock_out_entry` VALUES (1786204816504958978, '202405030923075', NULL, NULL, 1, 1, 1, 1, 1, NULL, 2, 0, NULL, '2024-05-03 10:56:33', '2024-05-03 10:56:33', 1, 'admin', '2024-05-03 09:23:09', '生成拣货单', '2024-05-03 10:56:34', '出库');
+INSERT INTO `wms_stock_out_entry` VALUES (1788393466709282818, '202405091020024', NULL, NULL, 1, 1, 1, 1, 0, NULL, 0, 0, NULL, NULL, NULL, 0, NULL, '2024-05-09 10:20:04', '生成拣货单', '2024-05-09 10:20:03', NULL);
 
 -- ----------------------------
 -- Table structure for wms_stock_out_entry_item
@@ -9624,13 +9656,14 @@ CREATE TABLE `wms_stock_out_entry_item`  (
   `update_time` datetime(0) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `specIndex`(`spec_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1786204816504958980 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单明细' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1788393466763808770 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '出库单明细' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of wms_stock_out_entry_item
 -- ----------------------------
 INSERT INTO `wms_stock_out_entry_item` VALUES (1785676644373901314, 1, 1785676644348735490, 38, 442, '2055782964491095876', 9, 23, '2720210080260001', 1, 0, NULL, NULL, 0, '2024-05-01 22:24:23', NULL);
 INSERT INTO `wms_stock_out_entry_item` VALUES (1786204816504958979, 1, 1786204816504958978, 41, 1785584827112509446, '2137984935735126281', 9, 32, '2720210080260105', 1, 1, '2024-05-03 10:56:27', '2024-05-03 10:56:26', 2, '2024-05-03 09:23:09', NULL);
+INSERT INTO `wms_stock_out_entry_item` VALUES (1788393466763808769, 1, 1788393466709282818, 51, 1785584827112509452, 'A13885020023320', 1228, 1228, 'GZYYZ72773100', 1, 0, NULL, NULL, 0, '2024-05-09 10:20:04', NULL);
 
 -- ----------------------------
 -- Table structure for wms_stock_out_entry_item_detail
