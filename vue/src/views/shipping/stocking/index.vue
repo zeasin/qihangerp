@@ -115,7 +115,7 @@
     <el-table v-loading="loading" :data="shippingList" @selection-change="handleSelectionChange">
        <el-table-column type="selection" width="55" v-if="queryParams.status==='0'" align="center" />
       <!-- <el-table-column label="主键" align="center" prop="id" /> -->
-      <el-table-column label="订单编号" align="center" prop="orderNum" />
+      <el-table-column label="订单编号" align="center" prop="originalOrderId" />
        <el-table-column label="店铺" align="center" prop="shopId" >
         <template slot-scope="scope">
           <span>{{ shopList.find(x=>x.id === scope.row.shopId).name  }}</span>
