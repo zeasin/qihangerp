@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	
     <groupId>cn.qihangerp</groupId>
-    <artifactId>qihangerp</artifactId>
+    <artifactId>qihang-erp</artifactId>
     <version>2.0.1</version>
 
-    <name>qihangerp</name>
+    <name>qihang-erp</name>
     <url>http://www.qihangerp.cn</url>
     <description>启航电商ERP系统</description>
     <properties>
