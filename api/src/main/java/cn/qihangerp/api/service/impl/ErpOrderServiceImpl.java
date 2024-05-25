@@ -98,7 +98,7 @@ public class ErpOrderServiceImpl implements IErpOrderService
             }
         }
 
-        Shop shop = shopService.selectShopById(erpOrder.getId());
+        Shop shop = shopService.selectShopById(erpOrder.getShopId());
         if(shop!=null){
             erpOrder.setShopType(shop.getType().intValue());
         }else return -4;
