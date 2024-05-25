@@ -397,7 +397,7 @@ export default {
           //   }
           // })
           if(isValid){
-            console.log('=======验证通过了========')
+            console.log('=======验证通过了========',this.form)
             stockIn(this.form).then(response => {
               this.$modal.msgSuccess("入库操作成功");
               this.open = false;

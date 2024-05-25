@@ -99,7 +99,7 @@
             <el-table-column prop="inQty" label="需入库数量">
                 <template slot-scope="scope">
                     <el-input v-model.number="scope.row.inQty" placeholder="填写需入库的数量" />
-                </template>   
+                </template>
             </el-table-column>
             <el-table-column prop="amount" label="总金额"> </el-table-column>
           </el-table>
@@ -120,7 +120,7 @@
         <el-form-item label="物流公司"><el-input v-model="ship.shipCompany" disabled /> </el-form-item>
         <el-form-item label="物流单号"><el-input v-model="ship.shipNo" disabled /> </el-form-item>
         <el-form-item label="备注"><el-input v-model="ship.remark" disabled /> </el-form-item>
-        
+
       </el-row>
       <el-row>
         <el-form-item label="商品单位"><el-input v-model="ship.orderGoodsUnit" disabled /> </el-form-item>
@@ -130,7 +130,7 @@
       <el-form-item>
 
         <el-button type="primary" style="margin-left: 128px;" @click="submitForm">生成采购入库单</el-button>
-        
+
       </el-form-item>
     </el-form>
   </div>
@@ -146,7 +146,7 @@ export default {
     return {
       form: {
         id: null,
-        
+
       },
       ship:{},
       itemList:[],
@@ -176,7 +176,7 @@ export default {
                     ...x
                 }
                 x.inQty = x.quantity
-                
+
             })
         }
             this.itemList = res.rows
@@ -193,7 +193,7 @@ export default {
                 if(res.code === 200){
                     // 调用全局挂载的方法,关闭当前标签页
                     this.$store.dispatch("tagsView/delView", this.$route);
-                    this.$router.push('/scm/purchase/ship');                           
+                    this.$router.push('/purchase/ship');
                 }
             })
         }

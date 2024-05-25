@@ -143,14 +143,14 @@ public class WmsStockInEntryServiceImpl extends ServiceImpl<WmsStockInEntryMappe
                 goodsInventoryMapper.batchErpGoodsInventoryDetail(ds);
 
                 // update item
-                WmsStockInEntryItem upItem = new WmsStockInEntryItem();
-                upItem.setId(item.getId());
-                upItem.setInQuantity(item.getInQuantity() + item.getQuantity());
-                upItem.setStatus(1);
-                upItem.setUpdateTime(new Date());
-                upItem.setUpdateBy(wmsStockInEntry.getUpdateBy());
+                WmsStockInEntryItem itemUpdate = new WmsStockInEntryItem();
+                itemUpdate.setId(item.getId());
+                itemUpdate.setInQuantity(item.getInQuantity() + item.getQuantity());
+                itemUpdate.setStatus(1);
+                itemUpdate.setUpdateTime(new Date());
+                itemUpdate.setUpdateBy(wmsStockInEntry.getUpdateBy());
 //                wmsStockInEntryMapper.updateWmsStockInEntryItem(upItem);
-                wmsStockInEntryItemMapper.updateById(upItem);
+                wmsStockInEntryItemMapper.updateById(itemUpdate);
             }
 
         }
@@ -177,7 +177,7 @@ public class WmsStockInEntryServiceImpl extends ServiceImpl<WmsStockInEntryMappe
     public int complete(Long id,String updateBy) {
         // 更新自己
         WmsStockInEntry new1 = new WmsStockInEntry();
-        new1.setId(id);
+        new1.setId(id.toString());
         new1.setUpdateBy(updateBy);
         new1.setUpdateTime(new Date());
         new1.setStatus(2);
@@ -197,6 +197,15 @@ public class WmsStockInEntryServiceImpl extends ServiceImpl<WmsStockInEntryMappe
         }
 
         return 1;
+    }
+
+    @Override
+    public WmsStockInEntry getDetailAndItemById(Long entryId) {
+        WmsStockInEntry wmsStockInEntry = wmsStockInEntryMapper.selectById(entryId);
+        if( wmsStockInEntry != null ){
+            wmsStockInEntry.setWmsStockInEntryItemList(wmsStockInEntryItemMapper.selectList(new LambdaQueryWrapper<WmsStockInEntryItem>().eq(WmsStockInEntryItem::getEntryId,wmsStockInEntry.getId())));
+            return wmsStockInEntry;
+        }else return null;
     }
 }
 

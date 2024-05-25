@@ -15,12 +15,12 @@ public class WmsStockInEntryItem implements Serializable {
     /**
      * 
      */
-    private Long id;
+    private String id;
 
     /**
      * 入库单id
      */
-    private Long entryId;
+    private String entryId;
 
     /**
      * 来源类型（1采购订单2退货订单）

@@ -14,4 +14,6 @@ public interface WmsStockInEntryService extends IService<WmsStockInEntry> {
     PageResult<WmsStockInEntry> queryPageList(WmsStockInEntry bo, PageQuery pageQuery);
     int stockIn(WmsStockInEntry wmsStockInEntry);
     int complete(Long id,String updateBy);
+
+    WmsStockInEntry getDetailAndItemById(Long entryId);
 }

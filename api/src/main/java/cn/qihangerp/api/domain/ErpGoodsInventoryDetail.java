@@ -38,11 +38,11 @@ public class ErpGoodsInventoryDetail extends BaseEntity
 
     /** 入库单id */
     @Excel(name = "入库单id")
-    private Long entryId;
+    private String entryId;
 
     /** 入库单itemId */
     @Excel(name = "入库单itemId")
-    private Long entryItemId;
+    private String entryItemId;
 
     /** 规格id */
     @Excel(name = "规格id")
@@ -119,21 +119,21 @@ public class ErpGoodsInventoryDetail extends BaseEntity
     {
         return purPrice;
     }
-    public void setEntryId(Long entryId) 
+    public void setEntryId(String entryId)
     {
         this.entryId = entryId;
     }
 
-    public Long getEntryId() 
+    public String getEntryId()
     {
         return entryId;
     }
-    public void setEntryItemId(Long entryItemId) 
+    public void setEntryItemId(String entryItemId)
     {
         this.entryItemId = entryItemId;
     }
 
-    public Long getEntryItemId() 
+    public String getEntryItemId()
     {
         return entryItemId;
     }

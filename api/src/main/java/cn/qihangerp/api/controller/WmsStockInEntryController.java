@@ -60,7 +60,9 @@ public class WmsStockInEntryController extends BaseController
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
-        return success(wmsStockInEntryService.getById(id));
+        WmsStockInEntry entry = wmsStockInEntryService.getDetailAndItemById(id);
+
+        return success(entry);
     }
 
 
@@ -87,11 +89,12 @@ public class WmsStockInEntryController extends BaseController
         wmsStockInEntry.setUpdateBy(getUsername());
         wmsStockInEntry.setStockInOperatorId(getUserId());
         int result = wmsStockInEntryService.stockIn(wmsStockInEntry);
-        if(result == -1) return new AjaxResult(505,"入库单不存在");
+        if(result==1) return AjaxResult.success("入库成功");
+        else if(result == -1) return new AjaxResult(505,"入库单不存在");
         else if(result == -2) return new AjaxResult(506,"请填写入库数据");
         else if(result == -3) return new AjaxResult(507,"商品数据错误");
         else if(result == -9) return new AjaxResult(509,"入库单已全部入库！无法操作！");
-        return toAjax(result);
+        else return toAjax(result);
     }
     @GetMapping("/complete/{id}")
     public AjaxResult complete(@PathVariable Long id)

@@ -16,7 +16,7 @@ public class WmsStockInEntry implements Serializable {
     /**
      * 主键ID
      */
-    private Long id;
+    private String id;
 
     /**
      * 入库单据编号
@@ -71,7 +71,7 @@ public class WmsStockInEntry implements Serializable {
     /**
      * 入库时间
      */
-    private Date stockInTime;
+    private String stockInTime;
 
     /**
      * 状态（0待入库1部分入库2全部入库）
