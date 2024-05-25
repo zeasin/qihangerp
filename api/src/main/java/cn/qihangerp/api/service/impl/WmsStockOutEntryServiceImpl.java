@@ -1,5 +1,7 @@
 package cn.qihangerp.api.service.impl;
 
+import cn.qihangerp.common.utils.DateUtil;
+import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.domain.ErpOrderItem;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -133,9 +135,9 @@ public class WmsStockOutEntryServiceImpl extends ServiceImpl<WmsStockOutEntryMap
             ErpShipOrder shipOrder = new ErpShipOrder();
             shipOrder.setShopId(erpOrder.getShopId());
             shipOrder.setShopType(erpOrder.getShopType());
-            shipOrder.setSupplierId(item.getSupplierId());
+            shipOrder.setSupplierId(item.getSupplierId()==null?0:item.getSupplierId());
             shipOrder.setOrderNum(erpOrder.getOrderNum());
-            shipOrder.setOrderTime(erpOrder.getOrderTime());
+            shipOrder.setOrderTime(erpOrder.getOrderTime()==null? DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss",erpOrder.getCreateTime()) :erpOrder.getOrderTime());
             shipOrder.setErpOrderId(item.getSourceOrderId());
             shipOrder.setErpOrderItemId(item.getSourceOrderItemId().toString());
             shipOrder.setGoodsId(item.getGoodsId());

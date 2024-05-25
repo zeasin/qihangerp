@@ -82,6 +82,7 @@ public class ErpOrderController extends BaseController
         if(result == -1) return new AjaxResult(501,"订单号已存在！");
         if(result == -2) return new AjaxResult(502,"请添加订单商品！");
         if(result == -3) return new AjaxResult(503,"请选择订单商品规格！");
+        if(result == -4) return new AjaxResult(504,"请选择店铺！");
         return toAjax(result);
     }
 

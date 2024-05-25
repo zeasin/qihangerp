@@ -7,11 +7,13 @@ import java.util.List;
 import cn.qihangerp.api.domain.*;
 import cn.qihangerp.api.mapper.ErpShipOrderFeeMapper;
 import cn.qihangerp.api.mapper.ErpShipOrderMapper;
+import cn.qihangerp.api.service.IShopService;
 import cn.qihangerp.common.ResultVo;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.domain.Shop;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,8 @@ public class ErpOrderServiceImpl implements IErpOrderService
     private ErpShipOrderFeeMapper shipOrderFeeMapper;
     @Autowired
     private ErpShipOrderMapper shipOrderMapper;
+    @Autowired
+    private IShopService shopService;
 
     /**
      * 查询订单
@@ -94,16 +98,23 @@ public class ErpOrderServiceImpl implements IErpOrderService
             }
         }
 
-        if(erpOrder.getShopId() == 1) erpOrder.setShopType(99);
-        else if(erpOrder.getShopId() == 5) erpOrder.setShopType(5);
-        else if(erpOrder.getShopId() == 6) erpOrder.setShopType(4);
-        else if(erpOrder.getShopId() == 13) erpOrder.setShopType(13);
-        else if(erpOrder.getShopId() == 21) erpOrder.setShopType(7);
-        else if(erpOrder.getShopId() == 22) erpOrder.setShopType(6);
+        Shop shop = shopService.selectShopById(erpOrder.getId());
+        if(shop!=null){
+            erpOrder.setShopType(shop.getType().intValue());
+        }else return -4;
+
+//        if(erpOrder.getShopId() == 1) erpOrder.setShopType(99);
+//        else if(erpOrder.getShopId() == 5) erpOrder.setShopType(5);
+//        else if(erpOrder.getShopId() == 6) erpOrder.setShopType(4);
+//        else if(erpOrder.getShopId() == 13) erpOrder.setShopType(13);
+//        else if(erpOrder.getShopId() == 21) erpOrder.setShopType(7);
+//        else if(erpOrder.getShopId() == 22) erpOrder.setShopType(6);
+        erpOrder.setCreateTime(new Date());
         erpOrder.setShipStatus(0);
         erpOrder.setOrderStatus(1);
         erpOrder.setRefundStatus(1);
-        erpOrder.setOrderTime(DateUtils.getTime());
+//        erpOrder.setOrderTime(DateUtils.getTime());
+        erpOrder.setOrderTime(DateUtils.parseDateToStr("yyyy-MM-dd HH:mm:ss",erpOrder.getCreateTime()));
         if(erpOrder.getPostage() == null) erpOrder.setPostage(BigDecimal.ZERO);
         if(erpOrder.getDiscountAmount() == null) erpOrder.setDiscountAmount(BigDecimal.ZERO);
 
