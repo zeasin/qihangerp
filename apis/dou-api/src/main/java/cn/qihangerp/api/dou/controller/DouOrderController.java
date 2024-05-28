@@ -27,7 +27,7 @@ import cn.qihangerp.core.page.TableDataInfo;
  * @date 2024-01-02
  */
 @RestController
-@RequestMapping("/dou/order")
+@RequestMapping("/dou-api/order")
 public class DouOrderController extends BaseController
 {
     @Autowired

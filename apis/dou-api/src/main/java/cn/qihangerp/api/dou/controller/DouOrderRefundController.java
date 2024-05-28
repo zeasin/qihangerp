@@ -27,7 +27,7 @@ import cn.qihangerp.core.page.TableDataInfo;
  * @date 2024-01-13
  */
 @RestController
-@RequestMapping("/dou/douRefund")
+@RequestMapping("/dou-api/refund")
 public class DouOrderRefundController extends BaseController
 {
     @Autowired

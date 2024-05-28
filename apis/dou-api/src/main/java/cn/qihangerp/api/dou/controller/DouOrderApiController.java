@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@RequestMapping("/douapi")
+@RequestMapping("/dou-api/order")
 @RestController
 public class DouOrderApiController {
     private static Logger log = LoggerFactory.getLogger(DouOrderApiController.class);

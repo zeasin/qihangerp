@@ -42,7 +42,16 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-
+      <el-col :span="1.5">
+        <el-button
+          :loading="pullLoading"
+          type="success"
+          plain
+          icon="el-icon-download"
+          size="mini"
+          @click="handlePull"
+        >API拉取商品数据</el-button>
+      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -114,6 +123,9 @@
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 import {listShop} from "@/api/shop/shop";
+import {pullGoodsList} from "@/api/dou/goods";
+import {MessageBox} from "element-ui";
+import {isRelogin} from "@/utils/request";
 
 export default {
   name: "GoodsDou",
@@ -129,6 +141,7 @@ export default {
       multiple: true,
       // 显示搜索条件
       showSearch: true,
+      pullLoading: false,
       // 总条数
       total: 0,
       // 商品管理表格数据
@@ -163,8 +176,12 @@ export default {
   created() {
     listShop({type:3}).then(response => {
       this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
     });
-    this.getList();
+    // this.getList();
     this.loading = false;
   },
   methods: {
@@ -221,6 +238,35 @@ export default {
         }
       });
     },
+    handlePull() {
+      if(this.queryParams.shopId){
+        this.pullLoading = true
+        pullGoodsList({shopId:this.queryParams.shopId}).then(response => {
+          console.log('拉取PDD商品接口返回=====',response)
+          if(response.code === 1401) {
+            MessageBox.confirm('Token已过期，需要重新授权', '系统提示', { confirmButtonText: '重新授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
+              isRelogin.show = false;
+              // store.dispatch('LogOut').then(() => {
+              location.href = response.data.tokenRequestUrl+'?shopId='+this.queryParams.shopId
+              // })
+            }).catch(() => {
+              isRelogin.show = false;
+            });
+
+            // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
+          }else{
+            this.getList()
+            this.$modal.msgSuccess(JSON.stringify(response));
+          }
+          this.pullLoading = false
+
+        })
+      }else{
+        this.$modal.msgSuccess("请先选择店铺");
+      }
+
+      // this.$modal.msgSuccess("请先配置API");
+    }
   }
 };
 </script>
