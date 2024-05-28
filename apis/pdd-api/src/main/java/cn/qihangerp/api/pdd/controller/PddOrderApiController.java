@@ -2,84 +2,62 @@ package cn.qihangerp.api.pdd.controller;
 
 import cn.qihangerp.api.pdd.bo.PddRequest;
 import cn.qihangerp.api.pdd.bo.ShopApiParams;
-import cn.qihangerp.api.pdd.domain.PddOrder;
-import cn.qihangerp.api.pdd.service.IPddOrderService;
+import cn.qihangerp.api.pdd.domain.OmsPddOrder;
+import cn.qihangerp.api.pdd.domain.OmsPddOrderItem;
+import cn.qihangerp.api.pdd.service.OmsPddGoodsService;
+import cn.qihangerp.api.pdd.service.OmsPddOrderService;
 import cn.qihangerp.api.pdd.vo.ErpSalesPullCountResp;
 import cn.qihangerp.common.ApiResult;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.utils.DateUtil;
 import cn.qihangerp.core.config.ServerConfig;
-import com.pdd.pop.sdk.common.util.JsonUtil;
-import com.pdd.pop.sdk.http.PopClient;
-import com.pdd.pop.sdk.http.PopHttpClient;
-import com.pdd.pop.sdk.http.api.pop.request.PddOrderListGetRequest;
-import com.pdd.pop.sdk.http.api.pop.response.PddOrderListGetResponse;
+import cn.qihangerp.domain.AjaxResult;
+import cn.qihangerp.open.pdd.OrderApiHelper;
+import cn.qihangerp.open.pdd.common.ApiResultVo;
+import cn.qihangerp.open.pdd.model.OrderListResultVo;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 
-@RequestMapping("/pdd_api")
+@AllArgsConstructor
+@RequestMapping("/pdd-api/order")
 @RestController
 public class PddOrderApiController {
-    private static Logger log = LoggerFactory.getLogger(PddOrderApiController.class);
-    @Autowired
-    private ServerConfig serverConfig;
-//    @Autowired
-//    private IShopService shopService;
-    @Autowired
-    private IPddOrderService pddOrderService;
-
+    private static Logger logger = LoggerFactory.getLogger(PddOrderApiController.class);
+    private final OmsPddGoodsService goodsService;
+    private final OmsPddOrderService orderService;
+    private final PddApiHelper pddApiHelper;
     /**
      * 接口拉取订单
      *
-     * @param reqData
-     * @param req
+     * @param
+     * @param
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/order/pull_order", method = RequestMethod.GET)
-    public ApiResult<Object> getOrderList(PddRequest reqData, HttpServletRequest req)
-            throws Exception {
-        Integer updType = reqData.getUpdType();//更新类型0拉取新订单1更新订单
-        String startDate = reqData.getStartDate();//reqData.getString("startTime");
-        String endDate = reqData.getEndDate();//reqData.getString("endTime");
+    @PostMapping ("/pull_order")
+    public AjaxResult getOrderList(@RequestBody PddRequest req) throws Exception {
+        Integer updType = req.getUpdType();//更新类型0拉取新订单1更新订单
+        String startDate = req.getStartDate();//reqData.getString("startTime");
+        String endDate = req.getEndDate();//reqData.getString("endTime");
 
-        Long shopId = reqData.getShopId();// 拼多多shopId
-        var shop = pddOrderService.selectShopById(shopId);
-        if(shop == null) return new ApiResult<>(ResultVoEnum.Fail.getIndex(), "店铺不存在！");
-        String appKey = shop.getAppkey();
-        String appSercet = shop.getAppSercet();
-        if(!StringUtils.hasText(appKey) || !StringUtils.hasText(appSercet)) return new ApiResult<>(ResultVoEnum.Fail.getIndex(), "参数错误：请设置appkey和serecet");
-
-//        String clientId = DataConfigObject.getInstance().getPddClientId();
-//        String clientSecret = DataConfigObject.getInstance().getPddClientSecret();
-//        var shop = shopService.getShop(shopId);
-        // var settingEntity = thirdSettingService.getEntity(shop.getType());
-        ShopApiParams params = new ShopApiParams();
-        params.setAppKey(shop.getAppkey());
-        params.setAppSecret(shop.getAppSercet());
-        params.setAccessToken(shop.getSessionKey());
-        params.setTokenRequestUrl(serverConfig.getUrl()+"/pdd_api2/oauth");
-        params.setApiRequestUrl(shop.getApiRequestUrl());
-
-        String accessToken = shop.getSessionKey();
-        if(!StringUtils.hasText(accessToken)) return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "参数错误：accessToken为空",params);
-        // 获取店铺信息，判断店铺是否一致
-        var shopResult = PddApiUtils.getShopInfo(appKey, appSercet, accessToken);
-        if (shopResult.getResult() != ResultVoEnum.SUCCESS.getIndex())
-            return new ApiResult<>(shopResult.getResult(), shopResult.getMsg(),params);
-
-        if (shopResult.getData().getMallId().longValue() != shop.getSellerUserId().longValue()) {
-            return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "该店铺不是授权店铺",params);
+        Long shopId = req.getShopId();// 拼多多shopId
+        var checkResult = pddApiHelper.checkBefore(req.getShopId());
+        if (checkResult.getResult() != ResultVoEnum.SUCCESS.getIndex()) {
+            return AjaxResult.error(checkResult.getResult(), checkResult.getMsg(), checkResult.getData());
         }
-
-        ApiResult<ErpSalesPullCountResp> result = null;// 返回结果
+        String accessToken = checkResult.getData().getAccessToken();
+        String url = checkResult.getData().getApiRequestUrl();
+        String appKey = checkResult.getData().getAppKey();
+        String appSecret = checkResult.getData().getAppSecret();
 
         Long endTime = System.currentTimeMillis() / 1000;// 订单更新结束时间(默认值)
         Long startTime = endTime - 60 * 60 * 24 + 10;// 订单更新开始时间(默认值)
@@ -111,217 +89,55 @@ public class PddOrderApiController {
          * else endTime = DateUtil.dateTimeToStamp(endDate + " 23:59:00").longValue(); }
          */
 
-        long kaishidaojiesu = endTime - startTime;
-        long forSize = (kaishidaojiesu % (60 * 60 * 24) == 0) ? kaishidaojiesu / (60 * 60 * 24)
-                : kaishidaojiesu / (60 * 60 * 24) + 1;// 计算需要循环的次数
 
-        log.info("开始循环更新拼多多订单。开始时间：" + DateUtil.unixTimeStampToDate(startTime) + "结束时间："
-                + DateUtil.unixTimeStampToDate(endTime) + "总共循环" + forSize);
-        int updCount = 0;
-        int insertCount = 0;
-        int failCount = 0;
-        // int pageIndex = 1;
-        int pageSize = 100;
+        logger.info("开始循环更新拼多多订单。开始时间：" + DateUtil.unixTimeStampToDate(startTime) + "结束时间："
+                + DateUtil.unixTimeStampToDate(endTime));
+        int hasExistOrder = 0;
+        int insertSuccess = 0;
+        int totalError = 0;
 
-        for (int i = 0; i < forSize; i++) {
-            Long startTime1 = startTime + i * 60 * 60 * 24;
-            Long endTime1 = startTime1 + 60 * 60 * 24;
-            if (endTime1 > endTime)
-                endTime1 = endTime;
-            int pageIndex = 1;
 
-            result = this.pullPddOrder(appKey, appSercet, accessToken, pageIndex, pageSize, startTime1, endTime1,
-                    shopId);
-            pageIndex++;
-            log.info("开始循环" + i + "。开始时间：" + DateUtil.unixTimeStampToDate(startTime1) + "结束时间："
-                    + DateUtil.unixTimeStampToDate(endTime1) + "。");
-            // log.info("开始更新第"+pageIndex+"页");
-            if (result.getResult() == 0) {
-                updCount += result.getData().getUpdCount();
-                insertCount += result.getData().getAddCount();
-                failCount += result.getData().getFailCount();
-                // log.info("查询到数据:"+result.getData().getTotalRecords());
-            } else if (result.getResult() > 0)
-                return new ApiResult<>(result.getResult(), result.getMsg());
-            // 计算总页数
-            int totalPage = (result.getData().getTotalRecords() % pageSize == 0)
-                    ? result.getData().getTotalRecords() / pageSize
-                    : (result.getData().getTotalRecords() / pageSize) + 1;
-            log.info("开始循环" + i + "。查询到" + result.getData().getTotalRecords() + "条数据，总共：" + totalPage + "页");
-            while (pageIndex <= totalPage) {
 
-                // log.info("开始更新第"+pageIndex+"页");
-                // log.info("查询到数据:"+result.getData().getTotalRecords());
-                result = this.pullPddOrder(appKey, appSercet, accessToken, pageIndex, pageSize, startTime1,
-                        endTime1, shopId);
-                if (result.getResult() == 0) {
-                    updCount += result.getData().getUpdCount();
-                    insertCount += result.getData().getAddCount();
-                    failCount += result.getData().getFailCount();
+        ApiResultVo<OrderListResultVo> apiResultVo = OrderApiHelper.pullOrderList(appKey, appSecret, accessToken, 1716160072, 1716242872, 1, 20);
+        if (apiResultVo.getCode() != 0) return AjaxResult.error(apiResultVo.getCode(), apiResultVo.getMsg());
+        //成功
+        if (apiResultVo.getData().getOrderList() != null) {
+            //循环插入订单数据到数据库
+            for (var trade : apiResultVo.getData().getOrderList()) {
+                OmsPddOrder order = new OmsPddOrder();
+                BeanUtils.copyProperties(trade,order);
+                List<OmsPddOrderItem> items = new ArrayList<>();
+                for (var it:trade.getItemList()) {
+                    OmsPddOrderItem item = new OmsPddOrderItem();
+                    BeanUtils.copyProperties(it,item);
+                    items.add(item);
                 }
-                pageIndex++;
+                order.setItemList(items);
+                //插入订单数据
+                var result = orderService.saveOrder(req.getShopId(), order);
+                if (result.getCode() == ResultVoEnum.DataExist.getIndex()) {
+                    //已经存在
+                    logger.info("/**************主动更新pdd订单：开始更新数据库：" + order.getId() + "存在、更新****************/");
+
+                    hasExistOrder++;
+                } else if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
+                    logger.info("/**************主动更新pdd订单：开始更新数据库：" + order.getId() + "不存在、新增****************/");
+
+                    insertSuccess++;
+                } else {
+                    logger.info("/**************主动更新pdd订单：开始更新数据库：" + order.getId() + "报错****************/");
+                    totalError++;
+                }
             }
-            // pageIndex = 1;
-
         }
+        String msg = "成功，总共找到：" + apiResultVo.getData().getOrderList().size() + "条商品数据，新增：" + insertSuccess + "条，添加错误：" + totalError + "条，更新：" + hasExistOrder + "条";
+        logger.info(msg);
 
-        ErpSalesPullCountResp resp = new ErpSalesPullCountResp();// 返回结果
-        resp.setStartTime(DateUtil.unixTimeStampToDate(startTime));
-        resp.setEndTime(DateUtil.unixTimeStampToDate(endTime));
-        resp.setAddCount(insertCount);
-        resp.setFailCount(failCount);
-        resp.setUpdCount(updCount);
-        log.info("更新完成，结果：" + JsonUtil.transferToJson(resp));
-        /*
-         * try { //添加更新日志 salesOrderService.addErpSalesPullOrderLog(startTime, endTime,
-         * shopId, result.getData().getAddCount(), result.getData().getFailCount(),
-         * result.getData().getUpdCount(), updType); } catch (Exception e) {
-         * log.info("添加更新日志错误"); }
-         */
-        if (result.getResult() == 0)
-            return new ApiResult<>(ResultVoEnum.SUCCESS.getIndex(), "SUCCESS", resp);
-        else
-            return new ApiResult<>(result.getResult(), result.getMsg());
+        return AjaxResult.success(msg);
+
     }
 
-    /**
-     * 拉取拼多多接口订单
-     *
-     * @param pageNo
-     * @param pageSize
-     * @param startTime
-     * @param endTime
-     * @param shopId
-     * @return
-     * @throws Exception
-     */
-    private ApiResult<ErpSalesPullCountResp> pullPddOrder( String clientId,String clientSecret,String accessToken,Integer pageNo, Integer pageSize, Long startTime, Long endTime, Long shopId) throws Exception {
-        PopClient client = new PopHttpClient(clientId, clientSecret);
 
-        // 调取拼多多接口 pdd.order.list.get 订单列表查询接口（根据成交时间）
-        PddOrderListGetRequest pddOrderListGetRequest = new PddOrderListGetRequest();
-        pddOrderListGetRequest.setOrderStatus(5);// 发货状态，1：待发货，2：已发货待签收，3：已签收 5：全部
-        pddOrderListGetRequest.setRefundStatus(5);// 售后状态 1：无售后或售后关闭，2：售后处理中，3：退款中，4： 退款成功 5：全部
-
-        // 开始时间 结束时间不能超过24小时
-        pddOrderListGetRequest.setStartConfirmAt(startTime);
-        pddOrderListGetRequest.setEndConfirmAt(endTime);
-        pddOrderListGetRequest.setPage(pageNo);
-        pddOrderListGetRequest.setPageSize(pageSize);
-
-        ErpSalesPullCountResp resp = new ErpSalesPullCountResp();
-        resp.setStartTime(DateUtil.unixTimeStampToDate(startTime));
-        resp.setEndTime(DateUtil.unixTimeStampToDate(endTime));
-
-        Integer addCount = 0, updCount = 0, failCount = 0;
-        log.info("开始更新第" + pageNo + "页。。。。。。。");
-        PddOrderListGetResponse pddOrderListGetResponse = client.syncInvoke(pddOrderListGetRequest, accessToken);
-        if (pddOrderListGetResponse.getErrorResponse() != null) {
-            if (pddOrderListGetResponse.getErrorResponse().getErrorCode().intValue() == 10019) {
-                return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "Token过期");
-            } else
-                return new ApiResult<>(ResultVoEnum.SystemException.getIndex(),
-                        "接口调用失败：" + pddOrderListGetResponse.getErrorResponse().getErrorMsg());
-        } else {
-            // 获取到了数据
-            log.info("第" + pageNo + "页。获取到" + pddOrderListGetResponse.getOrderListGetResponse().getOrderList().size()
-                    + "条数据");
-            if (pddOrderListGetResponse.getOrderListGetResponse().getTotalCount() > 0) {
-                for (var item : pddOrderListGetResponse.getOrderListGetResponse().getOrderList()) {
-                    // if(item.getOrderSn().equals("210629-025663970220736")){
-                    // String s= item.getOrderSn();
-                    // }
-                    PddOrder pddEntity = new PddOrder();
-
-                    /*pddEntity.setBuyer_memo(item.getBuyerMemo());
-                    pddEntity.setCapital_free_discount(item.getCapitalFreeDiscount());
-                    pddEntity.setCity(item.getCity());
-                    pddEntity.setConfirm_status(item.getConfirmStatus());
-                    pddEntity.setConfirm_time(item.getConfirmTime());
-                    pddEntity.setCountry(item.getCountry());
-                    pddEntity.setCreated_time(item.getCreatedTime());
-                    pddEntity.setDiscount_amount(item.getDiscountAmount());
-                    pddEntity.setFree_sf(item.getFreeSf());
-                    pddEntity.setGoods_amount(item.getGoodsAmount());
-                    pddEntity.setGroup_status(item.getGroupStatus());
-                    pddEntity.setIs_lucky_flag(item.getIsLuckyFlag());
-                    pddEntity.setOrderSn(item.getOrderSn());
-                    pddEntity.setOrder_status(item.getOrderStatus());// 订单发货状态，1：待发货，2：已发货待签收，3：已签收 0：异常
-                    pddEntity.setPay_amount(item.getPayAmount());
-                    pddEntity.setPay_no(item.getPayNo());
-                    pddEntity.setPay_time(item.getPayTime());
-                    pddEntity.setPay_type(item.getPayType());
-                    pddEntity.setPlatform_discount(item.getPlatformDiscount());
-                    pddEntity.setPostage(item.getPostage());
-                    pddEntity.setProvince(item.getProvince());
-                    pddEntity.setReceive_time(item.getReceiveTime());
-                    pddEntity.setLast_ship_time(item.getLastShipTime());
-
-                    pddEntity.setReceiver_name(item.getReceiverName());
-                    pddEntity.setReceiver_phone(item.getReceiverPhone());
-                    pddEntity.setAddress(item.getAddress());
-                    pddEntity.setNameKey(extractIndex(item.getReceiverName()));
-                    pddEntity.setPhoneKey(extractIndex(item.getReceiverPhone()));
-                    pddEntity.setAddressKey(extractIndex(item.getAddress()));
-
-                    pddEntity.setRefund_status(item.getRefundStatus());// 订单售后状态，1：无售后或售后关闭，2：售后处理中，3：退款中，4：退款成功，0：异常
-                    pddEntity.setAfter_sales_status(item.getAfterSalesStatus());// 售后状态 0：无售后 2：买家申请退款，待商家处理
-                                                                                // 3：退货退款，待商家处理 4：商家同意退款，退款中
-                                                                                // 5：平台同意退款，退款中 6：驳回退款，待买家处理
-                                                                                // 7：已同意退货退款,待用户发货 8：平台处理中 9：平台拒绝退款，退款关闭
-                                                                                // 10：退款成功 11：买家撤销 12：买家逾期未处理，退款失败
-                                                                                // 13：买家逾期，超过有效期 14：换货补寄待商家处理
-                                                                                // 15：换货补寄待用户处理 16：换货补寄成功 17：换货补寄失败
-                                                                                // 18：换货补寄待用户确认完成 21：待商家同意维修 22：待用户确认发货
-                                                                                // 24：维修关闭 25：维修成功 27：待用户确认收货
-                                                                                // 31：已同意拒收退款，待用户拒收 32：补寄待商家发货
-
-                    pddEntity.setRemark(item.getRemark());
-                    pddEntity.setSeller_discount(item.getSellerDiscount());
-                    pddEntity.setShipping_time(item.getShippingTime());
-                    pddEntity.setTown(item.getTown());
-                    pddEntity.setTracking_number(item.getTrackingNumber());
-                    pddEntity.setTradeType(item.getTradeType());
-                    pddEntity.setUpdated_at(item.getUpdatedAt());
-                    pddEntity.setOrderConfirmTime(DateUtil.strToLongGo(item.getConfirmTime()));
-
-                    List<PddOrderItem> items = new ArrayList<>();
-                    // items
-                    for (var it : item.getItemList()) {
-                        PddOrderItem pddItem = new PddOrderItem();
-                        pddItem.setGoodsImg(it.getGoodsImg());
-                        pddItem.setGoodsName(it.getGoodsName());
-                        pddItem.setGoodsNum(it.getOuterGoodsId());
-                        pddItem.setGoodsPrice(it.getGoodsPrice());
-                        pddItem.setGoodsSpec(it.getGoodsSpec());
-                        pddItem.setGoodsSpecNum(it.getOuterId());
-                        pddItem.setQuantity(it.getGoodsCount());
-                        items.add(pddItem);
-                    }
-                    pddEntity.setItems(items);
-
-                    // 开始写入数据库
-                    var result = orderPddService.insertOrder(pddEntity, shopId);
-                    // log.info("订单处理：" +
-                    // item.getOrderSn()+"【结果："+result.getCode()+"】"+result.getMsg());
-                    if (result.getCode() == EnumResultVo.Exist.getIndex()) {
-                        updCount += 1;
-                    } else if (result.getCode() == EnumResultVo.SUCCESS.getIndex()) {
-                        addCount += 1;
-                    } else {
-                        failCount += 1;
-                    }*/
-                    resp.setAddCount(addCount);
-                    resp.setUpdCount(updCount);
-                    resp.setFailCount(failCount);
-                }
-
-                resp.setTotalRecords(pddOrderListGetResponse.getOrderListGetResponse().getTotalCount());
-            } else
-                resp.setTotalRecords(0);
-        }
-        return new ApiResult<>(ResultVoEnum.SUCCESS.getIndex(), "SUCCESS", resp);
-    }
 
 
 //    /**

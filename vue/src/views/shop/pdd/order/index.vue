@@ -84,7 +84,7 @@
 <!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
-          type="success"
+          type="primary"
           plain
           icon="el-icon-download"
           size="mini"
@@ -94,7 +94,7 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          type="primary"
+          type="success"
           plain
           icon="el-icon-refresh"
           size="mini"
@@ -126,7 +126,7 @@
       </el-table-column>
       <el-table-column label="商品" prop="pddOrderItemList" width="350">
           <template slot-scope="scope">
-            <el-row v-for="item in scope.row.pddOrderItemList" :key="item.id" :gutter="20">
+            <el-row v-for="item in scope.row.itemList" :key="item.id" :gutter="20">
               <!-- <div class="container">
                 <img :src="item.goodsImage"  style="width: 70px; height: 70px" alt="your-image-description">
                 <p>your text here</p>
@@ -136,12 +136,12 @@
                   <el-image  style="width: 70px; height: 70px" :src="item.goodsImage"></el-image>
             </div> -->
             <div style="float: left;display: flex;align-items: center;" >
-              <el-image  style="width: 70px; height: 70px;" :src="item.goodsImage"></el-image>
+              <el-image  style="width: 70px; height: 70px;" :src="item.goodsImg"></el-image>
               <div style="margin-left:10px">
               <p>{{item.goodsName}}</p>
               <p>{{item.goodsSpec}}</p>
               <p>
-                <el-tag size="small">x {{item.quantity}}</el-tag>
+                <el-tag size="small">x {{item.goodsCount}}</el-tag>
 
                 <el-button v-if="item.refundStatus === 1" type="text" size="mini" round @click="handleRefund(scope.row,item)">售后</el-button>
                 </p>
@@ -884,12 +884,15 @@ export default {
     };
   },
   created() {
-     listShop({type:5}).then(response => {
-        this.shopList = response.rows;
+    listShop({type: 5}).then(response => {
+      this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
+    });
 
-      });
-
-    this.getList();
+    // this.getList();
 
   },
   methods: {

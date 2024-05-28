@@ -7,9 +7,9 @@
       <el-tab-pane label="京东POP" name="jdOrder" lazy>
         <order-jd></order-jd>
       </el-tab-pane>
-<!--      <el-tab-pane label="拼多多" name="pddOrder" lazy>-->
-<!--        <order-pdd></order-pdd>-->
-<!--      </el-tab-pane>-->
+      <el-tab-pane label="拼多多" name="pddOrder" lazy>
+        <order-pdd></order-pdd>
+      </el-tab-pane>
 <!--      <el-tab-pane label="抖店" name="douOrder" lazy>-->
 <!--        <order-dou></order-dou>-->
 <!--      </el-tab-pane>-->

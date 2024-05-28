@@ -28,12 +28,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/pdd-api-0.2.jar</systemPath>
         </dependency>
-        <dependency>
-            <groupId>pinduoduo</groupId>
-            <artifactId>pop-sdk-all</artifactId>
-            <version>1.11.8</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/pop-sdk-all-1.11.8.jar</systemPath>
-        </dependency>
+
     </dependencies>
 </project>

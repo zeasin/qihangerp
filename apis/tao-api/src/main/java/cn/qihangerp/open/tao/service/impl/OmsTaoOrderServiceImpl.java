@@ -94,6 +94,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
                 return ResultVo.error(ResultVoEnum.DataExist, "订单已经存在，更新成功");
             } else {
                 // 不存在，新增
+                order.setAuditStatus(0);
                 order.setShopId(shopId);
                 order.setCreateTime(new Date());
                 mapper.insert(order);
