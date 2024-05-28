@@ -1,7 +1,8 @@
-package cn.qihangerp.api.pdd.controller;
+package cn.qihangerp.api.dou.controller;
 
-import cn.qihangerp.api.pdd.bo.ShopApiParams;
-import cn.qihangerp.api.pdd.service.OmsPddGoodsService;
+
+import cn.qihangerp.api.dou.domain.vo.ShopApiParams;
+import cn.qihangerp.api.dou.service.OmsDouGoodsService;
 import cn.qihangerp.common.ApiResult;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.enums.EnumShopType;
@@ -12,9 +13,9 @@ import org.springframework.util.StringUtils;
 
 @Log
 @Component
-public class PddApiHelper {
+public class DouApiHelper {
     @Autowired
-    private OmsPddGoodsService omsPddGoodsService;
+    private OmsDouGoodsService omsPddGoodsService;
 
 
     public ApiResult<ShopApiParams> checkBefore(Long shopId) {
@@ -26,7 +27,7 @@ public class PddApiHelper {
         if (shop.getType().intValue() != EnumShopType.Pdd.getIndex())
             return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，店铺不是pdd店铺");
 
-//       if(shop.getSellerUserId()==null || shop.getSellerUserId()<=0) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到SellerUserId");
+       if(shop.getSellerUserId()==null || shop.getSellerUserId()<=0) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到SellerUserId");
 
         var thirdConfig = omsPddGoodsService.selectShopSettingById(shop.getType());
         if (thirdConfig == null) return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，没有找到第三方平台的配置信息");
