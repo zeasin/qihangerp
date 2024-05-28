@@ -21,7 +21,13 @@
 
     <dependencies>
 
-
+        <dependency>
+            <groupId>pinduoduo</groupId>
+            <artifactId>pdd-api</artifactId>
+            <version>0.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/pdd-api-0.2.jar</systemPath>
+        </dependency>
         <dependency>
             <groupId>pinduoduo</groupId>
             <artifactId>pop-sdk-all</artifactId>

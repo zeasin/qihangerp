@@ -53,7 +53,7 @@
       <el-col :span="1.5">
         <el-button
           :loading="pullLoading"
-          type="danger"
+          type="success"
           plain
           icon="el-icon-download"
           size="mini"
@@ -172,10 +172,14 @@ export default {
     };
   },
   created() {
-    listShop({type:4}).then(response => {
-        this.shopList = response.rows;
-      });
-    this.getList();
+    listShop({type: 4}).then(response => {
+      this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
+    });
+    // this.getList();
   },
   mounted() {
     if(this.$route.query.shopId){

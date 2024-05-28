@@ -45,7 +45,7 @@
       <el-col :span="1.5">
       <el-button
         :loading="pullLoading"
-        type="danger"
+        type="success"
         plain
         icon="el-icon-download"
         size="mini"
@@ -178,10 +178,14 @@ export default {
     };
   },
   created() {
-    listShop({type:2}).then(response => {
+    listShop({type: 2}).then(response => {
       this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
     });
-    this.getList();
+    // this.getList();
   },
   methods: {
     /** 查询商品管理列表 */

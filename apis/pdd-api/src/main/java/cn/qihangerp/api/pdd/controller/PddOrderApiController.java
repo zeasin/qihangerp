@@ -1,6 +1,6 @@
 package cn.qihangerp.api.pdd.controller;
 
-import cn.qihangerp.api.pdd.bo.DouRequest;
+import cn.qihangerp.api.pdd.bo.PddRequest;
 import cn.qihangerp.api.pdd.bo.ShopApiParams;
 import cn.qihangerp.api.pdd.domain.PddOrder;
 import cn.qihangerp.api.pdd.service.IPddOrderService;
@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/pdd_api")
 @RestController
-public class AjaxOrderPddController {
-    private static Logger log = LoggerFactory.getLogger(AjaxOrderPddController.class);
+public class PddOrderApiController {
+    private static Logger log = LoggerFactory.getLogger(PddOrderApiController.class);
     @Autowired
     private ServerConfig serverConfig;
 //    @Autowired
@@ -44,7 +44,7 @@ public class AjaxOrderPddController {
      * @throws Exception
      */
     @RequestMapping(value = "/order/pull_order", method = RequestMethod.GET)
-    public ApiResult<Object> getOrderList(DouRequest reqData, HttpServletRequest req)
+    public ApiResult<Object> getOrderList(PddRequest reqData, HttpServletRequest req)
             throws Exception {
         Integer updType = reqData.getUpdType();//更新类型0拉取新订单1更新订单
         String startDate = reqData.getStartDate();//reqData.getString("startTime");

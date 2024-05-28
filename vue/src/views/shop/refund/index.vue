@@ -4,7 +4,7 @@
       <el-tab-pane label="淘宝天猫" name="taoRefund">
         <tao-refund></tao-refund>
       </el-tab-pane>
-      <el-tab-pane label="京东" name="jdRefund" lazy>
+      <el-tab-pane label="京东POP" name="jdRefund" lazy>
         <refund-jd></refund-jd>
       </el-tab-pane>
       <el-tab-pane label="视频号小店" name="weiRefund" lazy>

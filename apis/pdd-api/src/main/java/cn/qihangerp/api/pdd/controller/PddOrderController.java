@@ -22,7 +22,7 @@ import java.util.List;
  * @date 2024-01-02
  */
 @RestController
-@RequestMapping("/pdd/order")
+@RequestMapping("/pdd-api/order")
 public class PddOrderController extends BaseController
 {
     @Autowired

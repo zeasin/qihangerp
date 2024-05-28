@@ -4,13 +4,12 @@
       <el-tab-pane label="淘宝天猫" name="taoGoods">
         <goods-tao></goods-tao>
       </el-tab-pane>
-      <el-tab-pane label="京东" name="jdGoods" lazy>
+      <el-tab-pane label="京东POP" name="jdGoods" lazy>
         <goods-jd></goods-jd>
       </el-tab-pane>
-
-<!--      <el-tab-pane label="拼多多" name="pddGoods" lazy>-->
-<!--        <goods-pdd></goods-pdd>-->
-<!--      </el-tab-pane>-->
+      <el-tab-pane label="拼多多" name="pddGoods" lazy>
+        <goods-pdd></goods-pdd>
+      </el-tab-pane>
 <!--      <el-tab-pane label="抖店" name="douGoods" lazy>-->
 <!--        <goods-dou></goods-dou>-->
 <!--      </el-tab-pane>-->

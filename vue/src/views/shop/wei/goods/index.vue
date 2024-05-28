@@ -44,7 +44,7 @@
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
-          type="danger"
+          type="success"
           plain
           icon="el-icon-download"
           size="mini"
@@ -171,10 +171,14 @@ export default {
     };
   },
   created() {
-    listShop({type:2}).then(response => {
+    listShop({type: 2}).then(response => {
       this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
     });
-    this.getList();
+    // this.getList();
     this.loading = false;
   },
   methods: {
