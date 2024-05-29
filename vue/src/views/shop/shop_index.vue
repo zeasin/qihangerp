@@ -105,6 +105,7 @@
       <!-- <el-table-column label="Appsercet暂时抖音用" align="center" prop="appSercet" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
+          <el-row>
           <el-button
             size="mini"
             type="text"
@@ -119,7 +120,15 @@
             @click="handleDelete(scope.row)"
             v-hasPermi="['shop:shop:remove']"
           >删除</el-button>
-
+          </el-row>
+          <el-button
+            v-if="scope.row.type!==3"
+            type="success"
+            plain
+            icon="el-icon-refresh"
+            size="mini"
+            @click="handleUpdateToken(scope.row)"
+          >更新AccessToken</el-button>
             <el-button
               size="mini"
               plain
@@ -196,11 +205,33 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
+
+    <el-dialog :title="title" :visible.sync="authOpen" width="500px" append-to-body>
+      <el-form ref="tokenForm" :model="tokenForm"  :rules="rules" label-width="80px">
+        <el-descriptions >
+          <el-descriptions-item label="授权URL："> {{ tokenForm.url }}</el-descriptions-item>
+        </el-descriptions>
+        <div slot="footer" class="dialog-footer">
+          请手动复制上面的URL到浏览器中访问
+        </div>
+        <el-form-item label="code" prop="code">
+          <el-input type="textarea" v-model="tokenForm.code" placeholder="请把授权后的code复制到这里" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="getTokenSubmit">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+      <!--      <div slot="footer" class="dialog-footer">-->
+      <!--        请手动复制上面的URL到浏览器中访问-->
+      <!--      </div>-->
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import {listShop, getShop, delShop, addShop, updateShop, listPlatform} from "@/api/shop/shop";
+import {float} from "quill/ui/icons";
 export default {
   name: "Shop",
   data() {
@@ -225,6 +256,7 @@ export default {
       // 是否显示弹出层
       open: false,
       apiOpen: false,
+      authOpen: false,
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -236,6 +268,11 @@ export default {
       form: {
         type:null
       },
+      // 获取token表单
+      tokenForm:{
+        shopId: null,
+        shopType: null
+      },
       // 表单校验
       rules: {
         name: [
@@ -246,6 +283,7 @@ export default {
         appSercet: [{ required: true, message: "不能为空", trigger: "change" }],
         apiRequestUrl: [{ required: true, message: "不能为空", trigger: "change" }],
         sellerUserId: [{ required: true, message: "不能为空", trigger: "change" }],
+        code: [{ required: true, message: "不能为空", trigger: "change" }],
 
       }
     };
@@ -253,9 +291,13 @@ export default {
   created() {
     listPlatform().then(res=>{
       this.typeList = res.rows;
+      if(this.$route.query.type){
+        this.queryParams.type = parseInt(this.$route.query.type)
+      }
+      this.getList();
     })
 
-    this.getList();
+
   },
   methods: {
     /** 查询店铺列表 */
@@ -373,12 +415,38 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('shop/shop/export', {
-        ...this.queryParams
-      }, `shop_${new Date().getTime()}.xlsx`)
-    }
+    handleUpdateToken(row){
+      console.log("获取token",row)
+      if(row.type === 2 || row.type === 5){
+        getJdOAuthUrl({shopId:row.id}).then(response => {
+          console.log("获取token=====jd ",response)
+          this.authOpen = true;
+          this.title = "更新店铺授权";
+          this.tokenForm.url = response.data
+          this.tokenForm.shopId = row.id
+          this.tokenForm.shopType = row.type
+        })
+      }else if(row.type ===1){
+        getTaoOAuthUrl({shopId:row.id}).then(response => {
+          console.log("获取token=====tao ",response)
+          this.authOpen = true;
+          this.title = "更新店铺授权";
+          this.tokenForm.url = response.data
+          this.tokenForm.shopId = row.id
+          this.tokenForm.shopType = row.type
+        })
+      }else if(row.type ===4){
+        getOAuthUrl({shopId:row.id}).then(response => {
+          console.log("获取token=====pdd ",response)
+          this.authOpen = true;
+          this.title = "更新店铺授权";
+          this.tokenForm.url = response.data
+          this.tokenForm.shopId = row.id
+          this.tokenForm.shopType = row.type
+        })
+      }
+
+    },
   }
 };
 </script>

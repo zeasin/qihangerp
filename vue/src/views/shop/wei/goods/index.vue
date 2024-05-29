@@ -57,12 +57,13 @@
     <el-table v-loading="loading" :data="goodsList" @selection-change="handleSelectionChange">
       <!-- <el-table-column type="selection" width="55" align="center" /> -->
 <!--      <el-table-column label="ID" align="center" prop="id" />-->
-      <el-table-column label="商品ID" align="center" prop="wareId" />
+      <el-table-column label="商品ID" align="center" prop="productId" />
       <el-table-column label="Sku Id" align="center" prop="skuId" />
-      <el-table-column label="sku名称" align="center" prop="skuName" />
-      <el-table-column label="图片" align="center" prop="logo" width="100">
+      <el-table-column label="标题" align="center" prop="title" />
+      <el-table-column label="sku属性" align="center" prop="skuAttr" />
+      <el-table-column label="图片" align="center" prop="thumbImg" width="100">
         <template slot-scope="scope">
-          <image-preview :src="scope.row.logo" :width="50" :height="50"/>
+          <image-preview :src="scope.row.thumbImg" :width="50" :height="50"/>
         </template>
       </el-table-column>
 
@@ -71,12 +72,14 @@
 <!--          <el-tag size="small">{{categoryList.find(x=>x.id === scope.row.categoryId).name}}</el-tag>-->
 <!--        </template>-->
 <!--      </el-table-column>-->
-       <el-table-column label="商家编码" align="center" prop="outerId" />
-      <el-table-column label="京东价" align="center" prop="jdPrice" />
+       <el-table-column label="商家编码" align="center" prop="skuCode" />
+      <el-table-column label="销售价" align="center" prop="salePrice" >
+        <template slot-scope="scope">{{scope.row.salePrice / 100}}</template>
+      </el-table-column>
       <el-table-column label="ERP SKU ID" align="center" prop="erpSkuId" />
       <el-table-column label="状态" align="center" prop="status" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.status === 1">销售中</el-tag>
+          <el-tag size="small" v-if="scope.row.status === 5">销售中</el-tag>
           <el-tag size="small" v-if="scope.row.status === 2">已下架</el-tag>
         </template>
       </el-table-column>

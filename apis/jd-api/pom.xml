@@ -23,9 +23,9 @@
         <dependency>
             <groupId>cn.qihangerp</groupId>
             <artifactId>jd-api</artifactId>
-            <version>1.5.4</version>
+            <version>1.5.5</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/libs/jd-api-1.5.4.jar</systemPath>
+            <systemPath>${project.basedir}/libs/jd-api-1.5.5.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>

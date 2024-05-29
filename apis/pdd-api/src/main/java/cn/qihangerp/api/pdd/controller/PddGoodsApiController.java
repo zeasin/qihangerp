@@ -5,6 +5,7 @@ import cn.qihangerp.api.pdd.bo.PddRequest;
 import cn.qihangerp.api.pdd.domain.OmsPddGoods;
 import cn.qihangerp.api.pdd.domain.OmsPddGoodsSku;
 import cn.qihangerp.api.pdd.service.OmsPddGoodsService;
+import cn.qihangerp.common.ApiResultEnum;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.constant.HttpStatus;
 import cn.qihangerp.core.controller.BaseController;
@@ -64,6 +65,7 @@ public class PddGoodsApiController extends BaseController {
         int totalError = 0;
         int hasExistOrder = 0;//已存在的订单数
         ApiResultVo<GoodsResultVo> apiResultVo = GoodsApiHelper.pullGoodsList(appKey, appSecret, accessToken, 1, 20);
+        if(apiResultVo.getCode() == 10019) return AjaxResult.error(ApiResultEnum.TokenFail.getIndex(),"Token已过期");
         if (apiResultVo.getCode() != 0) return AjaxResult.error(apiResultVo.getCode(), apiResultVo.getMsg());
         //成功
         if (apiResultVo.getData().getGoodsList() != null) {

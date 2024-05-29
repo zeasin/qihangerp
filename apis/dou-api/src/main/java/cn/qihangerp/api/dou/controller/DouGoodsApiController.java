@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +41,7 @@ public class DouGoodsApiController {
 //    private ErpSalesOrderService salesOrderService;
 
     @RequestMapping(value = "/pull_goods", method = RequestMethod.POST)
-    public AjaxResult getOrderList(DouRequest req) throws Exception {
+    public AjaxResult getOrderList(@RequestBody DouRequest req) throws Exception {
         if (req.getShopId() == null || req.getShopId() <= 0) {
             return AjaxResult.error(HttpStatus.PARAMS_ERROR, "参数错误，没有店铺Id");
 //            return ApiResult.build(HttpStatus.PARAMS_ERROR, "参数错误，没有店铺Id");
@@ -53,9 +54,8 @@ public class DouGoodsApiController {
         String url = checkResult.getData().getApiRequestUrl();
         String appKey = checkResult.getData().getAppKey();
         String appSercet = checkResult.getData().getAppSecret();
-
-         appKey = "";
-         appSercet="";
+         appKey = "7344938657423296019";
+         appSercet="4e704882-832a-42e5-845f-6af991ce0ce2";
         Long shopId =90158786L;
         ApiResultVo<Token> token = DouTokenApiHelper.getToken(appKey, appSercet,shopId);
         if(token.getCode()==0) {

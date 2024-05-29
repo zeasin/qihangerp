@@ -10,6 +10,7 @@
             <result property="skuId" column="sku_id" jdbcType="VARCHAR"/>
             <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
             <result property="outSkuId" column="out_sku_id" jdbcType="VARCHAR"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
             <result property="thumbImg" column="thumb_img" jdbcType="VARCHAR"/>
             <result property="salePrice" column="sale_price" jdbcType="INTEGER"/>
             <result property="stockNum" column="stock_num" jdbcType="INTEGER"/>
@@ -24,7 +25,7 @@
 
     <sql id="Base_Column_List">
         id,product_id,sku_id,shop_id,
-        out_sku_id,thumb_img,sale_price,
+        out_sku_id,title,thumb_img,sale_price,
         stock_num,sku_code,status,
         sku_attrs,sku_deliver_info,erp_goods_id,
         erp_goods_sku_id

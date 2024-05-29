@@ -19,13 +19,13 @@ public class DouApiHelper {
 
 
     public ApiResult<ShopApiParams> checkBefore(Long shopId) {
-        log.info("/**************主动更新tao 参数检查****************/");
+        log.info("/**************主动更新dou 参数检查****************/");
         var shop = omsPddGoodsService.selectShopById(shopId);
 
         if (shop == null) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，没有找到店铺");
 
-        if (shop.getType().intValue() != EnumShopType.Pdd.getIndex())
-            return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，店铺不是pdd店铺");
+        if (shop.getType().intValue() != EnumShopType.DouYin.getIndex())
+            return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，店铺不是dou店铺");
 
        if(shop.getSellerUserId()==null || shop.getSellerUserId()<=0) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到SellerUserId");
 

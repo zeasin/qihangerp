@@ -58,6 +58,9 @@ public class JdGoodsController extends BaseController {
 
         //获取接口
         ApiResultVo<GoodsSku> upResult = GoodsApiHelper.pullGoods(appKey,appSecret,accessToken);
+        if(upResult.getCode() == 19) return AjaxResult.error(ApiResultEnum.TokenFail.getIndex(),"Token已过期");
+        if(upResult.getCode()!=0) return AjaxResult.error(upResult.getCode(),upResult.getMsg());
+
         int successTotal = 0;//新增成功的订单
         int totalError = 0;
         int hasExistOrder = 0;//已存在的订单数

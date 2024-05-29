@@ -56,6 +56,8 @@ public class OmsWeiGoodsServiceImpl extends ServiceImpl<OmsWeiGoodsMapper, OmsWe
             if(goods.getSkuList()!=null) {
                 for (var sku : goods.getSkuList()) {
                     sku.setShopId(goods.getShopId());
+                    sku.setThumbImg(goods.getHeadImg());
+                    sku.setTitle(goods.getTitle());
 //                    sku.setWeiGoodsId(goods.getId());
                     // 根据OuterId查找ERP系统中的skuid
 //                    if(StringUtils.isNotEmpty(sku.getSkuCode())) {
@@ -79,6 +81,8 @@ public class OmsWeiGoodsServiceImpl extends ServiceImpl<OmsWeiGoodsMapper, OmsWe
             if(goods.getSkuList()!=null) {
                 for (var sku : goods.getSkuList()) {
                     sku.setShopId(goods.getShopId());
+                    sku.setThumbImg(goods.getHeadImg());
+                    sku.setTitle(goods.getTitle());
 //                    sku.setWeiGoodsId(goods.getId());
                     // 根据OuterId查找ERP系统中的skuid
                     // TODO:未完成

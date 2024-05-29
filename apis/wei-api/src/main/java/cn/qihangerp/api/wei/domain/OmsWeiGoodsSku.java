@@ -34,6 +34,7 @@ public class OmsWeiGoodsSku implements Serializable {
      * sku小图
      */
     private String thumbImg;
+    private String title;
 
     /**
      * 售卖价格，以分为单位

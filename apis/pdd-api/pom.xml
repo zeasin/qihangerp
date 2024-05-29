@@ -24,9 +24,9 @@
         <dependency>
             <groupId>pinduoduo</groupId>
             <artifactId>pdd-api</artifactId>
-            <version>0.2</version>
+            <version>0.3</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/libs/pdd-api-0.2.jar</systemPath>
+            <systemPath>${project.basedir}/libs/pdd-api-0.3.jar</systemPath>
         </dependency>
 
     </dependencies>
