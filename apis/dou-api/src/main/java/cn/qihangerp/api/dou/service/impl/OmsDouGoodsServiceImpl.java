@@ -3,11 +3,14 @@ package cn.qihangerp.api.dou.service.impl;
 import cn.qihangerp.api.dou.domain.OmsDouGoodsSku;
 import cn.qihangerp.api.dou.domain.vo.ErpGoodsSpecVo;
 import cn.qihangerp.api.dou.mapper.OmsDouGoodsSkuMapper;
+import cn.qihangerp.common.PageQuery;
+import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.domain.Shop;
 import cn.qihangerp.domain.ShopSetting;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.qihangerp.api.dou.domain.OmsDouGoods;
 import cn.qihangerp.api.dou.service.OmsDouGoodsService;
@@ -29,6 +32,14 @@ public class OmsDouGoodsServiceImpl extends ServiceImpl<OmsDouGoodsMapper, OmsDo
     implements OmsDouGoodsService{
     private final OmsDouGoodsMapper mapper;
     private final OmsDouGoodsSkuMapper skuMapper;
+    @Override
+    public PageResult<OmsDouGoods> queryPageList(OmsDouGoods bo, PageQuery pageQuery) {
+        LambdaQueryWrapper<OmsDouGoods> queryWrapper = new LambdaQueryWrapper<OmsDouGoods>()
+                .eq(bo.getShopId()!=null,OmsDouGoods::getShopId,bo.getShopId());
+
+        Page<OmsDouGoods> goodsPage = mapper.selectPage(pageQuery.build(), queryWrapper);
+        return PageResult.build(goodsPage);
+    }
 
     @Override
     public int saveAndUpdateGoods(Long shopId, OmsDouGoods goods) {
@@ -49,6 +60,8 @@ public class OmsDouGoodsServiceImpl extends ServiceImpl<OmsDouGoodsMapper, OmsDo
                     sku.setShopId(shopId);
                     sku.setImg(goods.getImg());
                     sku.setName(goods.getName());
+                    sku.setErpGoodsId(0L);
+                    sku.setErpGoodsSkuId(0L);
                     // 根据OuterId查找ERP系统中的skuid
                     if(StringUtils.isNotEmpty(sku.getCode())) {
                         ErpGoodsSpecVo erpGoodsSpecVo = skuMapper.selectGoodsSpecBySpecNum(sku.getCode());
@@ -73,6 +86,8 @@ public class OmsDouGoodsServiceImpl extends ServiceImpl<OmsDouGoodsMapper, OmsDo
                     sku.setShopId(shopId);
                     sku.setImg(goods.getImg());
                     sku.setName(goods.getName());
+                    sku.setErpGoodsId(0L);
+                    sku.setErpGoodsSkuId(0L);
                     // 根据OuterId查找ERP系统中的skuid
                     if(StringUtils.isNotEmpty(sku.getCode())) {
                         ErpGoodsSpecVo erpGoodsSpecVo = skuMapper.selectGoodsSpecBySpecNum(sku.getCode());

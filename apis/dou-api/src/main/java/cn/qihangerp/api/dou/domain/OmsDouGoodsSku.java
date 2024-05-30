@@ -12,7 +12,7 @@ public class OmsDouGoodsSku implements Serializable {
     /**
      * 商品sku_id;抖店系统生成。
      */
-    private Long id;
+    private String id;
 
     /**
      * 商品ID；抖店系统生成。
@@ -37,12 +37,12 @@ public class OmsDouGoodsSku implements Serializable {
     /**
      * sku状态 true上架 false下架
      */
-    private String skuStatus;
+    private Boolean skuStatus;
 
     /**
      * 外部的skuId；商家自定义；未设置返回为0。
      */
-    private Long outSkuId;
+    private int outSkuId;
 
     /**
      * 第一级子规格

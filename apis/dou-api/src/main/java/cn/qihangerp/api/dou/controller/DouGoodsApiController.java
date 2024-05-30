@@ -54,12 +54,12 @@ public class DouGoodsApiController {
         String url = checkResult.getData().getApiRequestUrl();
         String appKey = checkResult.getData().getAppKey();
         String appSercet = checkResult.getData().getAppSecret();
-         appKey = "7344938657423296019";
-         appSercet="4e704882-832a-42e5-845f-6af991ce0ce2";
-        Long shopId =90158786L;
-        ApiResultVo<Token> token = DouTokenApiHelper.getToken(appKey, appSercet,shopId);
+
+        ApiResultVo<Token> token = DouTokenApiHelper.getToken(appKey, appSercet,checkResult.getData().getSellerUserId());
         if(token.getCode()==0) {
             accessToken = token.getData().getAccessToken();
+        }else{
+            return AjaxResult.error(token.getMsg());
         }
 
         int insertSuccess = 0;//新增成功的订单

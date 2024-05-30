@@ -58,27 +58,38 @@
     <el-table v-loading="loading" :data="goodsList" @selection-change="handleSelectionChange">
       <!-- <el-table-column type="selection" width="55" align="center" /> -->
 <!--      <el-table-column label="ID" align="center" prop="id" />-->
-      <el-table-column label="商品ID" align="center" prop="wareId" />
-      <el-table-column label="Sku Id" align="center" prop="skuId" />
-      <el-table-column label="sku名称" align="center" prop="skuName" />
+      <el-table-column label="商品ID" align="center" prop="productId" />
+      <el-table-column label="规格Id" align="center" prop="specId" />
+      <el-table-column label="商品名称" align="center" prop="name" />
       <el-table-column label="图片" align="center" prop="logo" width="100">
         <template slot-scope="scope">
-          <image-preview :src="scope.row.logo" :width="50" :height="50"/>
+          <image-preview :src="scope.row.img" :width="50" :height="50"/>
         </template>
       </el-table-column>
 
-<!--      <el-table-column label="店铺" align="center" prop="categoryId" >-->
+      <el-table-column label="规格" align="center" prop="specDetailName1" >
+        <template slot-scope="scope">
+          {{scope.row.specDetailName1}}&nbsp;
+          {{scope.row.specDetailName2}}&nbsp;
+          {{scope.row.specDetailName3}}
+        </template>
+      </el-table-column>
+      <!--      <el-table-column label="店铺" align="center" prop="categoryId" >-->
 <!--        <template slot-scope="scope">-->
 <!--          <el-tag size="small">{{categoryList.find(x=>x.id === scope.row.categoryId).name}}</el-tag>-->
 <!--        </template>-->
 <!--      </el-table-column>-->
-       <el-table-column label="商家编码" align="center" prop="outerId" />
-      <el-table-column label="京东价" align="center" prop="jdPrice" />
-      <el-table-column label="ERP SKU ID" align="center" prop="erpSkuId" />
-      <el-table-column label="状态" align="center" prop="status" >
+       <el-table-column label="SKU编码" align="center" prop="code" />
+      <el-table-column label="价格" align="center" prop="price" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.status === 1">销售中</el-tag>
-          <el-tag size="small" v-if="scope.row.status === 2">已下架</el-tag>
+          {{amountFormatter(null,null,scope.row.price/100,0)}}
+        </template>
+      </el-table-column>
+      <el-table-column label="ERP SKU ID" align="center" prop="erpGoodsSkuId" />
+      <el-table-column label="状态" align="center" prop="skuStatus" >
+        <template slot-scope="scope">
+          <el-tag size="small" v-if="scope.row.skuStatus === false">已下架</el-tag>
+          <el-tag size="small" v-if="scope.row.skuStatus === true">销售中</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -123,7 +134,7 @@
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 import {listShop} from "@/api/shop/shop";
-import {pullGoodsList} from "@/api/dou/goods";
+import {pullGoodsList,listGoodsSku} from "@/api/dou/goods";
 import {MessageBox} from "element-ui";
 import {isRelogin} from "@/utils/request";
 
@@ -185,6 +196,9 @@ export default {
     this.loading = false;
   },
   methods: {
+    amountFormatter(row, column, cellValue, index) {
+      return '￥' + cellValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    },
     /** 查询商品管理列表 */
     getList() {
       this.loading = true;
@@ -245,7 +259,7 @@ export default {
           console.log('拉取PDD商品接口返回=====',response)
           if(response.code === 1401) {
             MessageBox.confirm('Token已过期，需要重新授权！请前往店铺列表重新获取授权！', '系统提示', { confirmButtonText: '前往授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
-              isRelogin.show = false;
+              // isRelogin.show = false;
               this.$router.push({path:"/shop/shop_list",query:{type:6}})
               // store.dispatch('LogOut').then(() => {
               // location.href = response.data.tokenRequestUrl+'?shopId='+this.queryParams.shopId
@@ -256,6 +270,7 @@ export default {
 
             // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
           }else{
+            this.pullLoading = false
             this.getList()
             this.$modal.msgSuccess(JSON.stringify(response));
           }

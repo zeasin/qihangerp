@@ -44,6 +44,7 @@ public class DouApiHelper {
         params.setAccessToken(shop.getSessionKey());
         params.setTokenRequestUrl(thirdConfig.getRequestUrl());
         params.setApiRequestUrl(shop.getApiRequestUrl());
+        params.setSellerUserId(shop.getSellerUserId());
         if (!StringUtils.hasText(shop.getSessionKey()))
             return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "Token已过期，请重新授权",params);
 

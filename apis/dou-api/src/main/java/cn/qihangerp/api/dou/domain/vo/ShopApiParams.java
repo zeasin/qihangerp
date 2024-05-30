@@ -7,6 +7,16 @@ public class ShopApiParams {
     private String apiRequestUrl;
     private String tokenRequestUrl;
 
+    private Long sellerUserId;
+
+    public Long getSellerUserId() {
+        return sellerUserId;
+    }
+
+    public void setSellerUserId(Long sellerUserId) {
+        this.sellerUserId = sellerUserId;
+    }
+
     public String getTokenRequestUrl() {
         return tokenRequestUrl;
     }

@@ -1,6 +1,8 @@
 package cn.qihangerp.api.dou.service;
 
 import cn.qihangerp.api.dou.domain.OmsDouGoods;
+import cn.qihangerp.common.PageQuery;
+import cn.qihangerp.common.PageResult;
 import cn.qihangerp.domain.Shop;
 import cn.qihangerp.domain.ShopSetting;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -11,6 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-05-28 20:35:45
 */
 public interface OmsDouGoodsService extends IService<OmsDouGoods> {
+
+    PageResult<OmsDouGoods> queryPageList(OmsDouGoods bo, PageQuery pageQuery);
+
     int saveAndUpdateGoods(Long shopId,OmsDouGoods goods);
 
     Shop selectShopById(Long id);

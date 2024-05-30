@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 /**
@@ -101,7 +102,7 @@ public class OmsDouGoods implements Serializable {
      * 更新时间
      */
     private Date modifyTime;
-
+    @TableField(exist = false)
     private List<OmsDouGoodsSku> skuList;
     private static final long serialVersionUID = 1L;
 }
