@@ -10,9 +10,9 @@
       <el-tab-pane label="拼多多" name="pddOrder" lazy>
         <order-pdd></order-pdd>
       </el-tab-pane>
-<!--      <el-tab-pane label="抖店" name="douOrder" lazy>-->
-<!--        <order-dou></order-dou>-->
-<!--      </el-tab-pane>-->
+      <el-tab-pane label="抖店" name="douOrder" lazy>
+        <order-dou></order-dou>
+      </el-tab-pane>
       <el-tab-pane label="视频号小店" name="weiOrder" lazy>
         <order-wei></order-wei>
       </el-tab-pane>

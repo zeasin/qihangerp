@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 30/05/2024 16:27:08
+ Date: 30/05/2024 20:17:09
 */
 
 SET NAMES utf8mb4;
@@ -2865,6 +2865,153 @@ INSERT INTO `oms_dou_goods_sku` VALUES (1796095817002602497, 3675809299109642249
 INSERT INTO `oms_dou_goods_sku` VALUES (1796095817031962626, 3675809299109642249, 1794829436074089, '', 0, '1', 0, 1794829436076041, NULL, NULL, '1.5米真皮软床【卷包排骨条】', '', '', 279900, 1711682737, 50, 0, 0, 0, 0, 0, 50, 0, NULL, 0, 0, 6, 'QM/曲美家居现代轻奢大床主卧室牛皮真皮软包床卷包排骨1.8x2米', 'https://p3-aio.ecombdimg.com/obj/ecom-shop-material/WPnATfLV_m_802261a225a1a9cf19f9efbf3e095dd9_sx_454567_www800-800');
 INSERT INTO `oms_dou_goods_sku` VALUES (1796095817145208833, 3675473784854413419, 1794665612080155, 'ZH-PC-2-DS-F1-QM24-B1-18', 0, '1', 0, 1794665612081163, NULL, NULL, '1.8米泡芙真皮软床【卷包排骨条】', '', '', 289900, 1711526505, 60, 0, 0, 0, 0, 0, 60, 0, NULL, 0, 0, 6, 'QM/曲美家居现代轻奢奶油简约大床卧室牛皮真皮软包床1.8x2米女孩', 'https://p3-aio.ecombdimg.com/obj/ecom-shop-material/WPnATfLV_m_3e68a575858dbc50b5bc61e400a4b96d_sx_409253_www800-800');
 INSERT INTO `oms_dou_goods_sku` VALUES (1796095817178763266, 3675473784854413419, 1794665612080155, 'ZH-PC-2-DS-F1-QM24-B1-15', 0, '1', 0, 1794665612080187, NULL, NULL, '1.5米泡芙真皮软床【卷包排骨条】', '', '', 279900, 1711526505, 60, 0, 0, 0, 0, 0, 60, 0, NULL, 0, 0, 6, 'QM/曲美家居现代轻奢奶油简约大床卧室牛皮真皮软包床1.8x2米女孩', 'https://p3-aio.ecombdimg.com/obj/ecom-shop-material/WPnATfLV_m_3e68a575858dbc50b5bc61e400a4b96d_sx_409253_www800-800');
+
+-- ----------------------------
+-- Table structure for oms_dou_order
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_dou_order`;
+CREATE TABLE `oms_dou_order`  (
+  `id` bigint(0) NOT NULL,
+  `order_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺父订单号，抖店平台生成，平台下唯一；',
+  `order_level` int(0) DEFAULT NULL COMMENT '订单层级，主订单是2级',
+  `order_phase_list` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '定金预售阶段单json',
+  `order_status` int(0) DEFAULT NULL COMMENT '订单状态1 待确认/待支付（订单创建完毕）105 已支付 2 备货中 101 部分发货 3 已发货（全部发货）4 已取消5 已完成（已收货）',
+  `order_status_desc` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单状态描述',
+  `order_tag` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '\r\n订单的一些c端标签json',
+  `order_type` int(0) DEFAULT NULL COMMENT '【订单类型】 0、普通订单 2、虚拟商品订单 4、电子券（poi核销） 5、三方核销',
+  `order_type_desc` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '订单类型描述',
+  `app_id` int(0) DEFAULT NULL COMMENT '具体某个小程序的ID',
+  `open_id` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '抖音小程序ID',
+  `accept_order_status` int(0) DEFAULT NULL COMMENT '小时达订单的接单状态 0-未接单；1-已接单；2-超时取消，或商家取消',
+  `appointment_ship_time` int(0) DEFAULT NULL COMMENT '预约发货时间',
+  `author_cost_amount` int(0) DEFAULT NULL COMMENT '作者（达人）承担金额（单位：分），订单参与活动和优惠中作者（达人）承担部分的总金额',
+  `aweme_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '达人抖音号，样品订单场景下才会返回的申样达人信息；',
+  `b_type` int(0) DEFAULT NULL COMMENT '【下单端】 0、站外 1、火山 2、抖音 3、头条 4、西瓜 5、微信 6、值点app 7、头条lite 8、懂车帝 9、皮皮虾 11、抖音极速版 12、TikTok 13、musically 14、穿山甲 15、火山极速版 16、服务市场 26、番茄小说 27、UG教育营销电商平台 28、Jumanji 29、电商SDK',
+  `b_type_desc` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '下单端描述',
+  `sub_b_type` int(0) DEFAULT NULL COMMENT '【下单场景】 0、未知 1、app内-原生 2、app内-小程序 3、H5 13、电商SDK-头条 35、电商SDK-头条lite',
+  `sub_b_type_desc` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '下单场景描述',
+  `biz` int(0) DEFAULT NULL COMMENT '【业务来源】 1 -鲁班 2 -小店 3 -好好学习 4 -ev 5 -虚拟 6 -建站 7 -核销 8 -玉石 9 -ez 10 -ep 11 -虚拟卡券 12 -服务市场 13 - EP 视频课 14 - EP 直播课 21 -跨境BBC 22 -跨境BC 23 -跨境CC|UPU 24 -手机充值 25 -拍卖保证金 26 -懂车帝抵扣券 27 -懂车帝返现券 28 -离岛免税 29 -海南会员购 30 -抽奖 31 -清北-企业代付 32 -抖+券 33 -联盟寄样 49 -刀剑 53 -通信卡 66 -加油包 76 -大闸蟹 99 -保险 102-小店海外 108-上门取件收款',
+  `biz_desc` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '业务来源描述',
+  `buyer_words` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '买家留言',
+  `seller_words` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商家备注',
+  `seller_remark_stars` int(0) DEFAULT NULL COMMENT '插旗信息：0-灰 1-紫 2-青 3-绿 4-橙 5-红',
+  `cancel_reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '取消原因',
+  `channel_payment_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '支付渠道的流水号',
+  `create_time` int(0) DEFAULT NULL COMMENT '下单时间，时间戳，秒',
+  `pay_time` int(0) DEFAULT NULL COMMENT '支付时间，时间戳，秒',
+  `update_time` int(0) DEFAULT NULL COMMENT '订单更新时间，时间戳，秒',
+  `finish_time` int(0) DEFAULT NULL COMMENT '订单完成时间，时间戳，秒',
+  `order_expire_time` int(0) DEFAULT NULL COMMENT '订单过期时间，时间戳，秒',
+  `doudian_open_id` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '用户唯一id',
+  `encrypt_post_receiver` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人姓名',
+  `encrypt_post_tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人电话',
+  `exp_ship_time` int(0) DEFAULT NULL COMMENT '预计发货时间，时间戳，秒',
+  `logistics_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '物流信息JSON',
+  `main_status` int(0) DEFAULT NULL COMMENT '主流程状态，1 待确认/待支付（订单创建完毕）103 部分支付105 已支付2 备货中101 部分发货3 已发货（全部发货）4 已取消5 已完成（已收货）21 发货前退款完结22 发货后退款完结39 收货后退款完结',
+  `main_status_desc` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '主流程状态描述',
+  `mask_post_receiver` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人姓名（脱敏后）',
+  `mask_post_tel` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人电话（脱敏后）',
+  `mask_post_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '收件人地址（脱敏后）',
+  `province_name` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '省',
+  `province_id` int(0) DEFAULT NULL,
+  `city_name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `city_id` int(0) DEFAULT NULL,
+  `town_name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `town_id` int(0) DEFAULT NULL,
+  `street_name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `street_id` int(0) DEFAULT NULL,
+  `open_address_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '标识收件人地址的id，可用于合单',
+  `modify_amount` int(0) DEFAULT NULL COMMENT '改价金额变化量（单位：分）',
+  `modify_post_amount` int(0) DEFAULT NULL COMMENT '改价运费金额变化量（单位：分）',
+  `only_platform_cost_amount` int(0) DEFAULT NULL COMMENT '仅平台承担金额（单位：分），订单参与活动和优惠中平台承担部分的总金额',
+  `order_amount` int(0) DEFAULT NULL COMMENT '订单金额（单位：分）',
+  `pay_amount` int(0) DEFAULT NULL COMMENT '支付金额（单位：分）',
+  `pay_type` int(0) DEFAULT NULL COMMENT '7=无需支付（0元单）；8=DOU分期（信用支付）；9=新卡支付；12=先用后付；16=收银台支付',
+  `post_amount` int(0) DEFAULT NULL COMMENT '快递费（单位：分）',
+  `post_insurance_amount` int(0) DEFAULT NULL COMMENT '运费险金额（单位：分）',
+  `post_origin_amount` int(0) DEFAULT NULL COMMENT '运费原价（单位：分），post_origin_amount = post_amount + post_promotion_amount',
+  `post_promotion_amount` int(0) DEFAULT NULL COMMENT '运费优惠金额（单位：分）',
+  `promotion_amount` int(0) DEFAULT NULL COMMENT '订单优惠总金额（单位：分） = 店铺优惠金额 + 平台优惠金额 + 达人优惠金额',
+  `promotion_pay_amount` int(0) DEFAULT NULL COMMENT '支付优惠金额（单位：分），支付渠道上的优惠金额',
+  `promotion_platform_amount` int(0) DEFAULT NULL COMMENT '平台优惠金额（单位：分），属于平台的优惠活动、优惠券、红包的总优惠金额',
+  `promotion_redpack_amount` int(0) DEFAULT NULL COMMENT '红包优惠金额（单位：分）',
+  `promotion_redpack_platform_amount` int(0) DEFAULT NULL COMMENT '平台红包优惠金额（单位：分），属于平台的红包的优惠金额',
+  `promotion_redpack_talent_amount` int(0) DEFAULT NULL COMMENT '达人红包优惠金额（单位：分），属于达人的红包的优惠金额',
+  `promotion_shop_amount` int(0) DEFAULT NULL COMMENT '店铺优惠金额（单位：分），属于店铺的优惠活动、优惠券、红包的总优惠金额',
+  `promotion_talent_amount` int(0) DEFAULT NULL COMMENT '达人优惠金额（单位：分），属于达人的优惠活动、优惠券、红包的总优惠金额',
+  `ship_time` int(0) DEFAULT NULL COMMENT '发货时间，时间戳，秒',
+  `shop_cost_amount` int(0) DEFAULT NULL COMMENT '商家承担金额（单位：分），订单参与活动和优惠中商家承担部分的总金额',
+  `platform_cost_amount` int(0) DEFAULT NULL COMMENT '平台承担金额（单位：分），订单参与活动和优惠中平台+作者（达人）承担部分的总金额,包含作者（达人）承担金额：platform_cost_amount = only_platform_cost_amount + author_cost_amount',
+  `shop_id` bigint(0) DEFAULT NULL COMMENT '店铺id，抖店平台生成，平台下唯一；',
+  `shop_name` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商户名称',
+  `total_promotion_amount` int(0) DEFAULT NULL COMMENT '总优惠金额（单位：分），total_promotion_amount = promotion_amount + post_promotion_amount',
+  `user_tag_ui` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '用户特征标签；JSON',
+  `s_shop_id` int(0) DEFAULT NULL COMMENT '系统店铺id',
+  `pull_time` datetime(0) DEFAULT NULL COMMENT '第一次拉取时间',
+  `last_pull_time` datetime(0) DEFAULT NULL COMMENT '最后一次拉取时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '抖店订单表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for oms_dou_order_item
+-- ----------------------------
+DROP TABLE IF EXISTS `oms_dou_order_item`;
+CREATE TABLE `oms_dou_order_item`  (
+  `id` bigint(0) NOT NULL,
+  `order_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺子订单号，抖店平台生成，平台下唯一；注意：一笔订单下有一个子订单和父订单单号相同。',
+  `parent_order_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '店铺父订单号，抖店平台生成，平台下唯一；',
+  `order_level` int(0) DEFAULT NULL COMMENT '订单层级',
+  `ad_env_type` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '广告来源，video-短视频 live-直播',
+  `after_sale_status` int(0) DEFAULT NULL COMMENT '售后状态；6-售后申请；27-拒绝售后申请；12-售后成功；7-售后退货中；11-售后已发货；29-售后退货拒绝；13-【换货返回：换货售后换货商家发货】，【补寄返回：补寄待用户收货】； 14-【换货返回：（换货）售后换货用户收货】，【补寄返回：（补寄）用户已收货】 ；28-售后失败；51-订单取消成功；53-逆向交易已完成；',
+  `after_sale_type` int(0) DEFAULT NULL COMMENT '售后类型 ；0-退货退款;1-已发货仅退款;2-未发货仅退款;3-换货;4-系统取消;5-用户取消;6-价保;7-补寄;',
+  `refund_status` int(0) DEFAULT NULL COMMENT '退款状态:1-待退款；3-退款成功； 4-退款失败；当买家发起售后后又主动取消售后，此时after_sale_status=28并且refund_status=1的状态不变，不会流转至4状态；',
+  `author_cost_amount` int(0) DEFAULT NULL COMMENT '作者（达人）承担金额（单位：分），订单参与活动和优惠中作者（达人）承担部分的总金额',
+  `author_id` int(0) DEFAULT NULL COMMENT '直播主播id（达人）;仅直播间和橱窗产生的订单会有值返回;',
+  `author_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '直播主播名称;仅直播间和橱窗产生的订单会有值返回',
+  `c_biz` int(0) DEFAULT NULL COMMENT '【C端流量来源】 0-unknown 2-精选联盟 8-小店自卖',
+  `c_biz_desc` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'C端流量来源业务类型描述',
+  `cancel_reason` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '\r\n取消原因',
+  `channel_payment_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '支付渠道的流水号',
+  `code` varchar(88) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商家后台商品编码',
+  `confirm_receipt_time` int(0) DEFAULT NULL COMMENT '用户确认收货时间',
+  `finish_time` int(0) DEFAULT NULL COMMENT '订单完成时间，时间戳，秒',
+  `goods_price` int(0) DEFAULT NULL COMMENT '\r\n商品原价（单位：分）',
+  `goods_type` int(0) DEFAULT NULL COMMENT '【商品类型】 0-实体 1-虚拟',
+  `is_comment` int(0) DEFAULT NULL COMMENT '\r\n是否评价 :1-已评价，0-未评价，2 -追评',
+  `item_num` int(0) DEFAULT NULL COMMENT '订单商品数量',
+  `logistics_receipt_time` int(0) DEFAULT NULL COMMENT '物流收货时间 ',
+  `modify_amount` int(0) DEFAULT NULL COMMENT '\r\n改价金额变化量（单位：分）',
+  `modify_post_amount` int(0) DEFAULT NULL COMMENT '改价运费金额变化量（单位：分）',
+  `only_platform_cost_amount` int(0) DEFAULT NULL COMMENT '仅平台承担金额（单位：分），订单参与活动和优惠中平台承担部分的总金额',
+  `order_amount` int(0) DEFAULT NULL COMMENT '订单金额（单位：分）',
+  `pay_amount` int(0) DEFAULT NULL COMMENT '支付金额（单位：分）',
+  `post_insurance_amount` int(0) DEFAULT NULL COMMENT '运费险金额（单位：分）',
+  `promotion_amount` int(0) DEFAULT NULL COMMENT '订单优惠总金额（单位：分） = 店铺优惠金额 + 平台优惠金额 + 达人优惠金额',
+  `promotion_shop_amount` int(0) DEFAULT NULL COMMENT '店铺优惠金额（单位：分），属于店铺的优惠活动、优惠券、红包的总优惠金额',
+  `promotion_platform_amount` int(0) DEFAULT NULL COMMENT '平台优惠金额（单位：分），属于平台的优惠活动、优惠券、红包的总优惠金额',
+  `shop_cost_amount` int(0) DEFAULT NULL COMMENT '商家承担金额（单位：分），订单参与活动和优惠中商家承担部分的总金额',
+  `platform_cost_amount` int(0) DEFAULT NULL COMMENT '平台承担金额（单位：分），订单参与活动和优惠中平台+作者（达人）承担部分的总金额,包含作者（达人）承担金额：platform_cost_amount = only_platform_cost_amount + author_cost_amount',
+  `promotion_talent_amount` int(0) DEFAULT NULL COMMENT '达人优惠金额（单位：分），属于达人的优惠活动、优惠券、红包的总优惠金额',
+  `promotion_pay_amount` int(0) DEFAULT NULL COMMENT '支付优惠金额（单位：分），支付渠道上的优惠金额',
+  `origin_amount` int(0) DEFAULT NULL COMMENT '商品现价（单位：分）',
+  `out_product_id` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品外部编码',
+  `out_sku_id` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '外部Skuid',
+  `product_id` bigint(0) DEFAULT NULL COMMENT '商品ID',
+  `sku_id` bigint(0) DEFAULT NULL COMMENT '商品skuId',
+  `product_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品名称',
+  `product_pic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '商品图片',
+  `promotion_redpack_amount` int(0) DEFAULT NULL COMMENT '平台优惠金额（单位：分），属于平台的优惠活动、优惠券、红包的总优惠金额',
+  `promotion_redpack_platform_amount` int(0) DEFAULT NULL COMMENT '平台红包优惠金额（单位：分），属于平台的红包的优惠金额',
+  `promotion_redpack_talent_amount` int(0) DEFAULT NULL COMMENT '达人红包优惠金额（单位：分），属于达人的红包的优惠金额',
+  `room_id` int(0) DEFAULT NULL COMMENT '直播间id，有值则代表订单来自直播间',
+  `ship_time` int(0) DEFAULT NULL COMMENT '\r\n发货时间',
+  `spec` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci COMMENT '规格信息JSON',
+  `theme_type_desc` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '下单来源描述（废弃）',
+  `update_time` int(0) DEFAULT NULL COMMENT '订单更新时间，时间戳，秒',
+  `create_time` int(0) DEFAULT NULL COMMENT '下单时间，时间戳，秒',
+  `video_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '视频id，有值则代表订单来自短视频video_id',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '抖店订单明细表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for oms_jd_after_sale

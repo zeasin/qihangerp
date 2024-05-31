@@ -554,10 +554,14 @@ export default {
     };
   },
   created() {
-    listShop({type:4}).then(response => {
-        this.shopList = response.rows;
-      });
-    this.getList();
+    listShop({type: 4}).then(response => {
+      this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
+    });
+    // this.getList();
   },
   methods: {
     amountFormatter(row, column, cellValue, index) {
@@ -636,10 +640,11 @@ export default {
         pullOrder({shopId:this.queryParams.shopId,updType:0}).then(response => {
           console.log('拉取淘宝订单接口返回=====',response)
           if(response.code === 1401) {
-              MessageBox.confirm('Token已过期，需要重新授权', '系统提示', { confirmButtonText: '重新授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
-                isRelogin.show = false;
+              MessageBox.confirm('Token已过期，需要重新授权！请前往店铺列表重新获取授权！', '系统提示', { confirmButtonText: '前往授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
+                this.$router.push({path:"/shop/shop_list",query:{type:4}})
+                // isRelogin.show = false;
                 // store.dispatch('LogOut').then(() => {
-                location.href = response.data.tokenRequestUrl+'?shopId='+this.queryParams.shopId
+                // location.href = response.data.tokenRequestUrl+'?shopId='+this.queryParams.shopId
                 // })
               }).catch(() => {
                 isRelogin.show = false;

@@ -340,9 +340,9 @@ public class OmsPddOrder implements Serializable {
     private Integer auditStatus;
 
     /**
-     * 发货时间（仓库真实发货时间）
+     * 审核时间（仓库真实发货时间）
      */
-    private Long auditTime;
+    private Date auditTime;
 
     /**
      * 系统创建时间

@@ -71,7 +71,7 @@
             <result property="riskControlStatus" column="risk_control_status" jdbcType="INTEGER"/>
             <result property="urgeShippingTime" column="urge_shipping_time" jdbcType="VARCHAR"/>
             <result property="auditStatus" column="audit_status" jdbcType="INTEGER"/>
-            <result property="auditTime" column="audit_time" jdbcType="BIGINT"/>
+            <result property="auditTime" column="audit_time" jdbcType="TIMESTAMP"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>

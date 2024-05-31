@@ -352,10 +352,14 @@ export default {
     };
   },
   created() {
-    listShop({type:2}).then(response => {
-        this.shopList = response.rows;
-      });
-    this.getList();
+    listShop({type: 2}).then(response => {
+      this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
+    });
+    // this.getList();
   },
   methods: {
     amountFormatter(row, column, cellValue, index) {

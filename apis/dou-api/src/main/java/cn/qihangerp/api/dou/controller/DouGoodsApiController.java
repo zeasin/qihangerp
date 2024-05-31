@@ -34,17 +34,11 @@ public class DouGoodsApiController {
     private static Logger logger = LoggerFactory.getLogger(DouGoodsApiController.class);
     private final DouApiHelper douApiHelper;
     private final OmsDouGoodsService goodsService;
-//    @Autowired
-//    private DouyinOrderService douyinOrderService;
-//
-//    @Autowired
-//    private ErpSalesOrderService salesOrderService;
 
     @RequestMapping(value = "/pull_goods", method = RequestMethod.POST)
     public AjaxResult getOrderList(@RequestBody DouRequest req) throws Exception {
         if (req.getShopId() == null || req.getShopId() <= 0) {
             return AjaxResult.error(HttpStatus.PARAMS_ERROR, "参数错误，没有店铺Id");
-//            return ApiResult.build(HttpStatus.PARAMS_ERROR, "参数错误，没有店铺Id");
         }
         var checkResult = douApiHelper.checkBefore(req.getShopId());
         if (checkResult.getResult() != ResultVoEnum.SUCCESS.getIndex()) {

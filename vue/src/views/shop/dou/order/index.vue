@@ -646,7 +646,7 @@
 </template>
 
 <script>
-import { listOrder, getOrder, delOrder, addOrder, confirmOrder,pullOrder } from "@/api/dou/order";
+import { listOrder, getOrder, confirmOrder,pullOrder } from "@/api/dou/order";
 import { addDouRefund } from "@/api/dou/douRefund";
 
 import { listShop } from "@/api/shop/shop";
@@ -776,10 +776,14 @@ export default {
     };
   },
   created() {
-    listShop({type:6}).then(response => {
-        this.shopList = response.rows;
-      });
-    this.getList();
+    listShop({type: 6}).then(response => {
+      this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
+    });
+    // this.getList();
   },
   methods: {
     /** 查询抖店订单列表 */
@@ -891,10 +895,11 @@ export default {
         pullOrder({shopId:this.queryParams.shopId,updType:0}).then(response => {
           console.log('拉取淘宝订单接口返回=====',response)
           if(response.code === 1401) {
-            MessageBox.confirm('Token已过期，需要重新授权', '系统提示', { confirmButtonText: '重新授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
-              isRelogin.show = false;
+            MessageBox.confirm('Token已过期，需要重新授权！请前往店铺列表重新获取授权！', '系统提示', { confirmButtonText: '前往授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
+              this.$router.push({path:"/shop/shop_list",query:{type:6}})
+              // isRelogin.show = false;
               // store.dispatch('LogOut').then(() => {
-              location.href = response.data.tokenRequestUrl+'?shopId='+this.queryParams.shopId
+              // location.href = response.data.tokenRequestUrl+'?shopId='+this.queryParams.shopId
               // })
             }).catch(() => {
               isRelogin.show = false;
@@ -903,6 +908,8 @@ export default {
             // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
           }else
             this.$modal.msgSuccess(JSON.stringify(response));
+
+
         })
       }else{
         this.$modal.msgSuccess("请先选择店铺");
