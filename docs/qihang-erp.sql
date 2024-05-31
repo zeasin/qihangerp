@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 31/05/2024 20:04:55
+ Date: 31/05/2024 20:08:08
 */
 
 SET NAMES utf8mb4;
@@ -7337,7 +7337,7 @@ INSERT INTO `s_shop_setting` VALUES (2, '视频号', ' ', ' ', NULL, NULL, NULL,
 INSERT INTO `s_shop_setting` VALUES (3, '京东POP', 'FB4CC3688E6F9065D4FF510A53BB60FF', '40e8c8b2427f4e6db8f4a39af27d719e', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
 INSERT INTO `s_shop_setting` VALUES (4, '淘宝天猫', '31014100', '7b0769269b0c0ca88949791c14eb3a5c', '', NULL, NULL, NULL, NULL, 1573610045, '淘宝开放平台', 'http://gw.api.taobao.com/router/rest', NULL);
 INSERT INTO `s_shop_setting` VALUES (5, '拼多多', 'b92194d1af904c8a86a2c9eff6f9bfb0', '8da714f8dcbfb12d3972626ef8acfc0737aacecb', '', NULL, NULL, '', NULL, 1625123356, '拼多多开放平台', 'https://gw-api.pinduoduo.com/api/router', '');
-INSERT INTO `s_shop_setting` VALUES (6, '抖音', '7344938657423296019', '4e704882-832a-42e5-845f-6af991ce0ce2', '', NULL, NULL, NULL, NULL, 0, NULL, 'https://openapi-fxg.jinritemai.com', NULL);
+INSERT INTO `s_shop_setting` VALUES (6, '抖音', '', '', '', NULL, NULL, NULL, NULL, 0, NULL, 'https://openapi-fxg.jinritemai.com', NULL);
 INSERT INTO `s_shop_setting` VALUES (7, '小红书', '', '', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL);
 INSERT INTO `s_shop_setting` VALUES (8, '快手', '', '', '', NULL, NULL, '', NULL, 1593392516, NULL, NULL, NULL);
 INSERT INTO `s_shop_setting` VALUES (99, 'ERP系统', '', '', NULL, NULL, NULL, NULL, NULL, 1573610045, NULL, NULL, NULL);
