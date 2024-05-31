@@ -112,14 +112,14 @@
       </el-table-column>
       <el-table-column label="商品" width="350">
           <template slot-scope="scope">
-            <el-row v-for="item in scope.row.douOrderItemList" :key="item.id" :gutter="20">
+            <el-row v-for="item in scope.row.itemList" :key="item.id" :gutter="20">
 
             <div style="float: left;display: flex;align-items: center;" >
               <el-image  style="width: 70px; height: 70px;" :src="item.productPic"></el-image>
               <div style="margin-left:10px">
               <p>{{item.productName}}</p>
               <p>{{item.goodsSpec}}&nbsp;
-                <el-tag size="small">x {{item.comboNum}}</el-tag>
+                <el-tag size="small">x {{item.itemNum}}</el-tag>
                 <el-button v-if="item.itemStatus === 0" type="text" size="mini" round @click="handleRefund(scope.row,item)">售后</el-button>
                 </p>
               </div>
@@ -127,17 +127,34 @@
             </el-row>
           </template>
       </el-table-column>
-      <el-table-column label="订单金额" align="center" prop="orderTotalAmount" />
-      <el-table-column label="运费" align="center" prop="postAmount" />
+      <el-table-column label="订单金额" align="center" prop="orderAmount" >
+        <template slot-scope="scope">
+          <span>{{ amountFormatter(null,null,scope.row.orderAmount/100, 0) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="运费" align="center" prop="postAmount" >
+        <template slot-scope="scope">
+          <span>{{ amountFormatter(null,null,scope.row.postAmount/100, 0) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="实付金额" align="center" prop="payAmount" >
+        <template slot-scope="scope">
+          <span>{{ amountFormatter(null,null,scope.row.payAmount/100, 0) }}</span>
+        </template>
+      </el-table-column>
 <!--      <el-table-column label="买家用户名" align="center" prop="userName" />-->
       <!-- <el-table-column label="收货地址" align="center" prop="postAddr" /> -->
 <!--      <el-table-column label="邮政编码" align="center" prop="postCode" />-->
-      <el-table-column label="收件人" align="center" prop="postReceiver" />
+      <el-table-column label="收件人" align="center" prop="maskPostReceiver" >
+        <template slot-scope="scope">
+          <span>{{ scope.row.maskPostReceiver }}&nbsp;&nbsp;&nbsp;{{ scope.row.maskPostTel }}</span>
+        </template>
+      </el-table-column>
 <!--      <el-table-column label="收件人电话" align="center" prop="postTel" />-->
       <el-table-column label="买家备注" align="center" prop="buyerWords" />
       <el-table-column label="卖家备注" align="center" prop="sellerWords" />
 <!--      <el-table-column label="物流公司id" align="center" prop="logisticsId" />-->
-      <el-table-column label="物流单号" align="center" prop="logisticsCode" />
+<!--      <el-table-column label="物流单号" align="center" prop="logisticsCode" />-->
       <!-- <el-table-column label="物流公司" align="center" prop="logisticsCompany" /> -->
       <!-- <el-table-column label="发货时间" align="center" prop="logisticsTime" width="180">
         <template slot-scope="scope">
@@ -162,9 +179,9 @@
         </template>
       </el-table-column>
       <!-- <el-table-column label="订单状态" align="center" prop="orderStatusStr" /> -->
-      <el-table-column label="订单创建时间" align="center" prop="orderCreateTime" width="180">
+      <el-table-column label="下单时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.orderCreateTime, '{y}-{m}-{d}') }}</span>
+          <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
       <!-- <el-table-column label="最晚发货时间" align="center" prop="expShipTime" width="180">
@@ -172,7 +189,7 @@
           <span>{{ parseTime(scope.row.expShipTime, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column> -->
-<!--      <el-table-column label="订单取消原因" align="center" prop="cancelReason" />-->
+      <el-table-column label="订单取消原因" align="center" prop="cancelReason" />
 <!--      <el-table-column label="【支付类型" align="center" prop="payType" />-->
       <!-- <el-table-column label="支付方式" align="center" prop="payTypeName" /> -->
 <!--      <el-table-column label="支付时间 (pay_type为0货到付款时, 此字段为空)" align="center" prop="payTime" width="180">-->
@@ -786,6 +803,9 @@ export default {
     // this.getList();
   },
   methods: {
+    amountFormatter(row, column, cellValue, index) {
+      return '￥' + cellValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    },
     /** 查询抖店订单列表 */
     getList() {
       this.loading = true;
@@ -893,7 +913,7 @@ export default {
       // this.$modal.msgSuccess("请先配置API参数");
       if(this.queryParams.shopId){
         pullOrder({shopId:this.queryParams.shopId,updType:0}).then(response => {
-          console.log('拉取淘宝订单接口返回=====',response)
+          console.log('拉取Dou订单接口返回=====',response)
           if(response.code === 1401) {
             MessageBox.confirm('Token已过期，需要重新授权！请前往店铺列表重新获取授权！', '系统提示', { confirmButtonText: '前往授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
               this.$router.push({path:"/shop/shop_list",query:{type:6}})
