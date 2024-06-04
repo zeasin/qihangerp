@@ -1,8 +1,6 @@
 package cn.qihangerp.api.jd.service;
 
-import cn.qihangerp.api.jd.bo.JdOrderBo;
 import cn.qihangerp.api.jd.domain.OmsJdGoodsSku;
-import cn.qihangerp.api.jd.domain.OmsJdOrder;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.ResultVo;
@@ -27,6 +25,6 @@ public interface OmsJdGoodsSkuService extends IService<OmsJdGoodsSku> {
      * @param id 第三方平台设置主键
      * @return 第三方平台设置
      */
-    ShopSetting selectShopSettingById(Long id);
+    ShopSetting selectShopSettingById(Integer id);
     void updateShopSessionByShopId(Long shopId,String sessionKey);
 }

@@ -1,6 +1,5 @@
 package cn.qihangerp.api.wei.service;
 
-import cn.qihangerp.api.wei.domain.OmsWeiGoods;
 import cn.qihangerp.api.wei.domain.OmsWeiGoodsSku;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;

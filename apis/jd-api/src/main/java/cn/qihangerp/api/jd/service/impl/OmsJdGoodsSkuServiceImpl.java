@@ -1,6 +1,5 @@
 package cn.qihangerp.api.jd.service.impl;
 
-import cn.qihangerp.api.jd.domain.OmsJdOrder;
 import cn.qihangerp.api.jd.domain.vo.ErpGoodsSpecVo;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
@@ -74,7 +73,7 @@ public class OmsJdGoodsSkuServiceImpl extends ServiceImpl<OmsJdGoodsSkuMapper, O
         return mapper.selectShopById(id);
     }
     @Override
-    public ShopSetting selectShopSettingById(Long id) {
+    public ShopSetting selectShopSettingById(Integer id) {
         return mapper.selectShopSettingById(id);
     }
 

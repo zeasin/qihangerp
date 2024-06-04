@@ -58,7 +58,7 @@ public class PddGoodsApiController extends BaseController {
             return AjaxResult.error(checkResult.getResult(), checkResult.getMsg(), checkResult.getData());
         }
         String accessToken = checkResult.getData().getAccessToken();
-        String url = checkResult.getData().getApiRequestUrl();
+        String url = checkResult.getData().getServerUrl();
         String appKey = checkResult.getData().getAppKey();
         String appSecret = checkResult.getData().getAppSecret();
         int insertSuccess = 0;//新增成功的订单

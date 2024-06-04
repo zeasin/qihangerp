@@ -1,10 +1,14 @@
 package cn.qihangerp.api.controller;
 
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
-import jakarta.servlet.http.HttpServletResponse;
 
-import cn.qihangerp.domain.ShopSetting;
-import cn.qihangerp.api.service.IShopSettingService;
+import cn.qihangerp.domain.Shop;
+import cn.qihangerp.api.domain.SShopPlatform;
+import cn.qihangerp.api.service.SShopPlatformService;
+import cn.qihangerp.api.service.SShopService;
+
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +23,6 @@ import cn.qihangerp.common.annotation.Log;
 import cn.qihangerp.core.controller.BaseController;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.common.enums.BusinessType;
-import cn.qihangerp.domain.Shop;
-import cn.qihangerp.api.service.IShopService;
-import cn.qihangerp.common.utils.poi.ExcelUtil;
 import cn.qihangerp.core.page.TableDataInfo;
 
 /**
@@ -35,9 +36,9 @@ import cn.qihangerp.core.page.TableDataInfo;
 public class ShopController extends BaseController
 {
     @Autowired
-    private IShopService shopService;
+    private SShopService shopService;
     @Autowired
-    private IShopSettingService shopSettingService;
+    private SShopPlatformService platformService;
 
     /**
      * 查询店铺列表
@@ -47,22 +48,10 @@ public class ShopController extends BaseController
     public TableDataInfo list(Shop shop)
     {
         startPage();
-        List<Shop> list = shopService.selectShopList(shop);
+        List<Shop> list = shopService.list();
         return getDataTable(list);
     }
 
-    /**
-     * 导出店铺列表
-     */
-    @PreAuthorize("@ss.hasPermi('shop:shop:export')")
-    @Log(title = "店铺", businessType = BusinessType.EXPORT)
-    @PostMapping("/export")
-    public void export(HttpServletResponse response, Shop shop)
-    {
-        List<Shop> list = shopService.selectShopList(shop);
-        ExcelUtil<Shop> util = new ExcelUtil<Shop>(Shop.class);
-        util.exportExcel(response, list, "店铺数据");
-    }
 
     /**
      * 获取店铺详细信息
@@ -71,7 +60,7 @@ public class ShopController extends BaseController
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
-        return success(shopService.selectShopById(id));
+        return success(shopService.getById(id));
     }
 
     /**
@@ -82,8 +71,9 @@ public class ShopController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody Shop shop)
     {
-        shop.setModifyOn(System.currentTimeMillis()/1000);
-        return toAjax(shopService.insertShop(shop));
+        shop.setCreateTime(new Date());
+//        shop.setUpdateTime(new Date());
+        return toAjax(shopService.save(shop));
     }
 
     /**
@@ -94,7 +84,8 @@ public class ShopController extends BaseController
     @PutMapping
     public AjaxResult edit(@RequestBody Shop shop)
     {
-        return toAjax(shopService.updateShop(shop));
+        shop.setUpdateTime(new Date());
+        return toAjax(shopService.updateById(shop));
     }
 
     /**
@@ -105,26 +96,27 @@ public class ShopController extends BaseController
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {
-        return toAjax(shopService.deleteShopByIds(ids));
+        return toAjax(shopService.removeByIds(Arrays.stream(ids).toList()));
     }
 
 
     @GetMapping("/platformList")
-    public TableDataInfo platformList( ShopSetting bo)
+    public TableDataInfo platformList(SShopPlatform bo)
     {
-        List<ShopSetting> list = shopSettingService.selectShopSettingList(bo);
+        List<SShopPlatform> list = platformService.list();
         return getDataTable(list);
     }
 
     @GetMapping(value = "/platform/{id}")
     public AjaxResult getPlatform(@PathVariable("id") Long id)
     {
-        return success(shopSettingService.selectShopSettingById(id));
+        return success(platformService.getById(id));
     }
 
     @PutMapping("/platform")
-    public AjaxResult edit(@RequestBody ShopSetting bo)
+    public AjaxResult edit(@RequestBody SShopPlatform bo)
     {
-        return toAjax(shopSettingService.updateShopSetting(bo));
+        bo.setUpdateTime(new Date());
+        return toAjax(platformService.updateById(bo));
     }
 }

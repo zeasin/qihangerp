@@ -48,11 +48,11 @@ public class DouOrderApiController {
             return AjaxResult.error(checkResult.getResult(), checkResult.getMsg(), checkResult.getData());
         }
         String accessToken = checkResult.getData().getAccessToken();
-        String url = checkResult.getData().getApiRequestUrl();
+        String url = checkResult.getData().getServerUrl();
         String appKey = checkResult.getData().getAppKey();
         String appSercet = checkResult.getData().getAppSecret();
 
-        ApiResultVo<Token> token = DouTokenApiHelper.getToken(appKey, appSercet,checkResult.getData().getSellerUserId());
+        ApiResultVo<Token> token = DouTokenApiHelper.getToken(appKey, appSercet,checkResult.getData().getSellerShopId());
         if(token.getCode()==0) {
             accessToken = token.getData().getAccessToken();
         }else{

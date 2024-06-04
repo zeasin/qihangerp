@@ -25,42 +25,29 @@ public class ApiPullHelper {
 
         if (shop == null) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，没有找到店铺");
 
-        if (shop.getType().intValue() != EnumShopType.TAO.getIndex())
+        if (shop.getPlatform().intValue() != EnumShopType.TAO.getIndex())
             return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，店铺不是淘系店铺");
 
-        if(!StringUtils.hasText(shop.getAppkey())) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到AppKey");
-        if(!StringUtils.hasText(shop.getAppSercet())) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到AppSercet");
-        if(!StringUtils.hasText(shop.getApiRequestUrl())) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到ApiRequestUrl");
-        if(shop.getSellerUserId()==null || shop.getSellerUserId()<=0) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到SellerUserId");
+        if(shop.getSellerShopId()==null || shop.getSellerShopId()<=0) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "配置错误，请在店铺信息中配置seller_shop_id");
 
-        ShopApiParams params = new ShopApiParams();
-        params.setAppKey(shop.getAppkey());
-        params.setAppSecret(shop.getAppSercet());
-        params.setAccessToken(shop.getSessionKey());
-        params.setTokenRequestUrl(serverConfig.getUrl()+"/taoapi2/tao_oauth");
-        params.setApiRequestUrl(shop.getApiRequestUrl());
-        if (!StringUtils.hasText(shop.getSessionKey()))
-            return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "Token已过期，请重新授权",params);
-
-        String sessionKey = shop.getSessionKey();
-
-        var thirdConfig = tmallOrderService.selectShopSettingById(shop.getType());
+        var thirdConfig = tmallOrderService.selectShopSettingById(shop.getPlatform());
         if (thirdConfig == null) return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，没有找到第三方平台的配置信息");
         else if (StringUtils.isEmpty(thirdConfig.getAppKey()))
             return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少appkey");
         else if (StringUtils.isEmpty(thirdConfig.getAppSecret()))
             return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少appSecret");
-        else if (StringUtils.isEmpty(thirdConfig.getRequestUrl()))
-            return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少request_url");
+        else if (StringUtils.isEmpty(thirdConfig.getServerUrl()))
+            return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少server_url");
 
-//        thirdConfig.setAccessToken(sessionKey);
+        ShopApiParams params = new ShopApiParams();
+        params.setAppKey(thirdConfig.getAppKey());
+        params.setAppSecret(thirdConfig.getAppSecret());
+        params.setAccessToken(shop.getAccessToken());
+        params.setRedirectUrl(thirdConfig.getRedirectUrl());
+        params.setServerUrl(thirdConfig.getServerUrl());
 
-//        String url = thirdConfig.getRequestUrl();
-//        String appkey = thirdConfig.getAppKey();
-//        String secret = thirdConfig.getAppSecret();
-        String url = shop.getApiRequestUrl();
-        String appkey = shop.getAppkey();
-        String secret = shop.getAppSercet();
+        if (!StringUtils.hasText(shop.getAccessToken()))
+            return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "Token已过期，请重新授权",params);
 
         return new ApiResult<>(ResultVoEnum.SUCCESS.getIndex(), "", params);
     }

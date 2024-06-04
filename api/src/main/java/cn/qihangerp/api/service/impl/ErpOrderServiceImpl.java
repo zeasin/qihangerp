@@ -4,18 +4,15 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import cn.qihangerp.api.domain.*;
 import cn.qihangerp.api.mapper.ErpShipOrderFeeMapper;
 import cn.qihangerp.api.mapper.ErpShipOrderMapper;
-import cn.qihangerp.api.service.IShopService;
+import cn.qihangerp.api.service.SShopService;
 import cn.qihangerp.common.ResultVo;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.domain.ErpOrderItem;
 import cn.qihangerp.domain.Shop;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -42,7 +39,7 @@ public class ErpOrderServiceImpl implements IErpOrderService
     @Autowired
     private ErpShipOrderMapper shipOrderMapper;
     @Autowired
-    private IShopService shopService;
+    private SShopService shopService;
 
     /**
      * 查询订单
@@ -98,9 +95,9 @@ public class ErpOrderServiceImpl implements IErpOrderService
             }
         }
 
-        Shop shop = shopService.selectShopById(erpOrder.getShopId());
+        Shop shop = shopService.getById(erpOrder.getShopId());
         if(shop!=null){
-            erpOrder.setShopType(shop.getType().intValue());
+            erpOrder.setShopType(shop.getPlatform());
         }else return -4;
 
 //        if(erpOrder.getShopId() == 1) erpOrder.setShopType(99);

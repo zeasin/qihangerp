@@ -1,15 +1,12 @@
 package cn.qihangerp.open.tao.service.impl;
 
 import cn.qihangerp.common.ResultVo;
-import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.common.utils.StringUtils;
 //import com.qihang.erp.api.common.EnumShopType;
 //import com.qihang.erp.api.common.ResultVo;
 //import com.qihang.erp.api.controller.tao.OrderImportItem;
 //import com.qihang.erp.api.service.ITaoOrderService;
-import cn.qihangerp.domain.ErpOrder;
-import cn.qihangerp.domain.ErpOrderItem;
 import cn.qihangerp.domain.Shop;
 import cn.qihangerp.domain.ShopSetting;
 import cn.qihangerp.open.tao.domain.TaoOrder;
@@ -22,7 +19,6 @@ import cn.qihangerp.open.tao.service.ITaoOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -548,7 +544,7 @@ public class TaoOrderServiceImpl implements ITaoOrderService
     }
 
     @Override
-    public ShopSetting selectShopSettingById(Long id) {
+    public ShopSetting selectShopSettingById(Integer id) {
         return taoOrderMapper.selectShopSettingById(id);
     }
 

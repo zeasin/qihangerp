@@ -27,10 +27,10 @@ public class ApiCommon {
             return ApiResult.error(ApiResultEnum.PARAMS_ERROR, "参数错误，没有找到店铺");
         }
 
-        if (shop.getType() != EnumShopType.JD.getIndex()) {
+        if (shop.getPlatform() != EnumShopType.JD.getIndex()) {
             return ApiResult.error(ApiResultEnum.PARAMS_ERROR, "参数错误，店铺不是JD店铺");
         }
-        var platform = goodsSkuService.selectShopSettingById(shop.getType());
+        var platform = goodsSkuService.selectShopSettingById(shop.getPlatform());
 
         if (!StringUtils.hasText(platform.getAppKey())) {
             return ApiResult.error(ApiResultEnum.PARAMS_ERROR, "平台配置错误，没有找到AppKey");
@@ -38,12 +38,12 @@ public class ApiCommon {
         if (!StringUtils.hasText(platform.getAppSecret())) {
             return ApiResult.error(ApiResultEnum.PARAMS_ERROR, "第三方平台配置错误，没有找到AppSercet");
         }
-//        if (!StringUtils.hasText(platform.getRedirectUri())) {
-//            return ApiResult.error(HttpStatus.PARAMS_ERROR, "第三方平台配置错误，没有找到RedirectUri");
-//        }
-//        if (!StringUtils.hasText(platform.getServerUrl())) {
-//            return ApiResult.error(HttpStatus.PARAMS_ERROR, "第三方平台配置错误，没有找到ServerUrl");
-//        }
+        if (!StringUtils.hasText(platform.getRedirectUrl())) {
+            return ApiResult.error(ApiResultEnum.PARAMS_ERROR, "第三方平台配置错误，没有找到RedirectUri");
+        }
+        if (!StringUtils.hasText(platform.getServerUrl())) {
+            return ApiResult.error(ApiResultEnum.PARAMS_ERROR, "第三方平台配置错误，没有找到ServerUrl");
+        }
 
 //        if(shop.getSellerId() == null || shop.getSellerId() <= 0) {
 //            return com.qihang.tao.common.ApiResult.build(HttpStatus.PARAMS_ERROR,  "第三方平台配置错误，没有找到SellerUserId");
@@ -52,12 +52,12 @@ public class ApiCommon {
         ShopApiParams params = new ShopApiParams();
         params.setAppKey(platform.getAppKey());
         params.setAppSecret(platform.getAppSecret());
-        params.setAccessToken(shop.getSessionKey());
-        params.setTokenRequestUrl(platform.getRequestUrl());
-//        params.setApiRequestUrl(platform.getRequestUrl());
-//        params.setServerUrl(platform.getServerUrl());
-        params.setSellerId(shop.getSellerUserId().toString());
-        if (!StringUtils.hasText(shop.getSessionKey())) {
+        params.setAccessToken(shop.getAccessToken());
+        params.setRedirectUrl(platform.getRedirectUrl());
+        params.setServerUrl(platform.getServerUrl());
+        params.setSellerId(shop.getSellerShopId().toString());
+
+        if (!StringUtils.hasText(shop.getAccessToken())) {
 
             return ApiResult.error(ApiResultEnum.TokenFail, "Token已过期，请重新授权", params);
         }

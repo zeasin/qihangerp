@@ -30,27 +30,26 @@ public class WeiApiCommon {
         if (shop == null) {
             return ResultVo.error(HttpStatus.PARAMS_ERROR,"参数错误，没有找到店铺");
         }
-        if (shop.getType() != EnumShopType.WEI.getIndex()) {
-            return ResultVo.error(HttpStatus.PARAMS_ERROR, "参数错误，店铺不是JD店铺");
+        if (shop.getPlatform() != EnumShopType.WEI.getIndex()) {
+            return ResultVo.error(HttpStatus.PARAMS_ERROR, "参数错误，店铺不是视频号小店店铺");
         }
-        if(!StringUtils.hasText(shop.getAppkey())) {
-            return ResultVo.error(HttpStatus.PARAMS_ERROR, "平台配置错误，没有找到AppKey");
+        if(!StringUtils.hasText(shop.getAppKey())) {
+            return ResultVo.error(HttpStatus.PARAMS_ERROR, "视频号小店请在店铺信息里配置AppKey");
         }
         if(!StringUtils.hasText(shop.getAppSercet())) {
-            return ResultVo.error(HttpStatus.PARAMS_ERROR, "第三方平台配置错误，没有找到AppSercet");
+            return ResultVo.error(HttpStatus.PARAMS_ERROR, "视频号小店请在店铺信息里配置AppSercet");
         }
-//        var platform =skuService.selectShopSettingById(EnumShopType.WEI.getIndex());
-//        if(!StringUtils.hasText(platform.getse())) {
-//            return ResultVo.error(HttpStatus.PARAMS_ERROR, "第三方平台配置错误，没有找到ServerUrl");
-//        }
+        var platform =skuService.selectShopSettingById(EnumShopType.WEI.getIndex());
+        if(!StringUtils.hasText(platform.getServerUrl())) {
+            return ResultVo.error(HttpStatus.PARAMS_ERROR, "第三方平台配置错误，没有找到ServerUrl");
+        }
 
         ShopApiParams params = new ShopApiParams();
-        params.setAppKey(shop.getAppkey());
+        params.setAppKey(shop.getAppKey());
         params.setAppSecret(shop.getAppSercet());
-        params.setAccessToken(shop.getSessionKey());
-        params.setApiRequestUrl(shop.getApiRequestUrl());
-//        params.setServerUrl(platform.getServerUrl());
-        params.setSellerId(shop.getSellerUserId().toString());
+        params.setAccessToken(shop.getAccessToken());
+        params.setApiRequestUrl(platform.getServerUrl());
+        params.setSellerId(shop.getSellerShopId().toString());
 
 
         if (!StringUtils.hasText(params.getAccessToken())) {

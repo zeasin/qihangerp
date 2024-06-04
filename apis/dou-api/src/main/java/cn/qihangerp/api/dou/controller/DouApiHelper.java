@@ -24,28 +24,28 @@ public class DouApiHelper {
 
         if (shop == null) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，没有找到店铺");
 
-        if (shop.getType().intValue() != EnumShopType.DouYin.getIndex())
+        if (shop.getPlatform() != EnumShopType.DouYin.getIndex())
             return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "参数错误，店铺不是dou店铺");
 
-       if(shop.getSellerUserId()==null || shop.getSellerUserId()<=0) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "第三方平台配置错误，没有找到SellerUserId");
+       if(shop.getSellerShopId()==null || shop.getSellerShopId()<=0) return new ApiResult<>(ResultVoEnum.ParamsError.getIndex(), "店铺配置错误，请配置店铺平台shop_id");
 
-        var thirdConfig = omsPddGoodsService.selectShopSettingById(shop.getType());
+        var thirdConfig = omsPddGoodsService.selectShopSettingById(shop.getPlatform().longValue());
         if (thirdConfig == null) return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，没有找到第三方平台的配置信息");
         else if (StringUtils.isEmpty(thirdConfig.getAppKey()))
             return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少appkey");
         else if (StringUtils.isEmpty(thirdConfig.getAppSecret()))
             return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少appSecret");
-        else if (StringUtils.isEmpty(thirdConfig.getRequestUrl()))
-            return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少request_url");
+        else if (StringUtils.isEmpty(thirdConfig.getServerUrl()))
+            return new ApiResult<>(ResultVoEnum.SystemException.getIndex(), "系统错误，第三方平台配置信息不完整，缺少server_url");
 
         ShopApiParams params = new ShopApiParams();
         params.setAppKey(thirdConfig.getAppKey());
         params.setAppSecret(thirdConfig.getAppSecret());
-        params.setAccessToken(shop.getSessionKey());
-        params.setTokenRequestUrl(thirdConfig.getRequestUrl());
-        params.setApiRequestUrl(shop.getApiRequestUrl());
-        params.setSellerUserId(shop.getSellerUserId());
-        if (!StringUtils.hasText(shop.getSessionKey()))
+        params.setAccessToken(shop.getAccessToken());
+        params.setServerUrl(thirdConfig.getServerUrl());
+        params.setRedirectUrl(thirdConfig.getRedirectUrl());
+        params.setSellerShopId(shop.getSellerShopId());
+        if (!StringUtils.hasText(shop.getAccessToken()))
             return new ApiResult<>(ResultVoEnum.TokenFail.getIndex(), "Token已过期，请重新授权",params);
 
         return new ApiResult<>(ResultVoEnum.SUCCESS.getIndex(), "", params);

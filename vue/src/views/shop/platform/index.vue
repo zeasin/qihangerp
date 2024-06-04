@@ -12,7 +12,7 @@
       <el-table-column label="平台" align="center" prop="name" />
        <el-table-column label="AppKey" align="center" prop="appKey" />
        <el-table-column label="AppSecret" align="center" prop="appSecret" />
-       <el-table-column label="回调URL" align="center" prop="redirectUri" />
+       <el-table-column label="回调URL" align="center" prop="redirectUrl" />
       <el-table-column label="接口请求URL" align="center" prop="serverUrl" />
 <!--      <el-table-column label="描述" align="center" prop="remark" />-->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
@@ -50,9 +50,9 @@
         <el-form-item label="平台名" prop="name">
           <el-input v-model="form.name" placeholder="请输入平台名" />
         </el-form-item>
-        <el-form-item label="编码" prop="code">
-          <el-input v-model="form.code" placeholder="请输入平台编码" />
-        </el-form-item>
+<!--        <el-form-item label="编码" prop="code">-->
+<!--          <el-input v-model="form.code" placeholder="请输入平台编码" />-->
+<!--        </el-form-item>-->
         <el-form-item label="AppKey" prop="appKey">
           <el-input v-model="form.appKey" placeholder="请输入AppKey" />
         </el-form-item>
@@ -60,7 +60,7 @@
           <el-input v-model="form.appSecret" placeholder="请输入AppSecret" />
         </el-form-item>
         <el-form-item label="回调URL" prop="redirectUri">
-          <el-input v-model="form.redirectUri" placeholder="请输入回调URL" />
+          <el-input v-model="form.redirectUrl" placeholder="请输入回调URL" />
         </el-form-item>
         <el-form-item label="接口请求URL" prop="serverUrl">
           <el-input v-model="form.serverUrl" placeholder="请输入接口请求URL" />

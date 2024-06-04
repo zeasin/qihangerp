@@ -108,7 +108,7 @@ public class OmsPddGoodsServiceImpl extends ServiceImpl<OmsPddGoodsMapper, OmsPd
     }
 
     @Override
-    public ShopSetting selectShopSettingById(Long id) {
+    public ShopSetting selectShopSettingById(Integer id) {
         return mapper.selectShopSettingById(id);
     }
 

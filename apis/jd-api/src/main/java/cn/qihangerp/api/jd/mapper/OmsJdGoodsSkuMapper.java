@@ -29,7 +29,7 @@ public interface OmsJdGoodsSkuMapper extends BaseMapper<OmsJdGoodsSku> {
      * @param id 第三方平台设置主键
      * @return 第三方平台设置
      */
-    ShopSetting selectShopSettingById(Long id);
+    ShopSetting selectShopSettingById(Integer id);
 
     void updateShopSessionByShopId(Long shopId,String sessionKey);
 }
