@@ -9,8 +9,8 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-       <el-form-item label="平台" prop="platformplatform">
-        <el-select v-model="queryParams.type" placeholder="请选择平台" clearable>
+       <el-form-item label="平台" prop="platform">
+        <el-select v-model="queryParams.platform" placeholder="请选择平台" clearable>
          <el-option
             v-for="item in typeList"
             :key="item.id"
