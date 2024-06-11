@@ -100,7 +100,7 @@
       <el-table-column label="描述" align="center" prop="remark" />
       <!-- <el-table-column label="第三方平台店铺id，淘宝天猫开放平台使用" align="center" prop="sellerUserId" /> -->
       <!-- <el-table-column label="卖家userId" align="center" prop="sellerUserIdStr" /> -->
-      <!-- <el-table-column label="第三方平台sessionKey" align="center" prop="sessionKey" /> -->
+       <el-table-column label="AccessToken" align="center" prop="accessToken" />
       <!-- <el-table-column label="Appkey暂时抖音用" align="center" prop="appkey" /> -->
       <!-- <el-table-column label="Appsercet暂时抖音用" align="center" prop="appSercet" /> -->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
