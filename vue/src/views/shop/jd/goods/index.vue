@@ -61,11 +61,11 @@
       <el-table-column label="商品ID" align="center" prop="wareId" />
       <el-table-column label="Sku Id" align="center" prop="skuId" />
       <el-table-column label="sku名称" align="center" prop="skuName" />
-      <el-table-column label="图片" align="center" prop="logo" width="100">
-        <template slot-scope="scope">
-          <image-preview :src="scope.row.logo" :width="50" :height="50"/>
-        </template>
-      </el-table-column>
+<!--      <el-table-column label="图片" align="center" prop="logo" width="100">-->
+<!--        <template slot-scope="scope">-->
+<!--          <image-preview :src="scope.row.logo" :width="50" :height="50"/>-->
+<!--        </template>-->
+<!--      </el-table-column>-->
 
 <!--      <el-table-column label="店铺" align="center" prop="categoryId" >-->
 <!--        <template slot-scope="scope">-->
