@@ -531,7 +531,7 @@ export default {
     };
   },
   created() {
-    listShop({type:7}).then(response => {
+    listShop({platform:7}).then(response => {
         this.shopList = response.rows;
       });
     this.getList();

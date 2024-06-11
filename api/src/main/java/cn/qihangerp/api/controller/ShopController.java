@@ -9,6 +9,7 @@ import cn.qihangerp.api.domain.SShopPlatform;
 import cn.qihangerp.api.service.SShopPlatformService;
 import cn.qihangerp.api.service.SShopService;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,8 +48,11 @@ public class ShopController extends BaseController
     @GetMapping("/list")
     public TableDataInfo list(Shop shop)
     {
-        startPage();
-        List<Shop> list = shopService.list();
+//        startPage();
+//        List<Shop> list = shopService.list();
+//        return getDataTable(list);
+        LambdaQueryWrapper<Shop> qw = new LambdaQueryWrapper<Shop>().eq(shop.getPlatform()!=null,Shop::getPlatform,shop.getPlatform());
+        List<Shop> list = shopService.list(qw);
         return getDataTable(list);
     }
 
