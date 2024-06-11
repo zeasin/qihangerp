@@ -70,7 +70,7 @@
 <!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
-          type="success"
+          type="primary"
           :loading="pullLoading"
           plain
           icon="el-icon-download"
@@ -81,7 +81,7 @@
       </el-col>
       <el-col :span="1.5">
         <el-button
-          type="primary"
+          type="success"
           plain
           icon="el-icon-refresh"
           size="mini"

@@ -3,23 +3,23 @@ import request from '@/utils/request'
 // 查询淘宝退款订单列表
 export function listRefund(query) {
   return request({
-    url: '/api/jd-api/after/list',
+    url: '/jd-api/afterSale/list',
     method: 'get',
     params: query
   })
 }
 
-// 查询退款订单详细
+// 查询售后详细
 export function getRefund(id) {
   return request({
-    url: '/tao/taoRefund/' + id,
+    url: '/jd-api/afterSale/' + id,
     method: 'get'
   })
 }
 
 export function pullRefund(data) {
   return request({
-    url: '/api/jd-api/refund/pull_list',
+    url: '/jd-api/afterSale/pull_list',
     method: 'post',
     data: data
   })
@@ -27,7 +27,7 @@ export function pullRefund(data) {
 
 export function pushOms(data) {
   return request({
-    url: '/api/jd-api/after/push_oms',
+    url: '/jd-api/afterSale/push_oms',
     method: 'post',
     data: data
   })

@@ -15,6 +15,7 @@ import cn.qihangerp.open.jd.common.ApiResultVo;
 import cn.qihangerp.open.jd.model.OrderDetail;
 import cn.qihangerp.open.jd.model.OrderInfo;
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Log
 @RequestMapping("/jd-api/order")
 @RestController
 @AllArgsConstructor
@@ -70,7 +72,7 @@ public class JdOrderApiController {
 
         LocalDateTime endTime = LocalDateTime.now();
         LocalDateTime startTime = endTime.minusDays(1);
-        //第一次获取
+        //获取
         ApiResultVo<OrderInfo> upResult = OrderApiHelper.pullOrder(startTime,endTime,appKey,appSecret,accessToken);
         if(upResult.getCode()!=0) return AjaxResult.error(upResult.getMsg());
         int insertSuccess = 0;//新增成功的订单
@@ -108,7 +110,8 @@ public class JdOrderApiController {
                 totalError++;
             }
         }
-
+        String msg = "成功，总共找到：" + upResult.getTotalRecords() + "条订单，新增：" + insertSuccess + "条，添加错误：" + totalError + "条，更新：" + hasExistOrder + "条";
+        log.info("/**************主动更新jd订单：END：" + msg + "****************/");
         return AjaxResult.success();
     }
 
