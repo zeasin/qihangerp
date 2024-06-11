@@ -1,4 +1,4 @@
-package cn.qihangerp.api.pdd.bo;
+package cn.qihangerp.api.wei.bo;
 
 import lombok.Data;
 

@@ -33,6 +33,13 @@ export function getGoodsSku(id) {
   })
 }
 
+export function linkErpGoodsSkuId(data) {
+  return request({
+    url: '/wei-api/goods/sku/linkErp',
+    method: 'post',
+    data: data
+  })
+}
 
 
 // 接口拉取订单

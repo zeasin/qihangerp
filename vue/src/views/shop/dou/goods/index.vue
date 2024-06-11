@@ -117,8 +117,8 @@
     <!-- 添加或修改商品管理对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="120px">
-        <el-form-item label="ERP商品SkuId" prop="erpSkuId">
-          <el-input v-model.number="form.erpSkuId" placeholder="请输入ERP商品SkuId" />
+        <el-form-item label="ERP商品SkuId" prop="erpGoodsSkuId">
+          <el-input v-model.number="form.erpGoodsSkuId" placeholder="请输入ERP商品SkuId" />
         </el-form-item>
 
       </el-form>
@@ -134,7 +134,7 @@
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 
 import {listShop} from "@/api/shop/shop";
-import {pullGoodsList,listGoodsSku} from "@/api/dou/goods";
+import {pullGoodsList,listGoodsSku,getGoodsSku,linkErpGoodsSkuId} from "@/api/dou/goods";
 import {MessageBox} from "element-ui";
 import {isRelogin} from "@/utils/request";
 
@@ -178,7 +178,7 @@ export default {
         id: [
           { required: true, message: "不能为空", trigger: "change" }
         ],
-        erpSkuId: [
+        erpGoodsSkuId: [
           { required: true, message: "不能为空", trigger: "blur" }
         ],
       }
