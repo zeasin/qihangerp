@@ -637,6 +637,7 @@ export default {
     },
     handlePull() {
       if(this.queryParams.shopId){
+        this.pullLoading =true
         pullOrder({shopId:this.queryParams.shopId,updType:0}).then(response => {
           console.log('拉取淘宝订单接口返回=====',response)
           if(response.code === 1401) {
@@ -651,8 +652,11 @@ export default {
               });
 
             // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
-          }else
+          }else{
             this.$modal.msgSuccess(JSON.stringify(response));
+            this.getList()
+          }
+            this.pullLoading =false
         })
       }else{
         this.$modal.msgSuccess("请先选择店铺");

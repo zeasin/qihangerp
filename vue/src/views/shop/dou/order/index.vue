@@ -71,6 +71,7 @@
       <el-col :span="1.5">
         <el-button
           type="success"
+          :loading="pullLoading"
           plain
           icon="el-icon-download"
           size="mini"
@@ -694,6 +695,7 @@ export default {
       multiple: true,
       // 显示搜索条件
       showSearch: true,
+      pullLoading: false,
       // 总条数
       total: 0,
       // 抖店订单表格数据
@@ -912,6 +914,7 @@ export default {
 
       // this.$modal.msgSuccess("请先配置API参数");
       if(this.queryParams.shopId){
+        this.pullLoading =true
         pullOrder({shopId:this.queryParams.shopId,updType:0}).then(response => {
           console.log('拉取Dou订单接口返回=====',response)
           if(response.code === 1401) {
@@ -926,9 +929,11 @@ export default {
             });
 
             // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
-          }else
+          }else {
             this.$modal.msgSuccess(JSON.stringify(response));
-
+            this.getList()
+          }
+          this.pullLoading =false
 
         })
       }else{

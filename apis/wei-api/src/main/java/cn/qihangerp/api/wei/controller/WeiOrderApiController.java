@@ -8,6 +8,7 @@ import cn.qihangerp.api.wei.domain.OmsWeiOrder;
 import cn.qihangerp.api.wei.domain.OmsWeiOrderItem;
 import cn.qihangerp.api.wei.service.OmsWeiGoodsService;
 import cn.qihangerp.api.wei.service.OmsWeiOrderService;
+import cn.qihangerp.common.ApiResult;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.constant.HttpStatus;
 import cn.qihangerp.common.utils.StringUtils;
@@ -21,6 +22,7 @@ import cn.qihangerp.open.wei.model.OrderDetailDeliverInfoAddress;
 import cn.qihangerp.open.wei.model.Product;
 import com.alibaba.fastjson2.JSONObject;
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
-
+@Log
 @RequestMapping("/wei-api/order")
 @RestController
 @AllArgsConstructor
@@ -59,7 +61,7 @@ public class WeiOrderApiController extends BaseController {
 //        String appKey = checkResult.getData().getAppKey();
 //        String appSecret = checkResult.getData().getAppSecret();
         LocalDateTime  endTime = LocalDateTime.now();
-        LocalDateTime startTime = endTime.minusDays(7);
+        LocalDateTime startTime = endTime.minusDays(2);
         ApiResultVo<Order> apiResultVo = OrderApiHelper.pullOrderList(startTime, endTime, accessToken);
         int insertSuccess = 0;//新增成功的订单
         int totalError = 0;
@@ -149,8 +151,10 @@ public class WeiOrderApiController extends BaseController {
                 }
             }
         }
-
-        return AjaxResult.success();
+        String msg = "成功，总共找到：" + apiResultVo.getTotalRecords() + "条订单，新增：" + insertSuccess + "条，添加错误：" + totalError + "条，更新：" + hasExistOrder + "条";
+        log.info("/**************主动更新wei订单：END：" + msg + "****************/");
+//        return new ApiResult<>(ResultVoEnum.SUCCESS.getIndex(), msg);
+        return AjaxResult.success(msg);
     }
 
     /**

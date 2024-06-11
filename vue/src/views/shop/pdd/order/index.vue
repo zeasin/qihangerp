@@ -84,6 +84,7 @@
 <!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
+          :loading="pullLoading"
           type="primary"
           plain
           icon="el-icon-download"
@@ -766,6 +767,7 @@ export default {
       multiple: true,
       // 显示搜索条件
       showSearch: true,
+      pullLoading: false,
       // 总条数
       total: 0,
       // 拼多多订单表格数据
@@ -1043,6 +1045,7 @@ export default {
     /** 删除按钮操作 */
     handlePull(row) {
       if(this.queryParams.shopId){
+        this.pullLoading =true
         pullOrder({shopId:this.queryParams.shopId,updType:0}).then(response => {
           console.log('拉取pdd订单接口返回=====',response)
           if(response.code === 1401) {
@@ -1057,8 +1060,12 @@ export default {
             });
 
             // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
-          }else
+          }else{
+
             this.$modal.msgSuccess(JSON.stringify(response));
+            this.getList()
+          }
+          this.pullLoading =false
         })
       }else{
         this.$modal.msgSuccess("请先选择店铺");
