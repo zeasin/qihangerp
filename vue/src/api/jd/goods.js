@@ -12,7 +12,7 @@ export function listGoodsSku(query) {
 
 export function getGoodsSku(id) {
   return request({
-    url: '/api/jd-api/goods/sku/'+id,
+    url: '/jd-api/goods/sku/'+id,
     method: 'get',
   })
 }
@@ -20,7 +20,7 @@ export function getGoodsSku(id) {
 
 export function linkErpGoodsSkuId(data) {
   return request({
-    url: '/api/jd-api/goods/sku/linkErp',
+    url: '/jd-api/goods/sku/linkErp',
     method: 'post',
     data: data
   })

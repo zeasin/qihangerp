@@ -171,6 +171,10 @@
         <el-form-item label="视频号appSercet" prop="appSercet" v-if="form.platform === 2">
           <el-input v-model="form.appSercet" placeholder="请输入视频号appSercet" />
         </el-form-item>
+        <el-form-item label="AccessToken" prop="accessToken" >
+          <el-input v-model="form.accessToken" type="textarea" placeholder="请输入accessToken" />
+        </el-form-item>
+
         <el-form-item label="描述" prop="remark">
           <el-input type="textarea" v-model="form.remark" placeholder="请输入描述" />
         </el-form-item>
@@ -268,8 +272,8 @@ export default {
   created() {
     listPlatform().then(res=>{
       this.typeList = res.rows;
-      if(this.$route.query.type){
-        this.queryParams.type = parseInt(this.$route.query.type)
+      if(this.$route.query.platform){
+        this.queryParams.platform = parseInt(this.$route.query.platform)
       }
       this.getList();
     })
