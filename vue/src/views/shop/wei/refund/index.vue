@@ -284,10 +284,14 @@ export default {
     };
   },
   created() {
-    listShop({platform:2}).then(response => {
-        this.shopList = response.rows;
-      });
-    this.getList();
+    listShop({platform: 2}).then(response => {
+      this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
+    });
+
   },
   methods: {
     /** 查询淘宝退款订单列表 */
