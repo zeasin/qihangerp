@@ -14,5 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface OmsPddRefundService extends IService<OmsPddRefund> {
     PageResult<OmsPddRefund> queryPageList(PddAfterSaleBo bo, PageQuery pageQuery);
-    ResultVo<Integer> saveAfter(Long shopId, OmsPddRefund refund);
+    ResultVo<Integer> saveRefund(Long shopId, OmsPddRefund refund);
 }

@@ -18,7 +18,7 @@ public class OmsPddRefund implements Serializable {
     /**
      * 内部店铺ID
      */
-    private Integer shopId;
+    private Long shopId;
 
     /**
      * 订单编号

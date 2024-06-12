@@ -2,17 +2,14 @@ package cn.qihangerp.api.pdd.controller;
 
 import cn.qihangerp.api.pdd.bo.PddRequest;
 import cn.qihangerp.api.pdd.domain.OmsPddOrder;
-import cn.qihangerp.api.pdd.domain.OmsPddOrderItem;
 import cn.qihangerp.api.pdd.service.OmsPddGoodsService;
 import cn.qihangerp.api.pdd.service.OmsPddOrderService;
 import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.utils.DateUtil;
 import cn.qihangerp.domain.AjaxResult;
-import cn.qihangerp.open.pdd.OrderApiHelper;
 import cn.qihangerp.open.pdd.RefundApiHelper;
 import cn.qihangerp.open.pdd.common.ApiResultVo;
 import cn.qihangerp.open.pdd.model.AfterSale;
-import cn.qihangerp.open.pdd.model.OrderListResultVo;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @AllArgsConstructor
-@RequestMapping("/pdd-api/afterSale")
+@RequestMapping("/pdd-api/refund")
 @RestController
-public class PddAfterSaleApiController {
-    private static Logger logger = LoggerFactory.getLogger(PddAfterSaleApiController.class);
+public class PddRefundApiController {
+    private static Logger logger = LoggerFactory.getLogger(PddRefundApiController.class);
     private final OmsPddGoodsService goodsService;
     private final OmsPddOrderService orderService;
     private final PddApiHelper pddApiHelper;
@@ -42,7 +36,7 @@ public class PddAfterSaleApiController {
      * @return
      * @throws Exception
      */
-    @PostMapping ("/pull_list")
+    @PostMapping ("/pull_refund")
     public AjaxResult getAfterSaleList(@RequestBody PddRequest req) throws Exception {
         Integer updType = req.getUpdType();//更新类型0拉取新订单1更新订单
         String startDate = req.getStartDate();//reqData.getString("startTime");

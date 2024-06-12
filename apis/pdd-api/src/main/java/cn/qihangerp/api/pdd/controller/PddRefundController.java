@@ -1,9 +1,7 @@
 package cn.qihangerp.api.pdd.controller;
 
 import cn.qihangerp.api.pdd.bo.PddAfterSaleBo;
-import cn.qihangerp.api.pdd.domain.OmsPddOrder;
 import cn.qihangerp.api.pdd.domain.OmsPddRefund;
-import cn.qihangerp.api.pdd.service.OmsPddOrderService;
 import cn.qihangerp.api.pdd.service.OmsPddRefundService;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
@@ -22,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @AllArgsConstructor
 @RestController
-@RequestMapping("/pdd-api/afterSale")
-public class PddAfterSaleController extends BaseController
+@RequestMapping("/pdd-api/refund")
+public class PddRefundController extends BaseController
 {
 
     private final OmsPddRefundService refundService;
