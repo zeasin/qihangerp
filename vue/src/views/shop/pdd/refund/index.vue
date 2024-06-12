@@ -1,14 +1,7 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="订单编号" prop="orderSn">
-        <el-input
-          v-model="queryParams.orderSn"
-          placeholder="请输入订单编号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
+
       <el-form-item label="店铺" prop="shopId">
         <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable @change="handleQuery">
          <el-option
@@ -19,41 +12,23 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="售后原因" prop="afterSaleReason">
+      <el-form-item label="售后编号" prop="id">
         <el-input
-          v-model="queryParams.afterSaleReason"
-          placeholder="请输入售后原因"
+          v-model="queryParams.id"
+          placeholder="请输入售后编号"
+          clearable
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="订单编号" prop="orderSn">
+        <el-input
+          v-model="queryParams.orderSn"
+          placeholder="请输入订单编号"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
 
-      <el-form-item label="拼多多商品id" prop="goodsId">
-        <el-input
-          v-model="queryParams.goodsId"
-          placeholder="请输入拼多多商品id"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-      <el-form-item label="商品编码" prop="goodsNumber">
-        <el-input
-          v-model="queryParams.goodsNumber"
-          placeholder="请输入商品编码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-      <el-form-item label="快递单号" prop="trackingNumber">
-        <el-input
-          v-model="queryParams.trackingNumber"
-          placeholder="请输入快递单号"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
 
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -62,48 +37,26 @@
     </el-form>
 
     <el-row :gutter="10" class="mb8">
-      <!-- <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['pdd:pddRefund:add']"
-        >新增</el-button>
-      </el-col>
       <el-col :span="1.5">
         <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['pdd:pddRefund:edit']"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
+          :loading="pullLoading"
           type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['pdd:pddRefund:remove']"
-        >删除</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
           plain
           icon="el-icon-download"
           size="mini"
-          @click="handleExport"
-          v-hasPermi="['pdd:pddRefund:export']"
-        >导出</el-button>
-      </el-col> -->
+          @click="handlePull"
+        >API拉取新退款</el-button>
+      </el-col>
+      <el-col :span="1.5">
+        <el-button
+          type="primary"
+          plain
+          icon="el-icon-refresh"
+          size="mini"
+          :disabled="multiple"
+          @click="handlePushOms"
+        >手动将选中退款推送到OMS</el-button>
+      </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
@@ -302,8 +255,10 @@
 </template>
 
 <script>
-import { listPddRefund, getPddRefund, delPddRefund, addPddRefund, updatePddRefund } from "@/api/pdd/pddRefund";
+import { listPddRefund, getPddRefund, pullRefund, pushOms } from "@/api/pdd/pddRefund";
 import { listShop } from "@/api/shop/shop";
+import {MessageBox} from "element-ui";
+import {isRelogin} from "@/utils/request";
 export default {
   name: "PddRefund",
   data() {
@@ -335,32 +290,7 @@ export default {
         shopId: null,
         afterSalesType: null,
         afterSalesStatus: null,
-        afterSaleReason: null,
-        confirmTime: null,
-        createdTime: null,
-        discountAmount: null,
-        orderAmount: null,
-        refundAmount: null,
-        goodsImage: null,
-        goodsId: null,
-        skuId: null,
-        goodsName: null,
-        goodsNumber: null,
-        skuNumber: null,
-        skuInfo: null,
-        quantity: null,
-        goodsPrice: null,
-        updatedTime: null,
-        trackingNumber: null,
-        trackingCompany: null,
-        auditStatus: null,
-        auditTime: null,
-        describe: null,
-        shippingStatus: null,
-        userShippingStatus: null,
-        erpOrderReturnNum: null,
-        erpOrderReturnId: null,
-        sign: null
+        afterSaleReason: null
       },
       // 表单参数
       form: {},
@@ -409,10 +339,14 @@ export default {
     };
   },
   created() {
-    listShop({platform:5}).then(response => {
-        this.shopList = response.rows;
-      });
-    this.getList();
+    listShop({platform: 5}).then(response => {
+      this.shopList = response.rows;
+      if (this.shopList && this.shopList.length > 0) {
+        this.queryParams.shopId = this.shopList[0].id
+      }
+      this.getList();
+    });
+    // this.getList();
   },
   methods: {
     dateToString(timespan){
@@ -436,38 +370,7 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        id: null,
-        orderSn: null,
-        shopId: null,
-        afterSalesType: null,
-        afterSalesStatus: null,
-        afterSaleReason: null,
-        confirmTime: null,
-        createdTime: null,
-        discountAmount: null,
-        orderAmount: null,
-        refundAmount: null,
-        goodsImage: null,
-        goodsId: null,
-        skuId: null,
-        goodsName: null,
-        goodsNumber: null,
-        skuNumber: null,
-        skuInfo: null,
-        quantity: null,
-        goodsPrice: null,
-        updatedTime: null,
-        trackingNumber: null,
-        trackingCompany: null,
-        auditStatus: null,
-        auditTime: null,
-        describe: null,
-        remark: null,
-        shippingStatus: null,
-        userShippingStatus: null,
-        erpOrderReturnNum: null,
-        erpOrderReturnId: null,
-        sign: null
+        id: null
       };
       this.resetForm("form");
     },
@@ -487,57 +390,43 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
-    /** 新增按钮操作 */
-    handleAdd() {
-      this.reset();
-      this.open = true;
-      this.title = "添加拼多多订单退款";
-    },
-    /** 修改按钮操作 */
-    handleUpdate(row) {
-      this.reset();
-      const id = row.id || this.ids
-      getPddRefund(id).then(response => {
-        this.form = response.data;
-        this.open = true;
-        this.title = "修改拼多多订单退款";
-      });
-    },
-    /** 提交按钮 */
-    submitForm() {
-      this.$refs["form"].validate(valid => {
-        if (valid) {
-          if (this.form.id != null) {
-            updatePddRefund(this.form).then(response => {
-              this.$modal.msgSuccess("修改成功");
-              this.open = false;
-              this.getList();
-            });
-          } else {
-            addPddRefund(this.form).then(response => {
-              this.$modal.msgSuccess("新增成功");
-              this.open = false;
-              this.getList();
-            });
-          }
-        }
-      });
-    },
-    /** 删除按钮操作 */
-    handleDelete(row) {
+    handlePushOms(row) {
       const ids = row.id || this.ids;
-      this.$modal.confirm('是否确认删除拼多多订单退款编号为"' + ids + '"的数据项？').then(function() {
-        return delPddRefund(ids);
+      this.$modal.confirm('是否手动推送到OMS？').then(function() {
+        return pushOms({ids:ids});
       }).then(() => {
-        this.getList();
-        this.$modal.msgSuccess("删除成功");
+        // this.getList();
+        this.$modal.msgSuccess("推送成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
-    handleExport() {
-      this.download('pdd/pddRefund/export', {
-        ...this.queryParams
-      }, `pddRefund_${new Date().getTime()}.xlsx`)
+    handlePull() {
+      if(this.queryParams.shopId){
+        this.pullLoading = true
+        pullRefund({shopId:this.queryParams.shopId,updType:0}).then(response => {
+          console.log('拉取jd售后接口返回=====',response)
+          if(response.code === 1401) {
+            MessageBox.confirm('Token已过期，需要重新授权！请前往店铺列表重新获取授权！', '系统提示', { confirmButtonText: '前往授权', cancelButtonText: '取消', type: 'warning' }).then(() => {
+              this.$router.push({path:"/shop/shop_list",query:{platform:5}})
+              // isRelogin.show = false;
+              // store.dispatch('LogOut').then(() => {
+              // location.href = response.data.tokenRequestUrl+'?shopId='+this.queryParams.shopId
+              // })
+            }).catch(() => {
+              isRelogin.show = false;
+            });
+
+            // return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
+          }else{
+            this.$modal.msgSuccess(JSON.stringify(response));
+            this.getList()
+          }
+          this.pullLoading = false
+        })
+      }else{
+        this.$modal.msgSuccess("请先选择店铺");
+      }
+
+      // this.$modal.msgSuccess("请先配置API");
     }
   }
 };

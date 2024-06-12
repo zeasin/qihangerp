@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询拼多多订单退款列表
 export function listPddRefund(query) {
   return request({
-    url: '/pdd/pddRefund/list',
+    url: '/pdd-api/afterSale/list',
     method: 'get',
     params: query
   })
@@ -12,33 +12,23 @@ export function listPddRefund(query) {
 // 查询拼多多订单退款详细
 export function getPddRefund(id) {
   return request({
-    url: '/pdd/pddRefund/' + id,
+    url: '/pdd-api/afterSale/' + id,
     method: 'get'
   })
 }
 
-// 新增拼多多订单退款
-export function addPddRefund(data) {
+export function pullRefund(data) {
   return request({
-    url: '/pdd/pddRefund',
+    url: '/pdd-api/afterSale/pull_list',
     method: 'post',
     data: data
   })
 }
 
-// 修改拼多多订单退款
-export function updatePddRefund(data) {
+export function pushOms(data) {
   return request({
-    url: '/pdd/pddRefund',
-    method: 'put',
+    url: '/pdd-api/afterSale/push_oms',
+    method: 'post',
     data: data
-  })
-}
-
-// 删除拼多多订单退款
-export function delPddRefund(id) {
-  return request({
-    url: '/pdd/pddRefund/' + id,
-    method: 'delete'
   })
 }

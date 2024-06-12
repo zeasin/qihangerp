@@ -7,15 +7,17 @@
       <el-tab-pane label="京东POP" name="jdRefund" lazy>
         <refund-jd></refund-jd>
       </el-tab-pane>
+      <el-tab-pane label="拼多多" name="pddOrder" lazy>
+        <pdd-refund></pdd-refund>
+      </el-tab-pane>
+      <el-tab-pane label="抖店" name="douOrder" lazy>
+        <dou-refund></dou-refund>
+      </el-tab-pane>
       <el-tab-pane label="视频号小店" name="weiRefund" lazy>
         <refund-wei></refund-wei>
       </el-tab-pane>
-<!--      <el-tab-pane label="抖店" name="douOrder" lazy>-->
-<!--        <dou-refund></dou-refund>-->
-<!--      </el-tab-pane>-->
-<!--      <el-tab-pane label="拼多多" name="pddOrder" lazy>-->
-<!--        <pdd-refund></pdd-refund>-->
-<!--      </el-tab-pane>-->
+
+
     </el-tabs>
 
   </div>
