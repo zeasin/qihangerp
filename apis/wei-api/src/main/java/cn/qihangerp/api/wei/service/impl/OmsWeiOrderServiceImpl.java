@@ -8,8 +8,8 @@ import cn.qihangerp.api.wei.mapper.OmsWeiOrderItemMapper;
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.common.utils.DateUtil;
-import cn.qihangerp.domain.ErpOrder;
-import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpSaleOrder;
+import cn.qihangerp.domain.ErpSaleOrderItem;
 import cn.qihangerp.mq.MQRequest;
 import cn.qihangerp.mq.MQRequestType;
 import cn.qihangerp.mq.client.MQClientService;
@@ -130,7 +130,7 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
 
         // 新增ErpOrder
         // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
-        ErpOrder so = new ErpOrder();
+        ErpSaleOrder so = new ErpSaleOrder();
         so.setOrderNum(original.getOrderId());
         so.setOrderTime(DateUtil.stampToDateTime(original.getCreateTime().longValue()));
         so.setShopId(original.getShopId());
@@ -170,14 +170,21 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
 
         so.setShipStatus(0);
 //        so.setShipType(bo.getShipType());
-        so.setGoodsAmount(original.getProductPrice().doubleValue() /100);
-        if(original.getDiscountedPrice()!=null) {
-            so.setDiscountAmount(BigDecimal.valueOf(original.getDiscountedPrice().doubleValue() / 100));
-        }else{
-            so.setDiscountAmount(BigDecimal.ZERO);
-        }
-        so.setAmount(original.getOrderPrice().doubleValue()/100);
-        so.setPostage(BigDecimal.valueOf(original.getFreight()/100));
+        so.setGoodsAmount(original.getProductPrice()!=null?original.getProductPrice().doubleValue()/100:0.0);
+        so.setPostage(original.getFreight()!=null?original.getFreight().doubleValue()/100:0.0);
+        so.setSellerDiscount(original.getDiscountedPrice()!=null?original.getDiscountedPrice().doubleValue()/100:0.0);
+        so.setPlatformDiscount(0.0);
+        so.setOrderAmount(original.getOrderPrice()!=null?original.getOrderPrice().doubleValue()/100:0.0);
+        so.setPayAmount(original.getOrderPrice()!=null?original.getOrderPrice().doubleValue()/100:0.0);
+
+//        so.setGoodsAmount(original.getProductPrice().doubleValue() /100);
+//        if(original.getDiscountedPrice()!=null) {
+//            so.setDiscountAmount(BigDecimal.valueOf(original.getDiscountedPrice().doubleValue() / 100));
+//        }else{
+//            so.setDiscountAmount(BigDecimal.ZERO);
+//        }
+//        so.setAmount(original.getOrderPrice().doubleValue()/100);
+//        so.setPostage(BigDecimal.valueOf(original.getFreight()/100));
 
 //        so.setPayTime(original.getPayTime());
         so.setConfirmTime(new Date());
@@ -195,7 +202,7 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
         List<OmsWeiOrderItem> weiOrderItems = itemMapper.selectList(new LambdaQueryWrapper<OmsWeiOrderItem>().eq(OmsWeiOrderItem::getOrderId, original.getOrderId()));
 
         if(weiOrderItems!=null && weiOrderItems.size()>0) {
-            List<ErpOrderItem> items = new ArrayList<>();
+            List<ErpSaleOrderItem> items = new ArrayList<>();
 
             for (var i : weiOrderItems) {
 //            if(com.qihang.common.utils.StringUtils.isEmpty(i.getSkuCode())) {
@@ -213,7 +220,7 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
 //                return -12;
 //            }
 
-                ErpOrderItem item = new ErpOrderItem();
+                ErpSaleOrderItem item = new ErpSaleOrderItem();
                 item.setShipStatus(0);
 //            item.setShipType(bo.getShipType());
                 item.setShopId(original.getShopId());
@@ -298,7 +305,7 @@ public class OmsWeiOrderServiceImpl extends ServiceImpl<OmsWeiOrderMapper, OmsWe
 ////        }
 //        erpOrderMapper.batchErpOrderItem(items);
         // 远程调用
-        MQRequest<ErpOrder> req = new MQRequest<>();
+        MQRequest<ErpSaleOrder> req = new MQRequest<>();
         req.setMqRequestType(MQRequestType.ORDER_CONFIRM);
         req.setData(so);
         ApiResult s = mqClientService.confirmOrder(req);

@@ -7,10 +7,9 @@ import cn.qihangerp.api.domain.bo.ShipOrderSupplierShipItemBo;
 import cn.qihangerp.api.mapper.*;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
-import cn.qihangerp.common.utils.DateUtil;
 import cn.qihangerp.common.utils.DateUtils;
-import cn.qihangerp.domain.ErpOrder;
-import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpSaleOrder;
+import cn.qihangerp.domain.ErpSaleOrderItem;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -66,8 +65,8 @@ public class ErpShipOrderServiceImpl extends ServiceImpl<ErpShipOrderMapper, Erp
     public int supplierShip(ShipOrderSupplierShipBo bo) {
         // 判断数据完整性
         if(bo.getErpOrderId()==null||bo.getErpOrderId()==0) return -2;
-        ErpOrder erpOrder = orderMapper.selectErpOrderById(bo.getErpOrderId());
-        if(erpOrder==null)return -3;
+        ErpSaleOrder erpSaleOrder = orderMapper.selectErpOrderById(bo.getErpOrderId());
+        if(erpSaleOrder ==null)return -3;
 
         Float singleFee =  bo.getLogisticsFee()/bo.getItemList().size();
         for (int i=0;i<bo.getItemList().size();i++) {
@@ -91,7 +90,7 @@ public class ErpShipOrderServiceImpl extends ServiceImpl<ErpShipOrderMapper, Erp
             mapper.updateById(update);
 
             // 更新erp_sale_order_item
-            ErpOrderItem orderItem = new ErpOrderItem();
+            ErpSaleOrderItem orderItem = new ErpSaleOrderItem();
             orderItem.setShipType(1);
             orderItem.setShipStatus(3);
             orderItem.setShipTime(bo.getShipTime());
@@ -101,8 +100,8 @@ public class ErpShipOrderServiceImpl extends ServiceImpl<ErpShipOrderMapper, Erp
 
             // 记录供应商代发账单 erp_ship_order_agent_fee
             ErpShipOrderAgentFee agentFee = new ErpShipOrderAgentFee();
-            agentFee.setOrderNum(erpOrder.getOrderNum());
-            agentFee.setShopId(erpOrder.getShopId());
+            agentFee.setOrderNum(erpSaleOrder.getOrderNum());
+            agentFee.setShopId(erpSaleOrder.getShopId());
             agentFee.setSupplierId(shipOrder.getSupplierId());
             try {
                 agentFee.setDate(StringUtils.hasText(bo.getShipTime()) ? DateUtils.dateTime("yyyy-MM-dd HH:mm:ss", bo.getShipTime()) : new Date());
@@ -129,8 +128,8 @@ public class ErpShipOrderServiceImpl extends ServiceImpl<ErpShipOrderMapper, Erp
         }
 
         // 更新订单状态 erp_sale_order
-        ErpOrder orderUpdate = new ErpOrder();
-        orderUpdate.setId(erpOrder.getId());
+        ErpSaleOrder orderUpdate = new ErpSaleOrder();
+        orderUpdate.setId(erpSaleOrder.getId());
         orderUpdate.setShipType(1);
         orderUpdate.setShipStatus(3);
         try {
@@ -150,8 +149,8 @@ public class ErpShipOrderServiceImpl extends ServiceImpl<ErpShipOrderMapper, Erp
     public int wmsShip(ShipOrderSupplierShipBo bo) {
         // 判断数据完整性
         if(bo.getErpOrderId()==null||bo.getErpOrderId()==0) return -2;
-        ErpOrder erpOrder = orderMapper.selectErpOrderById(bo.getErpOrderId());
-        if(erpOrder==null)return -3;
+        ErpSaleOrder erpSaleOrder = orderMapper.selectErpOrderById(bo.getErpOrderId());
+        if(erpSaleOrder ==null)return -3;
 
         Float singleFee =  bo.getLogisticsFee()/bo.getItemList().size();
         for (int i=0;i<bo.getItemList().size();i++) {
@@ -175,7 +174,7 @@ public class ErpShipOrderServiceImpl extends ServiceImpl<ErpShipOrderMapper, Erp
             mapper.updateById(update);
 
             // 更新erp_sale_order_item
-            ErpOrderItem orderItem = new ErpOrderItem();
+            ErpSaleOrderItem orderItem = new ErpSaleOrderItem();
             orderItem.setShipType(1);
             orderItem.setShipStatus(3);
             orderItem.setShipTime(bo.getShipTime());
@@ -209,8 +208,8 @@ public class ErpShipOrderServiceImpl extends ServiceImpl<ErpShipOrderMapper, Erp
         }
 
         // 更新订单状态 erp_sale_order
-        ErpOrder orderUpdate = new ErpOrder();
-        orderUpdate.setId(erpOrder.getId());
+        ErpSaleOrder orderUpdate = new ErpSaleOrder();
+        orderUpdate.setId(erpSaleOrder.getId());
         orderUpdate.setShipType(1);
         orderUpdate.setShipStatus(3);
         try {

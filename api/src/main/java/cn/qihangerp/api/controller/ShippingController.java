@@ -8,9 +8,7 @@ import cn.qihangerp.common.enums.ErpOrderStatusEnum;
 import cn.qihangerp.core.controller.BaseController;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.core.page.TableDataInfo;
-import cn.qihangerp.domain.ErpOrderItem;
-import cn.qihangerp.api.domain.WmsStockOutEntry;
-import cn.qihangerp.api.domain.WmsStockOutEntryItem;
+import cn.qihangerp.domain.ErpSaleOrderItem;
 import cn.qihangerp.api.domain.bo.StockOutEntryGenerateBo;
 import cn.qihangerp.api.service.ErpOrderItemService;
 
@@ -35,9 +33,9 @@ public class ShippingController extends BaseController {
      * @return
      */
     @GetMapping("/stock_ship_list")
-    public TableDataInfo stockShipList(ErpOrderItem bo, PageQuery pageQuery)
+    public TableDataInfo stockShipList(ErpSaleOrderItem bo, PageQuery pageQuery)
     {
-        PageResult<ErpOrderItem> list = erpOrderItemService.queryPageList(ErpOrderStatusEnum.WAIT_SELLER_SEND_GOODS,0,bo, pageQuery);
+        PageResult<ErpSaleOrderItem> list = erpOrderItemService.queryPageList(ErpOrderStatusEnum.WAIT_SELLER_SEND_GOODS,0,bo, pageQuery);
         return getDataTable(list);
     }
 

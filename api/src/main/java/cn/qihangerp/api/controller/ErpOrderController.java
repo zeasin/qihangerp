@@ -1,9 +1,10 @@
 package cn.qihangerp.api.controller;
 
 import java.util.List;
+
+import cn.qihangerp.domain.ErpSaleOrder;
 import jakarta.servlet.http.HttpServletResponse;
 
-import cn.qihangerp.domain.ErpOrder;
 import cn.qihangerp.api.service.IErpOrderService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,10 @@ public class ErpOrderController extends BaseController
      */
     @PreAuthorize("@ss.hasPermi('shop:order:list')")
     @GetMapping("/list")
-    public TableDataInfo list(ErpOrder order)
+    public TableDataInfo list(ErpSaleOrder order)
     {
         startPage();
-        List<ErpOrder> list = orderService.selectErpOrderList(order);
+        List<ErpSaleOrder> list = orderService.selectErpOrderList(order);
         return getDataTable(list);
     }
 
@@ -51,10 +52,10 @@ public class ErpOrderController extends BaseController
     @PreAuthorize("@ss.hasPermi('shop:order:export')")
     @Log(title = "店铺订单", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, ErpOrder order)
+    public void export(HttpServletResponse response, ErpSaleOrder order)
     {
-        List<ErpOrder> list = orderService.selectErpOrderList(order);
-        ExcelUtil<ErpOrder> util = new ExcelUtil<ErpOrder>(ErpOrder.class);
+        List<ErpSaleOrder> list = orderService.selectErpOrderList(order);
+        ExcelUtil<ErpSaleOrder> util = new ExcelUtil<ErpSaleOrder>(ErpSaleOrder.class);
         util.exportExcel(response, list, "店铺订单数据");
     }
 
@@ -74,7 +75,7 @@ public class ErpOrderController extends BaseController
     @PreAuthorize("@ss.hasPermi('shop:order:add')")
     @Log(title = "店铺订单", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody ErpOrder order)
+    public AjaxResult add(@RequestBody ErpSaleOrder order)
     {
         if(order.getGoodsAmount()==null)return new AjaxResult(1503,"请填写商品价格！");
         order.setCreateBy(getUsername());

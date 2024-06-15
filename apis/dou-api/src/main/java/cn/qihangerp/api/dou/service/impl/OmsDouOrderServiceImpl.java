@@ -41,7 +41,7 @@ public class OmsDouOrderServiceImpl extends ServiceImpl<OmsDouOrderMapper, OmsDo
         Page<OmsDouOrder> goodsPage = orderMapper.selectPage(pageQuery.build(), queryWrapper);
         if(goodsPage.getRecords()!=null){
             for (var o: goodsPage.getRecords()) {
-                o.setItemList(orderItemMapper.selectList(new LambdaQueryWrapper<OmsDouOrderItem>().eq(OmsDouOrderItem::getParentOrderId,o.getOrderId())));
+                o.setItems(orderItemMapper.selectList(new LambdaQueryWrapper<OmsDouOrderItem>().eq(OmsDouOrderItem::getParentOrderId,o.getOrderId())));
             }
         }
         return PageResult.build(goodsPage);
@@ -132,7 +132,7 @@ public class OmsDouOrderServiceImpl extends ServiceImpl<OmsDouOrderMapper, OmsDo
                 order.setPullTime(new Date());
                 orderMapper.insert(order);
                 // 添加item
-                for (var item : order.getItemList()) {
+                for (var item : order.getItems()) {
                     // 新增
                     orderItemMapper.insert(item);
                 }

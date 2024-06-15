@@ -39,6 +39,7 @@
             <result property="doudianOpenId" column="doudian_open_id" jdbcType="VARCHAR"/>
             <result property="encryptPostReceiver" column="encrypt_post_receiver" jdbcType="VARCHAR"/>
             <result property="encryptPostTel" column="encrypt_post_tel" jdbcType="VARCHAR"/>
+            <result property="encryptPostAddress" column="encrypt_post_address" jdbcType="VARCHAR"/>
             <result property="expShipTime" column="exp_ship_time" jdbcType="INTEGER"/>
             <result property="logisticsInfo" column="logistics_info" jdbcType="VARCHAR"/>
             <result property="mainStatus" column="main_status" jdbcType="INTEGER"/>
@@ -99,7 +100,7 @@
         cancel_reason,channel_payment_no,create_time,
         pay_time,update_time,finish_time,
         order_expire_time,doudian_open_id,encrypt_post_receiver,
-        encrypt_post_tel,exp_ship_time,logistics_info,
+        encrypt_post_tel,encrypt_post_address,exp_ship_time,logistics_info,
         main_status,main_status_desc,mask_post_receiver,
         mask_post_tel,mask_post_address,province_name,
         province_id,city_name,city_id,

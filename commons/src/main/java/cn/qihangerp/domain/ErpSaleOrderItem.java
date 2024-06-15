@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @TableName("erp_sale_order_item")
 @Data
-public class ErpOrderItem implements Serializable {
+public class ErpSaleOrderItem implements Serializable {
     /**
      * id，自增
      */

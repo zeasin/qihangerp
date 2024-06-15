@@ -71,31 +71,47 @@ public class DouOrderApiController {
         Integer total  = apiResultVo.getTotalRecords();
         //成功
         if (apiResultVo.getList() != null) {
-            for (var data:apiResultVo.getList()) {
-                OmsDouOrder order = new OmsDouOrder();
-                BeanUtils.copyProperties(data,order);
-                List<OmsDouOrderItem> itemList = new ArrayList<>();
-                if(data.getSkuOrderList()!=null){
-                    for (var dateItem:data.getSkuOrderList()) {
-                        OmsDouOrderItem orderItem = new OmsDouOrderItem();
-                        BeanUtils.copyProperties(dateItem,orderItem);
-                        itemList.add(orderItem);
+            for (var gitem:apiResultVo.getList()) {
+                OmsDouOrder douOrder = new OmsDouOrder();
+                BeanUtils.copyProperties(gitem, douOrder);
+                douOrder.setOrderPhaseList(JSONObject.toJSONString(gitem.getOrderPhaseList()));
+                douOrder.setEncryptPostAddress(gitem.getPostAddr().getEncryptDetail());
+                douOrder.setProvinceName(gitem.getPostAddr().getProvince().getName());
+                douOrder.setProvinceId(gitem.getPostAddr().getProvince().getId());
+                douOrder.setCityName(gitem.getPostAddr().getCity().getName());
+                douOrder.setCityId(gitem.getPostAddr().getCity().getId());
+                douOrder.setTownName(gitem.getPostAddr().getTown().getName());
+                douOrder.setTownId(gitem.getPostAddr().getTown().getId());
+                douOrder.setStreetName(gitem.getPostAddr().getStreet().getName());
+                douOrder.setStreetId(gitem.getPostAddr().getStreet().getId());
+                douOrder.setMaskPostAddress(gitem.getMaskPostAddr().getDetail());
+                douOrder.setLogisticsInfo(JSONObject.toJSONString(gitem.getLogisticsInfo()));
+                List<OmsDouOrderItem> items = new ArrayList<>();
+                if (gitem.getSkuOrderList() != null) {
+                    for (var i : gitem.getSkuOrderList()) {
+                        OmsDouOrderItem item = new OmsDouOrderItem();
+                        BeanUtils.copyProperties(i, item);
+                        item.setAfterSaleStatus(i.getAfterSaleInfo().getAfterSaleStatus());
+                        item.setAfterSaleType(i.getAfterSaleInfo().getAfterSaleType());
+                        item.setRefundStatus(i.getAfterSaleInfo().getRefundStatus());
+                        item.setSpec(JSONObject.toJSONString(i.getSpec()));
+                        items.add(item);
                     }
+                    douOrder.setItems(items);
                 }
-                order.setItemList(itemList);
                 //插入订单数据
-                var result = orderService.saveOrder(req.getShopId(), order);
+                var result = orderService.saveOrder(req.getShopId(), douOrder);
                 if (result.getCode() == ResultVoEnum.DataExist.getIndex()) {
                     //已经存在
-                    logger.info("/**************主动更新pdd订单：开始更新数据库：" + order.getId() + "存在、更新****************/");
+                    logger.info("/**************主动更新pdd订单：开始更新数据库：" + douOrder.getId() + "存在、更新****************/");
 
                     hasExistOrder++;
                 } else if (result.getCode() == ResultVoEnum.SUCCESS.getIndex()) {
-                    logger.info("/**************主动更新pdd订单：开始更新数据库：" + order.getId() + "不存在、新增****************/");
+                    logger.info("/**************主动更新pdd订单：开始更新数据库：" + douOrder.getId() + "不存在、新增****************/");
 
                     insertSuccess++;
                 } else {
-                    logger.info("/**************主动更新pdd订单：开始更新数据库：" + order.getId() + "报错****************/");
+                    logger.info("/**************主动更新pdd订单：开始更新数据库：" + douOrder.getId() + "报错****************/");
                     totalError++;
                 }
             }

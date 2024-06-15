@@ -1,8 +1,8 @@
 package cn.qihangerp.open.tao.server;
 import cn.qihangerp.domain.ErpSaleAfterRefund;
+import cn.qihangerp.domain.ErpSaleOrder;
 import cn.qihangerp.mq.MQRequest;
 import cn.qihangerp.common.ApiResult;
-import cn.qihangerp.domain.ErpOrder;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -31,7 +31,7 @@ public class SimpleClientHandler extends SimpleChannelInboundHandler<ApiResult> 
 //        ctx.writeAndFlush(buffer);
     }
     // 发送请求并阻塞等待响应
-    public ApiResult sendRequestAndWaitForResponse(MQRequest<ErpOrder> apiRequest) throws InterruptedException {
+    public ApiResult sendRequestAndWaitForResponse(MQRequest<ErpSaleOrder> apiRequest) throws InterruptedException {
         // 构造请求消息
 //        String req = buildRequestFromErpOrder(apiRequest);
 

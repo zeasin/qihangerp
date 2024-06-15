@@ -1,7 +1,6 @@
 package cn.qihangerp.api.xhs.service.impl;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 ;
@@ -12,14 +11,11 @@ import cn.qihangerp.api.xhs.mapper.XhsOrderMapper;
 import cn.qihangerp.api.xhs.mapper.XhsOrderReceiverMapper;
 import cn.qihangerp.api.xhs.service.IXhsOrderService;
 import cn.qihangerp.common.utils.DateUtils;
-import cn.qihangerp.domain.ErpOrder;
-import cn.qihangerp.domain.ErpOrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import cn.qihangerp.common.utils.StringUtils;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 /**
  * 小红书订单Service业务层处理

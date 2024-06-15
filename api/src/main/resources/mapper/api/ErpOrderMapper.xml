@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.qihangerp.api.mapper.ErpOrderMapper">
     
-    <resultMap type="cn.qihangerp.domain.ErpOrder" id="ErpOrderResult">
+    <resultMap type="cn.qihangerp.domain.ErpSaleOrder" id="ErpOrderResult">
         <result property="id"    column="id"    />
         <result property="orderNum"    column="order_num"    />
         <result property="shopType"    column="shop_type"    />
@@ -45,11 +45,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateBy"    column="update_by"    />
     </resultMap>
 
-    <resultMap id="ErpOrderErpOrderItemResult" type="ErpOrder" extends="ErpOrderResult">
-        <collection property="erpOrderItemList" notNullColumn="sub_id" javaType="java.util.List" resultMap="ErpOrderItemResult" />
+    <resultMap id="ErpOrderErpOrderItemResult" type="ErpSaleOrder" extends="ErpOrderResult">
+        <collection property="erpSaleOrderItemList" notNullColumn="sub_id" javaType="java.util.List" resultMap="ErpOrderItemResult" />
     </resultMap>
 
-    <resultMap type="ErpOrderItem" id="ErpOrderItemResult">
+    <resultMap type="ErpSaleOrderItem" id="ErpOrderItemResult">
         <result property="id"    column="sub_id"    />
         <result property="orderId"    column="sub_order_id"    />
         <result property="goodsId"    column="sub_goods_id"    />
@@ -80,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select id, order_num, shop_type,ship_type, shop_id, remark, buyer_memo,seller_memo, tag, refund_status, order_status, goods_amount, discount_amount, postage, amount, receiver_name, receiver_phone, address, country, province, city, town, pay_time, confirm_time, shipping_time, shipping_number, shipping_company,shipping_man,shipping_cost,length,width,height,weight, create_time, create_by, update_time, update_by from erp_sale_order
     </sql>
 
-    <select id="selectErpOrderList" parameterType="ErpOrder" resultMap="ErpOrderResult">
+    <select id="selectErpOrderList" parameterType="ErpSaleOrder" resultMap="ErpOrderResult">
         <include refid="selectErpOrderVo"/>
         <where>  
             <if test="orderNum != null  and orderNum != ''"> and order_num = #{orderNum}</if>
@@ -111,7 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
 
-    <select id="selectOrderItemByOrderItemNum" parameterType="ErpOrderItem" resultMap="ErpOrderItemResult">
+    <select id="selectOrderItemByOrderItemNum" parameterType="ErpSaleOrderItem" resultMap="ErpOrderItemResult">
         select
         b.id as sub_id, b.original_order_item_id ,b.original_order_id,b.original_sku_id,b.supplier_id as sub_supplier_id,b.order_id as sub_order_id, b.goods_id as sub_goods_id, b.spec_id as sub_spec_id, b.goods_title as sub_goods_title, b.goods_img as sub_goods_img, b.goods_num as sub_goods_num, b.goods_spec as sub_goods_spec, b.spec_num as sub_spec_num, b.goods_price as sub_goods_price, b.item_amount as sub_item_amount, b.quantity as sub_quantity, b.remark as sub_remark, b.is_gift as sub_is_gift, b.refund_count as sub_refund_count, b.refund_status as sub_refund_status, b.create_time as sub_create_time, b.create_by as sub_create_by, b.update_time as sub_update_time, b.update_by as sub_update_by
         from  erp_sale_order_item b
@@ -142,7 +142,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
         
-    <insert id="insertErpOrder" parameterType="ErpOrder" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertErpOrder" parameterType="ErpSaleOrder" useGeneratedKeys="true" keyProperty="id">
         insert into erp_sale_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="orderNum != null and orderNum != ''">order_num,</if>
@@ -216,7 +216,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </trim>
     </insert>
 
-    <update id="updateErpOrder" parameterType="ErpOrder">
+    <update id="updateErpOrder" parameterType="ErpSaleOrder">
         update erp_sale_order
         <trim prefix="SET" suffixOverrides=",">
             <if test="orderNum != null and orderNum != ''">order_num = #{orderNum},</if>
@@ -289,7 +289,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </insert>
 
-    <insert id="insertErpOrderItem" parameterType="cn.qihangerp.domain.ErpOrderItem" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertErpOrderItem" parameterType="cn.qihangerp.domain.ErpSaleOrderItem" useGeneratedKeys="true" keyProperty="id">
         insert into erp_sale_order_item(order_id,supplier_id,original_order_id,original_order_item_id,original_sku_id,, goods_id, spec_id, goods_title, goods_img, goods_num, goods_spec, spec_num, goods_price, item_amount, quantity, remark, is_gift, refund_count, refund_status, create_time, create_by) values
 
         (#{orderId},#{supplierId},#{originalOrderId},#{originalOrderItemId},#{originalSkuId}, #{goodsId}, #{specId}, #{goodsTitle}, #{goodsImg}, #{goodsNum}, #{goodsSpec}, #{specNum}, #{goodsPrice}, #{itemAmount}, #{quantity}, #{remark}, #{isGift}, #{refundCount}, #{refundStatus}, #{createTime}, #{createBy})

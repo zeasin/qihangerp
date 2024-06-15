@@ -1,7 +1,7 @@
 package cn.qihangerp.mq.client;
 
 import cn.qihangerp.common.ApiResult;
-import cn.qihangerp.domain.ErpOrder;
+import cn.qihangerp.domain.ErpSaleOrder;
 import cn.qihangerp.domain.ErpSaleAfterRefund;
 import cn.qihangerp.mq.MQRequest;
 import io.netty.channel.ChannelFuture;
@@ -32,7 +32,7 @@ public class MQClientService extends SimpleChannelInboundHandler<ApiResult> {
 //        ctx.writeAndFlush(buffer);
     }
     // 发送请求并阻塞等待响应
-    public ApiResult confirmOrder(MQRequest<ErpOrder> apiRequest) throws InterruptedException {
+    public ApiResult confirmOrder(MQRequest<ErpSaleOrder> apiRequest) throws InterruptedException {
         // 构造请求消息
 //        String req = buildRequestFromErpOrder(apiRequest);
 

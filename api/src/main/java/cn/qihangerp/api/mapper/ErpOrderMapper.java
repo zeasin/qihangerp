@@ -1,8 +1,8 @@
 package cn.qihangerp.api.mapper;
 
 import java.util.List;
-import cn.qihangerp.domain.ErpOrder;
-import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpSaleOrder;
+import cn.qihangerp.domain.ErpSaleOrderItem;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -20,36 +20,36 @@ public interface ErpOrderMapper
      * @param id 订单主键
      * @return 订单
      */
-    public ErpOrder selectErpOrderById(Long id);
-    ErpOrder selectErpOrderByNum(String orderNum);
+    public ErpSaleOrder selectErpOrderById(Long id);
+    ErpSaleOrder selectErpOrderByNum(String orderNum);
 
     /**
      * 查询订单列表
      * 
-     * @param erpOrder 订单
+     * @param erpSaleOrder 订单
      * @return 订单集合
      */
-    public List<ErpOrder> selectErpOrderList(ErpOrder erpOrder);
+    public List<ErpSaleOrder> selectErpOrderList(ErpSaleOrder erpSaleOrder);
 
-    List<ErpOrderItem> selectOrderItemByOrderId(Long orderId);
+    List<ErpSaleOrderItem> selectOrderItemByOrderId(Long orderId);
 
-    ErpOrderItem selectOrderItemByOrderItemNum(ErpOrderItem orderItem);
+    ErpSaleOrderItem selectOrderItemByOrderItemNum(ErpSaleOrderItem orderItem);
 
     /**
      * 新增订单
      * 
-     * @param erpOrder 订单
+     * @param erpSaleOrder 订单
      * @return 结果
      */
-    public int insertErpOrder(ErpOrder erpOrder);
+    public int insertErpOrder(ErpSaleOrder erpSaleOrder);
 
     /**
      * 修改订单
      * 
-     * @param erpOrder 订单
+     * @param erpSaleOrder 订单
      * @return 结果
      */
-    public int updateErpOrder(ErpOrder erpOrder);
+    public int updateErpOrder(ErpSaleOrder erpSaleOrder);
 
     /**
      * 删除订单
@@ -78,11 +78,11 @@ public interface ErpOrderMapper
     /**
      * 批量新增订单明细
      * 
-     * @param erpOrderItemList 订单明细列表
+     * @param erpSaleOrderItemList 订单明细列表
      * @return 结果
      */
-    public int batchErpOrderItem(List<ErpOrderItem> erpOrderItemList);
-    public int insertErpOrderItem(ErpOrderItem erpOrderItem);
+    public int batchErpOrderItem(List<ErpSaleOrderItem> erpSaleOrderItemList);
+    public int insertErpOrderItem(ErpSaleOrderItem erpSaleOrderItem);
 
 
     /**

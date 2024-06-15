@@ -3,7 +3,7 @@ package cn.qihangerp.api.service;
 import java.util.List;
 
 import cn.qihangerp.common.ResultVo;
-import cn.qihangerp.domain.ErpOrder;
+import cn.qihangerp.domain.ErpSaleOrder;
 
 /**
  * 订单Service接口
@@ -19,23 +19,23 @@ public interface IErpOrderService
      * @param id 订单主键
      * @return 订单
      */
-    public ErpOrder selectErpOrderById(Long id);
+    public ErpSaleOrder selectErpOrderById(Long id);
 
     /**
      * 查询订单列表
      * 
-     * @param erpOrder 订单
+     * @param erpSaleOrder 订单
      * @return 订单集合
      */
-    public List<ErpOrder> selectErpOrderList(ErpOrder erpOrder);
+    public List<ErpSaleOrder> selectErpOrderList(ErpSaleOrder erpSaleOrder);
 
     /**
      * 新增订单
      * 
-     * @param erpOrder 订单
+     * @param erpSaleOrder 订单
      * @return 结果
      */
-    public int insertErpOrder(ErpOrder erpOrder);
+    public int insertErpOrder(ErpSaleOrder erpSaleOrder);
     // 发货操作移动到erpShipOrder中
 //    public int shipErpOrder(ErpOrder erpOrder);
 
@@ -43,10 +43,10 @@ public interface IErpOrderService
     /**
      * 修改订单
      * 
-     * @param erpOrder 订单
+     * @param erpSaleOrder 订单
      * @return 结果
      */
-    public int updateErpOrder(ErpOrder erpOrder);
+    public int updateErpOrder(ErpSaleOrder erpSaleOrder);
 
     /**
      * 批量删除订单
@@ -64,5 +64,5 @@ public interface IErpOrderService
      */
     public int deleteErpOrderById(Long id);
 
-    ResultVo<Integer> taoOrderMessage(ErpOrder order);
+    ResultVo<Integer> saveOrderMessage(ErpSaleOrder order);
 }

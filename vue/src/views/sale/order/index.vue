@@ -270,7 +270,7 @@
         </el-descriptions>
 
         <el-divider content-position="center">订单商品</el-divider>
-        <el-table :data="form.erpOrderItemList"  style="margin-bottom: 10px;">
+        <el-table :data="form.erpSaleOrderItemList"  style="margin-bottom: 10px;">
           <!-- <el-table-column type="selection" width="50" align="center" /> -->
           <el-table-column label="序号" align="center" type="index" width="50"/>
 

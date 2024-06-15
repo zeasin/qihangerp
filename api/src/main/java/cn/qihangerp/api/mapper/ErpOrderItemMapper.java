@@ -1,6 +1,6 @@
 package cn.qihangerp.api.mapper;
 
-import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpSaleOrderItem;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 * @Entity cn.qihangerp.domain.ErpOrderItem
 */
 @Mapper
-public interface ErpOrderItemMapper extends BaseMapper<ErpOrderItem> {
+public interface ErpOrderItemMapper extends BaseMapper<ErpSaleOrderItem> {
 
 }
 

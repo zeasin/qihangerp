@@ -5,8 +5,7 @@ import cn.qihangerp.api.mapper.ErpOrderItemMapper;
 import cn.qihangerp.common.PageQuery;
 import cn.qihangerp.common.PageResult;
 import cn.qihangerp.common.ResultVo;
-import cn.qihangerp.domain.ErpOrder;
-import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpSaleOrderItem;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -38,10 +37,10 @@ public class ErpSaleAfterRefundServiceImpl extends ServiceImpl<ErpSaleAfterRefun
         log.info("TAO退款消息处理" + refund.getRefundNum());
         // 处理数据
         // 查询ERP订单
-        ErpOrderItem orderItem = null;
-        List<ErpOrderItem> oOrderItems = orderItemMapper.selectList(new LambdaQueryWrapper<ErpOrderItem>()
-                .eq(ErpOrderItem::getOriginalOrderId, refund.getOriginalOrderId())
-                .eq(ErpOrderItem::getOriginalOrderItemId, refund.getOriginalOrderItemId()));
+        ErpSaleOrderItem orderItem = null;
+        List<ErpSaleOrderItem> oOrderItems = orderItemMapper.selectList(new LambdaQueryWrapper<ErpSaleOrderItem>()
+                .eq(ErpSaleOrderItem::getOriginalOrderId, refund.getOriginalOrderId())
+                .eq(ErpSaleOrderItem::getOriginalOrderItemId, refund.getOriginalOrderItemId()));
         if (oOrderItems != null && oOrderItems.size() > 0) {
             orderItem = oOrderItems.get(0);
         }

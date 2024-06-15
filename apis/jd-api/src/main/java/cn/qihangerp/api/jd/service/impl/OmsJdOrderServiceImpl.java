@@ -9,8 +9,8 @@ import cn.qihangerp.api.jd.mapper.OmsJdGoodsSkuMapper;
 import cn.qihangerp.api.jd.mapper.OmsJdOrderItemMapper;
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.enums.EnumShopType;
-import cn.qihangerp.domain.ErpOrder;
-import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpSaleOrder;
+import cn.qihangerp.domain.ErpSaleOrderItem;
 import cn.qihangerp.mq.MQRequest;
 import cn.qihangerp.mq.MQRequestType;
 import cn.qihangerp.mq.client.MQClientService;
@@ -166,7 +166,7 @@ public class OmsJdOrderServiceImpl extends ServiceImpl<OmsJdOrderMapper, OmsJdOr
 
         // 新增ErpOrder
         // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
-        ErpOrder insert = new ErpOrder();
+        ErpSaleOrder insert = new ErpSaleOrder();
         insert.setOrderNum(original.getOrderId());
         insert.setOrderTime(original.getOrderStartTime());
         insert.setShopId(original.getShopId());
@@ -185,13 +185,25 @@ public class OmsJdOrderServiceImpl extends ServiceImpl<OmsJdOrderMapper, OmsJdOr
             insert.setRefundStatus(1);
         }
         insert.setOrderStatus(orderStatus);
+//        insert.setGoodsAmount(StringUtils.isEmpty(original.getOrderTotalPrice()) ? 0.0 : Double.parseDouble(original.getOrderTotalPrice()));
+//        double orderSellerPrice = StringUtils.isEmpty(original.getOrderSellerPrice()) ? 0.0 : Double.parseDouble(original.getOrderSellerPrice());
+//        double freightPrice = StringUtils.isEmpty(original.getFreightPrice()) ? 0.0 : Double.parseDouble(original.getFreightPrice());
+//        double sellerDiscount = StringUtils.isEmpty(original.getSellerDiscount())?0.0:Double.parseDouble(original.getSellerDiscount());
+//
+//        insert.setDiscountAmount(BigDecimal.valueOf(sellerDiscount));
+//        insert.setAmount(orderSellerPrice + freightPrice);
         insert.setGoodsAmount(StringUtils.isEmpty(original.getOrderTotalPrice()) ? 0.0 : Double.parseDouble(original.getOrderTotalPrice()));
         double orderSellerPrice = StringUtils.isEmpty(original.getOrderSellerPrice()) ? 0.0 : Double.parseDouble(original.getOrderSellerPrice());
         double freightPrice = StringUtils.isEmpty(original.getFreightPrice()) ? 0.0 : Double.parseDouble(original.getFreightPrice());
-        double sellerDiscount = StringUtils.isEmpty(original.getSellerDiscount())?0.0:Double.parseDouble(original.getSellerDiscount());
+        insert.setOrderAmount(orderSellerPrice + freightPrice);
+        insert.setPostage(freightPrice);
+        insert.setPlatformDiscount(0.0);
+        try {
+            insert.setSellerDiscount(org.springframework.util.StringUtils.hasText(original.getSellerDiscount())?Double.parseDouble(original.getSellerDiscount()):0.0);
+        }catch (Exception e){
+            insert.setSellerDiscount(0.0);
+        }
 
-        insert.setDiscountAmount(BigDecimal.valueOf(sellerDiscount));
-        insert.setAmount(orderSellerPrice + freightPrice);
         insert.setReceiverName(bo.getFullname());
         insert.setReceiverPhone(bo.getMobile());
         insert.setAddress(bo.getFullAddress());
@@ -204,9 +216,9 @@ public class OmsJdOrderServiceImpl extends ServiceImpl<OmsJdOrderMapper, OmsJdOr
 
         List<OmsJdOrderItem> jdOrderItems = itemMapper.selectList(new LambdaQueryWrapper<OmsJdOrderItem>().eq(OmsJdOrderItem::getOrderId, original.getOrderId()));
         if(jdOrderItems!=null && jdOrderItems.size()>0) {
-            List<ErpOrderItem> items = new ArrayList<>();
+            List<ErpSaleOrderItem> items = new ArrayList<>();
             for (var item : jdOrderItems) {
-                ErpOrderItem orderItem = new ErpOrderItem();
+                ErpSaleOrderItem orderItem = new ErpSaleOrderItem();
                 orderItem.setOrderId(insert.getId());
                 orderItem.setOriginalOrderId(original.getOrderId());
                 orderItem.setOriginalOrderItemId(item.getId().toString());
@@ -296,7 +308,7 @@ public class OmsJdOrderServiceImpl extends ServiceImpl<OmsJdOrderMapper, OmsJdOr
 //        erpOrderMapper.batchErpOrderItem(items);
 
         // 远程调用
-        MQRequest<ErpOrder> req = new MQRequest<>();
+        MQRequest<ErpSaleOrder> req = new MQRequest<>();
         req.setMqRequestType(MQRequestType.ORDER_CONFIRM);
         req.setData(insert);
         ApiResult s = mqClientService.confirmOrder(req);

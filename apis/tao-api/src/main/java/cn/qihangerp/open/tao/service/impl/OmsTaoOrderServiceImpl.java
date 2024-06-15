@@ -2,8 +2,8 @@ package cn.qihangerp.open.tao.service.impl;
 
 import cn.qihangerp.common.*;
 import cn.qihangerp.common.enums.EnumShopType;
-import cn.qihangerp.domain.ErpOrder;
-import cn.qihangerp.domain.ErpOrderItem;
+import cn.qihangerp.domain.ErpSaleOrder;
+import cn.qihangerp.domain.ErpSaleOrderItem;
 import cn.qihangerp.mq.MQRequest;
 import cn.qihangerp.mq.MQRequestType;
 import cn.qihangerp.open.tao.bo.TaoOrderBo;
@@ -215,7 +215,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
 
         // 新增ErpOrder
         // 确认订单（操作：插入数据到s_shop_order、s_shop_order_item）
-        ErpOrder so = new ErpOrder();
+        ErpSaleOrder so = new ErpSaleOrder();
         so.setOrderNum(original.getTid().toString());
         so.setOrderTime(original.getCreated());
         so.setShopId(original.getShopId());
@@ -237,11 +237,18 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
         so.setOrderStatus(orderStatus);
         so.setShipStatus(0);
 //        so.setShipType(bo.getShipType());
-        so.setGoodsAmount(original.getTotalFee());
-        so.setPostage(original.getPostFee());
-        so.setAmount(original.getPayment().doubleValue());
-        so.setDiscountAmount(original.getDiscountFee());
+//        so.setGoodsAmount(original.getTotalFee());
+//        so.setPostage(original.getPostFee());
+//        so.setAmount(original.getPayment().doubleValue());
+//        so.setDiscountAmount(original.getDiscountFee());
 //        so.setPayment(taoOrder.getPayment().doubleValue());
+        so.setGoodsAmount(original.getPrice()!=null?original.getPrice():0.0);
+        so.setPlatformDiscount(0.0);
+        so.setSellerDiscount(original.getDiscountFee()!=null?original.getDiscountFee().doubleValue():0.0);
+        so.setPayAmount(original.getPayment()!=null?original.getPayment().doubleValue():0.0);
+        so.setOrderAmount(original.getTotalFee()!=null?original.getTotalFee():0.0);
+        so.setPostage(original.getPostFee()!=null?original.getPostFee().doubleValue():0.0);
+
         so.setPayTime(original.getPayTime());
         so.setConfirmTime(new Date());
         so.setCreateTime(new Date());
@@ -259,7 +266,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
 //        List<OmsTaoOrderItem> taoOrderItems = taoOrderMapper.selectOrderItemByOrderId(taoOrder.getId());
         List<OmsTaoOrderItem> taoOrderItems = itemMapper.selectList(new LambdaQueryWrapper<OmsTaoOrderItem>().eq(OmsTaoOrderItem::getTid,original.getTid()));
         if(taoOrderItems!=null&&taoOrderItems.size()>0) {
-            List<ErpOrderItem> items = new ArrayList<>();
+            List<ErpSaleOrderItem> items = new ArrayList<>();
             for (var i : taoOrderItems) {
                 Long erpGoodsId = 0L;
                 Long erpSkuId = 0L;
@@ -273,7 +280,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
                     }
                 }
 
-                ErpOrderItem item = new ErpOrderItem();
+                ErpSaleOrderItem item = new ErpSaleOrderItem();
                 item.setShipStatus(0);
 //                item.setShipType(taoOrder.getShipType());
                 item.setShopId(original.getShopId());
@@ -367,7 +374,7 @@ public class OmsTaoOrderServiceImpl extends ServiceImpl<OmsTaoOrderMapper, OmsTa
 //        erpOrderMapper.batchErpOrderItem(items);
 
         // 远程调用
-        MQRequest<ErpOrder> req = new MQRequest<>();
+        MQRequest<ErpSaleOrder> req = new MQRequest<>();
         req.setMqRequestType(MQRequestType.ORDER_CONFIRM);
         req.setData(so);
         ApiResult s = simpleClientHandler.sendRequestAndWaitForResponse(req);

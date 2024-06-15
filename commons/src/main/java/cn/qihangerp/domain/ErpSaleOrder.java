@@ -14,7 +14,7 @@ import lombok.Data;
  * @date 2024-01-05
  */
 @Data
-public class ErpOrder extends BaseEntity
+public class ErpSaleOrder extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
@@ -54,17 +54,25 @@ public class ErpOrder extends BaseEntity
     @Excel(name = "商品金额")
     private Double goodsAmount;
 
-    /** 折扣金额 */
-    @Excel(name = "折扣金额")
-    private BigDecimal discountAmount;
+    /** 卖家优惠金额 */
+    @Excel(name = "卖家优惠金额")
+    private Double sellerDiscount;
+    
+    /** 卖家优惠金额 */
+    @Excel(name = "平台优惠金额")
+    private Double platformDiscount;
 
     /** 运费 */
     @Excel(name = "运费")
-    private BigDecimal postage;
+    private Double postage;
+
+    /** 订单金额，单位：元 */
+    @Excel(name = "订单金额，单位：元")
+    private Double orderAmount;
 
     /** 支付金额，单位：元，支付金额=商品金额-折扣金额+邮费 */
     @Excel(name = "支付金额，单位：元，支付金额=商品金额-折扣金额+邮费")
-    private Double amount;
+    private Double payAmount;
 
     /** 收件人姓名 */
     @Excel(name = "收件人姓名")
@@ -129,8 +137,8 @@ public class ErpOrder extends BaseEntity
     private Float weight;
 
     /** 订单明细信息 */
-    private List<ErpOrderItem> itemList;
-    private List<ErpOrderItem> erpOrderItemList;
+    private List<ErpSaleOrderItem> itemList;
+    private List<ErpSaleOrderItem> erpSaleOrderItemList;
 
 
 }
