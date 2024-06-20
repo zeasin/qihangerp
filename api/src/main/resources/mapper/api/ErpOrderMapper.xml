@@ -77,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectErpOrderVo">
-        select id, order_num, shop_type,ship_type, shop_id, remark, buyer_memo,seller_memo, tag, refund_status, order_status, goods_amount, discount_amount, postage, amount, receiver_name, receiver_phone, address, country, province, city, town, pay_time, confirm_time, shipping_time, shipping_number, shipping_company,shipping_man,shipping_cost,length,width,height,weight, create_time, create_by, update_time, update_by from erp_sale_order
+        select * from erp_sale_order
     </sql>
 
     <select id="selectErpOrderList" parameterType="ErpSaleOrder" resultMap="ErpOrderResult">
@@ -91,10 +91,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="tag != null  and tag != ''"> and tag = #{tag}</if>
             <if test="refundStatus != null "> and refund_status = #{refundStatus}</if>
             <if test="orderStatus != null "> and order_status = #{orderStatus}</if>
-            <if test="goodsAmount != null "> and goods_amount = #{goodsAmount}</if>
-            <if test="discountAmount != null "> and discount_amount = #{discountAmount}</if>
-            <if test="postage != null "> and postage = #{postage}</if>
-            <if test="amount != null "> and amount = #{amount}</if>
             <if test="receiverName != null  and receiverName != ''"> and receiver_name like concat('%', #{receiverName}, '%')</if>
             <if test="receiverPhone != null  and receiverPhone != ''"> and receiver_phone = #{receiverPhone}</if>
             <if test="address != null  and address != ''"> and address = #{address}</if>

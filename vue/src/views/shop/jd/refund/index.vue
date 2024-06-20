@@ -116,7 +116,10 @@
 
       <el-table-column label="状态" align="center" prop="serviceStatusName" >
         <template slot-scope="scope">
-          <el-tag size="small" > {{ scope.row.serviceStatusName }}</el-tag>
+          <el-tag size="small" v-if="scope.row.customerExpect !== 1"> {{ scope.row.serviceStatusName }}</el-tag>
+          <el-tag size="small" v-if="scope.row.customerExpect === 1 && (scope.row.refundStatus === 3 || scope.row.refundStatus === 1)"> 审核通过</el-tag>
+          <el-tag size="small" v-if="scope.row.customerExpect === 1 && (scope.row.refundStatus === 2 || scope.row.refundStatus === 4)"> 审核不通过</el-tag>
+          <el-tag size="small" v-if="scope.row.customerExpect === 1 && (scope.row.refundStatus === 0)"> 未审核</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="申请时间" align="center" prop="applyTime" width="180">

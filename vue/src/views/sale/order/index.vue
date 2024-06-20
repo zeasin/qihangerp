@@ -149,7 +149,7 @@
       <!-- <el-table-column label="邮费，单位：元" align="center" prop="postage" /> -->
       <!-- <el-table-column label="折扣金额(元)" align="center" prop="discountAmount" /> -->
       <!-- <el-table-column label="商品金额(元)" align="center" prop="goodsAmount" /> -->
-      <el-table-column label="支付金额" align="center" prop="amount"  :formatter="amountFormatter" />
+      <el-table-column label="支付金额" align="center" prop="payAmount"  :formatter="amountFormatter" />
       <!-- <el-table-column label="支付时间" align="center" prop="payTime" /> -->
       <el-table-column label="收件信息" align="center" prop="receiverName" >
         <template slot-scope="scope">
