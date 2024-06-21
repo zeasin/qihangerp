@@ -100,6 +100,13 @@
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
+            type="text"
+            icon="el-icon-plus"
+            size="mini"
+            v-if="scope.row.parentId===0"
+            @click="handleCategory(scope.row)"
+          >规格属性</el-button>
+          <el-button
           type="text"
           icon="el-icon-plus"
           size="mini"
@@ -233,6 +240,7 @@ export default {
             image:list[i].image,
             sort:list[i].sort,
             remark:list[i].remark,
+            parentId:list[i].parentId,
             isDelete:list[i].isDelete,
             children: this.buildTree(list, list[i].id)
           };
@@ -286,7 +294,9 @@ export default {
       this.resetForm("queryForm");
       this.handleQuery();
     },
-
+    handleCategory(row){
+      this.$router.push({path:'/goods/goods_category/attribute',query:{categoryId:row.id,categoryName:row.name}});
+    },
     /** 新增按钮操作 */
     handleAdd(row) {
       this.reset();
