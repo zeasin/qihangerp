@@ -110,6 +110,7 @@
           type="text"
           icon="el-icon-plus"
           size="mini"
+          v-if="scope.row.parentId===0"
           @click="handleAdd(scope.row)"
           v-hasPermi="['goods:category:add']"
         >新增</el-button>
