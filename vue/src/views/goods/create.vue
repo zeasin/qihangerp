@@ -5,9 +5,9 @@
         <el-form-item label="商品分类" prop="categoryId">
           <treeselect :options="dataList" placeholder="请选择上级菜单" v-model="form.categoryId" style="width:220px" @select="categoryChange"/>
         </el-form-item>
-        <el-form-item label="供应商id" prop="supplierId">
+        <el-form-item label="供应商" prop="supplierId">
           <!-- <el-input v-model="form.supplierId" placeholder="请输入供应商id" /> -->
-          <el-select v-model="form.supplierId" filterable  placeholder="请选择供应商名称">
+          <el-select v-model="form.supplierId" filterable  placeholder="请选择供应商">
             <el-option v-for="item in supplierList" :key="item.id" :label="item.name" :value="item.id">
           </el-option>
         </el-select>
@@ -34,9 +34,9 @@
         <el-form-item label="单位名称" prop="unitName">
           <el-input v-model="form.unitName" placeholder="请输入单位名称" style="width:220px" />
         </el-form-item>
-        <el-form-item label="条码" prop="barCode">
-          <el-input v-model="form.barCode" placeholder="请输入条码" style="width:220px"/>
-        </el-form-item>
+<!--        <el-form-item label="条码" prop="barCode">-->
+<!--          <el-input v-model="form.barCode" placeholder="请输入条码" style="width:220px"/>-->
+<!--        </el-form-item>-->
         <el-form-item label="备注" prop="remark">
           <el-input v-model="form.remark" type="textarea" placeholder="请输入内容" />
         </el-form-item>
