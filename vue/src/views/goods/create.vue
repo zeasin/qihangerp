@@ -290,17 +290,18 @@ export default {
   },
   methods: {
     categoryChange(node, instanceId){
-      console.log("====分类边哈11111====",node,instanceId)
-      console.log("====分类边哈====",this.form.categoryId)
-      if(this.form.categoryId){
-        let categoryId=0;
-        if(node.parentId===0) categoryId=node.id;
-        else categoryId = node.parentId
-        console.log("====分类边哈22222====",categoryId)
+      // console.log("====分类边哈11111====",node,instanceId)
+      // console.log("====分类边哈====",this.form.categoryId)
+      if(node){
+        this.form.categoryId = node.id
+        let topCategoryId = 0;
+        if(node.parentId===0) topCategoryId=node.id;
+        else topCategoryId = node.parentId
+        console.log("====分类边哈22222====",topCategoryId)
         this.colorList = []
         this.sizeList = []
         this.styleList=[]
-        listCategoryAttribute({categoryId:categoryId}).then(response => {
+        listCategoryAttribute({categoryId:topCategoryId}).then(response => {
           this.categoryAttributeList = response.rows;
           if(response.rows){
             // 获取分类属性
