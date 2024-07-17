@@ -20,20 +20,20 @@
           @keyup.enter.native="handleQuery"
         /> -->
       </el-form-item>
-      <el-form-item label="订单编号" prop="orderNo">
+      <el-form-item label="采购单号" prop="orderNo">
         <el-input
           v-model="queryParams.orderNo"
-          placeholder="请输入订单编号"
+          placeholder="请输入采购单号"
           clearable
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="订单日期" prop="orderDate">
+      <el-form-item label="下单日期" prop="orderDate">
         <el-date-picker clearable
           v-model="queryParams.orderDate"
           type="date"
           value-format="yyyy-MM-dd"
-          placeholder="请选择订单日期">
+          placeholder="请选择下单日期">
         </el-date-picker>
       </el-form-item>
 
@@ -54,16 +54,16 @@
           v-hasPermi="['purchase:purchaseOrder:add']"
         >创建采购订单</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['purchase:purchaseOrder:export']"
-        >导出</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="warning"-->
+<!--          plain-->
+<!--          icon="el-icon-download"-->
+<!--          size="mini"-->
+<!--          @click="handleExport"-->
+<!--          v-hasPermi="['purchase:purchaseOrder:export']"-->
+<!--        >导出</el-button>-->
+<!--      </el-col>-->
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
