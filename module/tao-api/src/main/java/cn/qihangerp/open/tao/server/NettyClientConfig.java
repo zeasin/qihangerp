@@ -10,6 +10,7 @@ import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
@@ -22,6 +23,10 @@ public class NettyClientConfig {
 //    private NettyClientHandler nettyClientHandler;
     @Autowired
     private SimpleClientHandler simpleClientHandler;
+    @Value("${server.address-ip}")
+    private String serverIp;
+    @Value("${server.address-port}")
+    private Integer serverPort;
 
     @PostConstruct
     public void startClient() {
@@ -47,7 +52,7 @@ public class NettyClientConfig {
                         })
                         .option(ChannelOption.SO_KEEPALIVE, true);
 
-                ChannelFuture future = bootstrap.connect("localhost", 9999).sync();
+                ChannelFuture future = bootstrap.connect(serverIp,serverPort).sync();
                 future.channel().closeFuture().sync();
             } catch (InterruptedException e) {
                 e.printStackTrace();

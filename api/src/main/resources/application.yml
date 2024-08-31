@@ -60,6 +60,8 @@ spring:
 server:
   # 服务器的HTTP端口，默认为8099
   port: 8099
+  address-ip: 127.0.0.1
+  address-port: 9999
   servlet:
     # 应用的访问路径
     context-path: /

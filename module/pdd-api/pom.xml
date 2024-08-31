@@ -3,14 +3,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.qihangerp</groupId>
-        <artifactId>apis</artifactId>
+        <artifactId>module</artifactId>
         <version>2.0.1</version>
     </parent>
+
     <groupId>cn.qihangerp.api</groupId>
-    <artifactId>tao-api</artifactId>
+    <artifactId>pdd-api</artifactId>
+    <version>2.0.2</version>
     <packaging>jar</packaging>
 
-    <name>tao-api</name>
+    <name>pdd-api</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -18,19 +20,14 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>cn.qihangerp</groupId>
-            <artifactId>tao-api2</artifactId>
-            <version>1.5.4</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/tao-api2-1.5.4.jar</systemPath>
-        </dependency>
 
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
-            <scope>provided</scope>
+            <groupId>pinduoduo</groupId>
+            <artifactId>pdd-api</artifactId>
+            <version>0.6.12</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/pdd-api-0.6.12.jar</systemPath>
         </dependency>
+
     </dependencies>
 </project>
