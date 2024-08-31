@@ -21,7 +21,7 @@
         <module>tao</module>
         <module>kwai-api</module>
         <module>pdd-api</module>
-        <module>jd-api</module>
+        <module>jd</module>
         <module>dou-api</module>
         <module>wei-api</module>
         <module>xhs-api</module>

@@ -11,12 +11,13 @@
         <module name="tao" />
         <module name="wei-api" />
         <module name="common" />
+        <module name="tao-api" />
         <module name="kwai-api" />
         <module name="dou-api" />
         <module name="pdd-api" />
+        <module name="jd" />
         <module name="api" />
         <module name="xhs-api" />
-        <module name="jd-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -70,3 +70,5 @@ logs
 bak/
 tao-api/
 tao-api/**
+jd-api/
+jd-api/**
