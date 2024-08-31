@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="system" />
+        <module name="tao-api" />
+        <module name="wei-api" />
+        <module name="common" />
+        <module name="kwai-api" />
+        <module name="dou-api" />
+        <module name="pdd-api" />
+        <module name="api" />
+        <module name="xhs-api" />
+        <module name="jd-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="core" target="17" />
+      <module name="dubbo" target="17" />
+      <module name="ecerp-api" target="17" />
+      <module name="framework" target="17" />
+      <module name="goods" target="17" />
+      <module name="goods-service" target="17" />
+      <module name="interfaces" target="17" />
+      <module name="purchase" target="17" />
+      <module name="purchase-service" target="17" />
+      <module name="service" target="17" />
+      <module name="sys" target="17" />
+      <module name="sys-service" target="17" />
+      <module name="zhijian-generator" target="17" />
+      <module name="zhijian-quartz" target="17" />
+      <module name="zhijian-system" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api" options="" />
+      <module name="goods-service" options="-parameters" />
+      <module name="purchase-service" options="-parameters" />
+      <module name="sys-service" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -68,8 +68,5 @@ logs
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 bak/
-open-api
-open-api/
-open-api/**
 tao-api/
 tao-api/**

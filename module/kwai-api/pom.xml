@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.qihangerp</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>common</artifactId>
             <version>2.0.1</version>
         </dependency>
         <dependency>

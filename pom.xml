@@ -34,8 +34,9 @@
     </properties>
     <modules>
         <module>api</module>
-        <module>commons</module>
+        <module>common</module>
         <module>module</module>
+        <module>open-api</module>
     </modules>
     <packaging>pom</packaging>
 
