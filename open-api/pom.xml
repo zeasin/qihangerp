@@ -16,6 +16,8 @@
     <modules>
         <module>tao-api</module>
         <module>jd-api</module>
+        <module>pdd-api</module>
+        <module>dou-api</module>
     </modules>
 
     <properties>

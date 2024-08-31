@@ -41,8 +41,8 @@
     <file url="file://$PROJECT_DIR$/interfaces/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/interfaces/sys/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/interfaces/sys/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/module/dou-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/module/dou-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module/dou/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module/dou/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/jd/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/jd/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/kwai-api/src/main/java" charset="UTF-8" />
@@ -59,8 +59,12 @@
     <file url="file://$PROJECT_DIR$/module/wei-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/xhs-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/xhs-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/open-api/dou-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/open-api/dou-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/open-api/jd-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/open-api/jd-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/open-api/pdd-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/open-api/pdd-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/open-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/open-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/open-api/tao-api/src/main/java" charset="UTF-8" />
