@@ -8,11 +8,11 @@
     </parent>
 
     <groupId>cn.qihangerp.api</groupId>
-    <artifactId>kwai-api</artifactId>
+    <artifactId>kwai</artifactId>
     <version>0.4.28</version>
     <packaging>jar</packaging>
 
-    <name>kwai-api</name>
+    <name>kwai</name>
     <url>http://maven.apache.org</url>
 
     <properties>

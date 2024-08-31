@@ -158,12 +158,12 @@
         </dependency>
         <dependency>
             <groupId>cn.qihangerp.api</groupId>
-            <artifactId>kwai-api</artifactId>
+            <artifactId>kwai</artifactId>
             <version>0.4.28</version>
         </dependency>
         <dependency>
             <groupId>cn.qihangerp.api</groupId>
-            <artifactId>xhs-api</artifactId>
+            <artifactId>xhs</artifactId>
             <version>2.0.2</version>
         </dependency>
 

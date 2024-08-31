@@ -19,12 +19,12 @@
     <modules>
         <module>system</module>
         <module>tao</module>
-        <module>kwai-api</module>
+        <module>kwai</module>
         <module>pdd</module>
         <module>jd</module>
         <module>dou</module>
         <module>wei</module>
-        <module>xhs-api</module>
+        <module>xhs</module>
     </modules>
     <dependencies>
         <dependency>

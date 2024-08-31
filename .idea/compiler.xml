@@ -7,19 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="xhs" />
         <module name="tao" />
         <module name="tao-api" />
-        <module name="kwai-api" />
+        <module name="kwai" />
         <module name="pdd-api" />
         <module name="dou-api" />
         <module name="dou" />
         <module name="pdd" />
         <module name="system" />
         <module name="common" />
+        <module name="wei-api" />
         <module name="jd" />
         <module name="wei" />
         <module name="api" />
-        <module name="xhs-api" />
         <module name="jd-api" />
       </profile>
     </annotationProcessing>
