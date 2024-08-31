@@ -53,8 +53,8 @@
     <file url="file://$PROJECT_DIR$/module/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/system/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/system/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/module/tao-api/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/module/tao-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module/tao/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/module/tao/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/wei-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/wei-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/module/xhs-api/src/main/java" charset="UTF-8" />

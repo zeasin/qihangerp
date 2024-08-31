@@ -8,7 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="system" />
-        <module name="tao-api" />
+        <module name="tao" />
         <module name="wei-api" />
         <module name="common" />
         <module name="kwai-api" />

@@ -18,7 +18,7 @@
     </properties>
     <modules>
         <module>system</module>
-        <module>tao-api</module>
+        <module>tao</module>
         <module>kwai-api</module>
         <module>pdd-api</module>
         <module>jd-api</module>

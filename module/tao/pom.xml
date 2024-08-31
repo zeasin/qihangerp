@@ -7,10 +7,10 @@
         <version>2.0.1</version>
     </parent>
     <groupId>cn.qihangerp.api</groupId>
-    <artifactId>tao-api</artifactId>
+    <artifactId>tao</artifactId>
     <packaging>jar</packaging>
 
-    <name>tao-api</name>
+    <name>tao</name>
     <url>http://maven.apache.org</url>
 
     <properties>

@@ -98,3 +98,10 @@ mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   type-aliases-package: cn.qihangerp.api.domain;cn.qihangerp.domain;
 
+# minio配置
+minio:
+  endpoint: http://127.0.0.1:9000 #换成自己的minio服务端地址
+  accessKey: 0AksAWDtI20Lpb4qxq5S
+  secretKey: yOAZkOVwrhPooBRel5PB0GwS5uw8VAgmqYykHl3T
+  secure: false
+  bucketName: ecerp
