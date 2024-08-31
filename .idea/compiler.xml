@@ -15,9 +15,9 @@
         <module name="dou" />
         <module name="pdd" />
         <module name="system" />
-        <module name="wei-api" />
         <module name="common" />
         <module name="jd" />
+        <module name="wei" />
         <module name="api" />
         <module name="xhs-api" />
         <module name="jd-api" />

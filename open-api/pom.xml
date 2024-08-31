@@ -18,6 +18,7 @@
         <module>jd-api</module>
         <module>pdd-api</module>
         <module>dou-api</module>
+        <module>wei-api</module>
     </modules>
 
     <properties>

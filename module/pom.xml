@@ -23,7 +23,7 @@
         <module>pdd</module>
         <module>jd</module>
         <module>dou</module>
-        <module>wei-api</module>
+        <module>wei</module>
         <module>xhs-api</module>
     </modules>
     <dependencies>
