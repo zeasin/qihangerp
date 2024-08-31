@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="pdd" />
         <module name="system" />
         <module name="tao" />
         <module name="wei-api" />
@@ -14,10 +15,10 @@
         <module name="tao-api" />
         <module name="kwai-api" />
         <module name="dou-api" />
-        <module name="pdd-api" />
         <module name="jd" />
         <module name="api" />
         <module name="xhs-api" />
+        <module name="jd-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

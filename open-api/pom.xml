@@ -15,6 +15,7 @@
     <url>http://maven.apache.org</url>
     <modules>
         <module>tao-api</module>
+        <module>jd-api</module>
     </modules>
 
     <properties>
