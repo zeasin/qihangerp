@@ -26,5 +26,5 @@ public interface OmsPddGoodsService extends IService<OmsPddGoods> {
      * @return 第三方平台设置
      */
     ShopSetting selectShopSettingById(Integer id);
-    void updateShopSessionByShopId(Long shopId,String sessionKey);
+    void updateShopSessionByShopId(Long shopId,String accessToken);
 }

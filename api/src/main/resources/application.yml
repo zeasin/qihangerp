@@ -97,7 +97,8 @@ token:
 mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
   type-aliases-package: cn.qihangerp.api.domain;cn.qihangerp.domain;
-
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 # minio配置
 minio:
   endpoint: http://127.0.0.1:9000 #换成自己的minio服务端地址

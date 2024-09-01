@@ -18,6 +18,11 @@ public class HomeController {
 //        return "hello world";
 //    }
 
+    @GetMapping("/home")
+    public String home(String code){
+
+        return code;
+    }
     @Value(value = "${zhijian.name:1}")
     private String serverName;
 

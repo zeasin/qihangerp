@@ -113,8 +113,8 @@ public class OmsPddGoodsServiceImpl extends ServiceImpl<OmsPddGoodsMapper, OmsPd
     }
 
     @Override
-    public void updateShopSessionByShopId(Long shopId, String sessionKey) {
-        mapper.updateShopSessionByShopId(shopId,sessionKey);
+    public void updateShopSessionByShopId(Long shopId, String accessToken) {
+        mapper.updateShopSessionByShopId(shopId,accessToken);
     }
 }
 

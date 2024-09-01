@@ -4,6 +4,7 @@ import cn.qihangerp.api.pdd.domain.OmsPddGoods;
 import cn.qihangerp.domain.Shop;
 import cn.qihangerp.domain.ShopSetting;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author TW
@@ -28,7 +29,7 @@ public interface OmsPddGoodsMapper extends BaseMapper<OmsPddGoods> {
      */
     ShopSetting selectShopSettingById(Integer id);
 
-    void updateShopSessionByShopId(Long shopId,String sessionKey);
+    void updateShopSessionByShopId(@Param("shopId") Long shopId,@Param("accessToken") String accessToken);
 }
 
 

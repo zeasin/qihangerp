@@ -446,6 +446,12 @@ export default {
               this.$modal.msgSuccess("授权成功");
 
             });
+          }else if(this.tokenForm.platform === 5){
+            getPddToken(this.tokenForm).then(resp => {
+              this.authOpen = false
+              this.$modal.msgSuccess("授权成功");
+              this.getList()
+            });
           }
         }
       })

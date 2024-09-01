@@ -7,6 +7,9 @@ import cn.qihangerp.common.ResultVoEnum;
 import cn.qihangerp.common.enums.EnumShopType;
 import cn.qihangerp.domain.AjaxResult;
 import cn.qihangerp.domain.ShopSetting;
+import cn.qihangerp.open.pdd.TokenApiHelper;
+import cn.qihangerp.open.pdd.common.ApiResultVo;
+import cn.qihangerp.open.pdd.model.Token;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +43,9 @@ public class PddOAuthController {
         String appKey = platform.getAppKey();
         String appSercet = platform.getAppSecret();
 
-        String url = "https://mms.pinduoduo.com/open.html?response_type=code&client_id=" + appKey + "&redirect_uri=" + URLEncoder.encode(platform.getRedirectUrl());
+//        String url = "https://mms.pinduoduo.com/open.html?response_type=code&client_id=" + appKey + "&redirect_uri=" + URLEncoder.encode(platform.getRedirectUrl());
+        String url = "https://fuwu.pinduoduo.com/service-market/auth?response_type=code&client_id=" + appKey +
+                "&redirect_uri=" + URLEncoder.encode(platform.getRedirectUrl());
         return AjaxResult.success("SUCCESS",url);
     }
 
@@ -51,7 +56,11 @@ public class PddOAuthController {
         ShopSetting platform = omsPddGoodsService.selectShopSettingById(EnumShopType.Pdd.getIndex());
         String appKey = platform.getAppKey();
         String appSercet = platform.getAppSecret();
-
+        ApiResultVo<Token> token = TokenApiHelper.getToken(appKey, appSercet, bo.getCode());
+        if(token.getCode() == 0){
+            //更新token
+            omsPddGoodsService.updateShopSessionByShopId(bo.getShopId().longValue(),token.getData().getAccess_token());
+        }
 //        PopAccessTokenClient accessTokenClient = new PopAccessTokenClient(appKey, appSercet);
 //
 //        // 生成AccessToken

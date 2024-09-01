@@ -63,7 +63,7 @@
 
 
     <update id="updateShopSessionByShopId" >
-        update s_shop sessionKey = #{sessionKey}
+        update s_shop set access_token = #{accessToken}
         where id = #{shopId}
     </update>
 </mapper>
