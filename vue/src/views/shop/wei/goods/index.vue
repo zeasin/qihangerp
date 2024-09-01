@@ -45,6 +45,7 @@
       <el-col :span="1.5">
         <el-button
           type="success"
+          :loading="pullLoading"
           plain
           icon="el-icon-download"
           size="mini"
@@ -142,6 +143,7 @@ export default {
       multiple: true,
       // 显示搜索条件
       showSearch: true,
+      pullLoading: false,
       // 总条数
       total: 0,
       // 商品管理表格数据
