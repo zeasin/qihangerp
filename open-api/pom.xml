@@ -14,11 +14,11 @@
     <name>open-api</name>
     <url>http://maven.apache.org</url>
     <modules>
-        <module>tao-api</module>
-        <module>jd-api</module>
-        <module>pdd-api</module>
-        <module>dou-api</module>
-        <module>wei-api</module>
+<!--        <module>tao-api</module>-->
+<!--        <module>jd-api</module>-->
+<!--        <module>pdd-api</module>-->
+<!--        <module>dou-api</module>-->
+<!--        <module>wei-api</module>-->
     </modules>
 
     <properties>
