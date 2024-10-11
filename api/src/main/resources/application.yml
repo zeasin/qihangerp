@@ -59,7 +59,7 @@ spring:
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为8099
-  port: 8099
+  port: 8080
   address-ip: 127.0.0.1
   address-port: 9999
   servlet:
