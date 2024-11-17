@@ -71,6 +71,7 @@ public class SecurityConfig {
                         .requestMatchers("/home").permitAll()
                         .requestMatchers("/taoapi2/**").permitAll()
                         .requestMatchers("/kwai_api/oauth").permitAll()
+                        .requestMatchers("/captchaImage").permitAll()
                         .requestMatchers("/kwai_api/callback").permitAll()
                         .requestMatchers(HttpMethod.GET, "/favicon.ico").permitAll()
                         // 允许直接访问授权登录接口

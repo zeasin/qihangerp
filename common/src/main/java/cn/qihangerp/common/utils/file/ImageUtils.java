@@ -7,7 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
 
-import cn.qihangerp.common.config.ZhiJianConfig;
+import cn.qihangerp.common.config.QiHangErpConfig;
 import cn.qihangerp.common.utils.StringUtils;
 import org.apache.poi.util.IOUtils;
 import org.slf4j.Logger;
@@ -80,7 +80,7 @@ public class ImageUtils
             else
             {
                 // 本机地址
-                String localPath = ZhiJianConfig.getProfile();
+                String localPath = QiHangErpConfig.getProfile();
                 String downloadPath = localPath + StringUtils.substringAfter(url, Constants.RESOURCE_PREFIX);
                 in = new FileInputStream(downloadPath);
             }

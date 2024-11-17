@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-import cn.qihangerp.common.config.ZhiJianConfig;
+import cn.qihangerp.common.config.QiHangErpConfig;
 import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.common.utils.uuid.Seq;
@@ -36,7 +36,7 @@ public class FileUploadUtils
     /**
      * 默认上传的地址
      */
-    private static String defaultBaseDir = ZhiJianConfig.getProfile();
+    private static String defaultBaseDir = QiHangErpConfig.getProfile();
 
     public static void setDefaultBaseDir(String defaultBaseDir)
     {
@@ -143,7 +143,7 @@ public class FileUploadUtils
 
     public static final String getPathFileName(String uploadDir, String fileName) throws IOException
     {
-        int dirLastIndex = ZhiJianConfig.getProfile().length() + 1;
+        int dirLastIndex = QiHangErpConfig.getProfile().length() + 1;
         String currentDir = StringUtils.substring(uploadDir, dirLastIndex);
         return Constants.RESOURCE_PREFIX + "/" + currentDir + "/" + fileName;
     }

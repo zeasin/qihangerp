@@ -53,6 +53,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter
                 ||url.equals("/favicon.ico")
                 ||url.equals("/home")
                 ||url.contains("/taoapi2")
+                ||url.contains("/captchaImage")
                 ||url.contains("/kwai_api/oauth")
                 ||url.contains("/kwai_api/callback")
                 ||url.contains("/callback")){

@@ -14,7 +14,7 @@ import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.common.utils.StringUtils;
 import cn.qihangerp.common.utils.uuid.IdUtils;
 import jakarta.servlet.http.HttpServletRequest;
-import cn.qihangerp.common.config.ZhiJianConfig;
+import cn.qihangerp.common.config.QiHangErpConfig;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -74,7 +74,7 @@ public class FileUtils
      */
     public static String writeImportBytes(byte[] data) throws IOException
     {
-        return writeBytes(data, ZhiJianConfig.getImportPath());
+        return writeBytes(data, QiHangErpConfig.getImportPath());
     }
 
     /**

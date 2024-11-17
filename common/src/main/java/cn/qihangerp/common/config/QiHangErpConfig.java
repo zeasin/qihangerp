@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
  * @author qihang
  */
 @Component
-@ConfigurationProperties(prefix = "zhijian")
-public class ZhiJianConfig
+@ConfigurationProperties(prefix = "qihangerp")
+public class QiHangErpConfig
 {
     /** 项目名称 */
     private String name;
@@ -80,7 +80,7 @@ public class ZhiJianConfig
 
     public void setProfile(String profile)
     {
-        ZhiJianConfig.profile = profile;
+        QiHangErpConfig.profile = profile;
     }
 
     public static boolean isAddressEnabled()
@@ -90,7 +90,7 @@ public class ZhiJianConfig
 
     public void setAddressEnabled(boolean addressEnabled)
     {
-        ZhiJianConfig.addressEnabled = addressEnabled;
+        QiHangErpConfig.addressEnabled = addressEnabled;
     }
 
     public static String getCaptchaType() {
@@ -98,7 +98,7 @@ public class ZhiJianConfig
     }
 
     public void setCaptchaType(String captchaType) {
-        ZhiJianConfig.captchaType = captchaType;
+        QiHangErpConfig.captchaType = captchaType;
     }
 
     /**

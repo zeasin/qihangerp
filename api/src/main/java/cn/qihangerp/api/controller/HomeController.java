@@ -1,11 +1,10 @@
 package cn.qihangerp.api.controller;
 
 //import com.alibaba.nacos.api.config.annotation.NacosValue;
-import cn.qihangerp.common.config.ZhiJianConfig;
+import cn.qihangerp.common.config.QiHangErpConfig;
 import cn.qihangerp.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +15,7 @@ public class HomeController {
 //    private MySpiderController spiderController;
     /** 系统基础配置 */
     @Autowired
-    private ZhiJianConfig config;
+    private QiHangErpConfig config;
 
     /**
      * 访问首页，提示语

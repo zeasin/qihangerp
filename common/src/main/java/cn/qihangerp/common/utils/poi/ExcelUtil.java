@@ -28,7 +28,7 @@ import cn.qihangerp.common.utils.DateUtils;
 import cn.qihangerp.common.utils.DictUtils;
 import jakarta.servlet.http.HttpServletResponse;
 
-import cn.qihangerp.common.config.ZhiJianConfig;
+import cn.qihangerp.common.config.QiHangErpConfig;
 import cn.qihangerp.common.utils.file.FileTypeUtils;
 import cn.qihangerp.common.utils.file.FileUtils;
 import cn.qihangerp.common.utils.file.ImageUtils;
@@ -1344,7 +1344,7 @@ public class ExcelUtil<T>
      */
     public String getAbsoluteFile(String filename)
     {
-        String downloadPath = ZhiJianConfig.getDownloadPath() + filename;
+        String downloadPath = QiHangErpConfig.getDownloadPath() + filename;
         File desc = new File(downloadPath);
         if (!desc.getParentFile().exists())
         {

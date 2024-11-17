@@ -1,6 +1,6 @@
 package cn.qihangerp.common.utils.ip;
 
-import cn.qihangerp.common.config.ZhiJianConfig;
+import cn.qihangerp.common.config.QiHangErpConfig;
 import cn.qihangerp.common.utils.http.HttpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,7 @@ public class AddressUtils
         {
             return "内网IP";
         }
-        if (ZhiJianConfig.isAddressEnabled())
+        if (QiHangErpConfig.isAddressEnabled())
         {
             try
             {
