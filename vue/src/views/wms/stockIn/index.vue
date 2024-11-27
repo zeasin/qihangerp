@@ -218,7 +218,7 @@
 <script>
 import { listWmsStockInEntry, getWmsStockInEntry, stockIn } from "@/api/wms/WmsStockInEntry";
 import { searchLocation } from "@/api/wms/location";
-import {complete} from "../../../api/wms/WmsStockInEntry";
+import {complete} from "@/api/wms/WmsStockInEntry";
 export default {
   name: "WmsStockInEntry",
   data() {
