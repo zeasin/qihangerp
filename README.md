@@ -224,9 +224,12 @@ location /prod-api/ {
 💖 如果觉得有用记得点 Star⭐
 
 
-💖 欢迎一起交流！ 
-
+### 加入知识星期，获取作者协助
 
 <img src="docs/知识星球.jpg" width="300px" />
 
 
+ 
+### 加入微信群，和大家一起交流
+💖 欢迎一起交流！
+<img src="docs/微信群.jpg" width="300px" />
