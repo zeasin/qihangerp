@@ -162,7 +162,6 @@ A[录入拦截] -->B(通知仓库)
 ```
 
 
-
 ## 三、部署说明
 
 **项目采用SpringBoot+vue2开发。具体使用方法如下**
@@ -176,22 +175,44 @@ A[录入拦截] -->B(通知仓库)
 #### 3.2 启动Redis
 项目开发采用Redis7
 
-#### 3.3 启动后端api
+#### 3.3 修改项目配置
 
 + 修改`api`项目中的配置文件`application.yml`配置`Mysql`相关配置。
 
-+ 启动项目
+#### 3.4 mvn打包部署
+`mvn clean package`
 
 
-#### 3.4 启动前端 `vue`
-+ `npm install`
-+ `npm run dev`
+#### 3.5 前端 `vue`打包
+
 + 打包`npm run build:prod`
-+ 访问web
-  + 访问地址：`http://localhost`
-  + 登录名：`admin`
-  + 登录密码：`admin123`
 
+#### 3.6 修改Nginx配置
+
+```
+# 前端web配置
+location / {
+        #root   /opt/qihangerp/nginx/dist;
+        root /usr/share/nginx/html;
+        index  index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+# 增加后台api转发
+=======
+##### 修改Nginx配置（增加vue404、增加后台api转发）
+
+location /prod-api/ {
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header REMOTE-HOST $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://localhost:8088/;
+}
+```
+#### 3.7 访问web
++ 访问地址：`http://localhost`
++ 登录名：`admin`
++ 登录密码：`admin123`
 
 
 
