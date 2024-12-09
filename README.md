@@ -180,11 +180,14 @@ A[录入拦截] -->B(通知仓库)
 + 修改`api`项目中的配置文件`application.yml`配置`Mysql`相关配置。
 
 #### 3.4 mvn打包部署
++ Java版本：`Java 17`
++ Maven版本：`3.8`
 `mvn clean package`
 
 
 #### 3.5 前端 `vue`打包
-
++ nodejs版本要求：`v16.x`
++ 安装依赖：`npm install --registry=https://registry.npmmirror.com`
 + 打包`npm run build:prod`
 
 #### 3.6 修改Nginx配置
