@@ -10,7 +10,7 @@
 
 另外我们提供了部署服务，有需要的朋友们可以联系作者本人。
 
-2.0版本链接：https://gitee.com/qiliping/qihangerp2.0
+2.0版本链接：https://gitee.com/qiliping/qihangerp
 
 
 ## 一、系统介绍
